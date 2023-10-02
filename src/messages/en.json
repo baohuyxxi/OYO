@@ -71,13 +71,14 @@
         "checkin": "Checked in",
         "checkout": "Checked out",
         "beforeOneDay": "Cancellation only 1 day in advance",
-        "beforeOneWeek": "Cancellation only 7 days in advance"
+        "beforeOneWeek": "Cancellation only 7 days in advance",
+        "accountExample" :"For example: +84123456789 or yournam@email.com"
     },
     "contentPolicy": {
         "policyAuth": "By registering or logging in, you understand and agree to ",
         "and": " and ",
-        "ofYourtour": "of Yourtours.",
-        "informationOfYou": "Your information is completely confidential."
+        "informationOfYou": "Your information is completely confidential.",
+        "ofYOY": "của YOY."
     },
     "link": {
         "rules": "Terms Of Use",
@@ -226,7 +227,9 @@
         "admin": "Management home",
         "signout": "Log out",
         "profile": "Profile infomation",
-        "activeAccout": "Active account"
+        "activeAccout": "Active account",
+        "myBooking": "My Booking",
+        "myAccount": "My Account"
     },
     "footer": {
         "titleFooter": "Save time and money!",
@@ -284,7 +287,7 @@
         }
     },
     "language": {
-        "title": "Language:",
+        "title": "Language",
         "selectTitle": "Select language",
         "en": "English",
         "vi": "Vietnamese"

@@ -5,7 +5,6 @@ import DarkModeSharp from '@mui/icons-material/DarkModeSharp'
 import WbSunnySharpIcon from '@mui/icons-material/WbSunnySharp'
 
 import { useTheme, useColorScheme } from '@mui/material/styles'
-// const theme = extendTheme({})
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => { } })
 
@@ -20,7 +19,7 @@ export default function ModeToggle() {
           setMode(mode === 'light' ? 'dark' : 'light')
         }}>
         <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
-          {theme.palette.mode === 'dark' ? <WbSunnySharpIcon /> : <DarkModeSharp />}
+          {theme.palette.mode === 'dark' ? < DarkModeSharp /> : <WbSunnySharpIcon/>}
         </IconButton>
       </Button>
     </div>

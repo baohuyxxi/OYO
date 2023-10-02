@@ -71,13 +71,14 @@
         "checkin": "Đã nhận phòng",
         "checkout": "Đã trả phòng",
         "beforeOneDay": "Chỉ được hủy phòng trước 1 ngày",
-        "beforeOneWeek": "Chỉ được hủy phòng trước 7 ngày"
+        "beforeOneWeek": "Chỉ được hủy phòng trước 7 ngày",
+        "accountExample" :"Ví dụ: +84123456789 hoặc yournam@email.com"
     },
     "contentPolicy": {
         "policyAuth": "Bằng cách đăng ký hoặc đăng nhập, bạn đã hiểu và đồng ý với ",
         "and": " và ",
-        "ofYourtour": "của Yourtours.",
-        "informationOfYou": "Thông tin của bạn hoàn toàn được bảo mật."
+        "informationOfYou": "Thông tin của bạn hoàn toàn được bảo mật.",
+        "ofYOY": "của YOY."
     },
     "link": {
         "rules": "Điều Khoản Sử Dụng",
@@ -226,7 +227,9 @@
         "admin": "Trang chủ quản lý",
         "signout": "Đăng xuất",
         "profile": "Thông tin cá nhân",
-        "activeAccout": "Kích hoạt tài khoản"
+        "activeAccout": "Kích hoạt tài khoản",
+        "myBooking": "Đặt chỗ của tôi",
+        "myAccount": "Tài khoản của tôi"
     },
     "footer": {
         "titleFooter": "Tiết kiệm thời gian và tiền bạc!",
@@ -284,7 +287,7 @@
         }
     },
     "language": {
-        "title": "Ngôn ngữ:",
+        "title": "Ngôn ngữ",
         "selectTitle": "Chọn ngôn ngữ",
         "en": "Tiếng Anh",
         "vi": "Tiếng Việt"

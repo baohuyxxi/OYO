@@ -1,12 +1,25 @@
+.form-main{
+  position: relative;
+  margin: auto;
+  height: 70%;
+  width: 70%;
+  padding: 50px;
+  border-radius: 10px; /* Độ cong của góc */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Hiệu ứng viền mờ */
+  /* margin-top: -100px;
+  z-index: 9999;  */
+  
+}
 .search-hotel{
     height: 100%;
     width: 100%;
-
+    border: #0056b3;
 }
 .form-search{
     height: 100%;
     width: 60%;
     margin: auto;
+    border: #0056b3;
 }
 .form-title {
     font-size: 24px;
@@ -16,6 +29,16 @@
   
   .form-group {
     margin-bottom: 20px;
+  }
+  .container {
+    display: grid; /* Sử dụng CSS Grid */
+    grid-template-columns: 1fr 1fr; /* Chia thành hai cột bằng tỷ lệ 1:1 */
+    gap: 20px; /* Khoảng cách giữa các cột */
+  }
+  
+  .column {
+    padding: 20px;
+    border: 1px solid #ccc;
   }
   
   label {

@@ -6,6 +6,8 @@ import { I18nextProvider } from 'react-i18next'
 import i18n from './i18n'
 import CssBaseline from '@mui/material/CssBaseline'
 import { BrowserRouter } from 'react-router-dom'
+
+import './assets/css/grid.scss';
 import {
   Experimental_CssVarsProvider as CssVarsProvider,
   experimental_extendTheme as extendTheme,

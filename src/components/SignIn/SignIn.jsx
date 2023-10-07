@@ -242,7 +242,7 @@ function SignIn() {
       <div className="policy">
         <h5>
           {t('contentPolicy.policyAuth')}
-          <Link to="" className="link-policy" color="#007FFF">
+          <Link to="" className="link-policy" >
             {t('link.rules')}
           </Link>
           {t('contentPolicy.and')}

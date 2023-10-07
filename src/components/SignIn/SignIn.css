@@ -25,5 +25,5 @@
   }
 }
 .link-policy {
-  color: blue
+  color: blue !important;
 }

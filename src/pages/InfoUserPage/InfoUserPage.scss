@@ -1,0 +1,238 @@
+.info-user__page {
+  background: #fafafa;
+  height: 100vh;
+
+
+  .content-account {
+    margin-top: 50px;
+    padding: 0 230px;
+
+    .card-info {
+
+      .user-info {
+        display: flex;
+        align-items: center;
+        padding: 12px;
+      }
+      
+      /* Định dạng cho phần tử user-avatar */
+      .user-avatar {
+        height: 64px;
+        width: 64px;
+        border-radius: 64px;
+        background-color: #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: rgb(104, 113, 118);
+        margin-right: 12px;
+      }
+      
+      /* Định dạng cho phần tử user-details */
+      .user-details {
+        flex: 1;
+      }
+      
+      /* Định dạng cho phần tử user-name */
+      .user-name {
+        color: rgba(3, 18, 26, 1.00);
+        font-size: 24px;
+      }
+      
+      .user-details {
+        flex: 1;
+      }
+      
+      /* Định dạng cho phần tử user-name */
+      .user-name {
+        color: rgba(3, 18, 26, 1.00);
+        font-size: 24px;
+      }
+      
+      /* Định dạng cho phần tử user-email */
+      .user-email {
+        color: rgba(104, 113, 118, 1.00);
+      }
+      
+      /* Định dạng cho phần tử user-link */
+      .user-link {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        color: #007bff;
+        font-weight: bold;
+        padding: 10px 0;
+        transition: background-color 0.3s;
+      }
+      
+      /* Định dạng cho màu nền của liên kết "Tài khoản" */
+      // .user-link.edit-profile {
+      //   background-color: rgba(1, 148, 243, 1.00);
+      //   color: #fff;
+      // }
+      
+      /* Hiệu ứng màu nền khi di chuột vào liên kết "Tài khoản" */
+      // .user-link.edit-profile:hover {
+      //   background-color: #0172b1;
+      // }
+      
+      // /* Định dạng cho phần tử link-icon (biểu tượng bên cạnh liên kết) */
+      // .link-icon {
+      //   margin-right: 8px;
+      // }
+      
+      /* Định dạng cho màu nền phần tử "Đang đăng xuất" */
+      // .user-link.logout {
+      //   background-color: transparent;
+      //   color: #007bff;
+      // }
+      
+      // /* Hiệu ứng màu nền khi di chuột vào phần tử "Đang đăng xuất" */
+      // .user-link.logout:hover {
+      //   background-color: #f0f0f0;
+      // }
+      
+      height: 600px;
+      background: white;
+      border: 1px solid #bdbdbd;
+      border-radius: 10px;
+
+      .avatar-info {
+        display: flex;
+        justify-content: center;
+
+        img {
+          border-radius: 100%;
+          width: 210px;
+          height: 210px;
+        }
+
+        .user-info {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+}
+
+/* Định dạng cho phần tử user-avatar */
+.user-avatar {
+  height: 64px;
+  width: 64px;
+  border-radius: 64px;
+  background-color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: rgb(104, 113, 118);
+  margin-right: 12px;
+}
+
+/* Định dạng cho phần tử user-details */
+.user-details {
+  flex: 1;
+}
+
+/* Định dạng cho phần tử user-name */
+.user-name {
+  color: rgba(3, 18, 26, 1.00);
+  font-size: 24px;
+}
+      }
+
+      .name-info {
+        width: 100%;
+
+        h1 {
+          letter-spacing: 1;
+          text-align: center;
+        }
+
+        .edit-info_-link {
+          font-weight: bold;
+          color: var(--blue-link);
+          font-size: 14px;
+          display: flex;
+          justify-content: center;
+        }
+      }
+
+      .link-user {
+        font-size: 14px;
+        display: flex;
+        justify-content: left;
+        padding: 10px 0;
+        padding-left: 20px;
+        color: black;
+        font-weight: 550;
+        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Droid Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
+        ;
+
+        // .MuiSvgIcon-root {
+        //     margin-right: 10px;
+        // }
+      }
+
+      .link-user:hover {
+        color: var(--text-color);
+        background: #f5f5f5;
+      }
+    }
+
+    .card-content {
+      height: 600px;
+      background: white;
+      border: 1px solid #bdbdbd;
+      border-radius: 10px;
+      font-family: serif;
+
+      h2 {
+        margin-left: 30px;
+        padding-left: 10px;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        border-left: 4px solid orange;
+        font-size: 17px;
+        margin-top: 25px;
+      }
+
+      .desc-info-content {
+        font-size: 16px;
+        margin-left: 30px;
+        color: var(--text-color);
+      }
+
+      .label-info__user {
+        font-size: 16px;
+        width: 100%;
+        margin: 0;
+        margin-bottom: 8px;
+      }
+
+      .input-info__user {
+        width: 100%;
+        font-size: 14px;
+        padding: 8px 20px 8px 10px;
+        border-radius: 3px;
+        border: 1px solid var(--text-color);
+        margin-bottom: 15px;
+      }
+
+      .input-checkbox {
+        display: flex;
+        align-items: center;
+        padding: 8px 0;
+
+        label {
+          font-size: 15px;
+          margin-right: 20px;
+        }
+      }
+
+      .btn-save-info {
+        margin-left: 12px;
+        padding: 4px 20px;
+      }
+    }
+  }
+}

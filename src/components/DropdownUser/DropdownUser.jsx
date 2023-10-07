@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import { styled, alpha } from '@mui/material/styles'
+import Button from '@mui/material/Button'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
+import { NavLink } from 'react-router-dom'
 
-import Divider from '@mui/material/Divider';
+import Divider from '@mui/material/Divider'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined'
 import FactCheckOutlinedIcon from '@mui/icons-material/FactCheckOutlined'
@@ -92,10 +93,12 @@ export default function CustomizedMenus() {
         onClose={handleClose}
       >
         <header className='header-myAccount'> {t('navbar.myAccount')}</header>
-        <MenuItem onClick={handleClose} disableRipple>
-          <PermIdentityOutlinedIcon />
-          {t('navbar.profile')}
-        </MenuItem>
+        <NavLink to="/account" onClick={handleClose} activeClassName="active-link" style={{ textDecoration: 'none',color:'inherit' }}>
+          <MenuItem disableRipple>
+            <PermIdentityOutlinedIcon />
+            {t('navbar.profile')}
+          </MenuItem>
+        </NavLink>
         <MenuItem onClick={handleClose} disableRipple>
           <FactCheckOutlinedIcon />
           {t('navbar.myBooking')}

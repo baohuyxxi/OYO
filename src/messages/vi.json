@@ -21,7 +21,8 @@
         "love": "Thêm vào mục yêu thích",
         "unlove": "Bỏ khỏi mục yêu thích",
         "save": "Lưu",
-        "actived": "Kích hoạt"
+        "actived": "Kích hoạt",
+        "setting": "Cài đặt"
     },
     "message": {
         "signin": "Đăng nhập thành công",
@@ -61,7 +62,7 @@
         "messOTP_1": "Để bảo mật thông tin, chúng tôi cần bạn xác thực tài khoản. Chúng tôi đã gửi cho bạn mã OTP xác thực qua gmail ",
         "messOTP_2": ". Bạn vui lòng kiểm tra gmail và nhập mã xác thực vào đây:",
         "messReSendOTP": "Bạn không nhận được mã code, gửi lại?",
-        "changePassword": "Nhập địa chỉ email sử dụng để tạo tài khoản Yourtours và chúng tôi sẽ gửi link để đặt lại mật khẩu tài khoản đến bạn",
+        "changePassword": "Nhập địa chỉ email sử dụng để tạo tài khoản YOY và chúng tôi sẽ gửi link để đặt lại mật khẩu tài khoản đến bạn",
         "confirmSendOTP": "Chúng tôi đã gửi OTP để thay đổi mật khẩu thông qua email. Vui lòng kiểm tra email của bạn.",
         "FillOTP": "Nhập mã code mà chúng tôi đã gửi về gmail của bạn",
         "countClient": "1 Người lớn, 0 Trẻ em, 0 Trẻ sơ sinh",
@@ -90,20 +91,20 @@
     },
     "title": {
         "signin": "Đăng nhập",
-        "orSignin": "hoặc đăng nhập bằng",
+        "orSignin": "Hoặc đăng nhập bằng",
         "signup": "Đăng ký",
         "retrievalPassword": "Lấy lại mật khẩu",
         "newPassword": "Tạo mật khẩu mới",
         "home": "THẾ GIỚI TRỌN NIỀM VUI",
         "endow": "Ưu đãi hấp dẫn",
         "exploreVN": "Khám phá Việt Nam",
-        "whySelected": "Vì sao bạn nên chọn Yourtours",
+        "whySelected": "Vì sao bạn nên chọn YOY",
         "popularRoom": "Nhà nổi bật được xem nhiều nhất",
         "convenient": "Nơi này có những gì cho bạn",
         "priceDetail": "Chi tiết giá cơ sở",
         "discountCompain": "Chương trình giảm giá",
         "bookingOfYou": {
-            "tilte": "Yêu cầu đặt phòng/đặt chỗ • Yourtours",
+            "tilte": "Yêu cầu đặt phòng/đặt chỗ • YOY",
             "drive": "Chuyến đi của bạn",
             "client": "Khách",
             "day": "Ngày",
@@ -113,7 +114,7 @@
             "pay50": "Thanh toán 50%",
             "fullHome": "Toàn bộ ngôi nhà",
             "owner": "Chủ nhà",
-            "policy": "Đặt phòng của bạn được bảo vệ bởi Yourtours.",
+            "policy": "Đặt phòng của bạn được bảo vệ bởi YOY.",
             "surcharges": "Phụ phí bao gồm",
             "price": "Giá phòng",
             "totalPrice": "Tổng tiền thanh toán"
@@ -126,7 +127,15 @@
         "firstLove": "Tạo danh sách Yêu thích đầu tiên",
         "profileAccount": "Thông tin tài khoản",
         "activeAccout": "Kích hoạt tài khoản",
-        "confirmClose": "Xác nhận"
+        "confirmClose": "Xác nhận",
+        "accountSignUp": "Đăng ký tài khoản",
+        "hasBeenVerified": "Email/Số điện thoại đã được xác minh",
+        "verification" : "Xác minh",
+        "timeAgain": "Thời gian còn lại",
+        "second": "giây",
+        "resendCode" : "Gửi lại mã xác minh",
+        "withGoogle": "Tiếp tục với Google",
+        "outstanding": "Đặc điểm nổi bật"
     },
     "label": {
         "email": "Địa chỉ Email",
@@ -155,11 +164,23 @@
         "fullnameProfile": "Họ tên đầy đủ",
         "emailVoucher": "Email (nhận voucher)",
         "birthday": "Ngày sinh",
+        "monthOfBirth": "Tháng sinh",
+        "yearOfBirth": "Năm sinh",
+        "checkIn-CheckOut-day":"Ngày nhận phòng và trả phòng",
         "phone": "Số điện thoại",
         "address": "Địa chỉ",
         "gender": "Giới tính",
         "male": "Nam",
-        "female": "Nữ"
+        "female": "Nữ",
+        "currentPassword": "Mật khẩu hiện tại",
+        "newPassword":"Mật khẩu mới",
+        "enterANewPassword": "Nhập lại mật khẩu mới",
+        "CityLocationOrHotelName": "Thành phố, địa điểm hoặc tên khách sạn",
+        "lastName": "Họ",
+        "firstName": "Tên",
+        "enterCode": "Nhập mã xác minh",
+        "pleaseEnterCode": "Vui lòng nhập mã xác minh mà chúng tôi đã gửi tới"
+
     },
     "contentMain": {
         "homeinsearch": "Từ chuyến phượt 'ngẫu hứng' đến những cuộc phiêu lưu, khám phá công thức niềm vui của riêng bạn",
@@ -228,14 +249,19 @@
         "signout": "Đăng xuất",
         "profile": "Thông tin cá nhân",
         "activeAccout": "Kích hoạt tài khoản",
-        "myBooking": "Đặt chỗ của tôi",
-        "myAccount": "Tài khoản của tôi"
+        "myBooking": "Quản lý chỗ đặt",
+        "myAccount": "Tài khoản của tôi",
+        "passwordAndSecurity": "Mật khẩu & Bảo mật",
+        "billingInformation": "Thông tin thanh toán",
+        "accountManagement": "Quản lý tài khoản",
+        "personalData": "Dữ liệu cá nhân",
+        "changePassword" : "Đổi mật khẩu"
     },
     "footer": {
         "titleFooter": "Tiết kiệm thời gian và tiền bạc!",
         "contentFooter": "Hãy đăng ký và chúng tôi sẽ gửi những ưu đãi tốt nhất cho bạn",
-        "intro": " Mọi nội dung tại đây © 2005 – 2022 Công ty TNHH Tư nhân Yourtours. Bảo Lưu Mọi Quyền. Yourtours.com là thành viên của Tập đoàn Min Close, nhà cung cấp dịch vụ du lịch trực tuyến & các dịch vụ có liên quan hàng đầu thế giới.",
-        "contact_1": "Về Yourtours",
+        "intro": " Mọi nội dung tại đây © 2005 – 2022 Công ty TNHH Tư nhân YOY. Bảo Lưu Mọi Quyền. YOY.com là thành viên của Tập đoàn Min Close, nhà cung cấp dịch vụ du lịch trực tuyến & các dịch vụ có liên quan hàng đầu thế giới.",
+        "contact_1": "Về YOY",
         "contact_link_1": "Cách đặt chỗ",
         "contact_link_2": "Liên hệ chúng tôi",
         "contact_link_3": "Trợ giúp",
@@ -273,17 +299,17 @@
         "maxUpload": "Vui lòng chọn đủ 5 bước hình để tăng thu hút cho căn nhà của bạn",
         "client": "Khách",
         "beforePostHome": "Chủ nhà là trung tâm trong mọi hoạt động của chúng tôi và chúng tôi rất mong bạn sẽ được trải nghiệm sự kì diệu của việc đón tiếp khách.",
-        "rose": "Với mỗi lần giao dịch, Yourtours sẽ chiết khấu 10% hoa hồng",
+        "rose": "Với mỗi lần giao dịch, YOY sẽ chiết khấu 10% hoa hồng",
         "note": "Lưu ý:",
         "welcome": "Hân hạnh chào đón",
         "confirm": {
             "ready": "Bạn đã sẵn sàng đăng!",
-            "content_1": "Khi bạn nhấn đăng, khách có thể tìm thấy nhà/phòng cho thuê của bạn trên Yourtours và đặt bất kì ngày nào còn trống.",
+            "content_1": "Khi bạn nhấn đăng, khách có thể tìm thấy nhà/phòng cho thuê của bạn trên YOY và đặt bất kì ngày nào còn trống.",
             "content_2": "Ngoài ra, bạn hãy vào phần chủ nhà để có thể cập nhật thêm nhiều thông tin (phụ phí, giá theo ngày đặc biệt, ...) cho ngôi nhà của bạn để thêm phần chi tiết.",
             "create": "Tạo mục nhà/phòng cho thuê",
             "completed": "Hoàn tất!",
             "active": "Xác nhận tài khoản của bạn",
-            "active_content": "Khi bạn nhấn đăng, khách có thể tìm thấy nhà/phòng cho thuê của bạn trên Yourtours và đặt bất kì ngày nào còn trống."
+            "active_content": "Khi bạn nhấn đăng, khách có thể tìm thấy nhà/phòng cho thuê của bạn trên YOY và đặt bất kì ngày nào còn trống."
         }
     },
     "language": {

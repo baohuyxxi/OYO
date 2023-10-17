@@ -1,8 +1,8 @@
 import React, { Component } from "react"
 import Slider from "react-slick"
-import bannerOne from '../../assets/imageMaster/banner_1.webp'
-import bannerTwo from '../../assets/imageMaster/banner_2.webp'
-import bannerThree from '../../assets/imageMaster/banner_3.webp'
+import bannerOne from '~/assets/imageMaster/banner_1.webp'
+import bannerTwo from '~/assets/imageMaster/banner_2.webp'
+import bannerThree from '~/assets/imageMaster/banner_3.webp'
 
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'

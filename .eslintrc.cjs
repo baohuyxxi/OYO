@@ -61,5 +61,9 @@ module.exports = {
     'comma-dangle': 1,
     'comma-spacing': 1,
     'arrow-spacing': 1
-  }
+  },
+  content: [
+    './src/**/*.{js, jsx, ts, tsx, mdx}',
+    '../../node_modules/react-tailwindcss-datepicker/dist/index.esm.js'
+  ]
 }

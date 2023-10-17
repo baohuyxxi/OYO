@@ -5,6 +5,8 @@ import { Routes, Route } from 'react-router-dom'
 // Customer Page
 const HomePage = React.lazy(() => import('../pages/HomePage/HomePage'))
 const InfoUserPage = React.lazy(()=> import('../pages/InfoUserPage/InfoUserPage'))
+const VerificationCode = React.lazy(()=> import('../components/VerificationCode/VerificationCode'))
+const RoomDetail =   React.lazy(()=> import('../pages/RoomDetail/RoomDetail'))
 const Auth = () => {
   return (
     <Routes>
@@ -21,6 +23,22 @@ const Auth = () => {
         element={
           <React.Suspense>
             <InfoUserPage />
+          </React.Suspense>
+        }
+      />
+    <Route
+        path="/VerificationCode"
+        element={
+          <React.Suspense>
+            <VerificationCode />
+          </React.Suspense>
+        }
+      />
+      <Route
+        path="/RoomDetail/:id"
+        element={
+          <React.Suspense>
+            <RoomDetail />
           </React.Suspense>
         }
       />

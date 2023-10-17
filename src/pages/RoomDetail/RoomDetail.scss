@@ -1,0 +1,337 @@
+.background {
+    position: relative;
+}
+
+.info-room {
+    position: relative;
+    height: auto;
+
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--text-color);
+
+    .header-room {
+        margin-left: 180px;
+        margin-right: 180px;
+
+        h1 {
+            font-size: 28px;
+            margin: 0;
+            margin-bottom: 5px;
+        }
+
+        .heading {
+            display: flex;
+            justify-content: space-between;
+
+            .heading__left {
+                display: flex;
+
+                .obility__room {
+                    display: flex;
+
+                    img {
+                        width: 16px;
+                        margin-top: 5px;
+                    }
+
+                    p {
+                        padding: 3px 18px;
+                        color: rgba(2, 100, 200, 1);
+                        font-size: 1.2rem;
+                        background-color: #bbdefb;
+                        border-radius: 10px;
+                        margin: 0;
+                        margin-top: 8px;
+                        margin-right: 5px;
+                    }
+                }
+
+                .locate__room {
+                    margin-top: 9px;
+                    display: flex;
+                    margin-left: 5px;
+                    padding-left: 20px;
+
+                    p {
+                        margin: 0;
+                        font-size: 1.3rem;
+                        color: rgba(2, 100, 200, 1);
+                    }
+
+                    .icon_locate {
+                        color: rgba(2, 100, 200, 1);
+                        font-size: 1.6rem;
+                        margin-right: 5px;
+                    }
+                }
+            }
+
+            .heading__right {
+                display: flex;
+                justify-items: center;
+
+                .icon_rate {
+                    font-size: 2rem;
+                    color: blue;
+                }
+
+                p {
+                    margin: 0;
+                    font-size: 1.4rem;
+                    margin-top: 3px;
+                    margin-left: 3px;
+                }
+
+                .link__rate {
+                    font-size: 1.4rem;
+                    margin-top: 3px;
+                    margin-left: 5px;
+                }
+            }
+        }
+    }
+
+    .about-room {
+        margin-left: 180px;
+        margin-right: 180px;
+        margin-top: 30px;
+        position: relative;
+        display: flex;
+
+
+        .l-8 {
+            height: 30px;
+        }
+
+        .l-4 {
+            height: 30px;
+            display: block;
+        }
+
+        .card-book__detail {
+            width: 100%;
+            height: auto;
+            margin: auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            position: relative;
+            z-index: 90;
+
+            .price-room {
+                padding: 20px;
+                padding-top: 30px;
+                font-size: 1.8rem;
+                font-weight: bold;
+            }
+
+            .date-book {
+                .title__date-book {
+                    display: flex;
+                    margin-left: 30px;
+
+                    p {
+                        font-size: 1.3rem;
+                        margin: 0;
+                        margin-bottom: 5px;
+                        margin-right: 85px;
+                        font-weight: bold;
+                    }
+                }
+
+                .info_date {
+                    display: flex;
+                    margin: auto;
+
+                    .output {
+                        width: 160px;
+                        margin-left: 0;
+
+                        input {
+                            padding: 10px;
+                            width: 100%;
+                        }
+                    }
+                }
+
+                .calendarElement {
+                    margin-left: -100px;
+                }
+
+                .calendarWrap {
+                    margin-top: 0;
+                }
+            }
+
+            .count__guest {
+                margin-top: 50px;
+
+                p {
+                    padding-left: 30px;
+                    font-size: 1.3rem;
+                    font-weight: bold;
+                }
+
+                .dropdown {
+                    width: auto;
+                    padding: 0;
+                    margin-right: 28px;
+                    margin-left: 28px;
+                }
+            }
+        }
+
+        .title-room {
+            border-radius: 1em;
+
+            h1 {
+                margin: 0;
+            }
+
+            .count-detail {
+                font-size: 1.4rem;
+                color: #757575;
+            }
+
+            .line {
+                border: 0.2px solid #e0e0e0;
+            }
+
+            .desc-room {
+                margin-top: 1rem;
+                margin-left: 1rem;
+                width: 100%;
+                margin-right: auto;
+
+                p {
+                    font-size: 14px;
+                    line-height: 1.5;
+                    padding-right: 25px;
+                }
+            }
+
+            .bed-room {
+                margin-top: 1em;
+                margin-left: 1em;
+
+                p {
+                    font-size: 14px;
+                    line-height: 1.5;
+                }
+            }
+        }
+
+        .card-room {
+            border-radius: 1em;
+
+            h1 {
+                margin: 0;
+            }
+
+            h2 {
+                padding-top: 1em;
+                padding-left: 1em;
+            }
+
+            p {
+                font-size: 1em;
+                padding-left: 1em;
+            }
+
+            .count-detail {
+                font-size: 1.4rem;
+                color: #757575;
+            }
+
+            .line {
+                border: 0.2px solid #e0e0e0;
+            }
+
+            .button-Favorite {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding-bottom: 2em;
+            }
+        }
+        
+        .review{
+            display: flex;
+            position: relative;
+        }
+        .line {
+            margin: 30px 25px 10px 25px;
+        }
+
+        .price-total {
+            display: flex;
+            justify-content: space-between;
+            margin-left: 25px;
+            margin-right: 25px;
+
+            .title-price {
+                display: flex;
+                align-items: center;
+
+                .name-surcharge {
+                    margin: 5px 0;
+                }
+            }
+
+            .real-price {
+                .cost-surcharge {
+                    margin: 5px 0;
+                    font-weight: 550;
+                }
+            }
+
+            p {
+                font-size: 1.5rem;
+            }
+        }
+
+        .discount-campain {
+            margin-left: 25px;
+            margin-right: 25px;
+
+            .discount-campain__title {
+                display: flex;
+                align-items: center;
+
+                .title {
+                    margin: 0;
+                    color: red;
+                }
+            }
+
+            p {
+                font-size: 15px;
+            }
+        }
+
+        .btn-booking {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            padding-bottom: 20px;
+
+            .btn-booking-room {
+                padding: 8px 28px;
+                cursor: pointer;
+                border: none;
+                background-color: #43a047;
+                color: white;
+                border-radius: 5px;
+            }
+
+            .btn-booking-room:hover {
+                background-color: #388e3c;
+            }
+        }
+    }
+    
+}

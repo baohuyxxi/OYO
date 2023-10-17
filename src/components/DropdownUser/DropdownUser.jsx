@@ -9,13 +9,13 @@ import Divider from '@mui/material/Divider'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined'
 import FactCheckOutlinedIcon from '@mui/icons-material/FactCheckOutlined'
-import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined'
+import LogoutOutlinedIcon from '@mui/icons-material/ExitToAppOutlined'
 
 import { t } from 'i18next'
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Margin } from '@mui/icons-material'
-import './DropdownUser.css'
+import './DropdownUser.scss'
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -96,7 +96,7 @@ export default function CustomizedMenus() {
         <NavLink to="/account" onClick={handleClose} activeClassName="active-link" style={{ textDecoration: 'none',color:'inherit' }}>
           <MenuItem disableRipple>
             <PermIdentityOutlinedIcon />
-            {t('navbar.profile')}
+            {t('navbar.accountManagement')}
           </MenuItem>
         </NavLink>
         <MenuItem onClick={handleClose} disableRipple>
@@ -105,7 +105,7 @@ export default function CustomizedMenus() {
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
         <MenuItem onClick={handleClose} disableRipple>
-          <ExitToAppOutlinedIcon />
+          <LogoutOutlinedIcon />
           {t('navbar.signout')}
         </MenuItem>
       </StyledMenu>

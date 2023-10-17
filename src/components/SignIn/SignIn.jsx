@@ -2,8 +2,7 @@
 import * as React from 'react'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
-import googleIcon from '../../assets/imageMaster/google-logo.png'
-import TextField from '@mui/material/TextField'
+import googleIcon from '~/assets/imageMaster/google-logo.png'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Link from '@mui/material/Link'
@@ -14,69 +13,26 @@ import AccountCircle from '@mui/icons-material/AccountCircle'
 import DialogTitle from '@mui/material/DialogTitle'
 import Dialog from '@mui/material/Dialog'
 import LoadingButton from '@mui/lab/LoadingButton'
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputAdornment from '@mui/material/InputAdornment';
+import InputAdornment from '@mui/material/InputAdornment'
+import Paper from '@mui/material/Paper'
+import CustomInput from '~/assets/custom/CustomInput'
+import SignInSignUp from '../SignIn-SignUp/SignIn-SignUp'
 import { t } from 'i18next'
-import './SignIn.css'
+import './SignIn.scss'
 
-import {
-  Experimental_CssVarsProvider as CssVarsProvider,
-  experimental_extendTheme as extendTheme
-} from '@mui/material/styles'
-const theme = extendTheme({
-})
-
-function ButtonLogin() {
+export default function SignIn() {
   const [open, setOpen] = React.useState(false)
-  const handleClickOpen = () => {
-    setOpen(true)
-  }
-  const handleClose = (value) => {
-    setOpen(false)
-  }
-
-  return (
-    <>
-      <Button className='button-login-register' onClick={handleClickOpen} color="inherit" startIcon={<AccountCircle />}>
-        {t('title.signin')}
-      </Button>
-      <SimpleDialog
-        open={open}
-        onClose={handleClose}
-      />
-    </>
-  )
-}
-
-function SimpleDialog(props) {
-  const { onClose, open } = props
-  const handleClose = () => {
-    onClose()
-  }
-  return (
-    <div className='container__sign-in' >
-      <Dialog onClose={handleClose} open={open} >
-        <DialogTitle>
-          {t('title.signin')}/{t('title.signup')}
-          <Button className='closeDialog'
-            variant="text"
-            color="inherit"
-            style={{ position: 'absolute', right: '8px', top: '8px' }}
-            onClick={handleClose}
-          >
-            X
-          </Button>
-        </DialogTitle>
-        <SignIn />
-      </Dialog>
-    </div>
-  )
-}
-
-function SignIn() {
+    const handleClickOpen = () => {
+        setOpen(true);
+        
+    }
+    const handleClose = () => {
+        setOpen(false);
+    }
+    
   const [email, setEmail] = useState('') // Trạng thái để theo dõi email
   const [showPasswordInput, setShowPasswordInput] = useState(false)// Trạng thái để điều khiển việc hiển thị ô nhập mật khẩu
-  const [showPassword, setShowPassword] = React.useState(false)
+  const [showPassword, setShowPassword] = useState(false)
   const handleTogglePassword = () => {
     setShowPassword(!showPassword)
   }
@@ -103,6 +59,7 @@ function SignIn() {
           setShowLoginButton(false)
           setshowLoadingButton(false)
           setShowRegisterButton(true)
+          showPasswordInput(false)
         }
       }, 2000
       )
@@ -117,6 +74,7 @@ function SignIn() {
       setShowPasswordInput(false)
       setShowLoginButton(false)
       setShowRegisterButton(false)
+      showPasswordInput(false)
     }
 
     return () => {
@@ -132,6 +90,7 @@ function SignIn() {
     setshowLoadingButton(true)
     setshowStatusButton(false)
     setShowLoginButton(false)
+    showPasswordInput(false)
   }
 
   const handleSubmit = (event) => {
@@ -142,60 +101,60 @@ function SignIn() {
 
   return (
     <Container component="main" maxWidth="xs" >
-      <h3>{t('label.email')}/{t('label.phone')}</h3>
+      {/* <h3>{t('label.email')}/{t('label.phone')}</h3> */}
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-        <div className='form-element'>
-          <OutlinedInput color='mainColor'
-            fullWidth
+      <div className='form-element'>
+          <CustomInput
+            title={t('label.email') +"/" + t('label.phone')}
             id="email"
             name="email"
             autoComplete="email"
-            autoFocus
             value={email}
-            onChange={handleEmailChange} // Gọi hàm handleEmailChange khi email thay đổi  
+            onChange={handleEmailChange} // Gọi hàm handleEmailChange khi email thay đổi
             placeholder={t('contentMess.accountExample')}
           />
         </div>
-        <div className='form-element'>
-          {showPasswordInput && (
-            // Kiểm tra trạng thái để hiển thị ô nhập mật khẩu
-            <OutlinedInput
-              color='mainColor'
-              fullWidth
+        {showPasswordInput && (
+        // Kiểm tra trạng thái để hiển thị ô nhập mật khẩu
+          <div className='form-element'>
+            <CustomInput
+              title={t('label.password')}
               name="password"
               id="password"
-              autoComplete="current-password"
               type={showPassword ? 'text' : 'password'}
-              endAdornment={
+              InputProps={{
+              endAdornment:(
                 <InputAdornment position="end">
                   <IconButton
-                    aria-label="toggle password visibility"
                     onClick={handleTogglePassword}
                     edge="end"
                   >
                     {showPassword ? <Visibility /> : <VisibilityOff />}
                   </IconButton>
                 </InputAdornment>
-              }
+              )}}
             />
-          )}
-        </div>
+          </div>
+        )}
+
         {showStatusButton && (
           <Button
+            className='form-button'
             variant='contained'
             fullWidth
             disabled
           >
-            Tiếp tục
+            {t('common.continue')}
           </Button>
         )}
         {showLoadingButton && (
-          <LoadingButton
+          <LoadingButton className='form-button'
+            type="submit"
             loading
             variant="outlined"
             fullWidth
             disabled>
-            <Button> a</Button>
+            <Button>  </Button>
           </LoadingButton>)
         }
         {showLoginButton && (
@@ -203,56 +162,60 @@ function SignIn() {
             type="submit"
             fullWidth
             variant="contained"
-            color='mainColor'
           >
             {t('title.signin')}
           </Button>
         )}
         {showRegisterButton && (
           <Button
+            className='form-button'
             fullWidth
             color='orange'
             variant='contained'
-            onClick={() => {
-              // Xử lý việc đăng ký ở đây
-            }}
+            onClick={handleClickOpen} 
           >
             {t('title.signup')}
           </Button>
         )}
       </Box>
       <h4 >
-        Đăng nhập/đăng ký với
+        <span className="centered-line"></span>
+        {t('title.orSignin')}
+        <span className="centered-line"></span>
       </h4>
 
       <div className="social-container">
-
         <Button
           type="submit"
           fullWidth
           variant="outlined"
-          color="inherit"
+
         >
-          <IconButton color="inherit">
+          <IconButton >
             <img src={googleIcon} alt="Your Image" width="24" height="24" />
           </IconButton>
-          Tiếp tục với Google
+          {t('title.withGoogle')}
         </Button>
       </div>
       <div className="policy">
-        <h5>
+        <h6>
           {t('contentPolicy.policyAuth')}
           <Link to="" className="link-policy" >
             {t('link.rules')}
           </Link>
           {t('contentPolicy.and')}
-          <Link to="" className="link-policy" color="#007FFF">
+          <Link to="" className="link-policy">
             {t('link.privacyPolicy')}
           </Link>{' '}
           {t('contentPolicy.ofYOY')}
-        </h5>
+        </h6>
       </div>
+      <SignInSignUp
+        value={2}
+        title ={t('label.enterCode')}
+        open={open}
+        onClose={handleClose}
+      />
     </Container>
   )
 }
-export default ButtonLogin

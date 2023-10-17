@@ -1,73 +1,147 @@
-import * as React from "react";
-import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import { Facebook, Instagram, Twitter } from "@mui/icons-material";
-import { Box } from "@mui/material";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Logo from '~/assets/logo.svg'
+import twitterIcon from '~/assets/imageMaster/twitter.png'
+import youtubeicon from '~/assets/imageMaster/youtube-play--v2.png';
+import facebookIcon from '~/assets/imageMaster/facebook-footer.png';
+import instagramIcon from '~/assets/imageMaster/instagram-new.png';
+import './Footer.scss'
+import { t } from 'i18next'
 
-export default function Footer() {
-  return (
-    <div color='background'>
-      <Box
-        component="footer"
-        sx={{
-          // backgroundColor: (theme) =>
-          //   theme.palette.mode === "light"
-          //     ? theme.palette.grey[200]
-          //     : theme.palette.grey[800],
-          p: 6
-        }}
-       
-      >
-        <Container maxWidth="lg">
-          <Grid container spacing={5}>
-            <Grid item xs={12} sm={4}>
-              <Typography variant="h6" color="text.primary" gutterBottom>
-                About Us
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                We are XYZ company, dedicated to providing the best service to our
-                customers.
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <Typography variant="h6" color="text.primary" gutterBottom>
-                Contact Us
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                123 Main Street, Anytown, USA
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Email: info@example.com
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Phone: +1 234 567 8901
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <Typography variant="h6" color="text.primary" gutterBottom>
-                Follow Us
-              </Typography>
-              <Link href="https://www.facebook.com/" color="inherit">
-                <Facebook />
-              </Link>
-              <Link
-                href="https://www.instagram.com/"
-                color="inherit"
-                sx={{ pl: 1, pr: 1 }}
-              >
-                <Instagram />
-              </Link>
-              <Link href="https://www.twitter.com/" color="inherit">
-                <Twitter />
-              </Link>
-            </Grid>
-          </Grid>
-          <Box mt={5}>
-          </Box>
-        </Container>
-      </Box>
-    </div>
-  );
-}
+const Footer = () => {
+    return (
+      <div className="footer">
+      <div className="footer__inner">
+          <div className="grid wide">
+              <div className="row">
+                  <div className="col l-6 m-12 c-12">
+                      <img src={Logo} alt="" className="footer__logo" />
+                      <p className="footer__desc">{t('footer.intro')}</p>
+                      <div className="footer__inner-contact">
+                          <Link to="#" className="footer__contact-logo fab fa-twitter">
+                              <img src={twitterIcon} alt="alt-t" />
+                          </Link>
+                          <Link to="#" className="footer__contact-logo fab fa-youtube">
+                              <img src={youtubeicon} alt="alt-y" />
+                          </Link>
+                          <Link to="#" className="footer__contact-logo fab fa-facebook-square">
+                              <img src={facebookIcon} alt="alt-f" />
+                          </Link>
+                          <Link to="#" className="footer__contact-logo fab fa-instagram-square">
+                              <img src={instagramIcon} alt="alt-i" />
+                          </Link>
+                      </div>
+                  </div>
+                  <div className="col l-2 m-4 c-12">
+                      <ul className="footer__list">
+                          <h3 className="footer__list-heading">{t('footer.contact_1')}</h3>
+                          <li className="footer__item">
+                              <i className="footer__item-icon fas fa-chevron-right"></i>
+                              <Link to="/" className="footer__item-link">
+                                  {t('footer.contact_link_1')}
+                              </Link>
+                          </li>
+                          <li className="footer__item">
+                              <i className="footer__item-icon fas fa-chevron-right"></i>
+                              <Link to="#" className="footer__item-link">
+                                  {t('footer.contact_link_2')}
+                              </Link>
+                          </li>
+                          <li className="footer__item">
+                              <i className="footer__item-icon fas fa-chevron-right"></i>
+                              <Link to="#" className="footer__item-link">
+                                  {t('footer.contact_link_3')}
+                              </Link>
+                          </li>
+                          <li className="footer__item">
+                              <i className="footer__item-icon fas fa-chevron-right"></i>
+                              <Link to="#" className="footer__item-link">
+                                  {t('footer.contact_link_4')}
+                              </Link>
+                          </li>
+                          <li className="footer__item">
+                              <i className="footer__item-icon fas fa-chevron-right"></i>
+                              <Link to="#" className="footer__item-link">
+                                  {t('footer.contact_link_5')}
+                              </Link>
+                          </li>
+                      </ul>
+                  </div>
+                  <div className="col l-2 m-4 c-12">
+                      <ul className="footer__list">
+                          <h3 className="footer__list-heading">{t('footer.contact_2')}</h3>
+                          <li className="footer__item">
+                              <i className="footer__item-icon fas fa-chevron-right"></i>
+                              <Link to="#" className="footer__item-link">
+                                  {t('footer.contact_link_6')}
+                              </Link>
+                          </li>
+                          <li className="footer__item">
+                              <i className="footer__item-icon fas fa-chevron-right"></i>
+                              <Link to="#" className="footer__item-link">
+                                  {t('footer.contact_link_7')}
+                              </Link>
+                          </li>
+                          <li className="footer__item">
+                              <i className="footer__item-icon fas fa-chevron-right"></i>
+                              <Link to="#" className="footer__item-link">
+                                  {t('footer.contact_link_8')}
+                              </Link>
+                          </li>
+                          <li className="footer__item">
+                              <i className="footer__item-icon fas fa-chevron-right"></i>
+                              <Link to="#" className="footer__item-link">
+                                  {t('footer.contact_link_9')}
+                              </Link>
+                          </li>
+                          <li className="footer__item">
+                              <i className="footer__item-icon fas fa-chevron-right"></i>
+                              <Link to="#" className="footer__item-link">
+                                  {t('footer.contact_link_10')}
+                              </Link>
+                          </li>
+                      </ul>
+                  </div>
+                  <div className="col l-2 m-4 c-12">
+                      <ul className="footer__list">
+                          <h3 className="footer__list-heading">{t('footer.contact_3')}</h3>
+                          <li className="footer__item">
+                              <i className="footer__item-icon fas fa-chevron-right"></i>
+                              <Link to="#" className="footer__item-link">
+                                  {t('footer.contact_link_11')}
+                              </Link>
+                          </li>
+                          <li className="footer__item">
+                              <i className="footer__item-icon fas fa-chevron-right"></i>
+                              <Link to="#" className="footer__item-link">
+                                  {t('footer.contact_link_12')}
+                              </Link>
+                          </li>
+                          <li className="footer__item">
+                              <i className="footer__item-icon fas fa-chevron-right"></i>
+                              <Link to="#" className="footer__item-link">
+                                  {t('footer.contact_link_13')}
+                              </Link>
+                          </li>
+                          <li className="footer__item">
+                              <i className="footer__item-icon fas fa-chevron-right"></i>
+                              <Link to="#" className="footer__item-link">
+                                  {t('footer.contact_link_14')}
+                              </Link>
+                          </li>
+                          <li className="footer__item">
+                              <i className="footer__item-icon fas fa-chevron-right"></i>
+                              <Link to="#" className="footer__item-link">
+                                  {t('footer.contact_link_15')}
+                              </Link>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+    );
+};
+
+export default Footer;

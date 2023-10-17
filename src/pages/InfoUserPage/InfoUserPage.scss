@@ -1,14 +1,14 @@
 .info-user__page {
-  background: #fafafa;
   height: 100vh;
-
-
   .content-account {
+    
     margin-top: 50px;
     padding: 0 230px;
+    
 
     .card-info {
-
+     
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
       .user-info {
         display: flex;
         align-items: center;
@@ -36,7 +36,6 @@
       
       /* Định dạng cho phần tử user-name */
       .user-name {
-        color: rgba(3, 18, 26, 1.00);
         font-size: 24px;
       }
       
@@ -46,13 +45,12 @@
       
       /* Định dạng cho phần tử user-name */
       .user-name {
-        color: rgba(3, 18, 26, 1.00);
         font-size: 24px;
       }
       
       /* Định dạng cho phần tử user-email */
       .user-email {
-        color: rgba(104, 113, 118, 1.00);
+
       }
       
       /* Định dạng cho phần tử user-link */
@@ -60,42 +58,14 @@
         text-decoration: none;
         display: flex;
         align-items: center;
-        color: #007bff;
+        color:rgba(1,148,243,1.00);
         font-weight: bold;
         padding: 10px 0;
         transition: background-color 0.3s;
       }
       
-      /* Định dạng cho màu nền của liên kết "Tài khoản" */
-      // .user-link.edit-profile {
-      //   background-color: rgba(1, 148, 243, 1.00);
-      //   color: #fff;
-      // }
-      
-      /* Hiệu ứng màu nền khi di chuột vào liên kết "Tài khoản" */
-      // .user-link.edit-profile:hover {
-      //   background-color: #0172b1;
-      // }
-      
-      // /* Định dạng cho phần tử link-icon (biểu tượng bên cạnh liên kết) */
-      // .link-icon {
-      //   margin-right: 8px;
-      // }
-      
-      /* Định dạng cho màu nền phần tử "Đang đăng xuất" */
-      // .user-link.logout {
-      //   background-color: transparent;
-      //   color: #007bff;
-      // }
-      
-      // /* Hiệu ứng màu nền khi di chuột vào phần tử "Đang đăng xuất" */
-      // .user-link.logout:hover {
-      //   background-color: #f0f0f0;
-      // }
-      
       height: 600px;
-      background: white;
-      border: 1px solid #bdbdbd;
+      // border: 1px solid #bdbdbd;
       border-radius: 10px;
 
       .avatar-info {
@@ -135,7 +105,7 @@
 
 /* Định dạng cho phần tử user-name */
 .user-name {
-  color: rgba(3, 18, 26, 1.00);
+ 
   font-size: 24px;
 }
       }
@@ -163,7 +133,7 @@
         justify-content: left;
         padding: 10px 0;
         padding-left: 20px;
-        color: black;
+        
         font-weight: 550;
         font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Droid Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
         ;
@@ -175,25 +145,24 @@
 
       .link-user:hover {
         color: var(--text-color);
-        background: #f5f5f5;
+    
       }
     }
 
     .card-content {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
       height: 600px;
-      background: white;
-      border: 1px solid #bdbdbd;
+
       border-radius: 10px;
-      font-family: serif;
+      font-family: Godwit,MuseoSans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
 
       h2 {
         margin-left: 30px;
+        margin-top: 30px;
         padding-left: 10px;
-        padding-top: 3px;
+        padding-top: 15px;
         padding-bottom: 3px;
-        border-left: 4px solid orange;
         font-size: 17px;
-        margin-top: 25px;
       }
 
       .desc-info-content {
@@ -235,4 +204,19 @@
       }
     }
   }
+  .link-user {
+    font-size: 18px;
+    justify-content: left;
+    padding: 10px 0;
+    padding-left: 20px;
+    font-weight: 550;
+    font-family: Godwit,MuseoSans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+  }
+  .selected-link {
+    color:rgba(1,148,243,1.00)!important; /* Chọn màu xanh */
+
+  }
+ .email {
+  outline: none!important;
+ }
 }

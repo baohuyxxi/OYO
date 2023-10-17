@@ -1,72 +1,117 @@
 import { Link } from 'react-router-dom'
-import AppBar from '../../components/AppBar/AppBar'
-import React from 'react'
-
+import AppBar from '~/components/AppBar/AppBar'
+import React, { useState } from 'react'
 import './InfoUserPage.scss'
 import FactCheckOutlinedIcon from '@mui/icons-material/FactCheckOutlined'
+import WysiwygOutlinedIcon from '@mui/icons-material/WysiwygOutlined'
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
+import { Route, Routes } from 'react-router-dom'
+import EditInfo from './EditAccount/EditAccount'
+import PasswordSecurity from './passwordSecurity/passwordSecurity'
+import Footer from '~/components/Footer/Footer'
+import Paper from '@mui/material/Paper'
+
+
+import Divider from '@mui/material/Divider'
 
 import { t } from 'i18next'
 
 const InfoUserPage = () => {
+  const [selectedItem, setSelectedItem] = useState('profile')
+
+  // Hàm này được gọi khi một mục được chọn
+  const handleItemClick = (item) => {
+    setSelectedItem(item)
+  }
   // const user = useSelector((state: RootState) => state.user);
   return (
     <div className="info-user__page">
       <AppBar />
-      <div className="content-account">
+      <div className="content-account" >
+
         <div className="row">
+
           <div className="col l-3" style={{ paddingTop: 0 }}>
-            <div className="card-info">
+
+            <Paper className="card-info" >
+
               <div className="user-info">
                 <div className="user-avatar">
-                  <div className="user-initials">BX</div>
+                  <div className="user-initials"></div>
                 </div>
                 <div className="user-details">
-                  <h3 className="user-name">BảoHuy xxi</h3>
-                  <div className="user-email">Google</div>
+                  <h3 className="user-name">Username</h3>
+                  <div className="user-email">Account</div>
                 </div>
               </div>
-              <div className="user-links">
+              <Divider />
+              <div>
                 <a href="/link-my-cart" className="user-link">
                   <div className="link-icon">
-                  <FactCheckOutlinedIcon />
+                    <FactCheckOutlinedIcon />
                   </div>{t('navbar.myBooking')}
+                </a>
+                <a href="/link-my-cart" className="user-link">
+                  <div className="link-icon">
+                    <WysiwygOutlinedIcon />
+                  </div>{t('navbar.historyBookingClient')}
                 </a>
                 <a href="/account" className="user-link edit-profile">
                   <div className="link-icon">
-                    <img
-                      src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/f/f1e5ba7cea40df07a49fbd2cadb81dd0.svg"
-                      alt="Tài khoản"
-                    />
+                    <SettingsOutlinedIcon/>
                   </div>
-                                Tài khoản
+                  {t('navbar.account')}
                 </a>
                 <a href="/" className="user-link logout">
                   <div className="link-icon">
-                    <img
-                      src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/3/336593031502efcd0f97e6b35e7703a1.svg"
-                      alt="Đang đăng xuất"
-                    />
+                    <LogoutOutlinedIcon />
                   </div>
-                                Đăng xuất
+                  {t('navbar.signout')}
                 </a>
               </div>
-            </div>
+            </Paper>
           </div>
-          <div className="col l-9">
-            <div className="card-content">
-              <h1 className="custom-heading">Cài đặt</h1>
-              {/* Các phần tử và nội dung khác ở đây */}
 
-              <div className="personal-data">
-                <div className="data-container">
-                  <h3 className="data-heading">Dữ liệu cá nhân</h3>
-                  {/* Thêm nội dung dữ liệu cá nhân khác ở đây */}
-                </div>
-              </div>
+          <div className="col l-9">
+            <div className='col'>
+              <h1 className="custom-heading">{t('common.setting')} </h1>
+
+              <Link
+                to="/account"
+                className={`link-user ${selectedItem === 'profile' ? 'selected-link' : ''}`}
+                style={{ textDecoration: 'none', color: 'inherit' }}
+                onClick={() => handleItemClick('profile')}
+              >
+                {t('navbar.profile')}
+              </Link>
+              <Link
+                to="/account/password&Security"
+                className={`link-user ${selectedItem === 'password&Security' ? 'selected-link' : ''}`}
+                style={{ textDecoration: 'none', color: 'inherit' }}
+                onClick={() => handleItemClick('password&Security')}
+              >{t('navbar.passwordAndSecurity')}
+              </Link>
+              <Link
+                to="/account/payment"
+                className={`link-user ${selectedItem === 'billing' ? 'selected-link' : ''}`}
+                style={{ textDecoration: 'none', color: 'inherit' }}
+                onClick={() => handleItemClick('billing')}
+              > {t('navbar.billingInformation')}
+              </Link>
+
+              <Paper className="card-content">
+
+                <Routes>
+                  <Route path="/" element= {<EditInfo />}/>
+                  <Route path="/password&Security" element ={<PasswordSecurity/>}/>
+                </Routes>
+              </Paper>
             </div>
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
 
   )

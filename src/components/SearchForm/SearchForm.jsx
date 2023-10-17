@@ -1,70 +1,60 @@
-import React, { useState } from 'react';
-import './SearchForm.css'
+import React, { useState } from 'react'
+import './SearchForm.scss'
+import { Paper, Grid } from '@mui/material'
 import SearchHotelByAddress from '../SearchHotelByAddress/SearchHotelByAddress'
+import CustomInput from '~/assets/custom/CustomInput'
+import { DatePicker } from 'antd'
+import MenuItem from '@mui/material/MenuItem'
+import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete'
 
+import { t } from 'i18next'
 function SearchForm() {
-  const [address, setAddress] = useState('');
-  const [checkIn, setCheckIn] = useState('');
-  const [numberOfNights, setNumberOfNights] = useState('1');
-  const [guests, setGuests] = useState('');
+  const [checkIn, setCheckIn] = useState('')
+  const [numberOfNights, setNumberOfNights] = useState('1')
+  const [guests, setGuests] = useState('')
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     // Xử lý dữ liệu đã nhập ở đây
-  };
+  }
 
-  return (
-    <form className='form-main' onSubmit={handleSubmit}>
-      <div className='form-search'>
-        <h2 className="form-title">Tìm kiếm khách sạn</h2>
-        <div className="form-group">
-          <label htmlFor="address">Thành phố, địa điểm hoặc tên khách sạn:</label>
-          <SearchHotelByAddress/>
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="checkIn">Nhận phòng:</label>
-          <input
-            className="input-2"
-            type="date"
-            id="checkIn"
-            value={checkIn}
-            onChange={(e) => setCheckIn(e.target.value)}
-          />
-
-
-          <label htmlFor="numberOfNights">Số đêm:</label>
-          <select
-            className="input-2"
-            id="numberOfNights"
-            value={numberOfNights}
-            onChange={(e) => setNumberOfNights(e.target.value)}
-          >
-            <option value="1">1 đêm</option>
-            <option value="2">2 đêm</option>
-            <option value="3">3 đêm</option>
-            <option value="4">4 đêm</option>
-            <option value="5">5 đêm</option>
-            <option value="6">6 đêm</option>
-            {/* Thêm các tùy chọn số đêm khác tại đây */}
-          </select>
-        </div>
-
-
-        <div className="form-group">
-          <label htmlFor="guests">Số người</label>
-          <input
-            className="form-control"
-            type="number"
-            id="guests"
-            value={guests}
-            onChange={(e) => setGuests(e.target.value)}
-          />
-        </div>
-        <button className="submit-button" type="submit">Tìm kiếm</button>
+  const cellRender = React.useCallback((current, info) => {
+    if (info.type !== 'date') {
+      return info.originNode;
+    }
+    if (typeof current === 'number') {
+      return <div className="ant-picker-cell-inner">{current}</div>;
+    }
+    return (
+      <div className="ant-picker-cell-inner" >
+        {current.date()}
       </div>
-    </form>
-  );
+    );
+  }, []);
+  return (
+    <Paper elevation={3} style={{ padding: 16 }} className="form-search" >
+      <form onSubmit={handleSubmit} >
+        <div className='container'>
+        <div className='row'>
+          <div className='col l-3'>
+            {/* <h2 className="form-title">Tìm kiếm khách sạn</h2> */}
+              <SearchHotelByAddress className='address' />
+            </div>
+            <div className='col l-3'>
+              <DatePicker.RangePicker cellRender={cellRender} />
+            </div>
+            <div className='col l-3' >
+              <CustomInput
+              />
+            </div>
+            <div className='col l-3'>
+            <button className="submit-button" type="submit">Tìm kiếm</button>
+            </div>
+        </div>
+        </div>
+      </form>
+    </Paper>
+  )
 }
 
 export default SearchForm

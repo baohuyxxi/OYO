@@ -1,21 +1,27 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import * as React from 'react'
 import TextField from '@mui/material/TextField'
-import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete'
+import Autocomplete from '@mui/material/Autocomplete'
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined'
 import InputAdornment from '@mui/material/InputAdornment'
-
-const filter = createFilterOptions()
+import Axios from 'axios'
+import { t } from 'i18next'
+import provinceData from '~/mockdata/ProvinceVN.json' 
 export default function SearchHotelByAddress() {
-  const top10 = [
-    { title: 'The Shawshank Redemption', year: 1994 },
-    { title: 'The Godfather', year: 1972 },
-    { title: 'The Godfather: Part II', year: 1974 },
-    { title: 'The Dark Knight', year: 2008 },
-    { title: '12 Angry Men', year: 1957 },
-    { title: 'Pulp Fiction', year: 1994 }]
 
   const [address, setAddress] = useState('')
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    Axios.get('https://provinces.open-api.vn/api/?depth=3')
+      .then((response) => {
+        setData(response.data);
+        console.log(response.data)
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
 
   return (
     <><Autocomplete value={address}
@@ -33,26 +39,11 @@ export default function SearchHotelByAddress() {
           setAddress(newValue)
         }
       }}
-      filterOptions={(options, params) => {
-        const filtered = filter(options, params)
-
-        const { inputValue } = params
-        // Suggest the creation of a new value
-        const isExisting = options.some((option) => inputValue === option.title)
-        if (inputValue !== '' && !isExisting) {
-          filtered.push({
-            inputValue,
-            title: `Add "${inputValue}"`
-          })
-        }
-
-        return filtered
-      }}
       selectOnFocus
       clearOnBlur
       handleHomeEndKeys
       id="free-solo-with-text-demo"
-      options={top10}
+      options={data}
       getOptionLabel={(option) => {
         // Value selected with enter, right from the input
         if (typeof option === 'string') {
@@ -62,13 +53,16 @@ export default function SearchHotelByAddress() {
         if (option.inputValue) {
           return option.inputValue
         }
-        // Regular option
-        return option.title
+        if (option.name)
+           return option.name;
       }}
-      renderOption={(props, option) => <li {...props}>{option.title}</li>}
+      // renderOption={ (props, option) => 
+      //   <li {...props}>{option.name} </li>
+      // }
+     
       freeSolo
       renderInput={(params) => (
-        <TextField {...params} label="Thành  phố, khách sạn, điểm đến" InputLabelProps={{
+        <TextField {...params} label={t('label.CityLocationOrHotelName')} InputLabelProps={{
           shrink: false,
           style: {
             display: params.inputProps.value ? 'none' : 'block'

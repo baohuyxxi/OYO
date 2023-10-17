@@ -1,0 +1,40 @@
+
+.form-search{
+    height: 100px;
+    width: auto;
+    margin: auto;
+    align-items: center;
+     .container{
+      width: 80%;
+      margin: auto;
+     }
+    .row{
+      align-items: center;
+    }
+  
+    .address{
+      padding: 10px;
+      height: 20px; 
+      min-width: 400px;
+    }
+    .date{
+      padding: 10px;
+      height: 20px;
+
+    }
+    .submit-button {
+      padding: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    
+    .submit-button:hover {
+      background-color: #0056b3;
+    }
+    
+}

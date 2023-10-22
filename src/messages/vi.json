@@ -176,10 +176,13 @@
         "newPassword":"Mật khẩu mới",
         "enterANewPassword": "Nhập lại mật khẩu mới",
         "CityLocationOrHotelName": "Thành phố, địa điểm hoặc tên khách sạn",
-        "lastName": "Họ",
-        "firstName": "Tên",
+        "lastName": "Tên",
+        "firstName": "Họ",
         "enterCode": "Nhập mã xác minh",
-        "pleaseEnterCode": "Vui lòng nhập mã xác minh mà chúng tôi đã gửi tới"
+        "pleaseEnterCode": "Vui lòng nhập mã xác minh mà chúng tôi đã gửi tới",
+        "selectProvince": "Chọn Tỉnh/Thành Phố",
+        "selectDistrict": "Chọn Quận/Huyện",
+        "selectWard": "Chọn Phường/Xã"
 
     },
     "contentMain": {

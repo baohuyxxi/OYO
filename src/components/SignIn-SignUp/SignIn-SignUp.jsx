@@ -25,16 +25,16 @@ export default function SimpleDialog(props) {
     let dialogContent;
     switch (value) {
         case 1:
-            dialogContent = <SignIn closeDialog={closeDialog} />
+            dialogContent = <SignIn props />
             break;
         case 2:
-            dialogContent = <VerificationCode closeDialog={closeDialog} />
+            dialogContent = <VerificationCode email={props.email} />
             break;
         case 3:
-            dialogContent = <Register closeDialog={closeDialog} />
+            dialogContent = <Register email={props.email} />
             break;
         default:
-            dialogContent = <SignIn closeDialog={closeDialog} />
+            dialogContent = <SignIn props />
     }
     return (
         <>

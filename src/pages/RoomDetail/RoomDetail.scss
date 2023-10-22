@@ -1,18 +1,10 @@
-.background {
-    position: relative;
-}
-
 .info-room {
+    margin-top: 30px;
     position: relative;
-    height: auto;
 
-    background-position: center;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    border-top: 1px solid var(--text-color);
 
     .header-room {
+
         margin-left: 180px;
         margin-right: 180px;
 
@@ -98,9 +90,8 @@
         margin-left: 180px;
         margin-right: 180px;
         margin-top: 30px;
-        position: relative;
-        display: flex;
 
+        
 
         .l-8 {
             height: 30px;
@@ -118,7 +109,7 @@
             background: white;
             border-radius: 10px;
             box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-            position: relative;
+            // position: relative;
             z-index: 90;
 
             .price-room {
@@ -257,11 +248,12 @@
                 padding-bottom: 2em;
             }
         }
-        
-        .review{
+
+        .review {
             display: flex;
-            position: relative;
+            // position: relative;
         }
+
         .line {
             margin: 30px 25px 10px 25px;
         }
@@ -333,5 +325,5 @@
             }
         }
     }
-    
+
 }

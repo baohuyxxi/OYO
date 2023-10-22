@@ -1,4 +1,6 @@
-
+.form-signin{
+  
+}
 .button-login-register
 {
   margin-left: auto;
@@ -33,6 +35,9 @@ h4{
   display: flex;
   align-items: center;
   justify-content: center;
+}
+h5{
+  color:rgb(231, 9, 14);
 }
 .centered-line {
   flex: 1;

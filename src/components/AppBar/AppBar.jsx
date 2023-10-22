@@ -11,7 +11,11 @@ import LanguageSelect from '../LanguageSelected/LanguageSelected'
 import Button from '@mui/material/Button'
 import AccountCircle from '@mui/icons-material/AccountCircle'
 import SignInSignUp from '../SignIn-SignUp/SignIn-SignUp'
-import { Paper } from '@mui/material'
+import { AuthContext } from '~/contexts/AuthContext'
+import { useContext } from 'react'
+import { IconButton, Paper } from '@mui/material'
+import Badge from '@mui/material/Badge';
+import MailIcon from '@mui/icons-material/Mail';
 import { t } from 'i18next'
 import './AppBar.scss'
 
@@ -19,14 +23,15 @@ import './AppBar.scss'
 export default function NavBar() {
   const [open, setOpen] = React.useState(false)
   const handleClickOpen = () => {
-      setOpen(true);
+    setOpen(true);
   }
   const handleClose = () => {
-      setOpen(false);
+    setOpen(false);
   }
+  const { userCurrent } = useContext(AuthContext);
   return (
-      <Paper>
-      <AppBar position="static" className='appbar' color='mainColor' >
+    <Paper>
+      <AppBar position="fixed" className='appbar' color='mainColor' >
         <Toolbar>
           <div className="logo">
             <NavLink to="/" >
@@ -34,23 +39,36 @@ export default function NavBar() {
             </NavLink>
           </div>
           <ModeToggle />
-          <LanguageSelect/>
-          <DropdownUser/>
-          <Button onClick={handleClickOpen} startIcon={<AccountCircle />}>
+          <LanguageSelect />
+
+          {
+            !userCurrent ?
+              <Button onClick={handleClickOpen} startIcon={<AccountCircle />}>
                 {t('title.signin')}
-            </Button>
-            {open &&(
-               <SignInSignUp
-               value = {1}
-               title= {t('title.signin') +"/"+ t('title.signup')}
-               open={open}
-               onClose={handleClose}
-           /> 
-            )}
-          
+              </Button>
+              : (
+                <>
+                  <IconButton>
+                    <Badge badgeContent={4} color="primary">
+                    <MailIcon color="action" />
+                  </Badge>
+                  </IconButton>
+
+                  <DropdownUser /></>)
+          }
+
+          {open && (
+            <SignInSignUp
+              value={1}
+              title={t('title.signin') + "/" + t('title.signup')}
+              open={open}
+              onClose={handleClose}
+            />
+          )}
         </Toolbar>
       </AppBar>
-      </Paper>
+    </Paper>
+
   )
 }
 

@@ -8,7 +8,6 @@ const Convenient = (props) => {
     const element = [];
     for (let i = 0; i < row; i++) {
         const cutData = props.listConvenient.slice(length*i/row, length*(i+1)/row)
-        console.log(length*i/row, length*(i+1)/row)
         element.push(
             <div key={i}
                 className= {`col l-${12/row}`}>

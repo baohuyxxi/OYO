@@ -1,11 +1,11 @@
-import Province from '../mockdata/ProvinceVN.json'
+import Province from '../mockdata/ProvinceVN.json';
 
-const mapProvince = (idProvince: any) => {
+const mapProvince = (idProvince) => {
     if (idProvince !== undefined) {
-        const provinceName = Province.filter((pro:any) => {return parseInt(pro.code) === parseInt(idProvince)})
-        return provinceName[0].name
+        const provinceName = Province.filter((pro) => parseInt(pro.code) === parseInt(idProvince));
+        return provinceName[0].name;
     }
-    return ''
-}
+    return '';
+};
 
-export default mapProvince
+export default mapProvince;

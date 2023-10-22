@@ -55,8 +55,9 @@
     "react-verification-code-input": "^1.2.9",
     "slick-carousel": "^1.8.1",
     "start": "^5.1.0",
-    "styled-components": "^6.0.8",
-    "tailwindcss": "^3.3.3"
+    "styled-components": "^6.1.0",
+    "tailwindcss": "^3.3.3",
+    "use-local-storage": "^3.0.0"
   },
   "devDependencies": {
     "@babel/plugin-transform-typescript": "^7.22.15",

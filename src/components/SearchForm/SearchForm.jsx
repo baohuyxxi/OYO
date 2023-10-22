@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import './SearchForm.scss'
 import { Paper, Grid } from '@mui/material'
-import SearchHotelByAddress from '../SearchHotelByAddress/SearchHotelByAddress'
+import SelectAddress from '../SelectAddress/SelectAddress'
 import CustomInput from '~/assets/custom/CustomInput'
 import { DatePicker } from 'antd'
 import MenuItem from '@mui/material/MenuItem'
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete'
+import SelectDate from '../SelectDate/SelectDate'
+import RoomDropdown from '../RoomsDropdown/RoomDropdown'
 
 import { t } from 'i18next'
 function SearchForm() {
@@ -18,36 +20,22 @@ function SearchForm() {
     // Xử lý dữ liệu đã nhập ở đây
   }
 
-  const cellRender = React.useCallback((current, info) => {
-    if (info.type !== 'date') {
-      return info.originNode;
-    }
-    if (typeof current === 'number') {
-      return <div className="ant-picker-cell-inner">{current}</div>;
-    }
-    return (
-      <div className="ant-picker-cell-inner" >
-        {current.date()}
-      </div>
-    );
-  }, []);
+ 
   return (
     <Paper elevation={3} style={{ padding: 16 }} className="form-search" >
       <form onSubmit={handleSubmit} >
         <div className='container'>
         <div className='row'>
-          <div className='col l-3'>
+          <div className='col'>
             {/* <h2 className="form-title">Tìm kiếm khách sạn</h2> */}
-              <SearchHotelByAddress className='address' />
+              <SelectAddress className='address' />
             </div>
-            <div className='col l-3'>
-              <DatePicker.RangePicker cellRender={cellRender} />
+            <div className='col'>
+              <SelectDate/>
             </div>
-            <div className='col l-3' >
-              <CustomInput
-              />
-            </div>
-            <div className='col l-3'>
+    
+           
+            <div className='col'> 
             <button className="submit-button" type="submit">Tìm kiếm</button>
             </div>
         </div>

@@ -1,0 +1,12 @@
+.ant-picker.ant-picker-range.css-dev-only-do-not-override-amq5gd {
+  /* Thay đổi màu nền và màu viền khi nó được chọn hoặc tập trung */
+  background-color: #f0f0f0;
+}
+
+/* Để chỉnh sửa màu chữ khi tập trung */
+.ant-picker.ant-picker-range.css-dev-only-do-not-override-amq5gd.ant-picker-focused {
+  color: #1890ff;
+}
+.ant-picker-panels{
+  background-color: var(--mui-background-color);
+}

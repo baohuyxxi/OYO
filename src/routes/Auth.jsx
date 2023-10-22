@@ -7,6 +7,7 @@ const HomePage = React.lazy(() => import('../pages/HomePage/HomePage'))
 const InfoUserPage = React.lazy(()=> import('../pages/InfoUserPage/InfoUserPage'))
 const VerificationCode = React.lazy(()=> import('../components/VerificationCode/VerificationCode'))
 const RoomDetail =   React.lazy(()=> import('../pages/RoomDetail/RoomDetail'))
+const Register = React.lazy(() => import('../components/Register/Register') )
 const Auth = () => {
   return (
     <Routes>
@@ -31,6 +32,14 @@ const Auth = () => {
         element={
           <React.Suspense>
             <VerificationCode />
+          </React.Suspense>
+        }
+      />
+      <Route
+        path="/Register"
+        element={
+          <React.Suspense>
+            <Register email="userC@gmail.com"/>
           </React.Suspense>
         }
       />

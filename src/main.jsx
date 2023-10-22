@@ -6,7 +6,7 @@ import { I18nextProvider } from 'react-i18next'
 import i18n from './i18n'
 import CssBaseline from '@mui/material/CssBaseline'
 import { BrowserRouter } from 'react-router-dom'
-
+import AuthProvider from './contexts/AuthContext';
 import './assets/css/grid.scss';
 import {
   Experimental_CssVarsProvider as CssVarsProvider,
@@ -19,6 +19,7 @@ import theme from './theme';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
+    <AuthProvider>
       <ThemeProvider theme={theme}>
         <CssVarsProvider theme={theme}>
           <I18nextProvider i18n={i18n}>
@@ -33,6 +34,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           </I18nextProvider>
         </CssVarsProvider>
       </ThemeProvider>
+      </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
 )

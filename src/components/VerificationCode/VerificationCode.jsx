@@ -13,14 +13,7 @@ import SignInSignUp from '../SignIn-SignUp/SignIn-SignUp'
 import './VerificationCode.scss'
 
 
-function VerificationCode() {
-  // const [open, setOpen] = React.useState(false)
-  // const handleClick = () => {
-  //   setOpen(true)
-  // }
-  // const handleClose = (value) => {
-  //   setOpen(false)
-  // }
+function VerificationCode(props) {
   const [open, setOpen] = React.useState(false)
     const handleClickOpen = () => {
         setOpen(true);
@@ -101,6 +94,7 @@ function VerificationCode() {
           </div>
       </Box>
       <SignInSignUp
+        email={props.email}
         value={3}
         title = {t('title.accountSignUp')}
         open={open}

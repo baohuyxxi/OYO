@@ -12,16 +12,17 @@ export default function ModeToggle() {
   const theme = useTheme()
   const colorMode = React.useContext(ColorModeContext)
   const { mode, setMode } = useColorScheme()
+
+  const handleClick= async () => {
+    colorMode.toggleColorMode
+    setMode(mode === 'light' ? 'dark' : 'light')
+  }
+  
   return (
     <div>
-      <Button color="inherit"
-        onClick={() => {
-          setMode(mode === 'light' ? 'dark' : 'light')
-        }}>
-        <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
+      <IconButton sx={{ ml: 1 }} onClick={handleClick} color="inherit">
           {theme.palette.mode === 'dark' ? < DarkModeSharp /> : <WbSunnySharpIcon/>}
         </IconButton>
-      </Button>
     </div>
   )
 }

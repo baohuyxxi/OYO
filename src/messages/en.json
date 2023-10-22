@@ -179,7 +179,10 @@
         "lastName": "Last name",
         "firstName": "First Name",
         "enterCode": "Enter the verification code",
-        "pleaseEnterCode": "Please enter the verification code we sent to"
+        "pleaseEnterCode": "Please enter the verification code we sent to",
+        "selectProvince": "Select province",
+        "selectDistrict": "Select district",
+        "selectWard": "Select ward"
     },
     "contentMain": {
         "homeinsearch": "From 'impromptu' rides to adventures, discover your own recipe for joy",

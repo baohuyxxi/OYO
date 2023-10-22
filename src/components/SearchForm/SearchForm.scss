@@ -1,12 +1,22 @@
 
 .form-search{
-    height: 100px;
-    width: auto;
-    margin: auto;
-    align-items: center;
+     font-family: serif;
+    position: relative;
+    display: flex;
+    transition: margin-top 0.3s;
+    border-bottom: 1em solid var(--text-color);
+    background-position: center;
+    background-size: cover;
+    flex-direction: column;
+    margin-top: 5em;
+    .fixed-search {
+      margin-top: 0; /* Khi được cố định, margin-top là 0 */
+    }
      .container{
-      width: 80%;
+      display: flex;
+      justify-content: center;
       margin: auto;
+      align-items: center;
      }
     .row{
       align-items: center;
@@ -35,6 +45,12 @@
     
     .submit-button:hover {
       background-color: #0056b3;
+    }
+    .ant-picker.ant-picker-range.css-dev-only-do-not-override-amq5gd {
+      background-color: inherit; /* Màu nền */  
+      input{
+        color: "#fff"
+      }
     }
     
 }

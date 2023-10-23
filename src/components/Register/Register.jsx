@@ -50,11 +50,11 @@ export default function Register(props) {
     setShowPassword(!showPassword)
   }
   const [formValid, setformValid] = useState(false);
-  // useEffect(() => {
-  //   setRegister({ ...register, email: props.email })
-  //   setformValid(register.password.length >= 8)
-  //   console.log(register)
-  // }, [register])
+  useEffect(() => {
+    setRegister({ ...register, email: props.email })
+    setformValid(register.password.length >= 8)
+    console.log(register)
+  }, [register])
   useEffect(() => {
     
     console.log(register)

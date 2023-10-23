@@ -1,69 +1,70 @@
 .info-user__page {
   height: 100vh;
+
   .content-account {
-    
-    margin-top: 50px;
+
+    margin-top: 7em;
     padding: 0 230px;
-    
+
 
     .card-info {
-     
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
       .user-info {
         display: flex;
         align-items: center;
         padding: 12px;
-      }
-      
-      /* Định dạng cho phần tử user-avatar */
-      .user-avatar {
-        height: 64px;
-        width: 64px;
-        border-radius: 64px;
-        background-color: #ccc;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 24px;
-        color: rgb(104, 113, 118);
-        margin-right: 12px;
-      }
-      
-      /* Định dạng cho phần tử user-details */
-      .user-details {
-        flex: 1;
-      }
-      
-      /* Định dạng cho phần tử user-name */
-      .user-name {
-        font-size: 24px;
-      }
-      
-      .user-details {
-        flex: 1;
-      }
-      
-      /* Định dạng cho phần tử user-name */
-      .user-name {
-        font-size: 24px;
-      }
-      
-      /* Định dạng cho phần tử user-email */
-      .user-email {
+        width: auto;
+
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        /* Định dạng cho phần tử user-details */
+        .user-details {
+          width: auto;
+          word-wrap: break-word;
+          width: 100px;
+          .user-name {
+            font-size: 16px;
+            word-wrap: break-word;
+          }
+
+          .user-email {}
+        }
+
+
+        /* Định dạng cho phần tử user-avatar */
+        .user-avatar {
+          height: 64px;
+          width: 64px;
+          border-radius: 64px;
+          // background-color: #ccc;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 24px;
+          // color: rgb(104, 113, 118);
+          margin-right: 12px;
+        }
+
+        /* Định dạng cho phần tử user-email */
 
       }
-      
+
+
       /* Định dạng cho phần tử user-link */
       .user-link {
         text-decoration: none;
         display: flex;
         align-items: center;
-        color:rgba(1,148,243,1.00);
+        color: rgba(1, 148, 243, 1.00);
         font-weight: bold;
         padding: 10px 0;
         transition: background-color 0.3s;
       }
-      
+
       height: 600px;
       // border: 1px solid #bdbdbd;
       border-radius: 10px;
@@ -79,35 +80,35 @@
         }
 
         .user-info {
-  display: flex;
-  align-items: center;
-  padding: 12px;
-}
+          display: flex;
+          align-items: center;
+          padding: 12px;
+        }
 
-/* Định dạng cho phần tử user-avatar */
-.user-avatar {
-  height: 64px;
-  width: 64px;
-  border-radius: 64px;
-  background-color: #ccc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  color: rgb(104, 113, 118);
-  margin-right: 12px;
-}
+        /* Định dạng cho phần tử user-avatar */
+        .user-avatar {
+          height: 64px;
+          width: 64px;
+          border-radius: 64px;
+          background-color: #ccc;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 24px;
+          color: rgb(104, 113, 118);
+          margin-right: 12px;
+        }
 
-/* Định dạng cho phần tử user-details */
-.user-details {
-  flex: 1;
-}
+        /* Định dạng cho phần tử user-details */
+        .user-details {
+          flex: 1;
+        }
 
-/* Định dạng cho phần tử user-name */
-.user-name {
- 
-  font-size: 24px;
-}
+        /* Định dạng cho phần tử user-name */
+        .user-name {
+
+          font-size: 24px;
+        }
       }
 
       .name-info {
@@ -133,7 +134,7 @@
         justify-content: left;
         padding: 10px 0;
         padding-left: 20px;
-        
+
         font-weight: 550;
         font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Droid Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
         ;
@@ -145,16 +146,16 @@
 
       .link-user:hover {
         color: var(--text-color);
-    
+
       }
     }
 
     .card-content {
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
       height: 600px;
 
       border-radius: 10px;
-      font-family: Godwit,MuseoSans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+      font-family: Godwit, MuseoSans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
 
       h2 {
         margin-left: 30px;
@@ -204,19 +205,23 @@
       }
     }
   }
+
   .link-user {
     font-size: 18px;
     justify-content: left;
     padding: 10px 0;
     padding-left: 20px;
     font-weight: 550;
-    font-family: Godwit,MuseoSans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+    font-family: Godwit, MuseoSans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   }
+
   .selected-link {
-    color:rgba(1,148,243,1.00)!important; /* Chọn màu xanh */
+    color: rgba(1, 148, 243, 1.00) !important;
+    /* Chọn màu xanh */
 
   }
- .email {
-  outline: none!important;
- }
+
+  .email {
+    outline: none !important;
+  }
 }

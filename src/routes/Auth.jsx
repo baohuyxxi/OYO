@@ -39,7 +39,7 @@ const Auth = () => {
         path="/Register"
         element={
           <React.Suspense>
-            <Register email="userC@gmail.com"/>
+            <Register email="userD@gmail.com"/>
           </React.Suspense>
         }
       />

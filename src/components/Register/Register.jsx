@@ -20,17 +20,14 @@ export default function Register() {
   const [email, setEmail] = useState(""); // Trạng thái để theo dõi email
   const [showPassword, setShowPassword] = useState(false);
   const handleTogglePassword = () => {
-    setShowPassword(!showPassword);
-  };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("Email entered:", email);
-    // Nếu cần, xử lý việc đăng nhập ở đây
-  };
-
-  const [password, setPassword] = useState("");
-  const [isPasswordValid, setIsPasswordValid] = useState(false);
-
+    setShowPassword(!showPassword)
+  }
+  const [formValid, setformValid] = useState(false);
+  useEffect(() => {
+    setRegister({ ...register, email: props.email })
+    setformValid(register.password.length >= 8)
+    console.log(register)
+  }, [register])
   useEffect(() => {
     setIsPasswordValid(password.length >= 8);
   }, [password]);

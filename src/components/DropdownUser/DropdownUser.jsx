@@ -4,18 +4,82 @@ import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { NavLink } from 'react-router-dom'
-
+import { useState, useEffect, useContext } from 'react'
 import Divider from '@mui/material/Divider'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined'
 import FactCheckOutlinedIcon from '@mui/icons-material/FactCheckOutlined'
 import LogoutOutlinedIcon from '@mui/icons-material/ExitToAppOutlined'
-
+import { AuthContext } from '~/contexts/AuthContext'
 import { t } from 'i18next'
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Margin } from '@mui/icons-material'
 import './DropdownUser.scss'
+
+export default function CustomizedMenus() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    setUserCurrent(null)
+    setAccessToken(null)
+    setRefreshToken(null)
+    setAnchorEl(null);
+  }
+  const { setUserCurrent, setAccessToken, setRefreshToken } = useContext(AuthContext)
+
+  return (
+    <div>
+      <Button
+        color="inherit"
+        id="demo-customized-button"
+        aria-controls={open ? 'demo-customized-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        disableElevation
+        startIcon={<AccountCircleIcon />}
+        onClick={handleClick}
+        endIcon={<KeyboardArrowDownIcon />}
+      >
+        Username
+      </Button>
+      <StyledMenu
+        id="demo-customized-menu"
+        MenuListProps={{
+          'aria-labelledby': 'demo-customized-button',
+        }}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+      >
+        <header className='header-myAccount'> {t('navbar.myAccount')}</header>
+        <NavLink to="/account" onClick={handleClose} activeClassName="active-link" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <MenuItem disableRipple>
+            <PermIdentityOutlinedIcon />
+            {t('navbar.accountManagement')}
+          </MenuItem>
+        </NavLink>
+        <MenuItem onClick={handleClose} disableRipple>
+          <FactCheckOutlinedIcon />
+          {t('navbar.myBooking')}
+        </MenuItem>
+        <Divider sx={{ my: 0.5 }} />
+        <MenuItem onClick={handleLogout} disableRipple>
+          <LogoutOutlinedIcon />
+          {t('navbar.signout')}
+        </MenuItem>
+      </StyledMenu>
+    </div>
+  );
+}
+
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -57,58 +121,3 @@ const StyledMenu = styled((props) => (
     },
   },
 }));
-
-export default function CustomizedMenus() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  return (
-    <div>
-      <Button
-        color="inherit"
-        id="demo-customized-button"
-        aria-controls={open ? 'demo-customized-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        disableElevation
-        startIcon={<AccountCircleIcon />}
-        onClick={handleClick}
-        endIcon={<KeyboardArrowDownIcon />}
-      >
-        Username
-      </Button>
-      <StyledMenu
-        id="demo-customized-menu"
-        MenuListProps={{
-          'aria-labelledby': 'demo-customized-button',
-        }}
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-      >
-        <header className='header-myAccount'> {t('navbar.myAccount')}</header>
-        <NavLink to="/account" onClick={handleClose} activeClassName="active-link" style={{ textDecoration: 'none',color:'inherit' }}>
-          <MenuItem disableRipple>
-            <PermIdentityOutlinedIcon />
-            {t('navbar.accountManagement')}
-          </MenuItem>
-        </NavLink>
-        <MenuItem onClick={handleClose} disableRipple>
-          <FactCheckOutlinedIcon />
-          {t('navbar.myBooking')}
-        </MenuItem>
-        <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={handleClose} disableRipple>
-          <LogoutOutlinedIcon />
-          {t('navbar.signout')}
-        </MenuItem>
-      </StyledMenu>
-    </div>
-  );
-}

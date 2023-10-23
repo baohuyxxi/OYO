@@ -28,9 +28,9 @@ export default function SignIn() {
     }
     const userLogin = await loginRequest(signin);
     if (userLogin.status === 200) {
-      setUserCurrent(userLogin.data.userName);
-      setAccessToken(userLogin.data.accessToken);
-      setRefreshToken(userLogin.data.refreshToken);
+      setUserCurrent(userLogin.data.email)
+      setAccessToken(userLogin.data.accessToken)
+      setRefreshToken(userLogin.data.refreshToken)
       setTimeout(function () {
         document.location = "/";
       }, 500);
@@ -220,8 +220,8 @@ export default function SignIn() {
         </div>
         <SignInSignUp
           email={signin.email}
-          value={2}
-          title={t("label.enterCode")}
+          value={3}
+          title={t('label.title.accountSignUp')}
           open={open}
           onClose={handleClose}
         />

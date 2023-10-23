@@ -1,11 +1,10 @@
-import axios from 'axios'
-import { getToken, getRefreshToken, updateToken } from './token'
-
+import axios from "axios";
+import { getToken, getRefreshToken, updateToken } from "./token";
 
 const instance = axios.create({
-    baseURL: "http://localhost:8080/api"
-    // baseURL: "https://uty-chat-api.vercel.app/api/"
-})
+  baseURL: "http://localhost:8080/api/v1",
+  // baseURL: "https://uty-chat-api.vercel.app/api/"
+});
 // instance.interceptors.request.use(
 //     (config) => {
 //         const token = getToken();
@@ -46,4 +45,4 @@ const instance = axios.create({
 //         return Promise.reject(err);
 //     }
 // );
-export default instance
+export default instance;

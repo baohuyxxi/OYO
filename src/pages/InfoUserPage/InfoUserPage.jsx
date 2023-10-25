@@ -19,8 +19,7 @@ import Divider from '@mui/material/Divider'
 import { t } from 'i18next'
 
 const InfoUserPage = () => {
-  const { userCurrent } = useContext(AuthContext);
-  const { setUserCurrent, setAccessToken, setRefreshToken } = useContext(AuthContext)
+  const {userCurrent, setUserCurrent, setAccessToken, setRefreshToken } = useContext(AuthContext)
   const [selectedItem, setSelectedItem] = useState('profile')
 
   // Hàm này được gọi khi một mục được chọn
@@ -46,8 +45,8 @@ const InfoUserPage = () => {
                   </img>
                 </div>
                 <div className="user-details">
-                  <h3 className="user-name">{userCurrent}</h3>
-                  <div className="user-email">{userCurrent}</div>
+                  <h3 className="user-name">{userCurrent.userName}</h3>
+                  <div className="user-email">{userCurrent.mail}</div>
                 </div>
               </div>
               <Divider />

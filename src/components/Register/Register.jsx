@@ -25,10 +25,9 @@ export default function Register(props) {
   const handleSubmit = async (event) => {
     event.preventDefault()
     setErrors(validate(register));
+    if (!errors)
+      {return}
     const registerUser = await registerRequest(register);
-    console.log(register)
-    console.log(errors)
-    console.log(registerUser)
     if (registerUser.status === 200) {
       setTimeout(function () {
         document.location = '/';
@@ -52,12 +51,16 @@ export default function Register(props) {
   const [formValid, setformValid] = useState(false);
   useEffect(() => {
     setRegister({ ...register, email: props.email })
-    setformValid(register.password.length >= 8)
-    console.log(register)
+    if(register.password.length <8 || !register.firstName || !register.lastName )
+    {
+      setformValid(false)
+    }
+    else{
+      setformValid(true)
+    }
   }, [register])
   useEffect(() => {
     
-    console.log(register)
   }, [register]);
 
 
@@ -86,7 +89,8 @@ export default function Register(props) {
             value={register.firstName}
             onChange={handleChange}
           />
-        </div>
+         {errors.firstName && <h5>{errors.firstName}</h5>}
+        </div> 
         <div className='form-element'>
           <CustomInput
             name="lastName"
@@ -94,7 +98,7 @@ export default function Register(props) {
             label="Nhập họ và tên của bạn"
             value={register.lastName}
             onChange={handleChange}
-          />
+          /> {errors.lastName && <h5>{errors.lastName}</h5>}
         </div>
         <div className='form-element'>
           <CustomInput
@@ -116,7 +120,7 @@ export default function Register(props) {
                 </InputAdornment>
               )
             }}
-          />
+          />{errors.password && <h5>{errors.password}</h5>}
         </div>
         <div className='form-element'>
           <Button className='form-button'

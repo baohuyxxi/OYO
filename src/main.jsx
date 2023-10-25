@@ -26,7 +26,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <CssBaseline />
             <SnackbarProvider
               maxSnack={3}
-              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'right'  }}
               style={{ fontSize: '14px' }}
             >
               <App />

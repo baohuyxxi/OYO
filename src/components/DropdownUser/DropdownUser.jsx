@@ -18,6 +18,7 @@ import { Margin } from '@mui/icons-material'
 import './DropdownUser.scss'
 
 export default function CustomizedMenus() {
+  const { setUserCurrent, setAccessToken, setRefreshToken, userCurrent } = useContext(AuthContext)
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -26,14 +27,13 @@ export default function CustomizedMenus() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
   const handleLogout = () => {
     setUserCurrent(null)
     setAccessToken(null)
     setRefreshToken(null)
     setAnchorEl(null);
   }
-  const { setUserCurrent, setAccessToken, setRefreshToken } = useContext(AuthContext)
+  
 
   return (
     <div>
@@ -48,7 +48,7 @@ export default function CustomizedMenus() {
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
       >
-        Username
+       {!userCurrent ? t('title.userName') : userCurrent.userName}
       </Button>
       <StyledMenu
         id="demo-customized-menu"

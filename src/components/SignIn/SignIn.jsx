@@ -1,12 +1,11 @@
 /* eslint-disable react/jsx-no-undef */
-import * as React from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import googleIcon from '~/assets/imageMaster/google-logo.png'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Link from '@mui/material/Link'
-import { useState, useEffect, useContext } from 'react'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import Visibility from '@mui/icons-material/Visibility'
 import LoadingButton from '@mui/lab/LoadingButton'
@@ -16,56 +15,57 @@ import SignInSignUp from '../SignIn-SignUp/SignIn-SignUp'
 import { loginRequest, checkAccount } from '~/services/API/authAPI'
 import { SigninRequest } from '~/share/model/auth'
 import { AuthContext } from '~/contexts/AuthContext'
-import { validateEmail, validate } from '~/utils/validate'
+import { validate } from '~/utils/validate'
+import { useSnackbar } from 'notistack';
 import { t } from 'i18next'
 import './SignIn.scss'
 
-export default function SignIn() {
-  const handleLogin = async (event) => {
-    event.preventDefault()
-    if (!signin.password) {
-      setErrorLogin("Nhập thông tin cá nhân")
-      return;
-    }
-    const userLogin = await loginRequest(signin);
-    if (userLogin.status === 200) {
-      setUserCurrent(userLogin.data.email)
-      setAccessToken(userLogin.data.accessToken)
-      setRefreshToken(userLogin.data.refreshToken)
-      setTimeout(function () {
-        document.location = '/';
-      }, 500);
-      setLoading(false)
-    } else {
-      setErrorLogin('Tài khoản mật khẩu không chính xác')
-    }
-    setLoading(false);
-  }
-
-  const [open, setOpen] = useState(false)
-  const handleClickOpen = () => {
-    setOpen(true);
-  }
-  const handleClose = () => {
-    setOpen(false);
-  }
+export default function SignIn(props) {
   const { setUserCurrent, setAccessToken, setRefreshToken } = useContext(AuthContext)
-
   const [signin, setSignin] = useState(SigninRequest)
-  
   const [errorEmail, setErrorEmail] = useState()
-  const handleTogglePassword = () => setShowPassword(!showPassword)
-
-
-  const [loading, setLoading] = useState(false)
-  const [showPassword, setShowPassword] = useState(false)
-
   const [showValidEmail, setShowValidEmail] = useState(false);
+  const [errorPassword, setErrorPassword] = useState()
+  const handleTogglePassword = () => setShowPassword(!showPassword)
+  const [showPassword, setShowPassword] = useState(false)
+  
   const [showPasswordInput, setShowPasswordInput] = useState(false)
   const [showRegisterButton, setShowRegisterButton] = useState(false)
   const [showLoginButton, setShowLoginButton] = useState(false)
   const [showStatusButton, setShowStatusButton] = useState(false)
   const [showLoadingButton, setShowLoadingButton] = useState(false)
+  const { enqueueSnackbar } = useSnackbar();
+
+  const handleLogin = async (event) => {
+    event.preventDefault()
+    if (!signin.password) {
+      setErrorPassword("Không được để trống Password")
+      return;
+    }
+    const userLogin = await loginRequest(signin);
+    console.log(userLogin)
+    if (userLogin) {
+
+      setAccessToken(userLogin.data.accessToken)
+      setRefreshToken(userLogin.data.refreshToken)
+      setUserCurrent(userLogin.data.infoUserResponse);
+      enqueueSnackbar(t('message.signin'), { variant: 'success' });
+      props.handleClose()
+    }
+    else{
+      setErrorPassword("Mật khẩu không đúng")
+      enqueueSnackbar(t('message.signinError'), { variant: 'error' });
+    }
+  }
+
+  const [open, setOpen] = useState(false)
+  const handleRegister = () => {
+    setOpen(true);
+  }
+  const handleClose = () => {
+    setOpen(false);
+  }
+ 
   const status = ['PasswordInput', 'RegisterButton', 'LoginButton', 'StatusButton', 'LoadingButton', 'ValidEmail'];
   const toggleShow = (ShowNames) => {
     status.forEach(statusName => {
@@ -85,12 +85,12 @@ export default function SignIn() {
         const checkValidEmail = validate(signin)
         if (checkValidEmail.email) {
           setErrorEmail(checkValidEmail.email)
-          toggleShow(['StatusButton','ValidEmail'])
+          toggleShow(['StatusButton', 'ValidEmail'])
           return
         }
         const checkEmail = await checkAccount(signin);
         if (checkEmail.data.message === "User exist !") {
-          toggleShow(['PasswordInput','LoginButton'])
+          toggleShow(['PasswordInput', 'LoginButton'])
         } else {
           toggleShow(['RegisterButton'])
         }
@@ -152,7 +152,7 @@ export default function SignIn() {
                   </InputAdornment>
                 )
               }}
-            />
+            /> {errorPassword && <h5>{errorPassword}</h5>}
           </div>
         )}
         {showStatusButton && (
@@ -175,7 +175,7 @@ export default function SignIn() {
             fullWidth
             color='orange'
             variant='contained'
-            onClick={handleClickOpen}
+            onClick={handleRegister}
           >
             {t('title.signup')}
           </Button>
@@ -206,8 +206,8 @@ export default function SignIn() {
         </div>
         <SignInSignUp
           email={signin.email}
-          value={3}
-          title={t('label.title.accountSignUp')}
+          value={2}
+          title={t('title.accountSignUp')}
           open={open}
           onClose={handleClose}
         />

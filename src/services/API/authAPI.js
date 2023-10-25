@@ -1,4 +1,5 @@
 
+import { ErrorSharp } from '@mui/icons-material'
 import axios from '../axios'
 
 import {
@@ -28,6 +29,9 @@ export const checkAccount = async (CheckAccount) => {
 export const  registerRequest= async (RegisterRequest) => {
     try {
         const res = await axios.post("v1/auth/signup", RegisterRequest)
+        console.log("abc")
+        console.log(res)
+        console.log("abca")
         return res
     } catch (error) {
         return error.response
@@ -43,3 +47,12 @@ export const  tokenRefreshRequest= async (TokenRefreshRequest) => {
     }
 }
 
+
+export const changePasswordRequest = async (data, token) => {
+    try {
+        const res = await axios.post("v1/general/change-password", data)
+        return res
+    } catch (error) {
+        return error.response
+    }
+}

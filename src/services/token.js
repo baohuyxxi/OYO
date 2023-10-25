@@ -1,8 +1,8 @@
 export const getToken = () => {
-    return JSON.parse(localStorage.getItem('token'))
+    return JSON.parse(localStorage.getItem('accessToken'))
 }
-export const updateToken = (token) => {
-    localStorage.setItem('token', JSON.stringify(token))
+export const updateToken = (accessToken) => {
+    localStorage.setItem('accessToken', JSON.stringify(accessToken))
 }
 export const getRefreshToken = () => {
     return JSON.parse(localStorage.getItem('refreshToken'))

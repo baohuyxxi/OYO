@@ -135,7 +135,10 @@
         "second": "giây",
         "resendCode" : "Resend verification code",
         "withGoogle": "Continue with Google",
-        "outstanding": "Outstanding features"
+        "outstanding": "Outstanding features",
+        "userName": "User Name",
+        "pageNotFound": "PAGE NOT FOUND",
+        "returnHome": "Would you like to return to the home page?"
     },
     "label": {
         "email": "Email",

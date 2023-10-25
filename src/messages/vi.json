@@ -26,6 +26,7 @@
     },
     "message": {
         "signin": "Đăng nhập thành công",
+        "signinError": "Đăng nhập thất bại",
         "signup": "Đăng kí tài khoản thành công",
         "activeAccout": "Xác thực tài khoản thành công",
         "sendOTP": "Gửi OTP về email của bạn thành công",
@@ -135,7 +136,10 @@
         "second": "giây",
         "resendCode" : "Gửi lại mã xác minh",
         "withGoogle": "Tiếp tục với Google",
-        "outstanding": "Đặc điểm nổi bật"
+        "outstanding": "Đặc điểm nổi bật",
+        "userName": "Tên người dùng",
+        "pageNotFound": "KHÔNG TÌM THẤY TRANG",
+        "returnHome": "Bạn có muốn quay lại trang chủ không?"
     },
     "label": {
         "email": "Địa chỉ Email",

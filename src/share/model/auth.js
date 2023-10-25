@@ -17,3 +17,9 @@ export const RegisterRequest ={
 export const TokenRefreshRequest={
     tokenRefresh:'  '
 }
+
+export const ChangePassword = {
+    email: '',
+    oldPassword : '',
+    newPassword : '',
+};

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React from 'react'
 import Divider from '@mui/material/Divider'
 import InputAdornment from '@mui/material/InputAdornment'
 import MenuItem from '@mui/material/MenuItem'
@@ -7,15 +7,12 @@ import { Grid } from '@mui/material'
 import FormControl from '@mui/material/FormControl'
 import Button from '@mui/material/Button'
 import CustomInput from '~/assets/custom/CustomInput'
-import Autocomplete from '@mui/material/Autocomplete'
-import TextField from '@mui/material/TextField'
-import CustomAutocomplete from '~/assets/custom/CustomAutocomplete'
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import Select from '@mui/material/Select';
+import { useState, useEffect, useContext } from 'react'
+import { AuthContext } from '~/contexts/AuthContext'
 import { t } from 'i18next'
 
 export default function SettingsCard(props) {
+  const {userCurrent, setUserCurrent, setAccessToken, setRefreshToken } = useContext(AuthContext)
   const { user, setUser } = useState()
 
   const handleUser = (event) => {
@@ -76,16 +73,26 @@ export default function SettingsCard(props) {
               <CustomInput
                 id="userName"
                 name="userName"
-                // value={user.firstName}
-                title={t('label.fullnameProfile')}
+                value={userCurrent.userName}
+                title={t('title.userName')}
                 onChange={handleUser}
+              ></CustomInput>
+            </Grid>
+            
+            <Grid item xs={6}>
+              <CustomInput
+                name="email"
+                id="email"
+                value={userCurrent.mail}
+                onChange={handleUser}
+                title={t('label.emailVoucher')}
               ></CustomInput>
             </Grid>
             <Grid component="form" item xs={6}>
               <CustomInput
                 id="firstName"
                 name="firstName"
-                // value={user.firstName}
+                value={userCurrent.firstName}
                 title={t('label.firstName')}
                 onChange={handleUser}
               ></CustomInput>
@@ -94,23 +101,14 @@ export default function SettingsCard(props) {
               <CustomInput
                 id="lastName"
                 name="lastName"
-                // value={user.firstName}
+                value={userCurrent.lastName}
                 title={t('label.lastName')}
                 onChange={handleUser}
               ></CustomInput>
             </Grid>
 
-            <Grid item xs={6}>
-              <CustomInput
-                name="email"
-                id="email"
-                // value={user.email}
-                onChange={handleUser}
-                title={t('label.emailVoucher')}
-              ></CustomInput>
-            </Grid>
 
-            <Grid item xs={6}>
+            {/* <Grid item xs={6}>
               <CustomAutocomplete
                 title={t('label.gender')}
                 name="gender"
@@ -119,9 +117,8 @@ export default function SettingsCard(props) {
                 options={genderSelect}
                 disableClearable
               />
-            </Grid>
-  
-            <Grid item xs={6}>
+            </Grid> */}
+             <Grid item xs={6}>
               <CustomInput
                 name="phone"
                 id="phone"
@@ -135,7 +132,24 @@ export default function SettingsCard(props) {
                 }}
               ></CustomInput>
             </Grid>
+            <Grid item xs={6}/>
+            <Grid item xs={3}>
+              <CustomInput
+                select
+                id="gender"
+                name="gender"
 
+                value={userCurrent.gender}
+                onChange={handleUser}
+                title={t('label.gender')}
+                content={genderSelect.map((option) => (
+                  <MenuItem value={option.value}>{option.label}</MenuItem>
+                ))}
+              ></CustomInput>
+            </Grid>
+  
+           
+                  
             <Grid item xs={3}>
               <CustomInput
                 select

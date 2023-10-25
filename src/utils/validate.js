@@ -13,42 +13,49 @@ export const validateEmail =(email) =>{
 }
 
 
-export const validatePassword =(password) =>{
-  const errors="";
-  if (!password) {
-    errors = "Nhập mật khẩu";
-  } else if (password.length < 8) {
-    errors = "Mật khẩu cần ít nhất 8 ký tự";
-  }
-  else if (password.match(/[A-Z]/)) {
-    errors = "Mật khẩu phải có ít nhất 1 chữ cái viết hoa";
-  }
-  else if (!password.match(/[0-9]/)) {
-    errors = "Mật khẩu phải có ít nhất 1 số";
-  }
-  else if (!password.match(/[!@#$%^&?*]/)) {
-    errors = "Mật khẩu phải có ít nhất 1 kí tự đặc biệt";
-  } else {
-    errors = null
-  }
-  return errors;
-}
+// export const validatePassword =(password) =>{
+//   const errors="";
+//   if (!password) {
+//     errors = "Nhập mật khẩu";
+//   } else if (password.length < 8) {
+//     errors = "Mật khẩu cần ít nhất 8 ký tự";
+//   }
+//   else if (password.match(/[A-Z]/)) {
+//     errors = "Mật khẩu phải có ít nhất 1 chữ cái viết hoa";
+//   }
+//   else if (!password.match(/[0-9]/)) {
+//     errors = "Mật khẩu phải có ít nhất 1 số";
+//   }
+//   else if (!password.match(/[!@#$%^&?*]/)) {
+//     errors = "Mật khẩu phải có ít nhất 1 kí tự đặc biệt";
+//   } else {
+//     errors = null
+//   }
+//   return errors;
+// }
 export const validate = (data) => {
   const errors = {};
 
   // Validate Name
-  if (data.firstName && data.lastName && data.firstName.trim() && data.lastName.trim()) {
+  if (data.firstName && data.firstName.trim()) {
     // Tất cả thuộc tính firstName và lastName tồn tại và không rỗng
   } else {
-    errors.name = "Nhập tên của bạn";
+    errors.firstName = "Không thể bỏ trống";
   }
 
-  // Validate Address
-  if (data.address && data.address.trim()) {
-    // Thuộc tính address tồn tại và không rỗng
+  if (data.lastName && data.lastName.trim()) {
+    // Tất cả thuộc tính firstName và lastName tồn tại và không rỗng
   } else {
-    errors.address = "Nhập địa chỉ";
+    errors.lastName = "Không thể bỏ trống";
   }
+
+  // // Validate Address
+  // if (data.address && data.address.trim()) {
+  //   // Thuộc tính address tồn tại và không rỗng
+  //   errors.address = "Nhập địa chỉ";
+  // } else {
+   
+  // }
 
   // Validate Email
   if (data.email) {

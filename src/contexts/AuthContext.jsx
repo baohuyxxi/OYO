@@ -7,7 +7,7 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
     const [userCurrent, setUserCurrent] = useLocalStorage('user', null)
     const [refreshToken, setRefreshToken] = useLocalStorage("refreshToken", "");
-    const [accessToken, setAccessToken] = useLocalStorage("token", "");
+    const [accessToken, setAccessToken] = useLocalStorage("accessToken", "");
     return (
         <AuthContext.Provider value={{
             userCurrent,

@@ -16,21 +16,53 @@ import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import { t } from "i18next";
 import "./Register.scss";
 
-export default function Register() {
-  const [email, setEmail] = useState(""); // Trạng thái để theo dõi email
-  const [showPassword, setShowPassword] = useState(false);
+export default function Register(props) {
+  const [register, setRegister] = useState(RegisterRequest);
+  // const email = props.email
+  // setRegister({...register,email:email})
+  const { setUserCurrent, setAccessToken, setRefreshToken } = useContext(AuthContext)
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    setErrors(validate(register));
+    if (!errors)
+      {return}
+    const registerUser = await registerRequest(register);
+    if (registerUser.status === 200) {
+      setTimeout(function () {
+        document.location = '/';
+      }, 500);
+      setLoading(false)
+    } else {
+      Register(errors)
+    }
+    setLoading(false)
+  }
+
+  const handleChange = (event) => {
+    setRegister({ ...register, [event.target.name]: event.target.value });
+  };
+  const [error, setError] = useState('')
+  const [errors, setErrors] = useState({})
+  const [showPassword, setShowPassword] = useState(false)
   const handleTogglePassword = () => {
     setShowPassword(!showPassword)
   }
   const [formValid, setformValid] = useState(false);
   useEffect(() => {
     setRegister({ ...register, email: props.email })
-    setformValid(register.password.length >= 8)
-    console.log(register)
+    if(register.password.length <8 || !register.firstName || !register.lastName )
+    {
+      setformValid(false)
+    }
+    else{
+      setformValid(true)
+    }
   }, [register])
   useEffect(() => {
-    setIsPasswordValid(password.length >= 8);
-  }, [password]);
+    
+  }, [register]);
+
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -53,14 +85,15 @@ export default function Register() {
             name="lastname"
             id="lastname"
           />
-        </div>
-        <div className="form-element">
+         {errors.firstName && <h5>{errors.firstName}</h5>}
+        </div> 
+        <div className='form-element'>
           <CustomInput
             title={t("label.firstName")}
             label="Nhập họ và tên của bạn"
-            name="firstname"
-            id="firstname"
-          />
+            value={register.lastName}
+            onChange={handleChange}
+          /> {errors.lastName && <h5>{errors.lastName}</h5>}
         </div>
         <div className="form-element">
           <CustomInput
@@ -78,7 +111,7 @@ export default function Register() {
                 </InputAdornment>
               ),
             }}
-          />
+          />{errors.password && <h5>{errors.password}</h5>}
         </div>
         <div className="form-element">
           <Button

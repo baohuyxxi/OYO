@@ -11,8 +11,8 @@ import { t } from 'i18next'
 
 export default function SimpleDialog(props) {
     const { onClose, open, title, value } = props
+    
     const handleClose = () => {
-        console.log("Tắt")
         onClose()
     }
     const [isDialogOpen, setIsDialogOpen] = React.useState(false); // Thêm trạng thái mới
@@ -21,18 +21,14 @@ export default function SimpleDialog(props) {
     };
 
     const closeDialog = () => {
-        console.log("Tắt1")
         setIsDialogOpen(false);
     };
     let dialogContent;
     switch (value) {
         case 1:
-            dialogContent = <SignIn handleClose />
+            dialogContent = <SignIn handleClose={handleClose} />
             break;
         case 2:
-            dialogContent = <VerificationCode email={props.email} handleClose />
-            break;
-        case 3:
             dialogContent = <Register email={props.email} handleClose />
             break;
         default:

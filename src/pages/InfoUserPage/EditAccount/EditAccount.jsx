@@ -9,48 +9,63 @@ import Button from '@mui/material/Button'
 import CustomInput from '~/assets/custom/CustomInput'
 import { useState, useEffect, useContext } from 'react'
 import { AuthContext } from '~/contexts/AuthContext'
+import { updateInfoRequest } from '~/services/API/authAPI'
+import SelectAddress from '~/components/SelectAddress/SelectAddress'
 import { t } from 'i18next'
 
 export default function SettingsCard(props) {
-  const {userCurrent, setUserCurrent, setAccessToken, setRefreshToken } = useContext(AuthContext)
-  const { user, setUser } = useState()
+  const { userCurrent, setUserCurrent, setAccessToken, setRefreshToken } = useContext(AuthContext);
+  const [user, setUser] = useState(userCurrent);
+  const { accessToken } = useContext(AuthContext)
 
   const handleUser = (event) => {
     setUser({ ...user, [event.target.name]: event.target.value })
+    setUser({...user, 'dateOfBirth':`2002-7-6`})
+    console.log(user)
+  }
+  const handleSave = async (event) => {
+    event.preventDefault()
+    console.log(user)
+    const res = await updateInfoRequest(user, accessToken)
+    console.log(res)
+    if (res.status === 200) {
+      console.log("200")
+    }else if (res.status === 400) {
+      console.log("400")
+  } else {
+
+  }
+  return
   }
 
-
-  const [tabValue, setTabValue] = React.useState('one')
-
-  const handleTabChange = (event, newValue) => {
-    setTabValue(newValue)
-  }
   const genderSelect = [
     {
-      value: 'male',
+      id:2,
+      value: 2,
       label: t('label.male')
     },
     {
-      value: 'female',
+      id : 1,
+      value: 1,
       label: t('label.female')
     }
   ]
   const birthday = []
   for (let i = 1; i <= 31; i++) {
-    birthday.push({ value: i, label: i.toString() });
+    birthday.push({ id: i ,value: i, label: i.toString() });
   }
 
   const monthOfBirth = []
   for (let i = 1; i <= 12; i++) {
-    monthOfBirth.push({ value: i, label: `Tháng ${i}` });
+    monthOfBirth.push({id: i , value: i, label: `Tháng ${i}` });
   }
 
   const yearOfBirth = []
-  for (let i = 2023; i > 1960; i--) {
-    yearOfBirth.push({ value: i, label: i.toString() });
+  for (let i = 2023; i > 1970; i--) {
+    yearOfBirth.push({ id: i ,value: i, label: i.toString() });
   }
 
-
+ 
   return (
     <>
       <h2>{t('navbar.personalData')}</h2>
@@ -62,46 +77,46 @@ export default function SettingsCard(props) {
           textAlign: { xs: 'center', md: 'start' }
         }}
       >
-        <FormControl fullWidth>
+        <FormControl fullWidth component="form" onSubmit={handleSave}>
           <Grid
             container
             direction={{ xs: 'column', md: 'row' }}
             columnSpacing={5}
             rowSpacing={3}
           >
-            <Grid component="form" item xs={6}>
+            <Grid item xs={6}>
               <CustomInput
                 id="userName"
                 name="userName"
-                value={userCurrent.userName}
+                value={user.userName}
                 title={t('title.userName')}
                 onChange={handleUser}
               ></CustomInput>
             </Grid>
-            
+
             <Grid item xs={6}>
               <CustomInput
-                name="email"
-                id="email"
-                value={userCurrent.mail}
+                name="mail"
+                id="mail"
+                value={user.mail}
                 onChange={handleUser}
                 title={t('label.emailVoucher')}
               ></CustomInput>
             </Grid>
-            <Grid component="form" item xs={6}>
+            <Grid item xs={6}>
               <CustomInput
                 id="firstName"
                 name="firstName"
-                value={userCurrent.firstName}
+                value={user.firstName}
                 title={t('label.firstName')}
                 onChange={handleUser}
               ></CustomInput>
             </Grid>
-            <Grid component="form" item xs={6}>
+            <Grid item xs={6}>
               <CustomInput
                 id="lastName"
                 name="lastName"
-                value={userCurrent.lastName}
+                value={user.lastName}
                 title={t('label.lastName')}
                 onChange={handleUser}
               ></CustomInput>
@@ -118,63 +133,63 @@ export default function SettingsCard(props) {
                 disableClearable
               />
             </Grid> */}
-             <Grid item xs={6}>
+           
+            <Grid item xs={6}>
               <CustomInput
                 name="phone"
                 id="phone"
-                // value={user.phone}
+                 value={user.phone}
                 onChange={handleUser}
                 title="Phone Number"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">+84</InputAdornment>
-                  )
-                }}
               ></CustomInput>
             </Grid>
-            <Grid item xs={6}/>
+            <Grid item xs={6}>
+              <CustomInput
+                name="address"
+                id="address"
+                value={user.address}
+                onChange={handleUser}
+                title="Địa chỉ"
+              ></CustomInput>
+            </Grid>
             <Grid item xs={3}>
               <CustomInput
                 select
                 id="gender"
                 name="gender"
-
                 value={userCurrent.gender}
-                onChange={handleUser}
+                onChange={handleUser} 
                 title={t('label.gender')}
                 content={genderSelect.map((option) => (
-                  <MenuItem value={option.value}>{option.label}</MenuItem>
+                  <MenuItem key={option.id} value={option.value}>{option.label}</MenuItem>
                 ))}
               ></CustomInput>
             </Grid>
-  
-           
-                  
+
             <Grid item xs={3}>
               <CustomInput
                 select
                 id="birthday"
                 name="birthday"
-
-                // value={user.gender}
+                value={user.birthday}
                 onChange={handleUser}
                 title={t('label.birthday')}
                 content={birthday.map((option) => (
-                  <MenuItem value={option.value}>{option.label}</MenuItem>
+                  <MenuItem key={option.id} value={option.value}>{option.label}</MenuItem>
                 ))}
               ></CustomInput>
             </Grid>
-       
+
             <Grid item xs={3}>
               <CustomInput
                 select
                 id="monthOfBirth"
                 name="monthOfBirth"
-                // value={user.gender}
+                value={user.monthOfBirth}
                 onChange={handleUser}
                 title={t('label.monthOfBirth')}
                 content={monthOfBirth.map((option) => (
-                  <MenuItem value={option.value}>{option.label}</MenuItem>
+                  <MenuItem key={option.id}  value={option.value}>{option.label}</MenuItem>
                 ))}
               ></CustomInput>
             </Grid>
@@ -183,14 +198,15 @@ export default function SettingsCard(props) {
                 select
                 name="yearOfBirth"
                 id="yearOfBirth"
-                // value={user.gender}
+                value={user.yearOfBirth}
                 onChange={handleUser}
                 title={t('label.yearOfBirth')}
                 content={yearOfBirth.map((option) => (
-                  <MenuItem value={option.value}>{option.label}</MenuItem>
+                  <MenuItem key={option.id}  value={option.value}>{option.label}</MenuItem>
                 ))}
               ></CustomInput>
             </Grid>
+            
             <Grid
               container
               justifyContent={{ xs: 'center', md: 'flex-end' }}
@@ -198,9 +214,7 @@ export default function SettingsCard(props) {
               xs={6}
             >
               <Button
-                sx={{ p: '1rem 2rem', my: 2, height: '3rem' }}
-                component="button"
-                size="large"
+                type='submit'
                 variant="contained"
               >
                 {t('common.save')}

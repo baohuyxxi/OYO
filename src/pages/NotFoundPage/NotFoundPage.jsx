@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Button, Container, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import logo from '~/assets/logo.svg'
+import { useLocation } from 'react-router-dom';
 import './NotFoundPage.scss'
 import { t } from 'i18next'
 export default function Error() {

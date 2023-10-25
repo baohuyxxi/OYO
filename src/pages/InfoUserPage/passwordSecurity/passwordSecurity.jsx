@@ -44,9 +44,6 @@ export default function passwordSecurity(props) {
 
   const handleChangePassword = async (event) => {
     event.preventDefault( )
-    console.log(changePassword)
-    console.log(accessToken)
-  
       const res = await changePasswordRequest(changePassword, accessToken)
       console.log(res)
       if (res.status === 200) {
@@ -54,7 +51,7 @@ export default function passwordSecurity(props) {
       }else if (res.status === 400) {
         console.log("400")
     } else {
-      console.log("anna")
+
     }
     return
 

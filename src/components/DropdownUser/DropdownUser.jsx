@@ -66,10 +66,12 @@ export default function CustomizedMenus() {
             {t('navbar.accountManagement')}
           </MenuItem>
         </NavLink>
+        <NavLink to="/myBooking" onClick={handleClose} activeClassName="active-link" style={{ textDecoration: 'none', color: 'inherit' }}>
         <MenuItem onClick={handleClose} disableRipple>
           <FactCheckOutlinedIcon />
           {t('navbar.myBooking')}
         </MenuItem>
+        </NavLink>
         <Divider sx={{ my: 0.5 }} />
         <MenuItem onClick={handleLogout} disableRipple>
           <LogoutOutlinedIcon />

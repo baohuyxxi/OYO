@@ -29,9 +29,6 @@ export const checkAccount = async (CheckAccount) => {
 export const  registerRequest= async (RegisterRequest) => {
     try {
         const res = await axios.post("v1/auth/signup", RegisterRequest)
-        console.log("abc")
-        console.log(res)
-        console.log("abca")
         return res
     } catch (error) {
         return error.response
@@ -50,7 +47,18 @@ export const  tokenRefreshRequest= async (TokenRefreshRequest) => {
 
 export const changePasswordRequest = async (data, token) => {
     try {
-        const res = await axios.post("v1/general/change-password", data)
+        const res = await axios.put("v1/general/change-password", data)
+        return res
+    } catch (error) {
+        return error.response
+    }
+}
+
+export const updateInfoRequest = async (data, token) => {
+    try {
+        const res = await axios.put("v1/general/update-info", data, {params:{ "mail" : data.mail}})
+        console.log(data.mail)
+        console.log(res)
         return res
     } catch (error) {
         return error.response

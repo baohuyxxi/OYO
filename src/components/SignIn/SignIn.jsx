@@ -68,21 +68,19 @@ export default function SignIn(props) {
  
   const status = ['PasswordInput', 'RegisterButton', 'LoginButton', 'StatusButton', 'LoadingButton', 'ValidEmail'];
   const toggleShow = (ShowNames) => {
-    status.forEach(statusName => {
+    status.forEach((statusName) => {
       if (ShowNames.includes(statusName)) {
-        eval(`setShow${statusName}(true)`)
-      }
-      else {
-        eval(`setShow${statusName}(false)`)
+        eval(`setShow${statusName}(true)`);
+      } else {
+        eval(`setShow${statusName}(false)`);
       }
     });
-  }
+  };
   useEffect(() => {
     let timer;
     if (signin.email) {
       timer = setTimeout(async () => {
-
-        const checkValidEmail = validate(signin)
+        const checkValidEmail = validate(signin);
         if (checkValidEmail.email) {
           setErrorEmail(checkValidEmail.email)
           toggleShow(['StatusButton', 'ValidEmail'])
@@ -92,11 +90,11 @@ export default function SignIn(props) {
         if (checkEmail.data.message === "User exist !") {
           toggleShow(['PasswordInput', 'LoginButton'])
         } else {
-          toggleShow(['RegisterButton'])
+          toggleShow(["RegisterButton"]);
         }
       }, 2000);
-    } else if (signin.email === '') {
-      toggleShow(['StatusButton'])
+    } else if (signin.email === "") {
+      toggleShow(["StatusButton"]);
     }
 
     return () => {
@@ -105,103 +103,113 @@ export default function SignIn(props) {
   }, [signin.email]);
 
   const handleEmailChange = (event) => {
-    setSignin({ ...signin, "email": event.target.value });
-    toggleShow(['LoadingButton'])
-  }
+    setSignin({ ...signin, email: event.target.value });
+    toggleShow(["LoadingButton"]);
+  };
 
   const handlePasswordChange = async (event) => {
-    setSignin({ ...signin, "password": event.target.value });
-  }
+    setSignin({ ...signin, password: event.target.value });
+  };
 
   return (
-    <Container component="main" maxWidth="xs" className='form-signin'>
+    <Container component="main" maxWidth="xs" className="form-signin">
       <Box component="form" onSubmit={handleLogin} noValidate sx={{ mt: 1 }}>
-        <div className='form-element'>
+        <div className="form-element">
           <CustomInput
-            title={t('label.email') + "/" + t('label.phone')}
+            title={t("label.email") + "/" + t("label.phone")}
             id="email"
             name="email"
             autoComplete="email"
             value={signin.email}
             onChange={handleEmailChange}
-            placeholder={t('contentMess.accountExample')}
+            placeholder={t("contentMess.accountExample")}
           />
-          {
-            showValidEmail && <h5>{errorEmail}</h5>
-          }
+          {showValidEmail && <h5>{errorEmail}</h5>}
         </div>
 
         {showPasswordInput && (
-          <div className='form-element'>
+          <div className="form-element">
             <CustomInput
-              title={t('label.password')}
+              title={t("label.password")}
               name="password"
               id="password"
               value={signin.password}
               onChange={handlePasswordChange}
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? "text" : "password"}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton
-                      onClick={handleTogglePassword}
-                      edge="end"
-                    >
+                    <IconButton onClick={handleTogglePassword} edge="end">
                       {showPassword ? <Visibility /> : <VisibilityOff />}
                     </IconButton>
                   </InputAdornment>
-                )
+                ),
               }}
             /> {errorPassword && <h5>{errorPassword}</h5>}
           </div>
         )}
         {showStatusButton && (
-          <Button className='form-button' variant='contained' fullWidth disabled>
-            {t('common.continue')}
+          <Button
+            className="form-button"
+            variant="contained"
+            fullWidth
+            disabled
+          >
+            {t("common.continue")}
           </Button>
         )}
         {showLoadingButton && (
-          <LoadingButton className='form-button' loading variant="contained" fullWidth disabled>
-          </LoadingButton>
+          <LoadingButton
+            className="form-button"
+            loading
+            variant="contained"
+            fullWidth
+            disabled
+          ></LoadingButton>
         )}
         {showLoginButton && (
-          <Button className='form-button' type="submit" fullWidth variant="contained">
-            {t('title.signin')}
+          <Button
+            className="form-button"
+            type="submit"
+            fullWidth
+            variant="contained"
+          >
+            {t("title.signin")}
           </Button>
         )}
         {showRegisterButton && (
           <Button
-            className='form-button'
+            className="form-button"
             fullWidth
             color='orange'
             variant='contained'
             onClick={handleRegister}
           >
-            {t('title.signup')}
+            {t("title.signup")}
           </Button>
         )}
         <h4>
           <span className="centered-line" />
-          {t('title.orSignin')}
+          {t("title.orSignin")}
           <span className="centered-line" />
         </h4>
         <div className="social-container">
           <Button fullWidth variant="outlined">
             <img src={googleIcon} alt="Your Image" width="24" height="24" />
-            {t('title.withGoogle')}
+            {t("title.withGoogle")}
           </Button>
         </div>
         <div className="policy">
           <h6>
-            {t('contentPolicy.policyAuth')}
+            {t("contentPolicy.policyAuth")}
             <Link to="" className="link-policy">
-              {t('link.rules')}
+              {t("link.rules")}
             </Link>
-            {t('contentPolicy.and')}
+            {t("contentPolicy.and")}
             <Link to="" className="link-policy">
-              {t('link.privacyPolicy')}
+              {t("link.privacyPolicy")}
             </Link>
-            {t('contentPolicy.ofYOY')}
+            {t("contentPolicy.ofYOY")}
           </h6>
         </div>
         <SignInSignUp
@@ -213,5 +221,5 @@ export default function SignIn(props) {
         />
       </Box>
     </Container>
-  )
+  );
 }

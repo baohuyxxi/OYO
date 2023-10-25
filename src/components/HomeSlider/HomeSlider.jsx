@@ -1,12 +1,12 @@
-import React, { Component } from "react"
-import Slider from "react-slick"
-import bannerOne from '~/assets/imageMaster/banner_1.webp'
-import bannerTwo from '~/assets/imageMaster/banner_2.webp'
-import bannerThree from '~/assets/imageMaster/banner_3.webp'
+import React, { Component } from "react";
+import Slider from "react-slick";
+import bannerOne from "~/assets/imageMaster/banner_1.webp";
+import bannerTwo from "~/assets/imageMaster/banner_2.webp";
+import bannerThree from "~/assets/imageMaster/banner_3.webp";
 
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import './HomeSlider.css'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "./HomeSlider.scss";
 export default class SimpleSlider extends Component {
   render() {
     var settings = {
@@ -58,7 +58,6 @@ export default class SimpleSlider extends Component {
             <img src={bannerThree} alt="home" className="slider__home-item" />
           </div>
         </Slider>
-
       </div>
     );
   }

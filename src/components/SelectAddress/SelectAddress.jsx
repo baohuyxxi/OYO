@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react'
-import * as React from 'react'
-import TextField from '@mui/material/TextField'
-import Autocomplete from '@mui/material/Autocomplete'
-import Axios from 'axios'
-import { t } from 'i18next'
-import provinceData from '~/mockdata/ProvinceVN.json' 
-import './SelectAddress.scss'
+import { useState, useEffect } from "react";
+import * as React from "react";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+import Axios from "axios";
+import { t } from "i18next";
+import { getAllProvinceDetails } from "~/services/API/publicAPI";
+import "./SelectAddress.scss";
 
 export default function SelectAddress() {
   const [selectedProvince, setSelectedProvince] = useState(null);
@@ -19,10 +19,10 @@ export default function SelectAddress() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await Axios.get('https://provinces.open-api.vn/api/?depth=3');
+        const response = await getAllProvinceDetails();
         setProvinces(response.data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
     fetchData();
@@ -35,10 +35,10 @@ export default function SelectAddress() {
     setSelectedWard(null);
     if (newValue) {
       // Set districts based on the selected province
-      const provinceId = newValue.code;
-      const province = provinces.find((p) => p.code === provinceId);
+      const provinceId = newValue.provinceCode;
+      const province = provinces.find((p) => p.provinceCode === provinceId);
       if (province) {
-        setDistricts(province.districts);
+        setDistricts(province.districtSet);
       }
     } else {
       setDistricts([]);
@@ -51,10 +51,10 @@ export default function SelectAddress() {
     setSelectedWard(null);
     if (newValue) {
       // Set wards based on the selected district
-      const districtId = newValue.code;
-      const district = districts.find((d) => d.code === districtId);
+      const districtId = newValue.districtCode;
+      const district = districts.find((d) => d.districtCode === districtId);
       if (district) {
-        setWards(district.wards);
+        setWards(district.wardSet);
       }
     } else {
       setWards([]);
@@ -63,54 +63,69 @@ export default function SelectAddress() {
 
   return (
     <>
-    <div className='row'>
-      <Autocomplete className='input'
-        value={selectedProvince}
-        onChange={handleProvinceChange}
-        options={provinces}
-        getOptionLabel={(option) => option.name}
-        noOptionsText={'Không có kết quả phù hợp'}
-        renderInput={(params) => (
-          <TextField {...params} label={t('label.selectProvince')} InputLabelProps={{
-            shrink: false,
-            style: {
-              display: params.inputProps.value ? 'none' : 'block'
-            }
-          }}/>
-        )}
-      />
-   
-      <Autocomplete className='input'
-        value={selectedDistrict}
-        onChange={handleDistrictChange}
-        options={districts}
-        getOptionLabel={(option) => option.name}
-        noOptionsText={'Không có kết quả phù hợp'}
-        renderInput={(params) => (
-          <TextField {...params} label={t('label.selectDistrict')}InputLabelProps={{
-            shrink: false,
-            style: {
-              display: params.inputProps.value ? 'none' : 'block'
-            }
-          }} />
-        )}
-      />
-      <Autocomplete className='input'
-        value={selectedWard}
-        onChange={(event, newValue) => setSelectedWard(newValue)}
-        options={wards}
-        getOptionLabel={(option) => option.name}
-        noOptionsText={'Không có kết quả phù hợp'}
-        renderInput={(params) => (
-          <TextField {...params} label={t('label.selectWard')}InputLabelProps={{
-            shrink: false,
-            style: {
-              display: params.inputProps.value ? 'none' : 'block'
-            }
-          }} />
-        )}
-      />
-         </div>
+      <div className="row">
+        <Autocomplete
+          className="input"
+          value={selectedProvince}
+          onChange={handleProvinceChange}
+          options={provinces}
+          getOptionLabel={(option) => option.provinceName}
+          noOptionsText={"Không có kết quả phù hợp"}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label={t("label.selectProvince")}
+              InputLabelProps={{
+                shrink: false,
+                style: {
+                  display: params.inputProps.value ? "none" : "block",
+                },
+              }}
+            />
+          )}
+        />
+
+        <Autocomplete
+          className="input"
+          value={selectedDistrict}
+          onChange={handleDistrictChange}
+          options={districts}
+          getOptionLabel={(option) => option.districtName}
+          noOptionsText={"Không có kết quả phù hợp"}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label={t("label.selectDistrict")}
+              InputLabelProps={{
+                shrink: false,
+                style: {
+                  display: params.inputProps.value ? "none" : "block",
+                },
+              }}
+            />
+          )}
+        />
+        <Autocomplete
+          className="input"
+          value={selectedWard}
+          onChange={(event, newValue) => setSelectedWard(newValue)}
+          options={wards}
+          getOptionLabel={(option) => option.wardName}
+          noOptionsText={"Không có kết quả phù hợp"}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label={t("label.selectWard")}
+              InputLabelProps={{
+                shrink: false,
+                style: {
+                  display: params.inputProps.value ? "none" : "block",
+                },
+              }}
+            />
+          )}
+        />
+      </div>
     </>
   );
 }

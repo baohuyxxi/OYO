@@ -11,21 +11,21 @@ import {
 import { toFormData } from 'axios'
 
 export const loginRequest = async (LoginRequest) => {
-    try {
-        const res = await axios.post("v1/auth/signin", LoginRequest)
-        return res
-    } catch (error) {
-        return error.response
-    }
-}
+  try {
+    const res = await axios.post("/auth/signin", LoginRequest);
+    return res;
+  } catch (error) {
+    return error.response;
+  }
+};
 export const checkAccount = async (CheckAccount) => {
-    try {
-        const res = await axios.post("v1/public/user/checkmail", CheckAccount)
-        return res
-    } catch (error) {
-        return error.response
-    }
-}
+  try {
+    const res = await axios.post("/public/user/checkmail", CheckAccount);
+    return res;
+  } catch (error) {
+    return error.response;
+  }
+};
 
 export const registerRequest = async (RegisterRequest) => {
     try {

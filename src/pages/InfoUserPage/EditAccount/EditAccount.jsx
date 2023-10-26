@@ -93,8 +93,17 @@ export default function SettingsCard(props) {
                 onChange={handleUser}
               ></CustomInput>
             </Grid>
-
             <Grid item xs={6}>
+              <CustomInput
+                name="phone"
+                id="phone"
+                 value={user.phone}
+                onChange={handleUser}
+                title="Phone Number"
+              ></CustomInput>
+            </Grid>
+
+            {/* <Grid item xs={6}>
               <CustomInput
                 name="mail"
                 id="mail"
@@ -102,8 +111,8 @@ export default function SettingsCard(props) {
                 onChange={handleUser}
                 title={t('label.emailVoucher')}
               ></CustomInput>
-            </Grid>
-            <Grid item xs={6}>
+            </Grid> */}
+            <Grid item xs={3}>
               <CustomInput
                 id="firstName"
                 name="firstName"
@@ -112,7 +121,7 @@ export default function SettingsCard(props) {
                 onChange={handleUser}
               ></CustomInput>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={3}>
               <CustomInput
                 id="lastName"
                 name="lastName"
@@ -134,15 +143,7 @@ export default function SettingsCard(props) {
               />
             </Grid> */}
            
-            <Grid item xs={6}>
-              <CustomInput
-                name="phone"
-                id="phone"
-                 value={user.phone}
-                onChange={handleUser}
-                title="Phone Number"
-              ></CustomInput>
-            </Grid>
+           
             <Grid item xs={6}>
               <CustomInput
                 name="address"

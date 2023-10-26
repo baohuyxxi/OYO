@@ -14,6 +14,7 @@ import Paper from '@mui/material/Paper'
 import { AuthContext } from '~/contexts/AuthContext'
 import { useContext } from 'react'
 import { Typography } from '@mui/material'
+import CardInfo from './CardInfo/CardInfo'
 import Divider from '@mui/material/Divider'
 
 import { t } from 'i18next'
@@ -35,47 +36,9 @@ const InfoUserPage = () => {
 
         <div className="row">
 
-          <div className="col l-3" style={{ paddingTop: 0 }}>
+         
 
-            <Paper className="card-info" >
-
-              <div className="user-info">
-                <div className="user-avatar">
-                  <img src='https://i.pinimg.com/originals/f5/67/c5/f567c51a23303a377b4edcb71470804b.jpg' className='user-avatar'>
-                  </img>
-                </div>
-                <div className="user-details">
-                  <h3 className="user-name">{userCurrent.userName}</h3>
-                  <div className="user-email">{userCurrent.mail}</div>
-                </div>
-              </div>
-              <Divider />
-              <div>
-                <a href="/link-my-cart" className="user-link">
-                  <div className="link-icon">
-                    <FactCheckOutlinedIcon />
-                  </div>{t('navbar.myBooking')}
-                </a>
-                <a href="/link-my-cart" className="user-link">
-                  <div className="link-icon">
-                    <WysiwygOutlinedIcon />
-                  </div>{t('navbar.historyBookingClient')}
-                </a>
-                <a href="/account" className="user-link edit-profile">
-                  <div className="link-icon">
-                    <SettingsOutlinedIcon />
-                  </div>
-                  {t('navbar.account')}
-                </a>
-                <a href="/" className="user-link logout">
-                  <div className="link-icon">
-                    <LogoutOutlinedIcon />
-                  </div>
-                  {t('navbar.signout')}
-                </a>
-              </div>
-            </Paper>
-          </div>
+           <CardInfo/>
 
           <div className="col l-9">
             <div className='col'>

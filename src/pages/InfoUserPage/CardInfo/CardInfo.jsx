@@ -12,7 +12,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Box, Modal, Slider, Button } from "@mui/material";
 import AvatarEditor from "react-avatar-editor";
-import CropperModal from '~/assets/custom/CropperModal';
+import UpdateAvatar from '~/components/UpdateAvatar/UpdateAvatar'
 import { t } from 'i18next';
 
 export default function CardInfo() {
@@ -63,7 +63,7 @@ export default function CardInfo() {
     }
     return (
         <div className="col l-3" style={{ paddingTop: 0 }}>
-            <CropperModal
+            <UpdateAvatar
                 modalOpen={modalOpen}
                 imageFile={imageFile}
                 setPreview={setPreview}

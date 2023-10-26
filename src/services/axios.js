@@ -27,26 +27,26 @@ instance.interceptors.response.use(
         return res;
     },
     async (err) => {
-        // const originalConfig = err.config;
+        const originalConfig = err.config;
 
-        // if (originalConfig.url !== "/user/signin" && err.response) {
-        //     if (err.response.status === 401 && !originalConfig._retry) {
-        //         originalConfig._retry = true;
+        if (originalConfig.url !== "/user/signin" && err.response) {
+            if (err.response.status === 401 && !originalConfig._retry) {
+                originalConfig._retry = true;
 
-        //         try {
-        //             const rs = await instance.post("/user/refresh-token", {
-        //                 refreshToken: getRefreshToken(),
-        //             });
-        //             const { accessToken } = rs.data;
-        //             updateToken(accessToken)
-        //             return instance(originalConfig);
-        //         } catch (_error) {
-        //             return Promise.reject(_error);
-        //         }
-        //     }
-        // }
+                try {
+                    const rs = await instance.post("/user/refresh-token", {
+                        refreshToken: getRefreshToken(),
+                    });
+                    const { accessToken } = rs.data;
+                    updateToken(accessToken)
+                    return instance(originalConfig);
+                } catch (_error) {
+                    return Promise.reject(_error);
+                }
+            }
+        }
 
-        // return Promise.reject(err);
+        return Promise.reject(err);
     }
 );
 export default instance

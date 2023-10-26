@@ -6,12 +6,11 @@ import { useLocation } from 'react-router-dom';
 import './NotFoundPage.scss'
 import { t } from 'i18next'
 export default function Error() {
-    const handleHome=()=>{
+    const handleHome = () => {
         document.location = '/'
     }
     return (
-        <>
-            <div id="background"></div>
+        <div className="background">
             <div className="top">
                 <h1>404</h1>
                 <h3>{t('title.pageNotFound')}</h3>
@@ -38,6 +37,7 @@ export default function Error() {
             <div className="buttons">
                 <Button className="btn" onClick={handleHome}>{t('navbar.home')}</Button>
             </div>
-        </>
+        </div>
+
     );
 }

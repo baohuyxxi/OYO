@@ -20,7 +20,7 @@ export default function SettingsCard(props) {
 
   const handleUser = (event) => {
     setUser({ ...user, [event.target.name]: event.target.value })
-    setUser({...user, 'dateOfBirth':`2002-7-6`})
+    //setUser({...user, 'dateOfBirth':`2002-7-6`})
     console.log(user)
   }
   const handleSave = async (event) => {
@@ -29,6 +29,7 @@ export default function SettingsCard(props) {
     const res = await updateInfoRequest(user, accessToken)
     console.log(res)
     if (res.status === 200) {
+      setUserCurrent(res.data)
       console.log("200")
     }else if (res.status === 400) {
       console.log("400")
@@ -158,7 +159,7 @@ export default function SettingsCard(props) {
                 select
                 id="gender"
                 name="gender"
-                value={userCurrent.gender}
+                value={user.gender}
                 onChange={handleUser} 
                 title={t('label.gender')}
                 content={genderSelect.map((option) => (

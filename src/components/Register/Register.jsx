@@ -58,9 +58,9 @@ export default function Register(props) {
       setformValid(true)
     }
   }, [register])
-  useEffect(() => {
+  // useEffect(() => {
     
-  }, [register]);
+  // }, [register]);
 
 
 

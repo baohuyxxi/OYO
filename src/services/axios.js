@@ -2,7 +2,11 @@ import axios from "axios";
 import { getToken, getRefreshToken, updateToken } from "./token";
 
 const instance = axios.create({
-    baseURL: "http://localhost:8080/api"
+    baseURL: "http://localhost:8080/api", timeout: 5000,
+    validateStatus: function (status)
+    {
+        return status >= 200 && status <=500
+    }
     
 })
 instance.interceptors.request.use(
@@ -17,7 +21,6 @@ instance.interceptors.request.use(
         return Promise.reject(error);
     }
 );
-
 instance.interceptors.response.use(
     (res) => {
         return res;

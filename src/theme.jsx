@@ -33,7 +33,8 @@ const theme = extendTheme({
         green:
         {
           main: '#00FF00'
-        }
+        },
+        
       }
     },
     dark: {

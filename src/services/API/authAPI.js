@@ -3,11 +3,12 @@ import { ErrorSharp } from '@mui/icons-material'
 import axios from '../axios'
 
 import {
-  SigninRequest,
-  CheckAccount,
-  RegisterRequest,
-  TokenRefreshRequest,
-} from "~/share/model/auth";
+    SigninRequest,
+    CheckAccount,
+    RegisterRequest,
+    TokenRefreshRequest
+} from '~/share/model/auth'
+import { toFormData } from 'axios'
 
 export const loginRequest = async (LoginRequest) => {
   try {
@@ -26,7 +27,7 @@ export const checkAccount = async (CheckAccount) => {
   }
 };
 
-export const  registerRequest= async (RegisterRequest) => {
+export const registerRequest = async (RegisterRequest) => {
     try {
         const res = await axios.post("v1/auth/signup", RegisterRequest)
         return res
@@ -35,7 +36,7 @@ export const  registerRequest= async (RegisterRequest) => {
     }
 }
 
-export const  tokenRefreshRequest= async (TokenRefreshRequest) => {
+export const tokenRefreshRequest = async (TokenRefreshRequest) => {
     try {
         const res = await axios.post("user/signin", TokenRefreshRequest)
         return res
@@ -56,8 +57,20 @@ export const changePasswordRequest = async (data, token) => {
 
 export const updateInfoRequest = async (data, token) => {
     try {
-        const res = await axios.put("v1/general/update-info", data, {params:{ "mail" : data.mail}})
+        const res = await axios.put("v1/general/update-info", data, { params: { "mail": data.mail } })
         console.log(data.mail)
+        console.log(res)
+        return res
+    } catch (error) {
+        return error.response
+    }
+}
+
+export const updateAvatarRequest = async (imageFile, mail) => {
+    try {
+        let formData = new FormData();
+        formData.append("file", imageFile);
+        const res = await axios.put("v1/general/update_avatar", formData, { params: { "mail": mail } })
         console.log(res)
         return res
     } catch (error) {

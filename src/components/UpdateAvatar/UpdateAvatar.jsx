@@ -19,8 +19,7 @@ const modalStyle = {
     alignItems: "center"
 };
 
-export default function CropperModal({ imageFile , modalOpen, setModalOpen, setPreview, mail }) {
-    const { userCurrent, setUserCurrent, setAccessToken, setRefreshToken , accessToken} = useContext(AuthContext);
+export default function UpdateAvatar({ imageFile , modalOpen, setModalOpen, setPreview, mail }) {
     const [slideValue, setSlideValue] = useState(10);
     const cropRef = useRef(null);
     // const [imageFile, setImageFile] = useState(null);

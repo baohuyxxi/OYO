@@ -12,7 +12,7 @@ import { toFormData } from 'axios'
 
 export const loginRequest = async (LoginRequest) => {
     try {
-        const res = await axios.post("v1/auth/signin", LoginRequest)
+        const res = await axios.post("auth/signin", LoginRequest)
         return res
     } catch (error) {
         return error.response
@@ -20,7 +20,7 @@ export const loginRequest = async (LoginRequest) => {
 }
 export const checkAccount = async (CheckAccount) => {
     try {
-        const res = await axios.post("v1/public/user/checkmail", CheckAccount)
+        const res = await axios.post("public/user/checkmail", CheckAccount)
         return res
     } catch (error) {
         return error.response
@@ -29,7 +29,7 @@ export const checkAccount = async (CheckAccount) => {
 
 export const registerRequest = async (RegisterRequest) => {
     try {
-        const res = await axios.post("v1/auth/signup", RegisterRequest)
+        const res = await axios.post("auth/signup", RegisterRequest)
         return res
     } catch (error) {
         return error.response
@@ -48,7 +48,7 @@ export const tokenRefreshRequest = async (TokenRefreshRequest) => {
 
 export const changePasswordRequest = async (data, token) => {
     try {
-        const res = await axios.put("v1/general/change-password", data)
+        const res = await axios.put("general/change-password", data)
         return res
     } catch (error) {
         return error.response
@@ -57,7 +57,7 @@ export const changePasswordRequest = async (data, token) => {
 
 export const updateInfoRequest = async (data, token) => {
     try {
-        const res = await axios.put("v1/general/update-info", data, { params: { "mail": data.mail } })
+        const res = await axios.put("general/update-info", data, { params: { "mail": data.mail } })
         console.log(data.mail)
         console.log(res)
         return res
@@ -70,7 +70,7 @@ export const updateAvatarRequest = async (imageFile, mail) => {
     try {
         let formData = new FormData();
         formData.append("file", imageFile);
-        const res = await axios.put("v1/general/update_avatar", formData, { params: { "mail": mail } })
+        const res = await axios.put("general/update_avatar", formData, { params: { "mail": mail } })
         console.log(res)
         return res
     } catch (error) {

@@ -4,7 +4,6 @@ import DialogTitle from '@mui/material/DialogTitle'
 import Dialog from '@mui/material/Dialog'
 import Paper from '@mui/material/Paper'
 import CloseIcon from '@mui/icons-material/Close';
-import VerificationCode from '../VerificationCode/VerificationCode'
 import SignIn from '../SignIn/SignIn'
 import Register from '../Register/Register'
 import { t } from 'i18next'
@@ -23,7 +22,6 @@ export default function SimpleDialog(props) {
     const closeDialog = () => {
         setIsDialogOpen(false);
     };
-    console.log(props.email)
     let dialogContent;
     switch (value) {
         case 1:

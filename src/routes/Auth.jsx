@@ -9,6 +9,8 @@ const VerificationCode = React.lazy(() => import('../components/VerificationCode
 const RoomDetail = React.lazy(() => import('../pages/RoomDetail/RoomDetail'))
 const Register = React.lazy(() => import('../components/Register/Register'))
 const NotFoundPage = React.lazy(() => import('../pages/NotFoundPage/NotFoundPage'))
+const CongratulationPage = React.lazy(() => import('../pages/CongratulationPage/Congratulation'))
+
 
   return (
     <Routes>
@@ -52,6 +54,15 @@ const NotFoundPage = React.lazy(() => import('../pages/NotFoundPage/NotFoundPage
           </React.Suspense>
         }
       />
+       <Route
+        path="/CongratulationPage"
+        element={
+          <React.Suspense>
+            <CongratulationPage />
+          </React.Suspense>
+        }
+      />
+      
       <Route
         path='*'
         element={

@@ -62,7 +62,7 @@ export default function CustomizedMenus() {
       >
         <header className='header-myAccount'> {t('navbar.myAccount')}</header>
         <NavLink to="/account" onClick={handleClose} style={{ textDecoration: 'none', color: 'inherit' }}>
-          <MenuItem >
+          <MenuItem disableRipple>
             <PermIdentityOutlinedIcon />
             {t('navbar.accountManagement')}
           </MenuItem>

@@ -96,10 +96,10 @@ function LanguageToggle() {
         open={open}
         onClose={handleClose}
       >
-      <MenuItem onClick={() => { changeLanguage('vi'); handleClose(); }} >
+      <MenuItem onClick={() => { changeLanguage('vi'); handleClose(); }} disableRipple>
           {t('language.vi')}
         </MenuItem>
-        <MenuItem onClick={() => { changeLanguage('en'); handleClose(); }}>
+        <MenuItem onClick={() => { changeLanguage('en'); handleClose(); }} disableRipple>
          {t('language.en')}
         </MenuItem>
         </StyledMenu>

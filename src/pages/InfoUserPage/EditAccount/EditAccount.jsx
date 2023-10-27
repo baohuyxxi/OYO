@@ -1,6 +1,5 @@
 import React from 'react'
 import Divider from '@mui/material/Divider'
-import InputAdornment from '@mui/material/InputAdornment'
 import MenuItem from '@mui/material/MenuItem'
 import CardContent from '@mui/material/CardContent'
 import { Grid } from '@mui/material'
@@ -10,11 +9,10 @@ import CustomInput from '~/assets/custom/CustomInput'
 import { useState, useEffect, useContext } from 'react'
 import { AuthContext } from '~/contexts/AuthContext'
 import { updateInfoRequest } from '~/services/API/authAPI'
-import SelectAddress from '~/components/SelectAddress/SelectAddress'
 import { t } from 'i18next'
 
 export default function SettingsCard(props) {
-  const { userCurrent, setUserCurrent, setAccessToken, setRefreshToken } = useContext(AuthContext);
+  const { userCurrent, setUserCurrent } = useContext(AuthContext);
   const [user, setUser] = useState(userCurrent);
   const { accessToken } = useContext(AuthContext)
 

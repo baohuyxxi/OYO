@@ -4,13 +4,15 @@ import { unstable_HistoryRouter } from 'react-router-dom'
 
 const Auth = () => {
   // Customer Page
-const HomePage = React.lazy(() => import('../pages/HomePage/HomePage'))
-const InfoUserPage = React.lazy(() => import('../pages/InfoUserPage/InfoUserPage'))
-const VerificationCode = React.lazy(() => import('../components/VerificationCode/VerificationCode'))
-const RoomDetail = React.lazy(() => import('../pages/RoomDetail/RoomDetail'))
-const Register = React.lazy(() => import('../components/Register/Register'))
-const NotFoundPage = React.lazy(() => import('../pages/NotFoundPage/NotFoundPage'))
-const CongratulationPage = React.lazy(() => import('../pages/CongratulationPage/Congratulation'))
+  const HomePage = React.lazy(() => import('../pages/HomePage/HomePage'))
+  const InfoUserPage = React.lazy(() => import('../pages/InfoUserPage/InfoUserPage'))
+  const VerificationCode = React.lazy(() => import('../components/VerificationCode/VerificationCode'))
+  const RoomDetail = React.lazy(() => import('../pages/RoomDetail/RoomDetail'))
+  const Register = React.lazy(() => import('../components/Register/Register'))
+  const NotFoundPage = React.lazy(() => import('../pages/NotFoundPage/NotFoundPage'))
+  const CongratulationPage = React.lazy(() => import('../pages/CongratulationPage/Congratulation'))
+
+  const Test = React.lazy(() => import('~/components/commentReview/commentReview'))
 
 
   return (
@@ -55,7 +57,7 @@ const CongratulationPage = React.lazy(() => import('../pages/CongratulationPage/
           </React.Suspense>
         }
       />
-       <Route
+      <Route
         path="/CongratulationPage"
         element={
           <React.Suspense>
@@ -63,12 +65,21 @@ const CongratulationPage = React.lazy(() => import('../pages/CongratulationPage/
           </React.Suspense>
         }
       />
-      
+
+      <Route
+        path="/test"
+        element={
+          <React.Suspense>
+            <Test />
+          </React.Suspense>
+        }
+      />
+
       <Route
         path='*'
         element={
           <React.Suspense>
-            <NotFoundPage/>
+            <NotFoundPage />
           </React.Suspense>
         }
       />

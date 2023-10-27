@@ -6,8 +6,8 @@ import { AuthContext } from '~/contexts/AuthContext';
 import { useContext } from 'react';
 
 const boxStyle = {
-    width: "10em",
-    height: "10em",
+    width: "40em",
+    height: "40em",
     display: "flex",
     flexFlow: "column",
     justifyContent: "center",

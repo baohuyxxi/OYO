@@ -6,15 +6,17 @@ import { Grid } from '@mui/material'
 import FormControl from '@mui/material/FormControl'
 import Button from '@mui/material/Button'
 import CustomInput from '~/assets/custom/CustomInput'
-import { useState, useEffect, useContext } from 'react'
+import { useState, useContext } from 'react'
 import { AuthContext } from '~/contexts/AuthContext'
 import { updateInfoRequest } from '~/services/API/authAPI'
+import { useSnackbar } from 'notistack'
 import { t } from 'i18next'
 
-export default function SettingsCard(props) {
+export default function SettingsCard() {
   const { userCurrent, setUserCurrent } = useContext(AuthContext);
   const [user, setUser] = useState(userCurrent);
   const { accessToken } = useContext(AuthContext)
+  const { enqueueSnackbar } = useSnackbar()
 
   const handleUser = (event) => {
     setUser({ ...user, [event.target.name]: event.target.value })
@@ -28,43 +30,38 @@ export default function SettingsCard(props) {
     console.log(res)
     if (res.status === 200) {
       setUserCurrent(res.data)
-      console.log("200")
-    }else if (res.status === 400) {
-      console.log("400")
-  } else {
-
-  }
-  return
+      enqueueSnackbar(t('message.updateSuccess'), { variant: 'success' });
+    } else if (res.status === 400) {
+      enqueueSnackbar("Cập nhật thất bại", { variant: 'error' });
+    }
   }
 
   const genderSelect = [
     {
-      id:2,
+      id: 2,
       value: 2,
       label: t('label.male')
     },
     {
-      id : 1,
+      id: 1,
       value: 1,
       label: t('label.female')
     }
   ]
   const birthday = []
   for (let i = 1; i <= 31; i++) {
-    birthday.push({ id: i ,value: i, label: i.toString() });
+    birthday.push({ id: i, value: i, label: i.toString() });
   }
 
   const monthOfBirth = []
   for (let i = 1; i <= 12; i++) {
-    monthOfBirth.push({id: i , value: i, label: `Tháng ${i}` });
+    monthOfBirth.push({ id: i, value: i, label: `Tháng ${i}` });
   }
 
   const yearOfBirth = []
   for (let i = 2023; i > 1970; i--) {
-    yearOfBirth.push({ id: i ,value: i, label: i.toString() });
+    yearOfBirth.push({ id: i, value: i, label: i.toString() });
   }
-
- 
   return (
     <>
       <h2>{t('navbar.personalData')}</h2>
@@ -96,21 +93,12 @@ export default function SettingsCard(props) {
               <CustomInput
                 name="phone"
                 id="phone"
-                 value={user.phone}
+                value={user.phone}
                 onChange={handleUser}
                 title="Phone Number"
               ></CustomInput>
             </Grid>
 
-            {/* <Grid item xs={6}>
-              <CustomInput
-                name="mail"
-                id="mail"
-                value={user.mail}
-                onChange={handleUser}
-                title={t('label.emailVoucher')}
-              ></CustomInput>
-            </Grid> */}
             <Grid item xs={3}>
               <CustomInput
                 id="firstName"
@@ -129,20 +117,6 @@ export default function SettingsCard(props) {
                 onChange={handleUser}
               ></CustomInput>
             </Grid>
-
-
-            {/* <Grid item xs={6}>
-              <CustomAutocomplete
-                title={t('label.gender')}
-                name="gender"
-                id="gender"
-                label="Nam"
-                options={genderSelect}
-                disableClearable
-              />
-            </Grid> */}
-           
-           
             <Grid item xs={6}>
               <CustomInput
                 name="address"
@@ -158,7 +132,7 @@ export default function SettingsCard(props) {
                 id="gender"
                 name="gender"
                 value={user.gender}
-                onChange={handleUser} 
+                onChange={handleUser}
                 title={t('label.gender')}
                 content={genderSelect.map((option) => (
                   <MenuItem key={option.id} value={option.value}>{option.label}</MenuItem>
@@ -189,7 +163,7 @@ export default function SettingsCard(props) {
                 onChange={handleUser}
                 title={t('label.monthOfBirth')}
                 content={monthOfBirth.map((option) => (
-                  <MenuItem key={option.id}  value={option.value}>{option.label}</MenuItem>
+                  <MenuItem key={option.id} value={option.value}>{option.label}</MenuItem>
                 ))}
               ></CustomInput>
             </Grid>
@@ -202,11 +176,11 @@ export default function SettingsCard(props) {
                 onChange={handleUser}
                 title={t('label.yearOfBirth')}
                 content={yearOfBirth.map((option) => (
-                  <MenuItem key={option.id}  value={option.value}>{option.label}</MenuItem>
+                  <MenuItem key={option.id} value={option.value}>{option.label}</MenuItem>
                 ))}
               ></CustomInput>
             </Grid>
-            
+
             <Grid
               container
               justifyContent={{ xs: 'center', md: 'flex-end' }}

@@ -1,8 +1,6 @@
 import React, {useEffect, useState, useContext } from 'react'
-import Card from '@mui/material/Card'
 import Divider from '@mui/material/Divider'
 import InputAdornment from '@mui/material/InputAdornment'
-import MenuItem from '@mui/material/MenuItem'
 import CardContent from '@mui/material/CardContent'
 import { Grid } from '@mui/material'
 import FormControl from '@mui/material/FormControl'
@@ -11,13 +9,17 @@ import CustomInput from '~/assets/custom/CustomInput'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import Visibility from '@mui/icons-material/Visibility'
 import IconButton from '@mui/material/IconButton'
+
 import { ChangePassword } from '~/share/model/auth'
 import { changePasswordRequest } from '~/services/API/authAPI'
 import { AuthContext } from '~/contexts/AuthContext'
+
+import { useSnackbar } from 'notistack';
+
 import { t } from 'i18next'
 
-export default function passwordSecurity(props) {
-
+export default function passwordSecurity() {
+  const { enqueueSnackbar } = useSnackbar();
   const [showPassword, setShowPassword] = useState({
     newPassword: false,
     checkPassword: false,
@@ -29,7 +31,6 @@ export default function passwordSecurity(props) {
   const handleShowPassword = (fieldName) => {
     setShowPassword({ ...showPassword, [fieldName]: !showPassword[fieldName] });
   };
-
  
   const handleInput = (event) => {
     setChangePassword({ ...changePassword, [event.target.name]: event.target.value })
@@ -37,8 +38,6 @@ export default function passwordSecurity(props) {
 
   useEffect(() => {
     const email = JSON.parse(localStorage.getItem('user')).mail 
-    
-    // Cập nhật trạng thái changePassword với email
     setChangePassword({ ...changePassword, "email": email });
   }, []);
 
@@ -47,27 +46,16 @@ export default function passwordSecurity(props) {
       const res = await changePasswordRequest(changePassword, accessToken)
       console.log(res)
       if (res.status === 200) {
-        console.log("200")
+        enqueueSnackbar(t('message.changePassword'), { variant: 'success' });
       }else if (res.status === 400) {
-        console.log("400")
-    } else {
-
-    }
-    return
-
-
+        enqueueSnackbar("Đổi mật khẩu thất bại", { variant: 'error' });
+    } 
   }
   return (
     <>
       <h2>{t('navbar.changePassword')}</h2>
       <Divider />
-      <CardContent
-        sx={{
-          p: 3,
-          maxHeight: { md: '40vh' },
-          textAlign: { xs: 'center', md: 'start' }
-        }}
-      >
+      <CardContent sx={{ p: 3, maxHeight: { md: '40vh' }, textAlign: { xs: 'center', md: 'start' }}}  >
         <FormControl fullWidth component="form" onSubmit={handleChangePassword}>
           <Grid
             container
@@ -132,9 +120,7 @@ export default function passwordSecurity(props) {
               xs={8}
             >
               <Button
-                sx={{ p: '1rem 2rem', my: 2, height: '3rem' }}
                 component="button"
-                size="large"
                 variant="contained"
                 type='submit'
               >

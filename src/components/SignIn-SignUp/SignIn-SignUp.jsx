@@ -23,13 +23,14 @@ export default function SimpleDialog(props) {
     const closeDialog = () => {
         setIsDialogOpen(false);
     };
+    console.log(props.email)
     let dialogContent;
     switch (value) {
         case 1:
             dialogContent = <SignIn handleClose={handleClose} />
             break;
         case 2:
-            dialogContent = <Register email={props.email} handleClose />
+            dialogContent = <Register email={props.email} handleClose={handleClose} />
             break;
         default:
             dialogContent = <SignIn props />

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { unstable_HistoryRouter } from 'react-router-dom'
 
 const Auth = () => {
   // Customer Page

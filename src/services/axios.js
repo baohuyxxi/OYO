@@ -2,7 +2,7 @@ import axios from "axios";
 import { getToken, getRefreshToken, updateToken } from "./token";
 
 const instance = axios.create({
-    baseURL: "http://localhost:8080/api/v1", timeout: 5000,
+    baseURL: "http://localhost:8080/api/v1", timeout: 50000,
     validateStatus: function (status)
     {
         return status >= 200 && status <=500

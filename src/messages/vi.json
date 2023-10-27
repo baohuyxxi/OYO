@@ -46,7 +46,8 @@
         "reviewSuccess": "Đánh giá thành công",
         "updateSuccess": "Cập nhật thành công",
         "isActiveAccount": "Tài khoản của bạn đã được kích hoạt",
-        "OTPActived": "Đã gửi OTP về gmail của bạn"
+        "OTPActived": "Đã gửi OTP về gmail của bạn",
+        "accountExist": "Tài khoản đã tồn tại"
     },
     "validate": {
         "emailRequire": "Email được yêu cầu",

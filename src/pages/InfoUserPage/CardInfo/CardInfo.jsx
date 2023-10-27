@@ -58,9 +58,6 @@ export default function CardInfo() {
         setModalOpen(true);
     };
 
-    const Test =() =>{
-        console.log(imageFile)
-    }
     return (
         <div className="col l-3" style={{ paddingTop: 0 }}>
             <UpdateAvatar
@@ -119,7 +116,6 @@ export default function CardInfo() {
                         {t('navbar.signout')}
                     </a>
                 </div>
-                <Button onClick={Test}>Test</Button>
             </Paper>
             <Menu
                 anchorEl={anchorEl}

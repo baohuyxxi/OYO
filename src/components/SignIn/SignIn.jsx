@@ -44,13 +44,17 @@ export default function SignIn(props) {
     }
     const userLogin = await loginRequest(signin);
     console.log(userLogin)
-    if (userLogin) {
+    if (userLogin.status === 200) {
 
       setAccessToken(userLogin.data.accessToken)
       setRefreshToken(userLogin.data.refreshToken)
       setUserCurrent(userLogin.data.infoUserResponse);
       enqueueSnackbar(t('message.signin'), { variant: 'success' });
       props.handleClose()
+    }
+    else if (userLogin.status === 408)
+    {
+      enqueueSnackbar("Tài khoản đang chờ xác thực", { variant: 'warning' });
     }
     else{
       setErrorPassword("Mật khẩu không đúng")

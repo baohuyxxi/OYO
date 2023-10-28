@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import ListAccomPage from "~/pages/ListAccomPage/ListAccomPage";
+import { unstable_HistoryRouter } from "react-router-dom";
 
 const Auth = () => {
   // Customer Page
@@ -8,13 +8,17 @@ const Auth = () => {
   const InfoUserPage = React.lazy(() =>
     import("../pages/InfoUserPage/InfoUserPage")
   );
-  const VerificationCode = React.lazy(() =>
-    import("../components/VerificationCode/VerificationCode")
-  );
   const RoomDetail = React.lazy(() => import("../pages/RoomDetail/RoomDetail"));
   const Register = React.lazy(() => import("../components/Register/Register"));
   const NotFoundPage = React.lazy(() =>
     import("../pages/NotFoundPage/NotFoundPage")
+  );
+  const CongratulationPage = React.lazy(() =>
+    import("../pages/CongratulationPage/Congratulation")
+  );
+  const TestComponet = React.lazy(() => import("~/components/Test/Test"));
+  const Test = React.lazy(() =>
+    import("~/components/CommentReview/CommentReview")
   );
 
   return (
@@ -35,14 +39,7 @@ const Auth = () => {
           </React.Suspense>
         }
       />
-      <Route
-        path="/verification-code"
-        element={
-          <React.Suspense>
-            <VerificationCode />
-          </React.Suspense>
-        }
-      />
+
       <Route
         path="/Register"
         element={
@@ -60,19 +57,36 @@ const Auth = () => {
         }
       />
       <Route
-        path="*"
+        path="/CongratulationPage"
         element={
           <React.Suspense>
-            <NotFoundPage />
+            <CongratulationPage />
           </React.Suspense>
         }
       />
 
       <Route
-        path="/list-accom"
+        path="/test"
         element={
           <React.Suspense>
-            <ListAccomPage />
+            <Test />
+          </React.Suspense>
+        }
+      />
+      <Route
+        path="/test1"
+        element={
+          <React.Suspense>
+            <TestComponet />
+          </React.Suspense>
+        }
+      />
+
+      <Route
+        path="*"
+        element={
+          <React.Suspense>
+            <NotFoundPage />
           </React.Suspense>
         }
       />

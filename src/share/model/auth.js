@@ -11,8 +11,8 @@ export const RegisterRequest = {
   firstName: "",
   lastName: "",
   email: "",
-  role: ["Client"],
   password: "",
+  role: ["client"],
 };
 
 export const TokenRefreshRequest = {

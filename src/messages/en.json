@@ -45,7 +45,8 @@
         "reviewSuccess": "Review successfully",
         "updateSuccess": "Update successfully",
         "isActiveAccount": "Your account is actived",
-        "OTPActived": "OTP sent to your gmail"
+        "OTPActived": "OTP sent to your gmail",
+        "accountExist": "Account already exists"
     },
     "validate": {
         "emailRequire": "Email is required",
@@ -138,7 +139,8 @@
         "outstanding": "Outstanding features",
         "userName": "User Name",
         "pageNotFound": "PAGE NOT FOUND",
-        "returnHome": "Would you like to return to the home page?"
+        "returnHome": "Would you like to return to the home page?",
+        "yourMail": "Your mail"
     },
     "label": {
         "email": "Email",

@@ -1,24 +1,25 @@
 import { createTheme, experimental_extendTheme as extendTheme } from '@mui/material/styles'
-import styled from 'styled-components';
-
-
-// Loại bỏ màu chữ từ Ant Design
-// const AntdElement = styled.div
-
-
-// Loại bỏ màu nền từ Ant Design
-
-// Loại bỏ bất kỳ kiểu dáng khác từ Ant Design
 
 const theme = extendTheme({
-  
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+          fontWeight: 'bold',
+          color: 'inherit'
+        },
+      },
+    },
+  },
   colorSchemes: {
     light: {
       palette: {
         background:
         {
           default: '#eeeeee',
-          paper: '#FFFFFF'
+          paper: '#FFFFFF',
+          contrastText:'#000000'
         },
         mainColor:{
           // main: '#007FFF',
@@ -33,7 +34,8 @@ const theme = extendTheme({
         green:
         {
           main: '#00FF00'
-        }
+        },
+        
       }
     },
     dark: {

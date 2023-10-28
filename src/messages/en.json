@@ -139,7 +139,8 @@
         "outstanding": "Outstanding features",
         "userName": "User Name",
         "pageNotFound": "PAGE NOT FOUND",
-        "returnHome": "Would you like to return to the home page?"
+        "returnHome": "Would you like to return to the home page?",
+        "yourMail": "Your mail"
     },
     "label": {
         "email": "Email",

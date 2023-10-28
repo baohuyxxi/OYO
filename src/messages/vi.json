@@ -140,7 +140,8 @@
         "outstanding": "Đặc điểm nổi bật",
         "userName": "Tên người dùng",
         "pageNotFound": "KHÔNG TÌM THẤY TRANG",
-        "returnHome": "Bạn có muốn quay lại trang chủ không?"
+        "returnHome": "Bạn có muốn quay lại trang chủ không?",
+        "yourMail": "Thư của bạn"
     },
     "label": {
         "email": "Địa chỉ Email",

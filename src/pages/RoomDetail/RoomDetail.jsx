@@ -10,10 +10,10 @@ import BedRoomSlider from '~/components/BedRoomSlider/BedRoomSlider'
 import { Box, Button } from '@mui/material'
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { t } from 'i18next'
+import CommentReview from '~/components/CommentReview/commentReview'
 import './RoomDetail.scss'
 import Paper from '@mui/material/Paper'
 import { Grid } from 'antd'
-import { Height } from '@mui/icons-material'
 export default function RoomDetail() {
     //Sao của khách sạn
     const stars = [];
@@ -101,7 +101,7 @@ export default function RoomDetail() {
             roomName: 'Room 3',
             nameOfBed: 'Single Bed',
         },
-        // Add more room data as needed
+      
     ];
     return (
         <div>
@@ -129,7 +129,7 @@ export default function RoomDetail() {
 
                         </div>
                         <ListImage {...imageData} />
-                        <div  className="about-room" >
+                        <div className="about-room" >
                             <div className="row">
                                 <div className="col l-8 m-7 c-12">
                                     <Paper className="title-room">
@@ -149,16 +149,9 @@ export default function RoomDetail() {
                                         </div>
                                     </Paper>
                                     <hr className="line" />
-                                    <h1
-                                        style={{
-                                            marginTop: '5px',
-                                            padding: '8px 10px',
-                                            borderLeft: '7px solid blue',
-                                        }}
-                                    >
-                                        {t('contentMain.rateTitle')}
-                                    </h1>
+                                    <h1>{t('contentMain.rateTitle')}</h1>
                                     <hr className="line" />
+                                    <CommentReview/>
                                 </div>
 
                                 <div className="col l-4 m-7 c-12">
@@ -180,15 +173,9 @@ export default function RoomDetail() {
                                     </Paper>
                                 </div>
                             </div>
-                            <div className="col">
-                                <Paper >
-                                    <h1>a</h1>
-                                </Paper>
-                            </div>
-
                         </div>
 
-                        
+
                     </div>
 
                 </Box>

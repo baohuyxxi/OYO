@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { unstable_HistoryRouter } from "react-router-dom";
+import ListAccomPage from "~/pages/ListAccomPage/ListAccomPage";
 
 const Auth = () => {
   // Customer Page
@@ -87,6 +88,14 @@ const Auth = () => {
         element={
           <React.Suspense>
             <NotFoundPage />
+          </React.Suspense>
+        }
+      />
+      <Route
+        path="/list-accom"
+        element={
+          <React.Suspense>
+            <ListAccomPage />
           </React.Suspense>
         }
       />

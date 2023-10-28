@@ -44,15 +44,6 @@ export const tokenRefreshRequest = async (TokenRefreshRequest) => {
   }
 };
 
-export const tokenRefreshRequest = async (TokenRefreshRequest) => {
-  try {
-    const res = await axios.post("/auth/signin", TokenRefreshRequest);
-    return res;
-  } catch (error) {
-    return error.response;
-  }
-};
-
 export const changePasswordRequest = async (data, token) => {
   try {
     const res = await axios.put("general/change-password", data);

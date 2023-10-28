@@ -1,14 +1,21 @@
-import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import ListAccomPage from "~/pages/ListAccomPage/ListAccomPage";
 
 const Auth = () => {
   // Customer Page
-const HomePage = React.lazy(() => import('../pages/HomePage/HomePage'))
-const InfoUserPage = React.lazy(() => import('../pages/InfoUserPage/InfoUserPage'))
-const VerificationCode = React.lazy(() => import('../components/VerificationCode/VerificationCode'))
-const RoomDetail = React.lazy(() => import('../pages/RoomDetail/RoomDetail'))
-const Register = React.lazy(() => import('../components/Register/Register'))
-const NotFoundPage = React.lazy(() => import('../pages/NotFoundPage/NotFoundPage'))
+  const HomePage = React.lazy(() => import("../pages/HomePage/HomePage"));
+  const InfoUserPage = React.lazy(() =>
+    import("../pages/InfoUserPage/InfoUserPage")
+  );
+  const VerificationCode = React.lazy(() =>
+    import("../components/VerificationCode/VerificationCode")
+  );
+  const RoomDetail = React.lazy(() => import("../pages/RoomDetail/RoomDetail"));
+  const Register = React.lazy(() => import("../components/Register/Register"));
+  const NotFoundPage = React.lazy(() =>
+    import("../pages/NotFoundPage/NotFoundPage")
+  );
 
   return (
     <Routes>
@@ -29,7 +36,7 @@ const NotFoundPage = React.lazy(() => import('../pages/NotFoundPage/NotFoundPage
         }
       />
       <Route
-        path="/VerificationCode"
+        path="/verification-code"
         element={
           <React.Suspense>
             <VerificationCode />
@@ -45,7 +52,7 @@ const NotFoundPage = React.lazy(() => import('../pages/NotFoundPage/NotFoundPage
         }
       />
       <Route
-        path="/RoomDetail/:id"
+        path="/room-detail/:id"
         element={
           <React.Suspense>
             <RoomDetail />
@@ -53,14 +60,23 @@ const NotFoundPage = React.lazy(() => import('../pages/NotFoundPage/NotFoundPage
         }
       />
       <Route
-        path='*'
+        path="*"
         element={
           <React.Suspense>
-            <NotFoundPage/>
+            <NotFoundPage />
+          </React.Suspense>
+        }
+      />
+
+      <Route
+        path="/list-accom"
+        element={
+          <React.Suspense>
+            <ListAccomPage />
           </React.Suspense>
         }
       />
     </Routes>
-  )
-}
-export default Auth
+  );
+};
+export default Auth;

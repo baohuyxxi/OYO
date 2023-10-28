@@ -2,12 +2,8 @@
   position: relative;
   cursor: text;
   background-color: #ffffff;
-  /* border-radius: 5px; */
-  /* border: 1px solid black; */
-  /* font-weight: bold; */
   height: 41px;
 }
-
 
 .room_element {
   width: 260px;

@@ -1,72 +1,79 @@
 /* eslint-disable react/jsx-no-undef */
-import React, { useState, useEffect, useContext } from 'react'
-import Button from '@mui/material/Button'
-import IconButton from '@mui/material/IconButton'
-import googleIcon from '~/assets/imageMaster/google-logo.png'
-import Box from '@mui/material/Box'
-import Container from '@mui/material/Container'
-import Link from '@mui/material/Link'
-import VisibilityOff from '@mui/icons-material/VisibilityOff'
-import Visibility from '@mui/icons-material/Visibility'
-import LoadingButton from '@mui/lab/LoadingButton'
-import InputAdornment from '@mui/material/InputAdornment'
-import CustomInput from '~/assets/custom/CustomInput'
-import SignInSignUp from '../SignIn-SignUp/SignIn-SignUp'
-import { loginRequest, checkAccount } from '~/services/API/authAPI'
-import { SigninRequest } from '~/share/model/auth'
-import { AuthContext } from '~/contexts/AuthContext'
-import { validate } from '~/utils/validate'
-import { useSnackbar } from 'notistack';
-import { t } from 'i18next'
-import './SignIn.scss'
+import React, { useState, useEffect, useContext } from "react";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import googleIcon from "~/assets/imageMaster/google-logo.png";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Link from "@mui/material/Link";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import Visibility from "@mui/icons-material/Visibility";
+import LoadingButton from "@mui/lab/LoadingButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import CustomInput from "~/assets/custom/CustomInput";
+import SignInSignUp from "../SignIn-SignUp/SignIn-SignUp";
+import { loginRequest, checkAccount } from "~/services/API/authAPI";
+import { SigninRequest } from "~/share/model/auth";
+import { AuthContext } from "~/contexts/AuthContext";
+import { validate } from "~/utils/validate";
+import { useSnackbar } from "notistack";
+import { t } from "i18next";
+import "./SignIn.scss";
+import { HttpStatusCode } from "axios";
 
 export default function SignIn(props) {
-  const { setUserCurrent, setAccessToken, setRefreshToken } = useContext(AuthContext)
-  const [signin, setSignin] = useState(SigninRequest)
-  const [errorEmail, setErrorEmail] = useState()
+  const { setUserCurrent, setAccessToken, setRefreshToken } =
+    useContext(AuthContext);
+  const [signin, setSignin] = useState(SigninRequest);
+  const [errorEmail, setErrorEmail] = useState();
   const [showValidEmail, setShowValidEmail] = useState(false);
-  const [errorPassword, setErrorPassword] = useState()
-  const handleTogglePassword = () => setShowPassword(!showPassword)
-  const [showPassword, setShowPassword] = useState(false)
-  
-  const [showPasswordInput, setShowPasswordInput] = useState(false)
-  const [showRegisterButton, setShowRegisterButton] = useState(false)
-  const [showLoginButton, setShowLoginButton] = useState(false)
-  const [showStatusButton, setShowStatusButton] = useState(false)
-  const [showLoadingButton, setShowLoadingButton] = useState(false)
+  const [errorPassword, setErrorPassword] = useState();
+  const handleTogglePassword = () => setShowPassword(!showPassword);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const [showPasswordInput, setShowPasswordInput] = useState(false);
+  const [showRegisterButton, setShowRegisterButton] = useState(false);
+  const [showLoginButton, setShowLoginButton] = useState(false);
+  const [showStatusButton, setShowStatusButton] = useState(false);
+  const [showLoadingButton, setShowLoadingButton] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
 
   const handleLogin = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
     if (!signin.password) {
-      setErrorPassword("Không được để trống Password")
+      setErrorPassword("Không được để trống Password");
       return;
     }
     const userLogin = await loginRequest(signin);
-    console.log(userLogin)
+    console.log(userLogin);
     if (userLogin) {
-
-      setAccessToken(userLogin.data.accessToken)
-      setRefreshToken(userLogin.data.refreshToken)
+      setAccessToken(userLogin.data.accessToken);
+      setRefreshToken(userLogin.data.refreshToken);
       setUserCurrent(userLogin.data.infoUserResponse);
-      enqueueSnackbar(t('message.signin'), { variant: 'success' });
-      props.handleClose()
+      enqueueSnackbar(t("message.signin"), { variant: "success" });
+      props.handleClose();
+    } else {
+      setErrorPassword("Mật khẩu không đúng");
+      enqueueSnackbar(t("message.signinError"), { variant: "error" });
     }
-    else{
-      setErrorPassword("Mật khẩu không đúng")
-      enqueueSnackbar(t('message.signinError'), { variant: 'error' });
-    }
-  }
+  };
 
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   const handleRegister = () => {
     setOpen(true);
-  }
+  };
   const handleClose = () => {
     setOpen(false);
-  }
- 
-  const status = ['PasswordInput', 'RegisterButton', 'LoginButton', 'StatusButton', 'LoadingButton', 'ValidEmail'];
+  };
+
+  const status = [
+    "PasswordInput",
+    "RegisterButton",
+    "LoginButton",
+    "StatusButton",
+    "LoadingButton",
+    "ValidEmail",
+  ];
   const toggleShow = (ShowNames) => {
     status.forEach((statusName) => {
       if (ShowNames.includes(statusName)) {
@@ -82,13 +89,13 @@ export default function SignIn(props) {
       timer = setTimeout(async () => {
         const checkValidEmail = validate(signin);
         if (checkValidEmail.email) {
-          setErrorEmail(checkValidEmail.email)
-          toggleShow(['StatusButton', 'ValidEmail'])
-          return
+          setErrorEmail(checkValidEmail.email);
+          toggleShow(["StatusButton", "ValidEmail"]);
+          return;
         }
         const checkEmail = await checkAccount(signin);
-        if (checkEmail.data.message === "User exist !") {
-          toggleShow(['PasswordInput', 'LoginButton'])
+        if (!checkEmail.status === HttpStatusCode.NotFound) {
+          toggleShow(["PasswordInput", "LoginButton"]);
         } else {
           toggleShow(["RegisterButton"]);
         }
@@ -145,7 +152,8 @@ export default function SignIn(props) {
                   </InputAdornment>
                 ),
               }}
-            /> {errorPassword && <h5>{errorPassword}</h5>}
+            />{" "}
+            {errorPassword && <h5>{errorPassword}</h5>}
           </div>
         )}
         {showStatusButton && (
@@ -181,8 +189,8 @@ export default function SignIn(props) {
           <Button
             className="form-button"
             fullWidth
-            color='orange'
-            variant='contained'
+            color="orange"
+            variant="contained"
             onClick={handleRegister}
           >
             {t("title.signup")}
@@ -215,7 +223,7 @@ export default function SignIn(props) {
         <SignInSignUp
           email={signin.email}
           value={2}
-          title={t('title.accountSignUp')}
+          title={t("title.accountSignUp")}
           open={open}
           onClose={handleClose}
         />

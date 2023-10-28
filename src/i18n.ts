@@ -1,8 +1,8 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
 
-import enTranslation from './messages/en.json';
-import viTranslation from './messages/vi.json';
+import enTranslation from "~/messages/en.json";
+import viTranslation from "~/messages/vi.json";
 
 const resources = {
   en: {
@@ -14,7 +14,7 @@ const resources = {
 };
 
 const geti18nFromLocalStorage = (): any => {
-  return localStorage.getItem('i18n') || 'vi';
+  return localStorage.getItem("i18n") || "vi";
 };
 
 i18n.use(initReactI18next).init({

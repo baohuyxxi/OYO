@@ -15,28 +15,32 @@ import './RoomDetail.scss'
 import Paper from '@mui/material/Paper'
 import { Grid } from 'antd'
 export default function RoomDetail() {
-    //Sao của khách sạn
-    const stars = [];
-    for (let i = 0; i < 5; i++) {
-        stars.push(
-            <img
-                key={i}
-                src={iconStar}
-                alt="icon__star"
-                className="star"
-            />
-        );
-    }
+  //Sao của khách sạn
+  const stars = [];
+  for (let i = 0; i < 5; i++) {
+    stars.push(
+      <img key={i} src={iconStar} alt="icon__star" className="star" />
+    );
+  }
 
-    const imageData = {
-        listImage: [
-            { path: 'https://ik.imagekit.io/tvlk/apr-asset/Ixf4aptF5N2Qdfmh4fGGYhTN274kJXuNMkUAzpL5HuD9jzSxIGG5kZNhhHY-p7nw/hotel/asset/67841452-f226f2d256b035298d9eb3d60eebdb0e.jpeg?_src=imagekit&tr=c-at_max,h-360,q-40,w-640' },
-            { path: 'https://ik.imagekit.io/tvlk/generic-asset/dgXfoyh24ryQLRcGq00cIdKHRmotrWLNlvG-TxlcLxGkiDwaUSggleJNPRgIHCX6/hotel/asset/20061404-531bce674aa83b20399a46be4614ecf6.jpeg?_src=imagekit&tr=c-at_max,h-360,q-40,w-640' },
-            { path: 'https://ik.imagekit.io/tvlk/apr-asset/Ixf4aptF5N2Qdfmh4fGGYhTN274kJXuNMkUAzpL5HuD9jzSxIGG5kZNhhHY-p7nw/hotel/asset/67841452-e8844f04af6d286e209ba096768e7fdb.jpeg?_src=imagekit&tr=c-at_max,h-360,q-40,w-640' },
-            { path: 'https://ik.imagekit.io/tvlk/apr-asset/Ixf4aptF5N2Qdfmh4fGGYhTN274kJXuNMkUAzpL5HuD9jzSxIGG5kZNhhHY-p7nw/hotel/asset/67841452-b69b0cdb3c355938005bf629917a1713.jpeg?_src=imagekit&tr=c-at_max,h-360,q-40,w-640' },
-        ],
-        thumbnail: 'https://ik.imagekit.io/tvlk/apr-asset/dgXfoyh24ryQLRcGq00cIdKHRmotrWLNlvG-TxlcLxGkiDwaUSggleJNPRgIHCX6/hotel/asset/20061404-a98a0a5e26723a7e5720c7e5f4c8ac40.jpeg?_src=imagekit&tr=c-at_max,h-360,q-40,w-640',
-    };
+  const imageData = {
+    listImage: [
+      {
+        path: "https://ik.imagekit.io/tvlk/apr-asset/Ixf4aptF5N2Qdfmh4fGGYhTN274kJXuNMkUAzpL5HuD9jzSxIGG5kZNhhHY-p7nw/hotel/asset/67841452-f226f2d256b035298d9eb3d60eebdb0e.jpeg?_src=imagekit&tr=c-at_max,h-360,q-40,w-640",
+      },
+      {
+        path: "https://ik.imagekit.io/tvlk/generic-asset/dgXfoyh24ryQLRcGq00cIdKHRmotrWLNlvG-TxlcLxGkiDwaUSggleJNPRgIHCX6/hotel/asset/20061404-531bce674aa83b20399a46be4614ecf6.jpeg?_src=imagekit&tr=c-at_max,h-360,q-40,w-640",
+      },
+      {
+        path: "https://ik.imagekit.io/tvlk/apr-asset/Ixf4aptF5N2Qdfmh4fGGYhTN274kJXuNMkUAzpL5HuD9jzSxIGG5kZNhhHY-p7nw/hotel/asset/67841452-e8844f04af6d286e209ba096768e7fdb.jpeg?_src=imagekit&tr=c-at_max,h-360,q-40,w-640",
+      },
+      {
+        path: "https://ik.imagekit.io/tvlk/apr-asset/Ixf4aptF5N2Qdfmh4fGGYhTN274kJXuNMkUAzpL5HuD9jzSxIGG5kZNhhHY-p7nw/hotel/asset/67841452-b69b0cdb3c355938005bf629917a1713.jpeg?_src=imagekit&tr=c-at_max,h-360,q-40,w-640",
+      },
+    ],
+    thumbnail:
+      "https://ik.imagekit.io/tvlk/apr-asset/dgXfoyh24ryQLRcGq00cIdKHRmotrWLNlvG-TxlcLxGkiDwaUSggleJNPRgIHCX6/hotel/asset/20061404-a98a0a5e26723a7e5720c7e5f4c8ac40.jpeg?_src=imagekit&tr=c-at_max,h-360,q-40,w-640",
+  };
 
     //Tiện ích
     const listConvenientData = [
@@ -180,7 +184,74 @@ export default function RoomDetail() {
 
                 </Box>
             </div>
-            {/* <Footer/> */}
-        </div>
-    )
+            <ListImage {...imageData} />
+            <div className="about-room">
+              <div className="row">
+                <div className="col l-8 m-7 c-12">
+                  <Paper className="title-room">
+                    <div className="desc-room">
+                      <h2>{t("contentMain.descHome")}</h2>
+
+                      <p>
+                        Là một lựa chọn đúng đắn khi quý khách đến thăm Thắng
+                        Tam. Quầy tiếp tân 24 giờ luôn sẵn sàng phục vụ quý
+                        khách từ thủ tục nhận phòng đến trả phòng
+                      </p>
+                    </div>
+                    <hr className="line" />
+                    <h2>{t("contentMain.convenient")}</h2>
+                    <Convenient listConvenient={listConvenientData} row={2} />
+                    <DialogConvenient listConvenient={listConvenientData} />
+                    <hr className="line" />
+                    <div className="bed-room">
+                      <h2>{t("contentMain.bedroom")}</h2>
+                      <BedRoomSlider listRoom={listRoomData} />
+                    </div>
+                  </Paper>
+                  <hr className="line" />
+                  <h1
+                    style={{
+                      marginTop: "5px",
+                      padding: "8px 10px",
+                      borderLeft: "7px solid blue",
+                    }}
+                  >
+                    {t("contentMain.rateTitle")}
+                  </h1>
+                  <hr className="line" />
+                </div>
+
+                <div className="col l-4 m-7 c-12">
+                  <Paper className="card-room">
+                    <div className="desc-room">
+                      <h2>{t("title.outstanding")}</h2>
+                      <p>
+                        Là một lựa chọn đúng đắn khi quý khách đến thăm Thắng
+                        Tam. Quầy tiếp tân 24 giờ luôn sẵn sàng phục vụ quý
+                        khách từ thủ tục nhận phòng đến trả phòng
+                      </p>
+                    </div>
+                    <hr className="line" />
+                    <Convenient listConvenient={listoutstandingData} row={1} />
+                    <div className="button-Favorite">
+                      <Button variant="outlined">
+                        Thêm vào danh sách yêu thích
+                        <FavoriteBorderOutlinedIcon />
+                      </Button>
+                    </div>
+                  </Paper>
+                </div>
+              </div>
+              <div className="col">
+                <Paper>
+                  <h1>a</h1>
+                </Paper>
+              </div>
+            </div>
+          </div>
+        </Box>
+      </div>
+      {/* <Footer/> */}
+    </div>
+  );
 }

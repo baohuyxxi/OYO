@@ -1,75 +1,25 @@
-.appbar {
-    font-family: serif;
-    padding: 10px 90px;
+.appbar{
+    height: 75px;
     position: relative;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1;
-    height: 5em;
     display: flex;
-    border-bottom: 1em solid var(--text-color);
-    background-position: center;
-    background-size: cover;
-    flex-direction: column;
-    a {
-        float: left;
-        color: var(--white);
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: bold;
-        padding: 12px;
-        text-transform: none;
-    }
-
+    text-transform: none!important;
     .logo {
-        font-size: 100px;
-        flex: 1;
-        color: var(--black);
-
+        padding-left: 20px;
+        padding-right: 20px;
         .logo-bg {
-            height: 100px;
+           height:140px;
         }
     }
-
-    .navbar-right a:hover {
-        color: #64b5f6;
-        border-bottom: 2px solid #00e676;
+    .appbar-right-menu{
+        margin-left: auto !important;
     }
-
-    .navbar-right a.active {
-        color: #9e9e9e;
-        border-bottom: 2px solid #6600ff;
-    }
-
-    .navbar-right a {
-        transition: 0.5s;
+    .element{
+        padding-left: 10px;
+        padding-right: 10px;
     }
 }
 
-.notification-item {
-    cursor: pointer;
-
-    .notification-content {
-        font-size: 14px;
-        letter-spacing: 1.2px;
-        line-height: 1.2;
-        font-family: serif;
-    }
-
-    .icon-notification {
-        margin-right: 12px;
-    }
-
-    .notification-icon {
-        font-size: 18px;
-
-        .bx {
-            margin-right: 10px !important;
-        }
-    }
-
-    .no-view {
-        font-weight: bold;
-    }
-}

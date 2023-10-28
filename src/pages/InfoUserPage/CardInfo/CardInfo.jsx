@@ -115,7 +115,7 @@ export default function CardInfo() {
                         </div>
                         {t('navbar.signout')}
                     </a>
-                </div>
+                </div>  
             </Paper>
             <Menu
                 anchorEl={anchorEl}

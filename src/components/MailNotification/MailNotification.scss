@@ -1,0 +1,38 @@
+.mailbox{
+    max-width: 400px;
+    max-height:none!important;
+    .header-myAccount {
+        width: 400px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        font-weight: bold;
+        text-align: center;
+        font-size:x-large;
+    }
+    .divider{
+        flex-shrink: 0;
+        border-width: 0;
+        border-style: solid;
+        border-color: var(--mui-palette-divider);
+        border-bottom-width: thin;
+        margin-top: 4px;
+        margin-bottom: 4px;
+    }
+   
+    .your-mail{
+        height: 500px;
+        background-color:(--mui-palette);
+        .notificationNone{
+            object-fit: cover;
+            object-position: center; 
+            width: 370px;
+        }
+        ul{
+            font-weight: bold;
+            text-align: center;
+            font-size:large;
+        }   
+        
+    }
+   
+}

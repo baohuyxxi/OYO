@@ -1,10 +1,8 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 
 const StyledMenu = styled(Menu)(({ theme }) => ({
-  elevation: 0,
   anchorOrigin: {
     vertical: 'bottom',
     horizontal: 'right',
@@ -13,10 +11,19 @@ const StyledMenu = styled(Menu)(({ theme }) => ({
     vertical: 'top',
     horizontal: 'right',
   },
+  '&.MuiMenu-root': {
+    '& .MuiPaper-root.MuiPopover-paper': {
+      opacity: 1,
+      transform: 'scale(1)',
+    },
+  },
   '& .MuiPaper-root': {
     borderRadius: 6,
     marginTop: theme.spacing(1),
     minWidth: 180,
+    opacity: 0,
+    transform: 'scale(0.95)',
+    transition: 'opacity 0.3s ease-in, transform 0.3s ease-in',
     color:
       theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
     boxShadow:

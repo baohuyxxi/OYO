@@ -14,7 +14,7 @@ import { ChangePassword } from '~/share/model/auth'
 import { changePasswordRequest } from '~/services/API/authAPI'
 import { AuthContext } from '~/contexts/AuthContext'
 
-import { useSnackbar } from 'notistack';
+import { useSnackbar } from 'notistack'
 
 import { t } from 'i18next'
 

@@ -54,7 +54,7 @@ export default function RoomPopular() {
     const [listRoom] = useState(mockData);
 
     const handleLinkToDetail = (idRoom) => {
-        navigate(`/roomDetail/${idRoom}`);
+        navigate(`/room-detail/${idRoom}`);
         // You can implement the navigation logic here
         console.log('Navigating to room with ID:', idRoom);
     };

@@ -1,11 +1,14 @@
-.menu{
+.menu-language{
+    max-width:none!important;
     .li{
         .check-icon{
             margin-left: auto;
         }
     }
-    
-}
-.check-icon{
-    margin-left: auto!important;
+    .MuiPaper-root{
+        width: 170px;
+    }
+    .check-icon{
+        margin-left: auto!important;
+    }
 }

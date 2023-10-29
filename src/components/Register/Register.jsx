@@ -82,7 +82,7 @@ export default function Register(props) {
           <CustomInput
             title={t("label.email")}
             value={register.email}
-            // disabled={true}
+            disabled={true}
             name="email"
             id="email"
             onChange={handleChange}
@@ -134,9 +134,9 @@ export default function Register(props) {
           />
           {errors.password && <h5>{errors.password}</h5>}
         </div>
-        <div className="form-element">
+
           <Button
-            className="form-button"
+            className="form-button register"
             type="submit"
             fullWidth
             variant="contained"
@@ -144,7 +144,6 @@ export default function Register(props) {
           >
             {t("title.signup")}
           </Button>
-        </div>
       </Box>
     </Container>
   );

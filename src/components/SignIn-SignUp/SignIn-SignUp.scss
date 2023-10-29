@@ -1,6 +1,62 @@
 .form-dialog{
-    border-radius: 10em;
-    h5{
-        color:rgb(231, 9, 14)!important
-      }
+  width: 475px;
+  align-items: center;
+  .form-button{
+    font-weight: bold;
+    height: 45px;
+    border-radius: 6px;
+    font-size: 16px;
+    line-height: 48px;
+    padding: 0 16px;
+  }
+  .login{
+    background-color: #1877f2;
+    color: #fff;
+    
+  }
+  .to-register{
+    background-color:rgb(231, 9, 14);
+    color: #fff;
+  }
+  .register{
+    background-color:#42b72a;
+    color: #fff;
+  }
+  // #42b72a
+  .google{
+    color: #438ced;
+    background-color: rgb(251, 251, 251);
+  }
+
+  .form-element{
+    border-radius: 5%;
+    padding-top: 10px;  
+    padding-bottom: 10px;
+    font-size: 15px;
+  }
+  h5{
+    color:rgb(231, 9, 14);
+    margin-top: 0;
+  }
+  h4{
+    text-align: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: smaller;
+  }
+  header{
+    font-weight: bold;
+    font-size: x-large;
+  }
+  
+  .centered-line {
+    flex: 1;
+    border-bottom: 1px solid ; /* Màu của đường gạch ngang */
+    margin: 0 10px; /* Khoảng cách giữa đường gạch và chữ */
+  }
+  .policy{
+    font-size: small;
+  }
 }

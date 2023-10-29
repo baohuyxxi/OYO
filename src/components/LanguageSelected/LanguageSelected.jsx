@@ -8,6 +8,7 @@ import en from '~/assets/imageMaster/en.png'
 import check from '~/assets/svg/check.svg'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import StyledMenu from '~/assets/custom/StyleMenu'
+import Menu from '@mui/material/Menu'
 import { t } from 'i18next'
 import { Margin } from '@mui/icons-material';
 import './LanguageSelected.scss'
@@ -33,7 +34,7 @@ export default function LanguageSelected() {
   return (
     <div>
       <Button
-        id="button"
+        id="button-language"
         aria-haspopup="true"
         disableElevation
         onClick={handleClick}
@@ -42,22 +43,24 @@ export default function LanguageSelected() {
         <img src={currentLanguage === 'vi' ? vi : en} alt={currentLanguage} className="flag" />
         {t(`language.${currentLanguage}`)}
       </Button>
-      <StyledMenu
-        id="menu"
-        className='menu'
+      <Menu
+        id="menu-language"
+        className='menu-language'
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
       >
         <MenuItem onClick={() => changeLanguage('vi')} >
+          <img src={vi} alt={currentLanguage} className="flag" />
           {t('language.vi')}
           {currentLanguage === 'vi' && <img src={check} className="check-icon" />}
         </MenuItem>
         <MenuItem onClick={() => changeLanguage('en')} >
+          <img src={en} alt={currentLanguage} className="flag" />
           {t('language.en')}
           {currentLanguage === 'en' && <img src={check} className="check-icon" />}
         </MenuItem>
-      </StyledMenu>
+      </Menu>
     </div>
   )
 }

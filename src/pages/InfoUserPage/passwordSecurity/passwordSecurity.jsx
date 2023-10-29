@@ -1,7 +1,5 @@
 import React, {useEffect, useState, useContext } from 'react'
-import Divider from '@mui/material/Divider'
 import InputAdornment from '@mui/material/InputAdornment'
-import CardContent from '@mui/material/CardContent'
 import { Grid } from '@mui/material'
 import FormControl from '@mui/material/FormControl'
 import Button from '@mui/material/Button'
@@ -9,7 +7,6 @@ import CustomInput from '~/assets/custom/CustomInput'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import Visibility from '@mui/icons-material/Visibility'
 import IconButton from '@mui/material/IconButton'
-
 import { ChangePassword } from '~/share/model/auth'
 import { changePasswordRequest } from '~/services/API/authAPI'
 import { AuthContext } from '~/contexts/AuthContext'
@@ -52,18 +49,17 @@ export default function passwordSecurity() {
     } 
   }
   return (
-    <>
+    <div className='changePassword'>
       <h2>{t('navbar.changePassword')}</h2>
-      <Divider />
-      <CardContent sx={{ p: 3, maxHeight: { md: '40vh' }, textAlign: { xs: 'center', md: 'start' }}}  >
-        <FormControl fullWidth component="form" onSubmit={handleChangePassword}>
+      <hr className='divider' />
+        <FormControl fullWidth component="form" onSubmit={handleChangePassword} className='form'>
           <Grid
             container
             direction={{ xs: 'column', md: 'row' }}
-            columnSpacing={5}
+            columnSpacing={7}
             rowSpacing={3}
           >
-            <Grid item xs={8}>
+            <Grid item xs={12}>
               <CustomInput
                 type="password"
                 name="oldPassword"
@@ -72,7 +68,7 @@ export default function passwordSecurity() {
                 onChange={handleInput}
               ></CustomInput>
             </Grid>
-            <Grid  item xs={8}>
+            <Grid  item xs={12}>
               <CustomInput
                 name="newPassword"
                 title={t('label.newPassword')}
@@ -93,7 +89,7 @@ export default function passwordSecurity() {
                 }}
               ></CustomInput>
             </Grid>
-            <Grid item xs={8}>
+            <Grid item xs={12}>
               <CustomInput
                 name="enterNew-password"
                 title={t('label.enterANewPassword')}
@@ -116,11 +112,10 @@ export default function passwordSecurity() {
             <Grid
               container
               justifyContent={{ xs: 'center', md: 'flex-end' }}
-              item
-              xs={8}
+              item xs={12}
             >
               <Button
-                component="button"
+                className='button change-password'
                 variant="contained"
                 type='submit'
               >
@@ -129,7 +124,6 @@ export default function passwordSecurity() {
             </Grid>
           </Grid>
         </FormControl>
-      </CardContent>
-    </>
+    </div>
   )
 }

@@ -22,7 +22,8 @@
     "unlove": "Remove from favorites",
     "save": "Save",
     "actived": "Active",
-    "setting": "Setting"
+    "setting": "Setting",
+    "cancel": "Cancel"
   },
   "message": {
     "signin": "Sign in successfully",
@@ -187,7 +188,8 @@
     "pleaseEnterCode": "Please enter the verification code we sent to",
     "selectProvince": "Select province",
     "selectDistrict": "Select district",
-    "selectWard": "Select ward"
+    "selectWard": "Select ward",
+    "userName": "User Name"
   },
   "contentMain": {
     "homeinsearch": "From 'impromptu' rides to adventures, discover your own recipe for joy",

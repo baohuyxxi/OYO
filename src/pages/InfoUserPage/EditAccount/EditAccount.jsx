@@ -1,7 +1,5 @@
 import React from 'react'
-import Divider from '@mui/material/Divider'
 import MenuItem from '@mui/material/MenuItem'
-import CardContent from '@mui/material/CardContent'
 import { Grid } from '@mui/material'
 import FormControl from '@mui/material/FormControl'
 import Button from '@mui/material/Button'
@@ -12,16 +10,16 @@ import { updateInfoRequest } from '~/services/API/authAPI'
 import { useSnackbar } from 'notistack'
 import { t } from 'i18next'
 
-export default function SettingsCard() {
+export default function EditAccount() {
   const { userCurrent, setUserCurrent } = useContext(AuthContext);
   const [user, setUser] = useState(userCurrent);
   const { accessToken } = useContext(AuthContext)
   const { enqueueSnackbar } = useSnackbar()
-
+  const [submit, setSubmit] =useState(false)
   const handleUser = (event) => {
     setUser({ ...user, [event.target.name]: event.target.value })
+    setSubmit(true)
     //setUser({...user, 'dateOfBirth':`2002-7-6`})
-    console.log(user)
   }
   const handleSave = async (event) => {
     event.preventDefault()
@@ -62,141 +60,63 @@ export default function SettingsCard() {
   for (let i = 2023; i > 1970; i--) {
     yearOfBirth.push({ id: i, value: i, label: i.toString() });
   }
+
+  const customInputList = [
+    createCustomInput(6, "userName", user.userName, handleUser),
+    createCustomInput(6, "phone", user.phone, handleUser),
+    createCustomInput(6, "firstName", user.firstName, handleUser),
+    createCustomInput(6, "lastName", user.lastName, handleUser),
+    createCustomInput(12, "address", user.address, handleUser),
+    createCustomInput(3, "gender", user.gender, handleUser, true, genderSelect.map((option) => (
+      <MenuItem key={option.id} value={option.value}>{option.label}</MenuItem>
+    ))),
+    createCustomInput(3, "birthday", user.birthday, handleUser, true, birthday.map((option) => (
+      <MenuItem key={option.id} value={option.value}>{option.label}</MenuItem>
+    ))),
+    createCustomInput(3, "monthOfBirth", user.monthOfBirth, handleUser, true, monthOfBirth.map((option) => (
+      <MenuItem key={option.id} value={option.value}>{option.label}</MenuItem>
+    ))),
+    createCustomInput(3, "yearOfBirth", user.yearOfBirth, handleUser, true, yearOfBirth.map((option) => (
+      <MenuItem key={option.id} value={option.value}>{option.label}</MenuItem>
+    )))
+  ];
   return (
-    <>
+    <div className='editaccount'>
       <h2>{t('navbar.personalData')}</h2>
-      <Divider />
-      <CardContent
-        sx={{
-          p: 3,
-          maxHeight: { md: '40vh' },
-          textAlign: { xs: 'center', md: 'start' }
-        }}
-      >
-        <FormControl fullWidth component="form" onSubmit={handleSave}>
-          <Grid
-            container
-            direction={{ xs: 'column', md: 'row' }}
-            columnSpacing={5}
-            rowSpacing={3}
-          >
-            <Grid item xs={6}>
-              <CustomInput
-                id="userName"
-                name="userName"
-                value={user.userName}
-                title={t('title.userName')}
-                onChange={handleUser}
-              ></CustomInput>
-            </Grid>
-            <Grid item xs={6}>
-              <CustomInput
-                name="phone"
-                id="phone"
-                value={user.phone}
-                onChange={handleUser}
-                title="Phone Number"
-              ></CustomInput>
-            </Grid>
-
-            <Grid item xs={3}>
-              <CustomInput
-                id="firstName"
-                name="firstName"
-                value={user.firstName}
-                title={t('label.firstName')}
-                onChange={handleUser}
-              ></CustomInput>
-            </Grid>
-            <Grid item xs={3}>
-              <CustomInput
-                id="lastName"
-                name="lastName"
-                value={user.lastName}
-                title={t('label.lastName')}
-                onChange={handleUser}
-              ></CustomInput>
-            </Grid>
-            <Grid item xs={6}>
-              <CustomInput
-                name="address"
-                id="address"
-                value={user.address}
-                onChange={handleUser}
-                title="Địa chỉ"
-              ></CustomInput>
-            </Grid>
-            <Grid item xs={3}>
-              <CustomInput
-                select
-                id="gender"
-                name="gender"
-                value={user.gender}
-                onChange={handleUser}
-                title={t('label.gender')}
-                content={genderSelect.map((option) => (
-                  <MenuItem key={option.id} value={option.value}>{option.label}</MenuItem>
-                ))}
-              ></CustomInput>
-            </Grid>
-
-            <Grid item xs={3}>
-              <CustomInput
-                select
-                id="birthday"
-                name="birthday"
-                value={user.birthday}
-                onChange={handleUser}
-                title={t('label.birthday')}
-                content={birthday.map((option) => (
-                  <MenuItem key={option.id} value={option.value}>{option.label}</MenuItem>
-                ))}
-              ></CustomInput>
-            </Grid>
-
-            <Grid item xs={3}>
-              <CustomInput
-                select
-                id="monthOfBirth"
-                name="monthOfBirth"
-                value={user.monthOfBirth}
-                onChange={handleUser}
-                title={t('label.monthOfBirth')}
-                content={monthOfBirth.map((option) => (
-                  <MenuItem key={option.id} value={option.value}>{option.label}</MenuItem>
-                ))}
-              ></CustomInput>
-            </Grid>
-            <Grid item xs={3}>
-              <CustomInput
-                select
-                name="yearOfBirth"
-                id="yearOfBirth"
-                value={user.yearOfBirth}
-                onChange={handleUser}
-                title={t('label.yearOfBirth')}
-                content={yearOfBirth.map((option) => (
-                  <MenuItem key={option.id} value={option.value}>{option.label}</MenuItem>
-                ))}
-              ></CustomInput>
-            </Grid>
-
-            <Grid
-              container
-              justifyContent={{ xs: 'center', md: 'flex-end' }}
-              item
-              xs={6}
-            >
-              <Button
-                type='submit'
-                variant="contained"
-              >
-                {t('common.save')}
-              </Button>
-            </Grid>
+      <hr className='divider' />
+      <FormControl className='form' fullWidth component="form" onSubmit={handleSave}>
+        <Grid
+          container
+          direction={{ xs: 'column', md: 'row' }}
+          columnSpacing={7}
+          rowSpacing={1}
+        >
+          {customInputList.map((customInput, index) => (
+            <Grid item xs={customInput.props.xs} key={index}>{customInput}</Grid>
+          ))}
+          <Grid container justifyContent={{ xs: 'center', md: 'flex-end' }}  item xs={12} className='form-button'>
+            <Button className='button save' type='submit' variant='contained' disabled={!submit}>
+              {t('common.save')}</Button>
           </Grid>
-        </FormControl>
-      </CardContent>
-    </>
+        </Grid>
+      </FormControl>
+
+    </div>
   )
+}
+function createCustomInput(xs, name, value, onChange, select = false, content = []) {
+  return (
+    <CustomInput
+      id={name}
+      name={name}
+      size="small"
+      value={value}
+      title={t(`label.${name}`)}
+      onChange={onChange}
+      select={select}
+      content={content}
+      className={`element ${name}`}
+      xs={xs}
+    />
+  );
 }

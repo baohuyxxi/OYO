@@ -10,9 +10,8 @@ import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { Box, Modal, Slider, Button } from "@mui/material";
-import AvatarEditor from "react-avatar-editor";
 import UpdateAvatar from '~/components/UpdateAvatar/UpdateAvatar'
+import './CardInfo.scss'
 import { t } from 'i18next';
 
 export default function CardInfo() {
@@ -90,27 +89,27 @@ export default function CardInfo() {
                     </div>
                 </div>
                 <Divider />
-                <div>
-                    <a href="/link-my-cart" className="user-link">
-                        <div className="link-icon">
+                <div className='options-card'>
+                    <a href="/link-my-cart" className="option">
+                        <div className="option-icon">
                             <FactCheckOutlinedIcon />
                         </div>
                         {t('navbar.myBooking')}
                     </a>
-                    <a href="/link-my-cart" className="user-link">
-                        <div className="link-icon">
+                    <a href="/link-my-cart" className="option">
+                        <div className="option-icon">
                             <WysiwygOutlinedIcon />
                         </div>
                         {t('navbar.historyBookingClient')}
                     </a>
-                    <a href="/account" className="user-link edit-profile">
-                        <div className="link-icon">
+                    <a href="/account" className="option edit-profile">
+                        <div className="option-icon">
                             <SettingsOutlinedIcon />
                         </div>
                         {t('navbar.account')}
                     </a>
-                    <a href="/" className="user-link logout">
-                        <div className="link-icon">
+                    <a href="/" className="option logout">
+                        <div className="option-icon">
                             <LogoutOutlinedIcon />
                         </div>
                         {t('navbar.signout')}

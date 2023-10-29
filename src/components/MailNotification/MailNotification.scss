@@ -1,6 +1,10 @@
 .mailbox{
-    max-width: 400px;
     max-height:none!important;
+    .MuiPaper-root{
+        max-width: 400px;
+        // --left-value: -100px; // Tạo biến --left-value và đặt giá trị là -100px
+        // left: var(--left-value) !important;
+    }
     .header-myAccount {
         width: 400px;
         margin-top: 5px;
@@ -25,7 +29,7 @@
         .notificationNone{
             object-fit: cover;
             object-position: center; 
-            width: 370px;
+            width: 100%;
         }
         ul{
             font-weight: bold;

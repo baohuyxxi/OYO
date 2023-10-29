@@ -1,31 +1,31 @@
 .appbar{
-    height: 75px;
-    position: relative;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    display: flex;
-    justify-content: space-between; /* Để căn cả hai lề */
-    align-items: center;
-    margin: 0 auto; /* Tùy chọn: Để căn giữa theo chiều ngang */
-    .toolbar{
-        width: 1520px;
-        .logo {
-            padding-left: 20px;
-            padding-right: 20px;
-            .logo-bg {
-               height:140px;
-            }
-        }
-        .appbar-right-menu{
-            margin-left: auto !important;
-        }
-        .element{
-            padding-left: 20px;
-            padding-right: 20px;
-        }
-    }
-   
+  height: 75px;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between; /* Để căn cả hai lề */
+  align-items: center;
+  margin: 0 auto; /* Tùy chọn: Để căn giữa theo chiều ngang */
+  .toolbar{
+      width: 1520px;
+      .logo {
+          padding-left: 20px;
+          padding-right: 20px;
+          .logo-bg {
+             height:140px;
+          }
+      }
+      .appbar-right-menu{
+          margin-left: auto !important;
+      }
+      .element{
+          padding-left: 20px;
+          padding-right: 20px;
+      }
+  }
+ 
 }
 

@@ -6,36 +6,38 @@ import Container from "@mui/material/Container";
 import { useState, useEffect, useContext } from "react";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
-import {validate} from '~/utils/validate'
+import { validate } from "~/utils/validate";
 import InputAdornment from "@mui/material/InputAdornment";
 import CustomInput from "~/assets/custom/CustomInput";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import { registerRequest } from "~/services/API/authAPI";
 import { AuthContext } from "~/contexts/AuthContext";
 import { RegisterRequest } from "~/share/model/auth";
-import { useSnackbar } from 'notistack';
+import { useSnackbar } from "notistack";
 import { t } from "i18next";
 import "./Register.scss";
 
 export default function Register(props) {
   const [register, setRegister] = useState(RegisterRequest);
-  const { setUserCurrent, setAccessToken, setRefreshToken } = useContext(AuthContext)
+  const { setUserCurrent, setAccessToken, setRefreshToken } =
+    useContext(AuthContext);
   const { enqueueSnackbar } = useSnackbar();
   const handleRegister = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
     setErrors(validate(register));
     if (Object.keys(errors).length === 0) {
       try {
         const registerUser = await registerRequest(register);
-  
+
         if (registerUser.status === 200) {
-          enqueueSnackbar("Đăng ký thành công, vui lòng xác thực tài khoản", { variant: 'success' });
+          enqueueSnackbar("Đăng ký thành công, vui lòng xác thực tài khoản", {
+            variant: "success",
+          });
           props.handleClose();
-          
         } else if (registerUser.status === 400) {
           console.log("400");
-          setError(t('message.accountExist'));
-          enqueueSnackbar(t('message.accountExist'), { variant: 'error' });
+          setError(t("message.accountExist"));
+          enqueueSnackbar(t("message.accountExist"), { variant: "error" });
           props.handleClose();
         }
       } catch (error) {
@@ -44,36 +46,38 @@ export default function Register(props) {
         // document.location = '/'
       }
     }
-  }
+  };
 
   const handleChange = (event) => {
     setRegister({ ...register, [event.target.name]: event.target.value });
   };
-  const [error, setError] = useState('')
-  const [errors, setErrors] = useState({})
-  const [showPassword, setShowPassword] = useState(false)
+  const [error, setError] = useState("");
+  const [errors, setErrors] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
   const handleTogglePassword = () => {
-    setShowPassword(!showPassword)
-  }
+    setShowPassword(!showPassword);
+  };
   const [formValid, setformValid] = useState(false);
   useEffect(() => {
-    if(register.password.length <8 || !register.firstName || !register.lastName )
-    {
-      setformValid(false)
+    if (
+      register.password.length < 8 ||
+      !register.firstName ||
+      !register.lastName
+    ) {
+      setformValid(false);
+    } else {
+      setformValid(true);
     }
-    else{
-      setformValid(true)
-    }
-  }, [register])
+  }, [register]);
 
   useEffect(() => {
-    setRegister({ ...register, "email": props.email });
-  }, [props.email])
+    setRegister({ ...register, email: props.email });
+  }, [props.email]);
 
   return (
     <Container component="main" maxWidth="xs">
       {/* <h3>{t('label.email')}/{t('label.phone')}</h3> */}
-      <Box component="form" onSubmit={handleRegister}  noValidate sx={{ mt: 1 }}>
+      <Box component="form" onSubmit={handleRegister} noValidate sx={{ mt: 1 }}>
         <div className="form-element">
           <CustomInput
             title={t("label.email")}
@@ -87,8 +91,8 @@ export default function Register(props) {
             }}
           />
         </div>
-        
-        <div className='form-element'>
+
+        <div className="form-element">
           <CustomInput
             title={t("label.firstName")}
             label="Nhập họ và tên của bạn"
@@ -96,7 +100,7 @@ export default function Register(props) {
             id="firstName"
             onChange={handleChange}
             value={register.firstName}
-          /> 
+          />
           {errors.firstName && <h5>{errors.firstName}</h5>}
         </div>
         <div className="form-element">
@@ -108,17 +112,16 @@ export default function Register(props) {
             value={register.lastName}
             onChange={handleChange}
           />
-         {errors.lastName && <h5>{errors.lastName}</h5>}
+          {errors.lastName && <h5>{errors.lastName}</h5>}
         </div>
         <div className="form-element">
           <CustomInput
             title={t("label.password")}
             name="password"
             id="password"
-            value ={register.password}
+            value={register.password}
             onChange={handleChange}
             type={showPassword ? "text" : "password"}
-
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -128,7 +131,8 @@ export default function Register(props) {
                 </InputAdornment>
               ),
             }}
-          />{errors.password && <h5>{errors.password}</h5>}
+          />
+          {errors.password && <h5>{errors.password}</h5>}
         </div>
         <div className="form-element">
           <Button

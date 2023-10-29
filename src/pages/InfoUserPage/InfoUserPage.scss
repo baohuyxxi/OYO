@@ -1,213 +1,77 @@
-.info-user__page {
-  height: 100vh;
-
+.info-user_page {
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
   .content-account {
-
-    margin-top: 7em;
-    padding: 0 230px;
-
-
-    .card-info {
-
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-
-      .user-info {
-        display: flex;
-        align-items: center;
-        padding: 12px;
-        width: auto;
-
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-
-        /* Định dạng cho phần tử user-details */
-        .user-details {
-          width: auto;
-          word-wrap: break-word;
-          width: 100px;
-          .user-name {
-            font-size: 16px;
-            word-wrap: break-word;
-          }
-
-          .user-email {}
-        }
-
-
-        /* Định dạng cho phần tử user-avatar */
-        .user-avatar {
-          height: 64px;
-          width: 64px;
-          //border-radius: 64px;
-          // background-color: #ccc;
-          display: flex;
-          align-items: center;
-          //justify-content: center;
-          font-size: 24px;
-          // color: rgb(104, 113, 118);
-          margin-right: 12px;
-        }
-
-        /* Định dạng cho phần tử user-email */
-
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 95px;
+    width: 1079.200px;
+    height: 400px;
+    .row {
+      .heading {
+        font-size: xx-large;
+        margin-bottom: 5px;
       }
-
-
-      /* Định dạng cho phần tử user-link */
-      .user-link {
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        color: rgba(1, 148, 243, 1.00);
-        font-weight: bold;
-        padding: 10px 0;
-        transition: background-color 0.3s;
-      }
-
-      height: 600px;
-      // border: 1px solid #bdbdbd;
-      border-radius: 10px;
-
-      .avatar-info {
-        display: flex;
-        justify-content: center;
-
-        img {
-          border-radius: 100%;
-          width: 210px;
-          height: 210px;
-        }
-
-        .user-info {
-          display: flex;
-          align-items: center;
-          padding: 12px;
-        }
-
-        /* Định dạng cho phần tử user-details */
-        .user-details {
-          flex: 1;
-        }
-
-        /* Định dạng cho phần tử user-name */
-        .user-name {
-
-          font-size: 24px;
-        }
-      }
-
-      .name-info {
-        width: 100%;
-
-        h1 {
-          letter-spacing: 1;
-          text-align: center;
-        }
-
-        .edit-info_-link {
-          font-weight: bold;
-          color: var(--blue-link);
-          font-size: 14px;
-          display: flex;
-          justify-content: center;
-        }
-      }
-
-      .link-user {
-        font-size: 14px;
-        display: flex;
-        justify-content: left;
-        padding: 10px 0;
-        padding-left: 20px;
-
-        font-weight: 550;
-        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Droid Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
-        ;
-
-        // .MuiSvgIcon-root {
-        //     margin-right: 10px;
-        // }
-      }
-
-      .link-user:hover {
-        color: var(--text-color);
-
-      }
-    }
-
-    .card-content {
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      height: 700px;
-
-      border-radius: 10px;
-      font-family: Godwit, MuseoSans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-
-      h2 {
-        margin-left: 30px;
-        margin-top: 30px;
-        padding-left: 10px;
-        padding-top: 15px;
-        padding-bottom: 3px;
-        font-size: 17px;
-      }
-
-      .desc-info-content {
-        font-size: 16px;
-        margin-left: 30px;
-        color: var(--text-color);
-      }
-
-      .label-info__user {
-        font-size: 16px;
-        width: 100%;
-        margin: 0;
-        margin-bottom: 8px;
-      }
-
-      .input-info__user {
-        width: 100%;
-        font-size: 14px;
-        padding: 8px 20px 8px 10px;
-        border-radius: 3px;
-        border: 1px solid var(--text-color);
-        margin-bottom: 15px;
-      }
-
-      .input-checkbox {
-        display: flex;
-        align-items: center;
-        padding: 8px 0;
-
-        label {
-          font-size: 15px;
+      .options {
+        font-size: medium;
+        font-weight: 600;
+        .option {
+          text-decoration: auto;
           margin-right: 20px;
+          color: var(--mui-palette-mainColor-contrastText);
+        }
+        .selected-option {
+          color: var(--mui-palette-info-main);
         }
       }
-
-      .btn-save-info {
-        margin-left: 12px;
-        padding: 4px 20px;
+      .card-content {
+        margin-top: 5px;
+        height: 500px;
+        border-radius: 7px;
+        display: grid;
+        h2 {
+          margin-left: 20px;
+          font-size: large;
+        }
+        .divider {
+          border-style: solid;
+          border-color: var(--mui-palette-divider);
+          border-bottom-width: thin;
+          width: 95%;
+          margin-top: 4px;
+          margin-bottom: 4px;
+        }
+        .button {
+          font-weight: bold;
+          height: 40px;
+          color: #fff;
+          border-radius: 6px;
+          font-size: 16px;
+        }
+        .form {
+          width: 700px;
+          margin-left: 50px;
+          padding-right: 50px;
+        }
+        .editaccount {
+          width: 800px;
+          .element {
+            .MuiSvgIcon-root {
+              color: var(--mui-palette-info-main);
+            }
+          }
+          .form-button {
+            display: flex;
+            margin-top: 10px;
+            padding-right: 0px;
+            margin-left: 50px;
+          }
+        }
+        .changePassword {
+          width: 800px;
+        }
       }
     }
-  }
-
-  .link-user {
-    font-size: 18px;
-    justify-content: left;
-    padding: 10px 0;
-    padding-left: 20px;
-    font-weight: 550;
-    font-family: Godwit, MuseoSans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-  }
-
-  .selected-link {
-    color: rgba(1, 148, 243, 1.00) !important;
-    /* Chọn màu xanh */
-
-  }
-
-  .email {
-    outline: none !important;
   }
 }

@@ -3,8 +3,8 @@ import Box from '@mui/material/Box'
 
 export default function CustomInput(props) {
   return (
-    <Box>
-      <label style={{ fontWeight: 'bold' }} htmlFor={props.id}>
+    <Box className={props.className}>
+      <label style={{ fontWeight: '500' }} htmlFor={props.id}>
         {props.title}
       </label>
       <TextField

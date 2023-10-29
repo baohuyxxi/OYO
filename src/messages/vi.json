@@ -22,7 +22,8 @@
     "unlove": "Bỏ khỏi mục yêu thích",
     "save": "Lưu",
     "actived": "Kích hoạt",
-    "setting": "Cài đặt"
+    "setting": "Cài đặt",
+    "cancel": "Trở lại"
   },
   "message": {
     "signin": "Đăng nhập thành công",
@@ -188,7 +189,8 @@
     "pleaseEnterCode": "Vui lòng nhập mã xác minh mà chúng tôi đã gửi tới",
     "selectProvince": "Chọn Tỉnh/Thành Phố",
     "selectDistrict": "Chọn Quận/Huyện",
-    "selectWard": "Chọn Phường/Xã"
+    "selectWard": "Chọn Phường/Xã",
+    "userName": "Tên người dùng"
   },
   "contentMain": {
     "homeinsearch": "Từ chuyến phượt 'ngẫu hứng' đến những cuộc phiêu lưu, khám phá công thức niềm vui của riêng bạn",

@@ -22,45 +22,37 @@ export default function InfoUserPage() {
   return !userCurrent ? (
     (document.location = "/")
   ) : (
-    <div className="info-user__page">
+    <div className="info-user_page">
       <AppBar />
       <div className="content-account">
         <div className="row">
           <CardInfo />
           <div className="col l-9">
             <div className="col">
-              <h1 className="custom-heading">{t("common.setting")} </h1>
-              <Link
-                to="/account"
-                className={`link-user ${
-                  selectedItem === "profile" ? "selected-link" : ""
-                }`}
-                style={{ textDecoration: "none", color: "inherit" }}
-                onClick={() => handleItemClick("profile")}
-              >
-                {t("navbar.profile")}
-              </Link>
-              <Link
-                to="/account/password&Security"
-                className={`link-user ${
-                  selectedItem === "password&Security" ? "selected-link" : ""
-                }`}
-                style={{ textDecoration: "none", color: "inherit" }}
-                onClick={() => handleItemClick("password&Security")}
-              >
-                {t("navbar.passwordAndSecurity")}
-              </Link>
-              <Link
-                to="/account/payment"
-                className={`link-user ${
-                  selectedItem === "billing" ? "selected-link" : ""
-                }`}
-                style={{ textDecoration: "none", color: "inherit" }}
-                onClick={() => handleItemClick("billing")}
-              >
-                {" "}
-                {t("navbar.billingInformation")}
-              </Link>
+              <h1 className="heading">{t("common.setting")} </h1>
+              <div className="options">
+                <Link
+                  to="/account"
+                  className={`option ${selectedItem === "profile" ? "selected-option" : "" }`}
+                  onClick={() => handleItemClick("profile")}
+                >
+                  {t("navbar.profile")}
+                </Link>
+                <Link
+                  to="/account/password&Security"
+                  className={`option ${selectedItem === "password&Security" ? "selected-option" : "" }`}
+                  onClick={() => handleItemClick("password&Security")}
+                >
+                  {t("navbar.passwordAndSecurity")}
+                </Link>
+                <Link
+                  to="/account/payment"
+                  className={`option ${selectedItem === "billing" ? "selected-option" : ""}`}
+                  onClick={() => handleItemClick("billing")}
+                >
+                  {t("navbar.billingInformation")}
+                </Link>
+              </div>
               <Paper className="card-content">
                 <Routes>
                   <Route path="/" element={<EditInfo />} />
@@ -74,7 +66,7 @@ export default function InfoUserPage() {
           </div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

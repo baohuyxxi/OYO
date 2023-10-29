@@ -74,7 +74,7 @@ export default function SelectAddress() {
           renderInput={(params) => (
             <TextField
               {...params}
-              label={t("label.selectProvince")}
+              label={t('label.selectProvince')}
               InputLabelProps={{
                 shrink: false,
                 style: {

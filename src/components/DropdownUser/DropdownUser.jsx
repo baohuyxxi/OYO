@@ -48,7 +48,7 @@ export default function CustomizedMenus() {
       >
        {!userCurrent ? t('title.userName') : userCurrent.userName}
       </Button>
-      <StyledMenu
+      <Menu
         className='dropdown-menu'
         id="dropdown-menu"
         MenuListProps={{
@@ -77,7 +77,7 @@ export default function CustomizedMenus() {
           <LogoutOutlinedIcon />
           {t('navbar.signout')}
         </MenuItem>
-      </StyledMenu>
+      </Menu  >
     </div>
   );
 }

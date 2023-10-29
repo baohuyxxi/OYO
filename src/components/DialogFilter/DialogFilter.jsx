@@ -1,16 +1,35 @@
-import { Button, DialogTitle } from "@mui/material";
+import { Button } from "@mui/material";
 import { t } from "i18next";
+import { useState } from "react";
 import DialogActions from "@mui/material/DialogActions";
+import Dialog from "@mui/material/Dialog";
+import SelectedLocate from "~/components/DialogFilter/SelectedLocate/SelectedLocate";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
+import RangePriceFilter from "./RangePriceFilter/RangePriceFilter";
 
 const DialogFilter = () => {
+  const [open, setOpen] = useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
   return (
     <div className="dialog-filter">
       <Button variant="outlined" onClick={handleClickOpen} className="btn-show">
         Bộ lọc
       </Button>
-      <Dialog>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        fullWidth={true}
+        maxWidth="md"
+      >
         <div>
           <DialogTitle
             id="alert-dialog-title"
@@ -26,10 +45,7 @@ const DialogFilter = () => {
           <DialogContent sx={{ fontSize: "16px", fontWeight: "bold" }}>
             Chọn tỉnh thành bạn muốn đến
             <div style={{ marginTop: "30px" }}>
-              <SelectedLocate
-                setValueStepOne={handleChangeProvince}
-                dataFilterDefauld={dataFilterDefauld}
-              />
+              <SelectedLocate />
             </div>
             <br /> <hr />
           </DialogContent>
@@ -46,9 +62,35 @@ const DialogFilter = () => {
           <DialogContent sx={{ fontSize: "16px", fontWeight: "bold" }}>
             {t("label.convenient")}
             <div style={{ marginTop: "30px" }}>
-              <CheckBox setFilterAmenities={handleChangeFilterAmenities} />
+              {/* <CheckBox setFilterAmenities={handleChangeFilterAmenities} /> */}
             </div>
           </DialogContent>
+        </div>
+        <div
+          style={{
+            position: "fixed",
+            bottom: 0,
+            marginBottom: "33px",
+            background: "white",
+            width: "885px",
+          }}
+        >
+          <DialogActions>
+            <Button
+              // onClick={handleClose}
+              color="error"
+              sx={{ fontSize: "14px" }}
+            >
+              Close
+            </Button>
+            <Button
+              // onClick={handleFilter}
+              autoFocus
+              sx={{ fontSize: "14px", textTransform: "none" }}
+            >
+              OK
+            </Button>
+          </DialogActions>
         </div>
       </Dialog>
     </div>

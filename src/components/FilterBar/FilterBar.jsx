@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { getAllAccomCategoryInfo } from "~/services/API/accomCateAPI";
 import "./FilterBar.scss";
+import DialogFilter from "../DialogFilter/DialogFilter";
 
 const FilterBar = () => {
   const settings = {
@@ -43,6 +44,7 @@ const FilterBar = () => {
           </div>
         ))}
       </Slider>
+      <DialogFilter />
       {/* <Button>Bộ Lọc</Button> */}
     </div>
   );

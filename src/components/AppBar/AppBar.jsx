@@ -45,14 +45,11 @@ export default function NavBar() {
           <div className='element'>
             <LanguageSelect />
           </div>
-
           {
             !userCurrent ?
-
               <Button className='element' onClick={handleClickOpen} startIcon={<AccountCircle />}>
                 {t('title.signin')}
               </Button>
-
               :
               <>
                 <MailNotification />

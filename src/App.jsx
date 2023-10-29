@@ -11,6 +11,10 @@ function App() {
     if (selectedLanguage) {
       i18n.changeLanguage(selectedLanguage);
     }
+    else{
+      localStorage.setItem('selectedLanguage','vi')
+      i18n.changeLanguage('vi');
+    }
   }, []);
   return (
     <div>

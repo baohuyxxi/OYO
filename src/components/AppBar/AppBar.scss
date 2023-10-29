@@ -6,9 +6,10 @@
   right: 0;
   z-index: 1;
   display: flex;
-  justify-content: space-between; /* Để căn cả hai lề */
+  justify-content: space-between; 
   align-items: center;
-  margin: 0 auto; /* Tùy chọn: Để căn giữa theo chiều ngang */
+  margin: 0 auto;
+  font-weight: 500;
   .toolbar{
       width: 1520px;
       .logo {
@@ -22,8 +23,8 @@
           margin-left: auto !important;
       }
       .element{
-          padding-left: 20px;
-          padding-right: 20px;
+          padding-left: 15px;
+          padding-right: 15px;
       }
   }
  

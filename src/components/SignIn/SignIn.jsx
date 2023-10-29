@@ -180,7 +180,7 @@ export default function SignIn(props) {
         )}
         {showLoginButton && (
           <Button
-            className="form-button"
+            className="form-button login"
             type="submit"
             fullWidth
             variant="contained"
@@ -190,7 +190,7 @@ export default function SignIn(props) {
         )}
         {showRegisterButton && (
           <Button
-            className="form-button"
+            className="form-button to-register"
             fullWidth
             color="orange"
             variant="contained"
@@ -205,7 +205,7 @@ export default function SignIn(props) {
           <span className="centered-line" />
         </h4>
         <div className="social-container">
-          <Button fullWidth variant="outlined">
+          <Button fullWidth variant="outlined"  className="form-button google">
             <img src={googleIcon} alt="Your Image" width="24" height="24" />
             {t("title.withGoogle")}
           </Button>

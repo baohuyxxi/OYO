@@ -6,7 +6,7 @@ const theme = extendTheme({
       styleOverrides: {
         root: {
           textTransform: 'none',
-          fontWeight: 'bold',
+          fontWeight: 'inherit',
           color: 'inherit'
         },
       },

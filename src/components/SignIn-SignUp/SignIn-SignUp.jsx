@@ -6,6 +6,7 @@ import Paper from "@mui/material/Paper";
 import CloseIcon from "@mui/icons-material/Close";
 import SignIn from "../SignIn/SignIn";
 import Register from "../Register/Register";
+import './SignIn-SignUp.scss'
 import { t } from "i18next";
 
 export default function SimpleDialog(props) {
@@ -37,10 +38,10 @@ export default function SimpleDialog(props) {
   }
   return (
     <>
-      <Paper>
-        <Dialog onClose={handleClose} open={open}>
+        <Dialog onClose={handleClose} open={open} >
           <DialogTitle className="form-dialog">
-            {title}
+            <header>{title}</header>
+            
             <Button
               className="closeDialog"
               style={{ position: "absolute", right: "8px", top: "8px" }}
@@ -51,7 +52,6 @@ export default function SimpleDialog(props) {
             {dialogContent}
           </DialogTitle>
         </Dialog>
-      </Paper>
     </>
   );
 }

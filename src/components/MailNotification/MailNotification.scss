@@ -2,7 +2,8 @@
     max-height:none!important;
     .MuiPaper-root{
         max-width: 400px;
-        left: 1065px!important;
+        // --left-value: -100px; // Tạo biến --left-value và đặt giá trị là -100px
+        // left: var(--left-value) !important;
     }
     .header-myAccount {
         width: 400px;

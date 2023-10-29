@@ -1,6 +1,9 @@
 .mailbox{
-    max-width: 400px;
     max-height:none!important;
+    .MuiPaper-root{
+        max-width: 400px;
+        left: 1065px!important;
+    }
     .header-myAccount {
         width: 400px;
         margin-top: 5px;
@@ -25,7 +28,7 @@
         .notificationNone{
             object-fit: cover;
             object-position: center; 
-            width: 370px;
+            width: 100%;
         }
         ul{
             font-weight: bold;

@@ -20,28 +20,24 @@ function SearchForm() {
     // Xử lý dữ liệu đã nhập ở đây
   }
 
- 
+
   return (
-    <Paper elevation={3} style={{ padding: 16 }} className="form-search" >
-      <form onSubmit={handleSubmit} >
-        <div className='container'>
-        <div className='row'>
-          <div className='col'>
-            {/* <h2 className="form-title">Tìm kiếm khách sạn</h2> */}
-              <SelectAddress className='address' />
-            </div>
-            <div className='col'>
-              <SelectDate/>
-            </div>
-    
-           
-            <div className='col'> 
-            <button className="submit-button" type="submit">Tìm kiếm</button>
-            </div>
-        </div>
-        </div>
-      </form>
-    </Paper>
+    <Paper className="form-search">
+        <form  onSubmit={handleSubmit}  className='container'>
+         
+              <div className='col'>
+                {/* <h2 className="form-title">Tìm kiếm khách sạn</h2> */}
+                <SelectAddress className='address' />
+              </div>
+              <div className='col'>
+                <SelectDate />
+              </div>
+              <div className='col'>
+                <button className="submit-button" type="submit">Tìm kiếm</button>
+              </div>
+       
+        </form>
+      </Paper>
   )
 }
 

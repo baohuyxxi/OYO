@@ -31,10 +31,8 @@ export default function NavBar() {
   }
   const { userCurrent } = useContext(AuthContext);
   return (
-    <Paper>
-
       <AppBar className='appbar' color='mainColor' >
-        <Toolbar>
+        <Toolbar className='toolbar'>
           <div className="logo">
             <NavLink to="/" >
               <img src={logoYoy} alt="company logo" className="logo-bg" />
@@ -56,9 +54,12 @@ export default function NavBar() {
               </Button>
 
               :
-              <><MailNotification className='element' />
+              <>
+                <MailNotification />
+                <div className='element' >
+                  <DropdownUser />
+                </div>
 
-                <DropdownUser className='element' />
               </>
           }
           {open && (
@@ -71,8 +72,6 @@ export default function NavBar() {
           )}
         </Toolbar>
       </AppBar>
-
-    </Paper>
 
   )
 }

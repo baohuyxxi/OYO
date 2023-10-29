@@ -4,6 +4,7 @@ import { IconButton } from '@mui/material'
 import Badge from '@mui/material/Badge'
 import MailOutlineIcon from '@mui/icons-material/MailOutline'
 import StyledMenu from '~/assets/custom/StyleMenu'
+import Menu from '@mui/material/Menu'
 import notificationNone from '~/assets/imageMaster/notificationNone.png'
 import { t } from 'i18next'
 
@@ -25,7 +26,7 @@ export default function MailNotification() {
                 </Badge>
             </IconButton>
 
-            <StyledMenu
+            <Menu
                 className='mailbox'
                 id="mailbox"
                 anchorEl={anchorEl}
@@ -36,16 +37,15 @@ export default function MailNotification() {
                 <hr className='divider' />
                 <div className='your-mail'>
                     {!0 ?
-                        <> 
-                        <img src={notificationNone} className="notificationNone"></img>
-                        <ul>Bạn không có thư</ul>
+                        <>
+                            <img src={notificationNone} className="notificationNone"></img>
+                            <ul>Bạn không có thư</ul>
                         </>
-
                         :
                         <></>
                     }
                 </div>
-            </StyledMenu>
+            </Menu>
         </>
     )
 }

@@ -1,3 +1,4 @@
+import './RoomDetail.scss'
 import AppBar from '~/components/AppBar/AppBar'
 import Footer from '~/components/Footer/Footer'
 import SearchForm from '~/components/SearchForm/SearchForm'
@@ -11,7 +12,7 @@ import { Box, Button } from '@mui/material'
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { t } from 'i18next'
 import CommentReview from '~/components/CommentReview/commentReview'
-import './RoomDetail.scss'
+
 import Paper from '@mui/material/Paper'
 import { Grid } from 'antd'
 export default function RoomDetail() {
@@ -105,9 +106,9 @@ export default function RoomDetail() {
     ];
     return (
         <div>
-            <AppBar />
-            <SearchForm />
-            <div className='background' >
+            <AppBar/>
+            <SearchForm className='form-search'/>
+            <div className='detail-room' >
                 <Box position={Grid} style={{ width: '90%', margin: 'auto' }}>
                     <div className="info-room" >
                         <div className="header-room">
@@ -120,7 +121,7 @@ export default function RoomDetail() {
                                     </div>
                                     <div className="locate__room">
                                         <FmdGoodIcon className="icon_locate" />
-                                        <p>Tên khách sạn</p>
+                                        <p>Địa chỉ</p>
                                     </div>
                                 </div>
                                 <div className="heading__right">

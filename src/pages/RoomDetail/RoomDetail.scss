@@ -1,22 +1,23 @@
-.background{
+.form-search{
+    top: 75px!important;
+    
+}
+.detail-room{
+    top: 150px;
+    display: flex;
+    justify-content: space-between; /* Để căn cả hai lề */
+    align-items: center; /* Để căn giữa theo chiều dọc (tùy chọn) */
+    margin: 0 auto; /* Tùy chọn: Để căn giữa theo chiều ngang */
+    max-width: 1200px; /* Tùy chọn: Để giới hạn chiều rộng tối đa */
     .info-room {
-        margin-top: 30px;
-        position: relative;
-    
-    
+        margin-top: 75px;
         .header-room {
-    
-            margin-left: 180px;
-            margin-right: 180px;
-    
             h1 {
                 font-size: 28px;
                 margin: 0;
                 margin-bottom: 5px;
             }
-    
             .heading {
-                display: flex;
                 justify-content: space-between;
     
                 .heading__left {
@@ -31,10 +32,9 @@
                         }
     
                         p {
-                            padding: 3px 18px;
                             color: rgba(2, 100, 200, 1);
                             font-size: 1.2rem;
-                            background-color: #bbdefb;
+                            background-color:(--mui-palette-background-paper);
                             border-radius: 10px;
                             margin: 0;
                             margin-top: 8px;

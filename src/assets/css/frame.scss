@@ -1,0 +1,24 @@
+.frame-page {
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    max-width:  1500px;
+    align-items: center;
+    margin: 0 auto;
+    background-color: var(--background-default);
+    color: var(--background-contrastText);
+}
+
+.content {
+    color: var(--background-contrastText);
+    background-color: var(--background-default);
+    align-items: center;
+    max-width: 1500px;
+    margin: 0 auto;
+    height: max-content;
+}
+.paper {
+    background-color: var(--background-paper);
+    color: var(--background-contrastText);
+    border-radius: 7px;
+}

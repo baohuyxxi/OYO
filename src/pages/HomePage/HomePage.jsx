@@ -4,15 +4,14 @@ import Footer from "~/components/Footer/Footer";
 import SearchForm from "~/components/SearchForm/SearchForm";
 import Popular from "~/components/Popular/Popular";
 import RoomPopular from "~/components/RoomPopular/RoomPopular";
+import FramePage from "~/components/FramePage/FramePage";
 export default function HomePage() {
   return (
-    <div>
-      <AppBar />
+    <FramePage>
       <HomeSlider />
       <SearchForm />
       <Popular />
       <RoomPopular />
-      <Footer />
-    </div>
+    </FramePage>
   );
 }

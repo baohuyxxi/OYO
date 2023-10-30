@@ -23,7 +23,8 @@
     "save": "Lưu",
     "actived": "Kích hoạt",
     "setting": "Cài đặt",
-    "cancel": "Trở lại"
+    "cancel": "Hủy",
+    "publicAvatar":"Ảnh đại diện của bạn sẽ được hiển thị công khai"
   },
   "message": {
     "signin": "Đăng nhập thành công",
@@ -142,7 +143,8 @@
     "userName": "Tên người dùng",
     "pageNotFound": "KHÔNG TÌM THẤY TRANG",
     "returnHome": "Bạn có muốn quay lại trang chủ không?",
-    "yourMail": "Thư của bạn"
+    "yourMail": "Thư của bạn",
+    "selectAvatar":"Chọn ảnh đại diện"
   },
   "label": {
     "email": "Địa chỉ Email",

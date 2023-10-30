@@ -13,9 +13,10 @@ import MenuItem from '@mui/material/MenuItem';
 import UpdateAvatar from '~/components/UpdateAvatar/UpdateAvatar'
 import './CardInfo.scss'
 import { t } from 'i18next';
+import { Button } from '@mui/material';
 
 export default function CardInfo() {
-    const { userCurrent, setUserCurrent, setAccessToken, setRefreshToken , accessToken} = useContext(AuthContext);
+    const { userCurrent, setUserCurrent, setAccessToken, setRefreshToken, accessToken } = useContext(AuthContext);
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleOpenMenu = (event) => {
@@ -55,8 +56,8 @@ export default function CardInfo() {
     const handleImgChange = (e) => {
         setImageFile(e.target.files[0])
         setModalOpen(true);
+        inputRef.current.value = '';
     };
-
     return (
         <div className="col l-3" style={{ paddingTop: 0 }}>
             <UpdateAvatar
@@ -64,9 +65,10 @@ export default function CardInfo() {
                 imageFile={imageFile}
                 setPreview={setPreview}
                 setModalOpen={setModalOpen}
-                mail ={userCurrent.mail}
-                accessToken ={accessToken}
-                setUserCurrent ={setUserCurrent}
+                setImageFile={setImageFile}
+                mail={userCurrent.mail}
+                accessToken={accessToken}
+                setUserCurrent={setUserCurrent}
             />
             <input
                 hidden
@@ -75,7 +77,7 @@ export default function CardInfo() {
                 ref={inputRef}
                 onChange={handleImgChange}
             />
-            <Paper className="card-info">
+            <div className="paper card-info">
                 <div className="user-info">
                     <Avatar
                         className="user-avatar"
@@ -114,8 +116,8 @@ export default function CardInfo() {
                         </div>
                         {t('navbar.signout')}
                     </a>
-                </div>  
-            </Paper>
+                </div>
+            </div>
             <Menu
                 anchorEl={anchorEl}
                 open={Boolean(anchorEl)}

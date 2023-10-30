@@ -8,17 +8,28 @@
     font-size: 16px;
     line-height: 48px;
     padding: 0 16px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .form-button:disabled{
+    color: var(--disabled-cl);
+    background-color: var(--disabled-br);
   }
   .login{
     background-color: #1877f2;
     color: #fff;
-    
   }
   .to-register{
     background-color:rgb(231, 9, 14);
     color: #fff;
   }
+  .continue{
+    background-color:rgb(231, 9, 14);
+    color: #fff;
+  }
   .register{
+    margin-top: 15px;
+    margin-bottom: 20px;
     background-color:#42b72a;
     color: #fff;
   }
@@ -29,8 +40,7 @@
   }
 
   .form-element{
-    border-radius: 5%;
-    padding-top: 10px;  
+    border-radius: 5%;  
     padding-bottom: 10px;
     font-size: 15px;
   }

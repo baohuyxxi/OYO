@@ -8,12 +8,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { BrowserRouter } from "react-router-dom";
 import AuthProvider from "./contexts/AuthContext";
 import "./assets/css/grid.scss";
-import {
-  Experimental_CssVarsProvider as CssVarsProvider,
-  experimental_extendTheme as extendTheme,
-  ThemeProvider,
-} from "@mui/material/styles";
-import theme from "./theme";
+import './assets/css/frame.scss'
+import './assets/css/index.scss'
 import LocateProvider, { LocateContext } from "./contexts/LocateContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -21,20 +17,18 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <LocateProvider>
         <AuthProvider>
-          <ThemeProvider theme={theme}>
-            <CssVarsProvider theme={theme}>
-              <I18nextProvider i18n={i18n}>
-                <CssBaseline />
-                <SnackbarProvider
-                  maxSnack={3}
-                  anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-                  style={{ fontSize: "14px" }}
-                >
-                  <App />
-                </SnackbarProvider>
-              </I18nextProvider>
-            </CssVarsProvider>
-          </ThemeProvider>
+
+          <I18nextProvider i18n={i18n}>
+            <CssBaseline />
+            <SnackbarProvider
+              maxSnack={3}
+              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+              style={{ fontSize: "14px" }}
+            >
+              <App />
+            </SnackbarProvider>
+          </I18nextProvider>
+
         </AuthProvider>
       </LocateProvider>
     </BrowserRouter>

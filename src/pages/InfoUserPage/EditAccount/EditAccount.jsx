@@ -81,13 +81,12 @@ export default function EditAccount() {
     )))
   ];
   return (
-    <div className='editaccount'>
+    <div className='paper editaccount'>
       <h2>{t('navbar.personalData')}</h2>
       <hr className='divider' />
-      <FormControl className='form' fullWidth component="form" onSubmit={handleSave}>
+      <FormControl className='form' component="form" onSubmit={handleSave}>
         <Grid
-          container
-          direction={{ xs: 'column', md: 'row' }}
+          container direction={{ xs: 'column', md: 'row' }}
           columnSpacing={7}
           rowSpacing={1}
         >
@@ -95,7 +94,7 @@ export default function EditAccount() {
             <Grid item xs={customInput.props.xs} key={index}>{customInput}</Grid>
           ))}
           <Grid container justifyContent={{ xs: 'center', md: 'flex-end' }}  item xs={12} className='form-button'>
-            <Button className='button save' type='submit' variant='contained' disabled={!submit}>
+            <Button className='frame-button save' type='submit' variant='contained' disabled={!submit}>
               {t('common.save')}</Button>
           </Grid>
         </Grid>

@@ -12,8 +12,8 @@ import { Box, Button } from '@mui/material'
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { t } from 'i18next'
 import CommentReview from '~/components/CommentReview/commentReview'
+import FramePage from '~/components/FramePage/FramePage'
 
-import Paper from '@mui/material/Paper'
 import { Grid } from 'antd'
 export default function RoomDetail() {
     //Sao của khách sạn
@@ -102,86 +102,80 @@ export default function RoomDetail() {
             roomName: 'Room 3',
             nameOfBed: 'Single Bed',
         },
-      
+
     ];
     return (
-        <div>
-            <AppBar/>
-            <SearchForm className='form-search'/>
-            <div className='detail-room' >
-                <Box position={Grid} style={{ width: '90%', margin: 'auto' }}>
-                    <div className="info-room" >
-                        <div className="header-room">
-                            <h1>Tên Khách sạn</h1>
-                            <div className="heading">
-                                <div className="heading__left">
-                                    <div className="obility__room">
-                                        <p>Resort</p>
-                                        {stars}
-                                    </div>
-                                    <div className="locate__room">
-                                        <FmdGoodIcon className="icon_locate" />
-                                        <p>Địa chỉ</p>
-                                    </div>
+        <FramePage>
+            <SearchForm className='form-search' />
+            <div className='content detail-room' >
+                <div className="info-room" >
+                    <div className="header-room">
+                        <h1>Tên Khách sạn</h1>
+                        <div className="heading">
+                            <div className="heading__left">
+                                <div className="obility__room">
+                                    <p>Resort</p>
+                                    {stars}
                                 </div>
-                                <div className="heading__right">
+                                <div className="locate__room">
+                                    <FmdGoodIcon className="icon_locate" />
+                                    <p>Địa chỉ</p>
                                 </div>
                             </div>
-
-                        </div>
-                        <ListImage {...imageData} />
-                        <div className="about-room" >
-                            <div className="row">
-                                <div className="col l-8 m-7 c-12">
-                                    <Paper className="title-room">
-                                        <div className="desc-room">
-                                            <h2>{t('contentMain.descHome')}</h2 >
-
-                                            <p>Là một lựa chọn đúng đắn khi quý khách đến thăm Thắng Tam. Quầy tiếp tân 24 giờ luôn sẵn sàng phục vụ quý khách từ thủ tục nhận phòng đến trả phòng</p>
-                                        </div>
-                                        <hr className="line" />
-                                        <h2>{t('contentMain.convenient')}</h2>
-                                        <Convenient listConvenient={listConvenientData} row={2} />
-                                        <DialogConvenient listConvenient={listConvenientData} />
-                                        <hr className="line" />
-                                        <div className="bed-room">
-                                            <h2>{t('contentMain.bedroom')}</h2>
-                                            <BedRoomSlider listRoom={listRoomData} />
-                                        </div>
-                                    </Paper>
-                                    <hr className="line" />
-                                    <h1>{t('contentMain.rateTitle')}</h1>
-                                    <hr className="line" />
-                                    <CommentReview/>
-                                </div>
-
-                                <div className="col l-4 m-7 c-12">
-                                    <Paper className="card-room">
-                                        <div className="desc-room">
-                                            <h2>{t('title.outstanding')}</h2 >
-                                            <p>Là một lựa chọn đúng đắn khi quý khách đến thăm Thắng Tam. Quầy tiếp tân 24 giờ luôn sẵn sàng phục vụ quý khách từ thủ tục nhận phòng đến trả phòng</p>
-                                        </div>
-                                        <hr className="line" />
-                                        <Convenient listConvenient={listoutstandingData} row={1} />
-                                        <div className='button-Favorite'>
-                                            <Button
-                                                variant='outlined'
-                                            >
-                                                Thêm vào danh sách yêu thích
-                                                <FavoriteBorderOutlinedIcon />
-                                            </Button>
-                                        </div>
-                                    </Paper>
-                                </div>
+                            <div className="heading__right">
+                                <p>Giá phòng mõi đêm từ:</p>
+                                <p className='price-room'>300.000 VND</p>
                             </div>
                         </div>
-
 
                     </div>
+                    <ListImage {...imageData} />
+                    <div className="about-room" >
+                        <div className="row">
+                            <div className="col l-8 m-7 c-12">
+                                <div className="paper title-room">
+                                    <div className="desc-room">
+                                        <h2>{t('contentMain.descHome')}</h2 >
+                                        <p>Là một lựa chọn đúng đắn khi quý khách đến thăm Thắng Tam. Quầy tiếp tân 24 giờ luôn sẵn sàng phục vụ quý khách từ thủ tục nhận phòng đến trả phòng</p>
+                                    </div>
+                                    <hr className="line" />
+                                    <h2>{t('contentMain.convenient')}</h2>
+                                    <Convenient listConvenient={listConvenientData} row={2} />
+                                    <DialogConvenient listConvenient={listConvenientData} />
+                                    <hr className="line" />
+                                    <div className="bed-room">
+                                        <h2>{t('contentMain.bedroom')}</h2>
+                                        <BedRoomSlider listRoom={listRoomData} />
+                                    </div>
+                                </div>
+                               
+                            </div>
 
-                </Box>
+                            <div className="col l-4 m-7 c-12">
+                                <div className="paper card-room">
+                                    <div className="desc-room">
+                                        <h2>{t('title.outstanding')}</h2 >
+                                        <p>Là một lựa chọn đúng đắn khi quý khách đến thăm Thắng Tam. Quầy tiếp tân 24 giờ luôn sẵn sàng phục vụ quý khách từ thủ tục nhận phòng đến trả phòng</p>
+                                    </div>
+                                    <hr className="line" />
+                                    <Convenient listConvenient={listoutstandingData} row={1} />
+                                    <div className='button-Favorite'>
+                                        <Button
+                                            variant='outlined'
+                                        >
+                                            Thêm vào danh sách yêu thích
+                                            <FavoriteBorderOutlinedIcon />
+                                        </Button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <CommentReview />
+                </div>
+
             </div>
-            {/* <Footer/> */}
-        </div>
+        </FramePage>
     )
 }

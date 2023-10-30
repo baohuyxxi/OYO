@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-no-undef */
 import * as React from 'react'
 import AppBar from '@mui/material/AppBar'
-import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import { NavLink } from 'react-router-dom'
 import logoYoy from '~/assets/logo.svg'
@@ -13,9 +12,6 @@ import AccountCircle from '@mui/icons-material/AccountCircle'
 import SignInSignUp from '../SignIn-SignUp/SignIn-SignUp'
 import { AuthContext } from '~/contexts/AuthContext'
 import { useContext } from 'react'
-import { IconButton, Paper } from '@mui/material'
-import Badge from '@mui/material/Badge';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import MailNotification from '../MailNotification/MailNotification'
 import { t } from 'i18next'
 import './AppBar.scss'
@@ -31,8 +27,8 @@ export default function NavBar() {
   }
   const { userCurrent } = useContext(AuthContext);
   return (
-      <AppBar className='appbar' color='mainColor' >
-        <Toolbar className='toolbar'>
+      <AppBar className='appbar'>
+        <Toolbar className='paper toolbar'>
           <div className="logo">
             <NavLink to="/" >
               <img src={logoYoy} alt="company logo" className="logo-bg" />

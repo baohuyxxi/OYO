@@ -23,7 +23,8 @@
     "save": "Save",
     "actived": "Active",
     "setting": "Setting",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "publicAvatar":"Your profile picture will be displayed publicly"
   },
   "message": {
     "signin": "Sign in successfully",
@@ -141,7 +142,8 @@
     "userName": "User Name",
     "pageNotFound": "PAGE NOT FOUND",
     "returnHome": "Would you like to return to the home page?",
-    "yourMail": "Your mail"
+    "yourMail": "Your mail",
+    "selectAvatar":"Select avatar"
   },
   "label": {
     "email": "Email",

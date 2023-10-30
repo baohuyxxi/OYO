@@ -41,7 +41,6 @@ export default function passwordSecurity() {
   const handleChangePassword = async (event) => {
     event.preventDefault( )
       const res = await changePasswordRequest(changePassword, accessToken)
-      console.log(res)
       if (res.status === 200) {
         enqueueSnackbar(t('message.changePassword'), { variant: 'success' });
       }else if (res.status === 400) {

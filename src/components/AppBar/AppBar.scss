@@ -10,8 +10,17 @@
   align-items: center;
   margin: 0 auto;
   font-weight: 500;
+  background-color: var(--background-paper)!important;
   .toolbar{
-      width: 1520px;
+      background-color: var(--background-paper);
+      width: 1500px;
+      color: var(--background-contrastText);
+      font-weight: bold;
+      button{
+        text-transform: none;
+        font-weight: inherit;
+        color: inherit;
+      }
       .logo {
           padding-left: 20px;
           padding-right: 20px;

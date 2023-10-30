@@ -8,9 +8,9 @@ import instagramIcon from '~/assets/imageMaster/instagram-new.png';
 import './Footer.scss'
 import { t } from 'i18next'
 
-const Footer = () => {
+export default function Footer() {
     return (
-      <div className="footer">
+      <div className="paper footer">
       <div className="footer__inner">
           <div className="grid wide">
               <div className="row">
@@ -144,4 +144,4 @@ const Footer = () => {
     );
 };
 
-export default Footer;
+

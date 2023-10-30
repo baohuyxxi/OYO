@@ -161,7 +161,7 @@ export default function SignIn(props) {
         )}
         {showStatusButton && (
           <Button
-            className="form-button"
+            className="form-button continue"
             variant="contained"
             fullWidth
             disabled
@@ -192,7 +192,6 @@ export default function SignIn(props) {
           <Button
             className="form-button to-register"
             fullWidth
-            color="orange"
             variant="contained"
             onClick={handleRegister}
           >

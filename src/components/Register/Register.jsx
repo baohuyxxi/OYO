@@ -19,8 +19,7 @@ import "./Register.scss";
 
 export default function Register(props) {
   const [register, setRegister] = useState(RegisterRequest);
-  const { setUserCurrent, setAccessToken, setRefreshToken } =
-    useContext(AuthContext);
+  const { setUserCurrent, setAccessToken, setRefreshToken } = useContext(AuthContext);
   const { enqueueSnackbar } = useSnackbar();
   const handleRegister = async (event) => {
     event.preventDefault();
@@ -85,9 +84,10 @@ export default function Register(props) {
             disabled={true}
             name="email"
             id="email"
+            size="small"
             onChange={handleChange}
             InputProps={{
-              startAdornment: <CheckCircleRoundedIcon color="green" />,
+              startAdornment: <CheckCircleRoundedIcon style={{color:"#00ff00"}} />,
             }}
           />
         </div>
@@ -98,6 +98,7 @@ export default function Register(props) {
             label="Nhập họ và tên của bạn"
             name="firstName"
             id="firstName"
+            size="small"
             onChange={handleChange}
             value={register.firstName}
           />
@@ -109,6 +110,7 @@ export default function Register(props) {
             label="Nhập họ và tên của bạn"
             name="lastName"
             id="lastName"
+            size="small"
             value={register.lastName}
             onChange={handleChange}
           />
@@ -119,6 +121,7 @@ export default function Register(props) {
             title={t("label.password")}
             name="password"
             id="password"
+            size="small"
             value={register.password}
             onChange={handleChange}
             type={showPassword ? "text" : "password"}

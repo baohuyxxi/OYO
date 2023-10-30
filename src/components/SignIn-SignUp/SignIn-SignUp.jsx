@@ -39,7 +39,7 @@ export default function SimpleDialog(props) {
   return (
     <>
         <Dialog onClose={handleClose} open={open} >
-          <DialogTitle className="form-dialog">
+          <DialogTitle className="paper form-dialog">
             <header>{title}</header>
             
             <Button

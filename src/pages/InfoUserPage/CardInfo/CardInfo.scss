@@ -29,7 +29,7 @@
       height: 300px;
       padding-top: 10px ;
       .option{
-        color: var(--mui-palette-mainColor-contrastText);
+        color: var(--mainColor-contrastText);
         font-size: medium;
         font-weight: 600;
         display: flex;
@@ -40,14 +40,14 @@
         padding-right: 20px;
         border-radius: 5px;
         .option-icon{
-          color: var(--mui-palette-info-main);
+          color: var(--info-main);
           padding-right: 10px;
         }
        
       }
       .option:hover{
-        background-color: var(--mui-palette-background-default);
-        color: var(--mui-palette-info-main) ;
+        background-color: var(--background-default);
+        color: var(--info-main) ;
       }
     }
     

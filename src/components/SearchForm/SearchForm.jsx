@@ -22,7 +22,7 @@ function SearchForm() {
 
 
   return (
-    <Paper className="form-search">
+    <div className="paper form-search">
         <form  onSubmit={handleSubmit}  className='container'>
          
               <div className='col'>
@@ -37,7 +37,7 @@ function SearchForm() {
               </div>
        
         </form>
-      </Paper>
+      </div>
   )
 }
 

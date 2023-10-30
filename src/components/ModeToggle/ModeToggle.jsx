@@ -3,22 +3,22 @@ import { Button, IconButton } from '@mui/material'
 import DarkModeSharp from '@mui/icons-material/DarkModeSharp'
 import WbSunnySharpIcon from '@mui/icons-material/WbSunnySharp'
 
-import { useTheme, useColorScheme } from '@mui/material/styles'
-
 const ColorModeContext = React.createContext({ toggleColorMode: () => { } })
 
 export default function ModeToggle() {
-  const theme = useTheme()
-  const { mode, setMode } = useColorScheme()
+  const [mode, setMode] = React.useState(localStorage.getItem('mode') || 'light')
 
   const handleClick = () => {
-    setMode(mode === 'light' ? 'dark' : 'light')
+    const newMode = mode === 'light' ? 'dark' : 'light'
+    setMode(newMode)
+    localStorage.setItem('mode', newMode)
+    document.documentElement.setAttribute('mode', newMode);
   }
   
   return (
     <div>
-      <IconButton sx={{ ml: 1 }} onClick={handleClick} color="inherit">
-        {theme.palette.mode === 'dark' ? <DarkModeSharp /> : <WbSunnySharpIcon />}
+      <IconButton sx={{ ml: 1 }} onClick={handleClick}>
+        {mode === 'dark' ? <DarkModeSharp /> : <WbSunnySharpIcon />}
       </IconButton>
     </div>
   )

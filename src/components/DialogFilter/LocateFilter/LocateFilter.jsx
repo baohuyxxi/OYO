@@ -5,8 +5,9 @@ import { useContext } from "react";
 import MenuItem from "@mui/material/MenuItem";
 import FormHelperText from "@mui/material/FormHelperText";
 import { t } from "i18next";
+import "./LocateFilter.scss";
 
-const SelectedLocate = () => {
+const LocateFilter = () => {
   const {
     provinces,
     selectedProvince,
@@ -119,4 +120,4 @@ const SelectedLocate = () => {
     </div>
   );
 };
-export default SelectedLocate;
+export default LocateFilter;

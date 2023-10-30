@@ -1,37 +1,48 @@
-import * as React from "react";
+import { useState } from "react";
 import Box from "@mui/material/Box";
-import Slider from "@mui/material/Slider";
+import ReactSlider from "react-slider";
+import "./RangePriceFilter.scss";
+
+const MIN = 0;
+const MAX = 5000000;
 const RangePriceFilter = () => {
+  const [values, setValues] = useState([MIN, MAX]);
   return (
-    <Box sx={{ width: "100%", paddingRight: "30px", paddingLeft: "30px" }}>
-      <Slider
-        getAriaLabel={() => "Temperature range"}
-        value={value}
-        onChange={handleChange}
-        valueLabelDisplay="auto"
-        max={10000000}
+    <div className="container_range">
+      <ReactSlider
+        className="slider"
+        thumbClassName="thumb_slider"
+        trackClassName="track_slider"
+        value={values}
+        min={MIN}
+        max={MAX}
+        onChange={setValues}
       />
       <div className="show-rang__price">
         <p style={{ marginRight: "10px" }}>Giá tối thiểu</p>
         <input
           type="number"
           className="input-pricerange"
-          value={value[0]}
+          value={values[0]}
+          min={MIN}
+          max={MAX}
           onChange={(event) =>
-            setValue([parseInt(event.target.value), value[1]])
+            setValues([parseInt(event.target.value), values[1]])
           }
         />
         <input
           type="number"
           className="input-pricerange"
-          value={value[1]}
+          value={values[1]}
+          min={MIN}
+          max={MAX}
           onChange={(event) =>
-            setValue([value[0], parseInt(event.target.value)])
+            setValues([values[0], parseInt(event.target.value)])
           }
         />
         <p>Giá tối đa</p>
       </div>
-    </Box>
+    </div>
   );
 };
 export default RangePriceFilter;

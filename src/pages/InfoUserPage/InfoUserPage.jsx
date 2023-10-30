@@ -9,6 +9,7 @@ import Paper from "@mui/material/Paper";
 import { AuthContext } from "~/contexts/AuthContext";
 import { useContext } from "react";
 import CardInfo from "./CardInfo/CardInfo";
+import FramePage from "~/components/FramePage/FramePage";
 import "./InfoUserPage.scss";
 import { t } from "i18next";
 
@@ -24,10 +25,9 @@ export default function InfoUserPage() {
     (document.location = "/")
   ) : (
     <>
-      <div className="frame-page">
-      <AppBar />
+      <FramePage>
         <div className="content info-user">
-          <div className="row"> 
+          <div className="row">
             <CardInfo />
             <div className="col l-9">
               <div className="col">
@@ -67,11 +67,9 @@ export default function InfoUserPage() {
               </div>
             </div>
           </div>
-         
+
         </div>
-        <Footer />
-      </div>
-    
+      </FramePage>
     </>
   );
 }

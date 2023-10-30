@@ -3,10 +3,10 @@ import { t } from "i18next";
 import { useState } from "react";
 import DialogActions from "@mui/material/DialogActions";
 import Dialog from "@mui/material/Dialog";
-import SelectedLocate from "~/components/DialogFilter/SelectedLocate/SelectedLocate";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import RangePriceFilter from "./RangePriceFilter/RangePriceFilter";
+import LocateFilter from "~/components/DialogFilter/LocateFilter/LocateFilter";
 
 const DialogFilter = () => {
   const [open, setOpen] = useState(false);
@@ -45,17 +45,14 @@ const DialogFilter = () => {
           <DialogContent sx={{ fontSize: "16px", fontWeight: "bold" }}>
             Chọn tỉnh thành bạn muốn đến
             <div style={{ marginTop: "30px" }}>
-              <SelectedLocate />
+              <LocateFilter />
             </div>
             <br /> <hr />
           </DialogContent>
           <DialogContent sx={{ fontSize: "16px", fontWeight: "bold" }}>
             {t("label.priceRange")}
             <div style={{ marginTop: "30px" }}>
-              <RangePriceFilter
-                handleChangePriceRange={handleChangePriceRange}
-                dataFilterDefauld={dataFilterDefauld}
-              />
+              <RangePriceFilter />
             </div>
             <br /> <hr />
           </DialogContent>

@@ -1,11 +1,7 @@
-.form-search {
-    top: 75px;
-}
 
 .detail-room {
-    margin-top: 75px;
     max-width: 1080px;
-
+    margin-top: 20px;
     .info-room {
         .header-room {
             h1 {
@@ -80,22 +76,40 @@
         }
 
         .about-room {
+            h2{
+                font-size: large;
+                padding-top: 10px;
+                margin-bottom: 0px;
+            }
+            p{
+                margin-top: 0px;
+                font-size: smaller;
+            }
             .title-room{
-                margin-left: 10px;
-                margin-left: 10px;
-                .desc-room{
+                padding-left: 15px;
+                padding-right: 15px;
 
+                .desc-room{
+                 
                 }
                 .bed-room{
-
+                    padding-bottom: 1px;
                 }
             }
             .card-room{
+                padding-left: 15px;
+                padding-right: 15px;
                 .desc-room{
 
                 }
                 .button-Favorite{
 
+                }
+                .button-Favorite{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding-bottom: 20px;
                 }
             }
 

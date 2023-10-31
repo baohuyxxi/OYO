@@ -16,7 +16,6 @@ import FramePage from '~/components/FramePage/FramePage'
 
 import { Grid } from 'antd'
 export default function RoomDetail() {
-    //Sao của khách sạn
     const stars = [];
     for (let i = 0; i < 5; i++) {
         stars.push(
@@ -28,7 +27,6 @@ export default function RoomDetail() {
             />
         );
     }
-
     const imageData = {
         listImage: [
             { path: 'https://ik.imagekit.io/tvlk/apr-asset/Ixf4aptF5N2Qdfmh4fGGYhTN274kJXuNMkUAzpL5HuD9jzSxIGG5kZNhhHY-p7nw/hotel/asset/67841452-f226f2d256b035298d9eb3d60eebdb0e.jpeg?_src=imagekit&tr=c-at_max,h-360,q-40,w-640' },
@@ -39,7 +37,6 @@ export default function RoomDetail() {
         thumbnail: 'https://ik.imagekit.io/tvlk/apr-asset/dgXfoyh24ryQLRcGq00cIdKHRmotrWLNlvG-TxlcLxGkiDwaUSggleJNPRgIHCX6/hotel/asset/20061404-a98a0a5e26723a7e5720c7e5f4c8ac40.jpeg?_src=imagekit&tr=c-at_max,h-360,q-40,w-640',
     };
 
-    //Tiện ích
     const listConvenientData = [
         {
             name: 'Máy lạnh',
@@ -132,8 +129,8 @@ export default function RoomDetail() {
                     <ListImage {...imageData} />
                     <div className="about-room" >
                         <div className="row">
-                            <div className="paper col l-8 m-7 c-12">
-                                <div className="title-room">
+                            <div className="col l-8 m-7 c-12">
+                                <div className="paper title-room">
                                     <div className="desc-room">
                                         <h2>{t('contentMain.descHome')}</h2 >
                                         <p>Là một lựa chọn đúng đắn khi quý khách đến thăm Thắng Tam. Quầy tiếp tân 24 giờ luôn sẵn sàng phục vụ quý khách từ thủ tục nhận phòng đến trả phòng</p>
@@ -157,7 +154,7 @@ export default function RoomDetail() {
                                         <h2>{t('title.outstanding')}</h2 >
                                         <p>Là một lựa chọn đúng đắn khi quý khách đến thăm Thắng Tam. Quầy tiếp tân 24 giờ luôn sẵn sàng phục vụ quý khách từ thủ tục nhận phòng đến trả phòng</p>
                                     </div>
-                                    <hr className="line" />
+                                    <hr className="divider" />
                                     <Convenient listConvenient={listoutstandingData} row={1} />
                                     <div className='button-Favorite'>
                                         <Button

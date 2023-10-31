@@ -11,7 +11,7 @@ html[mode="light"] {
   --disabled-cl: #a6a6a6;
   --text-color: #9a9a9a;
 
-  --green-main: #00ff00;
+
   --green-mainChannel: 0 255 0;
   --common-black: #000;
   --common-white: #fff;
@@ -109,7 +109,7 @@ html[mode="dark"] {
   --orange-contrastText: #fff;
   --orange-mainChannel: 244 81 30;
   --orange-contrastTextChannel: 255 255 255;
-  --green-main: #00ff00;
+
   --green-mainChannel: 0 255 0;
   --common-black: #000;
   --common-white: #fff;
@@ -189,6 +189,8 @@ html[mode="dark"] {
 }
 
 :root {
+  --green: #00ff00;
+  --yellow: #FBBC04;
   .MuiButton-root {
     text-transform: none !important;
   }
@@ -245,13 +247,4 @@ html[mode="dark"] {
     margin-bottom: 4px;
   }
 
-  input{
-    background-color: var(--input-background);
-    color: var(--text-color);
-    border: 1px solid  var(--text-color);
-    border-radius: 5px;
-  }
-  input:focus  {
-    border: 1px solid  var(--common-background);
-  }
 }

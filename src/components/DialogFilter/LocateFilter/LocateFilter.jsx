@@ -25,7 +25,7 @@ const LocateFilter = () => {
       <FormControl sx={{ m: 1, minWidth: 40, width: "30%" }}>
         <InputLabel
           id="select-province-label"
-          style={{ zIndex: "80", background: "white", paddingRight: "5px" }}
+          style={{ zIndex: "80", paddingRight: "5px" }}
         >
           Tỉnh thành
         </InputLabel>
@@ -57,7 +57,7 @@ const LocateFilter = () => {
       <FormControl sx={{ m: 1, minWidth: 40, width: "30%" }}>
         <InputLabel
           id="select-district-label"
-          style={{ zIndex: "80", background: "white", paddingRight: "5px" }}
+          style={{ zIndex: "80", paddingRight: "5px" }}
         >
           Quận/Huyện
         </InputLabel>
@@ -89,7 +89,7 @@ const LocateFilter = () => {
       <FormControl sx={{ m: 1, minWidth: 40, width: "30%" }}>
         <InputLabel
           id="select-ward-label"
-          style={{ zIndex: "80", background: "white", paddingRight: "5px" }}
+          style={{ zIndex: "80", paddingRight: "5px" }}
         >
           Phường/Xã
         </InputLabel>

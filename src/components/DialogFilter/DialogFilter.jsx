@@ -7,6 +7,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import RangePriceFilter from "./RangePriceFilter/RangePriceFilter";
 import LocateFilter from "~/components/DialogFilter/LocateFilter/LocateFilter";
+import ListFacilityFilter from "./ListFacilityFilter/ListFacilityFilter";
+import CountRoomFilter from "./CountRoomFilter/CountRoomFilter";
 
 const DialogFilter = () => {
   const [open, setOpen] = useState(false);
@@ -30,7 +32,7 @@ const DialogFilter = () => {
         fullWidth={true}
         maxWidth="md"
       >
-        <div>
+        <div  className="paper">
           <DialogTitle
             id="alert-dialog-title"
             sx={{
@@ -42,25 +44,33 @@ const DialogFilter = () => {
           >
             {t("common.filter")}
           </DialogTitle>
-          <DialogContent sx={{ fontSize: "16px", fontWeight: "bold" }}>
+          <DialogContent sx={{ fontSize: "19px", fontWeight: "bold" }}>
             Chọn tỉnh thành bạn muốn đến
             <div style={{ marginTop: "30px" }}>
               <LocateFilter />
             </div>
             <br /> <hr />
           </DialogContent>
-          <DialogContent sx={{ fontSize: "16px", fontWeight: "bold" }}>
+          <DialogContent sx={{ fontSize: "19px", fontWeight: "bold" }}>
             {t("label.priceRange")}
             <div style={{ marginTop: "30px" }}>
               <RangePriceFilter />
             </div>
             <br /> <hr />
           </DialogContent>
-          <DialogContent sx={{ fontSize: "16px", fontWeight: "bold" }}>
+          <DialogContent sx={{ fontSize: "19px", fontWeight: "bold" }}>
             {t("label.convenient")}
-            <div style={{ marginTop: "30px" }}>
-              {/* <CheckBox setFilterAmenities={handleChangeFilterAmenities} /> */}
+            <ListFacilityFilter />
+          </DialogContent>
+
+          <DialogContent sx={{ fontSize: "19px", fontWeight: "bold" }}>
+            {t("label.room")}
+            <div style={{ marginTop: "30px", marginBottom: "50px" }}>
+              <CountRoomFilter name={t("label.bedroom")} />
+              <CountRoomFilter name={t("label.bed")} />
+              <CountRoomFilter name={t("label.bathroom")} />
             </div>
+            <hr />
           </DialogContent>
         </div>
         <div
@@ -68,7 +78,6 @@ const DialogFilter = () => {
             position: "fixed",
             bottom: 0,
             marginBottom: "33px",
-            background: "white",
             width: "885px",
           }}
         >

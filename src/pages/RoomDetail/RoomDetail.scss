@@ -1,33 +1,38 @@
-.form-search{
-    top: 75px;   
+.form-search {
+    top: 75px;
 }
-.detail-room{
+
+.detail-room {
     margin-top: 75px;
     max-width: 1080px;
+
     .info-room {
-        .header-room{
+        .header-room {
             h1 {
                 font-size: 28px;
                 margin: 0;
                 margin-bottom: 5px;
             }
-            .heading{
+
+            .heading {
                 display: flex;
                 justify-content: space-between;
-                .heading__left{
+
+                .heading__left {
                     display: flex;
-                    .obility__room{
+
+                    .obility__room {
                         display: flex;
-    
+
                         img {
                             width: 16px;
                             margin-top: 5px;
                         }
-    
+
                         p {
                             color: rgba(2, 100, 200, 1);
                             font-size: 1.2rem;
-                            background-color:(--background-paper);
+                            background-color: (--background-paper);
                             border-radius: 10px;
                             margin: 0;
                             margin-top: 8px;
@@ -35,18 +40,19 @@
                         }
 
                     }
-                    .locate__room{
+
+                    .locate__room {
                         margin-top: 9px;
                         display: flex;
                         margin-left: 5px;
                         padding-left: 20px;
-    
+
                         p {
                             margin: 0;
                             font-size: 1.3rem;
                             color: rgba(2, 100, 200, 1);
                         }
-    
+
                         .icon_locate {
                             color: rgba(2, 100, 200, 1);
                             font-size: 1.6rem;
@@ -54,14 +60,17 @@
                         }
                     }
                 }
+
                 .heading__right {
                     text-align: right;
+
                     p {
                         font-weight: 500;
                         font-size: medium;
                         margin: 1px;
                     }
-                    .price-room{
+
+                    .price-room {
                         font-weight: 600;
                         font-size: large;
                         color: var(--orange-main);
@@ -70,6 +79,27 @@
             }
         }
 
+        .about-room {
+            .title-room{
+                margin-left: 10px;
+                margin-left: 10px;
+                .desc-room{
+
+                }
+                .bed-room{
+
+                }
+            }
+            .card-room{
+                .desc-room{
+
+                }
+                .button-Favorite{
+
+                }
+            }
+
+        }
 
     }
 }

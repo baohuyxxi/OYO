@@ -230,4 +230,12 @@ html[mode='dark'] {
     .MuiFormLabel-root{
         color:inherit
     }
+    .divider {
+        border-style: solid;
+        border-color: var(--divider);
+        border-bottom-width: thin;
+        width: 95%;
+        margin-top: 4px;
+        margin-bottom: 4px;
+      }
 }   

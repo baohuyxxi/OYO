@@ -5,7 +5,6 @@ const ListAccomPage = () => {
   return (
     <FramePage>
         <FilterBar />
-  
     </FramePage>
   );
 };

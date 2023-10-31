@@ -23,6 +23,7 @@ function SearchForm() {
 
   return (
     <div className="paper form-search">
+
         <form  onSubmit={handleSubmit}  className='container'>
          
               <div className='col'>

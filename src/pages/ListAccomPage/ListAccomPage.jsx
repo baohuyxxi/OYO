@@ -1,14 +1,12 @@
 import AppBar from "~/components/AppBar/AppBar";
 import FilterBar from "~/components/FilterBar/FilterBar";
+import FramePage from "~/components/FramePage/FramePage";
 const ListAccomPage = () => {
   return (
-    <div>
-      <div></div>
-      <div className="app_bar">
-        <AppBar />
+    <FramePage>
         <FilterBar />
-      </div>
-    </div>
+  
+    </FramePage>
   );
 };
 export default ListAccomPage;

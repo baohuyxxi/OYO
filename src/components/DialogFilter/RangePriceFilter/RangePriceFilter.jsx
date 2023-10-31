@@ -24,7 +24,7 @@ const RangePriceFilter = () => {
         <p style={{ marginRight: "10px" }}>Giá tối thiểu</p>
         <input
           type="number"
-          className="input-pricerange"
+          className="pricerange"
           value={values[0]}
           onChange={(event) =>
             setValues([parseInt(event.target.value), values[1]])
@@ -32,7 +32,7 @@ const RangePriceFilter = () => {
         />
         <input
           type="number"
-          className="input-pricerange"
+          className="pricerange"
           value={values[1]}
           onChange={(event) =>
             setValues([values[0], parseInt(event.target.value)])

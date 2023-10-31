@@ -106,7 +106,7 @@ export default function RoomDetail() {
     ];
     return (
         <FramePage>
-            <SearchForm className='form-search' />
+            <SearchForm className='search-bar' />
             <div className='content detail-room' >
                 <div className="info-room" >
                     <div className="header-room">
@@ -132,23 +132,23 @@ export default function RoomDetail() {
                     <ListImage {...imageData} />
                     <div className="about-room" >
                         <div className="row">
-                            <div className="col l-8 m-7 c-12">
-                                <div className="paper title-room">
+                            <div className="paper col l-8 m-7 c-12">
+                                <div className="title-room">
                                     <div className="desc-room">
                                         <h2>{t('contentMain.descHome')}</h2 >
                                         <p>Là một lựa chọn đúng đắn khi quý khách đến thăm Thắng Tam. Quầy tiếp tân 24 giờ luôn sẵn sàng phục vụ quý khách từ thủ tục nhận phòng đến trả phòng</p>
                                     </div>
-                                    <hr className="line" />
+                                    <hr className="divider" />
                                     <h2>{t('contentMain.convenient')}</h2>
                                     <Convenient listConvenient={listConvenientData} row={2} />
                                     <DialogConvenient listConvenient={listConvenientData} />
-                                    <hr className="line" />
+                                    <hr className="divider" />
                                     <div className="bed-room">
                                         <h2>{t('contentMain.bedroom')}</h2>
                                         <BedRoomSlider listRoom={listRoomData} />
                                     </div>
                                 </div>
-                               
+
                             </div>
 
                             <div className="col l-4 m-7 c-12">
@@ -171,10 +171,8 @@ export default function RoomDetail() {
                             </div>
                         </div>
                     </div>
-
                     <CommentReview />
                 </div>
-
             </div>
         </FramePage>
     )

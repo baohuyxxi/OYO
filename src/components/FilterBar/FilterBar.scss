@@ -6,10 +6,11 @@
   padding-right: 50px;
   padding-top: 15px;
   display: flex;
-  position: fixed;
-  background: white;
-  z-index: 97;
 
+  z-index: 97;
+  .slick-arrow:before {
+    color: var(--mainColor-contrastText);
+  }
   .slick-slider {
     width: 90%;
     margin-right: 25px;

@@ -12,9 +12,12 @@
 .content {
     color: var(--background-contrastText);
     background-color: var(--background-default);
-    align-items: center;
     max-width: 1500px;
-    margin: 0 auto;
+    min-height: 500px;
+    margin-top: 75px;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 500px;
     height: max-content;
 }
 .paper {

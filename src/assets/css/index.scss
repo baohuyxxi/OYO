@@ -98,6 +98,7 @@ html[mode="dark"] {
   --item-hover: #6a6c6f;
   --disabled-br: #5d5d5d;
   --disabled-cl: #8e8e8e;
+  --text-color: #fff;
 
   --background-contrastTextChannel: 255 255 255;
   --mainColor-main: #424242;
@@ -191,11 +192,13 @@ html[mode="dark"] {
   .MuiButton-root {
     text-transform: none !important;
   }
-  .MuiButtonBase-root {
-  }
+
+  .MuiButtonBase-root {}
+
   .MuiToolbar-root {
     background-color: inherit;
   }
+
   .MuiIconButton-root {
     color: inherit;
   }
@@ -203,26 +206,52 @@ html[mode="dark"] {
   .MuiPaper-root {
     // color: inherit;
   }
+
   .MuiInputBase-root {
     color: inherit;
     background: var(--input-background);
+
   }
+
   .MuiOutlinedInput-input {
     color: inherit;
   }
+
   .MuiMenu-paper {
     background-color: var(--background-paper);
   }
+
   .MuiMenu-list {
     color: var(--background-contrastText);
   }
+
   .MuiMenuItem-root:hover {
     background-color: var(--item-hover);
   }
+
   // .MuiAutocomplete-root{
   //     color:inherit
   // }
   .MuiFormLabel-root {
-    color: inherit;
+    color: inherit
+  }
+
+  .divider {
+    border-style: solid;
+    border-color: var(--divider);
+    border-bottom-width: thin;
+    width: 95%;
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+
+  input{
+    background-color: var(--input-background);
+    color: var(--text-color);
+    border: 1px solid  var(--text-color);
+    border-radius: 5px;
+  }
+  input:focus  {
+    border: 1px solid  var(--common-background);
   }
 }

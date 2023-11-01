@@ -32,7 +32,7 @@ const DialogFilter = () => {
         fullWidth={true}
         maxWidth="md"
       >
-        <div>
+        <div  className="paper">
           <DialogTitle
             id="alert-dialog-title"
             sx={{
@@ -78,7 +78,6 @@ const DialogFilter = () => {
             position: "fixed",
             bottom: 0,
             marginBottom: "33px",
-            background: "white",
             width: "885px",
           }}
         >

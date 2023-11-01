@@ -3,10 +3,13 @@
   justify-content: center;
   margin-top: 5px;
 
-  .input-pricerange {
+  .pricerange {
     padding: 8px 10px 8px 20px;
     margin-right: 10px;
-    border-radius: 5px;
     font-size: 16px;
+    background-color: var(--input-background);
+    color: var(--text-color);
+    border: 1px solid  var(--text-color);
+    border-radius: 5px;
   }
 }

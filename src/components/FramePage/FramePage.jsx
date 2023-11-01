@@ -6,7 +6,7 @@ export default function FramePage({ children }) {
   return (
     <div className="background">
       <AppBar />
-      <div className='content'>{children}</div>
+      <div className='body-page'>{children}</div>
       <Footer />
     </div>
   );

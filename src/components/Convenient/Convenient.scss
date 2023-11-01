@@ -10,6 +10,9 @@
         display: flex;
         padding-bottom: 15px;
         margin: 0;
+        img{
+            filter: var(--filter-icon)
+        }
 
         .icon-convenient {
             margin: 0;
@@ -17,6 +20,7 @@
             font-size: 2rem;
             height: 2rem;
             width: 2rem;
+           
         }
 
         p {

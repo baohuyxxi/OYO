@@ -1,15 +1,17 @@
-import React from "react"
+import React, { useState } from "react"
 import './CommentReview.scss'
 import { AuthContext } from '~/contexts/AuthContext';
-import { useContext } from 'react';
-import { Avatar } from "@mui/material";
+import { useContext } from 'react'
+import { Avatar } from "@mui/material"
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import comment from '~/mockdata/comment.json'
 
 export default function commentReview() {
-  const { userCurrent } = useContext(AuthContext);
+  const [showMoreComments, setShowMoreComments] = useState(false)
+  const commentsToShow = showMoreComments ? comment : comment.slice(0, 5)
   return (
     <div className="paper container-comments">
-      {comment.map((item, index) => (<div className="container-comment">
+      {commentsToShow.map((item, index) => (<div className="container-comment">
         <div key={index} className="commentator">
           <Avatar
             className="commentator-avatar"
@@ -21,7 +23,11 @@ export default function commentReview() {
         <div className="comment-info">
           <div className="heading">
             <div>{StarRating(item.rating)}</div>
-            <div className="comment-content"> {item.timestamp}</div>
+
+            <div className="comment-time">
+              <AccessTimeIcon />
+              <p> {item.timestamp}</p>
+            </div>
           </div>
 
           <div className="comment-content"> {item.content}</div>
@@ -40,20 +46,27 @@ export default function commentReview() {
 
         </div>
       </div>))}
+      <div className="thelast">
+        {comment.length > 5 && (
+          <button
+            onClick={() => setShowMoreComments(!showMoreComments)}
+            className="show-more-button"
+          >
+            {showMoreComments ? "Thu gọn" : "Xem thêm"}
+          </button>
+        )}
+      </div>
     </div>
   )
 }
 
 function StarRating(rating) {
   console.log({ rating })
-  // Chuyển đổi số sao thành một mảng các sao đầy
   const stars = Array.from({ length: rating }, (_, index) => (
     <span key={index} className="star-full">
       &#9733;
     </span>
   ));
-
-  // Chuyển đổi số sao còn lại thành các sao rỗng
   const emptyStars = Array.from({ length: 5 - rating }, (_, index) => (
     <span key={index} className="star-empty">
       &#9734;

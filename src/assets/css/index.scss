@@ -10,7 +10,7 @@ html[mode="light"] {
   --disabled-br: #e0e0e0;
   --disabled-cl: #a6a6a6;
   --text-color: #9a9a9a;
-
+  --filter-icon: brightness(0);
 
   --green-mainChannel: 0 255 0;
   --common-black: #000;
@@ -100,6 +100,7 @@ html[mode="dark"] {
   --disabled-br: #5d5d5d;
   --disabled-cl: #8e8e8e;
   --text-color: #fff;
+  --filter-icon: brightness(20);
 
   --background-contrastTextChannel: 255 255 255;
   --mainColor-main: #424242;

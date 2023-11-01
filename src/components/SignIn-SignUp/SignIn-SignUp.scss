@@ -20,18 +20,23 @@
     color: #fff;
   }
   .to-register{
-    background-color:rgb(231, 9, 14);
+    background-color:#FF5E1F;
     color: #fff;
   }
+  .to-register:hover{
+    background-color:#DF440F;
+  }
   .continue{
-    background-color:rgb(231, 9, 14);
     color: #fff;
   }
   .register{
     margin-top: 15px;
     margin-bottom: 20px;
-    background-color:#42b72a;
+    background-color:#4ff036;
     color: #fff;
+  }
+  .register:hover{
+    background-color:#45C846;
   }
   // #42b72a
   .google{

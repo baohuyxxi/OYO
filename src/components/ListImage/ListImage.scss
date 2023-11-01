@@ -19,10 +19,12 @@
 
     .image-item {
         margin: 0 auto;
+      
 
         img {
             width: 100%;
             height: 214px;
+            border-radius: 5px;
         }
     }
 
@@ -32,15 +34,7 @@
         img {
             width: 100%;
             height: 432.5px;
-        }
-    }
-
-    .image-item-thumbnail {
-        margin: 0 auto;
-
-        img {
-            width: 100%;
-            height: 432.5px;
+            border-radius: 5px;
         }
     }
 }

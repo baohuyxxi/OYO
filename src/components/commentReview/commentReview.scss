@@ -35,32 +35,65 @@
 
         .comment-info {
             width: 830px;
-          
-           
-            
-            .heading{
+
+
+
+            .heading {
                 justify-content: space-between;
                 display: flex;
                 padding-right: 20px;
                 padding-top: 5px;
-                .star-rating{
+
+                .star-rating {
                     color: var(--yellow);
                     font-size: x-large;
                     width: max-content;
                 }
+                .comment-time{
+                    font-size: small;
+                    display: flex;
+                    padding-top: 10px;
+                    font-weight: 500;
+                    .p{
+                        font-size: medium;
+                        margin-left: 5px;
+                        margin-top: 3px;
+                    }
+                }
             }
-            .comment-content{
+
+            .comment-content {
                 font-size: small;
                 font-weight: 500;
                 margin-bottom: 5px;
             }
-            .comment-image{
+
+            .comment-image {
                 height: 100px;
                 width: 100px;
                 margin-right: 10px;
                 border-radius: 5px;
             }
-           
+
+          
+
+        }
+        
+    }
+    .thelast {
+        display: flex;
+        justify-content: center;
+
+        .show-more-button {
+            border: none;
+            color: var(--primary-main);
+            background: inherit;
+            font-size: medium;
+            font-weight: 600;
+        }
+        .show-more-button:hover{
+            background-color: var(--input-background);
+            border-radius: 5px;
         }
     }
 

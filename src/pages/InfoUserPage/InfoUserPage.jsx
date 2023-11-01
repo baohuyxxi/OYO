@@ -21,7 +21,6 @@ export default function InfoUserPage() {
     setSelectedItem(item);
   };
   return !userCurrent ? (
-
     (document.location = "/")
   ) : (
     <>
@@ -35,21 +34,29 @@ export default function InfoUserPage() {
                 <div className="options">
                   <Link
                     to="/account"
-                    className={`option ${selectedItem === "profile" ? "selected-option" : ""}`}
+                    className={`option ${
+                      selectedItem === "profile" ? "selected-option" : ""
+                    }`}
                     onClick={() => handleItemClick("profile")}
                   >
                     {t("navbar.profile")}
                   </Link>
                   <Link
                     to="/account/password&Security"
-                    className={`option ${selectedItem === "password&Security" ? "selected-option" : ""}`}
+                    className={`option ${
+                      selectedItem === "password&Security"
+                        ? "selected-option"
+                        : ""
+                    }`}
                     onClick={() => handleItemClick("password&Security")}
                   >
                     {t("navbar.passwordAndSecurity")}
                   </Link>
                   <Link
                     to="/account/payment"
-                    className={`option ${selectedItem === "billing" ? "selected-option" : ""}`}
+                    className={`option ${
+                      selectedItem === "billing" ? "selected-option" : ""
+                    }`}
                     onClick={() => handleItemClick("billing")}
                   >
                     {t("navbar.billingInformation")}
@@ -67,7 +74,6 @@ export default function InfoUserPage() {
               </div>
             </div>
           </div>
-
         </div>
       </FramePage>
     </>

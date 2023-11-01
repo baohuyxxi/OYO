@@ -84,16 +84,22 @@ const DialogFilter = () => {
         >
           <DialogActions>
             <Button
-              // onClick={handleClose}
+              onClick={handleClose}
               color="error"
-              sx={{ fontSize: "14px" }}
+              sx={{
+                fontSize: "16px",
+                textTransform: "uppercase",
+              }}
             >
-              Close
+              CLOSE
             </Button>
             <Button
               // onClick={handleFilter}
               autoFocus
-              sx={{ fontSize: "14px", textTransform: "none" }}
+              sx={{
+                fontSize: "16px",
+                textTransform: "uppercase",
+              }}
             >
               OK
             </Button>

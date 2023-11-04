@@ -1,119 +1,112 @@
-
 .detail-room {
-    max-width: 1080px;
-    margin-top: 20px;
-    .info-room {
-        .header-room {
-            h1 {
-                font-size: 28px;
-                margin: 0;
-                margin-bottom: 5px;
+  max-width: 1080px;
+  margin-top: 20px;
+  .info-room {
+    .header-room {
+      h1 {
+        font-size: 28px;
+        margin: 0;
+        margin-bottom: 5px;
+      }
+
+      .heading {
+        display: flex;
+        justify-content: space-between;
+
+        .heading__left {
+          display: flex;
+
+          .obility__room {
+            display: flex;
+
+            img {
+              width: 16px;
+              margin-top: 5px;
             }
 
-            .heading {
-                display: flex;
-                justify-content: space-between;
-
-                .heading__left {
-                    display: flex;
-
-                    .obility__room {
-                        display: flex;
-
-                        img {
-                            width: 16px;
-                            margin-top: 5px;
-                        }
-
-                        p {
-                            color: rgba(2, 100, 200, 1);
-                            font-size: 1.2rem;
-                            background-color: (--background-paper);
-                            border-radius: 10px;
-                            margin: 0;
-                            margin-top: 8px;
-                            margin-right: 5px;
-                        }
-
-                    }
-
-                    .locate__room {
-                        margin-top: 9px;
-                        display: flex;
-                        margin-left: 5px;
-                        padding-left: 20px;
-
-                        p {
-                            margin: 0;
-                            font-size: 1.3rem;
-                            color: rgba(2, 100, 200, 1);
-                        }
-
-                        .icon_locate {
-                            color: rgba(2, 100, 200, 1);
-                            font-size: 1.6rem;
-                            margin-right: 5px;
-                        }
-                    }
-                }
-
-                .heading__right {
-                    text-align: right;
-
-                    p {
-                        font-weight: 500;
-                        font-size: medium;
-                        margin: 1px;
-                    }
-
-                    .price-room {
-                        font-weight: 600;
-                        font-size: large;
-                        color: var(--orange-main);
-                    }
-                }
+            p {
+              color: rgba(2, 100, 200, 1);
+              font-size: 1.2rem;
+              background-color: (--background-paper);
+              border-radius: 10px;
+              margin: 0;
+              margin-top: 8px;
+              margin-right: 5px;
             }
+          }
+
+          .locate__room {
+            margin-top: 9px;
+            display: flex;
+            margin-left: 5px;
+            padding-left: 20px;
+
+            p {
+              margin: 0;
+              font-size: 1.3rem;
+              color: rgba(2, 100, 200, 1);
+            }
+
+            .icon_locate {
+              color: rgba(2, 100, 200, 1);
+              font-size: 1.6rem;
+              margin-right: 5px;
+            }
+          }
         }
 
-        .about-room {
-            h2{
-                font-size: large;
-                padding-top: 10px;
-                margin-bottom: 0px;
-            }
-            p{
-                margin-top: 0px;
-                font-size: smaller;
-            }
-            .title-room{
-                padding-left: 15px;
-                padding-right: 15px;
+        .heading__right {
+          text-align: right;
 
-                .desc-room{
-                 
-                }
-                .bed-room{
-                    padding-bottom: 1px;
-                }
-            }
-            .card-room{
-                padding-left: 15px;
-                padding-right: 15px;
-                .desc-room{
+          p {
+            font-weight: 500;
+            font-size: medium;
+            margin: 1px;
+          }
 
-                }
-                .button-Favorite{
-
-                }
-                .button-Favorite{
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding-bottom: 20px;
-                }
-            }
-
+          .price-room {
+            font-weight: 600;
+            font-size: large;
+            color: var(--orange-main);
+          }
         }
-
+      }
     }
+
+    .about-room {
+      h2 {
+        font-size: large;
+        padding-top: 10px;
+        margin-bottom: 0px;
+      }
+      p {
+        margin-top: 0px;
+        font-size: smaller;
+      }
+      .title-room {
+        padding-left: 15px;
+        padding-right: 15px;
+
+        .desc-room {
+        }
+        .bed-room {
+          padding-bottom: 1px;
+        }
+      }
+      .card-room {
+        padding-left: 15px;
+        padding-right: 15px;
+        .desc-room {
+        }
+        .button-Favorite {
+        }
+        .button-Favorite {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding-bottom: 20px;
+        }
+      }
+    }
+  }
 }

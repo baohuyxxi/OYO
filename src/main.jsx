@@ -8,8 +8,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { BrowserRouter } from "react-router-dom";
 import AuthProvider from "./contexts/AuthContext";
 import "./assets/css/grid.scss";
-import './assets/css/frame.scss'
-import './assets/css/index.scss'
+import "./assets/css/frame.scss";
+import "./assets/css/index.scss";
 import LocateProvider, { LocateContext } from "./contexts/LocateContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -17,7 +17,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <LocateProvider>
         <AuthProvider>
-
           <I18nextProvider i18n={i18n}>
             <CssBaseline />
             <SnackbarProvider
@@ -28,7 +27,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               <App />
             </SnackbarProvider>
           </I18nextProvider>
-
         </AuthProvider>
       </LocateProvider>
     </BrowserRouter>

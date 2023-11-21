@@ -58,8 +58,6 @@ export const updateInfoRequest = async (data) => {
     const res = await axios.put("general/update-info", data, {
       params: { mail: data.mail },
     });
-    console.log(data.mail);
-    console.log(res);
     return res;
   } catch (error) {
     return error.response;

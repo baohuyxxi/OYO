@@ -22,6 +22,10 @@ const BookingPage = () => {
     );
     const priceAfterChoosePayment = 1000
         const priceDay =1000
+
+    const handleBookingRoom = () => {
+        
+    }
     return (
         <FramePage>
 
@@ -116,9 +120,9 @@ const BookingPage = () => {
                                         <p style={{ fontWeight: '550' }}>{formatPrice(infoBooking?.priceTotal)}</p>
                                     </div>
                                 </div>
-                                {/* <button onClick={handleBookingRoom} className="btn-booking">
+                                <button onClick={handleBookingRoom} className="btn-booking">
                                 Đặt phòng
-                            </button> */}
+                            </button>
                             </div>
                         </div>
                     </div>
@@ -139,7 +143,7 @@ const mockData = {
         priceTotal: 200,
     },
     dataDetailHomeBooking: {
-        thumbnail: 'url-to-thumbnail',
+        thumbnail: 'https://visaho.vn/upload_images/images/2022/04/01/dien-tich-can-ho-chung-cu-2-min.jpg',
         name: 'Mock Home Name',
         addressDetail: 'Mock Address',
         provinceName: 'Mock Province',

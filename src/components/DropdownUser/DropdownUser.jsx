@@ -4,20 +4,20 @@ import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { NavLink } from 'react-router-dom'
-import { useState, useEffect, useContext } from 'react'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined'
 import FactCheckOutlinedIcon from '@mui/icons-material/FactCheckOutlined'
 import LogoutOutlinedIcon from '@mui/icons-material/ExitToAppOutlined'
-import { AuthContext } from '~/contexts/AuthContext'
+import { useDispatch, useSelector } from 'react-redux'
+import userSlice from '~/redux/userSlice';
 import { Avatar } from '@mui/material';
-import StyledMenu from '~/assets/custom/StyleMenu'
 import { t } from 'i18next'
 
 import './DropdownUser.scss'
 
 export default function CustomizedMenus() {
-  const { setUserCurrent, setAccessToken, setRefreshToken, userCurrent } = useContext(AuthContext)
+  const user = useSelector((state) => state.user.current)
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -27,10 +27,7 @@ export default function CustomizedMenus() {
     setAnchorEl(null);
   };
   const handleLogout = () => {
-    setUserCurrent(null)
-    setAccessToken(null)
-    setRefreshToken(null)
-    setAnchorEl(null);
+    dispatch(userSlice.actions.logout())
   }
   
 
@@ -42,11 +39,11 @@ export default function CustomizedMenus() {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         disableElevation
-        startIcon={<Avatar className='avatar' alt="Cindy Baker"src={userCurrent.avatarUrl} />}
+        startIcon={<Avatar className='avatar' alt="Cindy Baker"src={user.avatarUrl} />}
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
       >
-       {!userCurrent ? t('title.userName') : userCurrent.userName}
+       {!user ? t('title.userName') : user.userName}
       </Button>
       <Menu
         className='dropdown-menu'

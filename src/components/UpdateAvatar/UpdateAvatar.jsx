@@ -3,20 +3,24 @@ import { useRef, useState } from "react";
 import AvatarEditor from "react-avatar-editor"
 import { updateAvatarRequest } from "~/services/API/authAPI";
 import PublicIcon from '@mui/icons-material/Public'
+import { useDispatch } from 'react-redux';
+import userSlice from '~/redux/userSlice';
 import './UpdateAvatar.scss'
 import { t } from 'i18next';
 
-export default function UpdateAvatar({ imageFile, modalOpen, setModalOpen, setPreview, mail, setImageFile, setUserCurrent }) {
+export default function UpdateAvatar({ imageFile, modalOpen, setModalOpen, mail, setImageFile }) {
     const [slideValue, setSlideValue] = useState(10);
     const cropRef = useRef(null);
+    const dispatch = useDispatch();
     const handleSave = async () => {
         if (imageFile) {
-            setPreview(URL.createObjectURL(imageFile));
-
+            const scaledImage = cropRef.current.getImageScaledToCanvas().toDataURL();
+            const scaledImageFile = await fetch(scaledImage)
+                .then(res => res.blob())
+                .then(blob => new File([blob], 'scaledImage.jpg', { type: 'image/jpeg' }));
+            const res = await updateAvatarRequest( scaledImageFile, mail)
             setModalOpen(false);
-            console.log(imageFile)
-            const res = await updateAvatarRequest(imageFile, mail)
-            setUserCurrent(res.data)
+            dispatch(userSlice.actions.editInfo(res.data))
         }
     };
     const handleCancel = () => {

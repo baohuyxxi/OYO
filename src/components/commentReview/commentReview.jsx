@@ -1,7 +1,5 @@
 import React, { useState } from "react"
 import './CommentReview.scss'
-import { AuthContext } from '~/contexts/AuthContext';
-import { useContext } from 'react'
 import { Avatar } from "@mui/material"
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import comment from '~/mockdata/comment.json'

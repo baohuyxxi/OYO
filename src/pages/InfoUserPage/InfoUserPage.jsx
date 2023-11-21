@@ -6,21 +6,20 @@ import EditInfo from "./EditAccount/EditAccount";
 import PasswordSecurity from "./passwordSecurity/passwordSecurity";
 import Footer from "~/components/Footer/Footer";
 import Paper from "@mui/material/Paper";
-import { AuthContext } from "~/contexts/AuthContext";
-import { useContext } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import CardInfo from "./CardInfo/CardInfo";
 import FramePage from "~/components/FramePage/FramePage";
 import "./InfoUserPage.scss";
 import { t } from "i18next";
 
 export default function InfoUserPage() {
-  const { userCurrent } = useContext(AuthContext);
+  const user = useSelector((state) => state.user.current)
   const [selectedItem, setSelectedItem] = useState("profile");
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
   };
-  return !userCurrent ? (
+  return !user ? (
     (document.location = "/")
   ) : (
     <>

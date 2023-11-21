@@ -4,8 +4,7 @@ import WysiwygOutlinedIcon from '@mui/icons-material/WysiwygOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import Paper from '@mui/material/Paper';
-import { AuthContext } from '~/contexts/AuthContext';
-import { useContext } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
 import Menu from '@mui/material/Menu';
@@ -16,7 +15,8 @@ import { t } from 'i18next';
 import { Button } from '@mui/material';
 
 export default function CardInfo() {
-    const { userCurrent, setUserCurrent, setAccessToken, setRefreshToken, accessToken } = useContext(AuthContext);
+    const user = useSelector((state) => state.user.current)
+    
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleOpenMenu = (event) => {
@@ -59,16 +59,14 @@ export default function CardInfo() {
         inputRef.current.value = '';
     };
     return (
-        <div className="col l-3" style={{ paddingTop: 0 }}>
+        <div className="col l-3" style={{ paddingTop: 60 }}>
             <UpdateAvatar
                 modalOpen={modalOpen}
                 imageFile={imageFile}
-                setPreview={setPreview}
                 setModalOpen={setModalOpen}
                 setImageFile={setImageFile}
-                mail={userCurrent.mail}
-                accessToken={accessToken}
-                setUserCurrent={setUserCurrent}
+                mail={user.mail}
+              
             />
             <input
                 hidden
@@ -82,12 +80,12 @@ export default function CardInfo() {
                     <Avatar
                         className="user-avatar"
                         alt="Cindy Baker"
-                        src={userCurrent.avatarUrl}
+                        src={user.avatarUrl}
                         onClick={handleOpenMenu}
                     />
                     <div className="user-details">
-                        <h3 className="user-name">{userCurrent.userName}</h3>
-                        <div className="user-email">{userCurrent.mail}</div>
+                        <h3 className="user-name">{user.userName}</h3>
+                        <div className="user-email">{user.mail}</div>
                     </div>
                 </div>
                 <Divider />

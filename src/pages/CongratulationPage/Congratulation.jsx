@@ -1,13 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '~/contexts/AuthContext';
-import { useContext } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from "react";
 import Logo from '~/assets/logo.svg'
 import './Congratulation.scss';
 import { t } from 'i18next';
 
 const CongratulationPage = () => {
-    const { userCurrent, setUserCurrent, setAccessToken, setRefreshToken , accessToken} = useContext(AuthContext);
+    const user = useSelector((state) => state.user.current)
     const navigate = useNavigate();
 
     const backHome = () => {
@@ -51,7 +50,7 @@ const CongratulationPage = () => {
                 </div>
                 <div className="col l-6">
                     <div className="text-thanks">
-                        <h1>{`${t('setupOwner.welcome')} ${userCurrent.userName}!`}</h1>
+                        <h1>{`${t('setupOwner.welcome')} ${user.userName}!`}</h1>
                         <p>{t('setupOwner.beforePostHome')}</p>
                         <div style={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
                             <p style={{ color: 'red', padding: 0, fontWeight: 'bold' }}>{t('setupOwner.note')}</p>

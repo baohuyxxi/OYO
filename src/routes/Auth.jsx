@@ -19,7 +19,7 @@ const Auth = () => {
   );
   const TestComponet = React.lazy(() => import("~/components/Test/Test"));
   const Test = React.lazy(() =>
-    import("~/components/CommentReview/CommentReview")
+    import("~/pages/BookingPage/BookingPage")
   );
 
   return (
@@ -41,14 +41,7 @@ const Auth = () => {
         }
       />
 
-      <Route
-        path="/Register"
-        element={
-          <React.Suspense>
-            <Register email="userD@gmail.com" />
-          </React.Suspense>
-        }
-      />
+     
       <Route
         path="/room-detail/:id"
         element={

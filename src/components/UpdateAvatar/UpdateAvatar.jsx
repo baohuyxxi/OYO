@@ -6,21 +6,20 @@ import PublicIcon from '@mui/icons-material/Public'
 import './UpdateAvatar.scss'
 import { t } from 'i18next';
 
-export default function UpdateAvatar({ imageFile , modalOpen, setModalOpen, setPreview, mail, setImageFile }) {
-    console.log(imageFile , modalOpen)
+export default function UpdateAvatar({ imageFile, modalOpen, setModalOpen, setPreview, mail, setImageFile, setUserCurrent }) {
     const [slideValue, setSlideValue] = useState(10);
     const cropRef = useRef(null);
     const handleSave = async () => {
         if (imageFile) {
             setPreview(URL.createObjectURL(imageFile));
-         
+
             setModalOpen(false);
-            
-            const res = await updateAvatarRequest(imageFile, mail, accessToken)
+            console.log(imageFile)
+            const res = await updateAvatarRequest(imageFile, mail)
             setUserCurrent(res.data)
         }
     };
-    const handleCancel =() =>{
+    const handleCancel = () => {
         setImageFile(null)
         setModalOpen(false)
     }
@@ -35,7 +34,7 @@ export default function UpdateAvatar({ imageFile , modalOpen, setModalOpen, setP
                     scale={slideValue / 10}
                     rotate={0}
                     image={imageFile}
-                 
+
                 />
                 <Slider className="silder"
                     min={10}
@@ -45,15 +44,15 @@ export default function UpdateAvatar({ imageFile , modalOpen, setModalOpen, setP
                     onChange={(e) => setSlideValue(e.target.value)}
                 />
                 <hr className="divider"></hr>
-                <p> <PublicIcon/>{t('common.publicAvatar')}</p>
+                <p> <PublicIcon />{t('common.publicAvatar')}</p>
                 <Box>
                     <Button className="button cancel"
                         variant="outlined"
                         onClick={handleCancel}
                     >
-                       {t('common.cancel')}
+                        {t('common.cancel')}
                     </Button>
-                    <Button  className="button save"
+                    <Button className="button save"
                         variant="contained"
                         onClick={handleSave}
                     >

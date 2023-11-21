@@ -61,7 +61,6 @@ export default function commentReview() {
 }
 
 function StarRating(rating) {
-  console.log({ rating })
   const stars = Array.from({ length: rating }, (_, index) => (
     <span key={index} className="star-full">
       &#9733;

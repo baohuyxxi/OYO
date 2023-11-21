@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import MenuItem from '@mui/material/MenuItem'
 import { Grid } from '@mui/material'
 import FormControl from '@mui/material/FormControl'
@@ -11,25 +11,40 @@ import { useSnackbar } from 'notistack'
 import { t } from 'i18next'
 
 export default function EditAccount() {
-  const { userCurrent, setUserCurrent } = useContext(AuthContext);
-  const [user, setUser] = useState(userCurrent);
-  const { accessToken } = useContext(AuthContext)
   const { enqueueSnackbar } = useSnackbar()
   const [submit, setSubmit] =useState(false)
+  const { userCurrent, setUserCurrent } = useContext(AuthContext);
+  const [user, setUser] = useState(userCurrent);
+
+  useEffect(() => {
+    if (user && user.dateOfBirth) {
+      const updatedUser = { ...user };
+      const birthDate = new Date(user.dateOfBirth);
+      updatedUser.birthday = birthDate.getDate();
+      updatedUser.monthOfBirth = birthDate.getMonth() + 1;
+      updatedUser.yearOfBirth = birthDate.getFullYear();
+      setUser(updatedUser);
+    }
+  }, [userCurrent]);
+
   const handleUser = (event) => {
     setUser({ ...user, [event.target.name]: event.target.value })
     setSubmit(true)
-    //setUser({...user, 'dateOfBirth':`2002-7-6`})
   }
   const handleSave = async (event) => {
-    event.preventDefault()
+    if(user.birthday && user.monthOfBirth && user.yearOfBirth)
+    {
+      setUser({
+        ...user, dateOfBirth: `${user.yearOfBirth}-${user.monthOfBirth}-${user.birthday}`
+      });
+    }
     console.log(user)
-    const res = await updateInfoRequest(user, accessToken)
-    console.log(res)
+    event.preventDefault()
+    const res = await updateInfoRequest(user)
     if (res.status === 200) {
       setUserCurrent(res.data)
       enqueueSnackbar(t('message.updateSuccess'), { variant: 'success' });
-    } else if (res.status === 400) {
+    } else {
       enqueueSnackbar("Cập nhật thất bại", { variant: 'error' });
     }
   }

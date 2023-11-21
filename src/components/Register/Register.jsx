@@ -33,8 +33,8 @@ export default function Register(props) {
             variant: "success",
           });
           props.handleClose();
+         document.location = '/'
         } else if (registerUser.status === 400) {
-          console.log("400");
           setError(t("message.accountExist"));
           enqueueSnackbar(t("message.accountExist"), { variant: "error" });
           props.handleClose();
@@ -75,7 +75,6 @@ export default function Register(props) {
 
   return (
     <Container component="main" maxWidth="xs">
-      {/* <h3>{t('label.email')}/{t('label.phone')}</h3> */}
       <Box component="form" onSubmit={handleRegister} noValidate sx={{ mt: 1 }}>
         <div className="form-element">
           <CustomInput

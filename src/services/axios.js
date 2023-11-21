@@ -1,16 +1,20 @@
 import axios from "axios";
 import { getToken, getRefreshToken, updateToken } from "./token";
 
+import userSlice from '~/redux/userSlice';
 const instance = axios.create({
   baseURL: "http://localhost:8080/api/v1",
   timeout: 50000,
   validateStatus: function (status) {
-    return status >= 200 && status <= 500;
+    return status >= 200 && status < 400;
   },
 });
 instance.interceptors.request.use(
+
   (config) => {
+
     const token = getToken();
+
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;
     }
@@ -22,29 +26,30 @@ instance.interceptors.request.use(
 );
 instance.interceptors.response.use(
   (res) => {
+    console.log("res",res)
     return res;
   },
-  async (err) => {
-    const originalConfig = err.config;
+  async (error) => {
+   
+    const originalConfig = error.config;
 
-    if (originalConfig.url !== "/user/signin" && err.response) {
-      if (err.response.status === 401 && !originalConfig._retry) {
-        originalConfig._retry = true;
+    if (error.response.status === 401) {
+      try {
+        const refreshToken = getRefreshToken();
+        const response = await axios.post("http://localhost:8080/api/v1/auth/refreshToken",{ tokenRefresh: refreshToken });
+        console.log(response)
+        const acessToken = response.data.accessToken;
+        updateToken(acessToken)
+      
 
-        try {
-          const rs = await instance.post("/user/refresh-token", {
-            refreshToken: getRefreshToken(),
-          });
-          const { accessToken } = rs.data;
-          updateToken(accessToken);
-          return instance(originalConfig);
-        } catch (_error) {
-          return Promise.reject(_error);
-        }
+        originalConfig.headers["Authorization"] = `Bearer ${acessToken}`;
+        return axios(originalConfig);
+      } catch (refreshError) {
+        console.error("Refresh token failed", refreshError);
+        return Promise.reject(refreshError);
       }
     }
-
-    return Promise.reject(err);
-  }
-);
+    return Promise.reject(error);
+}
+)
 export default instance;

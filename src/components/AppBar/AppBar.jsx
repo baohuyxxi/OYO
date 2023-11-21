@@ -10,8 +10,7 @@ import LanguageSelect from "../LanguageSelected/LanguageSelected";
 import Button from "@mui/material/Button";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import SignInSignUp from "../SignIn-SignUp/SignIn-SignUp";
-import { AuthContext } from "~/contexts/AuthContext";
-import { useContext } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import MailNotification from "../MailNotification/MailNotification";
 import { t } from "i18next";
 import "./AppBar.scss";
@@ -24,7 +23,8 @@ export default function NavBar() {
   const handleClose = () => {
     setOpen(false);
   };
-  const { userCurrent } = useContext(AuthContext);
+  const user = useSelector((state) => state.user.current)
+
   return (
     <AppBar className="appbar">
       <Toolbar className="paper toolbar">
@@ -40,7 +40,7 @@ export default function NavBar() {
         <div className="element">
           <LanguageSelect />
         </div>
-        {!userCurrent ? (
+        {user===null ? (
           <Button
             className="element"
             onClick={handleClickOpen}

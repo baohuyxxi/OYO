@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
 import { validate } from "~/utils/validate";
@@ -11,7 +11,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import CustomInput from "~/assets/custom/CustomInput";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import { registerRequest } from "~/services/API/authAPI";
-import { AuthContext } from "~/contexts/AuthContext";
+import { useDispatch, useSelector } from 'react-redux'
 import { RegisterRequest } from "~/share/model/auth";
 import { useSnackbar } from "notistack";
 import { t } from "i18next";
@@ -19,7 +19,7 @@ import "./Register.scss";
 
 export default function Register(props) {
   const [register, setRegister] = useState(RegisterRequest);
-  const { setUserCurrent, setAccessToken, setRefreshToken } = useContext(AuthContext);
+  const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
   const handleRegister = async (event) => {
     event.preventDefault();

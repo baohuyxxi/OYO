@@ -9,7 +9,7 @@ import Visibility from '@mui/icons-material/Visibility'
 import IconButton from '@mui/material/IconButton'
 import { ChangePassword } from '~/share/model/auth'
 import { changePasswordRequest } from '~/services/API/authAPI'
-import { AuthContext } from '~/contexts/AuthContext'
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useSnackbar } from 'notistack'
 
@@ -22,7 +22,6 @@ export default function passwordSecurity() {
     checkPassword: false,
   });
 
-  const { accessToken } = useContext(AuthContext)
   const [changePassword, setChangePassword] = useState(ChangePassword)
 
   const handleShowPassword = (fieldName) => {

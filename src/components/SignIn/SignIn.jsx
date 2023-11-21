@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-undef */
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import googleIcon from "~/assets/imageMaster/google-logo.png";
@@ -14,28 +14,29 @@ import CustomInput from "~/assets/custom/CustomInput";
 import SignInSignUp from "../SignIn-SignUp/SignIn-SignUp";
 import { loginRequest, checkAccount } from "~/services/API/authAPI";
 import { SigninRequest } from "~/share/model/auth";
-import { AuthContext } from "~/contexts/AuthContext";
 import { validate } from "~/utils/validate";
 import { useSnackbar } from "notistack";
+import { useDispatch } from 'react-redux';
+import userSlice from '~/redux/userSlice';
 import { t } from "i18next";
 import "./SignIn.scss";
-import { HttpStatusCode } from "axios";
 
 export default function SignIn(props) {
-  const { setUserCurrent, setAccessToken, setRefreshToken } =
-    useContext(AuthContext);
+  const dispatch = useDispatch();
   const [signin, setSignin] = useState(SigninRequest);
   const [errorEmail, setErrorEmail] = useState();
-  const [showValidEmail, setShowValidEmail] = useState(false);
+
   const [errorPassword, setErrorPassword] = useState();
   const handleTogglePassword = () => setShowPassword(!showPassword);
-  const [showPassword, setShowPassword] = useState(false);
+
 
   const [showPasswordInput, setShowPasswordInput] = useState(false);
   const [showRegisterButton, setShowRegisterButton] = useState(false);
   const [showLoginButton, setShowLoginButton] = useState(false);
   const [showStatusButton, setShowStatusButton] = useState(false);
   const [showLoadingButton, setShowLoadingButton] = useState(false);
+  const [showValidEmail, setShowValidEmail] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
 
   const handleLogin = async (event) => {
@@ -46,11 +47,12 @@ export default function SignIn(props) {
     }
     const userLogin = await loginRequest(signin);
     if (userLogin.status === 200) {
-      setAccessToken(userLogin.data.accessToken);
-      setRefreshToken(userLogin.data.refreshToken);
-      setUserCurrent(userLogin.data.infoUserResponse);
+      dispatch(userSlice.actions.signin(userLogin.data));
       enqueueSnackbar(t("message.signin"), { variant: "success" });
       props.handleClose();
+    //   setTimeout(function () {
+    //     document.location = '/';
+    // }, 500);
     } else if (userLogin.status === 408) {
       enqueueSnackbar("Tài khoản đang chờ xác thực", { variant: "warning" });
     } else {

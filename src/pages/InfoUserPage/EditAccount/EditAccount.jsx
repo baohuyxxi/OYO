@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import MenuItem from '@mui/material/MenuItem'
 import { Grid } from '@mui/material'
 import FormControl from '@mui/material/FormControl'
 import Button from '@mui/material/Button'
 import CustomInput from '~/assets/custom/CustomInput'
-import { useState, useContext } from 'react'
-import { AuthContext } from '~/contexts/AuthContext'
+import { useDispatch, useSelector } from 'react-redux';
+import userSlice from '~/redux/userSlice';
 import { updateInfoRequest } from '~/services/API/authAPI'
 import { useSnackbar } from 'notistack'
 import { t } from 'i18next'
@@ -13,7 +13,8 @@ import { t } from 'i18next'
 export default function EditAccount() {
   const { enqueueSnackbar } = useSnackbar()
   const [submit, setSubmit] =useState(false)
-  const { userCurrent, setUserCurrent } = useContext(AuthContext);
+  const userCurrent = useSelector((state) => state.user.current)
+  const dispatch = useDispatch();
   const [user, setUser] = useState(userCurrent);
 
   useEffect(() => {
@@ -38,11 +39,10 @@ export default function EditAccount() {
         ...user, dateOfBirth: `${user.yearOfBirth}-${user.monthOfBirth}-${user.birthday}`
       });
     }
-    console.log(user)
     event.preventDefault()
     const res = await updateInfoRequest(user)
     if (res.status === 200) {
-      setUserCurrent(res.data)
+      dispatch(userSlice.actions.editInfo(res.data))
       enqueueSnackbar(t('message.updateSuccess'), { variant: 'success' });
     } else {
       enqueueSnackbar("Cập nhật thất bại", { variant: 'error' });

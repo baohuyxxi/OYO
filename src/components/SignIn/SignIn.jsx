@@ -45,7 +45,6 @@ export default function SignIn(props) {
       return;
     }
     const userLogin = await loginRequest(signin);
-    console.log(userLogin);
     if (userLogin.status === 200) {
       setAccessToken(userLogin.data.accessToken);
       setRefreshToken(userLogin.data.refreshToken);
@@ -96,7 +95,6 @@ export default function SignIn(props) {
           return;
         }
         const checkEmail = await checkAccount(signin)
-        console.log(checkEmail)
         if (checkEmail.status === 302) {
           toggleShow(["PasswordInput", "LoginButton"]);
         } else {

@@ -53,7 +53,7 @@ export const changePasswordRequest = async (data, token) => {
   }
 };
 
-export const updateInfoRequest = async (data, token) => {
+export const updateInfoRequest = async (data) => {
   try {
     const res = await axios.put("general/update-info", data, {
       params: { mail: data.mail },

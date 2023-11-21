@@ -1,6 +1,7 @@
 .detail-room {
   max-width: 1080px;
   margin-top: 20px;
+
   .info-room {
     .header-room {
       h1 {
@@ -58,54 +59,78 @@
         .heading__right {
           text-align: right;
 
-          p {
-            font-weight: 500;
-            font-size: medium;
-            margin: 1px;
+          .desc-room {}
+
+          .bed-room {
+            padding-bottom: 1px;
+          }
+        }
+
+        .card-room {
+          padding-left: 15px;
+          padding-right: 15px;
+
+          .desc-room {}
+
+          .button-Favorite {}
+
+          .button-Favorite {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 20px;
           }
 
-          .price-room {
-            font-weight: 600;
-            font-size: large;
-            color: var(--orange-main);
+          .button-booking {
+            padding-bottom: 20px;
           }
+        }
+
+        .price-room {
+          font-weight: 600;
+          font-size: large;
+          color: var(--orange-main);
         }
       }
     }
+  }
 
-    .about-room {
-      h2 {
-        font-size: large;
-        padding-top: 10px;
-        margin-bottom: 0px;
-      }
-      p {
-        margin-top: 0px;
-        font-size: smaller;
-      }
-      .title-room {
-        padding-left: 15px;
-        padding-right: 15px;
+  .about-room {
+    h2 {
+      font-size: large;
+      padding-top: 10px;
+      margin-bottom: 0px;
+    }
 
-        .desc-room {
-        }
-        .bed-room {
-          padding-bottom: 1px;
-        }
+    p {
+      margin-top: 0px;
+      font-size: smaller;
+    }
+
+    .title-room {
+      padding-left: 15px;
+      padding-right: 15px;
+
+      .desc-room {}
+
+      .bed-room {
+        padding-bottom: 1px;
       }
-      .card-room {
-        padding-left: 15px;
-        padding-right: 15px;
-        .desc-room {
-        }
-        .button-Favorite {
-        }
-        .button-Favorite {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding-bottom: 20px;
-        }
+    }
+
+    .card-room {
+      padding-left: 15px;
+      padding-right: 15px;
+
+      .desc-room {}
+
+      .button-Favorite {}
+
+      .button-Favorite {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 20px;
       }
     }
   }

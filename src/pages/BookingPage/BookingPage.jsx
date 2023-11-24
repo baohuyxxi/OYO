@@ -9,8 +9,9 @@ import FramePage from '~/components/FramePage/FramePage'
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import convertDola from '~/utils/convertDola';
 import formatPrice from '~/utils/formatPrice';
-// import CheckBoxPayment from '~/components/CheckBoxPayment/CheckBoxPayment';
-// import DateBooking from '~/components/DateBooking/DateBooking';
+import CheckBoxPayment from '~/components/CheckBoxPayment/CheckBoxPayment';
+import DateBooking from '~/components/DateBooking/DateBooking';
+import Paypal from '../../components/Paypal/Paypal';
 import './BookingPage.scss';
 import { t } from 'i18next';
 
@@ -20,18 +21,22 @@ const BookingPage = () => {
     const [dataDetailHomeBooking, setDataDetailHomeBooking] = useState(
         mockData.dataDetailHomeBooking
     );
-    const priceAfterChoosePayment = 1000
-        const priceDay =1000
+    const [priceAfterChoosePayment, setPriceAfterChoosePayment] = useState(infoBooking?.priceTotal);
+   
+    const priceDay =1000
 
     const handleBookingRoom = () => {
         
     }
+    useEffect(()=>{
+        setPriceAfterChoosePayment(1000) 
+    }, [])
     return (
         <FramePage>
 
             <div className="booking__page">
-                {/* Show review when booking success  */}
-                {/* {idBooking !== '' && idBooking !== undefined ? (
+                {/* Show review when booking success 
+                {idBooking !== '' && idBooking !== undefined ? (
                 <FormEvaluate showFormReview={true} idBook={idBooking} handleCloseReview={handleCloseReview} />
             ) : (
                 <></>
@@ -41,13 +46,13 @@ const BookingPage = () => {
                     <div className="row">
                         <div className="col l-8" style={{ height: '100vh', paddingRight: '50px' }}>
                             <h2>{t('title.bookingOfYou.drive')}</h2>
-                            {/* <DateBooking
+                            <DateBooking
                             size="horizontal"
                             dateStart={infoBooking.dateStart}
                             dateEnd={infoBooking.dateEnd}
                             idHome={infoBooking.homeId}
-                            handleChangePriceDay={handleChangePriceDay}
-                        /> */}
+                            // handleChangePriceDay={handleChangePriceDay}
+                        />
                             <hr className="line" />
 
                             <div className="count-customer">
@@ -66,13 +71,13 @@ const BookingPage = () => {
                                     )} $`}</p>
                                 </div>
                             </div>
-                            {/* <CheckBoxPayment
-                            setPriceAfterChoosePayment={setPriceAfterChoosePayment}
-                            price={infoBooking?.priceTotal}
+                            <CheckBoxPayment
+                                setPriceAfterChoosePayment={setPriceAfterChoosePayment}
+                                price={infoBooking?.priceTotal}
                         />
                         <div className="payment__paypal">
                             <Paypal pricePayment={convertDola(priceAfterChoosePayment)} booking={handleBookingRoom} />
-                        </div> */}
+                        </div>
                         </div>
                         <div className="col l-4">
                             <div className="card-booking__room">

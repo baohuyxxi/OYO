@@ -13,9 +13,9 @@ const Convenient = (props) => {
                 className= {`col l-${12/row}`}>
                  {cutData.map((convi, index) => (
                         <div className="convenient-item" key={index}>
-                            <img src={convi.icon} alt="icon-convenient" className="icon-convenient" />
-                            <p style={{ textDecorationLine: `${!convi.isConfig ? 'line-through' : 'none'}` }}>
-                                {convi.name}
+                            <img src={convi.imageUrl} alt="icon-convenient" className="icon-convenient" />
+                            <p style={{ textDecorationLine: "none" }}>
+                                {convi.facilityName}
                             </p>
                         </div>
                     ))}

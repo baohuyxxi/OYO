@@ -40,7 +40,11 @@ export default function NavBar() {
         <div className="element">
           <LanguageSelect />
         </div>
-        {user===null ? (
+        <div className="element">
+          <NavLink to="/intro-host">{t('navbar.host')}</NavLink>
+        </div>
+
+        {user === null ? (
           <Button
             className="element"
             onClick={handleClickOpen}

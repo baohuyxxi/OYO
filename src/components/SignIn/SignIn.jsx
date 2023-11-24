@@ -13,7 +13,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import CustomInput from "~/assets/custom/CustomInput";
 import SignInSignUp from "../SignIn-SignUp/SignIn-SignUp";
 import { loginRequest, checkAccount } from "~/services/API/authAPI";
-import { SigninRequest } from "~/share/model/auth";
+import { SigninRequest } from "~/share/models/auth";
 import { validate } from "~/utils/validate";
 import { useSnackbar } from "notistack";
 import { useDispatch } from 'react-redux';

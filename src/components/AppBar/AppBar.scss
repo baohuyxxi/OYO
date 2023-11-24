@@ -21,7 +21,16 @@
         font-weight: inherit;
         color: inherit;
       }
-
+      button:hover{
+        color: var(--primary-main);
+      }
+      a{
+        color: inherit;
+        text-decoration: none;
+      }
+      a:hover{
+        color: var(--primary-main);
+      }
       .logo {
           padding-left: 20px;
           padding-right: 20px;

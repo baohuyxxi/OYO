@@ -12,7 +12,6 @@ import "./assets/css/grid.scss";
 import "./assets/css/frame.scss";
 import "./assets/css/index.scss";
 import LocateProvider, { LocateContext } from "./contexts/LocateContext";
-
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>

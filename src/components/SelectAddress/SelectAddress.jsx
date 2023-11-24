@@ -7,7 +7,7 @@ import { t } from "i18next";
 import { getAllProvinceDetails } from "~/services/API/publicAPI";
 import "./SelectAddress.scss";
 
-export default function SelectAddress() {
+export default function SelectAddress(props) {
   const [selectedProvince, setSelectedProvince] = useState(null);
   const [selectedDistrict, setSelectedDistrict] = useState(null);
   const [selectedWard, setSelectedWard] = useState(null);
@@ -17,12 +17,20 @@ export default function SelectAddress() {
   const [wards, setWards] = useState([]);
 
   useEffect(() => {
+    props.setData((prevData) => ({
+      ...prevData,
+      province: selectedProvince?.provinceName,
+      district: selectedDistrict?.districtName,
+      ward: selectedWard?.wardName,
+    }));
+  }, [selectedProvince, selectedDistrict, selectedWard]);
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await getAllProvinceDetails();
         setProvinces(response.data);
       } catch (error) {
-        console.error("Error fetching data:", error);
+
       }
     };
     fetchData();

@@ -45,20 +45,20 @@ export default function DialogConvenient(props) {
                             style={{
                                 fontSize: '16px',
                                 fontWeight: 'bold',
-                                textDecorationLine: `${!convi.isConfig ? 'line-through' : 'none'}`,
+                                textDecorationLine: `${!convi.isConfig ?  'none': 'line-through'}`,
                             }}
                             key={index}
                         >
-                            {convi?.name}
+                            {convi?.facilityName}
                             <DialogContentText
                                 id="alert-dialog-description"
                                 style={{
                                     fontSize: '14px',
                                     marginTop: '20px',
-                                    textDecorationLine: `${!convi.isConfig ? 'line-through' : 'none'}`,
+                                    textDecorationLine: `${!convi.isConfig ?  'none': 'line-through' }`,
                                 }}
                             >
-                                {convi?.description}
+                                {convi?.facilityName}
                             </DialogContentText>
                             <hr />
                         </DialogContent>

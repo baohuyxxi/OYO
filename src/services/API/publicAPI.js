@@ -8,3 +8,16 @@ export const getAllProvinceDetails = async () => {
     return error.response;
   }
 };
+
+
+export const getRoomDetailRequest = async (id) =>{
+  try{
+    console.log(id)
+    const res = await axios.get(`public/accom/detail/${id}`)
+    return res.data
+  }
+  catch (error)
+  {
+    return error.response;
+  }
+}

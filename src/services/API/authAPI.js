@@ -6,7 +6,7 @@ import {
   CheckAccount,
   RegisterRequest,
   TokenRefreshRequest,
-} from "~/share/model/auth";
+} from "~/share/models/auth";
 import { toFormData } from "axios";
 
 export const loginRequest = async (LoginRequest) => {

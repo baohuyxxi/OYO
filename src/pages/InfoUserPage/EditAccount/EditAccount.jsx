@@ -12,11 +12,10 @@ import { t } from 'i18next'
 
 export default function EditAccount() {
   const { enqueueSnackbar } = useSnackbar()
-  const [submit, setSubmit] =useState(false)
+  const [submit, setSubmit] = useState(false)
   const userCurrent = useSelector((state) => state.user.current)
-  const dispatch = useDispatch();
   const [user, setUser] = useState(userCurrent);
-
+  const dispatch = useDispatch();
   useEffect(() => {
     if (user && user.dateOfBirth) {
       const updatedUser = { ...user };
@@ -33,8 +32,7 @@ export default function EditAccount() {
     setSubmit(true)
   }
   const handleSave = async (event) => {
-    if(user.birthday && user.monthOfBirth && user.yearOfBirth)
-    {
+    if (user.birthday && user.monthOfBirth && user.yearOfBirth) {
       setUser({
         ...user, dateOfBirth: `${user.yearOfBirth}-${user.monthOfBirth}-${user.birthday}`
       });
@@ -48,18 +46,9 @@ export default function EditAccount() {
       enqueueSnackbar("Cập nhật thất bại", { variant: 'error' });
     }
   }
-
   const genderSelect = [
-    {
-      id: 2,
-      value: 2,
-      label: t('label.male')
-    },
-    {
-      id: 1,
-      value: 1,
-      label: t('label.female')
-    }
+    { value: 2, label: t('label.male') },
+    { value: 1, label: t('label.female') }
   ]
   const birthday = []
   for (let i = 1; i <= 31; i++) {
@@ -68,14 +57,13 @@ export default function EditAccount() {
 
   const monthOfBirth = []
   for (let i = 1; i <= 12; i++) {
-    monthOfBirth.push({ id: i, value: i, label: `Tháng ${i}` });
+    monthOfBirth.push({ id: i, value: i, label: i.toString() });
   }
 
   const yearOfBirth = []
   for (let i = 2023; i > 1970; i--) {
     yearOfBirth.push({ id: i, value: i, label: i.toString() });
   }
-
   const customInputList = [
     createCustomInput(6, "userName", user.userName, handleUser),
     createCustomInput(6, "phone", user.phone, handleUser),
@@ -83,15 +71,15 @@ export default function EditAccount() {
     createCustomInput(6, "lastName", user.lastName, handleUser),
     createCustomInput(12, "address", user.address, handleUser),
     createCustomInput(3, "gender", user.gender, handleUser, true, genderSelect.map((option) => (
+      <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
+    ))),
+    createCustomInput(3, "birthday", user.birthday||1, handleUser, true, birthday.map((option) => (
       <MenuItem key={option.id} value={option.value}>{option.label}</MenuItem>
     ))),
-    createCustomInput(3, "birthday", user.birthday, handleUser, true, birthday.map((option) => (
+    createCustomInput(3, "monthOfBirth", user.monthOfBirth||1, handleUser, true, monthOfBirth.map((option) => (
       <MenuItem key={option.id} value={option.value}>{option.label}</MenuItem>
     ))),
-    createCustomInput(3, "monthOfBirth", user.monthOfBirth, handleUser, true, monthOfBirth.map((option) => (
-      <MenuItem key={option.id} value={option.value}>{option.label}</MenuItem>
-    ))),
-    createCustomInput(3, "yearOfBirth", user.yearOfBirth, handleUser, true, yearOfBirth.map((option) => (
+    createCustomInput(3, "yearOfBirth", user.yearOfBirth||2023, handleUser, true, yearOfBirth.map((option) => (
       <MenuItem key={option.id} value={option.value}>{option.label}</MenuItem>
     )))
   ];
@@ -108,7 +96,7 @@ export default function EditAccount() {
           {customInputList.map((customInput, index) => (
             <Grid item xs={customInput.props.xs} key={index}>{customInput}</Grid>
           ))}
-          <Grid container justifyContent={{ xs: 'center', md: 'flex-end' }}  item xs={12} className='form-button'>
+          <Grid container justifyContent={{ xs: 'center', md: 'flex-end' }} item xs={12} className='form-button'>
             <Button className='frame-button save' type='submit' variant='contained' disabled={!submit}>
               {t('common.save')}</Button>
           </Grid>

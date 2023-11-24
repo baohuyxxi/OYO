@@ -20,7 +20,7 @@ const LocateProvider = ({ children }) => {
         const response = await getAllProvinceDetails();
         setProvinces(response.data);
       } catch (error) {
-        console.error("Error fetching data:", error);
+    
       }
     };
     fetchData();

@@ -18,9 +18,11 @@ const Auth = () => {
     import("../pages/CongratulationPage/Congratulation")
   );
   const TestComponet = React.lazy(() => import("~/components/Test/Test"));
-  const Test = React.lazy(() =>
+  const BookingPage = React.lazy(() =>
     import("~/pages/BookingPage/BookingPage")
   );
+  const IntroSettingOwnerPage = React.lazy(() => import('../pages/IntroSettingOwnerPage/IntroSettingOwnerPage'));
+  const StepperMain = React.lazy(() => import('~/pages/SetupOwner/StepperMain/StepperMain'));
 
   return (
     <Routes>
@@ -41,7 +43,7 @@ const Auth = () => {
         }
       />
 
-     
+
       <Route
         path="/room-detail/:id"
         element={
@@ -60,10 +62,10 @@ const Auth = () => {
       />
 
       <Route
-        path="/test"
+        path="/booking"
         element={
           <React.Suspense>
-            <Test />
+            <BookingPage />
           </React.Suspense>
         }
       />
@@ -75,7 +77,22 @@ const Auth = () => {
           </React.Suspense>
         }
       />
-
+      <Route
+        path="/intro-host"
+        element={
+          <React.Suspense>
+            <IntroSettingOwnerPage />
+          </React.Suspense>
+        }
+      />
+      <Route
+        path="/stepsetupowner"
+        element={
+          <React.Suspense>
+            <StepperMain />
+          </React.Suspense>
+        }
+      />
       <Route
         path="*"
         element={

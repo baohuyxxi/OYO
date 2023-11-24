@@ -13,7 +13,7 @@ const resources = {
   },
 };
 
-const geti18nFromLocalStorage = (): any => {
+const geti18nFromLocalStorage = () => {
   return localStorage.getItem("i18n") || "vi";
 };
 

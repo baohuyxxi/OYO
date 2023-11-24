@@ -12,7 +12,7 @@ import CustomInput from "~/assets/custom/CustomInput";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import { registerRequest } from "~/services/API/authAPI";
 import { useDispatch, useSelector } from 'react-redux'
-import { RegisterRequest } from "~/share/model/auth";
+import { RegisterRequest } from "~/share/models/auth";
 import { useSnackbar } from "notistack";
 import { t } from "i18next";
 import "./Register.scss";

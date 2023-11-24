@@ -6,9 +6,9 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 
 import './DateBooking.scss';
-import pricesOfHomeApi from '../../services/pricesOfHomeApi';
+// import pricesOfHomeApi from '../../services/pricesOfHomeApi';
 import { useDispatch } from 'react-redux';
-import bookingSlice from '../../pages/BookingPage/bookingSlice';
+// import bookingSlice from '../../pages/BookingPage/bookingSlice';
 import { t } from 'i18next';
 
 const DateBooking = (props) => {
@@ -45,15 +45,15 @@ const DateBooking = (props) => {
     const handleChangeDayBooking = async (value) => {
         const dateFrom = format(value[0].startDate, 'yyyy-MM-dd');
         const dateTo = format(value[0].endDate, 'yyyy-MM-dd');
-        dispatch(bookingSlice.actions.addDay({ dateFrom, dateTo }));
-        pricesOfHomeApi.showPriceByRangeDay(props?.idHome, dateFrom, dateTo).then((dataResponse) => {
-            if (props.handleChangePriceDay) {
-                props.handleChangePriceDay(dataResponse?.data?.totalCost);
-                dispatch(
-                    bookingSlice.actions.addPriceTotal({ priceTotal: dataResponse?.data?.totalCostWithSurcharge }),
-                );
-            }
-        });
+        // dispatch(bookingSlice.actions.addDay({ dateFrom, dateTo }));
+        // pricesOfHomeApi.showPriceByRangeDay(props?.idHome, dateFrom, dateTo).then((dataResponse) => {
+        //     if (props.handleChangePriceDay) {
+        //         props.handleChangePriceDay(dataResponse?.data?.totalCost);
+        //         dispatch(
+        //             bookingSlice.actions.addPriceTotal({ priceTotal: dataResponse?.data?.totalCostWithSurcharge }),
+        //         );
+        //     }
+        // });
     };
 
     return (

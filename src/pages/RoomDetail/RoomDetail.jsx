@@ -1,7 +1,7 @@
 import "./RoomDetail.scss";
 import AppBar from "~/components/AppBar/AppBar";
 import Footer from "~/components/Footer/Footer";
-import SearchForm from "~/components/SearchForm/SearchForm";
+// import SearchForm from "~/components/SearchForm/SearchForm";
 import iconStar from "~/assets/icon/star.svg";
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
 import ListImage from "~/components/ListImage/ListImage";
@@ -13,14 +13,32 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import { t } from "i18next";
 import CommentReview from "~/components/CommentReview/commentReview";
 import FramePage from "~/components/FramePage/FramePage";
+import { useNavigate, useParams } from 'react-router-dom';
+import { getRoomDetailRequest } from '~/services/API/publicAPI'
+import { useEffect, useState } from "react";
+import SkeletonRoomDetail from '../../components/Skeleton/SkeletonRoomDetail';
 
-import { Grid } from "antd";
 export default function RoomDetail() {
-  const stars = [];
-  for (let i = 0; i < 5; i++) {
+  const navigate = useNavigate();
+  const roomId = useParams();
+  const [loading, setLoading] = useState(true );
+  const [dataDetailHome, setDataDetalHome] = useState("")
+  useEffect(() => {
+    setLoading(true);
+    getRoomDetailRequest(roomId.id).then((dataResponse) => {
+      setDataDetalHome(dataResponse.data);
+      setLoading(false);
+    });
+  }, [roomId?.id]);
+  const stars = []
+  for (let i = 0; i < dataDetailHome.gradeRate; i++) {
     stars.push(
       <img key={i} src={iconStar} alt="icon__star" className="star" />
     );
+  }
+
+  const handleBooking = () => {
+    navigate('/booking');
   }
   const imageData = {
     listImage: [
@@ -41,43 +59,6 @@ export default function RoomDetail() {
       "https://ik.imagekit.io/tvlk/apr-asset/dgXfoyh24ryQLRcGq00cIdKHRmotrWLNlvG-TxlcLxGkiDwaUSggleJNPRgIHCX6/hotel/asset/20061404-a98a0a5e26723a7e5720c7e5f4c8ac40.jpeg?_src=imagekit&tr=c-at_max,h-360,q-40,w-640",
   };
 
-  const listConvenientData = [
-    {
-      name: 'Máy lạnh',
-      icon: 'https://s3-ap-southeast-1.amazonaws.com/cntres-assets-ap-southeast-1-250226768838-cf675839782fd369/imageResource/2016/12/21/1482301285653-0a04df7d3f807b32484ceec10d9681c6.png', // Đường dẫn đến biểu tượng máy lạnh (nếu có)
-      isConfig: true, // Hoặc false tùy thuộc vào việc máy lạnh đã được cấu hình hay chưa
-    },
-    {
-      name: 'Nhà hàng',
-      icon: 'https://s3-ap-southeast-1.amazonaws.com/cntres-assets-ap-southeast-1-250226768838-cf675839782fd369/imageResource/2017/06/07/1496833794378-eb51eee62d46110b712e327108299ea6.png', // Đường dẫn đến biểu tượng nhà hàng (nếu có)
-      isConfig: true, // Hoặc false tùy thuộc vào việc nhà hàng đã được cấu hình hay chưa
-    },
-    {
-      name: 'Hồ bơi',
-      icon: 'https://s3-ap-southeast-1.amazonaws.com/cntres-assets-ap-southeast-1-250226768838-cf675839782fd369/imageResource/2017/06/07/1496833772013-929572dff57d1755878aa79dc46e6be5.png', // Đường dẫn đến biểu tượng hồ bơi (nếu có)
-      isConfig: true, // Hoặc false tùy thuộc vào việc hồ bơi đã được cấu hình hay chưa
-    },
-    {
-      name: 'Lễ tân 24h',
-      icon: 'https://s3-ap-southeast-1.amazonaws.com/cntres-assets-ap-southeast-1-250226768838-cf675839782fd369/imageResource/2016/12/21/1482301381776-c014a3111a6de5236d903c93b7647e4c.png', // Đường dẫn đến biểu tượng lễ tân (nếu có)
-      isConfig: true, // Hoặc false tùy thuộc vào việc lễ tân 24h đã được cấu hình hay chưa
-    },
-    {
-      name: 'Chỗ đậu xe',
-      icon: 'https://s3-ap-southeast-1.amazonaws.com/cntres-assets-ap-southeast-1-250226768838-cf675839782fd369/imageResource/2017/06/07/1496833756238-56e24fb64a964d38b8f393bf093a77a9.png', // Đường dẫn đến biểu tượng chỗ đậu xe (nếu có)
-      isConfig: true, // Hoặc false tùy thuộc vào việc chỗ đậu xe đã được cấu hình hay chưa
-    },
-    {
-      name: 'Thang máy',
-      icon: 'https://s3-ap-southeast-1.amazonaws.com/cntres-assets-ap-southeast-1-250226768838-cf675839782fd369/imageResource/2017/06/07/1496833714411-48c9b7565018d02dc32837738df1c917.png', // Đường dẫn đến biểu tượng thang máy (nếu có)
-      isConfig: true, // Hoặc false tùy thuộc vào việc thang máy đã được cấu hình hay chưa
-    },
-    {
-      name: 'WiFi',
-      icon: 'https://s3-ap-southeast-1.amazonaws.com/cntres-assets-ap-southeast-1-250226768838-cf675839782fd369/imageResource/2017/06/07/1496833833458-7b6ab67bc5df6ef9f2caee150aae1f43.png', // Đường dẫn đến biểu tượng WiFi (nếu có)
-      isConfig: true, // Hoặc false tùy thuộc vào việc WiFi đã được cấu hình hay chưa
-    },
-  ];
   const listoutstandingData = [
     {
       name: 'Nằm ngay trung tâm TP. Hồ Chí Minh, khách sạn này có điểm vị trí tuyệt vời 9,4',
@@ -107,82 +88,88 @@ export default function RoomDetail() {
   ];
   return (
     <FramePage>
-      <SearchForm className='search-bar' />
-      <div className='content detail-room' >
-        <div className="info-room" >
-          <div className="header-room">
-            <h1>Tên Khách sạn</h1>
-            <div className="heading">
-              <div className="heading__left">
-                <div className="obility__room">
-                  <p>Resort</p>
-                  {stars}
+      {loading ? (
+        <SkeletonRoomDetail />
+      ) : 
+      (
+        <>
+          <div className='content detail-room' >
+            <div className="info-room" >
+              <div className="header-room">
+                <h1>{dataDetailHome.accomName}</h1>
+                <div className="heading">
+                  <div className="heading__left">
+                    <div className="obility__room">
+                      <p>Resort</p>
+                      {stars}
+                    </div>
+                    <div className="locate__room">
+                      <FmdGoodIcon className="icon_locate" />
+                      <p>{dataDetailHome.addressDetail}</p>
+                    </div>
+                  </div>
+                  <div className="heading__right">
+                    <p>Giá phòng mõi đêm từ:</p>
+                    <p className='price-room'>{dataDetailHome.pricePerNight}</p>
+                  </div>
                 </div>
-                <div className="locate__room">
-                  <FmdGoodIcon className="icon_locate" />
-                  <p>Địa chỉ</p>
+
+              </div>
+              <ListImage {...imageData} />
+              <div className="about-room" >
+                <div className="row">
+                  <div className="col l-8 m-7 c-12">
+                    <div className="paper title-room">
+                      <div className="desc-room">
+                        <h2>{t('contentMain.descHome')}</h2 >
+                        <p>{dataDetailHome.description}</p>
+                      </div>
+                      <hr className="divider" />
+                      <h2>{t('contentMain.convenient')}</h2>
+                      <Convenient listConvenient={dataDetailHome.infoFacilityResponseList} row={2} />
+                      <DialogConvenient listConvenient={dataDetailHome.infoFacilityResponseList} />
+                      <hr className="divider" />
+                      <div className="bed-room">
+                        <h2>{t('contentMain.bedroom')}</h2>
+                        <BedRoomSlider listRoom={listRoomData} />
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div className="col l-4 m-7 c-12">
+                    <div className="paper card-room">
+                      <div className="desc-room">
+                        <h2>{t('title.outstanding')}</h2 >
+                        <p>Là một lựa chọn đúng đắn khi quý khách đến thăm Thắng Tam. Quầy tiếp tân 24 giờ luôn sẵn sàng phục vụ quý khách từ thủ tục nhận phòng đến trả phòng</p>
+                      </div>
+                      <hr className="divider" />
+                      <Convenient listConvenient={listoutstandingData} row={1} />
+                      <div className='button-Favorite'>
+                        <Button
+                          variant='outlined'
+                        >
+                          Thêm vào danh sách yêu thích
+                          <FavoriteBorderOutlinedIcon />
+                        </Button>
+                      </div>
+                      <div className='button-booking'>
+                        <Button onClick={handleBooking}
+                          variant='contained'
+                          fullWidth
+                        >
+                          Đặt phòng
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="heading__right">
-                <p>Giá phòng mõi đêm từ:</p>
-                <p className='price-room'>300.000 VND</p>
-              </div>
+              <CommentReview />
             </div>
-
-          </div>
-          <ListImage {...imageData} />
-          <div className="about-room" >
-            <div className="row">
-              <div className="col l-8 m-7 c-12">
-                <div className="paper title-room">
-                  <div className="desc-room">
-                    <h2>{t('contentMain.descHome')}</h2 >
-                    <p>Là một lựa chọn đúng đắn khi quý khách đến thăm Thắng Tam. Quầy tiếp tân 24 giờ luôn sẵn sàng phục vụ quý khách từ thủ tục nhận phòng đến trả phòng</p>
-                  </div>
-                  <hr className="divider" />
-                  <h2>{t('contentMain.convenient')}</h2>
-                  <Convenient listConvenient={listConvenientData} row={2} />
-                  <DialogConvenient listConvenient={listConvenientData} />
-                  <hr className="divider" />
-                  <div className="bed-room">
-                    <h2>{t('contentMain.bedroom')}</h2>
-                    <BedRoomSlider listRoom={listRoomData} />
-                  </div>
-                </div>
-
-              </div>
-
-              <div className="col l-4 m-7 c-12">
-                <div className="paper card-room">
-                  <div className="desc-room">
-                    <h2>{t('title.outstanding')}</h2 >
-                    <p>Là một lựa chọn đúng đắn khi quý khách đến thăm Thắng Tam. Quầy tiếp tân 24 giờ luôn sẵn sàng phục vụ quý khách từ thủ tục nhận phòng đến trả phòng</p>
-                  </div>
-                  <hr className="divider" />
-                  <Convenient listConvenient={listoutstandingData} row={1} />
-                  <div className='button-Favorite'>
-                    <Button
-                      variant='outlined'
-                    >
-                      Thêm vào danh sách yêu thích
-                      <FavoriteBorderOutlinedIcon />
-                    </Button>
-                  </div>
-                  <div className='button-booking'>
-                    <Button
-                      variant='contained'
-                      fullWidth
-                    >
-                      Đặt phòng
-                    </Button>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
-          <CommentReview />
-        </div>
-      </div>
-    </FramePage>
-  )
+          </>
+          )}
+        </FramePage>
+      )
 }

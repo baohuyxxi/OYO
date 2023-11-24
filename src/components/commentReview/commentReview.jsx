@@ -9,41 +9,42 @@ export default function commentReview() {
   const commentsToShow = showMoreComments ? comment : comment.slice(0, 5)
   return (
     <div className="paper container-comments">
-      {commentsToShow.map((item, index) => (<div className="container-comment">
-        <div key={index} className="commentator">
-          <Avatar
-            className="commentator-avatar"
-            alt="Cindy Baker"
-            src={item.urlAvatar}
-          />
-          <div className="commentator-name">{item.userName}</div>
-        </div>
-        <div className="comment-info">
-          <div className="heading">
-            <div>{StarRating(item.rating)}</div>
-
-            <div className="comment-time">
-              <AccessTimeIcon />
-              <p> {item.timestamp}</p>
-            </div>
+      {commentsToShow.map((item, index) => (
+        <div key={index} className="container-comment">
+          <div  className="commentator">
+            <Avatar
+              className="commentator-avatar"
+              alt="Cindy Baker"
+              src={item.urlAvatar}
+            />
+            <div className="commentator-name">{item.userName}</div>
           </div>
+          <div className="comment-info">
+            <div className="heading">
+              <div>{StarRating(item.rating)}</div>
 
-          <div className="comment-content"> {item.content}</div>
-          {item.listImage && item.listImage.length > 0 && (
-            <div className="image-list">
-              {item.listImage.map((image, imageIndex) => (
-                <img
-                  key={imageIndex}
-                  src={image}
-                  alt={`Image ${imageIndex}`}
-                  className="comment-image"
-                />
-              ))}
+              <div className="comment-time">
+                <AccessTimeIcon />
+                <p> {item.timestamp}</p>
+              </div>
             </div>
-          )}
 
-        </div>
-      </div>))}
+            <div className="comment-content"> {item.content}</div>
+            {item.listImage && item.listImage.length > 0 && (
+              <div className="image-list">
+                {item.listImage.map((image, imageIndex) => (
+                  <img
+                    key={imageIndex}
+                    src={image}
+                    alt={`Image ${imageIndex}`}
+                    className="comment-image"
+                  />
+                ))}
+              </div>
+            )}
+
+          </div>
+        </div>))}
       <div className="thelast">
         {comment.length > 5 && (
           <button

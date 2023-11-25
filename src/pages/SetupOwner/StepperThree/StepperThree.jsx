@@ -13,8 +13,8 @@ const StepperThree = (props) => {
 
     useEffect(() => {
         getAmenityCategories().then((dataResponse) => {
-            if (dataResponse?.data?.content) {
-                setData(dataResponse.data.content);
+            if (dataResponse?.data) {
+                setData(dataResponse.data.data);
             }
         });
     }, []);

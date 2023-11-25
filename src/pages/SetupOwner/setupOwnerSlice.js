@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+import {addressFormData} from '~/share/models/address'
 const setupOwnerSlice = createSlice({
     name: 'owner',
     initialState: {
         detailRoom: {
+            addressData : addressFormData,
             provinceCode: '',
             provinceName: '',
             name: 'Room Demo',
@@ -19,8 +20,9 @@ const setupOwnerSlice = createSlice({
         },
     },
     reducers: {
-        addProvinceIdRoom(state, action) {
-            state.detailRoom.provinceCode = action.payload;
+        addAddressRoom(state, action) {
+            state.detailRoom.addressData = action.payload;
+            localStorage.setItem("addressSelect",JSON.stringify(action.payload) )
         },
         addProvinceNameRoom(state, action) {
             state.detailRoom.provinceName = action.payload;

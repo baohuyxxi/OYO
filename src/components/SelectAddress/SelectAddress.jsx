@@ -12,7 +12,7 @@ export default function SelectAddress(props) {
   const [selectedDistrict, setSelectedDistrict] = useState(null);
   const [selectedWard, setSelectedWard] = useState(null);
 
-  const [provinces, setProvinces] = useState([]);
+  // const [provinces, setProvinces] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [wards, setWards] = useState([]);
 
@@ -24,25 +24,35 @@ export default function SelectAddress(props) {
       ward: selectedWard?.wardName,
     }));
   }, [selectedProvince, selectedDistrict, selectedWard]);
+  const [provinces, setProvinces] = useState(() => {
+    const storedData = localStorage.getItem("allProvinces");
+    return storedData ? JSON.parse(storedData) : [];
+  });
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await getAllProvinceDetails();
-        setProvinces(response.data);
-      } catch (error) {
+        const provincesData = response.data;
+        localStorage.setItem("allProvinces", JSON.stringify(provincesData));
 
+        setProvinces(provincesData); 
+      } catch (error) {
+        console.error("Lỗi khi lấy thông tin tỉnh thành:", error);
       }
     };
-    fetchData();
-  }, []);
+
+    if (provinces.length === 0) {
+      fetchData();
+    }
+  }, [provinces]); 
 
   const handleProvinceChange = (event, newValue) => {
     setSelectedProvince(newValue);
-    // Clear districts and wards when province changes
-    setSelectedDistrict(null);
     setSelectedWard(null);
+    setSelectedDistrict(null);
+   
     if (newValue) {
-      // Set districts based on the selected province
       const provinceId = newValue.provinceCode;
       const province = provinces.find((p) => p.provinceCode === provinceId);
       if (province) {
@@ -55,10 +65,8 @@ export default function SelectAddress(props) {
 
   const handleDistrictChange = (event, newValue) => {
     setSelectedDistrict(newValue);
-    // Clear wards when district changes
     setSelectedWard(null);
     if (newValue) {
-      // Set wards based on the selected district
       const districtId = newValue.districtCode;
       const district = districts.find((d) => d.districtCode === districtId);
       if (district) {

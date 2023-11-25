@@ -144,7 +144,8 @@
     "pageNotFound": "KHÔNG TÌM THẤY TRANG",
     "returnHome": "Bạn có muốn quay lại trang chủ không?",
     "yourMail": "Thư của bạn",
-    "selectAvatar":"Chọn ảnh đại diện"
+    "selectAvatar":"Chọn ảnh đại diện",
+    "category": "Loại"
   },
   "label": {
     "email": "Địa chỉ Email",

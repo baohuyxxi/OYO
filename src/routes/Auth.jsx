@@ -17,13 +17,17 @@ const Auth = () => {
   const CongratulationPage = React.lazy(() =>
     import("../pages/CongratulationPage/Congratulation")
   );
-  const TestComponet = React.lazy(() => import("~/components/Test/Test"));
+  const TestComponet = React.lazy(() => import('~/pages/SetupOwner/StepperThree/StepperThree'));
   const BookingPage = React.lazy(() =>
     import("~/pages/BookingPage/BookingPage")
   );
   const IntroSettingOwnerPage = React.lazy(() => import('../pages/IntroSettingOwnerPage/IntroSettingOwnerPage'));
   const StepperMain = React.lazy(() => import('~/pages/SetupOwner/StepperMain/StepperMain'));
 
+  const [dataStep3, setDataStep3] = React.useState([]);
+  const handleSetDataStep3 = (value) => {
+    setDataStep3(value);
+};
   return (
     <Routes>
       <Route
@@ -73,7 +77,7 @@ const Auth = () => {
         path="/test1"
         element={
           <React.Suspense>
-            <TestComponet />
+            <TestComponet setDataStep3={handleSetDataStep3} />
           </React.Suspense>
         }
       />

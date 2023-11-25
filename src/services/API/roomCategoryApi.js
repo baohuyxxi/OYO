@@ -3,20 +3,9 @@ import axios from "../axios";
 
 export const getRoomCategory = async () => {
     try {
-        // Giả mạo thời gian trễ
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-
-        // Giả mạo dữ liệu
-        const data = {
-            content: [
-                // Thêm dữ liệu khác nếu cần
-            ],
-            pageNumber: 1,
-            pageSize: 20,
-            totalElements: 0,
-        };
-
-        return { success: true, data };
+        const res = await axios.get(`/public/accom/cate-info`)
+         console.log(res)
+        return res
     } catch (error) {
         console.error('Error in getRoomCategory:', error);
         throw error;

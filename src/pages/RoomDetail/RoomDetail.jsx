@@ -100,12 +100,12 @@ export default function RoomDetail() {
                 <div className="heading">
                   <div className="heading__left">
                     <div className="obility__room">
-                      <p>Resort</p>
+                      <p>{dataDetailHome.accomCateId}</p>
                       {stars}
                     </div>
                     <div className="locate__room">
                       <FmdGoodIcon className="icon_locate" />
-                      <p>{dataDetailHome.addressDetail}</p>
+                      <p>{dataDetailHome.addressGeneral}</p>
                     </div>
                   </div>
                   <div className="heading__right">
@@ -123,7 +123,16 @@ export default function RoomDetail() {
                       <div className="desc-room">
                         <h2>{t('contentMain.descHome')}</h2 >
                         <p>{dataDetailHome.description}</p>
+                        <h3>Địa chỉ chi tiết</h3 >
+                        <p1>{dataDetailHome.addressDetail}</p1>
+                        <h3>Diện tích</h3 >
+                        <p1>{dataDetailHome.acreage}</p1>
+                        <h3>Số người </h3 >
+                        <p1>{dataDetailHome.numPeople}</p1>
+                        <h3>Số phòng</h3 >
+                        <p1>{dataDetailHome.numBathRoom}</p1>
                       </div>
+                    
                       <hr className="divider" />
                       <h2>{t('contentMain.convenient')}</h2>
                       <Convenient listConvenient={dataDetailHome.infoFacilityResponseList} row={2} />

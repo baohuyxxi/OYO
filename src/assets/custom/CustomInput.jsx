@@ -2,14 +2,15 @@ import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 
 export default function CustomInput(props) {
+  console.log(props.content)
   return (
-    <Box className={props.className}>
+    <Box className={props.className} width={props.width}>
       <label style={{ fontWeight: '500' }} htmlFor={props.id}>
         {props.title}
       </label>
       <TextField
         className='customInput'
-        fullWidth
+        fullWidth ={props.fullWidth? false: true }
         margin="dense"
         size={props.size || "medium"}
         name={props.name}

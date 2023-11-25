@@ -5,9 +5,9 @@ import ConfirmClose from '../../../components/ConfirmClose/ConfirmClose';
 import './StepperFive.scss';
 
 const StepperFive = (props) => {
-    const [nameRoom, setNameRoom] = useState<string>('');
-    const [descRoom, setDescRoom] = useState<string>('');
-    const [priceRoom, setPriceRoom] = useState<string>('');
+    const [nameRoom, setNameRoom] = useState('')
+    const [descRoom, setDescRoom] = useState('')
+    const [priceRoom, setPriceRoom] = useState('')
 
     const handleChangeNameRoom = (event) => {
         setNameRoom(event.currentTarget?.value);

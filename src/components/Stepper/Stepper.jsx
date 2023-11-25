@@ -48,10 +48,12 @@ export default function StepperComponent() {
     const [load, setLoad] = useState(false);
 
     const [dataStep1, setDataStep1] = useState(addressFormData);
+  
     const [addressDetail, setAddressDetail] = useState('');
 
     const setDataStep2 = [];
     const [countGuest, setCountGuest] = useState(0);
+    const [accomCate, setAccomCate] = React.useState("")
     const [dataStep3, setDataStep3] = useState([]);
     const [dataStep4, setDataStep4] = useState([]);
 
@@ -78,9 +80,8 @@ export default function StepperComponent() {
         }
 
         if (activeStep === 0) {
-            console.log(dataStep1)
-            if (addressDetail !== '' && dataStep1 !== '') {
-                dispatch(setupOwnerSlice.actions.addProvinceIdRoom(dataStep1));
+            if (addressDetail !== '' && dataStep1.ward !== undefined) {
+                dispatch(setupOwnerSlice.actions.addAddressRoom(dataStep1));
                 dispatch(setupOwnerSlice.actions.addAddressDetailRoom(addressDetail));
                 setActiveStep((prevActiveStep) => prevActiveStep + 1);
             } else {
@@ -99,12 +100,14 @@ export default function StepperComponent() {
             setActiveStep((prevActiveStep) => prevActiveStep + 1);
         } else if (activeStep === 2) {
             const dataIdList = [];
-            for (var i = 0; i < dataStep3.length; i++) {
-                dataIdList.push({ amenityId: dataStep3[i].value });
+           
+            for (var i = 0; i < dataStep3.length ; i++) {
+                dataIdList.push({ amenityId: dataStep3[i]?.value });
             }
             dispatch(setupOwnerSlice.actions.addamenitiesOfHomeRoom(dataIdList));
             setActiveStep((prevActiveStep) => prevActiveStep + 1);
         } else if (activeStep === 3) {
+            setActiveStep((prevActiveStep) => prevActiveStep + 1);
             if (dataStep4.length < 5) {
                 enqueueSnackbar(t('message.maxImage'), {
                     anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
@@ -165,9 +168,10 @@ export default function StepperComponent() {
                     const formData = new FormData();
                     await formData.append('file', dataStep4[i]);
                     const dataUrlImage = await imageRoomApi.uploadImage(formData);
+                    
                     await setDataStep4URL.push({ path: dataUrlImage?.data?.previewUrl });
                 }
-                if (setDataStep4URL.length >= 5) {
+                if (setDataStep4URL.length >= 1) {
                     setCheckImage(true);
                 }
                 await dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(setDataStep4URL));
@@ -255,7 +259,7 @@ export default function StepperComponent() {
                                 />
                             );
                         } else if (activeStep === 1) {
-                            return <StepperTwo setDataStep2={setDataStep2} setCountGuest={setCountGuest} />;
+                            return <StepperTwo setDataStep2={setDataStep2} setCountGuest={setCountGuest} accomCate={accomCate} setAccomCate={setAccomCate} />;
                         } else if (activeStep === 2) {
                             return <StepperThree setDataStep3={handleSetDataStep3} />;
                         } else if (activeStep === 3) {
@@ -269,15 +273,9 @@ export default function StepperComponent() {
                             Back
                         </Button>
                         <Box sx={{ flex: '1 1 auto' }} />
-                        {/* {isStepOptional(activeStep) && (
-                            <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
-                                Skip
-                            </Button>
-                        )} */}
+                 
                         {activeStep === 3 && (
-                            // <Button color="inherit" onClick={handleUpload} sx={{ mr: 1 }}>
-                            //     Tải ảnh lên
-                            // </Button>
+
                             <LoadingButton
                                 variant="contained"
                                 loading={load}

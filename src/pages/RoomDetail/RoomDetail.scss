@@ -18,7 +18,7 @@
           display: flex;
 
           .obility__room {
-            display: flex;
+            display: block;
 
             img {
               width: 16px;
@@ -59,7 +59,9 @@
         .heading__right {
           text-align: right;
 
-          .desc-room {}
+          .desc-room {
+           
+          }
 
           .bed-room {
             padding-bottom: 1px;
@@ -111,7 +113,16 @@
       padding-left: 15px;
       padding-right: 15px;
 
-      .desc-room {}
+      .desc-room {
+        h3{
+          margin-left: 10px;
+          font-size: 16px;
+        }
+        p1{
+          font-size: 13px;
+          margin-left: 10px;
+        }
+      }
 
       .bed-room {
         padding-bottom: 1px;

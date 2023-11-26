@@ -10,7 +10,7 @@ export default function Error() {
         document.location = '/'
     }
     return (
-        <div className="background">
+        <div className="background-not-found">
             <div className="top">
                 <h1>404</h1>
                 <h3>{t('title.pageNotFound')}</h3>

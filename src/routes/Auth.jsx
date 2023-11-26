@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { unstable_HistoryRouter } from "react-router-dom";
 import ListAccomPage from "~/pages/ListAccomPage/ListAccomPage";
+import LayoutAdmin from "~/pages/admin/LayoutAdmin/LayoutAdmin";
 
 const Auth = () => {
   // Customer Page
@@ -17,17 +18,23 @@ const Auth = () => {
   const CongratulationPage = React.lazy(() =>
     import("../pages/CongratulationPage/Congratulation")
   );
-  const TestComponet = React.lazy(() => import('~/pages/SetupOwner/StepperThree/StepperThree'));
+  const TestComponet = React.lazy(() =>
+    import("~/pages/SetupOwner/StepperThree/StepperThree")
+  );
   const BookingPage = React.lazy(() =>
     import("~/pages/BookingPage/BookingPage")
   );
-  const IntroSettingOwnerPage = React.lazy(() => import('../pages/IntroSettingOwnerPage/IntroSettingOwnerPage'));
-  const StepperMain = React.lazy(() => import('~/pages/SetupOwner/StepperMain/StepperMain'));
+  const IntroSettingOwnerPage = React.lazy(() =>
+    import("../pages/IntroSettingOwnerPage/IntroSettingOwnerPage")
+  );
+  const StepperMain = React.lazy(() =>
+    import("~/pages/SetupOwner/StepperMain/StepperMain")
+  );
 
   const [dataStep3, setDataStep3] = React.useState([]);
   const handleSetDataStep3 = (value) => {
     setDataStep3(value);
-};
+  };
   return (
     <Routes>
       <Route
@@ -46,7 +53,6 @@ const Auth = () => {
           </React.Suspense>
         }
       />
-
 
       <Route
         path="/room-detail/:id"
@@ -113,6 +119,8 @@ const Auth = () => {
           </React.Suspense>
         }
       />
+
+      <Route path="/admin/*" element={<LayoutAdmin />} />
     </Routes>
   );
 };

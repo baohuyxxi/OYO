@@ -191,13 +191,88 @@ html[mode="dark"] {
 }
 
 :root {
+  --text-color: #9a9a9a;
+  --white-color: #fafafa;
+  --heading-color: #555555;
+  --blue-color: #42a5f5;
+  --red-color: #f76570;
+  --yellow-color: #ffd105;
+  --purple-color: #ba71da;
+  --orange-color: #f3a46b;
+  --black-color: #333333;
+
+  --yellow-grad: linear-gradient(to right, #ffd205, #ff9e05);
+  --blue-grad: linear-gradient(to right, #14bad4, #14d4b2);
+  --red-grad: linear-gradient(to right, #f76670, #f78d66);
+  --green-grad: linear-gradient(to right, #1bbc99, #1bbc65);
+  --purple-grad: linear-gradient(to right, #bb71d7, #d9717c);
+  --orange-grad: linear-gradient(to right, #f3a56b, #f3c76b);
+
+  --btn-orange: #ff9800;
+  --btn-orange-hover: #f57c00;
+  --btn-blue: #4f46e5;
+  --btn-blue-hover: #1e88e5;
+  --btn-red: #f44336;
+  --btn-red-hover: #ef5350;
+
+  --border-scroll: #eeeeee;
+
+  --blue-link: #1877f2;
+
+  --bg: #242526;
+  --bg-accent: #484a4d;
+  // --text-color: #dadce1;
+  --nav-size: 60px;
+  --border: 1px solid #474a4d;
+  --border-radius: 8px;
+  --speed: 500ms;
+
+  --main-bg: #ffffff;
+  --second-bg: #fafafb;
+  --txt-color: #455560;
+  --txt-white: #fff;
+  --main-color: #349eff;
+  --second-color: #62b4ff;
+  --box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+  --main-bg-light: #ffffff;
+  --second-bg-light: #fafafb;
+  --txt-color-light: #455560;
+  --box-shadow-light: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+  --main-bg-dark: #2d2d2d;
+  --second-bg-dark: #202020;
+  --txt-color-dark: #bbbbbb;
+  --box-shadow-dark: rgba(0, 0, 0, 0.2) 0px 5px 10px;
+
+  --main-color-blue: #349eff;
+  --second-color-blue: #62b4ff;
+
+  --main-color-red: #fb0b12;
+  --second-color-red: #ff4a6b;
+
+  --main-color-cyan: #10d4d2;
+  --second-color-cyan: #2ae9e6;
+
+  --main-color-green: #019707;
+  --second-color-green: #4caf50;
+
+  --main-color-orange: #d68102;
+  --second-color-orange: #fca11a;
+
+  --sidebar-width: 300px;
+  --border-radius: 15px;
+  --topnav-height: 90px;
+  --transition-cubic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
   --green: #00ff00;
-  --yellow: #FBBC04;
+  --yellow: #fbbc04;
   .MuiButton-root {
     text-transform: none !important;
   }
 
-  .MuiButtonBase-root {}
+  .MuiButtonBase-root {
+  }
 
   .MuiToolbar-root {
     // background-color: var(--primary-main)
@@ -214,7 +289,6 @@ html[mode="dark"] {
   .MuiInputBase-root {
     color: inherit;
     background: var(--input-background);
-
   }
 
   .MuiOutlinedInput-input {
@@ -237,7 +311,7 @@ html[mode="dark"] {
   //     color:inherit
   // }
   .MuiFormLabel-root {
-    color: inherit
+    color: inherit;
   }
 
   .divider {
@@ -248,5 +322,4 @@ html[mode="dark"] {
     margin-top: 4px;
     margin-bottom: 4px;
   }
-
 }

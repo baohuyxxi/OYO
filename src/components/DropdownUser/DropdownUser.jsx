@@ -39,7 +39,7 @@ export default function CustomizedMenus() {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         disableElevation
-        startIcon={<Avatar className='avatar' alt="Cindy Baker"src={user.avatarUrl} />}
+        startIcon={<Avatar className='avatar' alt="Cindy Baker" src={user?.avatarUrl} />}
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
       >

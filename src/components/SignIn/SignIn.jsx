@@ -47,7 +47,7 @@ export default function SignIn(props) {
     }
     const userLogin = await loginRequest(signin);
     if (userLogin.status === 200) {
-      dispatch(userSlice.actions.signin(userLogin.data));
+      dispatch(userSlice.actions.signin(userLogin.data.data));
       enqueueSnackbar(t("message.signin"), { variant: "success" });
       props.handleClose();
     //   setTimeout(function () {

@@ -16,8 +16,7 @@ const StepperTwo = (props) => {
         roomCategoryApi.getRoomCategory().then((dataResponse) => {
             setData(dataResponse?.data.data);
         });
-    }, []);
-    console.log(data)
+    }, [])
     return (
         <div className="step-two">
             <div className="row">
@@ -33,18 +32,14 @@ const StepperTwo = (props) => {
                 </div>
                 <div className="col l-6 m-6">
                     <div className="info-count__room">
-                        <div className="count tenant">
-                            <p>{t('setupOwner.client')}</p>
-                            <CountNumberGuest setCountGuest={props.setCountGuest} />
-                        </div>
-                        <CustomInput
+                    <CustomInput
                             className="cateName"
                             select={true}
                             size="small"
                             id="cateName"
                             value={props.accomCateName}
                             onChange={(event) => {
-                                props.setAccomCateName(event.target.value);
+                                props.setAccomCate(event.target.value.accomCateName);
                             }}
                             title={t(`title.category`)}
                             width={400}
@@ -54,23 +49,20 @@ const StepperTwo = (props) => {
                                 </MenuItem>
                             ))}
                         ></CustomInput>
-                        {/* {data?.map((room, index) => (
+                        <div className="count tenant">
+                            <p>{t('setupOwner.client')}</p>
+                            <CountNumberGuest setCountGuest={props.setCountGuest} />
+                        </div>
+                        {props.dataStep2?.map((room, index) => (
                             <div key={index}>
-                                {index === 0 && (
-                                    <div className="count tenant">
-                                        <p>{t('setupOwner.client')}</p>
-                                        <CountNumberGuest setCountGuest={props.setCountGuest} />
-                                    </div>
-                                )}
-                                
-                                <div className="count bed">
-                                    <p>{room.accomCateName}</p>
-                                    <CountNumber idRoom={room.id} setData={props.setDataStep2} />
+                                <div className="count ">
+                                    <p>{room.name}</p>
+                                    <CountNumber keyType={room.key} data={props.dataStep2} setData={props.setDataStep2} />
                                 </div>
                             </div>
                         )
-                        )} */}
-                    </div>
+                        )}
+                    </div>  
                     <ConfirmClose />
                 </div>
             </div>

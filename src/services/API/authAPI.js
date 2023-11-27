@@ -19,7 +19,7 @@ export const loginRequest = async (LoginRequest) => {
 };
 export const checkAccount = async (CheckAccount) => {
   try {
-    const res = await axios.post("public/user/checkmail", CheckAccount);
+    const res = await axios.post(`/public/users/check-mail`, CheckAccount);
     return res;
   } catch (error) {
     return error.response;

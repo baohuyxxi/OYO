@@ -12,7 +12,7 @@ export const RegisterRequest = {
   lastName: "",
   email: "",
   password: "",
-  role: ["client"],
+  role:["Client","Partner"],
 };
 
 export const TokenRefreshRequest = {

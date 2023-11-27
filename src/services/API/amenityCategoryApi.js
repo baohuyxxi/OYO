@@ -21,7 +21,7 @@ export const getAmenityInCategories = async () => {
 
 export const getAmenityCategories = async () => {
     try {
-        const res = await axios.get(`/public/facility/get-all`)
+        const res = await axios.get(`/public/facilities/get-all`)
         return res
     } catch (error) {
         console.error('Error in getRoomCategory:', error);

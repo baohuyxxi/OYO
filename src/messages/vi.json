@@ -155,6 +155,7 @@
     "nameHome": "Tiêu đề nhà/phòng cho thuê cần làm nổi bật những điều tạo nên nét đặc biệt cho chỗ ở của bạn.",
     "descHome": "Tạo phần mô tả để chia sẻ những điều tạo nên nét đặc biệt cho chỗ ở của bạn.",
     "priceHome": "Bây giờ, hãy đặt mức giá mà bạn muốn.",
+    "acreageHome": "Diện tích", 
     "priceRange": "Khoảng giá",
     "convenient": "Tiện ích",
     "room": "Phòng và phòng ngủ",
@@ -231,6 +232,7 @@
     "searchHome": "Nơi bạn muốn đến",
     "nameHome": "Tên căn nhà",
     "priceVND": "Đơn vị VND",
+    "acreageM2":"Đơn vị mét vuông",  
     "feedback": "Phản hồi từ khách hàng"
   },
   "numberCount": {

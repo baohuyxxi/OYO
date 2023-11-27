@@ -1,47 +1,42 @@
 import { useState } from 'react';
-
 import './CountNumber.scss';
 
 const CountNumber = (props) => {
     const [counter, setCounter] = useState(0);
 
     const handleIncrease = () => {
-        setCounter((preState) => preState + 1); // Set state Callback
-        
-        if (!props.setData.some((person) => person.categoryId === props.idRoom)) {
-            props.setData.push({
-                categoryId: props.idRoom,
-                number: counter + 1,
-            });
-        } else {
-            for (const obj of props.setData) {
-                if (obj.categoryId === props.idRoom) {
-                    obj.number = counter + 1;
-                    break;
-                }
-            }
-        } 
-    };
+        setCounter((preState) => preState + 1);
 
-    const handleReducer = () => {
-        setCounter((preState) => preState - 1); // Set state Callback
-
-        if (!props.setData.some((person) => person.categoryId === props.idRoom)) {
-            props.setData.push({
-                categoryId: props.idRoom,
-                number: counter - 1,
-            });
+        // Placeholder logic, update state or data based on key existence
+        const existingItem = props.data.find((person) => person.key === props.keyType);
+        if (!existingItem) {
+            // Key does not exist, handle accordingly
+            props.setData([...props.data, { key: props.keyType, number: counter + 1 }]);
         } else {
-            for (const obj of props.setData) {
-                if (obj.categoryId === props.idRoom) {
-                    obj.number = counter - 1;
-                    break;
-                }
-            }
+            // Key exists, update the existing item
+            const updatedData = props.data.map((item) =>
+                item.key === props.keyType ? { ...item, number: counter + 1 } : item
+            );
+            props.setData(updatedData);
         }
-
-
     };
+    const handleReducer = () => {
+        setCounter((preState) => preState - 1);
+
+        // Placeholder logic, update state or data based on key existence
+        const existingItem = props.data.find((person) => person.key === props.keyType);
+        if (!existingItem) {
+            // Key does not exist, handle accordingly
+            // You might want to prevent the counter from going negative, based on your requirements
+        } else {
+            // Key exists, update the existing item
+            const updatedData = props.data.map((item) =>
+                item.key === props.keyType ? { ...item, number: counter - 1 } : item
+            );
+            props.setData(updatedData);
+        }
+    };
+
     return (
         <div className="count-number">
             {counter === 0 ? (

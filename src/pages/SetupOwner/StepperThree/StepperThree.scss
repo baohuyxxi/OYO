@@ -7,7 +7,7 @@
         height: 100vh;
         background: linear-gradient(45deg, #f48fb1, #f5f5f5);;
         z-index: -1;
-        display: grid;
+
         justify-items: center; /* Căn giữa chiều ngang */
 
         .require-step3 {
@@ -31,7 +31,6 @@
     .l-6:nth-child(2) {
         position: relative;
         height: 90vh;
-        display: grid;
         justify-items: center; /* Căn giữa chiều ngang */
         align-content: center; /* Căn giữa chiều dọc */
         

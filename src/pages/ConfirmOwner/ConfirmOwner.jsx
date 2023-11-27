@@ -11,9 +11,7 @@ import { t } from 'i18next';
 
 const ConfirmOwner = () => {
     const setupRoomHost = useSelector((state) => state.settingowner.detailRoom);
-    const provinceName = setupRoomHost.provinceName;
-    const priceRoom = formatPrice(setupRoomHost.costPerNightDefault);
-    const linkImage = setupRoomHost?.imagesOfHome[0]['path'];
+    console.log(setupRoomHost)
 
     return (
         <div className="confirm-page">
@@ -66,12 +64,16 @@ const ConfirmOwner = () => {
                         }}
                     >
                         <div className="card">
-                            <div className="img-confirm">
+                            {/* <div className="img-confirm">
                                 <img src={`${linkImage}`} alt="" />
-                            </div>
-                            <h2>{setupRoomHost.name}</h2>
-                            <p>{`${provinceName}, Việt Nam`}</p>
-                            <span>{`${priceRoom} VND / ngày`}</span>
+                            </div> */}
+                            <h2>{setupRoomHost.accomCateName}: {setupRoomHost.accomName}</h2>
+                            <h3>Diện tích: {setupRoomHost.acreage}</h3>
+                            <h3>{setupRoomHost.numHouseAndStreetName}, {setupRoomHost.wardName},  {setupRoomHost.districtName},  {setupRoomHost.provinceName}</h3>
+                            <h3>{setupRoomHost.numPeople}</h3>
+                            <h3>{setupRoomHost.numBathRoom} phòng tắm, {setupRoomHost.numBedRoom} phòng ngủ, {setupRoomHost.numKitchen} phòng bếp</h3>
+                            <h3>{setupRoomHost.description}</h3>
+                            <span>{`${setupRoomHost.pricePerNight} VND / ngày`}</span>
                         </div>
                     </div>
                 </div>

@@ -13,7 +13,7 @@ export const getAllProvinceDetails = async () => {
 export const getRoomDetailRequest = async (id) =>{
   try{
     console.log(id)
-    const res = await axios.get(`public/accom/detail/${id}`)
+    const res = await axios.get(`public/accoms/detail/${id}`)
     return res.data
   }
   catch (error)

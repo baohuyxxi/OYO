@@ -19,9 +19,12 @@ export default function SelectAddress(props) {
   useEffect(() => {
     props.setData((prevData) => ({
       ...prevData,
-      province: selectedProvince?.provinceName,
-      district: selectedDistrict?.districtName,
-      ward: selectedWard?.wardName,
+      provinceCode: selectedProvince?.provinceCode,
+      provinceName: selectedProvince?.provinceName,
+      districtCode: selectedDistrict?.districtCode,
+      districtName: selectedDistrict?.districtName,
+      wardCode: selectedWard?.wardCode,
+      wardName: selectedWard?.wardName,
     }));
   }, [selectedProvince, selectedDistrict, selectedWard]);
   const [provinces, setProvinces] = useState(() => {
@@ -33,7 +36,7 @@ export default function SelectAddress(props) {
     const fetchData = async () => {
       try {
         const response = await getAllProvinceDetails();
-        const provincesData = response.data;
+        const provincesData = response.data.data;
         localStorage.setItem("allProvinces", JSON.stringify(provincesData));
 
         setProvinces(provincesData); 

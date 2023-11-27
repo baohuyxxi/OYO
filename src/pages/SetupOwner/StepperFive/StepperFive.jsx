@@ -8,6 +8,7 @@ const StepperFive = (props) => {
     const [nameRoom, setNameRoom] = useState('')
     const [descRoom, setDescRoom] = useState('')
     const [priceRoom, setPriceRoom] = useState('')
+    const [acreage, setAreage] = useState('')
 
     const handleChangeNameRoom = (event) => {
         setNameRoom(event.currentTarget?.value);
@@ -16,6 +17,7 @@ const StepperFive = (props) => {
                 name: event.currentTarget?.value,
                 description: descRoom,
                 costPerNightDefault: priceRoom,
+                acreage: acreage,
             });
         }
     };
@@ -27,6 +29,7 @@ const StepperFive = (props) => {
                 name: nameRoom,
                 description: event.currentTarget?.value,
                 costPerNightDefault: priceRoom,
+                acreage: acreage,
             });
         }
     };
@@ -38,10 +41,22 @@ const StepperFive = (props) => {
                 name: nameRoom,
                 description: descRoom,
                 costPerNightDefault: event.currentTarget?.value,
+                acreage: acreage,
             });
         }
     };
 
+    const handleChangeAcreage = (event) =>{
+        setAreage(event.currentTarget?.value);
+        if (props.handleSetDataStep5) {
+            props.handleSetDataStep5({
+                name: nameRoom,
+                description: descRoom,
+                costPerNightDefault: priceRoom,
+                acreage:event.currentTarget?.value
+            });
+        }
+    }
     return (
         <div className="step-five">
             <div className="row">
@@ -72,6 +87,13 @@ const StepperFive = (props) => {
                             placeholder={t('placeholder.priceVND')}
                             className="input-step5"
                             onChange={handleChangePriceRoom}
+                        />
+                        <p className="title-desc-step5">{t('label.acreageHome')}</p>
+                        <input
+                            type="number"
+                            placeholder={t('placeholder.priceVND')}
+                            className="input-step5"
+                            onChange={handleChangeAcreage}
                         />
                     </form>
                     <ConfirmClose />

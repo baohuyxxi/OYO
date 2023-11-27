@@ -3,8 +3,7 @@ import axios from "../axios";
 
 export const getRoomCategory = async () => {
     try {
-        const res = await axios.get(`/public/accom/cate-info`)
-         console.log(res)
+        const res = await axios.get(`/public/accoms/cate-info`)
         return res
     } catch (error) {
         console.error('Error in getRoomCategory:', error);

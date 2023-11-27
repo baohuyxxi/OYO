@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState} from 'react'
+import { useState } from 'react'
 import { AxiosError } from 'axios';
 import { t } from 'i18next';
 import { useSnackbar } from 'notistack';
@@ -23,8 +23,10 @@ import StepperOne from '../../pages/SetupOwner/StepperOne/StepperOne';
 import StepperThree from '../../pages/SetupOwner/StepperThree/StepperThree';
 import StepperTwo from '../../pages/SetupOwner/StepperTwo/StepperTwo';
 
-import {addressFormData} from '~/share/models/address'
-import {homeDetailApi,imageRoomApi } from '~/services/API/bookingAPI'
+import { addressFormData } from '~/share/models/address'
+import { typeRoom } from '~/share/models/roomHome';
+import { homeDetailApi, imageRoomApi } from '~/services/API/bookingAPI'
+import { createHomeDetailByHost } from '~/services/API/homeDetailApi';
 import LoadingMaster from '../LoadingMaster/LoadingMaster';
 
 const steps = [
@@ -48,12 +50,12 @@ export default function StepperComponent() {
     const [load, setLoad] = useState(false);
 
     const [dataStep1, setDataStep1] = useState(addressFormData);
-  
+
     const [addressDetail, setAddressDetail] = useState('');
 
-    const setDataStep2 = [];
+    const [dataStep2, setDataStep2] = useState(typeRoom)
     const [countGuest, setCountGuest] = useState(0);
-    const [accomCate, setAccomCate] = React.useState("")
+    const [accomCate, setAccomCate] = useState("")
     const [dataStep3, setDataStep3] = useState([]);
     const [dataStep4, setDataStep4] = useState([]);
 
@@ -65,7 +67,7 @@ export default function StepperComponent() {
     const navigate = useNavigate();
 
     const handleSetAddressDetail = (value) => {
-   
+
         setAddressDetail(value);
     };
 
@@ -80,7 +82,7 @@ export default function StepperComponent() {
         }
 
         if (activeStep === 0) {
-            if (addressDetail !== '' && dataStep1.ward !== undefined) {
+            if (addressDetail !== '' && dataStep1.wardCode !== undefined) {
                 dispatch(setupOwnerSlice.actions.addAddressRoom(dataStep1));
                 dispatch(setupOwnerSlice.actions.addAddressDetailRoom(addressDetail));
                 setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -91,18 +93,21 @@ export default function StepperComponent() {
                 });
             }
         } else if (activeStep === 1) {
-            if (setDataStep2.length > 0) {
-                dispatch(setupOwnerSlice.actions.addroomsOfHomeRoom(setDataStep2));
+            if (dataStep2.length > 0) {
+                dispatch(setupOwnerSlice.actions.addroomsOfHomeRoom(dataStep2));
             }
+            if (accomCate !== "")
+                dispatch(setupOwnerSlice.actions.addAccomCateName(accomCate));
             if (countGuest !== 0) {
                 dispatch(setupOwnerSlice.actions.addNumberOfGuestsRoom(countGuest));
             }
             setActiveStep((prevActiveStep) => prevActiveStep + 1);
         } else if (activeStep === 2) {
             const dataIdList = [];
-           
-            for (var i = 0; i < dataStep3.length ; i++) {
-                dataIdList.push({ amenityId: dataStep3[i]?.value });
+
+            for (var i = 0; i < dataStep3.length; i++) {
+                if (dataStep3[i]?.label !== undefined)
+                    dataIdList.push(dataStep3[i]?.label);
             }
             dispatch(setupOwnerSlice.actions.addamenitiesOfHomeRoom(dataIdList));
             setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -133,7 +138,8 @@ export default function StepperComponent() {
                 dataStep5 !== '' &&
                 dataStep5?.name !== '' &&
                 dataStep5?.description !== '' &&
-                dataStep5?.costPerNightDefault !== ''
+                dataStep5?.costPerNightDefault !== '' &&
+                dataStep5?.acreage !== ''
             ) {
                 dispatch(setupOwnerSlice.actions.addInfoOfHomeRoom(dataStep5));
                 setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -168,7 +174,7 @@ export default function StepperComponent() {
                     const formData = new FormData();
                     await formData.append('file', dataStep4[i]);
                     const dataUrlImage = await imageRoomApi.uploadImage(formData);
-                    
+
                     await setDataStep4URL.push({ path: dataUrlImage?.data?.previewUrl });
                 }
                 if (setDataStep4URL.length >= 1) {
@@ -192,17 +198,18 @@ export default function StepperComponent() {
         }
     };
 
-    const handlePostRoom = () => {
-        homeDetailApi
-            .createHomeDetailByHost(setupRoomHost)
+    const handlePostRoom = (e) => {
+        e.preventDefault()
+        createHomeDetailByHost(setupRoomHost)
             .then((dataResponse) => {
                 enqueueSnackbar(t('message.postHomeSuccess'), {
                     anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
                     variant: 'success',
                 });
-                dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(dataResponse.data.thumbnail));
-                dispatch(userSlice.actions.updateHost());
-                navigate('/congratulation');
+                console.log(dataResponse)
+                // dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(dataResponse.data.thumbnail));
+                // dispatch(userSlice.actions.updateHost());
+                // navigate('/congratulation');
             })
             .catch((error) => {
                 enqueueSnackbar(error.response?.data.message, {
@@ -254,12 +261,12 @@ export default function StepperComponent() {
                             return (
                                 <StepperOne
                                     setData={setDataStep1}
-                                    data ={dataStep1}
+                                    data={dataStep1}
                                     handleSetAddressDetail={handleSetAddressDetail}
                                 />
                             );
                         } else if (activeStep === 1) {
-                            return <StepperTwo setDataStep2={setDataStep2} setCountGuest={setCountGuest} accomCate={accomCate} setAccomCate={setAccomCate} />;
+                            return <StepperTwo dataStep2={dataStep2} setDataStep2={setDataStep2} setCountGuest={setCountGuest} accomCate={accomCate} setAccomCate={setAccomCate} />;
                         } else if (activeStep === 2) {
                             return <StepperThree setDataStep3={handleSetDataStep3} />;
                         } else if (activeStep === 3) {
@@ -273,7 +280,7 @@ export default function StepperComponent() {
                             Back
                         </Button>
                         <Box sx={{ flex: '1 1 auto' }} />
-                 
+
                         {activeStep === 3 && (
 
                             <LoadingButton
@@ -287,6 +294,7 @@ export default function StepperComponent() {
                         )}
                         <Button onClick={handleNext}>{activeStep === steps.length - 1 ? 'Finish' : 'Next'}</Button>
                     </Box>
+                    <Button onClick={() => { console.log(dataStep5), console.log(setupRoomHost) }}>Test</Button>
                 </React.Fragment>
             )}
         </Box>

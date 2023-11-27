@@ -154,6 +154,7 @@
     "nameHome": "Your rental property title should highlight what makes your property special.",
     "descHome": "Create a description to share what makes your property special.",
     "priceHome": "Now set the price you want.",
+    "acreageHome": "Acreage", 
     "priceRange": "Price range",
     "convenient": "Utilities",
     "room": "Room and bedroom",
@@ -230,6 +231,7 @@
     "searchHome": "Where you want to go",
     "nameHome": "Name of the house",
     "priceVND": "Unit VND",
+    "acreageM2":"Square meter unit",  
     "feedback": "Feedback from customers"
   },
   "numberCount": {

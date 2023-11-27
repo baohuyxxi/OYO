@@ -1,7 +1,8 @@
-export const addressFormData = (() => {
-  const addressSelect = localStorage.getItem("addressSelect");
-  return addressSelect ?JSON.parse(addressSelect) :
-    {province: null,
-      district: null,
-      ward : null}
-});
+export const addressFormData = {
+  provinceCode: null,
+  provinceName: null,
+  districtCode: null,
+  districtName: null,
+  wardCode: null,
+  wardName: null
+}

@@ -39,10 +39,10 @@ export default function SelectedMultiple(props) {
     const amenityArrays = useMemo(() => props.dataList.map(() => []), [props.dataList]);
   
     return (
-      <div className="selected-multiple-step3" style={{ width: '100%', padding: '0 40px', marginTop: '60px' }}>
+      <div className="selected-multiple-step3" style={{ width: '100%', padding: '0 40px', marginTop: '75px' }}>
         {props.dataList?.map((listCate, index) => {
-          listCate.facilityListName.map((convi, conviIndex) => {
-            const option = { value: conviIndex, label: convi };
+          listCate.infoFacilityList.map((convi, conviIndex) => {
+            const option = { label: convi.facilityName, value: conviIndex};
   
             if (!amenityArrays[index].some((person) => person.value === conviIndex)) {
               amenityArrays[index].push(option);
@@ -53,7 +53,7 @@ export default function SelectedMultiple(props) {
   
           return (
             <div key={listCate.id}>
-              <p style={{ fontSize: '16px' }}>{listCate.name}</p>
+              <p style={{ fontSize: '16px' }}>{listCate.faciCateName}</p>
               <Select
                 defaultValue={selectedOptions[index]}
                 onChange={(event) => {

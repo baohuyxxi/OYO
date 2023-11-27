@@ -18,7 +18,7 @@ const IntroSettingOwnerPage = () => {
     };
 
     useEffect(() => {
-        if (userLogin.current.id === undefined) {
+        if (userLogin.current === undefined) {
             navigate('/signin');
         }
     }, [userLogin, navigate]);

@@ -4,3 +4,8 @@ export const RoomOfHomeCreateRequest = {
     number: 0,
   };
   
+  export const typeRoom = [
+    {name:"Phòng Tắm", key:"numBathRoom", number:0},
+    {name:"Phòng Bếp", key:"numKitchen", number:0},
+    {name:"Phòng Ngủ", key:"numBedRoom", number:0}
+  ]

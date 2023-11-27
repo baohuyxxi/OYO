@@ -8,7 +8,6 @@ const userSlice = createSlice({
     },
     reducers: {
         signup(state, action) {
-            console.log(action.payload)
         },
         signin(state, action) {
             localStorage.setItem('accessToken', action.payload.accessToken)

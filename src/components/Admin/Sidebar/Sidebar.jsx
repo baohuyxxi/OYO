@@ -2,7 +2,7 @@ import React from "react";
 import SidebarData from "~/mockdata/sidebarData";
 import SidebarItem from "~/components/Admin/Sidebar/SidebarItem";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import "~/components/Admin/Sidebar/Sidebar.scss";
+import "./Sidebar.scss";
 
 const logo =
   "https://cdn6.agoda.net/images/kite-js/logo/agoda/color-default.svg";

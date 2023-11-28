@@ -6,7 +6,7 @@ const Array = [1, 2, 3];
 export default function SkeletonAdvertisement() {
     return (
         <div className='row'>
-            {Array.map((data: any, index: number) => (
+            {Array.map((data, index) => (
                 <div className="col l-4 m-6 c-12" key={index}>
                     <Box>
                         <Skeleton

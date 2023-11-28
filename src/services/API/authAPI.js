@@ -44,7 +44,7 @@ export const tokenRefreshRequest = async (TokenRefreshRequest) => {
   }
 };
 
-export const changePasswordRequest = async (data, token) => {
+export const changePasswordRequest = async (data) => {
   try {
     const res = await axios.put("general/change-password", data);
     return res;

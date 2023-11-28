@@ -15,18 +15,18 @@ import Stepper from '@mui/material/Stepper';
 
 import userSlice from '~/redux/userSlice';
 
-import ConfirmOwner from '../../pages/ConfirmOwner/ConfirmOwner';
-import setupOwnerSlice from '../../pages/SetupOwner/setupOwnerSlice';
-import StepperFive from '../../pages/SetupOwner/StepperFive/StepperFive';
-import StepperFour from '../../pages/SetupOwner/StepperFour/StepperFour';
-import StepperOne from '../../pages/SetupOwner/StepperOne/StepperOne';
-import StepperThree from '../../pages/SetupOwner/StepperThree/StepperThree';
-import StepperTwo from '../../pages/SetupOwner/StepperTwo/StepperTwo';
+import ConfirmOwner from '~/pages/partner/ConfirmOwner/ConfirmOwner';
+import setupOwnerSlice from '~/pages/partner/SetupOwner/setupOwnerSlice';
+import StepperFive from '~/pages/partner/SetupOwner/StepperFive/StepperFive';
+import StepperFour from '~/pages/partner/SetupOwner/StepperFour/StepperFour';
+import StepperOne from '~/pages/partner/SetupOwner/StepperOne/StepperOne';
+import StepperThree from '~/pages/partner/SetupOwner/StepperThree/StepperThree';
+import StepperTwo from '~/pages/partner/SetupOwner/StepperTwo/StepperTwo';
 
 import { addressFormData } from '~/share/models/address'
 import { typeRoom } from '~/share/models/roomHome';
 import { homeDetailApi, imageRoomApi } from '~/services/API/bookingAPI'
-import { createHomeDetailByHost } from '~/services/API/homeDetailApi';
+import { createHomeDetailByHost, addImageHomeByHost } from '~/services/API/homeDetailApi';
 import LoadingMaster from '../LoadingMaster/LoadingMaster';
 
 const steps = [
@@ -167,24 +167,25 @@ export default function StepperComponent() {
     };
 
     const handleUpload = async () => {
-        if (dataStep4.length === 5) {
-            try {
-                setLoad(true);
-                for (var i = 0; i < dataStep4.length; i++) {
-                    const formData = new FormData();
-                    await formData.append('file', dataStep4[i]);
-                    const dataUrlImage = await imageRoomApi.uploadImage(formData);
+        if (dataStep4.length >=0 ) {
+            // try {
+            //     setLoad(true);
+            //     for (var i = 0; i < dataStep4.length; i++) {
+            //         const formData = new FormData();
+            //         await formData.append('file', dataStep4[i]);
+            //         const dataUrlImage = await imageRoomApi.uploadImage(formData);
 
-                    await setDataStep4URL.push({ path: dataUrlImage?.data?.previewUrl });
-                }
-                if (setDataStep4URL.length >= 1) {
-                    setCheckImage(true);
-                }
-                await dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(setDataStep4URL));
-                setLoad(false);
-            } catch (error) {
-                setLoad(false);
-            }
+            //         await setDataStep4URL.push({ path: dataUrlImage?.data?.previewUrl });
+            //     }
+            //     if (setDataStep4URL.length >= 1) {
+            //         setCheckImage(true);
+            //     }
+            //     await dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(setDataStep4URL));
+            //     setLoad(false);
+            // } catch (error) {
+            //     setLoad(false);
+            // }
+            dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(dataStep4))
         } else if (dataStep4.length < 5) {
             enqueueSnackbar(t('message.maxImage'), {
                 anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
@@ -207,9 +208,11 @@ export default function StepperComponent() {
                     variant: 'success',
                 });
                 console.log(dataResponse)
+                const id = dataResponse.data.data.id
+                addImageHomeByHost({ imageList: dataStep4, id: id })
                 // dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(dataResponse.data.thumbnail));
                 // dispatch(userSlice.actions.updateHost());
-                // navigate('/congratulation');
+                navigate('/congratulation');
             })
             .catch((error) => {
                 enqueueSnackbar(error.response?.data.message, {

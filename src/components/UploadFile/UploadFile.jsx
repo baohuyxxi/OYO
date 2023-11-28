@@ -2,8 +2,8 @@ import React, { useRef, useState } from 'react';
 
 import './UploadFile.scss';
 
-import { ImageConfig } from '../../config/ImageConfig';
-import uploadImg from '../../assets/upload/cloud-upload-regular-240.png';
+import { ImageConfig } from '~/config/ImageConfig';
+import uploadImg from '~/assets/upload/cloud-upload-regular-240.png';
 import { t } from 'i18next';
 
 

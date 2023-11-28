@@ -5,8 +5,8 @@ const RouterAdmin = () => {
   return (
     <Routes>
       <Route path="/" element={<DashboardAdmin />} />
-      {/* <Route path="/customers" element={<LayoutUserAdmin />} />
-      <Route path="/house" element={<LayoutHomeAdmin />} />
+      <Route path="/customers" element={<LayoutUserAdmin />} />
+      {/* <Route path="/house" element={<LayoutHomeAdmin />} />
       <Route path="/roomcategories" element={<LayoutTypeRoomAdmin />} />
       <Route path="/bedcategories" element={<LayoutTypeBedAdmin />} />
       <Route path="/amenity" element={<LayoutAmenityAdmin />} />

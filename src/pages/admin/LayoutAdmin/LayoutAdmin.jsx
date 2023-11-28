@@ -1,5 +1,7 @@
 import Sidebar from "~/components/Admin/Sidebar/Sidebar";
 import RoutesAdmin from "~/routes/RouterAdmin";
+import "./LayoutAdmin.scss";
+import "./boxicons-2.0.7/css/boxicons.min.css";
 const LayoutAdmin = () => {
   return (
     <div className="layout-admin">

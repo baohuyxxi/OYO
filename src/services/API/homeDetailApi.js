@@ -6,21 +6,22 @@ import { id } from "date-fns/locale";
 export const createHomeDetailByHost = async (data) => {
   try {
     const res = await axios.post(`/partner/accoms/create`, data);
-    console.log(res)
     return res;
   } catch (error) {
     return error.response;
   }
-} 
+}
 
 export const addImageHomeByHost = async (data) => {
-  let formData = new FormData();
-  formData.append("file", imageFile);
   try {
-    const res = await axios.post(`/partner/accoms/${id}/images/create`, formData);
+    let formData = new FormData();
+    data.imageList.forEach((image) => {
+      formData.append("files", image);
+    })
+    const res = await axios.post(`/partner/accoms/${data.id}/images/create`, formData);
     return res;
   } catch (error) {
     return error.response;
   }
-} 
+}
 

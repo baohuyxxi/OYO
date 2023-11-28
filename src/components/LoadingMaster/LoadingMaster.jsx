@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Dialog from '@mui/material/Dialog';
 
-import loadingImage from '../../assets/animation/Infinity-1.8s-200px.svg';
+import loadingImage from '~/assets/animation/Infinity-1.8s-200px.svg';
 
 import './LoadingMaster.scss';
 

@@ -2,8 +2,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import userSlice from './userSlice';
-import bookingSlice from '../pages/BookingPage/bookingSlice';
-import setupOwnerSlice from '../pages/SetupOwner/setupOwnerSlice';
+import bookingSlice from '../pages/client/BookingPage/bookingSlice';
+import setupOwnerSlice from '../pages/partner/SetupOwner/setupOwnerSlice';
 // Tạo Redux store với các reducers đã chỉ định
 const store = configureStore({
     reducer: {

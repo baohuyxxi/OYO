@@ -11,7 +11,7 @@
 //           <Dropdown
 //             customToggle={() => renderUserToggle(curr_user)}
 //             contentData={user_menu}
-//             renderItems={(item: any, index: any) => renderUserMenu(item, index)}
+//             renderItems={(item, index) => renderUserMenu(item, index)}
 //           />
 //         </div>
 //         <div className="topnav__right-item">

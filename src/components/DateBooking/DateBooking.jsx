@@ -6,9 +6,9 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 
 import './DateBooking.scss';
-// import pricesOfHomeApi from '../../services/pricesOfHomeApi';
+// import pricesOfHomeApi from '~/services/pricesOfHomeApi';
 import { useDispatch } from 'react-redux';
-// import bookingSlice from '../../pages/BookingPage/bookingSlice';
+// import bookingSlice from '~/pages/BookingPage/bookingSlice';
 import { t } from 'i18next';
 
 const DateBooking = (props) => {

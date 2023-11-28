@@ -37,3 +37,16 @@ export const homeDetailApi = async () => {
         throw error;
     }
 }
+
+export const checkBooking = async () => {
+    try {
+        // Giả mạo thời gian trễ
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        
+        return true;
+    } catch (error) {
+        console.error('Error in homeDetailApi:', error);
+        throw error;
+    }
+}
+

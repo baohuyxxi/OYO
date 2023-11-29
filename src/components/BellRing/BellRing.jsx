@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 
 import notificationSlice from '../../redux/notificationSlice';
-import notificationApi from '../../services/API/notificationApi';
+import notificationApi from '../../services/apis/notificationApi';
 import './BellRing.scss';
 
 const BellRing = (props) => {

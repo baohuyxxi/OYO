@@ -5,20 +5,22 @@ import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-import {getListProvices} from '~/services/API/provinceApi';
+import { getListProvices } from '~/services/apis/provinceApi';
 import { ProvinceModel } from '~/share/models/province';
 import { t } from 'i18next';
 import { useDispatch } from 'react-redux';
 import setupOwnerSlice from '../setupOwnerSlice';
-import { getAllProvinceDetails } from "~/services/API/publicAPI";
+import { getAllProvinceDetails } from '~/services/apis/publicAPI';
 export default function SelectedLocate(props) {
-    const [age, setAge] = useState(props?.dataFilterDefauld?.provinceCode ? props?.dataFilterDefauld?.provinceCode : '');
+    const [age, setAge] = useState(
+        props?.dataFilterDefauld?.provinceCode ? props?.dataFilterDefauld?.provinceCode : ''
+    );
     const [proviceList, setProvinceList] = useState([]);
     const dispatch = useDispatch();
 
     useEffect(() => {
         getAllProvinceDetails().then((dataResponse) => {
-            console.log(dataResponse.data)
+            console.log(dataResponse.data);
             if (dataResponse.data) {
                 setProvinceList(dataResponse.data);
             }

@@ -1,7 +1,12 @@
-import React from "react";
+import React from 'react';
+import UserAdmin from '~/pages/admin/LayoutUserAdmin/UserAdmin';
 
 const LayoutUserAdmin = () => {
-  return <div></div>;
+    return (
+        <div>
+            <UserAdmin data={listUser} />
+        </div>
+    );
 };
 
 export default LayoutUserAdmin;

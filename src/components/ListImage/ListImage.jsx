@@ -1,7 +1,7 @@
 import './ListImage.scss';
 
 const ListImage = (props) => {
-    const imgMain =  props.listImage.slice(0, 1);
+    const imgMain = props.listImage.slice(0, 1);
     const cutDataImage = props.listImage.slice(1);
     return (
         <div className="list-image">
@@ -17,10 +17,7 @@ const ListImage = (props) => {
                             {cutDataImage.map((imgs, index) => (
                                 <div className="col l-6 c-6" key={index}>
                                     <div className="image-item">
-                                        <img
-                                            src={imgs}
-                                            alt="room_hot"
-                                        />
+                                        <img src={imgs} alt="room_hot" />
                                     </div>
                                 </div>
                             ))}

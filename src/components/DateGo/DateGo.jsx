@@ -15,8 +15,8 @@ const DateRangePickerComp = (props) => {
         {
             startDate: new Date(),
             endDate: addDays(new Date(), 0),
-            key: 'selection',
-        },
+            key: 'selection'
+        }
     ]);
 
     // open close
@@ -76,7 +76,6 @@ const DateRangePickerComp = (props) => {
                 {open && (
                     <DateRangePicker
                         onChange={(item) => {
-                           
                             setRange([item.selection]);
                             if (props?.setDataDay) {
                                 props.setDataDay([item.selection]);

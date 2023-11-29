@@ -1,12 +1,36 @@
 import React from 'react';
-import Table from '~/components/Table/Table';
-import './UserAdmin.scss';
+import { AxiosError } from 'axios';
+
 import { useSnackbar } from 'notistack';
+
 import Popup from 'reactjs-popup';
 import LockIcon from '@mui/icons-material/Lock';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 
+import Table from '~/components/Table/Table';
+import userApi from '../../services/userApi';
+import './UserAdmin.scss';
+
+const customerTableHead = ['', 'Tên đầy đủ', 'Email', 'Ngày sinh', 'Số điện thoại', 'Chủ nhà', 'Quyền'];
+
+const renderHead = (item, index) => <th key={index}>{item}</th>;
+
 const UserAdmin = () => {
+    const { enqueueSnackbar } = useSnackbar();
+    const handleLockAccount = (idDelete) => {
+        const dataAccount = {
+            id: idDelete,
+            status: 'LOCK'
+        };
+        userApi
+            .lockAccount(dataAccount)
+            .then(() => {
+                enqueueSnackbar('Khóa tài khoản thành công', { variant: 'success' });
+            })
+            .catch((error: AxiosError<any>) => {
+                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+            });
+    };
     const renderBody = (item, inde) => (
         <tr key={index}>
             <td>{index}</td>

@@ -2,7 +2,7 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
 // import './TableDataHostSummary.scss';
 import { useState } from 'react';
-import summaryHomeApi from '~/services/API/summaryHostApi';
+import summaryHomeApi from '~/services/apis/summaryHostApi';
 import formatPrice from '~/utils/formatPrice';
 
 import { AxiosError } from 'axios';
@@ -24,7 +24,7 @@ const TableDataHostSummary = (props) => {
             dateEnd: props.data[i]?.dateEnd ? props.data[i].dateEnd : '',
             guests: props.data[i]?.guests ? props.data[i].guests : '1',
             price: props.data[i]?.totalCost ? formatPrice(props.data[i].totalCost) : '1 đ',
-            priceBefore: props.data[i]?.moneyPayed ? formatPrice(props.data[i].moneyPayed) : '0 đ',
+            priceBefore: props.data[i]?.moneyPayed ? formatPrice(props.data[i].moneyPayed) : '0 đ'
         });
     }
 
@@ -37,7 +37,7 @@ const TableDataHostSummary = (props) => {
             enqueueSnackbar('Vui lòng chọn từng nhà để thao tác', { variant: 'warning' });
         } else {
             const dataCheckIn = {
-                bookingId: listSelected[0].idroom,
+                bookingId: listSelected[0].idroom
             };
             if (props.idTab === '0') {
                 summaryHomeApi
@@ -79,20 +79,20 @@ const columns = [
     {
         field: 'dateStart',
         headerName: 'Ngày nhận phòng',
-        width: 160,
+        width: 160
     },
     {
         field: 'dateEnd',
         headerName: 'Ngày trả phòng',
-        width: 160,
+        width: 160
     },
     {
         field: 'guests',
         headerName: 'Lượng khách',
-        width: 120,
+        width: 120
     },
     { field: 'price', headerName: 'Tổng tiền', width: 130 },
-    { field: 'priceBefore', headerName: 'Đã thanh toán', width: 140 },
+    { field: 'priceBefore', headerName: 'Đã thanh toán', width: 140 }
 ];
 
 function DataTable(props) {

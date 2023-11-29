@@ -11,11 +11,9 @@ import { BrowserRouter } from "react-router-dom";
 import "./assets/css/grid.scss";
 import "./assets/css/frame.scss";
 import "./assets/css/index.scss";
-import LocateProvider, { LocateContext } from "./contexts/LocateContext";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <LocateProvider>
           <Provider store={store}>
             <I18nextProvider i18n={i18n}>
               <CssBaseline />
@@ -28,7 +26,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               </SnackbarProvider>
             </I18nextProvider>
           </Provider>
-      </LocateProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

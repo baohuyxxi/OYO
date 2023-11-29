@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react'
+import { useState } from 'react';
 import { AxiosError } from 'axios';
 import { t } from 'i18next';
 import { useSnackbar } from 'notistack';
@@ -23,10 +23,9 @@ import StepperOne from '~/pages/partner/SetupOwner/StepperOne/StepperOne';
 import StepperThree from '~/pages/partner/SetupOwner/StepperThree/StepperThree';
 import StepperTwo from '~/pages/partner/SetupOwner/StepperTwo/StepperTwo';
 
-import { addressFormData } from '~/share/models/address'
+import { addressFormData } from '~/share/models/address';
 import { typeRoom } from '~/share/models/roomHome';
-import { homeDetailApi, imageRoomApi } from '~/services/API/bookingAPI'
-import { createHomeDetailByHost, addImageHomeByHost } from '~/services/API/homeDetailApi';
+import pernerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 import LoadingMaster from '../LoadingMaster/LoadingMaster';
 
 const steps = [
@@ -34,11 +33,11 @@ const steps = [
     t('setupOwner.nameStep.two'),
     t('setupOwner.nameStep.three'),
     t('setupOwner.nameStep.four'),
-    t('setupOwner.nameStep.five'),
+    t('setupOwner.nameStep.five')
 ];
 
 export default function StepperComponent() {
-    const [activeStep, setActiveStep] = useState(0)
+    const [activeStep, setActiveStep] = useState(0);
     const [skipped, setSkipped] = useState(new Set());
 
     const dispatch = useDispatch();
@@ -53,9 +52,9 @@ export default function StepperComponent() {
 
     const [addressDetail, setAddressDetail] = useState('');
 
-    const [dataStep2, setDataStep2] = useState(typeRoom)
+    const [dataStep2, setDataStep2] = useState(typeRoom);
     const [countGuest, setCountGuest] = useState(0);
-    const [accomCate, setAccomCate] = useState("")
+    const [accomCate, setAccomCate] = useState('');
     const [dataStep3, setDataStep3] = useState([]);
     const [dataStep4, setDataStep4] = useState([]);
 
@@ -67,7 +66,6 @@ export default function StepperComponent() {
     const navigate = useNavigate();
 
     const handleSetAddressDetail = (value) => {
-
         setAddressDetail(value);
     };
 
@@ -89,15 +87,14 @@ export default function StepperComponent() {
             } else {
                 enqueueSnackbar(t('message.addressEmpty'), {
                     anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
-                    variant: 'warning',
+                    variant: 'warning'
                 });
             }
         } else if (activeStep === 1) {
             if (dataStep2.length > 0) {
                 dispatch(setupOwnerSlice.actions.addroomsOfHomeRoom(dataStep2));
             }
-            if (accomCate !== "")
-                dispatch(setupOwnerSlice.actions.addAccomCateName(accomCate));
+            if (accomCate !== '') dispatch(setupOwnerSlice.actions.addAccomCateName(accomCate));
             if (countGuest !== 0) {
                 dispatch(setupOwnerSlice.actions.addNumberOfGuestsRoom(countGuest));
             }
@@ -106,8 +103,7 @@ export default function StepperComponent() {
             const dataIdList = [];
 
             for (var i = 0; i < dataStep3.length; i++) {
-                if (dataStep3[i]?.label !== undefined)
-                    dataIdList.push(dataStep3[i]?.label);
+                if (dataStep3[i]?.label !== undefined) dataIdList.push(dataStep3[i]?.label);
             }
             dispatch(setupOwnerSlice.actions.addamenitiesOfHomeRoom(dataIdList));
             setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -116,18 +112,18 @@ export default function StepperComponent() {
             if (dataStep4.length < 5) {
                 enqueueSnackbar(t('message.maxImage'), {
                     anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
-                    variant: 'warning',
+                    variant: 'warning'
                 });
             } else if (dataStep4.length > 5) {
                 enqueueSnackbar(t('message.fullImage'), {
                     anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
-                    variant: 'warning',
+                    variant: 'warning'
                 });
             } else {
                 if (!checkImage) {
                     enqueueSnackbar(t('message.uploadImagePlease'), {
                         anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
-                        variant: 'warning',
+                        variant: 'warning'
                     });
                 } else {
                     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -146,7 +142,7 @@ export default function StepperComponent() {
             } else {
                 enqueueSnackbar(t('message.fullinfo'), {
                     anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
-                    variant: 'warning',
+                    variant: 'warning'
                 });
             }
         }
@@ -167,49 +163,31 @@ export default function StepperComponent() {
     };
 
     const handleUpload = async () => {
-        if (dataStep4.length >=0 ) {
-            // try {
-            //     setLoad(true);
-            //     for (var i = 0; i < dataStep4.length; i++) {
-            //         const formData = new FormData();
-            //         await formData.append('file', dataStep4[i]);
-            //         const dataUrlImage = await imageRoomApi.uploadImage(formData);
-
-            //         await setDataStep4URL.push({ path: dataUrlImage?.data?.previewUrl });
-            //     }
-            //     if (setDataStep4URL.length >= 1) {
-            //         setCheckImage(true);
-            //     }
-            //     await dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(setDataStep4URL));
-            //     setLoad(false);
-            // } catch (error) {
-            //     setLoad(false);
-            // }
-            dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(dataStep4))
+        if (dataStep4.length >= 0) {
+            dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(dataStep4));
         } else if (dataStep4.length < 5) {
             enqueueSnackbar(t('message.maxImage'), {
                 anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
-                variant: 'warning',
+                variant: 'warning'
             });
         } else {
             enqueueSnackbar(t('message.fullImage'), {
                 anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
-                variant: 'warning',
+                variant: 'warning'
             });
         }
     };
 
     const handlePostRoom = (e) => {
-        e.preventDefault()
-        createHomeDetailByHost(setupRoomHost)
+        e.preventDefault();
+        pernerManageAPI.createHomeDetailByHost(setupRoomHost)
             .then((dataResponse) => {
                 enqueueSnackbar(t('message.postHomeSuccess'), {
                     anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
-                    variant: 'success',
+                    variant: 'success'
                 });
-                console.log(dataResponse)
-                const id = dataResponse.data.data.id
-                addImageHomeByHost({ imageList: dataStep4, id: id })
+                const id = dataResponse.data.data.id;
+                pernerManageAPI.addImageHomeByHost({ imageList: dataStep4, id: id });
                 // dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(dataResponse.data.thumbnail));
                 // dispatch(userSlice.actions.updateHost());
                 navigate('/congratulation');
@@ -217,7 +195,7 @@ export default function StepperComponent() {
             .catch((error) => {
                 enqueueSnackbar(error.response?.data.message, {
                     anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
-                    variant: 'error',
+                    variant: 'error'
                 });
             });
     };
@@ -228,11 +206,11 @@ export default function StepperComponent() {
             <Stepper activeStep={activeStep}>
                 {steps.map((label, index) => {
                     const stepProps = {
-                        completed: undefined,
+                        completed: undefined
                     };
 
                     const labelProps = {
-                        optional: undefined,
+                        optional: undefined
                     };
                     if (isStepSkipped(index)) {
                         stepProps.completed = false;
@@ -269,7 +247,15 @@ export default function StepperComponent() {
                                 />
                             );
                         } else if (activeStep === 1) {
-                            return <StepperTwo dataStep2={dataStep2} setDataStep2={setDataStep2} setCountGuest={setCountGuest} accomCate={accomCate} setAccomCate={setAccomCate} />;
+                            return (
+                                <StepperTwo
+                                    dataStep2={dataStep2}
+                                    setDataStep2={setDataStep2}
+                                    setCountGuest={setCountGuest}
+                                    accomCate={accomCate}
+                                    setAccomCate={setAccomCate}
+                                />
+                            );
                         } else if (activeStep === 2) {
                             return <StepperThree setDataStep3={handleSetDataStep3} />;
                         } else if (activeStep === 3) {
@@ -285,7 +271,6 @@ export default function StepperComponent() {
                         <Box sx={{ flex: '1 1 auto' }} />
 
                         {activeStep === 3 && (
-
                             <LoadingButton
                                 variant="contained"
                                 loading={load}
@@ -297,7 +282,13 @@ export default function StepperComponent() {
                         )}
                         <Button onClick={handleNext}>{activeStep === steps.length - 1 ? 'Finish' : 'Next'}</Button>
                     </Box>
-                    <Button onClick={() => { console.log(dataStep5), console.log(setupRoomHost) }}>Test</Button>
+                    <Button
+                        onClick={() => {
+                            console.log(dataStep5), console.log(setupRoomHost);
+                        }}
+                    >
+                        Test
+                    </Button>
                 </React.Fragment>
             )}
         </Box>

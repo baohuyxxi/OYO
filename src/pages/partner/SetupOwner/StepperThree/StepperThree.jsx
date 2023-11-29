@@ -1,20 +1,17 @@
 import { useEffect, useState } from 'react';
-import {getAmenityCategories} from '~/services/API/amenityCategoryApi';
-import { AmenityCategoriesModel } from '~/share/models/amenityCategories';
-import { ConvenientOptionShow } from '~/share/models/convenient';
+import publicFacilityAPI from '~/services/apis/publicAPI/publicFacilityAPI';
 import SelectedMultiple from './SelectedMultiple';
 import './StepperThree.scss';
 import { t } from 'i18next';
 import ConfirmClose from '~/components/ConfirmClose/ConfirmClose';
 
-
 const StepperThree = (props) => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        getAmenityCategories().then((dataResponse) => {
+        publicFacilityAPI.getAllDataFacility().then((dataResponse) => {
             if (dataResponse?.data) {
-                setData(dataResponse.data.data);
+                setData(dataResponse.data);
             }
         });
     }, []);

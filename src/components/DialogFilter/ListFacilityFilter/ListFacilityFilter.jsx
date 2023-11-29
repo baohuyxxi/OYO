@@ -1,19 +1,19 @@
-import { useState, useEffect } from "react";
-import ListFacilityByCategory from "./ListFacilityByCategory/ListFacilittByCategory";
-import { getAllDataFacilityRequest } from "~/services/API/facilityAPI";
+import { useState, useEffect } from 'react';
+import ListFacilityByCategory from './ListFacilityByCategory/ListFacilittByCategory';
+import publicFacilityAPI from '~/services/apis/publicAPI/publicFacilityAPI';
 
 const ListFacilityFilter = () => {
-  const [facilityCateList, setFacilityCateList] = useState(null);
-  useEffect(() => {
-    async function fetchData() {
-      const res = await getAllDataFacilityRequest();
-      setFacilityCateList(res.data);
-    }
-    fetchData();
-  }, []);
-  return (
-    <div style={{ marginTop: "30px" }}>
-      {/* {listAccomCateData?.map((current, index) => (
+    const [facilityCateList, setFacilityCateList] = useState(null);
+    useEffect(() => {
+        async function fetchData() {
+            const res = await publicFacilityAPI.getAllDataFacilityRequest();
+            setFacilityCateList(res.data);
+        }
+        fetchData();
+    }, []);
+    return (
+        <div style={{ marginTop: '30px' }}>
+            {/* {listAccomCateData?.map((current, index) => (
         <div key={index}>
           <div
             className={`slider__item-filter`}
@@ -28,15 +28,15 @@ const ListFacilityFilter = () => {
           </div>
         </div>
       ))} */}
-      {facilityCateList?.map((current, index) => (
-        <div key={index}>
-          <ListFacilityByCategory
-            facilityList={current.facilityListName}
-            facilityCateName={current.faciCateName}
-          />
+            {facilityCateList?.map((current, index) => (
+                <div key={index}>
+                    <ListFacilityByCategory
+                        facilityList={current.facilityListName}
+                        facilityCateName={current.faciCateName}
+                    />
+                </div>
+            ))}
         </div>
-      ))}
-    </div>
-  );
+    );
 };
 export default ListFacilityFilter;

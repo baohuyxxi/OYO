@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { t } from 'i18next'
+import { t } from 'i18next';
 
 import ConfirmClose from '~/components/ConfirmClose/ConfirmClose';
 import CountNumber from '~/components/CountNumber/CountNumber';
 import CountNumberGuest from '~/components/CountNumber/CountNumberGuest';
-import roomCategoryApi from '~/services/API/roomCategoryApi';
-import { RoomOfHomeCreateRequest } from '~/share/models/roomHome';
+import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import CustomInput from '~/assets/custom/CustomInput';
-import MenuItem from '@mui/material/MenuItem'
+import MenuItem from '@mui/material/MenuItem';
 import './StepperTwo.scss';
 
 const StepperTwo = (props) => {
     const [data, setData] = useState([]);
     useEffect(() => {
-        roomCategoryApi.getRoomCategory().then((dataResponse) => {
-            setData(dataResponse?.data.data);
+        publicAccomPlaceAPI.getRoomCategory().then((dataResponse) => {
+            setData(dataResponse?.data);
         });
-    }, [])
+    }, []);
     return (
         <div className="step-two">
             <div className="row">
@@ -32,7 +31,7 @@ const StepperTwo = (props) => {
                 </div>
                 <div className="col l-6 m-6">
                     <div className="info-count__room">
-                    <CustomInput
+                        <CustomInput
                             className="cateName"
                             select={true}
                             size="small"
@@ -57,16 +56,19 @@ const StepperTwo = (props) => {
                             <div key={index}>
                                 <div className="count ">
                                     <p>{room.name}</p>
-                                    <CountNumber keyType={room.key} data={props.dataStep2} setData={props.setDataStep2} />
+                                    <CountNumber
+                                        keyType={room.key}
+                                        data={props.dataStep2}
+                                        setData={props.setDataStep2}
+                                    />
                                 </div>
                             </div>
-                        )
-                        )}
-                    </div>  
+                        ))}
+                    </div>
                     <ConfirmClose />
                 </div>
             </div>
-        </div >
+        </div>
     );
 };
 

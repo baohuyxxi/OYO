@@ -7,7 +7,7 @@ import './CountRoomDetailSetting.scss';
 
 import { useEffect, useState } from 'react';
 import roomOfHomeApi from '~/services/roomOfHome';
-import roomCategoryApi from '~/services/roomCategoryApi';
+import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 
 import { useSnackbar } from 'notistack';
 import { AxiosError } from 'axios';
@@ -28,7 +28,7 @@ const CountRoomDetailSetting = () => {
         roomOfHomeApi.getAllRoomOfHome(`${params.idHome}&`).then((dataRoom) => {
             setListRoomOfHome(dataRoom?.data?.content);
         });
-        roomCategoryApi.getAllRoomCategoryOfHome(params?.idHome).then((dataResponse) => {
+        publicAccomPlaceAPI.getAllRoomCategoryOfHome(params?.idHome).then((dataResponse) => {
             setListCategoryRoom(dataResponse?.data?.content);
         });
     }, [params.idHome]);
@@ -56,7 +56,7 @@ const CountRoomDetailSetting = () => {
                 return data.number !== 0;
             }),
         };
-        roomCategoryApi
+        publicAccomPlaceAPI
             .saveCountRoomOfHome(newCount)
             .then((data) => {
                 setListRoomOfHome(data.data);

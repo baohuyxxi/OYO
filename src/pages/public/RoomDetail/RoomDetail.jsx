@@ -17,11 +17,11 @@ import { t } from "i18next";
 import CommentReview from "~/components/CommentReview/commentReview";
 import FramePage from "~/components/FramePage/FramePage";
 import { useNavigate, useParams } from 'react-router-dom';
-import { getRoomDetailRequest } from '~/services/API/publicAPI'
+import publicAccomPlaceAPI from "~/services/apis/publicAPI/publicAccomPlaceAPI";
 import { useEffect, useState } from "react";
 import SkeletonRoomDetail from '~/components/Skeleton/SkeletonRoomDetail';
 import formatPrice from '~/utils/formatPrice';
-import { checkBooking } from '~/services/API/bookingAPI'
+import bookingAPI from "~/services/apis/clientAPI/clientBookingAPI";
 import { useDispatch, useSelector } from 'react-redux';
 import bookingSlice from "~/pages/client/BookingPage/bookingSlice";
 export default function RoomDetail() {
@@ -45,7 +45,7 @@ export default function RoomDetail() {
   }, [dataBooking]);
   useEffect(() => {
     setLoading(true);
-    getRoomDetailRequest(roomId.id).then((dataResponse) => {
+    publicAccomPlaceAPI.getRoomDetail(roomId.id).then((dataResponse) => {
       setDataDetalHome(dataResponse.data);
       setLoading(false);
     });
@@ -105,19 +105,6 @@ export default function RoomDetail() {
   const handleChangeGuests = (value) => {
     setGuests(value);
   };
-
-  const listoutstandingData = [
-    {
-      name: 'Nằm ngay trung tâm TP. Hồ Chí Minh, khách sạn này có điểm vị trí tuyệt vời 9,4',
-      icon: 'https://png.pngtree.com/png-vector/20190419/ourmid/pngtree-vector-location-icon-png-image_956422.jpg',
-      isConfig: true, // Hoặc false tùy thuộc vào việc máy lạnh đã được cấu hình hay chưa
-    },
-    {
-      name: 'Có bãi đậu xe riêng miễn phí ở khách sạn này',
-      icon: 'https://png.pngtree.com/png-vector/20190621/ourlarge/pngtree-parking-lot-icon-graphic-design-template-vector-png-image_1497687.jpg', // Đường dẫn đến biểu tượng nhà hàng (nếu có)
-      isConfig: true, // Hoặc false tùy thuộc vào việc nhà hàng đã được cấu hình hay chưa
-    }
-  ];
   const listRoomData = [
     {
       roomName: 'Room 1',
@@ -182,7 +169,7 @@ export default function RoomDetail() {
                         <hr className="divider" />
                         <div className="bed-room">
                           <h2>{t('contentMain.bedroom')}</h2>
-                          <BedRoomSlider listRoom={listRoomData} />
+                          <BedRoomSlider bedRooms={dataDetailHome.bedRooms} />
                         </div>
                       </div>
 

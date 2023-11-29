@@ -65,7 +65,6 @@ export default function CardInfo() {
                 imageFile={imageFile}
                 setModalOpen={setModalOpen}
                 setImageFile={setImageFile}
-                mail={user.mail}
               
             />
             <input

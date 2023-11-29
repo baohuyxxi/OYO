@@ -6,8 +6,8 @@ const bookingSlice = createSlice({
   
     name: 'booking',
     initialState: {
-        nameCustomer:JSON.parse(localStorage.getItem('user')).userName ,
-        phoneNumberCustomer:  JSON.parse(localStorage.getItem('user')).phone,
+        nameCustomer:JSON.parse(localStorage.getItem('user')|| null)?.userName ,
+        phoneNumberCustomer:  JSON.parse(localStorage.getItem('user')|| null)?.phone,
         checkIn: moment().format('YYYY-MM-DD'),
         checkOut: moment().format('YYYY-MM-DD'),
         numAdult: 1,

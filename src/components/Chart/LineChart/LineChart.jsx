@@ -8,7 +8,7 @@ import {
     CategoryScale,
     LinearScale,
     PointElement,
-    Filler,
+    Filler
 } from 'chart.js';
 ChartJS.register(Title, Tooltip, LineElement, Legend, CategoryScale, LinearScale, PointElement, Filler);
 
@@ -18,20 +18,23 @@ function LineChart(props) {
         datasets: [
             {
                 label: 'Doanh thu theo tháng',
-                data: props?.data !== undefined ? [
-                    props.data[0].amount,
-                    props.data[1].amount,
-                    props.data[2].amount,
-                    props.data[3].amount,
-                    props.data[4].amount,
-                    props.data[5].amount,
-                    props.data[6].amount,
-                    props.data[7].amount,
-                    props.data[8].amount,
-                    props.data[9].amount,
-                    props.data[10].amount,
-                    props.data[11].amount,
-                ] : [0, 0, 0, 0, 0, 0, 0, 0, 0 ,0 ,0 ,0],
+                data:
+                    props?.data !== undefined
+                        ? [
+                              props.data[0].amount,
+                              props.data[1].amount,
+                              props.data[2].amount,
+                              props.data[3].amount,
+                              props.data[4].amount,
+                              props.data[5].amount,
+                              props.data[6].amount,
+                              props.data[7].amount,
+                              props.data[8].amount,
+                              props.data[9].amount,
+                              props.data[10].amount,
+                              props.data[11].amount
+                          ]
+                        : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 backgroundColor: '#64b5f6',
                 borderColor: 'green',
                 tension: 0.4,
@@ -39,9 +42,9 @@ function LineChart(props) {
                 pointStyle: 'rect',
                 pointBorderColor: 'blue',
                 pointBackgroundColor: '#fff',
-                showLine: true,
-            },
-        ],
+                showLine: true
+            }
+        ]
     };
     return (
         <div>

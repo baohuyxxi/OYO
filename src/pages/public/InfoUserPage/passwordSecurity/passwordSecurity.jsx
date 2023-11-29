@@ -8,7 +8,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Visibility from '@mui/icons-material/Visibility';
 import IconButton from '@mui/material/IconButton';
 import { ChangePassword } from '~/share/models/auth';
-import { changePasswordRequest } from '~/services/apis/authAPI';
+import authAPI from '~/services/apis/authAPI/authAPI';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useSnackbar } from 'notistack';
@@ -39,7 +39,7 @@ export default function passwordSecurity() {
 
     const handleChangePassword = async (event) => {
         event.preventDefault();
-        const res = await changePasswordRequest(changePassword, accessToken);
+        const res = await authAPI.changePasswordRequest(changePassword, accessToken);
         if (res.status === 200) {
             enqueueSnackbar(t('message.changePassword'), { variant: 'success' });
         } else if (res.status === 400) {

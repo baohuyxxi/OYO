@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Axios from 'axios';
 import { t } from 'i18next';
-import { getAllProvinceDetails } from '~/services/apis/publicAPI';
+import publicProvinceAPI from '~/services/apis/publicAPI/publicProvinceAPI';
 import './SelectAddress.scss';
 
 export default function SelectAddress(props) {
@@ -35,7 +35,7 @@ export default function SelectAddress(props) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await getAllProvinceDetails();
+                const response = await publicProvinceAPI.getAllProvinceDetails();
                 const provincesData = response.data.data;
                 localStorage.setItem('allProvinces', JSON.stringify(provincesData));
 

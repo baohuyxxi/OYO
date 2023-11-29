@@ -10,7 +10,7 @@ import { validate } from '~/utils/validate';
 import InputAdornment from '@mui/material/InputAdornment';
 import CustomInput from '~/assets/custom/CustomInput';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
-import { registerRequest } from '~/services/apis/authAPI';
+import authAPI from '~/services/apis/authAPI/authAPI';
 import { useDispatch, useSelector } from 'react-redux';
 import { RegisterRequest } from '~/share/models/auth';
 import { useSnackbar } from 'notistack';
@@ -26,7 +26,7 @@ export default function Register(props) {
         setErrors(validate(register));
         if (Object.keys(errors).length === 0) {
             try {
-                const registerUser = await registerRequest(register);
+                const registerUser = await authAPI.registerRequest(register);
 
                 if (registerUser.status === 200) {
                     enqueueSnackbar('Đăng ký thành công, vui lòng xác thực tài khoản', {

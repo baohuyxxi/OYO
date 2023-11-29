@@ -10,7 +10,7 @@ const instance = axios.create({
     baseURL: 'http://localhost:8080/api/v1',
     timeout: 10000,
     validateStatus: function (status) {
-        return status >= 200 && status < 400;
+        return (status >= 200 && status < 400)  || status=== 404 ;
     }
 });
 instance.interceptors.request.use(
@@ -35,11 +35,11 @@ instance.interceptors.response.use(
             const refreshToken = getRefreshToken();
             if (refreshToken) {
                 try {
-                    const response = await axios.post('http://localhost:8080/api/v1/auth/refreshToken', {
-                        tokenRefresh: refreshToken
+                    const response = await axios.post('http://localhost:8080/api/v1/auth/refresh-token', {
+                        refreshToken: refreshToken
                     });
-                    if (response.data && response.data.accessToken) {
-                        const acessToken = response.data.accessToken;
+                    if (response.data?.statusCode ===200) {
+                        const acessToken = response.data.data.accessToken;
                         updateToken(acessToken);
                         originalConfig.headers['Authorization'] = `Bearer ${acessToken}`;
                         return axios(originalConfig);

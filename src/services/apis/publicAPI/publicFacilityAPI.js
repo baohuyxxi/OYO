@@ -1,7 +1,7 @@
-import axios from '../axios';
+import axios from '~/services/axios';
 
 const publicFacilityAPI = {
-    getAllDataFacilityRequest: async () => {
+    getAllDataFacility: async () => {
         const res = await axios.get('/public/facilities/get-all');
         return res.data;
     }

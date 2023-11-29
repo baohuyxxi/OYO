@@ -1,7 +1,7 @@
-import axios from '../axios';
+import axios from '~/services/axios';
 
 const publicProvinceAPI = {
-    getAllProvinceDetails: async () => {
+    getAllProvinceDetails   : async () => {
         const res = await axios.get('/public/provinces/getall-details');
         return res.data;
     },

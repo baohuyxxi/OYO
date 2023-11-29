@@ -10,7 +10,7 @@ import { ProvinceModel } from '~/share/models/province';
 import { t } from 'i18next';
 import { useDispatch } from 'react-redux';
 import setupOwnerSlice from '../setupOwnerSlice';
-import { getAllProvinceDetails } from '~/services/apis/publicAPI';
+import publicProvinceAPI from '~/services/apis/publicAPI/publicProvinceAPI';
 export default function SelectedLocate(props) {
     const [age, setAge] = useState(
         props?.dataFilterDefauld?.provinceCode ? props?.dataFilterDefauld?.provinceCode : ''
@@ -19,7 +19,7 @@ export default function SelectedLocate(props) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        getAllProvinceDetails().then((dataResponse) => {
+        publicProvinceAPI.getAllProvinceDetails().then((dataResponse) => {
             console.log(dataResponse.data);
             if (dataResponse.data) {
                 setProvinceList(dataResponse.data);

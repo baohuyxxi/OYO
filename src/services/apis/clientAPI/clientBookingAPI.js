@@ -1,4 +1,4 @@
-import axios from '../axios';
+import axios from '~/services/axios';
 
 const bookingAPI = {
     imageRoomApi: async () => {

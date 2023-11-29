@@ -1,14 +1,14 @@
 import { Box, Modal, Slider, Button } from '@mui/material';
 import { useRef, useState } from 'react';
 import AvatarEditor from 'react-avatar-editor';
-import { updateAvatarRequest } from '~/services/apis/authAPI';
+import authAPI from '~/services/apis/authAPI/authAPI';
 import PublicIcon from '@mui/icons-material/Public';
 import { useDispatch } from 'react-redux';
 import userSlice from '~/redux/userSlice';
 import './UpdateAvatar.scss';
 import { t } from 'i18next';
 
-export default function UpdateAvatar({ imageFile, modalOpen, setModalOpen, mail, setImageFile }) {
+export default function UpdateAvatar({ imageFile, modalOpen, setModalOpen, setImageFile }) {
     const [slideValue, setSlideValue] = useState(10);
     const cropRef = useRef(null);
     const dispatch = useDispatch();
@@ -18,7 +18,7 @@ export default function UpdateAvatar({ imageFile, modalOpen, setModalOpen, mail,
             const scaledImageFile = await fetch(scaledImage)
                 .then((res) => res.blob())
                 .then((blob) => new File([blob], 'scaledImage.jpg', { type: 'image/jpeg' }));
-            const res = await updateAvatarRequest(scaledImageFile, mail);
+            const res = await authAPI.updateAvatarRequest(scaledImageFile);
             setModalOpen(false);
             dispatch(userSlice.actions.editInfo(res.data));
         }

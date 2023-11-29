@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { createContext } from 'react';
 import useLocalStorage from 'use-local-storage';
-import { getAllProvinceDetails } from '~/services/apis/publicAPI';
+import publicProvinceAPI from '~/services/apis/publicAPI/publicProvinceAPI';
 
 export const LocateContext = createContext();
 
@@ -17,7 +17,7 @@ const LocateProvider = ({ children }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await getAllProvinceDetails();
+                const response = await publicProvinceAPI.getAllProvinceDetails();
                 setProvinces(response.data);
             } catch (error) {}
         };

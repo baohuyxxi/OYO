@@ -1,4 +1,4 @@
-const convertDola = (price : any) => {
+const convertDola = (price) => {
     if (price !== '' && price !== undefined) {
         const result = parseInt(price) / 23000;
         return result.toFixed(2);

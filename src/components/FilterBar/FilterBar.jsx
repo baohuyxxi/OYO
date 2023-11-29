@@ -2,7 +2,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useEffect, useState } from 'react';
 import Slider from 'react-slick';
-import { getAllAccomCategoryInfo } from '~/services/apis/accomCateAPI';
+import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import './FilterBar.scss';
 import DialogFilter from '../DialogFilter/DialogFilter';
 
@@ -19,7 +19,7 @@ const FilterBar = () => {
     const [indexActive, setIndexActive] = useState(0);
     useEffect(() => {
         async function fetchData() {
-            const res = await getAllAccomCategoryInfo();
+            const res = await publicAccomPlaceAPI.getAllAccomCategoryInfo();
             console.log(res);
             setListAccomCateData(res.data);
         }

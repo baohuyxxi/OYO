@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from 'react';
 import Select from 'react-select';
-import { getAmenityInCategories } from '~/services/apis/facilityCategoryAPI';
 
 const customStyles = {
     menuList: (provided, state) => ({

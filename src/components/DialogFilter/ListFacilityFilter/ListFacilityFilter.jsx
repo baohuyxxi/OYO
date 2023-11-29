@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import ListFacilityByCategory from './ListFacilityByCategory/ListFacilittByCategory';
-import { getAllDataFacilityRequest } from '~/services/apis/facilityAPI';
+import publicFacilityAPI from '~/services/apis/publicAPI/publicFacilityAPI';
 
 const ListFacilityFilter = () => {
     const [facilityCateList, setFacilityCateList] = useState(null);
     useEffect(() => {
         async function fetchData() {
-            const res = await getAllDataFacilityRequest();
+            const res = await publicFacilityAPI.getAllDataFacilityRequest();
             setFacilityCateList(res.data);
         }
         fetchData();

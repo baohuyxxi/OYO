@@ -12,7 +12,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import CustomInput from '~/assets/custom/CustomInput';
 import SignInSignUp from '../SignIn-SignUp/SignIn-SignUp';
-import { loginRequest, checkAccount } from '~/services/apis/authAPI';
+import authAPI from '~/services/apis/authAPI/authAPI';
 import { SigninRequest } from '~/share/models/auth';
 import { validate } from '~/utils/validate';
 import { useSnackbar } from 'notistack';
@@ -44,9 +44,9 @@ export default function SignIn(props) {
             setErrorPassword('Không được để trống Password');
             return;
         }
-        const userLogin = await loginRequest(signin);
-        if (userLogin.status === 200) {
-            dispatch(userSlice.actions.signin(userLogin.data.data));
+        const userLogin = await authAPI.loginRequest(signin);
+        if (userLogin.statusCode === 200) {
+            dispatch(userSlice.actions.signin(userLogin.data));
             enqueueSnackbar(t('message.signin'), { variant: 'success' });
             props.handleClose();
             //   setTimeout(function () {
@@ -88,8 +88,9 @@ export default function SignIn(props) {
                     toggleShow(['StatusButton', 'ValidEmail']);
                     return;
                 }
-                const checkEmail = await checkAccount(signin);
-                if (checkEmail.status === 302) {
+                const checkEmail = await authAPI.checkAccount(signin)
+                console.log(checkEmail)
+                if (checkEmail.statusCode === 302) {
                     toggleShow(['PasswordInput', 'LoginButton']);
                 } else {
                     toggleShow(['RegisterButton']);

@@ -4,8 +4,7 @@ import { t } from 'i18next';
 import ConfirmClose from '~/components/ConfirmClose/ConfirmClose';
 import CountNumber from '~/components/CountNumber/CountNumber';
 import CountNumberGuest from '~/components/CountNumber/CountNumberGuest';
-import roomCategoryApi from '~/services/apis/roomCategoryApi';
-import { RoomOfHomeCreateRequest } from '~/share/models/roomHome';
+import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import CustomInput from '~/assets/custom/CustomInput';
 import MenuItem from '@mui/material/MenuItem';
 import './StepperTwo.scss';
@@ -13,8 +12,8 @@ import './StepperTwo.scss';
 const StepperTwo = (props) => {
     const [data, setData] = useState([]);
     useEffect(() => {
-        roomCategoryApi.getRoomCategory().then((dataResponse) => {
-            setData(dataResponse?.data.data);
+        publicAccomPlaceAPI.getRoomCategory().then((dataResponse) => {
+            setData(dataResponse?.data);
         });
     }, []);
     return (

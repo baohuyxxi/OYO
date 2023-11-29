@@ -1,46 +1,37 @@
 import { ErrorSharp } from "@mui/icons-material";
-import axios from "../axios";
+import axios from "~/services/axios";
 
-import {
-  SigninRequest,
-  CheckAccount,
-  RegisterRequest,
-  TokenRefreshRequest,
-} from "~/share/models/auth";
-import { toFormData } from "axios";
 const authAPI = {
-  loginRequest: async (params) => {
-      const res = await axios.post("auth/signin", params);
+  loginRequest: async (data) => {
+      const res = await axios.post("auth/signin", data);
       return res.data;
   },
-  checkAccount: async (params) => {
-      const res = await axios.post(`/public/users/check-mail`, params);
+  checkAccount: async (data) => {
+      const res = await axios.post(`/public/users/check-mail`, data);
       return res.data;
   },
-   registerRequest: async (params) => {
-      const res = await axios.post("auth/signup", params);
+   registerRequest: async (data) => {
+      const res = await axios.post("auth/signup", data);
       return res.data;
   },
-   tokenRefreshRequest = async (params) => {
-      const res = await axios.post("user/signin", params);
+   tokenRefreshRequest: async (data) => {
+      const res = await axios.post("user/signin", data);
       return res.data;
   },
-  changePasswordRequest: async (params) => {
-      const res = await axios.put("general/change-password", params);
+  changePasswordRequest: async (data) => {
+      const res = await axios.put("general/change-password", data);
       return res.data;
   },
-  updateInfoRequest: async (params) => {
-      const res = await axios.put("general/update-info", params, {
-        params: { mail: data.mail },
+  updateInfoRequest: async (data) => {
+      const res = await axios.put("general/update-info", data, {
+        data: { mail: data.mail },
       });
       return res.data;
   },
-  updateAvatarRequest: async (imageFile, mail) => {
+  updateAvatarRequest: async (data) => {
       let formData = new FormData();
-      formData.append("file", imageFile);
-      const res = await axios.put("general/update_avatar", formData, {
-        params: { mail: mail },
-      });
+      formData.append("file", data);
+      const res = await axios.put("general/update-avatar", formData);
       return res.data;
   }
 }

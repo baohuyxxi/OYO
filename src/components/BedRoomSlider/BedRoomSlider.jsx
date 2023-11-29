@@ -10,6 +10,7 @@ import './BedRoomSlider.scss';
 import BedIcon from '@mui/icons-material/Bed';
 
 export default function BedRoomSlider(props) {
+    console.log(props)
     var settings = {
         dots: true,
         infinite: true,
@@ -49,7 +50,7 @@ export default function BedRoomSlider(props) {
     return (
         <div className="slider__bedroom">
             <Slider {...settings}>
-                {props?.listRoom?.map((room, index) => (
+                {props?.bedRooms.map((bedRoom, index) => (
                     <div key={index}>
                         <div className="slider__item">
                             <div className="icon-bed">
@@ -57,8 +58,8 @@ export default function BedRoomSlider(props) {
                                 <BedIcon />
                             </div>
                             <div className="title-bed">
-                                <h2>{room?.roomName}</h2>
-                                <p>{room?.nameOfBed}</p>
+                                <h2>{bedRoom}</h2>
+                                {/* <p>{room?.nameOfBed}</p> */}
                             </div>
                         </div>
                     </div>

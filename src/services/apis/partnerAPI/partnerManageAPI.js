@@ -1,15 +1,10 @@
-import { ErrorSharp } from '@mui/icons-material';
-import axios from '../axios';
+import axios from '~/services/axios';
 import { id } from 'date-fns/locale';
 
 const pernerManageAPI = {
     createHomeDetailByHost: async (data) => {
-        try {
-            const res = await axios.post(`/partner/accoms/create`, data);
-            return res;
-        } catch (error) {
-            return error.response;
-        }
+        const res = await axios.post(`/partner/accoms/create`, data);
+        return res;
     },
     addImageHomeByHost: async (data) => {
         let formData = new FormData();

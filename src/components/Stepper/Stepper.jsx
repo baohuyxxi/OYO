@@ -25,8 +25,7 @@ import StepperTwo from '~/pages/partner/SetupOwner/StepperTwo/StepperTwo';
 
 import { addressFormData } from '~/share/models/address';
 import { typeRoom } from '~/share/models/roomHome';
-import { homeDetailApi, imageRoomApi } from '~/services/apis/bookingAPI';
-import { createHomeDetailByHost, addImageHomeByHost } from '~/services/apis/accomPlaceAPI';
+import pernerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 import LoadingMaster from '../LoadingMaster/LoadingMaster';
 
 const steps = [
@@ -165,23 +164,6 @@ export default function StepperComponent() {
 
     const handleUpload = async () => {
         if (dataStep4.length >= 0) {
-            // try {
-            //     setLoad(true);
-            //     for (var i = 0; i < dataStep4.length; i++) {
-            //         const formData = new FormData();
-            //         await formData.append('file', dataStep4[i]);
-            //         const dataUrlImage = await imageRoomApi.uploadImage(formData);
-
-            //         await setDataStep4URL.push({ path: dataUrlImage?.data?.previewUrl });
-            //     }
-            //     if (setDataStep4URL.length >= 1) {
-            //         setCheckImage(true);
-            //     }
-            //     await dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(setDataStep4URL));
-            //     setLoad(false);
-            // } catch (error) {
-            //     setLoad(false);
-            // }
             dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(dataStep4));
         } else if (dataStep4.length < 5) {
             enqueueSnackbar(t('message.maxImage'), {
@@ -198,15 +180,14 @@ export default function StepperComponent() {
 
     const handlePostRoom = (e) => {
         e.preventDefault();
-        createHomeDetailByHost(setupRoomHost)
+        pernerManageAPI.createHomeDetailByHost(setupRoomHost)
             .then((dataResponse) => {
                 enqueueSnackbar(t('message.postHomeSuccess'), {
                     anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
                     variant: 'success'
                 });
-                console.log(dataResponse);
                 const id = dataResponse.data.data.id;
-                addImageHomeByHost({ imageList: dataStep4, id: id });
+                pernerManageAPI.addImageHomeByHost({ imageList: dataStep4, id: id });
                 // dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(dataResponse.data.thumbnail));
                 // dispatch(userSlice.actions.updateHost());
                 navigate('/congratulation');

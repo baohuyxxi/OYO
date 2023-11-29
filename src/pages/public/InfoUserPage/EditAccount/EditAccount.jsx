@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import CustomInput from '~/assets/custom/CustomInput';
 import { useDispatch, useSelector } from 'react-redux';
 import userSlice from '~/redux/userSlice';
-import { updateInfoRequest } from '~/services/apis/authAPI';
+import authAPI from '~/services/apis/authAPI/authAPI';
 import { useSnackbar } from 'notistack';
 import { t } from 'i18next';
 
@@ -33,14 +33,15 @@ export default function EditAccount() {
     };
     const handleSave = async (event) => {
         if (user.birthday && user.monthOfBirth && user.yearOfBirth) {
+            const dateOfBirth = new Date( `${user.birthday}/${user.monthOfBirth}/${user.yearOfBirth}`).toLocaleDateString('en-GB');
             setUser({
                 ...user,
-                dateOfBirth: `${user.yearOfBirth}-${user.monthOfBirth}-${user.birthday}`
+                dateOfBirth: dateOfBirth
             });
         }
         event.preventDefault();
-        const res = await updateInfoRequest(user);
-        if (res.status === 200) {
+        const res = await authAPI.updateInfoRequest(user);
+        if (res.statusCode === 200) {
             dispatch(userSlice.actions.editInfo(res.data));
             enqueueSnackbar(t('message.updateSuccess'), { variant: 'success' });
         } else {
@@ -62,7 +63,7 @@ export default function EditAccount() {
     }
 
     const yearOfBirth = [];
-    for (let i = 2023; i > 1970; i--) {
+    for (let i = 2023; i > 1960; i--) {
         yearOfBirth.push({ id: i, value: i, label: i.toString() });
     }
     const customInputList = [
@@ -86,7 +87,7 @@ export default function EditAccount() {
         createCustomInput(
             3,
             'birthday',
-            user.birthday || 1,
+            user.birthday || '',
             handleUser,
             true,
             birthday.map((option) => (
@@ -98,7 +99,7 @@ export default function EditAccount() {
         createCustomInput(
             3,
             'monthOfBirth',
-            user.monthOfBirth || 1,
+            user.monthOfBirth || '',
             handleUser,
             true,
             monthOfBirth.map((option) => (
@@ -110,7 +111,7 @@ export default function EditAccount() {
         createCustomInput(
             3,
             'yearOfBirth',
-            user.yearOfBirth || 2023,
+            user.yearOfBirth || '',
             handleUser,
             true,
             yearOfBirth.map((option) => (

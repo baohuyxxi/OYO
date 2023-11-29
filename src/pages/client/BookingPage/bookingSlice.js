@@ -6,8 +6,8 @@ const bookingSlice = createSlice({
   
     name: 'booking',
     initialState: {
-        nameCustomer:JSON.parse(localStorage.getItem('user')).userName ,
-        phoneNumberCustomer:  JSON.parse(localStorage.getItem('user')).phone,
+        nameCustomer:JSON.parse(localStorage.getItem('user')|| null)?.userName ,
+        phoneNumberCustomer:  JSON.parse(localStorage.getItem('user')|| null)?.phone,
         checkIn: moment().format('YYYY-MM-DD'),
         checkOut: moment().format('YYYY-MM-DD'),
         numAdult: 1,
@@ -28,7 +28,7 @@ const bookingSlice = createSlice({
             state.priceDay = action.payload.priceDay;
             if (action.payload.guests.length !== 0) {
                 action.payload.guests.forEach(guests =>{
-                    state.numAdult = action.payload.guests;
+                    state[guests.guestCategory] = guests.number;
                 })
                
             }
@@ -37,7 +37,7 @@ const bookingSlice = createSlice({
             if (Array.isArray(roomsData) && roomsData.length > 0) {
                 roomsData.forEach(room => {
                     if (state.detailRoom.hasOwnProperty(room.key)) {           
-                        state.detailRoom[room.key] = room.number;
+                        state.detailRoom[room.guestCategory] = room.number;
                     }
                 })
             }

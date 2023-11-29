@@ -76,6 +76,7 @@ export default function RoomDetail() {
         titleGuests: titleGuests,
         priceTotal: priceTotal,
       };
+      console.log(guests)
       dispatch(bookingSlice.actions.addInfoBooking(dataBooking));
       // checkBooking(dataCheck)
       //   .then(() => {

@@ -12,11 +12,13 @@ import formatPrice from '~/utils/formatPrice';
 import CheckBoxPayment from '~/components/CheckBoxPayment/CheckBoxPayment';
 import DateBooking from '~/components/DateBooking/DateBooking';
 import Paypal from '~/components/Paypal/Paypal';
+import { useDispatch, useSelector } from 'react-redux';
 import './BookingPage.scss';
 import { t } from 'i18next';
 
 const BookingPage = () => {
-
+    const dispatch = useDispatch();
+    const dataBooking = useSelector(((state) => state.booking))
     const [infoBooking, setInfoBooking] = useState(mockData.infoBooking);
     const [dataDetailHomeBooking, setDataDetailHomeBooking] = useState(
         mockData.dataDetailHomeBooking
@@ -26,6 +28,7 @@ const BookingPage = () => {
     const priceDay =1000
 
     const handleBookingRoom = () => {
+        console.log(dataBooking)
         
     }
     useEffect(()=>{

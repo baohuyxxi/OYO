@@ -28,7 +28,7 @@ const bookingSlice = createSlice({
             state.priceDay = action.payload.priceDay;
             if (action.payload.guests.length !== 0) {
                 action.payload.guests.forEach(guests =>{
-                    state.numAdult = action.payload.guests;
+                    state[guests.guestCategory] = guests.number;
                 })
                
             }
@@ -37,7 +37,7 @@ const bookingSlice = createSlice({
             if (Array.isArray(roomsData) && roomsData.length > 0) {
                 roomsData.forEach(room => {
                     if (state.detailRoom.hasOwnProperty(room.key)) {           
-                        state.detailRoom[room.key] = room.number;
+                        state.detailRoom[room.guestCategory] = room.number;
                     }
                 })
             }

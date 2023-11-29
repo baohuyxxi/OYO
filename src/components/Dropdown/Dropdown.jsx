@@ -25,15 +25,15 @@ const Dropdown = (props) => {
         if (props.handleChangeGuests) {
             props.handleChangeGuests([
                 {
-                    guestCategory: 'ADULTS',
+                    guestCategory: 'numAdult',
                     number: event.currentTarget?.value,
                 },
                 {
-                    guestCategory: 'CHILDREN',
+                    guestCategory:'numChild',
                     number: children,
                 },
                 {
-                    guestCategory: 'BABY',
+                    guestCategory:  'numBornChild',
                     number: baby,
                 },
             ]);
@@ -52,15 +52,15 @@ const Dropdown = (props) => {
         if (props.handleChangeGuests) {
             props.handleChangeGuests([
                 {
-                    guestCategory: 'ADULTS',
+                    guestCategory: 'numAdult',
                     number: adults,
                 },
                 {
-                    guestCategory: 'CHILDREN',
+                    guestCategory:'numChild',
                     number: event.currentTarget?.value,
                 },
                 {
-                    guestCategory: 'BABY',
+                    guestCategory:  'numBornChild',
                     number: baby,
                 },
             ]);
@@ -79,15 +79,15 @@ const Dropdown = (props) => {
         if (props.handleChangeGuests) {
             props.handleChangeGuests([
                 {
-                    guestCategory: 'ADULTS',
+                    guestCategory: 'numAdult',
                     number: adults,
                 },
                 {
-                    guestCategory: 'CHILDREN',
+                    guestCategory:'numChild',
                     number: children,
                 },
                 {
-                    guestCategory: 'BABY',
+                    guestCategory:  'numBornChild',
                     number: event.currentTarget?.value,
                 },
             ]);

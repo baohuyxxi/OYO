@@ -9,28 +9,28 @@ import {
 } from "~/share/models/auth";
 import { toFormData } from "axios";
 const authAPI = {
-  loginRequest: async (LoginRequest) => {
-      const res = await axios.post("auth/signin", LoginRequest);
+  loginRequest: async (params) => {
+      const res = await axios.post("auth/signin", params);
       return res.data;
   },
-  checkAccount: async (CheckAccount) => {
-      const res = await axios.post(`/public/users/check-mail`, CheckAccount);
+  checkAccount: async (params) => {
+      const res = await axios.post(`/public/users/check-mail`, params);
       return res.data;
   },
-   registerRequest: async (RegisterRequest) => {
-      const res = await axios.post("auth/signup", RegisterRequest);
+   registerRequest: async (params) => {
+      const res = await axios.post("auth/signup", params);
       return res.data;
   },
-   tokenRefreshRequest = async (TokenRefreshRequest) => {
-      const res = await axios.post("user/signin", TokenRefreshRequest);
+   tokenRefreshRequest = async (params) => {
+      const res = await axios.post("user/signin", params);
       return res.data;
   },
-  changePasswordRequest: async (data) => {
-      const res = await axios.put("general/change-password", data);
+  changePasswordRequest: async (params) => {
+      const res = await axios.put("general/change-password", params);
       return res.data;
   },
-  updateInfoRequest: async (data) => {
-      const res = await axios.put("general/update-info", data, {
+  updateInfoRequest: async (params) => {
+      const res = await axios.put("general/update-info", params, {
         params: { mail: data.mail },
       });
       return res.data;

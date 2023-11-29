@@ -24,7 +24,7 @@ const authAPI = {
   },
   updateInfoRequest: async (data) => {
       const res = await axios.put("general/update-info", data, {
-        params: { mail: data.mail },
+        data: { mail: data.mail },
       });
       return res.data;
   },

@@ -2,6 +2,9 @@ import axios from 'axios';
 import { getToken, getRefreshToken, updateToken } from './token';
 import { useDispatch } from 'react-redux';
 import userSlice from '~/redux/userSlice';
+import process from 'process';
+
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const instance = axios.create({
     baseURL: 'http://localhost:8080/api/v1',

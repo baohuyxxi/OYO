@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 
 import ListDataNull from '~/components/ListDataNull/ListDataNull';
-import summaryHomeApi from '~/services/API/summaryHostApi';
+import summaryHomeApi from '~/services/apis/summaryHostApi';
 import StatisShow from './StatisShow/StatisShow';
 import TableDataHostSummary from './TableDataHostSummary';
 

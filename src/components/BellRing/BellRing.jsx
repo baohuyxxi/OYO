@@ -91,9 +91,7 @@ const BellRing = (props) => {
                         </div>
                         <div className={`${showAll !== 6 ? 'all-noti' : ''}`}>
                             {props.contentData && props.renderItems
-                                ? dataNoti
-                                      .slice(0, showAll)
-                                      .map((item, index) => props.renderItems(item, index))
+                                ? dataNoti.slice(0, showAll).map((item, index) => props.renderItems(item, index))
                                 : ''}
                         </div>
                         <hr style={{ border: '0.2px solid #e0e0e0', padding: '0px 18px' }} />

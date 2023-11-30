@@ -27,7 +27,7 @@ export default function NavBar() {
 
     return (
         <AppBar className="appbar">
-            <Toolbar className="paper toolbar">
+            <Toolbar className="toolbar">
                 <div className="logo">
                     <NavLink to="/">
                         <img src={logoYoy} alt="company logo" className="logo-bg" />

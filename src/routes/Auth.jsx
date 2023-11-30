@@ -32,6 +32,7 @@ const Auth = () => {
   );
   // Host Owner Page
   const OwnerSetting = React.lazy(() => import('~/pages/partner/OwnerSetting/MainOwnerSetting/OwnerSetting'));
+  const ListRoomOfHost = React.lazy(() => import('../pages/partner/OwnerSetting/ManagerRoom/ListRoomOfHost'));
   return (
     <Routes>
       <Route
@@ -108,6 +109,14 @@ const Auth = () => {
           </React.Suspense>
         }
       />
+        <Route
+                path="/host/setting"
+                element={
+                    <React.Suspense>
+                        <ListRoomOfHost />
+                    </React.Suspense>
+                }
+            />
       <Route
         path="*"
         element={

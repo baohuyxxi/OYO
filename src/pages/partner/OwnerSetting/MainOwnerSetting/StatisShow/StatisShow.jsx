@@ -2,7 +2,7 @@ import { ChangeEvent, useEffect, useState } from 'react';
 
 import LineChart from '~/components/Chart/LineChart/LineChart';
 import { PieChart } from '~/components/Chart/PieChart/PieChart';
-import statisticApi from '~/services/apis/statisticApi';
+import statisticApi from '~/services/apis/partnerAPI/statisticApi';
 
 import './StatisShow.scss';
 import TableDataStatis from './TableDataStatis';

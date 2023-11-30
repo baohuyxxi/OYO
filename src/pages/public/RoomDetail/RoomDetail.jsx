@@ -20,7 +20,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import publicAccomPlaceAPI from "~/services/apis/publicAPI/publicAccomPlaceAPI";
 import { useEffect, useState } from "react";
 import SkeletonRoomDetail from '~/components/Skeleton/SkeletonRoomDetail';
-import formatPrice from '~/utils/formatPrice';
+import formatPrice from "~/utils/formatPrice";
 import bookingAPI from "~/services/apis/clientAPI/clientBookingAPI";
 import { useDispatch, useSelector } from 'react-redux';
 import bookingSlice from "~/pages/client/BookingPage/bookingSlice";

@@ -3,30 +3,29 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useContext } from 'react';
 import { SearchContext } from '~/contexts/searchContext';
-import UserAdmin from '~/pages/admin/LayoutUserAdmin/UserAdmin';
-import cmsUserAPI from '~/services/apis/adminAPI/cmsUserAPI';
+import AccomAdmin from '~/pages/admin/LayoutAccomAdmin/AccomAdmin';
+import cmsAccomPlaceAPI from '~/services/apis/adminAPI/cmsAccomPlaceAPI';
 
-const LayoutUserAdmin = () => {
+const LayoutAccomAdmin = () => {
     const searchContext = useContext(SearchContext);
-    const [listUser, setListUser] = useState([]);
+    const [listAccom, setListAccom] = useState([]);
 
     useEffect(() => {
-        cmsUserAPI
-            .getAllUserWithPaging({
+        cmsAccomPlaceAPI
+            .getAllAcommPlaceWithPaging({
                 pageNumber: 0,
                 pageSize: 10
             })
             .then((dataResponse) => {
-                console.log(dataResponse);
-                setListUser(dataResponse.data.content);
+                setListAccom(dataResponse.data.content);
             });
     }, []);
 
     return (
         <div>
-            <UserAdmin data={listUser} />
+            <AccomAdmin data={listAccom} />
         </div>
     );
 };
 
-export default LayoutUserAdmin;
+export default LayoutAccomAdmin;

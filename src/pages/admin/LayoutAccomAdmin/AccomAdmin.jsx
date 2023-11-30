@@ -11,11 +11,11 @@ import Table from '~/components/Table/Table';
 import cmsUserAPI from '~/services/apis/adminAPI/cmsUserAPI';
 import './UserAdmin.scss';
 
-const customerTableHead = ['', 'Tên đầy đủ', 'Email', 'Ngày sinh', 'Số điện thoại', 'User name', 'Trạng thái'];
+const customerTableHead = ['', 'Tên nhà', 'Chủ nhà', 'Địa chỉ', 'Loại hình cho thuê', 'Giá theo đêm', 'Trạng thái'];
 
 const renderHead = (item, index) => <th key={index}>{item}</th>;
 
-const UserAdmin = (props) => {
+const AccomAdmin = (props) => {
     const { enqueueSnackbar } = useSnackbar();
     const handleLockAccount = (idDelete) => {
         const dataAccount = {
@@ -35,13 +35,11 @@ const UserAdmin = (props) => {
     const renderBody = (item, index) => (
         <tr key={index}>
             <td>{index + 1}</td>
-            <td>
-                {item.firstName} {item.lastName}
-            </td>
-            <td>{item.mail}</td>
-            <td>{item.dateOfBirth}</td>
-            <td>{item.phone ? item.phone : 'Chưa cập nhật'}</td>
-            <td>{item.userName}</td>
+            <td>{item.accomName}</td>
+            <td>{item.nameHost}</td>
+            <td>{item.addressGeneral}</td>
+            <td>{item.accomCateName}</td>
+            <td>{item.pricePerNight}</td>
             <td>{item.status}</td>
             <td>
                 <Popup
@@ -111,4 +109,4 @@ const UserAdmin = (props) => {
     );
 };
 
-export default UserAdmin;
+export default AccomAdmin;

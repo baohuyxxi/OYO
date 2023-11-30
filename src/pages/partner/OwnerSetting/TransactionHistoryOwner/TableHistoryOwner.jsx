@@ -1,4 +1,4 @@
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 
 // import './TableHistoryOwner.scss';
 import { useEffect, useState } from 'react';

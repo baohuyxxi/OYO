@@ -10,8 +10,8 @@ import ManageHistoryIcon from '@mui/icons-material/ManageHistory';
 import Logo from '~/assets/svg/logo.svg';
 
 import notifications from '../../mockdata/notification.json';
-import notificationApi from '~/services/apis/notificationApi';
-import BellRing from '../BellRing/BellRing';
+import notificationApi from '~/services/apis/publicAPI/notificationApi';
+// import BellRing from '../BellRing/BellRing';
 import DropdownHost from '../DropdownHost/DropdownHost';
 import './NavbarOwner.scss';
 
@@ -90,15 +90,13 @@ const NavbarOwner = () => {
             </div>
             <div className="navbar-right" style={{ display: 'flex' }}>
                 <DropdownHost />
-                <BellRing
+                {/* <BellRing
                     icon="bx bx-bell"
-                    badge={
-                        noti.numberOfNotification !== -1 ? noti.numberOfNotification : user.current.numberOfNotification
-                    }
+                    badge={1}
                     contentData={notifications}
                     renderItems={(item, index) => renderNotificationItem(item, index)}
                     renderFooter={() => <p>View all</p>}
-                />
+                /> */}
             </div>
         </div>
     );

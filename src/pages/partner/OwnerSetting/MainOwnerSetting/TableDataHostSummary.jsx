@@ -1,10 +1,8 @@
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
-
+import { DataGrid } from '@mui/x-data-grid';
 // import './TableDataHostSummary.scss';
 import { useState } from 'react';
-import summaryHomeApi from '~/services/apis/summaryHostApi';
+import summaryHomeApi from '~/services/apis/partnerAPI/summaryHostApi';
 import formatPrice from '~/utils/formatPrice';
-
 import { AxiosError } from 'axios';
 import { useSnackbar } from 'notistack';
 

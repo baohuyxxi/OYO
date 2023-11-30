@@ -7,7 +7,7 @@
 // import Typography from '@mui/material/Typography';
 // import { RootState } from '../../../redux/store';
 
-// import statisticApi from '../../../services/statisticApi';
+// import summaryHomeApi from '~/services/apis/partnerAPI/summaryHostApi';
 // import { revenueStatisticsResponse } from '../../../share/models/statisticAdmin';
 // import './TabsChart.scss';
 

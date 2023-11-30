@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 
-import statisticApi from '~/../services/statisticApi';
-import formatPrice from '~/../utils/formatPrice';
+import statisticApi from '~/services/apis/partnerAPI/statisticApi'
+import formatPrice from '~/utils/formatPrice';
 
 const TableDataStatis = (props) => {
     const [dataStatisticMonth, setDataStatisticMonth] = useState([]);

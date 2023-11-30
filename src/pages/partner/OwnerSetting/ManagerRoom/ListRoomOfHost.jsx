@@ -6,25 +6,25 @@ import LockIcon from '@mui/icons-material/Lock';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 
 import NavbarOwner from '~/components/NavbarOwner/NavbarOwner';
 import SearchHomeByOwner from '~/components/SearchHomeByOwner/SearchHomeByOwner';
-import homeApi from '~/services/homeApi';
-import homeDetailApi from '~/services/homeDetailApi';
+// import homeApi from '~/services/homeApi';
+import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import './ListRoomOfHost.scss';
 
 const ListRoomOfHost = () => {
     const [dataListhome, setDataListHome] = useState([]);
 
     useEffect(() => {
-        homeDetailApi.getListHomeOfHost('').then((dataResponse) => {
+        publicAccomPlaceAPI.getListHomeOfHost('').then((dataResponse) => {
             setDataListHome(dataResponse.data.content);
         });
     }, []);
 
     const handleSearchByHomeName = (value) => {
-        homeDetailApi.getListHomeOfHost(value).then((dataResponse) => {
+        publicAccomPlaceAPI.getListHomeOfHost(value).then((dataResponse) => {
             setDataListHome(dataResponse.data.content);
         });
     };
@@ -153,13 +153,13 @@ const columns = [
 ];
 
 async function handleDelete(id, status) {
-    const dataActive = {
-        homeId: id,
-        status: status,
-    };
-    await homeApi.activeHome(dataActive).then((dataRes) => {
-        window.location.href = `/host/setting`;
-    });
+    // const dataActive = {
+    //     homeId: id,
+    //     status: status,
+    // };
+    // await homeApi.activeHome(dataActive).then((dataRes) => {
+    //     window.location.href = `/host/setting`;
+    // });
 }
 
 function handleView(id ) {

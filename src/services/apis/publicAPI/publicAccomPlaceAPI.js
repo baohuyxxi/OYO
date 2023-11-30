@@ -17,5 +17,9 @@ const publicAccomPlaceAPI = {
         const res = await axios.get(`/public/accoms/top?pageNumber=${data.number}&pageSize=${data.size}`)
         return res.data;
     },
+    getListHomeOfHost: async (data) => {
+        const res = await axios.post(`/public/homes/${data}/detail`);
+        return res;
+    },
 };
 export default publicAccomPlaceAPI;

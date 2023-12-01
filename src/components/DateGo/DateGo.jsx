@@ -8,9 +8,7 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 
 import './DateGo.scss';
-
 const DateRangePickerComp = (props) => {
-    // date state
     const [range, setRange] = useState([
         {
             checkIn: new Date(),
@@ -19,33 +17,28 @@ const DateRangePickerComp = (props) => {
         }
     ]);
 
-    // open close
     const [open, setOpen] = useState(false);
 
-    // get the target element to toggle
     const refOne = useRef(null);
 
     useEffect(() => {
-        // event listeners
         document.addEventListener('keydown', hideOnEscape, true);
         document.addEventListener('click', hideOnClickOutside, true);
+
+        return () => {
+            document.removeEventListener('keydown', hideOnEscape, true);
+            document.removeEventListener('click', hideOnClickOutside, true);
+        };
     }, []);
 
-    // console.log('start',format(range[0].startDate, 'MM/dd/yyyy'));
-    // console.log('end',format(range[0].endDate, 'MM/dd/yyyy'));
-
-    // hide dropdown on ESC press
     const hideOnEscape = (e) => {
         if (e.key === 'Escape') {
             setOpen(false);
         }
     };
 
-    // Hide dropdown on outside click
     const hideOnClickOutside = (e) => {
-        // console.log(refOne.current)
-        // console.log(e.target)
-        if (refOne.current && !refOne.current.contains(e.target)) {
+        if (refOne.current && !refOne.current.contains(e.target) && !e.target.closest('.calendarWrap')) {
             setOpen(false);
         }
     };
@@ -55,16 +48,16 @@ const DateRangePickerComp = (props) => {
             <div className="info_date">
                 <div className="output start">
                     <input
-                        value={`${format(range[0].checkIn, 'dd/MM/yyyy')}`}
+                        value={`${range[0]?.checkIn ? format(range[0].checkIn, 'dd/MM/yyyy') : ''}`}
                         readOnly
                         className="inputBox"
                         onClick={() => setOpen((open) => !open)}
-                    ></input>
+                    />
                 </div>
 
                 <div className="output end">
                     <input
-                        value={`${format(range[0].checkOut, 'dd/MM/yyyy')}`}
+                        value={`${range[0]?.checkOut ? format(range[0].checkOut, 'dd/MM/yyyy') : ''}`}
                         readOnly
                         className="inputBox"
                         onClick={() => setOpen((open) => !open)}
@@ -76,9 +69,10 @@ const DateRangePickerComp = (props) => {
                 {open && (
                     <DateRangePicker
                         onChange={(item) => {
-                            setRange([item.selection]);
-                            if (props?.setDataDay) {
-                                props.setDataDay([item.selection]);
+                            if (item?.selection) {
+                                if (props?.setDataDay) {
+                                    props.setDataDay([item.selection]);
+                                }
                             }
                         }}
                         editableDateInputs={true}

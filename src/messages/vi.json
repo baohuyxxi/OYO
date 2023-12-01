@@ -121,7 +121,10 @@
       "policy": "Đặt phòng của bạn được bảo vệ bởi YOY.",
       "surcharges": "Phụ phí bao gồm",
       "price": "Giá phòng",
-      "totalPrice": "Tổng tiền thanh toán"
+      "totalPrice": "Tổng tiền thanh toán",
+      "method": "Phương thức thanh toán",
+      "paypal": "Thanh toán qua PayPal",
+      "direct": "Thanh toán trực tiếp"
     },
     "history": "Danh sách đặt phòng của bạn",
     "refundPolicy": "Chính sách hủy phòng",
@@ -332,5 +335,10 @@
     "selectTitle": "Chọn ngôn ngữ",
     "en": "Tiếng Anh",
     "vi": "Tiếng Việt"
+  },
+  "format" :{
+    "adult": "Người lớn",
+    "children": "Trẻ em",
+    "bornChild": "Trẻ sơ sinh"
   }
 }

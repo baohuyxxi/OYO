@@ -120,7 +120,10 @@
       "policy": "Your reservation is protected by YOY.",
       "surcharges": "The surcharge is included",
       "price": "Price of room",
-      "totalPrice": "Total payment"
+      "totalPrice": "Total payment",
+      "method": "Payment methods",
+      "paypal": "Payment via Paypal",
+      "direct": "Direct payment"
     },
     "history": "Your reservation list",
     "refundPolicy": "Cancellation policy",
@@ -331,5 +334,10 @@
     "selectTitle": "Select language",
     "en": "English",
     "vi": "Vietnamese"
+  },
+  "format":{
+    "adult": "Adult",
+    "children": "Children",
+    "bornChild": "Infant"
   }
 }

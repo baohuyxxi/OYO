@@ -90,27 +90,14 @@ export default function RoomDetail() {
     };
 
     const handleChangeDayBooking = (value) => {
-        const checkIn = format(value[0].checkIn, 'dd/MM/yyyy');
-        const checkOut = format(value[0].checkOut, 'dd/MM/yyyy');
+        console.log(value)
+        const checkIn = format(value[0].startDate, 'dd/MM/yyyy');
+        const checkOut = format(value[0].endDate, 'dd/MM/yyyy');
         setDateBook([checkIn, checkOut]);
     };
     const handleChangeGuests = (value) => {
         setGuests(value);
     };
-    const listRoomData = [
-        {
-            roomName: 'Room 1',
-            nameOfBed: 'Queen Size Bed'
-        },
-        {
-            roomName: 'Room 2',
-            nameOfBed: 'Double Bed'
-        },
-        {
-            roomName: 'Room 3',
-            nameOfBed: 'Single Bed'
-        }
-    ];
 
     return (
         <FramePage>

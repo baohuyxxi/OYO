@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice  } from '@reduxjs/toolkit';
 import moment from 'moment';
 
 const bookingSlice = createSlice({
@@ -6,8 +6,8 @@ const bookingSlice = createSlice({
     initialState: {
         nameCustomer: JSON.parse(localStorage.getItem('user') || null)?.userName,
         phoneNumberCustomer: JSON.parse(localStorage.getItem('user') || null)?.phone,
-        checkIn: moment().format('YYYY-MM-DD'),
-        checkOut: moment().format('YYYY-MM-DD'),
+        checkIn: moment().format('DD/MM/yyyy'),
+        checkOut: moment().format('DD/MM/yyyy'),
         numAdult: 1,
         numChild: 0,
         numBornChild: 0,
@@ -16,46 +16,42 @@ const bookingSlice = createSlice({
         totalTransfer: 0,
         paymentPolicy: 'PAY_IN_FULL',
         paymentMethod: 'DIRECT',
-        titleGuests: `1 người lớn, 1 trẻ em, trẻ sơ sinh`,
+        titleGuests: 0,
         accomId: 0,
-        priceTotal: 0
+        priceTotal: 100000
     },
     reducers: {
         addInfoBooking(state, action) {
-            state.checkIn = action.payload.dateStart;
-            state.checkIn = action.payload.dateEnd;
+            state.checkIn = action.payload.checkIn;
+            state.checkOut = action.payload.checkOut;
             state.accomId = action.payload.homeId;
             state.priceDay = action.payload.priceDay;
             state.numAdult = action.payload.guests.numAdult;
             state.numChild = action.payload.guests.numChild;
             state.numBornChild = action.payload.guests.numBornChild;
+            state.priceTotal = 100000;
 
-            const roomsData = action.payload;
-            if (Array.isArray(roomsData) && roomsData.length > 0) {
-                roomsData.forEach((room) => {
-                    if (state.detailRoom.hasOwnProperty(room.key)) {
-                        state.detailRoom[room.guestCategory] = room.number;
-                    }
-                });
-            }
-            // state.checkBooking = true;
-            // state.titleGuests = action.payload.titleGuests;
-            // state.priceTotal = action.payload.priceTotal;
         },
         addPriceDay(state, action) {
             state.priceDay = action.payload.priceDay;
         },
         addDay(state, action) {
-            state.dateStart = action.payload.dateFrom;
-            state.dateEnd = action.payload.dateTo;
+            console.log(action.payload)
+            state.checkIn = action.payload.checkIn;
+            state.checkOut = action.payload.checkOut;
         },
         addPriceTotal(state, action) {
             state.priceTotal = action.payload.priceTotal;
         },
         addPaymentMethod(state, action) {
             state.paymentMethod = action.payload.paymentMethod;
+        },
+        addPaymentPolicy(state, action) {
+            state.paymentPolicy = action.payload;
         }
-    }
+    },
 });
+
+
 
 export default bookingSlice;

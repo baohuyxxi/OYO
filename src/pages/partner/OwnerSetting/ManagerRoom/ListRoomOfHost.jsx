@@ -40,7 +40,7 @@ const ListRoomOfHost = () => {
             giuong: dataListhome[i].numberOfBed,
             badroom: dataListhome[i].roomsImportant[2] ? dataListhome[i].roomsImportant[2].number : 0,
             location: dataListhome[i].provinceName ? dataListhome[i].provinceName : '',
-            editrecent: format(new Date(dataListhome[i].lastModifiedDate.toString()), 'hh:mm MM/dd/yyyy'),
+            editrecent: format(new Date(dataListhome[i].lastModifiedDate.toString()), 'hh:mm DD/MM/yyyy'),
             view: dataListhome[i].id,
             remove: dataListhome[i],
         });

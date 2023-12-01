@@ -8,7 +8,7 @@ import 'react-date-range/dist/theme/default.css';
 import './DateBooking.scss';
 // import pricesOfHomeApi from '~/services/pricesOfHomeApi';
 import { useDispatch } from 'react-redux';
-// import bookingSlice from '~/pages/BookingPage/bookingSlice';
+import bookingSlice from '~/pages/client/BookingPage/bookingSlice';
 import { t } from 'i18next';
 
 const DateBooking = (props) => {
@@ -43,9 +43,9 @@ const DateBooking = (props) => {
     };
 
     const handleChangeDayBooking = async (value) => {
-        const dateFrom = format(value[0].checkIn, 'dd/MM/yyyy');
-        const dateTo = format(value[0].checkOut, 'dd/MM/yyyy');
-        // dispatch(bookingSlice.actions.addDay({ dateFrom, dateTo }));
+        const checkIn = format(value[0].startDate, 'dd/MM/yyyy');
+        const checkOut = format(value[0].endDate, 'dd/MM/yyyy');
+        dispatch(bookingSlice.actions.addDay({checkIn, checkOut }));
         // pricesOfHomeApi.showPriceByRangeDay(props?.idHome, dateFrom, dateTo).then((dataResponse) => {
         //     if (props.handleChangePriceDay) {
         //         props.handleChangePriceDay(dataResponse?.data?.totalCost);
@@ -61,10 +61,7 @@ const DateBooking = (props) => {
             <div className="info-day">
                 <div className="day">
                     <p style={{ fontWeight: 'bold', marginTop: '10px' }}>{t('title.bookingOfYou.day')}</p>
-                    <p className="info_date">{`${format(range[0].checkIn, 'dd/MM/yyyy')} -- ${format(
-                        range[0].checkOut,
-                        'dd/MM/yyyy',
-                    )}`}</p>
+                    <p className="info_date">{props.checkIn} -- {props.checkOut}</p>
                 </div>
 
                 <p onClick={() => setOpen((open) => !open)} className="edit-date">
@@ -75,6 +72,7 @@ const DateBooking = (props) => {
                 {open && (
                     <DateRangePicker
                         onChange={(item) => {
+                            console.log(item)
                             setRange([item.selection]);
                             handleChangeDayBooking([item.selection]);
                         }}

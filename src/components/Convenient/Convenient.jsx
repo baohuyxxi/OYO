@@ -4,10 +4,11 @@ import './Convenient.scss';
 
 const Convenient = (props) => {
     const row = props.row
-    const length = props.listConvenient.length
+    const length = props.listConvenient.length +1
+    const infoFacilityList = props.listConvenient.flatMap(item =>  item.infoFacilityList);
     const element = [];
     for (let i = 0; i < row; i++) {
-        const cutData = props.listConvenient.slice(length*i/row, length*(i+1)/row)
+        const cutData = infoFacilityList.slice(length*i/row, (length+1)*(i+1)/row)
         element.push(
             <div key={i}
                 className= {`col l-${12/row}`}>

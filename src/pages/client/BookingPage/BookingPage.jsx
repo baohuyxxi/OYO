@@ -19,7 +19,8 @@ import { t } from 'i18next';
 const BookingPage = () => {
     const dispatch = useDispatch();
     const dataBooking = useSelector(((state) => state.booking))
-    const [infoBooking, setInfoBooking] = useState(mockData.infoBooking);
+    console.log(dataBooking)
+    const [infoBooking, setInfoBooking] = useState(dataBooking);
     const [dataDetailHomeBooking, setDataDetailHomeBooking] = useState(
         mockData.dataDetailHomeBooking
     );
@@ -51,9 +52,9 @@ const BookingPage = () => {
                             <h2>{t('title.bookingOfYou.drive')}</h2>
                             <DateBooking
                             size="horizontal"
-                            dateStart={infoBooking.dateStart}
-                            dateEnd={infoBooking.dateEnd}
-                            idHome={infoBooking.homeId}
+                            checkIn={infoBooking.checkIn}
+                            checkOut={infoBooking.checkOut}
+                            idHome={infoBooking.accomId}
                             // handleChangePriceDay={handleChangePriceDay}
                         />
                             <hr className="line" />
@@ -128,9 +129,9 @@ const BookingPage = () => {
                                         <p style={{ fontWeight: '550' }}>{formatPrice(infoBooking?.priceTotal)}</p>
                                     </div>
                                 </div>
-                                <button onClick={handleBookingRoom} className="btn-booking">
+                                {/* <button onClick={handleBookingRoom} className="btn-booking">
                                 Đặt phòng
-                            </button>
+                            </button> */}
                             </div>
                         </div>
                     </div>

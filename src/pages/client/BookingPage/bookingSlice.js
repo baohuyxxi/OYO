@@ -1,13 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import moment from 'moment';
 
-
 const bookingSlice = createSlice({
-  
     name: 'booking',
     initialState: {
-        nameCustomer:JSON.parse(localStorage.getItem('user')|| null)?.userName ,
-        phoneNumberCustomer:  JSON.parse(localStorage.getItem('user')|| null)?.phone,
+        nameCustomer: JSON.parse(localStorage.getItem('user') || null)?.userName,
+        phoneNumberCustomer: JSON.parse(localStorage.getItem('user') || null)?.phone,
         checkIn: moment().format('YYYY-MM-DD'),
         checkOut: moment().format('YYYY-MM-DD'),
         numAdult: 1,
@@ -18,7 +16,9 @@ const bookingSlice = createSlice({
         totalTransfer: 0,
         paymentPolicy: 'PAY_IN_FULL',
         paymentMethod: 'DIRECT',
-        accomId: 0
+        titleGuests: `1 người lớn, 1 trẻ em, trẻ sơ sinh`,
+        accomId: 0,
+        priceTotal: 0
     },
     reducers: {
         addInfoBooking(state, action) {
@@ -26,20 +26,17 @@ const bookingSlice = createSlice({
             state.checkIn = action.payload.dateEnd;
             state.accomId = action.payload.homeId;
             state.priceDay = action.payload.priceDay;
-            if (action.payload.guests.length !== 0) {
-                action.payload.guests.forEach(guests =>{
-                    state[guests.guestCategory] = guests.number;
-                })
-               
-            }
+            state.numAdult = action.payload.guests.numAdult;
+            state.numChild = action.payload.guests.numChild;
+            state.numBornChild = action.payload.guests.numBornChild;
 
             const roomsData = action.payload;
             if (Array.isArray(roomsData) && roomsData.length > 0) {
-                roomsData.forEach(room => {
-                    if (state.detailRoom.hasOwnProperty(room.key)) {           
+                roomsData.forEach((room) => {
+                    if (state.detailRoom.hasOwnProperty(room.key)) {
                         state.detailRoom[room.guestCategory] = room.number;
                     }
-                })
+                });
             }
             // state.checkBooking = true;
             // state.titleGuests = action.payload.titleGuests;
@@ -56,9 +53,9 @@ const bookingSlice = createSlice({
             state.priceTotal = action.payload.priceTotal;
         },
         addPaymentMethod(state, action) {
-            state.paymentMethod = action.payload.paymentMethod
+            state.paymentMethod = action.payload.paymentMethod;
         }
-    },
+    }
 });
 
 export default bookingSlice;

@@ -21,5 +21,9 @@ const publicAccomPlaceAPI = {
         const res = await axios.post(`/public/homes/${data}/detail`);
         return res;
     },
+    checkBooking: async (data) => {
+        const res = await axios.post(`/public/accoms/check-booking`, data);
+        return res.data;
+    },
 };
 export default publicAccomPlaceAPI;

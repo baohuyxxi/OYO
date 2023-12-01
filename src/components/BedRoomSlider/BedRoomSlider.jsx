@@ -10,7 +10,6 @@ import './BedRoomSlider.scss';
 import BedIcon from '@mui/icons-material/Bed';
 
 export default function BedRoomSlider(props) {
-    console.log(props)
     var settings = {
         dots: true,
         infinite: true,

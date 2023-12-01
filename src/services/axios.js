@@ -10,7 +10,7 @@ const instance = axios.create({
     baseURL: 'http://localhost:8080/api/v1',
     timeout: 10000,
     validateStatus: function (status) {
-        return (status >= 200 && status < 400)  || status=== 404 ;
+        return (status >= 200 && status < 400)  || status=== 404  || status===410;
     }
 });
 instance.interceptors.request.use(

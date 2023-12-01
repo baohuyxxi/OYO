@@ -13,8 +13,8 @@ const DateRangePickerComp = (props) => {
     // date state
     const [range, setRange] = useState([
         {
-            startDate: new Date(),
-            endDate: addDays(new Date(), 0),
+            checkIn: new Date(),
+            checkOut: addDays(new Date(), 0),
             key: 'selection'
         }
     ]);
@@ -55,7 +55,7 @@ const DateRangePickerComp = (props) => {
             <div className="info_date">
                 <div className="output start">
                     <input
-                        value={`${format(range[0].startDate, 'MM/dd/yyyy')}`}
+                        value={`${format(range[0].checkIn, 'dd/MM/yyyy')}`}
                         readOnly
                         className="inputBox"
                         onClick={() => setOpen((open) => !open)}
@@ -64,7 +64,7 @@ const DateRangePickerComp = (props) => {
 
                 <div className="output end">
                     <input
-                        value={`${format(range[0].endDate, 'MM/dd/yyyy')}`}
+                        value={`${format(range[0].checkOut, 'dd/MM/yyyy')}`}
                         readOnly
                         className="inputBox"
                         onClick={() => setOpen((open) => !open)}

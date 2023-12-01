@@ -30,15 +30,16 @@ function MyFormControlLabel(props) {
     return <StyledFormControlLabel checked={checked} {...props} />;
 }
 
-export default function CheckBoxPayment(props) {
+export default function CheckBoxPaymentPolicy(props) {
     const dispatch = useDispatch();
 
     const handleChangeRadio = async (event) => {
-        await dispatch(bookingSlice.actions.addPaymentMethod({ paymentMethod: event.target.value }));
-        if (event.target.value === 'PAY_50_PERCENT') {
-            props?.setPriceAfterChoosePayment(props.price / 2);
-        } else {
+        console.log(event.target.value)
+        await dispatch(bookingSlice.actions.addPaymentPolicy({ paymentMethod: event.target.value }));
+        if (event.target.value === 'PAY_IN_FULL') {
             props?.setPriceAfterChoosePayment(props.price);
+        } else {
+            props?.setPriceAfterChoosePayment(props.price/2);
         }
     };
 
@@ -46,16 +47,19 @@ export default function CheckBoxPayment(props) {
         <div className="payment-radio-box">
             <RadioGroup name="use-radio-group" defaultValue="PAY_IN_FULL">
                 <MyFormControlLabel
-                    value="PAY_IN_FULL"
+                    value="PAYMENT_FULL"
                     label={t('title.bookingOfYou.payfull')}
                     control={<Radio sx={{ fontSize: '14px' }} onChange={handleChangeRadio} />}
                 />
                 <MyFormControlLabel
-                    value="PAY_50_PERCENT"
+                    value="PAYMENT_HALF"
                     label={t('title.bookingOfYou.pay50')}
                     control={<Radio onChange={handleChangeRadio} />}
                 />
+                
             </RadioGroup>
+            
         </div>
+        
     );
 }

@@ -1,16 +1,20 @@
 import axiosClient from '~/services/axios';
 const cmsFacilityCategoryAPI = {
-    addFacilityCategory: async (params) => {
-        const response = await axiosClient.post('/cms/facility-categories/create', params);
+    addFacilityCategory: async (data) => {
+        const response = await axiosClient.post('/cms/facility-categories/create', data);
+        return response.data;
     },
-    updateFacilityCategory: async (params) => {
-        const response = await axiosClient.put(`/cms/facility-categories/${id}/update`, params);
+    updateFacilityCategory: async (data, id) => {
+        const response = await axiosClient.put(`/cms/facility-categories/${id}/update`, data);
+        return response.data;
     },
-    changeStatusFacilityCategory: async (params) => {
-        const response = await axiosClient.get(`/cms/facility-categories/${id}/change-status`, {params});
+    changeStatusFacilityCategory: async (status, id) => {
+        const response = await axiosClient.put(`/cms/facility-categories/${id}/change-status?status=${status}`);
+        return response.data;
     },
-    deleteFacilityCategory: async () => {
-        const response = await axiosClient.get(`/cms/facility-categories/${id}/delete`);
+    deleteFacilityCategory: async (id) => {
+        const response = await axiosClient.delete(`/cms/facility-categories/${id}/delete`);
+        return response.data;
     }
 };
 

@@ -1,6 +1,3 @@
-import React from 'react';
-import { AxiosError } from 'axios';
-
 import { useSnackbar } from 'notistack';
 
 import Popup from 'reactjs-popup';
@@ -8,8 +5,9 @@ import LockIcon from '@mui/icons-material/Lock';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 
 import Table from '~/components/Table/Table';
-import cmsUserAPI from '~/services/apis/adminAPI/cmsUserAPI';
-import './UserAdmin.scss';
+import cmsAccomPlaceAPI from '~/services/apis/adminAPI/cmsAccomPlaceAPI';
+import './AccomAdmin.scss';
+import formatPrice from '~/utils/formatPrice';
 
 const customerTableHead = ['', 'Tên nhà', 'Chủ nhà', 'Địa chỉ', 'Loại hình cho thuê', 'Giá theo đêm', 'Trạng thái'];
 
@@ -17,20 +15,25 @@ const renderHead = (item, index) => <th key={index}>{item}</th>;
 
 const AccomAdmin = (props) => {
     const { enqueueSnackbar } = useSnackbar();
-    const handleLockAccount = (idDelete) => {
-        const dataAccount = {
-            id: idDelete,
-            status: 'LOCK'
-        };
-        // userApi
-        //     .lockAccount(dataAccount)
-        //     .then(() => {
-        //         enqueueSnackbar('Khóa tài khoản thành công', { variant: 'success' });
-        //     })
-        //     .catch((error: AxiosError<any>) => {
-        //         enqueueSnackbar(error.response?.data.message, { variant: 'error' });
-        //     });
-        cmsUserAPI.ch;
+    const handleChangeStatusAccom = (accomId, accomStatus) => {
+        const status = accomStatus === 'DISABLE' ? 'ENABLE' : 'DISABLE';
+        cmsAccomPlaceAPI
+            .changeStatusAccomPlace(status, accomId)
+            .then((response) => {
+                const updatedAccomList = props.data.map((accom) => {
+                    if (accom.id === accomId) {
+                        return { ...accom, status: status };
+                    }
+                    return accom;
+                });
+                props.setListAccom(updatedAccomList);
+                enqueueSnackbar(`${status === 'DISABLE' ? 'Khóa' : 'Mở khóa'} chỗ ở thành công`, {
+                    variant: 'success'
+                });
+            })
+            .catch((error) => {
+                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+            });
     };
     const renderBody = (item, index) => (
         <tr key={index}>
@@ -39,12 +42,12 @@ const AccomAdmin = (props) => {
             <td>{item.nameHost}</td>
             <td>{item.addressGeneral}</td>
             <td>{item.accomCateName}</td>
-            <td>{item.pricePerNight}</td>
+            <td>{formatPrice(item.pricePerNight)}</td>
             <td>{item.status}</td>
             <td>
                 <Popup
                     trigger={
-                        item.status === 'LOCK' ? (
+                        item.status === 'DISABLE' ? (
                             <LockOpenIcon
                                 className="icon__btn"
                                 sx={{ color: 'red', cursor: 'pointer', fontSize: '18px' }}
@@ -60,7 +63,7 @@ const AccomAdmin = (props) => {
                 >
                     <div>
                         <p style={{ margin: '0', padding: '5px', fontSize: '14px' }}>
-                            {`Bạn chắc chắn muốn ${item.status === 'LOCK' ? 'mở khóa' : 'khóa'} tài khoản này không?`}
+                            {`Bạn chắc chắn muốn ${item.status === 'DISABLE' ? 'mở khóa' : 'khóa'} chỗ ở này không?`}
                         </p>
                         <p
                             style={{
@@ -74,7 +77,7 @@ const AccomAdmin = (props) => {
                                 cursor: 'pointer',
                                 color: 'white'
                             }}
-                            onClick={() => handleLockAccount(item.id)}
+                            onClick={() => handleChangeStatusAccom(item.id, item.status)}
                         >
                             Yes
                         </p>
@@ -87,7 +90,7 @@ const AccomAdmin = (props) => {
     return (
         <div className="user__admin">
             <div className="header__customer">
-                <h2 className="page-header">Người dùng</h2>
+                <h2 className="page-header">Nơi ở được đăng kí</h2>
             </div>
 
             <div className="row">

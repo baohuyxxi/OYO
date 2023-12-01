@@ -39,6 +39,17 @@ const AddForm = (props) => {
                             )}
                         </div>
                     ))}
+                    <div className="col l-6 key-col">
+                        <h2 className="title-field">Trạng thái</h2>
+                        <select {...register('status', { required: 'Vui lòng chọn status' })} value={'ENABLE'}>
+                            <option value="">Chọn trạng thái</option>
+                            <option value="ENABLE">ENABLE</option>
+                            <option value="DISABLE">DISABLE</option>
+                        </select>
+                        {errors['status'] && (
+                            <span className="message_error">{`${errors['status'] && errors['status']?.message}`}</span>
+                        )}
+                    </div>
                 </div>
                 <button type="submit" className="btn-save_newdata">
                     Thêm mới

@@ -17,20 +17,26 @@ const renderHead = (item, index) => <th key={index}>{item}</th>;
 
 const UserAdmin = (props) => {
     const { enqueueSnackbar } = useSnackbar();
-    const handleLockAccount = (idDelete) => {
-        const dataAccount = {
-            id: idDelete,
-            status: 'LOCK'
-        };
-        // userApi
-        //     .lockAccount(dataAccount)
-        //     .then(() => {
-        //         enqueueSnackbar('Khóa tài khoản thành công', { variant: 'success' });
-        //     })
-        //     .catch((error: AxiosError<any>) => {
-        //         enqueueSnackbar(error.response?.data.message, { variant: 'error' });
-        //     });
-        cmsUserAPI.ch;
+    const handleBannedAccount = (userMail, userStatus) => {
+        const status = userStatus === 'BANNED' ? 'ENABLE' : 'BANNED';
+        cmsUserAPI
+            .changeStatusUser(status, userMail)
+            .then((response) => {
+                const updatedUserList = props.data.map((user) => {
+                    if (user.mail === userMail) {
+                        return { ...user, status: status };
+                    }
+                    return user;
+                });
+                props.setListUser(updatedUserList);
+                enqueueSnackbar(`${status === 'BANNED' ? 'Khóa' : 'Mở khóa'} tài khoản thành công`, {
+                    variant: 'success'
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+            });
     };
     const renderBody = (item, index) => (
         <tr key={index}>
@@ -46,7 +52,7 @@ const UserAdmin = (props) => {
             <td>
                 <Popup
                     trigger={
-                        item.status === 'LOCK' ? (
+                        item.status === 'BANNED' ? (
                             <LockOpenIcon
                                 className="icon__btn"
                                 sx={{ color: 'red', cursor: 'pointer', fontSize: '18px' }}
@@ -60,12 +66,13 @@ const UserAdmin = (props) => {
                     }
                     position="bottom center"
                 >
-                    <div>
-                        <p style={{ margin: '0', padding: '5px', fontSize: '14px' }}>
-                            {`Bạn chắc chắn muốn ${item.status === 'LOCK' ? 'mở khóa' : 'khóa'} tài khoản này không?`}
+                    <div style={{ backgroundColor: '#CBE2F2', borderRadius: 4 }}>
+                        <p style={{ marginBottom: 0, padding: '5px', fontSize: '14px' }}>
+                            {`Bạn chắc chắn muốn ${item.status === 'BANNED' ? 'mở khóa' : 'khóa'} tài khoản này không?`}
                         </p>
                         <p
                             style={{
+                                borderRadius: 4,
                                 background: '#ef5350',
                                 margin: '0',
                                 width: 'auto',
@@ -73,10 +80,12 @@ const UserAdmin = (props) => {
                                 paddingTop: '5px',
                                 paddingBottom: '5px',
                                 marginLeft: '75%',
+                                marginRight: '5px',
+                                marginBottom: '20px',
                                 cursor: 'pointer',
                                 color: 'white'
                             }}
-                            onClick={() => handleLockAccount(item.id)}
+                            onClick={() => handleBannedAccount(item.mail, item.status)}
                         >
                             Yes
                         </p>

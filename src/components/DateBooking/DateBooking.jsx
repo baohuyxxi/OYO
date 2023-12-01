@@ -14,8 +14,8 @@ import { t } from 'i18next';
 const DateBooking = (props) => {
     const [range, setRange] = useState([
         {
-            startDate: new Date(props.dateStart),
-            endDate: new Date(props.dateEnd),
+            checkIn: new Date(props.checkIn),
+            checkOut: new Date(props.checkOut),
             key: 'selection',
         },
     ]);
@@ -43,8 +43,8 @@ const DateBooking = (props) => {
     };
 
     const handleChangeDayBooking = async (value) => {
-        const dateFrom = format(value[0].startDate, 'yyyy-MM-dd');
-        const dateTo = format(value[0].endDate, 'yyyy-MM-dd');
+        const dateFrom = format(value[0].checkIn, 'dd/MM/yyyy');
+        const dateTo = format(value[0].checkOut, 'dd/MM/yyyy');
         // dispatch(bookingSlice.actions.addDay({ dateFrom, dateTo }));
         // pricesOfHomeApi.showPriceByRangeDay(props?.idHome, dateFrom, dateTo).then((dataResponse) => {
         //     if (props.handleChangePriceDay) {
@@ -61,9 +61,9 @@ const DateBooking = (props) => {
             <div className="info-day">
                 <div className="day">
                     <p style={{ fontWeight: 'bold', marginTop: '10px' }}>{t('title.bookingOfYou.day')}</p>
-                    <p className="info_date">{`${format(range[0].startDate, 'MM/dd/yyyy')} -- ${format(
-                        range[0].endDate,
-                        'MM/dd/yyyy',
+                    <p className="info_date">{`${format(range[0].checkIn, 'dd/MM/yyyy')} -- ${format(
+                        range[0].checkOut,
+                        'dd/MM/yyyy',
                     )}`}</p>
                 </div>
 

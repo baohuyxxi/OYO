@@ -236,6 +236,10 @@
       .btn-booking-room:hover {
         background-color: #388e3c;
       }
+      .btn-booking-room:disabled {
+        background-color: var(--disabled-br);
+        color: var(--disabled-cl);
+      }
     }
   }
 }

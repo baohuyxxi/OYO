@@ -19,7 +19,6 @@ export default function DialogConvenient(props) {
     const handleClose = () => {
         setOpen(false);
     };
-
     return (
         <div className="dialog-convenient">
             <Button variant="outlined" onClick={handleClickOpen} className="btn-show">
@@ -40,26 +39,30 @@ export default function DialogConvenient(props) {
                     >
                         {t('title.convenient')}
                     </DialogTitle>
-                    {props?.listConvenient?.map((convi, index) => (
+                    {props?.listConvenient?.map((faciCate, index) => (
                         <DialogContent
                             style={{
                                 fontSize: '16px',
                                 fontWeight: 'bold',
-                                textDecorationLine: `${!convi.isConfig ?  'none': 'line-through'}`,
+                                textDecorationLine: `${!faciCate.isConfig ? 'none' : 'line-through'}`
                             }}
                             key={index}
                         >
-                            {convi?.facilityName}
-                            <DialogContentText
-                                id="alert-dialog-description"
-                                style={{
-                                    fontSize: '14px',
-                                    marginTop: '20px',
-                                    textDecorationLine: `${!convi.isConfig ?  'none': 'line-through' }`,
-                                }}
-                            >
-                                {convi?.facilityName}
-                            </DialogContentText>
+                            {faciCate?.faciCateName}
+                            {faciCate?.infoFacilityList.map((facility) => 
+                                (  <DialogContentText
+                                    id="alert-dialog-description"
+                                    style={{
+                                        fontSize: '14px',
+                                        marginTop: '20px',
+                                        textDecorationLine: `${!facility.isConfig ? 'none' : 'line-through'}`
+                                    }}
+                                >
+                                    {facility.facilityName}
+                                </DialogContentText >)
+                              
+                            )}
+
                             <hr />
                         </DialogContent>
                     ))}

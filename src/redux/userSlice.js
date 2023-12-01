@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const userSlice = createSlice({
     name: 'user',
     initialState: {
-        current:  JSON.parse(localStorage.getItem('user') || null),
+        current: null,
         settings: false
     },
     reducers: {
@@ -12,7 +12,9 @@ const userSlice = createSlice({
         signin(state, action) {
             localStorage.setItem('accessToken', action.payload.accessToken)
             localStorage.setItem('refreshToken', action.payload.refreshToken)
-            localStorage.setItem('user', JSON.stringify(action.payload.infoUserResponse))
+            // localStorage.setItem('user', JSON.stringify(action.payload.infoUserResponse))
+            // state.accessToken = action.payload.accessToken
+            // state.refreshToken = action.payload.refreshToken
             state.current= action.payload.infoUserResponse
         },
         setProfile(state, action) {

@@ -38,10 +38,7 @@ export default function UpdateForm(props) {
 
     const onSubmit = async (data) => {
         if (props.updateData) {
-            props.updateData({
-                id: props.data.id,
-                data: data
-            });
+            props.updateData(data, props.data.id);
         }
     };
 

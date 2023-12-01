@@ -11,37 +11,37 @@ const SidebarData = {
         {
             id: 2,
             display_name: 'Người dùng',
-            route: '/admin/customers',
+            route: '/admin/users',
             icon: 'bx bx-user-pin'
         },
         {
             id: 3,
             display_name: 'Nơi cho thuê',
-            route: '/admin/house',
+            route: '/admin/accomplaces',
             icon: 'bx bxs-building-house'
         },
         {
             id: 4,
             display_name: 'Loại hình cho thuê',
-            route: '/admin/roomcategories',
+            route: '/admin/accomcategories',
             icon: 'bx bx-user-pin'
         },
         {
             id: 5,
             display_name: 'Loại giường',
-            route: '/admin/bedcategories',
+            route: '/admin/typebeds',
             icon: 'bx bx-bed'
         },
         {
             id: 6,
             display_name: 'Tiện ích',
-            route: '/admin/amenity',
+            route: '/admin/facilities',
             icon: 'bx bx-package'
         },
         {
             id: 7,
             display_name: 'Loại tiện ích',
-            route: '/admin/amenitycategories',
+            route: '/admin/facilitycategories',
             icon: 'bx bxl-dropbox'
         }
         // {

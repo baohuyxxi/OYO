@@ -1,16 +1,20 @@
 import axiosClient from '~/services/axios';
 const cmsFacilityAPI = {
-    addFacility: async (params) => {
-        const response = await axiosClient.post('/cms/facilities/create', params);
+    addFacility: async (data) => {
+        const response = await axiosClient.post('/cms/facilities/create', data);
+        return response.data;
     },
-    updateFacility: async (params) => {
-        const response = await axiosClient.put(`/cms/facilities${id}/update`, params);
+    updateFacility: async (data, id) => {
+        const response = await axiosClient.put(`/cms/facilities${id}/update`, data);
+        return response.data;
     },
-    changeStatusFacility: async (params) => {
-        const response = await axiosClient.get(`/cms/facilities${id}/change-status`, { params });
+    changeStatusFacility: async (status, id) => {
+        const response = await axiosClient.put(`/cms/facilities${id}/change-status?status=${status}`);
+        return response.data;
     },
-    deleteFacility: async () => {
-        const response = await axiosClient.get(`/cms/facilities${id}/delete`);
+    deleteFacility: async (id) => {
+        const response = await axiosClient.delete(`/cms/facilities${id}/delete`);
+        return response.data;
     }
 };
 

@@ -1,47 +1,57 @@
-import React, { useState } from 'react';
-import './TypeBedAdmin.scss';
-import Table from '../../components/AllAdminComponents/Table/Table';
-import AddForm from '../../components/AllAdminComponents/AddForm/AddForm';
-
-import { AxiosError } from 'axios';
+import { useState } from 'react';
+import Table from '~/components/Table/Table';
 import { useSnackbar } from 'notistack';
-
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import cmsAccomCategoryAPI from '~/services/apis/adminAPI/cmsAccomCategoryAPI';
+import UpdateForm from '~/components/Admin/UpdateForm/UpdateForm';
+import AddForm from '~/components/Admin/AddForm/AddForm';
 import DeleteIcon from '@mui/icons-material/Delete';
+import './AccomCategoryAdmin.scss';
 
-import bedApi from '../../services/bedApi';
-import UpdateForm from '../../components/AllAdminComponents/UpdateForm/UpdateForm';
-
-const customerTableHead = ['', 'Tên giường', 'Mô tả', '', ''];
+const customerTableHead = ['', 'Tên loại hình cho thuê', 'Mô tả', 'Icon', 'Trạng thái'];
 
 const fieldData = [
     {
-        title: 'Tên loại giường',
-        nameRegister: 'name',
-        nameRequire: 'Tên loại giường được yêu cầu',
-        placeholder: 'Vd: abc...'
+        title: 'Tên loại hình cho thuê',
+        nameRegister: 'accomCateName',
+        nameRequire: 'Tên loại hình cho thuê là bắt buộc',
+        placeholder: 'Vd: Nhà trên cây...'
     },
     {
-        title: 'Mô tả loại phòng',
+        title: 'Mô tả',
         nameRegister: 'description',
-        nameRequire: 'Mô tả loại giường được yêu cầu',
-        placeholder: 'Vd: abc...'
+        nameRequire: 'Mô tả loại hình cho thuê là bắt buộc',
+        placeholder: 'Vd: Gần bãi biển...'
+    },
+    {
+        title: 'Link hình ảnh',
+        nameRegister: 'icon',
+        nameRequire: 'Link hình ảnh là bắt buộc',
+        placeholder: 'Vd: http://image...'
+    },
+    {
+        title: 'Trạng thái',
+        nameRegister: 'status',
+        nameRequire: 'Trạng thái phải là ENABLE hoặc DISABLE',
+        placeholder: 'Vd: ENABLE...'
     }
 ];
 
-const renderHead = (item: any, index: number) => <th key={index}>{item}</th>;
+const renderHead = (item, index) => <th key={index}>{item}</th>;
 
-const TypeBedAdmin = (props: any) => {
-    const [onAdd, setOnAdd] = useState < Boolean > false;
+const AccomCategoryAdmin = (props) => {
+    const [onAdd, setOnAdd] = useState(false);
 
     const { enqueueSnackbar } = useSnackbar();
 
-    const renderBody = (item: any, index: any) => (
+    const renderBody = (item, index) => (
         <tr key={index}>
-            <td>{index}</td>
-            <td>{item.name}</td>
+            <td>{index + 1}</td>
+            <td>{item.accomCateName}</td>
             <td>{item.description}</td>
+            <td>{item.icon}</td>
+            <td>{item.status}</td>
             <td>
                 <Popup
                     trigger={
@@ -78,39 +88,40 @@ const TypeBedAdmin = (props: any) => {
         </tr>
     );
 
-    const handleAddData = (data: any) => {
+    const handleAddData = (data) => {
         const dataAdd = {
             ...data
         };
-        bedApi
-            .addTypeBed(dataAdd)
+        cmsAccomCategoryAPI
+            .addAccomCategory(dataAdd)
             .then((dataResponse) => {
                 props.setList([...props.data, dataResponse.data]);
                 enqueueSnackbar('Thêm mới thành công', { variant: 'success' });
             })
-            .catch((error: AxiosError<any>) => {
-                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+            .catch((error) => {
+                console.log(error.response);
+                enqueueSnackbar('Thêm mới thất bại', { variant: 'error' });
             });
     };
 
-    const handleDelete = (idDelete: string | undefined) => {
-        bedApi
-            .deleteTypeBed(idDelete)
+    const handleDelete = (idDelete) => {
+        cmsAccomCategoryAPI
+            .deleteAccomCategory(idDelete)
             .then(() => {
-                const dataAfterDelete = props.data.filter((dataDelete: any) => {
+                const dataAfterDelete = props.data.filter((dataDelete) => {
                     return dataDelete.id !== idDelete;
                 });
                 props.setList([...dataAfterDelete]);
                 enqueueSnackbar('Xóa thành công', { variant: 'success' });
             })
-            .catch((error: AxiosError<any>) => {
+            .catch((error) => {
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });
             });
     };
 
-    const Update = (id: string | undefined, data: any) => {
+    const Update = (id, data) => {
         props.setList(
-            props.data?.map((item: any) => {
+            props.data?.map((item) => {
                 if (item.id === id) {
                     item = data;
                 }
@@ -119,24 +130,24 @@ const TypeBedAdmin = (props: any) => {
         );
     };
 
-    const handleUpdate = (data: any) => {
-        bedApi
-            .updateTypeBed(data)
+    const handleUpdate = (data, id) => {
+        cmsAccomCategoryAPI
+            .updateAccomCategory(data, id)
             .then((dataResponse) => {
                 Update(data.id, dataResponse.data);
                 enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
             })
-            .catch((error: AxiosError<any>) => {
+            .catch((error) => {
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });
             });
     };
 
     return (
-        <div className="typebed__admin">
+        <div className="accom__category__admin">
             <div className="header__customer">
-                <h2 className="page-header">Loại giường</h2>
+                <h2 className="page-header">Loại hình cho thuê</h2>
                 <button className="btn__add-customer__admin" onClick={() => setOnAdd(!onAdd)}>
-                    <p className="text__admin">{onAdd ? 'Danh sách loại giường' : 'Thêm mới'}</p>
+                    <p className="text__admin">{onAdd ? 'Danh sách loại hình cho thuê' : 'Thêm mới'}</p>
                 </button>
             </div>
 
@@ -148,9 +159,9 @@ const TypeBedAdmin = (props: any) => {
                                 <Table
                                     limit="10"
                                     headData={customerTableHead}
-                                    renderHead={(item: any, index: any) => renderHead(item, index)}
+                                    renderHead={(item, index) => renderHead(item, index)}
                                     bodyData={props?.data}
-                                    renderBody={(item: any, index: any) => renderBody(item, index)}
+                                    renderBody={(item, index) => renderBody(item, index)}
                                 />
                             </div>
                         </div>
@@ -163,4 +174,4 @@ const TypeBedAdmin = (props: any) => {
     );
 };
 
-export default TypeBedAdmin;
+export default AccomCategoryAdmin;

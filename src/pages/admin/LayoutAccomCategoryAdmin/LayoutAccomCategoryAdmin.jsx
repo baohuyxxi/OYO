@@ -1,14 +1,18 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import AccomCategoryAdmin from '~/pages/admin/LayoutAccomCategoryAdmin/AccomCategoryAdmin';
-import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
-import { SearchContext } from '../../contexts/searchContext';
+import cmsAccomCategoryAPI from '~/services/apis/adminAPI/cmsAccomCategoryAPI';
+// import { SearchContext } from '../../contexts/searchContext';
+import LoadingAdmin from '~/components/Admin/LoadingAdmin/LoadingAdmin';
 
 const LayoutAccomCategoryAdmin = () => {
     const [listAccomCategory, setListAccomCategory] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        publicAccomPlaceAPI.getAllAccomCategoryInfo().then((dataResponse) => {
-            setListAccomCategory(dataResponse);
+        setIsLoading(true);
+        cmsAccomCategoryAPI.getAllAcommCategoryWithPaging().then((dataResponse) => {
+            setListAccomCategory(dataResponse.data.content);
+            setIsLoading(false);
             // searchContext?.setHanldSearch(false);
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -18,7 +22,9 @@ const LayoutAccomCategoryAdmin = () => {
         setListAccomCategory(data);
     };
 
-    return <div>{<AccomCategoryAdmin data={listAccomCategory} setList={handleChangeData} />}</div>;
+    return (
+        <>{isLoading ? <LoadingAdmin /> : <AccomCategoryAdmin data={listAccomCategory} setList={handleChangeData} />}</>
+    );
 };
 
 export default LayoutAccomCategoryAdmin;

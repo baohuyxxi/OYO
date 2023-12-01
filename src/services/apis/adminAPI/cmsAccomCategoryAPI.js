@@ -1,19 +1,26 @@
 import axiosClient from '~/services/axios';
 const cmsAccomCategoryAPI = {
-    getAllAcommCategoryWithPaging: async (params) => {
-        const response = await axios.get('/cms/accom-categories/pages', { params });
+    getAllAcommCategoryWithPaging: async () => {
+        const response = await axiosClient.get(`/cms/accom-categories/pages?pageNumber=0&pageSize=20`);
+        return response.data;
     },
-    addAccomCategory: async (params) => {
-        const response = await axios.get('/cms/accom-categories/create', params);
+    addAccomCategory: async (data) => {
+        console.log(data);
+        const response = await axiosClient.post('/cms/accom-categories/create', data);
+        console.log(response.data);
+        return response.data;
     },
-    updateAccomCategory: async (params) => {
-        const response = await axios.get(`/cms/accom-categories/${id}/update`, params);
+    updateAccomCategory: async (data, id) => {
+        const response = await axiosClient.put(`/cms/accom-categories/${id}/update`, data);
+        return response.data;
     },
-    changeStatusAccomCategory: async (params) => {
-        const response = await axios.get(`/cms/accom-categories/${id}/change-status`, { params });
+    changeStatusAccomCategory: async (status, id) => {
+        const response = await axiosClient.put(`/cms/accom-categories/${id}/change-status?status=${status}`);
+        return response.data;
     },
-    deleteAccomCategory: async () => {
-        const response = await axios.get(`/cms/accom-categories/${id}/delete`);
+    deleteAccomCategory: async (id) => {
+        const response = await axiosClient.delete(`/cms/accom-categories/${id}/delete`);
+        return response.data;
     }
 };
 

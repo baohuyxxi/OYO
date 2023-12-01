@@ -1,7 +1,7 @@
 import axiosClient from '~/services/axios';
 const cmsUserAPI = {
-    getAllUserWithPaging: async (pageNumber, pageSize) => {
-        const response = await axiosClient.get(`/cms/users/pages?pageNumber=${pageNumber}&pageSize=${pageSize}`);
+    getAllUserWithPaging: async () => {
+        const response = await axiosClient.get(`/cms/users/pages?pageNumber=0&pageSize=20`);
         return response.data;
     },
     changeStatusUser: async (status, mail) => {

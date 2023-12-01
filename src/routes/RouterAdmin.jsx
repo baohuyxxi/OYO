@@ -7,11 +7,11 @@ const RouterAdmin = () => {
         <Routes>
             <Route path="/" element={<DashboardAdmin />} />
             <Route path="/customers" element={<LayoutUserAdmin />} />
-            <Route path="/house" element={<LayoutHomeAdmin />} />
+            {/* <Route path="/house" element={<LayoutHomeAdmin />} />
             <Route path="/roomcategories" element={<LayoutTypeRoomAdmin />} />
             <Route path="/bedcategories" element={<LayoutTypeBedAdmin />} />
             <Route path="/amenity" element={<LayoutAmenityAdmin />} />
-            <Route path="/amenitycategories" element={<LayoutTypeAmenityAdmin />} />
+            <Route path="/amenitycategories" element={<LayoutTypeAmenityAdmin />} /> */}
             {/* <Route path="/discount" element={<LayoutDiscountAdmin />} />
             <Route path="/surcharge" element={<LayoutSurchargeAdmin />} /> */}
         </Routes>

@@ -1,3 +1,4 @@
+import { use } from 'i18next';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -12,19 +13,19 @@ const LayoutUserAdmin = () => {
 
     useEffect(() => {
         cmsUserAPI
-            .getAllUserWithPaging({
-                pageNumber: 0,
-                pageSize: 10
-            })
+            .getAllUserWithPaging(0, 10)
             .then((dataResponse) => {
                 console.log(dataResponse);
                 setListUser(dataResponse.data.content);
+            })
+            .catch((error) => {
+                console.log(error);
             });
     }, []);
 
     return (
         <div>
-            <UserAdmin data={listUser} />
+            <UserAdmin data={listUser} setListUser={setListUser} />
         </div>
     );
 };

@@ -11,36 +11,38 @@ import { DataGrid } from '@mui/x-data-grid';
 import NavbarOwner from '~/components/NavbarOwner/NavbarOwner';
 import SearchHomeByOwner from '~/components/SearchHomeByOwner/SearchHomeByOwner';
 // import homeApi from '~/services/homeApi';
-import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
+import pernerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 import './ListRoomOfHost.scss';
 
 const ListRoomOfHost = () => {
     const [dataListhome, setDataListHome] = useState([]);
 
     useEffect(() => {
-        publicAccomPlaceAPI.getListHomeOfHost('').then((dataResponse) => {
+        pernerManageAPI.getListHomeOfPartner().then((dataResponse) => {
             setDataListHome(dataResponse.data.content);
         });
     }, []);
 
     const handleSearchByHomeName = (value) => {
-        publicAccomPlaceAPI.getListHomeOfHost(value).then((dataResponse) => {
+        pernerManageAPI.getListHomeOfPartner().then((dataResponse) => {
+            
             setDataListHome(dataResponse.data.content);
         });
     };
 
+    console.log(dataListhome)
     const rows = [];
     for (var i = 0; i < dataListhome.length; i++) {
         rows.push({
             id: i,
             idroom: dataListhome[i].id,
-            name: dataListhome[i]?.name ? dataListhome[i].name : '',
+            name: dataListhome[i]?.accomName || '',
             status: dataListhome[i].status,
-            bedroom: dataListhome[i].roomsImportant[0] ? dataListhome[i].roomsImportant[0].number : '0',
-            giuong: dataListhome[i].numberOfBed,
-            badroom: dataListhome[i].roomsImportant[2] ? dataListhome[i].roomsImportant[2].number : 0,
-            location: dataListhome[i].provinceName ? dataListhome[i].provinceName : '',
-            editrecent: format(new Date(dataListhome[i].lastModifiedDate.toString()), 'hh:mm DD/MM/yyyy'),
+            bedroom: dataListhome[i].bedRooms.length|| '0',
+            giuong: dataListhome[i].numBedRoom || '0',
+            badroom: dataListhome[i].numBathRoom || '0',
+            location: dataListhome[i].addressGeneral ||'',
+            editrecent: '20/11/2023',
             view: dataListhome[i].id,
             remove: dataListhome[i],
         });

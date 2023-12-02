@@ -1,31 +1,23 @@
-import React from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { SearchContext } from '~/contexts/searchContext';
 import AccomAdmin from '~/pages/admin/LayoutAccomAdmin/AccomAdmin';
 import cmsAccomPlaceAPI from '~/services/apis/adminAPI/cmsAccomPlaceAPI';
+import LoadingAdmin from '~/components/Admin/LoadingAdmin/LoadingAdmin';
 
 const LayoutAccomAdmin = () => {
-    const searchContext = useContext(SearchContext);
+    // const searchContext = useContext(SearchContext);
+    const [isLoading, setIsLoading] = useState(false);
     const [listAccom, setListAccom] = useState([]);
 
     useEffect(() => {
-        cmsAccomPlaceAPI
-            .getAllAcommPlaceWithPaging({
-                pageNumber: 0,
-                pageSize: 10
-            })
-            .then((dataResponse) => {
-                setListAccom(dataResponse.data.content);
-            });
+        setIsLoading(true);
+        cmsAccomPlaceAPI.getAllAcommPlaceWithPaging().then((dataResponse) => {
+            setListAccom(dataResponse.data.content);
+            setIsLoading(false);
+        });
     }, []);
 
-    return (
-        <div>
-            <AccomAdmin data={listAccom} />
-        </div>
-    );
+    return <>{isLoading ? <LoadingAdmin /> : <AccomAdmin data={listAccom} setListAccom={setListAccom} />}</>;
 };
 
 export default LayoutAccomAdmin;

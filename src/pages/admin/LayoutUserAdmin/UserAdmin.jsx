@@ -1,6 +1,3 @@
-import React from 'react';
-import { AxiosError } from 'axios';
-
 import { useSnackbar } from 'notistack';
 
 import Popup from 'reactjs-popup';
@@ -17,7 +14,7 @@ const renderHead = (item, index) => <th key={index}>{item}</th>;
 
 const UserAdmin = (props) => {
     const { enqueueSnackbar } = useSnackbar();
-    const handleBannedAccount = (userMail, userStatus) => {
+    const handleChangeStatusAccount = (userMail, userStatus) => {
         const status = userStatus === 'BANNED' ? 'ENABLE' : 'BANNED';
         cmsUserAPI
             .changeStatusUser(status, userMail)
@@ -34,7 +31,6 @@ const UserAdmin = (props) => {
                 });
             })
             .catch((error) => {
-                console.log(error);
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });
             });
     };
@@ -85,7 +81,7 @@ const UserAdmin = (props) => {
                                 cursor: 'pointer',
                                 color: 'white'
                             }}
-                            onClick={() => handleBannedAccount(item.mail, item.status)}
+                            onClick={() => handleChangeStatusAccount(item.mail, item.status)}
                         >
                             Yes
                         </p>

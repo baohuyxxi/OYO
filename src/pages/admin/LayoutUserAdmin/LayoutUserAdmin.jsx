@@ -1,33 +1,28 @@
-import { use } from 'i18next';
-import React from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { SearchContext } from '~/contexts/searchContext';
 import UserAdmin from '~/pages/admin/LayoutUserAdmin/UserAdmin';
 import cmsUserAPI from '~/services/apis/adminAPI/cmsUserAPI';
+import LoadingAdmin from '~/components/Admin/LoadingAdmin/LoadingAdmin';
 
 const LayoutUserAdmin = () => {
     const searchContext = useContext(SearchContext);
     const [listUser, setListUser] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
+        setIsLoading(true);
         cmsUserAPI
-            .getAllUserWithPaging(0, 10)
+            .getAllUserWithPaging()
             .then((dataResponse) => {
-                console.log(dataResponse);
                 setListUser(dataResponse.data.content);
+                setIsLoading(false);
             })
             .catch((error) => {
                 console.log(error);
             });
     }, []);
 
-    return (
-        <div>
-            <UserAdmin data={listUser} setListUser={setListUser} />
-        </div>
-    );
+    return <>{isLoading ? <LoadingAdmin /> : <UserAdmin data={listUser} setListUser={setListUser} />}</>;
 };
 
 export default LayoutUserAdmin;

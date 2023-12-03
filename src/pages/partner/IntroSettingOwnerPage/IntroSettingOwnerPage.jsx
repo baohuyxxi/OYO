@@ -25,7 +25,6 @@ const IntroSettingOwnerPage = () => {
     }, [userLogin, navigate]);
 
     return (
-        <FramePage>
             <div className="introsettingowner-page content">
                 <div className="row">
                     <div className="col l-6">
@@ -48,7 +47,6 @@ const IntroSettingOwnerPage = () => {
                     </div>
                 </div>
             </div>
-        </FramePage>
     );
 };
 

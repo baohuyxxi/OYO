@@ -13,6 +13,10 @@ const pernerManageAPI = {
         });
         const res = await axios.post(`/partner/accoms/${data.id}/images/create`, formData);
         return res.data;
+    },
+    getListHomeOfPartner: async() =>{
+        const res = await axios.get(`/partner/accoms/pages?pageNumber=0&pageSize=99`);
+        return res.data;
     }
 };
 export default pernerManageAPI;

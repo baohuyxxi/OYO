@@ -31,14 +31,12 @@ const LocateProvider = ({ children }) => {
         if (e.target.value) {
             const provinceName = e.target.value;
             const province = provinces.find((p) => p.provinceName === provinceName);
-            console.log(province);
             if (province) {
                 setDistricts(province.districtSet);
             }
         } else {
             setDistricts([]);
         }
-        console.log(e.target.value);
     };
 
     const handleDistrictChange = (e) => {

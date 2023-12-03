@@ -89,7 +89,6 @@ export default function SignIn(props) {
                     return;
                 }
                 const checkEmail = await authAPI.checkAccount(signin)
-                console.log(checkEmail)
                 if (checkEmail.statusCode === 302) {
                     toggleShow(['PasswordInput', 'LoginButton']);
                 } else {

@@ -20,7 +20,6 @@ const FilterBar = () => {
     useEffect(() => {
         async function fetchData() {
             const res = await publicAccomPlaceAPI.getAllAccomCategoryInfo();
-            console.log(res);
             setListAccomCateData(res.data);
         }
         fetchData();

@@ -35,14 +35,13 @@ export default function RoomDetail() {
     const [dataDetailHome, setDataDetalHome] = useState('');
     const [dateBook, setDateBook] = useState([moment().format('DD/MM/yyyy'), moment().format('DD/MM/yyyy')]);
     const [guests, setGuests] = useState(guestsModel);
-    const [titleGuests, setTitleGuests] = useState(t('contentMess.countClient'));
     const [detailPrice, setDetailPrice] = useState([]);
-    const [priceDay, setPriceDay] = useState('');
-    const [priceTotal, setPriceTotal] = useState('');
+    const [surcharge, setSurcharge] = useState('');
+    const [totalBill, setTotalBill] = useState('');
     const [disBooking, setDisBooking] = useState(true);
     const dataBooking = useSelector((state) => state.booking);
     useEffect(() => {
-        // console.log(dataBooking);
+
     }, [dataBooking]);
     useEffect(() => {
         setLoading(true);
@@ -57,32 +56,36 @@ export default function RoomDetail() {
     }
     useEffect(() => {
         const dataCheck = {
-            checkIn:  dateBook[0],
+            checkIn: dateBook[0],
             checkOut: dateBook[1],
             accomId: roomId.id,
             numAdult: guests.numAdult
         };
         publicAccomPlaceAPI.checkBooking(dataCheck).then((response) => {
-            if (response?.data.message === true) {
+            if (response?.statusCode === 200) {
                 setDisBooking(false);
-            }
-            else{
+                setSurcharge(response.data.costSurcharge)
+                setTotalBill(response?.data?.totalBill);
+            } else {
                 setDisBooking(true);
             }
         });
     }, [guests.numAdult, dateBook]);
+
     const handleBooking = () => {
         if (user === null || user === undefined) {
             enqueueSnackbar(t('message.warningSignin'), { variant: 'warning' });
         } else {
             const dataBooking = {
-                dateStart: dateBook[0],
-                dateEnd: dateBook[1],
-                homeId: roomId.id,
-                priceDay: priceDay === '' ? dataDetailHome?.pricePerNight : priceDay,
+                checkIn: dateBook[0],
+                checkOut: dateBook[1],
+                accomId: roomId.id,
                 guests: guests,
-                titleGuests: titleGuests,
-                priceTotal: priceTotal
+                priceDay: dataDetailHome?.pricePerNight,
+                surcharge: surcharge,
+                originPay: totalBill,
+                nameCustomer: user.firstName + user.lastName,
+                phoneNumberCustomer: user.phone,
             };
             dispatch(bookingSlice.actions.addInfoBooking(dataBooking));
             navigate('/booking');
@@ -90,7 +93,6 @@ export default function RoomDetail() {
     };
 
     const handleChangeDayBooking = (value) => {
-        console.log(value)
         const checkIn = format(value[0].startDate, 'dd/MM/yyyy');
         const checkOut = format(value[0].endDate, 'dd/MM/yyyy');
         setDateBook([checkIn, checkOut]);
@@ -154,7 +156,7 @@ export default function RoomDetail() {
                                     <div className="col l-4 m-5 c-12">
                                         <div className="card-book__detail paper">
                                             <div className="price-room">
-                                                {formatPrice(dataDetailHome?.pricePerNight)}
+                                                {formatPrice(dataDetailHome?.pricePerNight)}/Đêm
                                             </div>
                                             <div className="date-book">
                                                 <div className="title__date-book">
@@ -173,7 +175,7 @@ export default function RoomDetail() {
                                                     guests={guests}
                                                     setGuests={setGuests}
                                                     handleChangeGuests={handleChangeGuests}
-                                                    setTitleGuests={setTitleGuests}
+                                            
                                                 />
                                             </div>
 
@@ -187,24 +189,21 @@ export default function RoomDetail() {
                                                 </div>
                                                 <div className="real-price">
                                                     <p style={{ fontWeight: '550' }}>
-                                                        {priceDay !== ''
-                                                            ? formatPrice(priceDay)
-                                                            : formatPrice(dataDetailHome?.costPerNightDefault)}
+                                                        {formatPrice(totalBill)}
                                                     </p>
                                                 </div>
                                             </div>
 
-                                            {/* {dataDetailHome?.surcharges?.map((sur, index) => (
-                          <div className="price-total" key={index}>
-                            <div className="title-price">
-                              <p className="name-surcharge">{`${sur?.surchargeCategoryName}`}</p>
-                            </div>
-                            <div className="real-price">
-                              <p className="cost-surcharge">{formatPrice(sur?.cost)}</p>
-                            </div>
-                          </div>
-                        ))} */}
-
+                                            {dataDetailHome?.surchargeList?.map((sur, index) => (
+                                                <div className="price-total" key={index}>
+                                                    <div className="title-price">
+                                                        <p className="name-surcharge">{`${sur?.surchargeName}`}</p>
+                                                    </div>
+                                                    <div className="real-price">
+                                                        <p className="cost-surcharge">{formatPrice(sur?.cost)}</p>
+                                                    </div>
+                                                </div>
+                                            ))}
                                             <div className="line" style={{ marginTop: '10px' }}>
                                                 <hr />
                                             </div>

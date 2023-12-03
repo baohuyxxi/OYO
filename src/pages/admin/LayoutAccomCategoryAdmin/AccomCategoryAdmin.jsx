@@ -99,7 +99,6 @@ const AccomCategoryAdmin = (props) => {
                 enqueueSnackbar('Thêm mới thành công', { variant: 'success' });
             })
             .catch((error) => {
-                console.log(error.response);
                 enqueueSnackbar('Thêm mới thất bại', { variant: 'error' });
             });
     };

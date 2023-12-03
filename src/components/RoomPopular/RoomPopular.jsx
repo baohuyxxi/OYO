@@ -70,7 +70,6 @@ export default function RoomPopular() {
     const handleLinkToDetail = (idRoom) => {
         navigate(`/room-detail/${idRoom}`);
         // You can implement the navigation logic here
-        console.log('Navigating to room with ID:', idRoom);
     };
     return (
         <div className="room__popular">

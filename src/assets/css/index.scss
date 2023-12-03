@@ -93,7 +93,7 @@ html[mode="light"] {
 html[mode="dark"] {
   --background-default: #18191a;
   --background-paper: #242526;
-  --background-contrastText: #fff;
+  --background-contrastText: #ffffffb3;
   --background-defaultChannel: 34 34 34;
   --input-background: #3a3b3c;
   --item-hover: #6a6c6f;
@@ -269,6 +269,7 @@ html[mode="dark"] {
   --yellow: #fbbc04;
   .MuiButton-root {
     text-transform: none !important;
+    font-family: serif !important;
   }
 
   .MuiButtonBase-root {

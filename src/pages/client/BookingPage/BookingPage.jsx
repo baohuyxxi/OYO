@@ -3,31 +3,40 @@ import { AxiosError } from 'axios';
 import { useSnackbar } from 'notistack';
 
 import { NavLink, useNavigate } from 'react-router-dom';
-import Logo from '~/assets/svg/logo.svg';
 import FramePage from '~/components/FramePage/FramePage';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import convertPrice from '~/utils/convertPrice';
 import formatPrice from '~/utils/formatPrice';
 import { guests } from '~/utils/formatForm';
-import { pricePay } from '~/utils/calculates';
+import { pricePay, dayGap } from '~/utils/calculates';
 import CheckBoxPaymentPolicy from '~/components/CheckBoxPayment/CheckBoxPaymentPolicy';
 import CheckBoxPaymentMethod from '~/components/CheckBoxPayment/CheckBoxPaymentMethod';
 import DateBooking from '~/components/DateBooking/DateBooking';
 import Paypal from '~/components/Paypal/Paypal';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
+import bookingAPI from '~/services/apis/clientAPI/clientBookingAPI';
 import { useDispatch, useSelector } from 'react-redux';
 import './BookingPage.scss';
 import { t } from 'i18next';
+import { da } from 'date-fns/locale';
+import bookingSlice from './bookingSlice';
 
 const BookingPage = () => {
     const dispatch = useDispatch();
+    const { enqueueSnackbar } = useSnackbar();
+    const navigate = useNavigate();
     const dataBooking = useSelector((state) => state.booking);
     const [loading, setLoading] = useState(true);
-   
     const [dataDetailHomeBooking, setDataDetailHomeBooking] = useState();
-    const [priceAfterChoosePayment, setPriceAfterChoosePayment] = useState(dataBooking?.priceTotal);
+    const [priceAfterChoosePayment, setPriceAfterChoosePayment] = useState(dataBooking?.originPay);
     const handleBookingRoom = () => {
         console.log(dataBooking);
+        bookingAPI.createBooking(dataBooking).then((dataResponse) => {
+            enqueueSnackbar(t('message.bookingSuccess'), { variant: 'success' });
+            console.log('anc',dataResponse);
+            navigate('/');
+        });
+
     };
     useEffect(() => {
         setLoading(true);
@@ -36,7 +45,31 @@ const BookingPage = () => {
             setLoading(false);
         });
     }, []);
-    // pricePay(dataBooking)
+    useEffect(() => {
+        const dataCheck = {
+            checkIn: dataBooking.checkIn,
+            checkOut: dataBooking.checkOut,
+            accomId: dataBooking.accomId,
+            numAdult: dataBooking.numAdult
+        };
+        publicAccomPlaceAPI.checkBooking(dataCheck).then((response) => {
+            if (response?.statusCode === 200) {
+                dispatch(bookingSlice.actions.updateInfoBooking(response.data));
+            } else {
+            }
+        });
+    }, [dataBooking.checkIn, dataBooking.checkOut]);
+    useEffect(() => {
+        let result = dataBooking.originPay;
+        if (dataBooking.paymentPolicy === 'PAYMENT_HALF') {
+            result /= 2;
+        }
+        if (dataBooking.paymentMethod === 'PAYPAL') {
+            result *= 0.9;
+        }
+        setPriceAfterChoosePayment(result);
+        dispatch(bookingSlice.actions.addTotalTransfer(result));
+    }, [dataBooking.paymentPolicy, dataBooking.paymentMethod, dataBooking.originPay]);
     return (
         <FramePage>
             <div className="booking__page">
@@ -76,28 +109,19 @@ const BookingPage = () => {
                                     )}`}</p>
                                 </div>
                             </div>
-                            <CheckBoxPaymentPolicy
-                                setPriceAfterChoosePayment={setPriceAfterChoosePayment}
-                                price={dataBooking?.priceTotal}
-                            />
+                            <CheckBoxPaymentPolicy price={dataBooking?.priceTotal} />
                             <div className="count-customer">
                                 <div>
                                     <p className="customer-count__title">{t('title.bookingOfYou.method')}</p>
                                 </div>
                             </div>
-                            <CheckBoxPaymentMethod
-                                setPriceAfterChoosePayment={setPriceAfterChoosePayment}
-                                price={dataBooking?.priceTotal}
-                            />
+                            <CheckBoxPaymentMethod price={dataBooking?.priceTotal} />
                             <div className="payment__paypal">
-                                <Paypal
-                                    pricePayment={priceAfterChoosePayment}
-                                    booking={handleBookingRoom}
-                                />
+                                <Paypal pricePayment={priceAfterChoosePayment} booking={handleBookingRoom} />
                             </div>
                         </div>
                         <div className="col l-4">
-                            <div className="card-booking__room">
+                            <div className="card-booking__room paper">
                                 {loading ? (
                                     <></>
                                 ) : (
@@ -116,7 +140,7 @@ const BookingPage = () => {
                                                     <p>{dataDetailHomeBooking.addressDetail}</p>
                                                 </div>
                                                 <p className="name-host-room">{`${t('title.bookingOfYou.owner')} ${
-                                                    dataDetailHomeBooking?.ownerName
+                                                    dataDetailHomeBooking?.nameHost
                                                 }`}</p>
                                             </div>
                                         </div>
@@ -124,31 +148,35 @@ const BookingPage = () => {
                                         <div className="policy-booking">{t('title.bookingOfYou.policy')}</div>
 
                                         <hr className="line-card" />
-                                        <div className="card-surcharge">
-                                            <p>{t('title.bookingOfYou.surcharges')}</p>
-                                            <p>Phụ phí: {dataBooking.surcharge}</p>
-                                            {/* {dataDetailHomeBooking?.surcharges?.map((sur, index: number) => (
-                                    <li key={index}>{sur?.surchargeCategoryName}</li>
-                                ))} */}
-                                        </div>
-
                                         <div className="price-booking">
                                             <div className="price-room-booking">
                                                 <p style={{ color: '#757575' }}>{t('title.bookingOfYou.price')}</p>
                                                 <p style={{ fontWeight: '550' }}>
-                                                    {formatPrice(dataDetailHomeBooking?.pricePerNight)}
-                                                </p>
-                                            </div>
-                                            <div className="price-total-booking">
-                                                <p style={{ color: '#757575' }}>{t('title.bookingOfYou.totalPrice')}</p>
-                                                <p style={{ fontWeight: '550' }}>
-                                                    {formatPrice(dataBooking?.priceTotal)}
+                                                    {formatPrice(dataBooking?.totalCostAccom)}/
+                                                    {dayGap({ start: dataBooking.checkIn, end: dataBooking.checkOut })}{' '}
+                                                    {t('title.bookingOfYou.day')}
                                                 </p>
                                             </div>
                                         </div>
+                                        <div className="card-surcharge">
+                                            <p>{t('title.bookingOfYou.surcharges')}: {dataBooking.surcharge}</p>
+                                            {dataDetailHomeBooking?.surchargeList?.map((sur, index) => (
+                                                <li key={index}>{sur?.surchargeName}</li>
+                                            ))}
+                                        </div>
+                                        <div className="price-booking">
+                                            <div className="price-total-booking">
+                                                <p style={{ color: '#757575' }}>{dataBooking.paymentMethod==='DIRECT'? t('title.bookingOfYou.direct'): t('title.bookingOfYou.paypal')}</p>
+                                                <p style={{ fontWeight: '550' }}>
+                                                {dataBooking.paymentMethod==='DIRECT'? formatPrice(dataBooking?.originPay): formatPrice(dataBooking?.originPay*0.9)}
+                                                   
+                                                </p>
+                                            </div>
+                                        </div>
+                                       
                                         {/* <button onClick={handleBookingRoom} className="btn-booking">
-                                Đặt phòng
-                            </button> */}
+                                            Đặt phòng
+                                        </button> */}
                                     </>
                                 )}
                             </div>

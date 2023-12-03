@@ -22,13 +22,6 @@ const Dropdown = (props) => {
         if (props.handleChangeGuests) {
             props.handleChangeGuests({...props.guests, [event.target.name]: event.target.value})
         }
-        if (props.setTitleGuests) {
-            props.setTitleGuests(
-                `${props.guests.numAdult} ${t('contentMain.countClient.adults')}, ${props.guests.numChild} ${t(
-                    'contentMain.countClient.children',
-                )}, ${props.guests.numBornChild} ${t('contentMain.countClient.baby')}`,
-            );
-        }
     
     }
 

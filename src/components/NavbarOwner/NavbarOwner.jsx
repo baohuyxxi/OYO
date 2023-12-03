@@ -71,10 +71,8 @@ const NavbarOwner = () => {
     };
     return (
         <div className="navbar-owner">
-            <NavLink to="/host" className="logo">
-                <div className="sidebar__logo">
-                    <img src={Logo} alt="company logo" className="logo-bg" />
-                </div>
+            <NavLink to="/" className="logo">
+                <img src={Logo} alt="company logo" className="logo-bg" />
             </NavLink>
             <div className="navbar-right menu">
                 <NavLink to="/host" end={true}>

@@ -284,7 +284,7 @@ export default function StepperComponent() {
                     </Box>
                     <Button
                         onClick={() => {
-                            console.log(dataStep5), console.log(setupRoomHost);
+
                         }}
                     >
                         Test

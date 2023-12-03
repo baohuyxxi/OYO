@@ -33,19 +33,13 @@ function MyFormControlLabel(props) {
 export default function CheckBoxPaymentPolicy(props) {
     const dispatch = useDispatch();
 
-    const handleChangeRadio = async (event) => {
-        console.log(event.target.value)
-        await dispatch(bookingSlice.actions.addPaymentPolicy({ paymentMethod: event.target.value }));
-        if (event.target.value === 'PAY_IN_FULL') {
-            props?.setPriceAfterChoosePayment(props.price);
-        } else {
-            props?.setPriceAfterChoosePayment(props.price/2);
-        }
+    const handleChangeRadio =  (event) => {
+        dispatch(bookingSlice.actions.addPaymentPolicy( event.target.value));
     };
 
     return (
         <div className="payment-radio-box">
-            <RadioGroup name="use-radio-group" defaultValue="PAY_IN_FULL">
+            <RadioGroup name="use-radio-group" defaultValue="PAYMENT_FULL">
                 <MyFormControlLabel
                     value="PAYMENT_FULL"
                     label={t('title.bookingOfYou.payfull')}

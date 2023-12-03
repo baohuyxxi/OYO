@@ -122,7 +122,7 @@
       "price": "Price of room",
       "totalPrice": "Total payment",
       "method": "Payment methods",
-      "paypal": "Payment via Paypal",
+      "paypal": "Payment via Paypal (sale 10%)",
       "direct": "Direct payment"
     },
     "history": "Your reservation list",

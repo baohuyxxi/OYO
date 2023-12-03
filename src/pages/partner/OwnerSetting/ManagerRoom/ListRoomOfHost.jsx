@@ -30,9 +30,9 @@ const ListRoomOfHost = () => {
         });
     };
 
-    console.log(dataListhome)
     const rows = [];
     for (var i = 0; i < dataListhome.length; i++) {
+       
         rows.push({
             id: i,
             idroom: dataListhome[i].id,
@@ -42,7 +42,7 @@ const ListRoomOfHost = () => {
             giuong: dataListhome[i].numBedRoom || '0',
             badroom: dataListhome[i].numBathRoom || '0',
             location: dataListhome[i].addressGeneral ||'',
-            editrecent: '20/11/2023',
+            editrecent: format(new Date(dataListhome[i].lastModifiedDate), 'dd/MM/yyyy'),
             view: dataListhome[i].id,
             remove: dataListhome[i],
         });

@@ -15,7 +15,6 @@ const TableHistoryOwner = () => {
         });
     }, []);
 
-    console.log(dataListHistory);
 
     const rows = [];
     for (var i = 0; i < dataListHistory.length; i++) {

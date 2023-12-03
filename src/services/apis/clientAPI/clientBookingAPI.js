@@ -1,6 +1,12 @@
 import axios from '~/services/axios';
 
 const bookingAPI = {
+    createBooking: async (data) => {
+        const res = await axios.post(`/client/booking/create`, data);
+        return res.data;
+    },
+
+
     imageRoomApi: async () => {
         // Giả mạo thời gian trễ
         await new Promise((resolve) => setTimeout(resolve, 1000));

@@ -2,7 +2,6 @@ import { el } from 'date-fns/locale';
 
 const convertPrice = (price) => {
     const typrice = localStorage.getItem('selectedLanguage');
-
     if (typrice === 'en') {
         if (price !== '' && price !== undefined) {
             const result = (parseInt(price) / 23000).toLocaleString('en-US', {

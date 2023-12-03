@@ -16,7 +16,7 @@ const Convenient = (props) => {
                         <div className="convenient-item" key={index}>
                             <img src={convi.imageUrl} alt="icon-convenient" className="icon-convenient" />
                             <p style={{ textDecorationLine: "none" }}>
-                                {convi.faciCateName}
+                                {convi.facilityName}
                             </p>
                         </div>
                     ))}

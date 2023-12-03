@@ -15,7 +15,7 @@ const pernerManageAPI = {
         return res.data;
     },
     getListHomeOfPartner: async() =>{
-        const res = await axios.get(`/partner/accoms/pages?pageNumber=0&pageSize=1`);
+        const res = await axios.get(`/partner/accoms/pages?pageNumber=0&pageSize=99`);
         return res.data;
     }
 };

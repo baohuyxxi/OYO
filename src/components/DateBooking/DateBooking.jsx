@@ -19,7 +19,6 @@ const DateBooking = (props) => {
             key: 'selection',
         },
     ]);
-
     const [open, setOpen] = useState(false);
     const refOne = useRef(null);
 
@@ -72,7 +71,6 @@ const DateBooking = (props) => {
                 {open && (
                     <DateRangePicker
                         onChange={(item) => {
-                            console.log(item)
                             setRange([item.selection]);
                             handleChangeDayBooking([item.selection]);
                         }}

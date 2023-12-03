@@ -1,22 +1,25 @@
 /* eslint-disable react/jsx-no-undef */
-import * as React from 'react';
+import {useState} from 'react';
+import {useSelector } from 'react-redux';
+
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import { NavLink } from 'react-router-dom';
+
 import logoYoy from '~/assets/logo.svg';
+
 import ModeToggle from '../ModeToggle/ModeToggle';
 import DropdownUser from '../DropdownUser/DropdownUser';
 import LanguageSelect from '../LanguageSelected/LanguageSelected';
 import Button from '@mui/material/Button';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import SignInSignUp from '../SignIn-SignUp/SignIn-SignUp';
-import { useDispatch, useSelector } from 'react-redux';
 import MailNotification from '../MailNotification/MailNotification';
 import { t } from 'i18next';
 import './AppBar.scss';
 
 export default function NavBar() {
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -41,7 +44,7 @@ export default function NavBar() {
                     <LanguageSelect />
                 </div>
                 <div className="element">
-                    <NavLink to="/intro-host">{t('navbar.host')}</NavLink>
+                    <NavLink to="/host">{t('navbar.host')}</NavLink>
                 </div>
 
                 {user === null ? (

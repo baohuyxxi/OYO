@@ -10,13 +10,11 @@ import bookingSlice from '~/pages/client/BookingPage/bookingSlice';
 import './CheckBoxPayment.scss';
 import { t } from 'i18next';
 
-const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />)(
-    ({ theme, checked }) => ({
-        '.MuiFormControlLabel-label': checked && {
-            color: theme.palette.primary.main,
-        },
-    }),
-);
+const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />)(({ theme, checked }) => ({
+    '.MuiFormControlLabel-label': checked && {
+        color: theme.palette.primary.main
+    }
+}));
 
 function MyFormControlLabel(props) {
     const radioGroup = useRadioGroup();
@@ -33,14 +31,8 @@ function MyFormControlLabel(props) {
 export default function CheckBoxPaymentMethod(props) {
     const dispatch = useDispatch();
 
-    const handleChangeRadio = async (event) => {
-        console.log(event.target.value)
-        await dispatch(bookingSlice.actions.addPaymentMethod({ paymentMethod: event.target.value }));
-        if (event.target.value === 'PAY_IN_FULL') {
-            props?.setPriceAfterChoosePayment(props.price);
-        } else {
-            props?.setPriceAfterChoosePayment(props.price/2);
-        }
+    const handleChangeRadio = (event) => {
+        dispatch(bookingSlice.actions.addPaymentMethod(event.target.value));
     };
 
     return (
@@ -57,8 +49,6 @@ export default function CheckBoxPaymentMethod(props) {
                     control={<Radio onChange={handleChangeRadio} />}
                 />
             </RadioGroup>
-            
         </div>
-        
     );
 }

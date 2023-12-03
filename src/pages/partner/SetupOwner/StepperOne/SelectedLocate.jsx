@@ -20,7 +20,6 @@ export default function SelectedLocate(props) {
 
     useEffect(() => {
         publicProvinceAPI.getAllProvinceDetails().then((dataResponse) => {
-            console.log(dataResponse.data);
             if (dataResponse.data) {
                 setProvinceList(dataResponse.data);
             }

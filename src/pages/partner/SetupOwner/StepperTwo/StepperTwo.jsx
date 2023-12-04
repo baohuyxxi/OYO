@@ -21,12 +21,12 @@ const StepperTwo = (props) => {
             <div className="row">
                 <div className="col l-6 m-6">
                     <div className="require-step2">
-                        <img
+                        {/* <img
                             src="https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/Gif_Pro/tao-nhieu-moi-cau-thu-hut-khach-hang-tiem-nang.png"
                             alt=""
                             className="image-step2"
                         />
-                        <h1>{t('setupOwner.content_step_two')}</h1>
+                        <h1>{t('setupOwner.content_step_two')}</h1> */}
                     </div>
                 </div>
                 <div className="col l-6 m-6">

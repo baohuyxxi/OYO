@@ -15,7 +15,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RegisterRequest } from '~/share/models/auth';
 import { useSnackbar } from 'notistack';
 import { t } from 'i18next';
-import './Register.scss';
 
 export default function Register(props) {
     const [register, setRegister] = useState(RegisterRequest);

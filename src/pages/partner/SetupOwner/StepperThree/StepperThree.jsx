@@ -21,11 +21,11 @@ const StepperThree = (props) => {
             <div className="row">
                 <div className="col l-6 m-6">
                     <div className="require-step3">
-                        <img
+                        {/* <img
                             src="https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/Gif_Pro/Asset-5.png"
                             alt=""
                             className="image-step3"
-                        />
+                        /> */}
                         <h1>{t('setupOwner.content_step_three')}</h1>
                     </div>
                 </div>

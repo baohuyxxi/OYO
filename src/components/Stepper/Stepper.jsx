@@ -282,13 +282,6 @@ export default function StepperComponent() {
                         )}
                         <Button onClick={handleNext}>{activeStep === steps.length - 1 ? 'Finish' : 'Next'}</Button>
                     </Box>
-                    <Button
-                        onClick={() => {
-
-                        }}
-                    >
-                        Test
-                    </Button>
                 </React.Fragment>
             )}
         </Box>

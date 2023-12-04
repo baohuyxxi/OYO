@@ -52,6 +52,22 @@ const bookingSlice = createSlice({
            state.originPay = action.payload.totalBill;
            state.totalCostAccom = action.payload.totalCostAccom;
         },
+        clearInfoBooking(state, action ){
+            state.nameCustomer = '';
+            state.phoneNumberCustomer = 0;
+            state.checkIn = moment().format('DD/MM/yyyy');
+            state.checkOut = moment().format('DD/MM/yyyy');
+            state.numAdult = 1;
+            state.numChild = 0;
+            state.numBornChild = 0;
+            state.totalCostAccom = 0;
+            state.originPay = 0;
+            state.surcharge = 0;
+            state.totalTransfer = 0;
+            state.paymentPolicy = 'PAYMENT_FULL';
+            state.paymentMethod = 'DIRECT';
+            state.accomId = 0;
+        }
     },
 });
 

@@ -49,7 +49,8 @@
     "updateSuccess": "Cập nhật thành công",
     "isActiveAccount": "Tài khoản của bạn đã được kích hoạt",
     "OTPActived": "Đã gửi OTP về gmail của bạn",
-    "accountExist": "Tài khoản đã tồn tại"
+    "accountExist": "Tài khoản đã tồn tại",
+    "requestSigin": "Bạn phải đăng nhập để thực hiện được chức năng này"
   },
   "validate": {
     "emailRequire": "Email được yêu cầu",
@@ -287,10 +288,10 @@
     "contact_link_5": "Về chúng tôi",
     "contact_2": "Đối tác",
     "contact_link_6": "Booking",
-    "contact_link_7": "RentalCar",
-    "contact_link_8": "HostelWorld",
+    "contact_link_7": "AGODA",
+    "contact_link_8": "TRAVELOKA",
     "contact_link_9": "Trivago",
-    "contact_link_10": "TripAdvisor",
+    "contact_link_10": "AIRBNB",
     "contact_3": "Khác",
     "contact_link_11": "London",
     "contact_link_12": "California",
@@ -340,5 +341,12 @@
     "adult": "Người lớn",
     "children": "Trẻ em",
     "bornChild": "Trẻ sơ sinh"
+  },
+  "home":
+  {
+    "addressDetail": "Địa chỉ chi tiết",
+    "acreage":"Diện tích",
+    "numPeople":"Số người",
+    "numBathRoom":"Số phòng"
   }
 }

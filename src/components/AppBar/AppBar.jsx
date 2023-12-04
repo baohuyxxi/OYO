@@ -49,7 +49,7 @@ export default function NavBar() {
 
                 {user === null ? (
                     <Button className="element" onClick={handleClickOpen} startIcon={<AccountCircle />}>
-                        {t('title.signin')}
+                        {t('title.signin')}/{t('title.signup')}
                     </Button>
                 ) : (
                     <>

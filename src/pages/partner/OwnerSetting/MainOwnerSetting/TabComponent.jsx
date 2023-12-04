@@ -24,7 +24,6 @@ export default function TabComponent() {
             setDataCheckIn(dataResponse?.data?.content);
         });
     }, []);
-
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };

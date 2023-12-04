@@ -6,6 +6,18 @@ const bookingAPI = {
         return res.data;
     },
 
+    getHistoryBooking: async () => {
+        const res = await axios.get(`/client/booking/history?pageNumber=0&pageSize=10`);
+        return res.data;
+    },
+    cancelBooking: async () => {
+      
+        return null
+    },
+    createReviewBooking: async (data) => {
+        const res = await axios.post(`/client/reviews/create`, data);
+        return res.data;
+    },
 
     imageRoomApi: async () => {
         // Giả mạo thời gian trễ

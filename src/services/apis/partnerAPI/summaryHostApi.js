@@ -2,16 +2,16 @@ import axios from '~/services/axios';
 
 const summaryHomeApi = {
     getWaiting: async () => {
-        const res = await axios.get('api/v1/cms/booking/page?status=WAITING&number=0&size=20');
-        return res;
+        const res = await axios.get('/partner/booking/pages?status=WAITING&pageNumber=0&pageSize=10');
+        return res.data;
     },
     getCheckIn: async () => {
-        const res = await axios.get('api/v1/cms/booking/page?status=CHECK_IN&number=0&size=20');
-        return res;
+        const res = await axios.get('/partner/booking/pages?status=CHECK_IN&pageNumber=0&pageSize=10');
+        return res.data;
     },
     getCheckOut: async () => {
-        const res = await axios.get('api/v1/cms/booking/page?status=CHECK_OUT&number=0&size=20');
-        return res;
+        const res = await axios.get('/partner/booking/pages?status=CHECK_OUT&pageNumber=0&pageSize=10');
+        return res.data;
     },
     setCheckIn: async () => {
         const res = await axios.put('api/v1/cms/booking/check-in');

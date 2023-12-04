@@ -286,10 +286,10 @@
     "contact_link_5": "About us",
     "contact_2": "Partner",
     "contact_link_6": "Booking",
-    "contact_link_7": "RentalCar",
-    "contact_link_8": "HostelWorld",
+    "contact_link_7": "AGODA",
+    "contact_link_8": "TRAVELOKA",
     "contact_link_9": "Trivago",
-    "contact_link_10": "TripAdvisor",
+    "contact_link_10": "AIRBNB",
     "contact_3": "Other",
     "contact_link_11": "London",
     "contact_link_12": "California",
@@ -339,5 +339,12 @@
     "adult": "Adult",
     "children": "Children",
     "bornChild": "Infant"
+  },
+  "home":
+  {
+    "addressDetail": "Detailed address",
+    "acreage":"Acreage",
+    "numPeople":"Amount of people",
+    "numBathRoom":"Room number"
   }
 }

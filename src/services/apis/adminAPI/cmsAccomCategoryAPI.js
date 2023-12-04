@@ -5,9 +5,7 @@ const cmsAccomCategoryAPI = {
         return response.data;
     },
     addAccomCategory: async (data) => {
-        console.log(data);
         const response = await axiosClient.post('/cms/accom-categories/create', data);
-        console.log(response.data);
         return response.data;
     },
     updateAccomCategory: async (data, id) => {

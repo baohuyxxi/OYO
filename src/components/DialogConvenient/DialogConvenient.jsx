@@ -49,7 +49,7 @@ export default function DialogConvenient(props) {
                             key={index}
                         >
                             {faciCate?.faciCateName}
-                            {faciCate?.infoFacilityList.map((facility) => 
+                            {faciCate?.infoFacilityList.map((facility, i) => 
                                 (  <DialogContentText
                                     id="alert-dialog-description"
                                     style={{
@@ -57,6 +57,7 @@ export default function DialogConvenient(props) {
                                         marginTop: '20px',
                                         textDecorationLine: `${!facility.isConfig ? 'none' : 'line-through'}`
                                     }}
+                                    key={i}
                                 >
                                     {facility.facilityName}
                                 </DialogContentText >)

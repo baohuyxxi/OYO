@@ -19,7 +19,6 @@ import { useSnackbar } from 'notistack';
 import { useDispatch } from 'react-redux';
 import userSlice from '~/redux/userSlice';
 import { t } from 'i18next';
-import './SignIn.scss';
 
 export default function SignIn(props) {
     const dispatch = useDispatch();
@@ -49,10 +48,8 @@ export default function SignIn(props) {
             dispatch(userSlice.actions.signin(userLogin.data));
             enqueueSnackbar(t('message.signin'), { variant: 'success' });
             props.handleClose();
-            //   setTimeout(function () {
-            //     document.location = '/';
-            // }, 500);
-        } else if (userLogin.status === 408) {
+        
+        } else if (userLogin.statusCode === 408) {
             enqueueSnackbar('Tài khoản đang chờ xác thực', { variant: 'warning' });
         } else {
             setErrorPassword('Mật khẩu không đúng');

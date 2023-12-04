@@ -27,8 +27,7 @@ const userSlice = createSlice({
             state.current = null
         },
         editInfo(state, action) {
-            localStorage.setItem('user', JSON.stringify(action.payload))
-            state.current =  JSON.parse(localStorage.getItem('user') || null)
+            state.current= action.payload
         },
         updateHost(state) {
             state.settings = true

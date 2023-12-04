@@ -13,18 +13,14 @@ const Popular = () => {
     useEffect(() => {
         setLoading(true);
 
-        // Simulate API call
         setTimeout(() => {
-            // Get the first 10 provinces from ProvinceVN.json
             const first10Provinces = ProvinceVN.slice(0, 8);
             
-            // Simulated data response
             const dataResponse = {
                 data: {
                     content: first10Provinces,
                 },
             };
-
             if (dataResponse?.data?.content) {
                 setListProvince(dataResponse.data.content);
             }

@@ -15,14 +15,14 @@ const TableDataHostSummary = (props) => {
     for (var i = 0; i < props.data.length; i++) {
         rows.push({
             id: i,
-            idroom: props.data[i].id,
-            name: props.data[i]?.homeName ? props.data[i].homeName : '',
-            nameCustomer: props.data[i]?.customerName ? props.data[i].customerName : '',
-            dateStart: props.data[i]?.dateStart ? props.data[i].dateStart : '',
-            dateEnd: props.data[i]?.dateEnd ? props.data[i].dateEnd : '',
-            guests: props.data[i]?.guests ? props.data[i].guests : '1',
-            price: props.data[i]?.totalCost ? formatPrice(props.data[i].totalCost) : '1 đ',
-            priceBefore: props.data[i]?.moneyPayed ? formatPrice(props.data[i].moneyPayed) : '0 đ'
+            idroom: props.data[i].bookingCode,
+            name: props.data[i]?.nameAccom ? props.data[i].nameAccom : '',
+            nameCustomer: props.data[i]?.nameCustomer ? props.data[i].nameCustomer : '',
+            dateStart: props.data[i]?.checkIn ? props.data[i].checkIn : '',
+            dateEnd: props.data[i]?.checkOut ? props.data[i].checkOut : '',
+            guests: props.data[i]?.numAdult ? props.data[i].numAdult : '1',
+            price: props.data[i]?.totalBill ? formatPrice(props.data[i].totalBill) : '1 đ',
+            priceBefore: props.data[i]?.totalTransfer ? formatPrice(props.data[i].totalTransfer) : '0 đ'
         });
     }
 

@@ -10,13 +10,14 @@ import Divider from '@mui/material/Divider';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import UpdateAvatar from '~/components/UpdateAvatar/UpdateAvatar'
+import userSlice from '~/redux/userSlice';
 import './CardInfo.scss'
 import { t } from 'i18next';
 import { Button } from '@mui/material';
 
 export default function CardInfo() {
     const user = useSelector((state) => state.user.current)
-    
+    const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleOpenMenu = (event) => {
@@ -39,7 +40,10 @@ export default function CardInfo() {
         handleCloseMenu();
     }
 
-
+    const handleLogout = async (e) =>{
+        await dispatch(userSlice.actions.logout());
+        navigate('/');
+    }
     const [src, setSrc] = useState(null);
     const [imageFile, setImageFile] = useState(null);
 
@@ -89,13 +93,13 @@ export default function CardInfo() {
                 </div>
                 <Divider />
                 <div className='options-card'>
-                    <a href="/link-my-cart" className="option">
+                    <a href="/myBooking" className="option">
                         <div className="option-icon">
                             <FactCheckOutlinedIcon />
                         </div>
                         {t('navbar.myBooking')}
                     </a>
-                    <a href="/link-my-cart" className="option">
+                    <a href="/myBooking" className="option">
                         <div className="option-icon">
                             <WysiwygOutlinedIcon />
                         </div>
@@ -107,7 +111,7 @@ export default function CardInfo() {
                         </div>
                         {t('navbar.account')}
                     </a>
-                    <a href="/" className="option logout">
+                    <a href="/" className="option logout" onClick={handleLogout}>
                         <div className="option-icon">
                             <LogoutOutlinedIcon />
                         </div>

@@ -9,7 +9,7 @@
         z-index: -1;
 
         justify-items: center; /* Căn giữa chiều ngang */
-
+        background-image: url("/src/assets/imageMaster/homeStep3.gif");
         .require-step3 {
             position: absolute;
             margin-top: 10%;
@@ -21,7 +21,7 @@
             h1 {
                 text-align: center;
                 width: 100%;
-                margin-top: -50px;
+                margin-top: 10px;
             }
         }
 

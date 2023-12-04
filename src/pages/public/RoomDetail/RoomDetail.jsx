@@ -1,8 +1,14 @@
 import './RoomDetail.scss';
+import { t } from 'i18next';
 import moment from 'moment';
 import format from 'date-fns/format';
-import iconStar from '~/assets/icon/star.svg';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useSnackbar } from 'notistack';
+
+import iconStar from '~/assets/icon/star.svg';
 import ListImage from '~/components/ListImage/ListImage';
 import Convenient from '~/components/Convenient/Convenient';
 import DialogConvenient from '~/components/DialogConvenient/DialogConvenient';
@@ -10,21 +16,14 @@ import BedRoomSlider from '~/components/BedRoomSlider/BedRoomSlider';
 import DateGo from '~/components/DateGo/DateGo';
 import Dropdown from '~/components/Dropdown/Dropdown';
 import PopoverPrice from '~/components/PopoverPrice/PopoverPrice';
-import { useSnackbar } from 'notistack';
-import { Box, Button } from '@mui/material';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import { t } from 'i18next';
 import CommentReview from '~/components/CommentReview/commentReview';
 import FramePage from '~/components/FramePage/FramePage';
-import { useNavigate, useParams } from 'react-router-dom';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
-import { useEffect, useState } from 'react';
 import SkeletonRoomDetail from '~/components/Skeleton/SkeletonRoomDetail';
 import formatPrice from '~/utils/formatPrice';
-import bookingAPI from '~/services/apis/clientAPI/clientBookingAPI';
-import { useDispatch, useSelector } from 'react-redux';
 import bookingSlice from '~/pages/client/BookingPage/bookingSlice';
 import { guestsModel } from '~/share/models/booking';
+
 export default function RoomDetail() {
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
@@ -40,9 +39,7 @@ export default function RoomDetail() {
     const [totalBill, setTotalBill] = useState('');
     const [disBooking, setDisBooking] = useState(true);
     const dataBooking = useSelector((state) => state.booking);
-    useEffect(() => {
-
-    }, [dataBooking]);
+    
     useEffect(() => {
         setLoading(true);
         publicAccomPlaceAPI.getRoomDetail(roomId.id).then((dataResponse) => {
@@ -64,7 +61,7 @@ export default function RoomDetail() {
         publicAccomPlaceAPI.checkBooking(dataCheck).then((response) => {
             if (response?.statusCode === 200) {
                 setDisBooking(false);
-                setSurcharge(response.data.costSurcharge)
+                setSurcharge(response.data.costSurcharge);
                 setTotalBill(response?.data?.totalBill);
             } else {
                 setDisBooking(true);
@@ -85,7 +82,7 @@ export default function RoomDetail() {
                 surcharge: surcharge,
                 originPay: totalBill,
                 nameCustomer: user.firstName + user.lastName,
-                phoneNumberCustomer: user.phone,
+                phoneNumberCustomer: user.phone
             };
             dispatch(bookingSlice.actions.addInfoBooking(dataBooking));
             navigate('/booking');
@@ -123,8 +120,11 @@ export default function RoomDetail() {
                                         </div>
                                     </div>
                                     <div className="heading__right">
-                                        <p>Giá phòng mõi đêm từ:</p>
-                                        <p className="price-room">{dataDetailHome.pricePerNight}</p>
+                                        {/* <StarIcon className="icon_rate" />
+                                        <p>{dataDetailHome?.averageRate}</p> */}
+                                        <p className="link__rate">
+                                            {`(${dataDetailHome?.numView} ${t('numberCount.viewInDetal')})`}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -136,10 +136,10 @@ export default function RoomDetail() {
                                             <div className="desc-room">
                                                 <h2>{t('contentMain.descHome')}</h2>
                                                 <p>{dataDetailHome.description}</p>
-                                                <h3>Địa chỉ chi tiết: {dataDetailHome.addressDetail}</h3>
-                                                <h3>Diện tích: {dataDetailHome.acreage} m²</h3>
-                                                <h3>Số người: {dataDetailHome.numPeople}</h3>
-                                                <h3>Số phòng: {dataDetailHome.numBathRoom}</h3>
+                                                <h3>{t('home.addressDetail')}: {dataDetailHome.addressDetail}</h3>
+                                                <h3>{t('home.acreage')}: {dataDetailHome.acreage} m²</h3>
+                                                <h3>{t('home.numPeople')}: {dataDetailHome.numPeople}</h3>
+                                                <h3>{t('home.numBathRoom')}: {dataDetailHome.numBathRoom}</h3>
                                             </div>
 
                                             <hr className="divider" />
@@ -175,7 +175,6 @@ export default function RoomDetail() {
                                                     guests={guests}
                                                     setGuests={setGuests}
                                                     handleChangeGuests={handleChangeGuests}
-                                            
                                                 />
                                             </div>
 
@@ -188,9 +187,7 @@ export default function RoomDetail() {
                                                     <PopoverPrice detailPrice={detailPrice} />
                                                 </div>
                                                 <div className="real-price">
-                                                    <p style={{ fontWeight: '550' }}>
-                                                        {formatPrice(totalBill)}
-                                                    </p>
+                                                    <p style={{ fontWeight: '550' }}>{formatPrice(totalBill)}</p>
                                                 </div>
                                             </div>
 

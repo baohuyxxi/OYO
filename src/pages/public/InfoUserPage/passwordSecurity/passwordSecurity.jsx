@@ -33,8 +33,7 @@ export default function passwordSecurity() {
     };
 
     useEffect(() => {
-        const email = JSON.parse(localStorage.getItem('user')).mail;
-        setChangePassword({ ...changePassword, email: email });
+        setChangePassword({ ...changePassword });
     }, []);
 
     const handleChangePassword = async (event) => {

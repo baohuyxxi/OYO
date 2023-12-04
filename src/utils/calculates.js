@@ -1,6 +1,5 @@
 import { differenceInDays, parse } from 'date-fns';
 export const pricePay = (data) => {
-    console.log(data)
     let result = data   
 
     // if ( data.paymentPolicy === 'PAYMENT_HALF') {

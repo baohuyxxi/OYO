@@ -30,10 +30,9 @@ const BookingPage = () => {
     const [dataDetailHomeBooking, setDataDetailHomeBooking] = useState();
     const [priceAfterChoosePayment, setPriceAfterChoosePayment] = useState(dataBooking?.originPay);
     const handleBookingRoom = () => {
-        console.log(dataBooking);
         bookingAPI.createBooking(dataBooking).then((dataResponse) => {
             enqueueSnackbar(t('message.bookingSuccess'), { variant: 'success' });
-            console.log('anc',dataResponse);
+            dispatch(bookingSlice.actions.clearInfoBooking());
             navigate('/');
         });
 

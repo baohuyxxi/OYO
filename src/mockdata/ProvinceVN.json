@@ -5,8 +5,78 @@
         "division_type": "thành phố trung ương",
         "codename": "thanh_pho_ha_noi",
         "phone_code": 24,
-        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/hanoi.jpg",
-        "districts": []
+        "thumbnail": "https://dulichkhampha24.com/wp-content/uploads/2020/01/gioi-thieu-ve-ha-noi-1.jpg",
+        "districts": [],
+        "numberBooking": 821
+    },
+    {
+        "name": "Thành phố Hồ Chí Minh",
+        "code": 79,
+        "division_type": "thành phố trung ương",
+        "codename": "thanh_pho_ho_chi_minh",
+        "phone_code": 28,
+        "districts": [],
+        "thumbnail": "https://cdnmedia.baotintuc.vn/Upload/c2tvplmdloSDblsn03qN2Q/files/2020/11/04/thanh-pho-thu-duc-tp-ho-chi-minh-41120.jpg",
+        "numberBooking": 999
+    },
+    {
+        "name": "Thành phố Đà Nẵng",
+        "code": 48,
+        "division_type": "thành phố trung ương",
+        "codename": "thanh_pho_da_nang",
+        "phone_code": 236,
+        "districts": [],
+        "thumbnail": "https://hodadi.s3.amazonaws.com/production/blogs/pictures/000/000/028/original/du-lich-da-nang.jpg?1501897690",
+        "numberBooking": 732
+    },
+    {
+        "name": "Tỉnh Bà Rịa - Vũng Tàu",
+        "code": 77,
+        "division_type": "tỉnh",
+        "codename": "tinh_ba_ria_vung_tau",
+        "phone_code": 254,
+        "districts": [],
+        "thumbnail": "https://bazantravel.com/cdn/medias/uploads/61/61043-thanh-pho-vung-tau-700x383.jpg",
+        "numberBooking": 632
+    },
+    {
+        "name": "Thành phố Hải Phòng",
+        "code": 31,
+        "division_type": "thành phố trung ương",
+        "codename": "thanh_pho_hai_phong",
+        "phone_code": 225,
+        "districts": [],
+        "thumbnail": "https://bcp.cdnchinhphu.vn/334894974524682240/2023/12/3/6c2a27c4e9d617884ec7-1458d2ddfe164132b95ec163ccc8e4ea-1701595864429488932869.jpg",
+        "numberBooking": 601
+    },
+    {
+        "name": "Tỉnh Bình Thuận",
+        "code": 60,
+        "division_type": "tỉnh",
+        "codename": "tinh_binh_thuan",
+        "phone_code": 252,
+        "districts": [],
+        "thumbnail": "https://static.vinwonders.com/production/dia-diem-du-lich-phan-thiet-1.jpg",
+        "numberBooking": 543
+    }, 
+    {
+        "name": "Tỉnh Thừa Thiên Huế",
+        "code": 46,
+        "division_type": "tỉnh",
+        "codename": "tinh_thua_thien_hue",
+        "phone_code": 234,
+        "districts": [],
+        "thumbnail": "https://images.baodantoc.vn/uploads/2021/Th%C3%A1ng%206/Ng%C3%A0y_11/Thanh/camnhi.jpg",
+        "numberBooking": 435
+    },
+    {
+        "name": "Tỉnh Bến Tre",
+        "code": 83,
+        "division_type": "tỉnh",
+        "codename": "tinh_ben_tre",
+        "phone_code": 275,
+        "districts": [],
+        "thumbnail": "https://phuotvivu.com/blog/wp-content/uploads/2021/06/b%E1%BA%BFn-tre.jpg"
     },
     {
         "name": "Tỉnh Hà Giang",
@@ -15,7 +85,9 @@
         "codename": "tinh_ha_giang",
         "phone_code": 219,
         "districts": [],
-        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/hagiang.jpg"
+        "thumbnail": "https://image.nhandan.vn/w800/Files/Images/2021/02/03/A281-1612343411587.jpg.webp",
+        "numberBooking": 213
+        
     },
     {
         "name": "Tỉnh Cao Bằng",
@@ -24,7 +96,8 @@
         "codename": "tinh_cao_bang",
         "phone_code": 206,
         "districts": [],
-        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/caobang.jpg"
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/caobang.jpg",
+        "numberBooking": 213
     },
     {
         "name": "Tỉnh Bắc Kạn",
@@ -33,7 +106,8 @@
         "codename": "tinh_bac_kan",
         "phone_code": 209,
         "districts": [],
-        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/backan.jpg"
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/backan.jpg",
+        "numberBooking": 532
     },
     {
         "name": "Tỉnh Tuyên Quang",
@@ -42,7 +116,8 @@
         "codename": "tinh_tuyen_quang",
         "phone_code": 207,
         "districts": [],
-        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/tuyenquang.jpg"
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/tuyenquang.jpg",
+        "numberBooking": 234
     },
     {
         "name": "Tỉnh Lào Cai",
@@ -51,7 +126,8 @@
         "codename": "tinh_lao_cai",
         "phone_code": 214,
         "districts": [],
-        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/laocai.jpg"
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/laocai.jpg",
+        "numberBooking": 653
     },
     {
         "name": "Tỉnh Điện Biên",
@@ -60,7 +136,8 @@
         "codename": "tinh_dien_bien",
         "phone_code": 215,
         "districts": [],
-        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/dienbien.jpg"
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/dienbien.jpg",
+        "numberBooking": 265
     },
     {
         "name": "Tỉnh Lai Châu",
@@ -69,7 +146,8 @@
         "codename": "tinh_lai_chau",
         "phone_code": 213,
         "districts": [],
-        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/laichau.jpg"
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/laichau.jpg",
+        "numberBooking": 123
     },
     {
         "name": "Tỉnh Sơn La",
@@ -78,7 +156,8 @@
         "codename": "tinh_son_la",
         "phone_code": 212,
         "districts": [],
-        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/sonla.jpg"
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/sonla.jpg",
+        "numberBooking": 443
     },
     {
         "name": "Tỉnh Yên Bái",
@@ -87,7 +166,8 @@
         "codename": "tinh_yen_bai",
         "phone_code": 216,
         "districts": [],
-        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/yenbai.jpg"
+        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/yenbai.jpg",
+        "numberBooking": 123
     },
     {
         "name": "Tỉnh Hoà Bình",
@@ -170,15 +250,7 @@
         "districts": [],
         "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/haiduong.jpg"
     },
-    {
-        "name": "Thành phố Hải Phòng",
-        "code": 31,
-        "division_type": "thành phố trung ương",
-        "codename": "thanh_pho_hai_phong",
-        "phone_code": 225,
-        "districts": [],
-        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/haiphong.jpg"
-    },
+ 
     {
         "name": "Tỉnh Hưng Yên",
         "code": 33,
@@ -269,24 +341,8 @@
         "districts": [],
         "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/quangtri.jpg"
     },
-    {
-        "name": "Tỉnh Thừa Thiên Huế",
-        "code": 46,
-        "division_type": "tỉnh",
-        "codename": "tinh_thua_thien_hue",
-        "phone_code": 234,
-        "districts": [],
-        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/hue.jpg"
-    },
-    {
-        "name": "Thành phố Đà Nẵng",
-        "code": 48,
-        "division_type": "thành phố trung ương",
-        "codename": "thanh_pho_da_nang",
-        "phone_code": 236,
-        "districts": [],
-        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/danang.jpg"
-    },
+  
+   
     {
         "name": "Tỉnh Quảng Nam",
         "code": 49,
@@ -341,15 +397,7 @@
         "districts": [],
         "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/ninhthuan.jpg"
     },
-    {
-        "name": "Tỉnh Bình Thuận",
-        "code": 60,
-        "division_type": "tỉnh",
-        "codename": "tinh_binh_thuan",
-        "phone_code": 252,
-        "districts": [],
-        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/binhthuan.jpg"
-    },
+    
     {
         "name": "Tỉnh Kon Tum",
         "code": 62,
@@ -431,24 +479,8 @@
         "districts": [],
         "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/dongnai.jpg"
     },
-    {
-        "name": "Tỉnh Bà Rịa - Vũng Tàu",
-        "code": 77,
-        "division_type": "tỉnh",
-        "codename": "tinh_ba_ria_vung_tau",
-        "phone_code": 254,
-        "districts": [],
-        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/vungtau.jpg"
-    },
-    {
-        "name": "Thành phố Hồ Chí Minh",
-        "code": 79,
-        "division_type": "thành phố trung ương",
-        "codename": "thanh_pho_ho_chi_minh",
-        "phone_code": 28,
-        "districts": [],
-        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/hcm.jpg"
-    },
+   
+   
     {
         "name": "Tỉnh Long An",
         "code": 80,
@@ -467,15 +499,7 @@
         "districts": [],
         "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/tiengiang.jpg"
     },
-    {
-        "name": "Tỉnh Bến Tre",
-        "code": 83,
-        "division_type": "tỉnh",
-        "codename": "tinh_ben_tre",
-        "phone_code": 275,
-        "districts": [],
-        "thumbnail": "https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/province/bentre.jpg"
-    },
+    
     {
         "name": "Tỉnh Trà Vinh",
         "code": 84,

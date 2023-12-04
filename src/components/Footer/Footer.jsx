@@ -43,7 +43,7 @@ export default function Footer() {
                           </li>
                           <li className="footer__item">
                               <i className="footer__item-icon fas fa-chevron-right"></i>
-                              <Link to="#" className="footer__item-link">
+                              <Link to="/contact" className="footer__item-link">
                                   {t('footer.contact_link_2')}
                               </Link>
                           </li>
@@ -72,31 +72,31 @@ export default function Footer() {
                           <h3 className="footer__list-heading">{t('footer.contact_2')}</h3>
                           <li className="footer__item">
                               <i className="footer__item-icon fas fa-chevron-right"></i>
-                              <Link to="#" className="footer__item-link">
+                              <Link to="https://www.booking.com/" className="footer__item-link">
                                   {t('footer.contact_link_6')}
                               </Link>
                           </li>
                           <li className="footer__item">
                               <i className="footer__item-icon fas fa-chevron-right"></i>
-                              <Link to="#" className="footer__item-link">
+                              <Link to="https://www.agoda.com/vi-vn/" className="footer__item-link">
                                   {t('footer.contact_link_7')}
                               </Link>
                           </li>
                           <li className="footer__item">
                               <i className="footer__item-icon fas fa-chevron-right"></i>
-                              <Link to="#" className="footer__item-link">
+                              <Link to="https://www.traveloka.com/vi-vn/" className="footer__item-link">
                                   {t('footer.contact_link_8')}
                               </Link>
                           </li>
                           <li className="footer__item">
                               <i className="footer__item-icon fas fa-chevron-right"></i>
-                              <Link to="#" className="footer__item-link">
+                              <Link to="https://www.trivago.vn/vi" className="footer__item-link">
                                   {t('footer.contact_link_9')}
                               </Link>
                           </li>
                           <li className="footer__item">
                               <i className="footer__item-icon fas fa-chevron-right"></i>
-                              <Link to="#" className="footer__item-link">
+                              <Link to="https://www.airbnb.com.vn/" className="footer__item-link">
                                   {t('footer.contact_link_10')}
                               </Link>
                           </li>

@@ -1,8 +1,9 @@
 .detail-room {
     max-width: 1080px;
-    margin-top: 20px;
-
+    margin-top: 40px;
+    height: max-content;
     .info-room {
+        padding-top: 30px;
         .header-room {
             h1 {
                 font-size: 28px;

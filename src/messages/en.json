@@ -13,6 +13,7 @@
     "uploadImage": "Upload image",
     "filter": "Filter",
     "review": "Review",
+    "reviewed": "reviewed",
     "refundPolicy": "Booking cancellation policy",
     "cancelBooking": "Cancel booking",
     "yes": "Yes",
@@ -24,7 +25,9 @@
     "actived": "Active",
     "setting": "Setting",
     "cancel": "Cancel",
-    "publicAvatar":"Your profile picture will be displayed publicly"
+    "publicAvatar":"Your profile picture will be displayed publicly",
+    "contactUs": "Contact us",
+    "send": "Send"
   },
   "message": {
     "signin": "Sign in successfully",
@@ -196,7 +199,8 @@
     "selectProvince": "Select province",
     "selectDistrict": "Select district",
     "selectWard": "Select ward",
-    "userName": "User Name"
+    "userName": "User Name",
+    "content": "Content"
   },
   "contentMain": {
     "homeinsearch": "From 'impromptu' rides to adventures, discover your own recipe for joy",

@@ -1,54 +1,69 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './CommentReview.scss';
 import { Avatar } from '@mui/material';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import comment from '~/mockdata/comment.json';
-
-export default function commentReview() {
+import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
+export default function CommentReview(props) {
+    const [dataComment, setDataaCommet] = useState([]);
     const [showMoreComments, setShowMoreComments] = useState(false);
-    const commentsToShow = showMoreComments ? comment : comment.slice(0, 5);
-    return (
-        <div className="paper container-comments">
-            {commentsToShow.map((item, index) => (
-                <div key={index} className="container-comment">
-                    <div className="commentator">
-                        <Avatar className="commentator-avatar" alt="Cindy Baker" src={item.urlAvatar} />
-                        <div className="commentator-name">{item.userName}</div>
-                    </div>
-                    <div className="comment-info">
-                        <div className="heading">
-                            <div>{StarRating(item.rating)}</div>
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        publicAccomPlaceAPI.getReviewHome(props.id).then((res) => {
+            setDataaCommet(res.data);
+            setLoading(false);
+        });
+    }, []);
 
-                            <div className="comment-time">
-                                <AccessTimeIcon />
-                                <p> {item.timestamp}</p>
+    const commentsToShow = showMoreComments ? dataComment : dataComment.slice(0, 5);
+    return (
+        <>
+            {loading ? (
+                <></>
+            ) : (
+                <div className="paper container-comments">
+                    {commentsToShow.map((item, index) => (
+                        <div key={index} className="container-comment">
+                            <div className="commentator">
+                                <Avatar className="commentator-avatar" alt="Cindy Baker" src={item.avatarUserUrl} />
+                                <div className="commentator-name">{item.lastName}</div>
+                            </div>
+                            <div className="comment-info">
+                                <div className="heading">
+                                    <div>{StarRating(item.rateStar)}</div>
+
+                                    <div className="comment-time">
+                                        <AccessTimeIcon />
+                                        <p> {item.createdDate}</p>
+                                    </div>
+                                </div>
+
+                                <div className="comment-content"> {item.content}</div>
+                                {item.haveImage === true && (
+                                    <div className="image-list">
+                                        {item.imageReviewUrls.map((image, imageIndex) => (
+                                            <img
+                                                key={imageIndex}
+                                                src={image}
+                                                // alt={`Image ${imageIndex}`}
+                                                className="comment-image"
+                                            />
+                                        ))}
+                                    </div>
+                                )}
                             </div>
                         </div>
-
-                        <div className="comment-content"> {item.content}</div>
-                        {item.listImage && item.listImage.length > 0 && (
-                            <div className="image-list">
-                                {item.listImage.map((image, imageIndex) => (
-                                    <img
-                                        key={imageIndex}
-                                        src={image}
-                                        alt={`Image ${imageIndex}`}
-                                        className="comment-image"
-                                    />
-                                ))}
-                            </div>
+                    ))}
+                    <div className="thelast">
+                        {comment.length > 5 && (
+                            <button onClick={() => setShowMoreComments(!showMoreComments)} className="show-more-button">
+                                {showMoreComments ? 'Thu gọn' : 'Xem thêm'}
+                            </button>
                         )}
                     </div>
                 </div>
-            ))}
-            <div className="thelast">
-                {comment.length > 5 && (
-                    <button onClick={() => setShowMoreComments(!showMoreComments)} className="show-more-button">
-                        {showMoreComments ? 'Thu gọn' : 'Xem thêm'}
-                    </button>
-                )}
-            </div>
-        </div>
+            )}
+        </>
     );
 }
 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { TextField, Button, Typography, Box } from '@mui/material';
-
+import { t } from 'i18next';
 import FramePage from '~/components/FramePage/FramePage';
 export default function ContactForm() {
     const [name, setName] = useState('');
@@ -24,12 +24,12 @@ export default function ContactForm() {
             >
                 <Box sx={{ maxWidth: 600, mx: 'auto', p: 2 }}>
                     <Typography variant="h4" align="center" mb={2}>
-                        Contact Us
+                        {t('common.contactUs')}
                     </Typography>
                     <form onSubmit={handleSubmit}>
                         <TextField
                             fullWidth
-                            label="Name"
+                            label={t('label.fullname')}
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             margin="normal"
@@ -46,7 +46,7 @@ export default function ContactForm() {
                         />
                         <TextField
                             fullWidth
-                            label="Message"
+                            label={t('label.content')}
                             value={message}
                             onChange={(e) => setMessage(e.target.value)}
                             margin="normal"
@@ -55,7 +55,7 @@ export default function ContactForm() {
                             rows={4}
                         />
                         <Button variant="contained" type="submit" sx={{ mt: 2 }}>
-                            Submit
+                            {t('common.send')}
                         </Button>
                     </form>
                 </Box>

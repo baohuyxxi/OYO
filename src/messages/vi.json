@@ -13,6 +13,7 @@
     "uploadImage": "Tải ảnh lên",
     "filter": "Bộ lọc",
     "review": "Đánh giá",
+    "reviewed": "Đã đánh giá",
     "refundPolicy": "Chính sách trả phòng",
     "cancelBooking": "Hủy đặt",
     "yes": "Có",
@@ -24,7 +25,9 @@
     "actived": "Kích hoạt",
     "setting": "Cài đặt",
     "cancel": "Hủy",
-    "publicAvatar":"Ảnh đại diện của bạn sẽ được hiển thị công khai"
+    "publicAvatar":"Ảnh đại diện của bạn sẽ được hiển thị công khai",
+    "contactUs": "Liên hệ chúng tôi",
+    "send": "Gửi"
   },
   "message": {
     "signin": "Đăng nhập thành công",
@@ -198,7 +201,8 @@
     "selectProvince": "Chọn Tỉnh/Thành Phố",
     "selectDistrict": "Chọn Quận/Huyện",
     "selectWard": "Chọn Phường/Xã",
-    "userName": "Tên người dùng"
+    "userName": "Tên người dùng",
+    "content": "Nội dung"
   },
   "contentMain": {
     "homeinsearch": "Từ chuyến phượt 'ngẫu hứng' đến những cuộc phiêu lưu, khám phá công thức niềm vui của riêng bạn",

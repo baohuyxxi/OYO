@@ -67,6 +67,7 @@ export default function RoomPopular() {
             setLoading(false);
         });
     }, []);
+    console.log(listHome)
     const handleLinkToDetail = (idRoom) => {
         navigate(`/room-detail/${idRoom}`);
         // You can implement the navigation logic here
@@ -79,7 +80,7 @@ export default function RoomPopular() {
                     <SkeletonRoomItem />
                 ) : (
                     listHome.content?.map((home, index) => (
-                        <div className="col l-3 m-6 c-12" key={index}>
+                        <div className="col l-3 m-6 c-12 paper" key={index}>
                             <Slider {...settings}>
                                 {home?.imageAccomsUrls.length !== 0 &&
                                     home?.imageAccomsUrls?.map((image,index) => (
@@ -92,27 +93,8 @@ export default function RoomPopular() {
                             <div className="info__room" onClick={() => handleLinkToDetail(home?.id)}>
                                 <h2>{home?.accomName}</h2>
                                 <div className="obility__room">
-                                    <p>Resort</p>
-                                    <img
-                                        src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
-                                        alt="icon__star"
-                                    />
-                                    <img
-                                        src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
-                                        alt="icon__star"
-                                    />
-                                    <img
-                                        src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
-                                        alt="icon__star"
-                                    />
-                                    <img
-                                        src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
-                                        alt="icon__star"
-                                    />
-                                    <img
-                                        src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
-                                        alt="icon__star"
-                                    />
+                                    <p>{home.accomCateName}</p>
+                                   
                                 </div>
                                 <div className="locate__room">
                                     {/* <FmdGoodIcon className="icon_locate" /> */}

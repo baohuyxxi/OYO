@@ -2,10 +2,14 @@
     border: none;
     margin-right: 5px;
     padding: 5px 15px;
+    border-radius: 5px;
+
+    font-weight: 600;
 }
 
 .no-btn:hover {
     background: #e0e0e0;
+
 }
 
 .yes-btn {
@@ -13,8 +17,15 @@
     margin-right: 5px;
     padding: 5px 25px;
     background: #ff8a65;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 600;
 }
 
 .yes-btn:hover {
-    background: #ff5722;
+    background-color: var(--main-color-red);
+}
+.MuiBox-root{
+    border: 0px;
+    border-radius: 5px;
 }

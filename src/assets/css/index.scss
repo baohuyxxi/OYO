@@ -59,9 +59,7 @@ html[mode="light"] {
   --info-lightChannel: 3 169 244;
   --info-darkChannel: 1 87 155;
   --info-contrastTextChannel: 255 255 255;
-  --success-main: #2e7d32;
-  --success-light: #4caf50;
-  --success-dark: #1b5e20;
+  --success-mode: #4caf50;
   --success-contrastText: #fff;
   --success-mainChannel: 46 125 50;
   --success-lightChannel: 76 175 80;
@@ -159,9 +157,8 @@ html[mode="dark"] {
   --info-lightChannel: 79 195 247;
   --info-darkChannel: 2 136 209;
   --info-contrastTextChannel: 0 0 0;
-  --success-main: #66bb6a;
-  --success-light: #81c784;
-  --success-dark: #388e3c;
+  --success-mode:#388e3c;
+  
   --success-contrastText: rgba(0, 0, 0, 0.87);
   --success-mainChannel: 102 187 106;
   --success-lightChannel: 129 199 132;
@@ -200,6 +197,7 @@ html[mode="dark"] {
   --purple-color: #ba71da;
   --orange-color: #f3a46b;
   --black-color: #333333;
+  --success-main: #2e7d32;
 
   --yellow-grad: linear-gradient(to right, #ffd205, #ff9e05);
   --blue-grad: linear-gradient(to right, #14bad4, #14d4b2);
@@ -314,7 +312,9 @@ html[mode="dark"] {
   .MuiFormLabel-root {
     color: inherit;
   }
-
+  .MuiDialogContentText-root{
+    color: inherit;
+  }
   .divider {
     border-style: solid;
     border-color: var(--divider);

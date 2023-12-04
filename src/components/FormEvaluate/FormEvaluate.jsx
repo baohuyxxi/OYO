@@ -6,15 +6,16 @@ import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
 
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Rating } from '@mui/material';
-
+import uploadMedia from '~/services/apis/media/uploadMedia';
 import bookingAPI from '~/services/apis/clientAPI/clientBookingAPI';
 import './FormEvaluate.scss';
 
 const FormEvaluate = (props) => {
     const [open, setOpen] = useState(false);
-    const [value, setValue] = useState(2);
-    const [valueReview, setValueReview] = useState('');
-    const [selectedImage, setSelectedImage] = useState(null);
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
+    const [valueReview, setValueReview] = useState(5);
+    const [selectedImages, setSelectedImages] = useState([]);
     const navigate = useNavigate();
 
     const { enqueueSnackbar } = useSnackbar();
@@ -30,107 +31,135 @@ const FormEvaluate = (props) => {
         setOpen(false);
     };
 
-    const reviewChangeHandler = (event) => {
-        setValueReview(event.currentTarget?.value);
-    };
-
     const submitFormHandler = async (event) => {
         event.preventDefault();
-        const dataReview = {
-            title: '',
-            content: value,
-            rateStar: valueReview,
-            imagesUrls: selectedImage,
-            bookingCode: props.idBook,
-        };
-        console.log(dataReview)
-        const resetForm = event.target;
-
-        bookingAPI
-            .createReviewBooking(dataReview)
-            .then(() => {
-                enqueueSnackbar(t('message.reviewSuccess'), { variant: 'success' });
-                resetForm.reset();
-                setOpen(false);
-                navigate('/historybooking');
-            })
-            .catch((error) => {
-                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+        if (selectedImages.length > 0) {
+            uploadMedia.multipleFile(selectedImages).then((res) => {
+                console.log(res);
+                const imagesUrls = res.data.flatMap((img) => img.imageUrl);
+                const dataReview = {
+                    title: title,
+                    content: content,
+                    rateStar: valueReview,
+                    imagesUrls: imagesUrls,
+                    bookingCode: props.bookingCode
+                };
+                bookingAPI.createReviewBooking(dataReview).then((res) => {
+                    if (res.statusCode === 200) {
+                        enqueueSnackbar(t('message.reviewSuccess'), {
+                            variant: 'success'
+                        });
+                        setOpen(false);
+                    }
+                });
             });
+        } else {
+            const dataReview = {
+                title: title,
+                content: content,
+                rateStar: valueReview,
+                imagesUrls: [],
+                bookingCode: props.bookingCode
+            };
+            bookingAPI.createReviewBooking(dataReview).then((res) => {
+                if (res.statusCode === 200) {
+                    enqueueSnackbar(t('message.reviewSuccess'), {
+                        variant: 'success'
+                    });
+                    setOpen(false);
+                }
+            });
+        }
+
+        // const resetForm = event.target;
+
+        // bookingAPI
+        //     .createReviewBooking(dataReview)
+        //     .then(() => {
+        //         enqueueSnackbar(t('message.reviewSuccess'), { variant: 'success' });
+        //         resetForm.reset();
+        //         setOpen(false);
+        //         navigate('/historybooking');
+        //     })
+        //     .catch((error) => {
+        //         enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+        //     });
     };
 
-
-
     const handleImageChange = (event) => {
-        const file = event.target.files[0];
-        setSelectedImage(file);
+        const files = event.target.files;
+        const fileArray = Array.from(files);
+        setSelectedImages([...selectedImages, ...fileArray]);
     };
     return (
         <Dialog open={open} onClose={handleClose} maxWidth="xl">
-            <DialogTitle
-                sx={{
-                    fontSize: '20px',
-                    borderBottom: '1px solid #2196f3',
-                    marginLeft: '25px',
-                    paddingLeft: '0',
-                    marginRight: '25px',
-                    paddingRight: '0',
-                    paddingBottom: '10px'
-                }}
-            >
-                {t('title.review')}
-            </DialogTitle>
-            <form onSubmit={submitFormHandler}>
-                <DialogContent>
-                    <DialogContentText sx={{ fontSize: '16px' }}>{t('label.thanksReview')}</DialogContentText>
-                    <DialogContentText sx={{ fontSize: '16px' }}>{t('label.fillReview')}</DialogContentText>
+            <div className="paper diaglog-feedback">
+                <DialogTitle className="title">{t('title.review')}</DialogTitle>
+                <form onSubmit={submitFormHandler} className="form__feedback">
+                    <DialogContent>
+                        <DialogContentText className="thanksReview">{t('label.thanksReview')}</DialogContentText>
+                        <DialogContentText className="fillReview">{t('label.fillReview')}</DialogContentText>
 
-                    <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
-                        <p style={{ fontSize: '15px', marginRight: '10px' }}>{t('label.selectedRate')}</p>
-                        <Rating
-                            sx={{ fontSize: '20px' }}
-                            name="simple-controlled"
-                            value={value}
-                            onChange={(event, newValue) => {
-                                setValue(newValue);
-                            }}
-                        />
-                    </div>
-
-                    <input
-                        type="text"
-                        placeholder={t('placeholder.feedback')}
-                        onChange={reviewChangeHandler}
-                        required
-                        style={{ fontSize: '14px', padding: '10px 15px', marginTop: '10px', width: '100%' }}
-                    />
-                    <div style={{ marginTop: '10px' }}>
+                        <div className="selectedRate">
+                            <p>{t('label.selectedRate')}</p>
+                            <Rating
+                                name="simple-controlled"
+                                value={valueReview}
+                                onChange={(event, newValue) => {
+                                    setValueReview(newValue);
+                                }}
+                            />
+                        </div>
                         <input
-                            type="file"
-                            id="imageUpload"
-                            accept="image/*"
-                            onChange={handleImageChange}
-                            style={{ display: 'none' }}
+                            className="input__title"
+                            name="title"
+                            type="text"
+                            placeholder={'Tiêu đề'}
+                            onChange={(e) => setTitle(e.target.value)}
+                            required
                         />
-                        <label htmlFor="imageUpload" className="btn-upload">
+                        <input
+                            className="input__feedback"
+                            name="conten"
+                            type="text"
+                            placeholder={t('placeholder.feedback')}
+                            onChange={(e) => setContent(e.target.value)}
+                            required
+                        />
+
+                        <input hidden type="file" id="imageUpload" accept="image/*" onChange={handleImageChange} />
+                        <button
+                            type="button"
+                            className="btn-upload"
+                            onClick={() => document.getElementById('imageUpload').click()}
+                        >
                             {t('common.uploadImage')}
-                        </label>
-                        {selectedImage && (
-                            <p style={{ fontSize: '14px', marginTop: '5px' }}>
-                                {selectedImage.name}
-                            </p>
+                        </button>
+
+                        {selectedImages.length > 0 && (
+                            <div className="container__preview">
+                                {selectedImages.map((image, index) => (
+                                    <div key={index}>
+                                        <img
+                                            className="img__preview"
+                                            src={URL.createObjectURL(image)}
+                                            alt={`Selected ${index + 1}`}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
                         )}
-                    </div>
-                </DialogContent>
-                <DialogActions sx={{ marginBottom: '10px' }}>
-                    <button onClick={handleClose} className="btn-review-cancel">
-                        Cancel
-                    </button>
-                    <button type="submit" className="btn-review-detail">
-                        {t('common.review')}
-                    </button>
-                </DialogActions>
-            </form>
+                    </DialogContent>
+                    <DialogActions>
+                        <button onClick={handleClose} className="btn-review-cancel">
+                            {t('common.cancel')}
+                        </button>
+                        <button type="submit" className="btn-review-detail">
+                            {t('common.review')}
+                        </button>
+                    </DialogActions>
+                </form>
+            </div>
         </Dialog>
     );
 };

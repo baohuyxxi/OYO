@@ -1,22 +1,103 @@
-.btn-review-detail {
-    border: none;
+.diaglog-feedback {
     border-radius: 5px;
-    padding: 9px 25px;
-    margin-right: 16px;
-    cursor: pointer;
-    color: white;
-    background-color: #2196f3;
-}
+    // height: 600px;
+    .title {
+        font-size: x-large;
+    }
+    .form__feedback {
+        margin-top: -30px;
+        .thanksReview {
+            font-size: medium;
+        }
+        .fillReview {
+        }
+        .MuiDialogContent-root {
+        }
+        .input__title {
+            position: relative;
+            width: 100%;
+            font-size: medium;
+            height: 40px;
+            border-radius: 5px;
+            border: 1px solid var(--divider);
+            background-color: var(--input-background);
+            margin-top: 5px;
+        }
+        // .input__feedback {
+        //     margin-top: 20px;
+        //     position: relative;
+        //     width: 100%;
+        //     font-size: medium;
+        //     height: 40px;
+        //     border-radius: 5px;
+        //     border: 1px solid var(--divider);
+        //     background-color: var(--input-background);
+        //     transition: all 0.3s; /* Thêm hiệu ứng chuyển động */
 
-.btn-review-detail:hover {
-    background-color: #1976d2;
-}
+        //     &:focus {
+        //         height: 70px;
+        //         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Thêm shadow */
+        //     }
+        // }
+        .input__feedback {
+            position: relative;
+            width: 100%;
+            font-size: medium;
+            height: 40px;
+            border-radius: 5px;
+            border: 1px solid var(--divider);
+            background-color: var(--input-background);
+            margin-top: 20px;
+        }
+        .btn-upload {
+            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            padding: 9px 25px;
+            margin-right: 16px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .btn-review-detail {
+            border: none;
+            border-radius: 5px;
+            padding: 9px 25px;
+            margin-right: 16px;
+            cursor: pointer;
+            font-weight: 600;
+            background-color: var( --main-color);
+            color: #fff;
+        }
 
-.btn-review-cancel {
-    border: none;
-    border-radius: 5px;
-    padding: 9px 25px;
-    margin-right: 16px;
-    cursor: pointer;
-    color: black;
+        .btn-review-detail:hover {
+            background-color: var(--second-color);
+           
+        }
+
+        .btn-review-cancel {
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            padding: 9px 25px;
+            margin-right: 16px;
+            font-weight: 600;
+            background-color: var(--main-color-red);
+            cursor: pointer;
+        }
+        .btn-review-cancel:hover {
+            background-color: var(--second-color-red);
+            color: #fff;
+        }
+        .container__preview{
+            display: flex;
+            margin-top: 20px;
+            .img__preview{
+                border-radius: 3px;
+                margin-left: 3px;
+                height: 100px;
+                width: 100px;
+            }
+        }
+      
+    }
 }

@@ -16,11 +16,14 @@ import BedRoomSlider from '~/components/BedRoomSlider/BedRoomSlider';
 import DateGo from '~/components/DateGo/DateGo';
 import Dropdown from '~/components/Dropdown/Dropdown';
 import PopoverPrice from '~/components/PopoverPrice/PopoverPrice';
-import CommentReview from '~/components/CommentReview/commentReview';
+import CommentReview from '~/components/CommentReview/CommentReview';
 import FramePage from '~/components/FramePage/FramePage';
+import DateIsBooking from '~/components/DateIsBooking/DateIsBooking';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import SkeletonRoomDetail from '~/components/Skeleton/SkeletonRoomDetail';
 import formatPrice from '~/utils/formatPrice';
+
+
 import bookingSlice from '~/pages/client/BookingPage/bookingSlice';
 import { guestsModel } from '~/share/models/booking';
 
@@ -152,7 +155,9 @@ export default function RoomDetail() {
                                                 <BedRoomSlider bedRooms={dataDetailHome.bedRooms} />
                                             </div>
                                         </div>
+                                        <DateIsBooking bookedDates={dataDetailHome.bookedDates} />
                                     </div>
+                                   
                                     <div className="col l-4 m-5 c-12">
                                         <div className="card-book__detail paper">
                                             <div className="price-room">
@@ -275,7 +280,7 @@ export default function RoomDetail() {
                                     </div>
                                 </div>
                             </div>
-                            <CommentReview />
+                            <CommentReview id={roomId.id}/>
                         </div>
                     </div>
                 </>

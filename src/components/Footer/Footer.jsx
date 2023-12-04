@@ -21,10 +21,10 @@ export default function Footer() {
                           <Link to="#" className="footer__contact-logo fab fa-twitter">
                               <img src={twitterIcon} alt="alt-t" />
                           </Link>
-                          <Link to="#" className="footer__contact-logo fab fa-youtube">
+                          <Link to="https://www.youtube.com/channel/UCUf6O2OojuB4nMBmoL3jy-Q" className="footer__contact-logo fab fa-youtube">
                               <img src={youtubeicon} alt="alt-y" />
                           </Link>
-                          <Link to="#" className="footer__contact-logo fab fa-facebook-square">
+                          <Link to="https://www.facebook.com/maibaohuy.070620021303mbBank/" className="footer__contact-logo fab fa-facebook-square">
                               <img src={facebookIcon} alt="alt-f" />
                           </Link>
                           <Link to="#" className="footer__contact-logo fab fa-instagram-square">

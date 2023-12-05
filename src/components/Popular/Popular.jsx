@@ -7,7 +7,7 @@ import './Popular.scss';
 
 const Popular = () => {
     const [listProvince, setListProvince] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {

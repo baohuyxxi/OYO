@@ -67,7 +67,6 @@ export default function RoomPopular() {
             setLoading(false);
         });
     }, []);
-    console.log(listHome)
     const handleLinkToDetail = (idRoom) => {
         navigate(`/room-detail/${idRoom}`);
         // You can implement the navigation logic here

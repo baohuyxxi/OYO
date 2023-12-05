@@ -23,7 +23,16 @@ const Auth = () => {
     const StepperMain = React.lazy(() => import('~/pages/partner/SetupOwner/StepperMain/StepperMain'));
     const OwnerSetting = React.lazy(() => import('~/pages/partner/OwnerSetting/MainOwnerSetting/OwnerSetting'));
     const ListRoomOfHost = React.lazy(() => import('../pages/partner/OwnerSetting/ManagerRoom/ListRoomOfHost'));
-
+    const TransactionHistoryOwner = React.lazy(() =>
+        import('../pages/partner/OwnerSetting/TransactionHistoryOwner/TransactionHistoryOwner')
+    );
+    const CalendarRoomSetting = React.lazy(() =>
+        import('../pages/partner/OwnerSetting/CalendarRoomSetting/CalendarRoomSetting')
+    );
+    const ManagerRoom = React.lazy(() => import('../pages/partner/OwnerSetting/ManagerRoom/ManagerRoom'));
+    const ConvenientOwnerSetting = React.lazy(() =>
+        import('../pages/partner/OwnerSetting/ConvenientOwnerSetting/ConvenientOwnerSetting')
+    );
     // Client Page
     const HistoryBookingPage = React.lazy(() => import('../pages/client/HistoryBookingPage/HistoryBookingPage'));
     return (
@@ -48,7 +57,6 @@ const Auth = () => {
                     />
                 }
             />
-
             {/* <Route path="/account/*" element={<PrivateRoute element={<InfoUserPage />} />} /> */}
             <Route
                 path="/room-detail/:id"
@@ -66,7 +74,6 @@ const Auth = () => {
                     </Suspense>
                 }
             />
-
             <Route
                 path="/congratulation"
                 element={
@@ -115,28 +122,90 @@ const Auth = () => {
                     </Suspense>
                 }
             />
+
             <Route
                 path="/stepsetupowner"
                 element={
-                    <Suspense>
-                        <StepperMain />
-                    </Suspense>
+                    <PrivateRoute
+                        element={
+                            <Suspense fallback={<LoadingPage />}>
+                                <StepperMain />
+                            </Suspense>
+                        }
+                    />
                 }
             />
             <Route
                 path="/host"
                 element={
-                    <Suspense>
-                        <OwnerSetting />
-                    </Suspense>
+                    <PrivateRoute
+                        element={
+                            <Suspense fallback={<LoadingPage />}>
+                                <OwnerSetting />
+                            </Suspense>
+                        }
+                    />
                 }
             />
             <Route
                 path="/host/setting"
                 element={
-                    <Suspense>
-                        <ListRoomOfHost />
-                    </Suspense>
+                    <PrivateRoute
+                        element={
+                            <Suspense fallback={<LoadingPage />}>
+                                <ListRoomOfHost />
+                            </Suspense>
+                        }
+                    />
+                }
+            />
+            <Route
+                path="/host/setting/:idHome"
+                element={
+                    <PrivateRoute
+                        element={
+                            <Suspense fallback={<LoadingPage />}>
+                                <ManagerRoom />
+                            </Suspense>
+                        }
+                    />
+                }
+            />
+
+            <Route
+                  path="/host/setting/convenient/:idHome"
+                element={
+                    <PrivateRoute
+                        element={
+                            <Suspense fallback={<LoadingPage />}>
+                                <ConvenientOwnerSetting />
+                            </Suspense>
+                        }
+                    />
+                }
+            />
+            <Route
+                path="/host/setting/transactionhistory"
+                element={
+                    <PrivateRoute
+                        element={
+                            <Suspense fallback={<LoadingPage />}>
+                                <TransactionHistoryOwner />
+                            </Suspense>
+                        }
+                    />
+                }
+            />
+            <Route
+                path="/host/setting/calendar"
+                element={
+                    <PrivateRoute
+                        element={
+                            <Suspense fallback={<LoadingPage />}>
+                                <CalendarRoomSetting />
+                            </Suspense>
+                        }
+                    />
                 }
             />
             <Route

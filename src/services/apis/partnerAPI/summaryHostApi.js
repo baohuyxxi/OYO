@@ -13,13 +13,17 @@ const summaryHomeApi = {
         const res = await axios.get('/partner/booking/pages?status=CHECK_OUT&pageNumber=0&pageSize=10');
         return res.data;
     },
-    setCheckIn: async () => {
-        const res = await axios.put('api/v1/cms/booking/check-in');
-        return res;
+    setCheckIn: async (data) => {
+        const res = await axios.put(`/partner/booking/check-in?bookingCode=${data}`);
+        return res.data;
     },
-    setCheckOut: async () => {
-        const res = await axios.put('api/v1/cms/booking/check-out');
-        return res;
+    setCheckOut: async (data) => {
+        const res = await axios.put(`/partner/booking/check-out?bookingCode=${data}`);
+        return res.data;    
+    },
+    getHistoryBooking: async() =>{
+        const res = await axios.get(`/partner/booking/pages?&pageNumber=0&pageSize=10`);
+        return res.data;
     }
 };
 

@@ -25,7 +25,7 @@ import StepperTwo from '~/pages/partner/SetupOwner/StepperTwo/StepperTwo';
 
 import { addressFormData } from '~/share/models/address';
 import { typeRoom } from '~/share/models/roomHome';
-import pernerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
+import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 import LoadingMaster from '../LoadingMaster/LoadingMaster';
 
 const steps = [
@@ -180,14 +180,14 @@ export default function StepperComponent() {
 
     const handlePostRoom = (e) => {
         e.preventDefault();
-        pernerManageAPI.createHomeDetailByHost(setupRoomHost)
+        partnerManageAPI.createHomeDetailByHost(setupRoomHost)
             .then((dataResponse) => {
                 enqueueSnackbar(t('message.postHomeSuccess'), {
                     anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
                     variant: 'success'
                 });
                 const id = dataResponse.data.data.id;
-                pernerManageAPI.addImageHomeByHost({ imageList: dataStep4, id: id });
+                partnerManageAPI.addImageHomeByHost({ imageList: dataStep4, id: id });
                 // dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(dataResponse.data.thumbnail));
                 // dispatch(userSlice.actions.updateHost());
                 navigate('/congratulation');

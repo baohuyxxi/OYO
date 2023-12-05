@@ -14,7 +14,7 @@ export default function TabComponent() {
     const [value, setValue] = React.useState('1');
     const [dataWaiting, setDataWaiting] = React.useState([]);
     const [dataCheckIn, setDataCheckIn] = React.useState([]);
-
+    const [load, setLoad] = React.useState(false);
     React.useEffect(() => {
         summaryHomeApi.getWaiting().then((dataResponse) => {
             setDataWaiting(dataResponse?.data?.content);
@@ -23,7 +23,7 @@ export default function TabComponent() {
         summaryHomeApi.getCheckIn().then((dataResponse) => {
             setDataCheckIn(dataResponse?.data?.content);
         });
-    }, []);
+    }, [load]);
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -40,14 +40,22 @@ export default function TabComponent() {
                 </Box>
                 <TabPanel value="1">
                     {dataWaiting.length !== 0 ? (
-                        <TableDataHostSummary data={dataWaiting} idTab="0" setDataCheckIn={setDataCheckIn} />
+                        <TableDataHostSummary
+                            data={dataWaiting}
+                            dataCheckIn={dataCheckIn}
+                            idTab="0"
+                            setDataCheckIn={setDataCheckIn}
+                            setDataWaiting={setDataWaiting}
+                            setLoad={setLoad}
+                            load={load}
+                        />
                     ) : (
                         <ListDataNull />
                     )}
                 </TabPanel>
                 <TabPanel value="2">
                     {dataCheckIn.length !== 0 ? (
-                        <TableDataHostSummary data={dataCheckIn} idTab="1" />
+                        <TableDataHostSummary data={dataCheckIn} idTab="1" setLoad={setLoad} load={load} />
                     ) : (
                         <ListDataNull />
                     )}

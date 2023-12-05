@@ -44,12 +44,12 @@ export default function RoomDetail() {
     const dataBooking = useSelector((state) => state.booking);
     
     useEffect(() => {
-        setLoading(true);
         publicAccomPlaceAPI.getRoomDetail(roomId.id).then((dataResponse) => {
             setDataDetalHome(dataResponse.data);
             setLoading(false);
         });
     }, [roomId?.id]);
+    console.log(dataDetailHome)
     const stars = [];
     for (let i = 0; i < dataDetailHome.gradeRate; i++) {
         stars.push(<img key={i} src={iconStar} alt="icon__star" className="star" />);

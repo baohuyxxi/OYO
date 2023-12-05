@@ -11,20 +11,21 @@ import { DataGrid } from '@mui/x-data-grid';
 import NavbarOwner from '~/components/NavbarOwner/NavbarOwner';
 import SearchHomeByOwner from '~/components/SearchHomeByOwner/SearchHomeByOwner';
 // import homeApi from '~/services/homeApi';
-import pernerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
+import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
+import {  useNavigate } from 'react-router-dom';
 import './ListRoomOfHost.scss';
 
 const ListRoomOfHost = () => {
     const [dataListhome, setDataListHome] = useState([]);
-
+    const navigate = useNavigate();
     useEffect(() => {
-        pernerManageAPI.getListHomeOfPartner().then((dataResponse) => {
+        partnerManageAPI.getListHomeOfPartner().then((dataResponse) => {
             setDataListHome(dataResponse.data.content);
         });
     }, []);
 
     const handleSearchByHomeName = (value) => {
-        pernerManageAPI.getListHomeOfPartner().then((dataResponse) => {
+        partnerManageAPI.getListHomeOfPartner().then((dataResponse) => {
             
             setDataListHome(dataResponse.data.content);
         });
@@ -38,7 +39,7 @@ const ListRoomOfHost = () => {
             idroom: dataListhome[i].id,
             name: dataListhome[i]?.accomName || '',
             status: dataListhome[i].status,
-            bedroom: dataListhome[i].bedRooms.length|| '0',
+            bedroom: dataListhome[i].numBedRoom|| '0',
             giuong: dataListhome[i].numBedRoom || '0',
             badroom: dataListhome[i].numBathRoom || '0',
             location: dataListhome[i].addressGeneral ||'',
@@ -72,7 +73,7 @@ const ListRoomOfHost = () => {
 };
 
 const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
+    // { field: 'id', headerName: 'ID', width: 70 },
     { field: 'idroom', headerName: 'ID', width: 70, hide: true },
     { field: 'name', headerName: 'Nhà / phòng cho thuê', width: 360 },
     { field: 'status', headerName: 'Trạng thái', width: 100 },
@@ -165,6 +166,8 @@ async function handleDelete(id, status) {
 }
 
 function handleView(id ) {
+    console.log(id)
+    
     window.location.href = `/host/setting/${id}`;
 }
 

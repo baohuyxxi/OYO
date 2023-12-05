@@ -3,30 +3,29 @@ import { DataGrid } from '@mui/x-data-grid';
 // import './TableHistoryOwner.scss';
 import { useEffect, useState } from 'react';
 
-import bookingApi from '~/services/bookingApi';
+import summaryHomeApi from '~/services/apis/partnerAPI/summaryHostApi';
 import formatPrice from '~/utils/formatPrice';
 
 const TableHistoryOwner = () => {
     const [dataListHistory, setDataListHistory] = useState([]);
 
     useEffect(() => {
-        bookingApi.getHistoryOfHost().then((dataResponse) => {
+        summaryHomeApi.getHistoryBooking().then((dataResponse) => {
             setDataListHistory(dataResponse.data.content);
         });
     }, []);
-
 
     const rows = [];
     for (var i = 0; i < dataListHistory.length; i++) {
         rows.push({
             id: i,
-            idHistory: dataListHistory[i].id,
-            nameCustomer: dataListHistory[i]?.customerName ? dataListHistory[i].customerName : '',
-            totalCost: dataListHistory[i]?.totalCost ? formatPrice(dataListHistory[i].totalCost) : '',
-            dateStart: dataListHistory[i]?.dateStart ? dataListHistory[i].dateStart : '',
-            dateEnd: dataListHistory[i]?.dateStart ? dataListHistory[i].dateStart : '',
-            guests: dataListHistory[i]?.numberOfGuests ? dataListHistory[i].numberOfGuests : '0',
-            nameHome: dataListHistory[i].homeName ? dataListHistory[i].homeName : '',
+            bookingCode: dataListHistory[i].bookingCode,
+            nameCustomer: dataListHistory[i]?.nameCustomer ? dataListHistory[i].nameCustomer : '',
+            totalBill: dataListHistory[i]?.totalBill ? formatPrice(dataListHistory[i].totalBill) : '',
+            checkIn: dataListHistory[i]?.checkIn ? dataListHistory[i].checkIn : '',
+            checkOut: dataListHistory[i]?.checkIn ? dataListHistory[i].checkIn : '',
+            guests: dataListHistory[i]?.numAdult ? dataListHistory[i].numAdult : '0',
+            nameAccom: dataListHistory[i].nameAccom ? dataListHistory[i].nameAccom : '',
             status: dataListHistory[i].status ? dataListHistory[i].status : '',
         });
     }
@@ -39,17 +38,17 @@ const TableHistoryOwner = () => {
 };
 
 const columns = [
-    { field: 'id', headerName: 'ID', width: 50 },
-    { field: 'idHistory', headerName: 'ID', width: 70, hide: true },
+    { field: 'id', headerName: 'STT', width: 50 },
+    { field: 'bookingCode', headerName: 'ID', width: 70, hide: true },
     { field: 'nameCustomer', headerName: 'Tên khách hàng', width: 200 },
-    { field: 'totalCost', headerName: 'Tổng thanh toán', width: 160 },
+    { field: 'totalBill', headerName: 'Tổng thanh toán', width: 160 },
     {
-        field: 'dateStart',
+        field: 'checkIn',
         headerName: 'Ngày đặt phòng',
         width: 160,
     },
     {
-        field: 'dateEnd',
+        field: 'checkOut',
         headerName: 'Ngày trả phòng',
         width: 160,
     },
@@ -58,7 +57,7 @@ const columns = [
         headerName: 'Lượng khách',
         width: 120,
     },
-    { field: 'nameHome', headerName: 'Tên nhà thuê', width: 180 },
+    { field: 'nameAccom', headerName: 'Tên nhà thuê', width: 180 },
     { field: 'status', headerName: 'Tình trạng', width: 120 },
 ];
 
@@ -70,7 +69,7 @@ function DataTable(props) {
                 columns={columns}
                 pageSize={6}
                 rowsPerPageOptions={[6]}
-                checkboxSelection
+                // checkboxSelection
                 sx={{ fontSize: '17px', overflowX: 'hidden' }}
             />
         </div>

@@ -1,30 +1,36 @@
 import { DataGrid } from '@mui/x-data-grid';
 // import './TableDataHostSummary.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import summaryHomeApi from '~/services/apis/partnerAPI/summaryHostApi';
 import formatPrice from '~/utils/formatPrice';
 import { AxiosError } from 'axios';
 import { useSnackbar } from 'notistack';
+import Skeleton from 'react-loading-skeleton';
+import { FaSpinner } from 'react-icons/fa';
 
 const TableDataHostSummary = (props) => {
     const [listSelected, setListSelected] = useState([]);
 
     const { enqueueSnackbar } = useSnackbar();
 
-    const rows = [];
-    for (var i = 0; i < props.data.length; i++) {
-        rows.push({
-            id: i,
-            idroom: props.data[i].bookingCode,
-            name: props.data[i]?.nameAccom ? props.data[i].nameAccom : '',
-            nameCustomer: props.data[i]?.nameCustomer ? props.data[i].nameCustomer : '',
-            dateStart: props.data[i]?.checkIn ? props.data[i].checkIn : '',
-            dateEnd: props.data[i]?.checkOut ? props.data[i].checkOut : '',
-            guests: props.data[i]?.numAdult ? props.data[i].numAdult : '1',
-            price: props.data[i]?.totalBill ? formatPrice(props.data[i].totalBill) : '1 đ',
-            priceBefore: props.data[i]?.totalTransfer ? formatPrice(props.data[i].totalTransfer) : '0 đ'
-        });
-    }
+    const [rows, setRows] = useState([]);
+
+    const [refreshSelection, setRefreshSelection] = useState(false);
+    useEffect(() => {
+        const newRows = props.data.map((item, index) => ({
+            id: index,
+            bookingCode: item.bookingCode,
+            nameAccom: item.nameAccom || '',
+            nameCustomer: item.nameCustomer || '',
+            checkIn: item.checkIn || '',
+            checkOut: item.checkOut || '',
+            guests: item.numAdult || '1',
+            totalBill: item.totalBill ? formatPrice(item.totalBill) : '1 đ',
+            totalTransfer: item.totalTransfer ? formatPrice(item.totalTransfer) : '0 đ'
+        }));
+
+        setRows(newRows);
+    }, [props.data]);
 
     const handleSelectedChange = (value) => {
         setListSelected(value);
@@ -35,52 +41,53 @@ const TableDataHostSummary = (props) => {
             enqueueSnackbar('Vui lòng chọn từng nhà để thao tác', { variant: 'warning' });
         } else {
             const dataCheckIn = {
-                bookingId: listSelected[0].idroom
+                bookingCode: listSelected[0].bookingCode
             };
             if (props.idTab === '0') {
-                summaryHomeApi
-                    .setCheckIn(dataCheckIn)
-                    .then((dataResponse) => {
-                        enqueueSnackbar('Check in thành công', { variant: 'success' });
-                        if (props?.setDataCheckIn) {
-                            props?.setDataCheckIn(dataCheckIn);
-                        }
-                    })
-                    .catch((error) => {
-                        enqueueSnackbar(error.response?.data.message, { variant: 'error' });
-                    });
+                summaryHomeApi.setCheckIn(listSelected[0].bookingCode).then((res) => {
+                    enqueueSnackbar('Check in thành công', { variant: 'success' });
+                    if (res.statusCode === 200) {
+                        props.setLoad(props.load === false);
+                        setRefreshSelection((prev) => !prev);
+                    }
+                });
             } else if (props.idTab === '1') {
-                summaryHomeApi
-                    .setCheckOut(dataCheckIn)
-                    .then((dataResponse) => {
-                        enqueueSnackbar('Check out thành công', { variant: 'success' });
-                    })
-                    .catch((error) => {
-                        enqueueSnackbar(error.response?.data.message, { variant: 'error' });
-                    });
+                summaryHomeApi.setCheckOut(listSelected[0].bookingCode).then((res) => {
+                    enqueueSnackbar('Check out thành công', { variant: 'success' });
+                    if (res.statusCode === 200) {
+                        props.setLoad(props.load === false);
+                        setRefreshSelection((prev) => !prev);
+                    }
+                });
             }
         }
     };
 
     return (
         <div className="listdata_summary">
-            <DataTable rows={rows} listSelected={handleSelectedChange} handleCheck={handleCheck} idTab={props.idTab} />
+            <DataTable
+                rows={rows}
+                listSelected={handleSelectedChange}
+                handleCheck={handleCheck}
+                idTab={props.idTab}
+                refreshSelection={refreshSelection}
+            />
         </div>
     );
 };
 
 const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'idroom', headerName: 'ID', width: 70, hide: true },
-    { field: 'name', headerName: 'Nhà / phòng cho thuê', width: 260 },
+    { field: 'id', headerName: 'STT', width: 70 },
+
+    { field: 'nameAccom', headerName: 'Nhà / phòng cho thuê', width: 260 },
     { field: 'nameCustomer', headerName: 'Tên khách hàng', width: 140 },
     {
-        field: 'dateStart',
+        field: 'checkIn',
         headerName: 'Ngày nhận phòng',
         width: 160
     },
     {
-        field: 'dateEnd',
+        field: 'checkOut',
         headerName: 'Ngày trả phòng',
         width: 160
     },
@@ -89,13 +96,22 @@ const columns = [
         headerName: 'Lượng khách',
         width: 120
     },
-    { field: 'price', headerName: 'Tổng tiền', width: 130 },
-    { field: 'priceBefore', headerName: 'Đã thanh toán', width: 140 }
+    { field: 'totalBill', headerName: 'Tổng tiền', width: 130 },
+    { field: 'totalTransfer', headerName: 'Đã thanh toán', width: 140 }
 ];
 
 function DataTable(props) {
+    const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        if (props.refreshSelection) {
+            setLoading(true);
+            setTimeout(() => {
+                setLoading(false);
+            }, 1000); // Thời gian chờ 1 giây tương ứng với thời gian của animation CSS
+        }
+    }, [props.refreshSelection]);
     return (
-        <div style={{ height: 400, width: '100%', marginBottom: '30px' }}>
+        <div className="refresh-container" style={{ height: 400, width: '100%', marginBottom: '30px' }}>
             <div style={{ display: 'flex', justifyContent: 'right' }}>
                 {props?.idTab === '0' ? (
                     <button onClick={props.handleCheck} className="btn-check-status">
@@ -108,19 +124,27 @@ function DataTable(props) {
                 )}
             </div>
 
-            <DataGrid
-                rows={props.rows}
-                columns={columns}
-                pageSize={5}
-                rowsPerPageOptions={[5]}
-                checkboxSelection
-                sx={{ fontSize: '17px', overflowX: 'hidden' }}
-                onSelectionModelChange={(ids) => {
-                    const selectedIDs = new Set(ids);
-                    const selectedRows = props.rows.filter((row) => selectedIDs.has(row.id));
-                    props.listSelected(selectedRows);
-                }}
-            />
+            <div style={{ height: 400, width: '100%', marginBottom: '30px' }}>
+                <DataGrid
+                    rows={loading ? [] : props.rows} // Hiển thị một mảng trống khi đang loading
+                    key={props.refreshSelection}
+                    columns={columns}
+                    pageSize={5}
+                    rowsPerPageOptions={[5]}
+                    checkboxSelection
+                    sx={{ fontSize: '17px', overflowX: 'hidden' }}
+                    onRowSelectionModelChange={(ids) => {
+                        const selectedIDs = new Set(ids);
+                        const selectedRows = props.rows.filter((row) => selectedIDs.has(row.id));
+                        props.listSelected(selectedRows);
+                    }}
+                />
+                {loading && (
+                    <div style={{ textAlign: 'center', marginTop: '50px' }}>
+                        <FaSpinner className="spinner" />
+                    </div>
+                )}
+            </div>
         </div>
     );
 }

@@ -9,7 +9,8 @@ import ConvenientSetting from '~/components/HostSetting/ConvenientSetting/Conven
 import CountRoomSetting from '~/components/HostSetting/CountRoomSetting/CountRoomSetting';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import homeApi from '~/services/homeApi';
+import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
+import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import ValuationDiscountSetting from '~/components/HostSetting/ValuationDiscountSetting/ValuationDiscount';
 
 const infoLink = {
@@ -23,10 +24,10 @@ const item = ['', 'section1', 'section2', 'section3', 'section4', 'section5', 's
 
 const ManagerRoom = () => {
     const [dataHomeDetail, setDataHomeDetail] = useState();
-
+    console.log(dataHomeDetail)
     const infoRoom = {
-        name: dataHomeDetail?.name ? dataHomeDetail?.name : '',
-        desc: dataHomeDetail?.description,
+        accomName: dataHomeDetail?.accomName ? dataHomeDetail?.accomName : '',
+        description: dataHomeDetail?.description,
         guide: dataHomeDetail?.guide,
         refundPolicy: dataHomeDetail?.refundPolicy,
     };
@@ -85,7 +86,7 @@ const ManagerRoom = () => {
     const params = useParams();
 
     useEffect(() => {
-        homeApi.getRoomCategory(params.idHome).then((dataResponse) => {
+        publicAccomPlaceAPI.getRoomDetail(params.idHome).then((dataResponse) => {
             setDataHomeDetail(dataResponse.data);
         });
     }, [params.idHome]);

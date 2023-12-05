@@ -9,6 +9,22 @@
     }
 
     .list-booking-history {
+        .nodata
+        {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            text-align: center;
+            p{
+                padding-top: 20px;
+                font-weight: 600;
+                font-size: x-large;
+                margin-bottom: 0;
+            }
+            img{
+                height: 440px;
+            }
+        }
         margin-bottom: 140px;
         .item__booking {
             border-radius: 7px;

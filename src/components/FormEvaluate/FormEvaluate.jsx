@@ -70,20 +70,6 @@ const FormEvaluate = (props) => {
                 }
             });
         }
-
-        // const resetForm = event.target;
-
-        // bookingAPI
-        //     .createReviewBooking(dataReview)
-        //     .then(() => {
-        //         enqueueSnackbar(t('message.reviewSuccess'), { variant: 'success' });
-        //         resetForm.reset();
-        //         setOpen(false);
-        //         navigate('/historybooking');
-        //     })
-        //     .catch((error) => {
-        //         enqueueSnackbar(error.response?.data.message, { variant: 'error' });
-        //     });
     };
 
     const handleImageChange = (event) => {

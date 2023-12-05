@@ -12,7 +12,7 @@ const Sidebar = () => {
     // const searchContext = useContext(SearchContext);
 
     const handleHome = () => {
-        window.location.href = '/';
+        navigate('/');
     };
     const handleResetSearchText = () => {};
     return (

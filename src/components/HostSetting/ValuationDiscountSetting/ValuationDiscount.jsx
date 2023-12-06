@@ -2,7 +2,7 @@ import * as React from 'react';
 import { AxiosError } from 'axios';
 import format from 'date-fns/format';
 import { useSnackbar } from 'notistack';
-import {  useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -36,22 +36,22 @@ export default function ValuationDiscountSetting(props) {
     }, [props.detailPriceRoom]);
 
     React.useEffect(() => {
-        setValue('costPerNightDefault', props?.detailPriceRoom.costPerNightDefault);
+        setValue('pricePerNight', props?.detailPriceRoom.pricePerNight);
         for (var i = 0; i < props?.detailPriceRoom.discounts.length; i++) {
             if (props?.detailPriceRoom.discounts[i].config !== null) {
                 setValue(`percent${i}`, props?.detailPriceRoom.discounts[i].config.percent);
             }
         }
-        for (var j = 0; j < props?.detailPriceRoom.surcharges.length; j++) {
-            if (props?.detailPriceRoom.surcharges[j].cost !== null) {
-                setValue(`cost${j}`, props?.detailPriceRoom.surcharges[j].cost);
+        for (var j = 0; j < props?.detailPriceRoom.surchargeList.length; j++) {
+            if (props?.detailPriceRoom.surchargeList[j].cost !== null) {
+                setValue(`cost${j}`, props?.detailPriceRoom.surchargeList[j].cost);
             }
         }
     }, [
-        props?.detailPriceRoom.costPerNightDefault,
+        props?.detailPriceRoom.pricePerNight,
         setValue,
         props?.detailPriceRoom.discounts,
-        props?.detailPriceRoom.surcharges,
+        props?.detailPriceRoom.surchargeList
     ]);
 
     const handleChange = (panel) => (event, isExpanded) => {
@@ -65,9 +65,9 @@ export default function ValuationDiscountSetting(props) {
     const onSubmit = (dataPrice) => {
         const newData = {
             data: {
-                costPerNightDefault: parseFloat(dataPrice.costPerNightDefault),
+                pricePerNight: parseFloat(dataPrice.pricePerNight)
             },
-            id: params.idHome,
+            id: params.idHome
         };
         partnerManageAPI
             .updatePriceHome(newData)
@@ -87,16 +87,16 @@ export default function ValuationDiscountSetting(props) {
                     homeId: params.idHome,
                     categoryId: dataDiscount.idCategory_0,
                     dateStart: dateDiscountMonth ? format(dateDiscountMonth[0].startDate, 'yyyy-MM-dd') : null,
-                    dateEnd: dateDiscountMonth ? format(dateDiscountMonth[0].endDate, 'yyyy-MM-dd') : null,
+                    dateEnd: dateDiscountMonth ? format(dateDiscountMonth[0].endDate, 'yyyy-MM-dd') : null
                 },
                 {
                     percent: dataDiscount.percent1 ? parseFloat(dataDiscount.percent1) : null,
                     homeId: params.idHome,
                     categoryId: dataDiscount.idCategory_1,
                     dateStart: dateDiscountWeek ? format(dateDiscountWeek[0].startDate, 'yyyy-MM-dd') : null,
-                    dateEnd: dateDiscountWeek ? format(dateDiscountWeek[0].endDate, 'yyyy-MM-dd') : null,
-                },
-            ],
+                    dateEnd: dateDiscountWeek ? format(dateDiscountWeek[0].endDate, 'yyyy-MM-dd') : null
+                }
+            ]
         };
         pricesOfHomeApi
             .setDiscountOfHome(newData)
@@ -109,39 +109,14 @@ export default function ValuationDiscountSetting(props) {
     };
 
     const onSubmitSurcharge = (dataSurcharge) => {
-        const newData = {
-            listSurchargeHomeDetail: [
-                {
-                    cost: dataSurcharge.cost0 ? parseFloat(dataSurcharge.cost0) : null,
-                    homeId: params.idHome,
-                    categoryId: dataSurcharge.categoryIdSurcharge_0,
-                },
-                {
-                    cost: dataSurcharge.cost1 ? parseFloat(dataSurcharge.cost1) : null,
-                    homeId: params.idHome,
-                    categoryId: dataSurcharge.categoryIdSurcharge_1,
-                },
-                {
-                    cost: dataSurcharge.cost2 ? parseFloat(dataSurcharge.cost2) : null,
-                    homeId: params.idHome,
-                    categoryId: dataSurcharge.categoryIdSurcharge_2,
-                },
-                {
-                    cost: dataSurcharge.cost3 ? parseFloat(dataSurcharge.cost3) : null,
-                    homeId: params.idHome,
-                    categoryId: dataSurcharge.categoryIdSurcharge_3,
-                },
-            ],
-        };
-
-        pricesOfHomeApi
-            .setSurchargeOfHome(newData)
-            .then((dataResponse) => {
-                enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
-            })
-            .catch((error) => {
-                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
-            });
+        const data = transformSurchargeData(dataSurcharge);
+        partnerManageAPI.setSurcharge({ data:data, id: params.idHome});
+        // .then((dataResponse) => {
+        //     enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
+        // })
+        // .catch((error) => {
+        //     enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+        // });
     };
 
     return (
@@ -156,15 +131,13 @@ export default function ValuationDiscountSetting(props) {
                         id="panel1bh-header"
                     >
                         <p style={{ width: '33%', flexShrink: 0 }}>Giá tiền theo đêm</p>
-                        <p style={{ color: 'text.secondary' }}>
-                            {formatPrice(props?.detailPriceRoom.costPerNightDefault)}
-                        </p>
+                        <p style={{ color: 'text.secondary' }}>{formatPrice(props?.detailPriceRoom.pricePerNight)}</p>
                     </AccordionSummary>
                     <AccordionDetails>
                         <div className="content-input">
                             <h4>Giá theo đêm</h4>
                             <p>Bạn chịu trách nhiệm chọn giá cho thuê nhà/phòng của mình.</p>
-                            <input className="input-price-room__setting" {...register('costPerNightDefault')} />
+                            <input className="input-price-room__setting" {...register('pricePerNight')} />
                         </div>
                         <div className="btn">
                             <p onClick={handleClose} className="btn-close">
@@ -178,7 +151,7 @@ export default function ValuationDiscountSetting(props) {
 
             <h4>Giảm giá</h4>
 
-            {props?.detailPriceRoom.discounts?.map((discount, indexber) => {
+            {props?.detailPriceRoom.discounts?.map((discount, index) => {
                 var i = 2 + index;
                 return (
                     <form onSubmit={handleSubmit(onSubmitDiscount)} key={index}>
@@ -239,7 +212,7 @@ export default function ValuationDiscountSetting(props) {
             })}
 
             <h4>Phụ phí</h4>
-            {props?.detailPriceRoom.surcharges?.map((surcharges, indexber) => {
+            {props?.detailPriceRoom.surchargeList?.map((surchargeList, index) => {
                 var j = numberLength + index;
                 return (
                     <form onSubmit={handleSubmit(onSubmitSurcharge)} key={index}>
@@ -249,20 +222,20 @@ export default function ValuationDiscountSetting(props) {
                                 aria-controls="panel1bh-content"
                                 id="panel1bh-header"
                             >
-                                <p style={{ width: '33%', flexShrink: 0 }}>{surcharges?.surchargeCategoryName}</p>
+                                <p style={{ width: '33%', flexShrink: 0 }}>{surchargeList?.surchargeName}</p>
                                 <p style={{ color: 'text.secondary' }}>
-                                    {surcharges?.cost ? surcharges?.cost : 'Chưa thiết lập'}
+                                    {surchargeList?.cost ? surchargeList?.cost : 'Chưa thiết lập'}
                                 </p>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <div className="content-input">
-                                    <h4>{surcharges?.surchargeCategoryName}</h4>
-                                    <p>{surcharges?.description ? surcharges?.description : 'Không có mô tả'}</p>
+                                    <h4>{surchargeList?.surchargeName}</h4>
+                                    {/* <p>{surchargeList?.description ? surchargeList?.description : 'Không có mô tả'}</p> */}
                                     <input className="input-price-room__setting" {...register(`cost${index}`)} />
                                     <input
-                                        {...register(`categoryIdSurcharge_${index}`)}
+                                        {...register(`surchargeName_${index}`)}
                                         type="hidden"
-                                        defaultValue={surcharges?.surchargeCategoryId}
+                                        defaultValue={surchargeList?.surchargeName}
                                     />
                                 </div>
 
@@ -279,4 +252,18 @@ export default function ValuationDiscountSetting(props) {
             })}
         </div>
     );
+}
+function transformSurchargeData(data) {
+    const surchargeArray = [];
+
+    for (let i = 0; data[`cost${i}`] !== undefined; i++) {
+        const surchargeName = data[`surchargeName_${i}`];
+        const cost = data[`cost${i}`];
+
+        if (surchargeName !== undefined && cost !== undefined) {
+            surchargeArray.push({ surchargeName: surchargeName, cost: cost });
+        }
+    }
+
+    return surchargeArray;
 }

@@ -55,7 +55,7 @@ export default function CommentReview(props) {
                         </div>
                     ))}
                     <div className="thelast">
-                        {comment.length > 5 && (
+                        {dataComment.length > 5 && (
                             <button onClick={() => setShowMoreComments(!showMoreComments)} className="show-more-button">
                                 {showMoreComments ? 'Thu gọn' : 'Xem thêm'}
                             </button>

@@ -16,7 +16,7 @@ const ListImageInSetting = (props) => {
                                 <div className="col l-6 c-6" key={index}>
                                     <div className="image-item">
                                         <img
-                                            src={`${props?.listImage && props?.listImage[index]?.path}`}
+                                            src={`${imgs}`}
                                             alt="room_hot"
                                         />
                                     </div>

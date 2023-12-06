@@ -15,7 +15,7 @@ import ValuationDiscountSetting from '~/components/HostSetting/ValuationDiscount
 
 const infoLink = {
     name: 'Chi tiết nhà cho thuê',
-    urlLink: '/host/setting',
+    urlLink: '/host/setting'
 };
 
 const backUrl = '/host/setting';
@@ -24,24 +24,23 @@ const item = ['', 'section1', 'section2', 'section3', 'section4', 'section5', 's
 
 const ManagerRoom = () => {
     const [dataHomeDetail, setDataHomeDetail] = useState();
-    console.log(dataHomeDetail)
     const infoRoom = {
         accomName: dataHomeDetail?.accomName ? dataHomeDetail?.accomName : '',
         description: dataHomeDetail?.description,
         guide: dataHomeDetail?.guide,
-        refundPolicy: dataHomeDetail?.refundPolicy,
+        refundPolicy: dataHomeDetail?.refundPolicy
     };
 
     const detailPriceRoom = {
-        costPerNightDefault: dataHomeDetail?.costPerNightDefault,
+        pricePerNight: dataHomeDetail?.pricePerNight,
         discounts: dataHomeDetail?.discounts ? dataHomeDetail?.discounts : [],
-        surcharges: dataHomeDetail?.surcharges ? dataHomeDetail?.surcharges : [],
+        surchargeList: dataHomeDetail?.surchargeList ? dataHomeDetail?.surchargeList : []
     };
 
     const locationRoom = {
-        loca: dataHomeDetail?.provinceCode,
-        localName: dataHomeDetail?.provinceName,
-        address: dataHomeDetail?.addressDetail,
+
+        addressGeneral: dataHomeDetail?.addressGeneral,
+        addressDetail: dataHomeDetail?.addressDetail
     };
 
     const children = [
@@ -49,38 +48,43 @@ const ManagerRoom = () => {
             id: '#section1',
             to: 'section1',
             info: 'Hình ảnh',
-            comp: <ImageSetting listImage={dataHomeDetail?.imagesOfHome} thumbnail={dataHomeDetail?.thumbnail} />,
+            comp: (
+                <ImageSetting
+                    listImage={dataHomeDetail?.imageAccomsUrls.slice(1)}
+                    thumbnail={dataHomeDetail?.imageAccomsUrls[0]}
+                />
+            )
         },
         {
             id: '#section2',
             to: 'section2',
             info: 'Thông tin cơ bản',
-            comp: <TittleSetting infoRoom={infoRoom} />,
+            comp: <TittleSetting infoRoom={infoRoom} />
         },
         {
             id: '#section3',
             to: 'section3',
             info: 'Chổ ở và phòng',
-            comp: <CountRoomSetting countRoom={dataHomeDetail?.numberOfRooms} />,
+            comp: <CountRoomSetting countRoom={dataHomeDetail?.numberOfRooms} />
         },
         {
             id: '#section4',
             to: 'section4',
             info: 'Vị trí',
-            comp: <LocationSetting locationRoom={locationRoom} />,
+            comp: <LocationSetting locationRoom={locationRoom} />
         },
         {
             id: '#section5',
             to: 'section5',
             info: 'Tiện nghi',
-            comp: <ConvenientSetting convent={dataHomeDetail?.amenities} />,
+            comp: <ConvenientSetting convent={dataHomeDetail?.amenities} />
         },
         {
             id: '#section6',
             to: 'section6',
             info: 'Định giá và phụ phí',
-            comp: <ValuationDiscountSetting detailPriceRoom={detailPriceRoom} />,
-        },
+            comp: <ValuationDiscountSetting detailPriceRoom={detailPriceRoom} />
+        }
     ];
 
     const params = useParams();

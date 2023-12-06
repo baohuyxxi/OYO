@@ -35,7 +35,6 @@ const FormEvaluate = (props) => {
         event.preventDefault();
         if (selectedImages.length > 0) {
             uploadMedia.multipleFile(selectedImages).then((res) => {
-                console.log(res);
                 const imagesUrls = res.data.flatMap((img) => img.imageUrl);
                 const dataReview = {
                     title: title,

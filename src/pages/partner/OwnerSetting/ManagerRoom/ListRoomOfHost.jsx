@@ -166,7 +166,6 @@ async function handleDelete(id, status) {
 }
 
 function handleView(id ) {
-    console.log(id)
     
     window.location.href = `/host/setting/${id}`;
 }

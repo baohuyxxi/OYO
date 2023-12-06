@@ -5,7 +5,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import React from 'react';
-import DialogCountOfRoom from '../../DialogCountOfRoom/DialogCountOfRoom';
+import DialogCountOfRoom from '~/components/DialogCountOfRoom/DialogCountOfRoom';
 
 const ImageOfRoomSetting = (props ) => {
     const [expanded, setExpanded] = React.useState(false);

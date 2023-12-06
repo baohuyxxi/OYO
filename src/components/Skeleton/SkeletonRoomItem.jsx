@@ -14,6 +14,7 @@ export default function SkeletonRoomItem() {
             <Skeleton width="80%" sx={{ height: "30px" }} />
             <Skeleton width="60%" sx={{ height: "25px" }} />
             <Skeleton width="50%" sx={{ height: "20px" }} />
+            
           </Box>
         </div>
       ))}

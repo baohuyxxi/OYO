@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 import './CountNumber.scss';
 
 const CountNumber = (props) => {
     const [counter, setCounter] = useState(0);
-
+    useEffect(()=>
+    {
+        setCounter(props.number)
+    },[props.number])
     const handleIncrease = () => {
         setCounter((preState) => preState + 1);
 

@@ -2,7 +2,7 @@ import './ListImage.scss';
 
 const ListImage = (props) => {
     const imgMain = props.listImage.slice(0, 1);
-    const cutDataImage = props.listImage.slice(1);
+    const cutDataImage = props.listImage.slice(1,5);
     return (
         <div className="list-image">
             {props.listImage ? (

@@ -17,20 +17,45 @@ export default function SelectAddress(props) {
     const [wards, setWards] = useState([]);
 
     useEffect(() => {
-        props.setData((prevData) => ({
-            ...prevData,
-            provinceCode: selectedProvince?.provinceCode,
-            provinceName: selectedProvince?.provinceName,
-            districtCode: selectedDistrict?.districtCode,
-            districtName: selectedDistrict?.districtName,
-            wardCode: selectedWard?.wardCode,
-            wardName: selectedWard?.wardName
-        }));
-    }, [selectedProvince, selectedDistrict, selectedWard]);
+        if ((selectedWard !== undefined) & (selectedWard !== null)) {
+            props.setData((prevData) => ({
+                ...prevData,
+                provinceCode: selectedProvince?.provinceCode,
+                provinceName: selectedProvince?.provinceName,
+                districtCode: selectedDistrict?.districtCode,
+                districtName: selectedDistrict?.districtName,
+                wardCode: selectedWard?.wardCode,
+                wardName: selectedWard?.wardName
+            }));
+        }
+    }, [selectedWard]);
     const [provinces, setProvinces] = useState(() => {
         const storedData = localStorage.getItem('allProvinces');
         return storedData ? JSON.parse(storedData) : [];
     });
+
+    useEffect(() => {
+        const temp = provinces.find((option) => option.provinceName === props.data.provinceName) || null;
+        if (temp !== null) {
+            setSelectedProvince(temp);
+            setDistricts(temp.districtSet);
+        }
+    }, [provinces]);
+
+    useEffect(() => {
+        const temp = districts.find((option) => option.districtName === props.data.districtName) || null;
+        if (temp !== null) {
+            setSelectedDistrict(temp);
+            setWards(temp.wardSet);
+        }
+    }, [districts.length]);
+
+    useEffect(() => {
+        const temp = wards.find((option) => option.wardName === props.data.wardName) || null;
+        if (temp !== null) {
+            setSelectedWard(temp);
+        }
+    }, [wards]);
 
     useEffect(() => {
         const fetchData = async () => {

@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
 
-import iconStar from '~/assets/icon/star.svg';
+import iconStar from '~/assets/svg/star.svg';
 import ListImage from '~/components/ListImage/ListImage';
 import Convenient from '~/components/Convenient/Convenient';
 import DialogConvenient from '~/components/DialogConvenient/DialogConvenient';
@@ -49,7 +49,6 @@ export default function RoomDetail() {
             setLoading(false);
         });
     }, [roomId?.id]);
-    console.log(dataDetailHome)
     const stars = [];
     for (let i = 0; i < dataDetailHome.gradeRate; i++) {
         stars.push(<img key={i} src={iconStar} alt="icon__star" className="star" />);

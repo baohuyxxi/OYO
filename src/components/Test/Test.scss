@@ -1,36 +1,6 @@
-.App {
-    text-align: center;
-  
-    h1 {
-      font-size: 24px;
-    }
-  
-    .slick-dots {
-      position: absolute;
-      bottom: 20px;
-      list-style: none;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-  
-      li {
-        display: inline;
-        margin: 0 5px;
-        button {
-          background: #ccc;
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-        }
-      }
-    }
-  
-    .slick-prev,
-    .slick-next {
-      font-size: 24px;
-    }
-  }
-  .img{
-    width: 300px;
-    height: 300px;
-  }
+@import "react-basic-design/dist/bootstrap.scss";
+@import "react-basic-design/dist/index.scss";
+
+.theme-light{
+  background-color: #f1f2f3 !important;
+}

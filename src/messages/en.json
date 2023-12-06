@@ -13,6 +13,7 @@
     "uploadImage": "Upload image",
     "filter": "Filter",
     "review": "Review",
+    "reviewed": "reviewed",
     "refundPolicy": "Booking cancellation policy",
     "cancelBooking": "Cancel booking",
     "yes": "Yes",
@@ -24,7 +25,9 @@
     "actived": "Active",
     "setting": "Setting",
     "cancel": "Cancel",
-    "publicAvatar":"Your profile picture will be displayed publicly"
+    "publicAvatar":"Your profile picture will be displayed publicly",
+    "contactUs": "Contact us",
+    "send": "Send"
   },
   "message": {
     "signin": "Sign in successfully",
@@ -120,7 +123,10 @@
       "policy": "Your reservation is protected by YOY.",
       "surcharges": "The surcharge is included",
       "price": "Price of room",
-      "totalPrice": "Total payment"
+      "totalPrice": "Total payment",
+      "method": "Payment methods",
+      "paypal": "Payment via Paypal (sale 10%)",
+      "direct": "Direct payment"
     },
     "history": "Your reservation list",
     "refundPolicy": "Cancellation policy",
@@ -143,7 +149,8 @@
     "pageNotFound": "PAGE NOT FOUND",
     "returnHome": "Would you like to return to the home page?",
     "yourMail": "Your mail",
-    "selectAvatar":"Select avatar"
+    "selectAvatar":"Select avatar",
+    "category": "Category"
   },
   "label": {
     "email": "Email",
@@ -153,6 +160,7 @@
     "nameHome": "Your rental property title should highlight what makes your property special.",
     "descHome": "Create a description to share what makes your property special.",
     "priceHome": "Now set the price you want.",
+    "acreageHome": "Acreage", 
     "priceRange": "Price range",
     "convenient": "Utilities",
     "room": "Room and bedroom",
@@ -191,7 +199,8 @@
     "selectProvince": "Select province",
     "selectDistrict": "Select district",
     "selectWard": "Select ward",
-    "userName": "User Name"
+    "userName": "User Name",
+    "content": "Content"
   },
   "contentMain": {
     "homeinsearch": "From 'impromptu' rides to adventures, discover your own recipe for joy",
@@ -229,6 +238,7 @@
     "searchHome": "Where you want to go",
     "nameHome": "Name of the house",
     "priceVND": "Unit VND",
+    "acreageM2":"Square meter unit",  
     "feedback": "Feedback from customers"
   },
   "numberCount": {
@@ -280,10 +290,10 @@
     "contact_link_5": "About us",
     "contact_2": "Partner",
     "contact_link_6": "Booking",
-    "contact_link_7": "RentalCar",
-    "contact_link_8": "HostelWorld",
+    "contact_link_7": "AGODA",
+    "contact_link_8": "TRAVELOKA",
     "contact_link_9": "Trivago",
-    "contact_link_10": "TripAdvisor",
+    "contact_link_10": "AIRBNB",
     "contact_3": "Other",
     "contact_link_11": "London",
     "contact_link_12": "California",
@@ -328,5 +338,17 @@
     "selectTitle": "Select language",
     "en": "English",
     "vi": "Vietnamese"
+  },
+  "format":{
+    "adult": "Adult",
+    "children": "Children",
+    "bornChild": "Infant"
+  },
+  "home":
+  {
+    "addressDetail": "Detailed address",
+    "acreage":"Acreage",
+    "numPeople":"Amount of people",
+    "numBathRoom":"Room number"
   }
 }

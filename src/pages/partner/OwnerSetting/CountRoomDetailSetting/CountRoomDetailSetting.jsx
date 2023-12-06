@@ -1,0 +1,101 @@
+import { useNavigate, useParams } from 'react-router-dom';
+import DialogCountRoom from '~/components/DialogCountRoom/DialogCountRoom';
+import ImageOfRoomSetting from '~/components/HostSetting/ImageOfRoomSetting/ImageOfRoomSetting';
+import NavbarOwner from '~/components/NavbarOwner/NavbarOwner';
+
+import './CountRoomDetailSetting.scss';
+
+import { useEffect, useState } from 'react';
+import roomOfHomeApi from '~/services/roomOfHome';
+import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
+
+import { useSnackbar } from 'notistack';
+import { AxiosError } from 'axios';
+
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+
+const CountRoomDetailSetting = () => {
+    const [listRoomOfHome, setListRoomOfHome] = useState([]);
+    const [listCategoryRoom, setListCategoryRoom] = useState([]);
+
+    const params = useParams();
+
+    const { enqueueSnackbar } = useSnackbar();
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        roomOfHomeApi.getAllRoomOfHome(`${params.idHome}&`).then((dataRoom) => {
+            setListRoomOfHome(dataRoom?.data?.content);
+        });
+        publicAccomPlaceAPI.getAllRoomCategoryOfHome(params?.idHome).then((dataResponse) => {
+            setListCategoryRoom(dataResponse?.data?.content);
+        });
+    }, [params.idHome]);
+
+    const handleRemoveRoom = (idRoom) => {
+        roomOfHomeApi
+            .deleteRoomOfHome(idRoom)
+            .then(() => {
+                enqueueSnackbar('Xóa thành công', { variant: 'success' });
+                setListRoomOfHome(
+                    listRoomOfHome.filter((room) => {
+                        return room.id !== idRoom;
+                    }),
+                );
+            })
+            .catch((error) => {
+                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+            });
+    };
+
+    const handleSaveAddRoom = (dataSetRoomCount) => {
+        const newCount = {
+            homeId: params?.idHome,
+            listCreate: dataSetRoomCount.filter((data) => {
+                return data.number !== 0;
+            }),
+        };
+        publicAccomPlaceAPI
+            .saveCountRoomOfHome(newCount)
+            .then((data) => {
+                setListRoomOfHome(data.data);
+                enqueueSnackbar('Lưu thành công', { variant: 'success' });
+            })
+
+            .catch((error) => {
+                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+            });
+    };
+
+    return (
+        <div className="count-roomdetal__setting">
+            <NavbarOwner />
+            <div className="content-count__roomdetail__setting">
+                <p
+                    onClick={() => navigate(-1)}
+                    style={{ margin: 0, fontSize: '16px', paddingTop: '-30px', color: 'black', cursor: 'pointer' }}
+                >
+                    <ArrowBackIosIcon />
+                    Quay lại trang
+                </p>
+                <h1>Phòng và không gian</h1>
+                <p>
+                    Thêm hoặc chỉnh sửa khu vực mà khách có thể sử dụng và đánh dấu không gian họ sẽ dùng chung với
+                    người khác
+                </p>
+                <div className="card-roomdetail__count">
+                    <p>Phòng ngủ · Phòng tắm đầy đủ · Bồn tắm nước nóng · Ngoại thất</p>
+                    <DialogCountRoom listCategoryRoom={listCategoryRoom} handleSaveAddRoom={handleSaveAddRoom} />
+                </div>
+                <ImageOfRoomSetting
+                    listRoomOfHome={listRoomOfHome}
+                    handleRemoveRoom={handleRemoveRoom}
+                    setListRoomOfHome={setListRoomOfHome}
+                />
+            </div>
+        </div>
+    );
+};
+
+export default CountRoomDetailSetting;

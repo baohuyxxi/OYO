@@ -26,30 +26,30 @@ export default function BedRoomSlider(props) {
                     slidesToShow: 3,
                     slidesToScroll: 3,
                     infinite: true,
-                    dots: true,
-                },
+                    dots: true
+                }
             },
             {
                 breakpoint: 600,
                 settings: {
                     slidesToShow: 2,
                     slidesToScroll: 2,
-                    initialSlide: 2,
-                },
+                    initialSlide: 2
+                }
             },
             {
                 breakpoint: 480,
                 settings: {
                     slidesToShow: 1,
-                    slidesToScroll: 1,
-                },
-            },
-        ],
+                    slidesToScroll: 1
+                }
+            }
+        ]
     };
     return (
         <div className="slider__bedroom">
             <Slider {...settings}>
-                {props?.listRoom?.map((room, index) => (
+                {props?.bedRooms.map((bedRoom, index) => (
                     <div key={index}>
                         <div className="slider__item">
                             <div className="icon-bed">
@@ -57,8 +57,8 @@ export default function BedRoomSlider(props) {
                                 <BedIcon />
                             </div>
                             <div className="title-bed">
-                                <h2>{room?.roomName}</h2>
-                                <p>{room?.nameOfBed}</p>
+                                <h2>{bedRoom}</h2>
+                                {/* <p>{room?.nameOfBed}</p> */}
                             </div>
                         </div>
                     </div>

@@ -36,7 +36,7 @@ export default function SelectAddress(props) {
         const fetchData = async () => {
             try {
                 const response = await publicProvinceAPI.getAllProvinceDetails();
-                const provincesData = response.data.data;
+                const provincesData = response.data;
                 localStorage.setItem('allProvinces', JSON.stringify(provincesData));
 
                 setProvinces(provincesData);

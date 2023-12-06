@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
 
-import iconStar from '~/assets/icon/star.svg';
+import iconStar from '~/assets/svg/star.svg';
 import ListImage from '~/components/ListImage/ListImage';
 import Convenient from '~/components/Convenient/Convenient';
 import DialogConvenient from '~/components/DialogConvenient/DialogConvenient';

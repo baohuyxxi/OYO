@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -14,12 +14,20 @@ import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 
 export default function LocationSetting(props) {
     const [expanded, setExpanded] = useState(false);
+
     const [address, setAddress] = useState(addressFormData);
-    const [idProvince, setIdProvince] = useState('');
-
-    const { handleSubmit, register, setValue } = useForm();
-
+    const [addressDetail, setAddressDetail] = useState('');
     const params = useParams();
+
+    useEffect(() => {
+        if (props.locationRoom.addressDetail !== undefined) {
+            // Check if addressDetail1 is undefined as well
+            if (props.locationRoom.addressDetail1 === undefined) {
+                // Use optional chaining (?.) to safely access properties
+                setAddressDetail(props?.locationRoom.addressDetail.split(',')[0].trim());
+            }
+        }
+    }, [props.locationRoom.addressDetail, props.locationRoom.addressDetail1]);
 
     const { enqueueSnackbar } = useSnackbar();
 
@@ -31,39 +39,29 @@ export default function LocationSetting(props) {
         setExpanded(false);
     };
 
-    const [nameProvince, setNameProvince] = useState('');
-    useEffect(() => {
-        if (props?.locationRoom.localName) {
-            setNameProvince(props.locationRoom.localName);
-        }
-    }, [props.locationRoom.localName]);
-
-    useEffect(() => {
-        setValue('address', props?.locationRoom.address);
-    }, [props.locationRoom.address, setValue]);
-
-    const onSubmit= (dataAddress) => {
+    const onSubmit = (dataAddress) => {
         const newData = {
             data: {
-                address: dataAddress.address,
-                provinceCode: idProvince,
+                provinceCode: address.provinceCode,
+                districtCode: address.districtCode,
+                wardCode: address.wardCode,
+                addressDetail: addressDetail
             },
-            id: params.idHome, 
+            id: params.idHome
         };
-        partnerManageAPI
-            .updateAddressHome(newData)
-            .then((dataResponse) => {
-                enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
-            })
-            .catch((error) => {
-                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
-            });
+        partnerManageAPI.updateAddressHome(newData);
+        // .then((dataResponse) => {
+        //     enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
+        // })
+        // .catch((error) => {
+        //     enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+        // });
     };
 
     return (
         <div style={{ fontSize: '15px', paddingRight: '50px', paddingBottom: '50px' }}>
             <h3>Vị trí</h3>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={onSubmit}>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
@@ -71,17 +69,32 @@ export default function LocationSetting(props) {
                         id="panel1bh-header"
                     >
                         <p style={{ width: '33%', flexShrink: 0 }}>Địa chỉ</p>
-                        <p style={{ color: 'text.secondary' }}>{nameProvince}</p>
+                        <p style={{ color: 'text.secondary' }}>{props.locationRoom.addressGeneral}</p>
                     </AccordionSummary>
+                    <AccordionDetails
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1bh-content"
+                        id="panel1bh-header"
+                        style={{ display: 'flex' }}
+                    >
+                        <p style={{ width: '33%', flexShrink: 0 }}>Địa chỉ chi tiết</p>
+                        <p style={{ color: 'text.secondary' }}>{props.locationRoom.addressDetail}</p>
+                    </AccordionDetails>
                     <AccordionDetails>
-                        <SelectAddress setData={setAddress} data ={address}></SelectAddress>
+                        <SelectAddress setData={setAddress} data={address}></SelectAddress>
 
-                        <input className="input-address" {...register('address')} />
+                        <input
+                            className="input-address"
+                            value={addressDetail}
+                            onChange={(e) => setAddressDetail(e.target.value)}
+                        />
                         <div className="btn">
                             <p onClick={handleClose} className="btn-close">
                                 Hủy
                             </p>
-                            <button className="btn-save">Lưu</button>
+                            <button type="submit" className="btn-save">
+                                Lưu
+                            </button>
                         </div>
                     </AccordionDetails>
                 </Accordion>

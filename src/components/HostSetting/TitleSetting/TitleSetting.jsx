@@ -36,10 +36,9 @@ export default function TittleSetting(props) {
         setExpanded(false);
     };
 
-    console.log(props.infoRoom.refundPolicy);
     React.useEffect(() => {
-        setValue('name', props?.infoRoom?.name);
-        setValue('description', props.infoRoom.desc);
+        setValue('accomName', props?.infoRoom?.accomName);
+        setValue('description', props.infoRoom.description);
         setValue('guide', props.infoRoom.guide);
         if (props.infoRoom.refundPolicy === 'BEFORE_ONE_DAY') {
             setValue('refundPolicy', 'Trước 1 ngày');
@@ -51,7 +50,7 @@ export default function TittleSetting(props) {
             setValue('refundPolicy', 'Trước 7 ngày');
             setRefundTitle('Trước 7 ngày');
         }
-    }, [props.infoRoom.name, props.infoRoom.desc, props.infoRoom.guide, props.infoRoom.refundPolicy, setValue]);
+    }, [props.infoRoom.accomName, props.infoRoom.description, props.infoRoom.guide, props.infoRoom.refundPolicy, setValue]);
 
     const onSubmit = (data) => {
         if (
@@ -69,7 +68,7 @@ export default function TittleSetting(props) {
             }
             const newData = {
                 data: {
-                    name: data.name,
+                    accomName: data.accomName,
                     description: data.description,
                     guide: data.guide,
                     refundPolicy: tempRefund,
@@ -100,13 +99,13 @@ export default function TittleSetting(props) {
                         id="panel1bh-header"
                     >
                         <p style={{ width: '33%', flexShrink: 0 }}>Tiêu đề phòng cho thuê</p>
-                        <p style={{ color: 'text.secondary' }}>{props?.infoRoom?.name}</p>
+                        <p style={{ color: 'text.secondary' }}>{props?.infoRoom?.accomName}</p>
                     </AccordionSummary>
                     <AccordionDetails>
                         <div className="content-input">
                             <h4>Tiêu đề nhà/phòng cho thuê</h4>
                             <p>Tiêu đề nhà/phòng cho thuê của bạn cần nổi bật được những điểm đặc biệt của chỗ ở.</p>
-                            <input className="input-info" {...register('name')} />
+                            <input className="input-info" {...register('accomName')} />
                         </div>
                         <div className="btn">
                             <p onClick={handleClose} className="btn-close">
@@ -125,7 +124,7 @@ export default function TittleSetting(props) {
                         id="panel2bh-header"
                     >
                         <p style={{ width: '33%', flexShrink: 0 }}>Mô tả</p>
-                        <p style={{ color: 'text.secondary' }}>{props.infoRoom.desc}</p>
+                        <p style={{ color: 'text.secondary' }}>{props.infoRoom.description}</p>
                     </AccordionSummary>
                     <AccordionDetails>
                         <div className="content-input">

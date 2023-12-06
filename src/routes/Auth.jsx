@@ -33,6 +33,9 @@ const Auth = () => {
     const ConvenientOwnerSetting = React.lazy(() =>
         import('../pages/partner/OwnerSetting/ConvenientOwnerSetting/ConvenientOwnerSetting')
     );
+    const CountRoomDetailSetting = React.lazy(() =>
+        import('../pages/partner/OwnerSetting/CountRoomDetailSetting/CountRoomDetailSetting')
+    );
     // Client Page
     const HistoryBookingPage = React.lazy(() => import('../pages/client/HistoryBookingPage/HistoryBookingPage'));
     return (
@@ -173,7 +176,7 @@ const Auth = () => {
             />
 
             <Route
-                  path="/host/setting/convenient/:idHome"
+                path="/host/setting/convenient/:idHome"
                 element={
                     <PrivateRoute
                         element={
@@ -203,6 +206,18 @@ const Auth = () => {
                         element={
                             <Suspense fallback={<LoadingPage />}>
                                 <CalendarRoomSetting />
+                            </Suspense>
+                        }
+                    />
+                }
+            />
+            <Route
+                path="/host/setting/countroomdetail/:idHome"
+                element={
+                    <PrivateRoute
+                        element={
+                            <Suspense fallback={<LoadingPage />}>
+                                <CountRoomDetailSetting />
                             </Suspense>
                         }
                     />

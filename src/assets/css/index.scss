@@ -305,7 +305,9 @@ html[mode="dark"] {
   .MuiMenuItem-root:hover {
     background-color: var(--item-hover);
   }
-
+  .MuiAppBar-root{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  }
   // .MuiAutocomplete-root{
   //     color:inherit
   // }

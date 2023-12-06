@@ -2,7 +2,7 @@
     margin-top: 25px;
     padding-top: 20px;
     padding-bottom: 10px;
-
+    text-align: center;
 
     .container-comment {
         display: flex;
@@ -36,8 +36,6 @@
         .comment-info {
             width: 830px;
 
-
-
             .heading {
                 justify-content: space-between;
                 display: flex;
@@ -49,18 +47,17 @@
                     font-size: x-large;
                     width: max-content;
                 }
-                .comment-time{
+                .comment-time {
                     font-size: small;
                     display: flex;
                     padding-top: 10px;
                     font-weight: 500;
-                    p{
+                    p {
                         font-size: medium;
                         margin-left: 5px;
                         margin-top: 0px;
                     }
                 }
-              
             }
 
             .comment-content {
@@ -75,11 +72,7 @@
                 margin-right: 10px;
                 border-radius: 5px;
             }
-
-          
-
         }
-        
     }
     .thelast {
         display: flex;
@@ -92,10 +85,26 @@
             font-size: medium;
             font-weight: 600;
         }
-        .show-more-button:hover{
+        .show-more-button:hover {
             background-color: var(--input-background);
             border-radius: 5px;
         }
     }
-
+}
+.container__emtyComment {
+    
+    margin-top: 25px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    text-align: center;
+    .emtyComment {
+        width: 30%;
+        margin-top: -100px;
+        // filter: var(--filter-notbooking);
+    }
+    p {
+        font-weight: 600;
+        font-size: x-large;
+       
+    }
 }

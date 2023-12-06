@@ -1,7 +1,5 @@
 import axios from 'axios';
 import { getToken, getRefreshToken, updateToken } from './token';
-import { useDispatch } from 'react-redux';
-import userSlice from '~/redux/userSlice';
 import process from 'process';
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
@@ -48,7 +46,10 @@ instance.interceptors.response.use(
                         return Promise.reject(error);
                     }
                 } catch (refreshError) {
-                    dispatch(userSlice.actions.logout());
+                    localStorage.removeItem('accessToken')
+                    localStorage.removeItem('refreshToken')
+                    localStorage.removeItem('persist:root')
+                    window.location.reload()
                     console.error('Refresh token failed', refreshError);
                     return Promise.reject(refreshError);
                 }

@@ -13,6 +13,7 @@ export default function DateIsBooking(props) {
         <div className="data-isbooking">
             <h1 style={{ marginBottom: '20px', marginTop: '20px' }}>{t('contentMain.dayBooked')}</h1>
             <Calendar
+                className='paper'
                 onChange={onChange}
                 value={value}
                 tileClassName={({ date, view }) => {

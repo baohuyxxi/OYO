@@ -18,17 +18,29 @@ const partnerManageAPI = {
         const res = await axios.get(`/partner/accoms/pages?pageNumber=0&pageSize=99`);
         return res.data;
     },
-    updateAddressHome: async(data) => {
-        const res = await axios.put(`/a`, data);
-        return res.data;
-    },
-    updatePriceHome: async(data) => {
-        const res = await axios.put(`/a`, data);
-        return res.data;
-    },
+ 
+   
     getRoomCategory: async(data) => {
         const res = await axios.get(`/url${data}`);
         return res.data;
+    },
+    updateTitleHome: async(data) =>{
+        return 0
+    },
+    setSurcharge: async(data) =>{
+        console.log(data)
+        return 0
+    },
+    updateAddressHome: async(data) => {
+        return 0
+    },
+     updatePriceHome: async(data) => {
+        console.log(data)
+        return 0
+    },
+    updateRoomHome: async(data) => {
+        console.log(data)
+        return 0
     },
     
 };

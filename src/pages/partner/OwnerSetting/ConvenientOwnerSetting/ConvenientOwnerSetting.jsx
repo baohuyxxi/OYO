@@ -23,7 +23,6 @@ const ConvenientOwnerSetting = () => {
     const [dataListCatagoryConvenient, setDataListCategoryConvenient] = useState([]);
     const [data, setData] = useState([]);
     const params = useParams();
-    console.log(data)
     useEffect(() => {
         publicFacilityAPI.getAllDataFacility().then((dataResponse) => {
             setDataListCategoryConvenient(dataResponse.data);

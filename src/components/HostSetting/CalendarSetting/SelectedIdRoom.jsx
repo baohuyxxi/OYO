@@ -6,8 +6,6 @@ import Select from '@mui/material/Select';
 
 export default function SelectedIdRoom(props) {
     const [idRoom, setIdRoom] = useState(props.idFirst ? props?.idFirst : '');
-    console.log(props)
-    console.log(idRoom)
     useEffect(() => {
         if (props.handleChangeIdRoom) {
             props.handleChangeIdRoom(idRoom)

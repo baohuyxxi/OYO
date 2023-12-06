@@ -8,7 +8,7 @@ const ConvenientItem = (props) => {
             <div className="title-item">
                 <h1
                     onClick={() => {
-                        console.log(props.data);
+                      
                     }}
                 >
                     {props?.name}

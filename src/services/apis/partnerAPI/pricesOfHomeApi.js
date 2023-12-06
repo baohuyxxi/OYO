@@ -25,7 +25,8 @@ const pricesOfHomeApi = {
     getHistoryBooking: async (data) => {
         const res = await axios.post(``, data);
         return res.data;
-    }
+    },
+    
 };
 
 export default pricesOfHomeApi;

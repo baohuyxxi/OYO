@@ -49,7 +49,6 @@ export default function RoomDetail() {
             setLoading(false);
         });
     }, [roomId?.id]);
-    console.log(dataDetailHome)
     const stars = [];
     for (let i = 0; i < dataDetailHome.gradeRate; i++) {
         stars.push(<img key={i} src={iconStar} alt="icon__star" className="star" />);

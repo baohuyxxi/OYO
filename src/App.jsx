@@ -22,7 +22,6 @@ function App() {
         localStorage.setItem('mode', 'dark');
         document.documentElement.setAttribute('mode', 'dark');
     }
-
     return (
         <div>
             <Auth />

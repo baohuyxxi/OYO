@@ -58,7 +58,7 @@ const HistoryBookingPage = () => {
                         {dataHistory.length === 0 ? (
                             <div className="paper nodata">
                                <p>Bạn chưa đặt chỗ</p>
-                                <img src="/src/assets/video/BookingNow.gif"></img>
+                                <img src="/src/assets/video/BookingNow.gif" class="color-filter"></img>
                             
                             </div>
                         ) : (

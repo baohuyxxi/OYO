@@ -11,15 +11,22 @@ export default function CommentReview(props) {
     useEffect(() => {
         publicAccomPlaceAPI.getReviewHome(props.id).then((res) => {
             setDataaCommet(res.data);
-            setLoading(false);
+            if (res.data.length > 0) {
+                setLoading(false);
+            }
         });
     }, []);
+   
 
     const commentsToShow = showMoreComments ? dataComment : dataComment.slice(0, 5);
     return (
         <>
             {loading ? (
-                <></>
+                <div className="container__emtyComment">
+                     <p>Chưa có bình luận nào</p>
+                    <img src="/src/assets/video/crabtyping.gif" className='emtyComment'></img>
+                   
+                </div>
             ) : (
                 <div className="paper container-comments">
                     {commentsToShow.map((item, index) => (

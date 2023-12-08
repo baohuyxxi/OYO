@@ -57,7 +57,7 @@ export default function BedRoomSlider(props) {
                                 <BedIcon />
                             </div>
                             <div className="title-bed">
-                                <h2>{bedRoom}</h2>
+                                <h2>{bedRoom.typeBedName}</h2>
                                 {/* <p>{room?.nameOfBed}</p> */}
                             </div>
                         </div>

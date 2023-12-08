@@ -1,5 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import { useParams } from 'react-router-dom';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -9,8 +8,8 @@ import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 import publicFacilityAPI from '~/services/apis/publicAPI/publicFacilityAPI';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import { useSnackbar } from 'notistack';
-import './ConvenientSetting.scss';
 import { useState, useEffect } from 'react';
+import './ConvenientSetting.scss';
 
 export default function ConvenientSetting(props) {
     const [expanded, setExpanded] = useState(false);
@@ -73,48 +72,50 @@ export default function ConvenientSetting(props) {
     return (
         <div style={{ fontSize: '15px', paddingRight: '50px', paddingBottom: '50px', fontWeight: '600' }}>
             <h3>Tiện ích</h3>
-            <Accordion onClick={handleChange}>
-                <AccordionSummary
-                    expandIcon={<NavigateNextIcon />}
-                    aria-controls="panel1bh-content"
-                    id="panel1bh-header"
-                >
-                    <p style={{ width: '33%', flexShrink: 0 }}>Tiện ích</p>
-                    <p style={{ color: 'text.secondary' }}>{nameConvenient}</p>
-                </AccordionSummary>
-                {loading ? (
-                    <></>
-                ) : (
-                    <AccordionDetails
+            <form onSubmit={handleSave}>
+                <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+                    <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
-                        className="container__facilityCate"
                     >
-                        {dataListCatagoryConvenient?.map((child, index) => (
-                            <div key={index}>
-                                <ConvenientItem
-                                    data={data}
-                                    setData={setData}
-                                    dataConveni={child.infoFacilityList}
-                                    name={child.faciCateName}
-                                />
-                            </div>
-                        ))}
-                    </AccordionDetails>
-                )}
+                        <p style={{ width: '33%', flexShrink: 0 }}>Tiện ích</p>
+                        <p style={{ color: 'text.secondary' }}>{nameConvenient}</p>
+                    </AccordionSummary>
 
-                <AccordionDetails>
-                    <div className="btn">
-                        <p onClick={handleClose} className="btn-close">
-                            Hủy
-                        </p>
-                        <button type="submit" onClick={handleSave} className="btn-save">
-                            Lưu
-                        </button>
-                    </div>
-                </AccordionDetails>
-            </Accordion>
+                    <>
+                        {loading ? (
+                            <></>
+                        ) : (
+                            <AccordionDetails
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls="panel1bh-content"
+                                id="panel1bh-header"
+                                className="container__facilityCate"
+                            >
+                                {dataListCatagoryConvenient?.map((child, index) => (
+                                    <div key={index}>
+                                        <ConvenientItem
+                                            data={data}
+                                            setData={setData}
+                                            dataConveni={child.infoFacilityList}
+                                            name={child.faciCateName}
+                                        />
+                                    </div>
+                                ))}
+                            </AccordionDetails>
+                        )}
+                    </>
+                    <AccordionDetails>
+                        <div className="btn">
+                            <p onClick={handleClose} className="btn-close">
+                                Hủy
+                            </p>
+                            <button className="btn-save">Lưu</button>
+                        </div>
+                    </AccordionDetails>
+                </Accordion>
+            </form>
         </div>
     );
 }

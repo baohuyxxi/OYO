@@ -10,6 +10,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import './CountRoomDetailSetting.scss';
 
 import { useEffect, useState } from 'react';
+import publicTypeBedAPI from '~/services/apis/publicAPI/typeBed';
 import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import { useSnackbar } from 'notistack';
@@ -20,14 +21,19 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 const CountRoomDetailSetting = (props) => {
     const [numRoom, setNumRoom] = useState(typeRoom);
     const [bedRooms, setBedRooms] = useState([]);
-    const [allBedRoom] = useState(typeBedRoom);
+    const [allBedRoom, setAllBedRoom] = useState(typeBedRoom);
     const [expanded, setExpanded] = useState(false);
     const params = useParams();
     const { enqueueSnackbar } = useSnackbar();
 
     useEffect(() => {
+        publicTypeBedAPI.getAllTypeBed().then(res =>
+            setAllBedRoom(res.data.content))
+    }, []);
+
+    useEffect(() => {
         if (numRoom[0].number > bedRooms.length) {
-            setBedRooms((prevBedRooms) => [...prevBedRooms, 'Giường đơn']);
+            setBedRooms((prevBedRooms) => [...prevBedRooms, 'TYPE_BED_003']);
         } else if (numRoom[0].number === bedRooms.length - 1) {
             setBedRooms((prevBedRooms) => prevBedRooms.slice(0, -1));
         }
@@ -43,7 +49,7 @@ const CountRoomDetailSetting = (props) => {
                     };
                 })
             );
-            setBedRooms(dataRoom?.data.bedRooms);
+            setBedRooms(dataRoom?.data.bedRooms.flatMap(bed => bed.typeBedCode));
         });
     }, [params.idHome]);
 
@@ -58,7 +64,7 @@ const CountRoomDetailSetting = (props) => {
     const handleSaveRoom = (e) => {
         e.preventDefault();
         const newData = {
-            homeId: params?.idHome,
+            id: params?.idHome,
             data: {
                 typeBedCodes: bedRooms,
                 numKitchen: numRoom[1].number,
@@ -120,16 +126,17 @@ const CountRoomDetailSetting = (props) => {
                     >
                         <div className="container__bedroom">
                             {bedRooms?.map((bed, index) => (
+              
                                 <div key={index} className="option__bed">
                                     <p>Phòng ngủ số {index + 1}</p>
                                     <CustomInput
                                         size="small"
-                                        value={bed}
+                                        value={bed|| ''}
                                         onChange={(e) => onChange(e.target.value, index)}
                                         select={true}
-                                        content={allBedRoom.map((option) => (
-                                            <MenuItem key={option.name} value={option.name}>
-                                                {option.name}
+                                        content={allBedRoom.map((option, i) => (
+                                            <MenuItem key={i} value={option.typeBedCode}>
+                                                {option.typeBedName}
                                             </MenuItem>
                                         ))}
                                     />

@@ -7,6 +7,7 @@ const Table = (props) => {
     // initDataShow
     const [dataShow, setDataShow] = useState(initDataShow);
     const [currPage, setCurrPage] = useState(0);
+    const [initNum, setInitNum] = useState(0);
 
     useEffect(() => {
         setDataShow(initDataShow);
@@ -28,6 +29,7 @@ const Table = (props) => {
         const end = start + Number(props.limit);
         setDataShow(props.bodyData.slice(start, end));
         setCurrPage(page);
+        setInitNum(page * Number(props.limit));
     };
     return (
         <div>
@@ -39,7 +41,7 @@ const Table = (props) => {
                         </thead>
                     ) : null}
                     {props?.bodyData && props?.renderBody && dataShow.length !== 0 ? (
-                        <tbody>{dataShow?.map((item, index) => props.renderBody(item, index))}</tbody>
+                        <tbody>{dataShow?.map((item, index) => props.renderBody(item, index, initNum))}</tbody>
                     ) : (
                         <tbody>
                             <tr>

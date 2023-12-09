@@ -41,6 +41,15 @@ const Auth = () => {
     return (
         <Routes>
             <Route
+                path="/active-account"
+                element={
+                    <Suspense>
+                        <HomePage />
+                    </Suspense>
+                }
+            />
+
+            <Route
                 path="/"
                 element={
                     <Suspense>

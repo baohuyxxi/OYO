@@ -12,10 +12,10 @@ export const typeRoom = [
 ];
 
 export const typeBedRoom = [
-    { name: 'Giường đơn', key: 'G1', number: 0 },
-    { name: 'Giường đôi', key: 'G2', number: 0 },
-    { name: 'Giường Queen', key: 'G3', number: 0 },
-    { name: 'Giường King', key: 'G4', number: 0 },
-    { name: 'Nệm', key: 'G5', number: 0 }
+    { name: 'Giường đơn', typeBedCode: 'G1', number: 0 },
+    { name: 'Giường đôi', typeBedCode: 'G2', number: 0 },
+    { name: 'Giường Queen', typeBedCode: 'G3', number: 0 },
+    { name: 'Giường King', typeBedCode: 'G4', number: 0 },
+    { name: 'Nệm', typeBedCode: 'G5', number: 0 }
 ];
 

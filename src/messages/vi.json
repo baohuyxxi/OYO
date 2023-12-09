@@ -62,9 +62,14 @@
     "passwordMaxError": "Mật khẩu chỉ giới hạn 16 kí tự",
     "fullnameRequire": "Họ tên được yêu cầu",
     "passwordSpecialError": "Mật khẩu phải bao gồm chữ thường và kí tự in hoa, ít nhất 1 kí tự đặt biệt và 1 con số",
-    "passwordMinError": "Mật khẩu phải ít từ 6 kí tự ",
+    "passwordMinError": "Mật khẩu phải ít từ 8 kí tự ",
     "passwordConfirmRequire": "Mật khẩu xác nhận được yêu cầu",
-    "passwordConfirmError": "Xác nhận mật khẩu không khớp với mật khẩu của bạn"
+    "passwordConfirmError": "Xác nhận mật khẩu không khớp với mật khẩu của bạn",
+    "passwordUpperCaseError": "Mật khẩu phải có ít nhất 1 chữ cái viết hoa",
+    "passwordLowerCaseError": "Mật khẩu phải có ít nhất 1 chữ cái thường",
+    "passwordNumberError": "Mật khẩu phải có ít nhất 1 số",
+    "passwordSpecialCharError": "Mật khẩu phải có ít nhất 1 kí tự đặc biệt"
+
   },
   "contentMess": {
     "messOTP_1": "Để bảo mật thông tin, chúng tôi cần bạn xác thực tài khoản. Chúng tôi đã gửi cho bạn mã OTP xác thực qua gmail ",

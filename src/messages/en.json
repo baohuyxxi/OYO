@@ -60,9 +60,13 @@
     "passwordMaxError": "Password is limited to 16 characters",
     "fullnameRequire": "Fullname is required",
     "passwordSpecialError": "Password must contain lowercase and uppercase letters, at least 1 special character and 1 number",
-    "passwordMinError": "Password must be at least 6 characters ",
+    "passwordMinError": "Password must be at least 8 characters ",
     "passwordConfirmRequire": "Confirmation password is required",
-    "passwordConfirmError": "Confirm password does not match your password"
+    "passwordConfirmError": "Confirm password does not match your password",
+    "passwordUpperCaseError": "Password must have at least 1 uppercase letter",
+    "passwordLowerCaseError": "Password must have at least 1 lowercase letter",
+    "passwordNumberError": "Password must have at least 1 number",
+    "passwordSpecialCharError": "Password must have at least 1 special character"
   },
   "contentMess": {
     "messOTP_1": "To keep your information secure, we need you to authenticate your account. We have sent you a verification OTP via gmail ",

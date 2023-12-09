@@ -26,19 +26,24 @@ export default function EditAccount() {
             setUser(updatedUser);
         }
     }, [userCurrent]);
-
-    const handleUser = (event) => {
-        setUser({ ...user, [event.target.name]: event.target.value });
-        setSubmit(true);
-    };
-    const handleSave = async (event) => {
+    useEffect(() => {
         if (user.birthday && user.monthOfBirth && user.yearOfBirth) {
-            const dateOfBirth = new Date( `${user.birthday}/${user.monthOfBirth}/${user.yearOfBirth}`).toLocaleDateString('en-GB');
+            const dateOfBirth = new Date(
+                `${user.birthday}/${user.monthOfBirth}/${user.yearOfBirth}`
+            ).toLocaleDateString('en-GB');
+            console.log(dateOfBirth);
             setUser({
                 ...user,
                 dateOfBirth: dateOfBirth
             });
         }
+    }, [user.birthday, user.monthOfBirth, user.yearOfBirth]);
+    const handleUser = (event) => {
+        setUser({ ...user, [event.target.name]: event.target.value });
+        setSubmit(true);
+    };
+
+    const handleSave = async (event) => {
         event.preventDefault();
         const res = await authAPI.updateInfoRequest(user);
         if (res.statusCode === 200) {

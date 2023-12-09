@@ -65,6 +65,7 @@ export default function RoomDetail() {
                 setDisBooking(false);
                 setSurcharge(response.data.costSurcharge);
                 setTotalBill(response?.data?.totalBill);
+                console.log(response)
             } else {
                 setDisBooking(true);
             }

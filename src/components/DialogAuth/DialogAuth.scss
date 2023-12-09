@@ -1,81 +1,101 @@
-.form-dialog{
+.form-dialog {
     width: 475px;
     align-items: center;
-    .form-button{
-      font-weight: bold;
-      height: 45px;
-      border-radius: 6px;
-      font-size: 16px;
-      line-height: 48px;
-      padding: 0 16px;
-      font-weight: 600;
-      color: #fff;
-      text-align: center;
+    .form-button {
+        font-weight: bold;
+        height: 45px;
+        border-radius: 6px;
+        font-size: 16px;
+        line-height: 48px;
+        padding: 0 16px;
+        font-weight: 600;
+        color: #fff;
+        text-align: center;
     }
-    .form-button:disabled{
-      color: var(--disabled-cl);
-      background-color: var(--disabled-br);
+    .form-button:disabled {
+        color: var(--disabled-cl);
+        background-color: var(--disabled-br);
     }
-    .login{
-      background-color: #1877f2;
-      color: #fff;
+    .login {
+        background-color: #1877f2;
+        color: #fff;
     }
-    .to-register{
-      background-color:#FF5E1F;
-      color: #fff;
+    .to-register {
+        background-color: #ff5e1f;
+        color: #fff;
     }
-    .to-register:hover{
-      background-color:#DF440F;
+    .to-register:hover {
+        background-color: #df440f;
     }
-    .continue{
-      color: #fff;
+    .continue {
+        color: #fff;
     }
-    .register{
-      margin-top: 15px;
-      margin-bottom: 20px;
-      background-color:#4ff036;
-      color: #fff;
+    .register {
+        margin-top: 15px;
+        margin-bottom: 20px;
+        background-color: #4ff036;
+        color: #fff;
     }
-    .register:hover{
-      background-color:#45C846;
+    .register:hover {
+        background-color: #45c846;
     }
     // #42b72a
-    .google{
-      color: #438ced;
-      background-color: rgb(251, 251, 251);
+    .google {
+        color: #438ced;
+        background-color: rgb(251, 251, 251);
     }
-  
-    .form-element{
-      border-radius: 5%;  
-      padding-bottom: 10px;
-      font-size: 15px;
-    }
-    .forgotpassword{
 
+    .form-element {
+        border-radius: 5%;
+        padding-bottom: 10px;
+        font-size: 15px;
     }
-    h5{
-      color:rgb(231, 9, 14);
-      margin-top: 0;
+    .btn-forgotpassword {
+        margin-top: 15px;
+        margin-bottom: 20px;
+        background-color: var(--primary-main);
+        color: #fff;
     }
-    h4{
-      text-align: center;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: smaller;
+    .btn-forgotpassword:hover {
+        background-color: var(--second-color);
     }
-    header{
-      font-weight: bold;
-      font-size: x-large;
+    h5 {
+        color: rgb(231, 9, 14);
+        margin-top: 0;
     }
-    
+    h4 {
+        text-align: center;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: smaller;
+    }
+    header {
+        font-weight: bold;
+        font-size: x-large;
+    }
+
     .centered-line {
-      flex: 1;
-      border-bottom: 1px solid ; /* Màu của đường gạch ngang */
-      margin: 0 10px; /* Khoảng cách giữa đường gạch và chữ */
+        flex: 1;
+        border-bottom: 1px solid; /* Màu của đường gạch ngang */
+        margin: 0 10px; /* Khoảng cách giữa đường gạch và chữ */
     }
-    .policy{
-      font-size: small;
+    .policy {
+        font-size: small;
     }
-  }
+    .wrapper {
+        display: flex;
+        justify-content: center;
+        canvas {
+            border: 1px solid var(--divider);
+            border-radius: 3px;
+            width: 250px;
+            height: 80px;
+        }
+        .btn-reload {
+            justify-content: center;
+            border-radius: 50%;
+        }
+    }
+}

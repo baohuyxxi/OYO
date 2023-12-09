@@ -23,6 +23,7 @@ const authAPI = {
       return res.data;
   },
   updateInfoRequest: async (data) => {
+    console.log(data)
       const res = await axios.put("general/update-info", data, {
         data: { mail: data.mail },
       });
@@ -33,7 +34,11 @@ const authAPI = {
       formData.append("file", data);
       const res = await axios.put("general/update-avatar", formData);
       return res.data;
-  }
+  },
+  resetPassword: async (data) => {
+    const res = await axios.post(`/auth/reset-password?mail=${data}`);
+    return res.data;
+},
 }
 
 export default authAPI;

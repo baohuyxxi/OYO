@@ -22,8 +22,10 @@ import './ForgotPassword.scss';
 function ForgotPassword(props) {
     const [captchaText, setCaptchaText] = useState('');
     const [userInput, setUserInput] = useState('');
+    const [errors, setErrors] = useState(null);
     const canvasRef = useRef(null);
     const [loading, setLoading] = useState(false);
+    const { enqueueSnackbar } = useSnackbar();
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -35,10 +37,9 @@ function ForgotPassword(props) {
 
     const generateCaptchaText = () => {
         let captcha = '';
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 2; i++) {
             captcha += generateRandomChar(65, 90);
             captcha += generateRandomChar(97, 122);
-            captcha += generateRandomChar(48, 57);
         }
         return captcha
             .split('')
@@ -52,13 +53,11 @@ function ForgotPassword(props) {
         const letterSpace = 150 / captcha.length;
         for (let i = 0; i < captcha.length; i++) {
             const xInitialSpace = 25;
-            ctx.font = '20px Roboto Mono';
+            ctx.font = '40px Roboto Mono';
             ctx.fillStyle = textColors[Math.floor(Math.random() * 2)];
             ctx.fillText(
                 captcha[i],
                 xInitialSpace + i * letterSpace,
-
-                // Randomize Y position slightly
                 Math.floor(Math.random() * 16 + 25),
                 100
             );
@@ -66,6 +65,7 @@ function ForgotPassword(props) {
     };
 
     const initializeCaptcha = (ctx) => {
+        setErrors(null)
         setUserInput('');
         const newCaptcha = generateCaptchaText();
         setCaptchaText(newCaptcha);
@@ -76,14 +76,22 @@ function ForgotPassword(props) {
         setUserInput(e.target.value);
     };
 
-    const handleCaptchaSubmit = () => {
+    const handleCaptchaSubmit = async() => {
         if (userInput === captchaText) {
-            alert('Success');
+            setLoading(true)
+            await authAPI.resetPassword(props.email).then(res =>
+                {
+                    enqueueSnackbar(t('message.changePassword'), { variant: 'success' });
+                    setLoading(false)
+                    props.handleClose();
+                }).catch(err =>{
+                    console.log(err)
+                })
         } else {
-            alert('Incorrect');
             const canvas = canvasRef.current;
             const ctx = canvas.getContext('2d');
             initializeCaptcha(ctx);
+            setErrors("Capcha sai, vui lòng nhập lại")
         }
     };
     const handleSubmit= async (e)=>{
@@ -102,33 +110,33 @@ function ForgotPassword(props) {
                         size="small"
                         // onChange={handleChange}
                         InputProps={{
-                            startAdornment: <CheckCircleRoundedIcon style={{ color: '#00ff00' }} />
+                            startAdornment: <CheckCircleRoundedIcon style={{ color: 'var(--primary-main)' }} />
                         }}
                     />
                 </div>
 
-                <div className="container">
+                <div className="form-element">
                     <div className="wrapper">
-                        <canvas ref={canvasRef} width="200" height="70"></canvas>
-                        <button
-                            id="reload-button"
+                        <canvas ref={canvasRef}></canvas>
+                        <Button
+                            className='btn-reload'
                             onClick={() => initializeCaptcha(canvasRef.current.getContext('2d'))}
                         >
-                            Reload
-                        </button>
+                            {t('common.reload')}
+                        </Button>
                     </div>
-                    <input
+                    {errors && <h5>{errors}</h5>}
+                    <CustomInput
                         type="text"
-                        id="user-input"
                         className='user-input'
-                        placeholder="Enter the text in the image"
+                        title="Enter the text in the image"
                         value={userInput}
                         onChange={handleUserInputChange}
                     />
 
-                    <button id="submit-button" className='submit-button ' onClick={handleCaptchaSubmit}>
-                        Submit
-                    </button>
+                    <Button  className='form-button btn-forgotpassword' fullWidth  onClick={handleCaptchaSubmit}>
+                       {t('common.retrievalPassword')}
+                    </Button>
                 </div>
             </Box>
             <LoadingDialog open={loading} />

@@ -27,7 +27,9 @@
     "cancel": "Cancel",
     "publicAvatar":"Your profile picture will be displayed publicly",
     "contactUs": "Contact us",
-    "send": "Send"
+    "send": "Send",
+    "reload": "Reload", 
+    "enterCapcha" :"Enter the text in the image"
   },
   "message": {
     "signin": "Sign in successfully",

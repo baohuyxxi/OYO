@@ -27,7 +27,9 @@
     "cancel": "Hủy",
     "publicAvatar":"Ảnh đại diện của bạn sẽ được hiển thị công khai",
     "contactUs": "Liên hệ chúng tôi",
-    "send": "Gửi"
+    "send": "Gửi",
+    "reload": "Làm mới", 
+    "enterCapcha" :"Nhập nội dung trong hình"
   },
   "message": {
     "signin": "Đăng nhập thành công",

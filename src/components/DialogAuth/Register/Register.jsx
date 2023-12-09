@@ -1,4 +1,4 @@
-import * as React from 'react';
+
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
@@ -11,7 +11,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import CustomInput from '~/assets/custom/CustomInput';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import authAPI from '~/services/apis/authAPI/authAPI';
-import LoadingDialog from '../LoadingDialog/LoadingDialog';
+import LoadingDialog from '~/components/LoadingDialog/LoadingDialog';
 import { useDispatch, useSelector } from 'react-redux';
 import { RegisterRequest } from '~/share/models/auth';
 import { useSnackbar } from 'notistack';
@@ -19,47 +19,20 @@ import { t } from 'i18next';
 
 export default function Register(props) {
     const [register, setRegister] = useState(RegisterRequest);
-    const [loading, setLoading] = useState(false)
-    const dispatch = useDispatch();
+    const [loading, setLoading] = useState(false);
+    const [errors, setErrors] = useState({});
+    const [showPassword, setShowPassword] = useState(false);
+    const [formValid, setformValid] = useState(false);
     const { enqueueSnackbar } = useSnackbar();
-    const handleRegister = async (event) => {
-        event.preventDefault();
-        setErrors(validate(register));
-        if (Object.keys(errors).length === 0) {
-            try {
-                setLoading(true)
-                const registerUser = await authAPI.registerRequest(register);
-             
-                if (registerUser.status === 200) {
-                    enqueueSnackbar('Đăng ký thành công, vui lòng xác thực tài khoản', {
-                        variant: 'success'
-                    });
-                   
-                    props.handleClose();
-                    document.location = '/';
-                } else if (registerUser.status === 400) {
-                    setError(t('message.accountExist'));
-                    enqueueSnackbar(t('message.accountExist'), { variant: 'error' });
-                    props.handleClose();
-                }
-            } catch (error) {
-                console.error('Lỗi trong quá trình đăng ký: ', error);
-                props.handleClose();
-            }
-            setLoading(false)
-        }
-    };
-
     const handleChange = (event) => {
         setRegister({ ...register, [event.target.name]: event.target.value });
     };
-    const [error, setError] = useState('');
-    const [errors, setErrors] = useState({});
-    const [showPassword, setShowPassword] = useState(false);
     const handleTogglePassword = () => {
         setShowPassword(!showPassword);
     };
-    const [formValid, setformValid] = useState(false);
+    useEffect(() => {
+        setRegister({ ...register, email: props.email });
+    }, [props.email]);
     useEffect(() => {
         if (register.password.length < 8 || !register.firstName || !register.lastName) {
             setformValid(false);
@@ -68,10 +41,32 @@ export default function Register(props) {
         }
     }, [register]);
 
-    useEffect(() => {
-        setRegister({ ...register, email: props.email });
-    }, [props.email]);
-
+    const handleRegister = async (event) => {
+        event.preventDefault();
+        const check = validate(register);
+        if (Object.keys(check).length === 0) {
+            setLoading(true);
+            await authAPI
+                .registerRequest(register)
+                .then((res) => {
+                    if (res.statusCode === 200) {
+                        enqueueSnackbar('Đăng ký thành công, vui lòng xác thực tài khoản', {
+                            variant: 'success'
+                        });
+                        setLoading(false);
+                        props.handleClose();
+                    } else if (res.statusCode === 400) {
+                        enqueueSnackbar(t('message.accountExist'), { variant: 'error' });
+                    }
+                })
+                .catch((error) => {
+                    console.error('Lỗi trong quá trình đăng ký: ', error);
+                    setLoading(false);
+                });
+        } else {
+            setErrors(check);
+        }
+    };
     return (
         <Container component="main" maxWidth="xs">
             <Box component="form" onSubmit={handleRegister} noValidate sx={{ mt: 1 }}>
@@ -83,7 +78,6 @@ export default function Register(props) {
                         name="email"
                         id="email"
                         size="small"
-                        onChange={handleChange}
                         InputProps={{
                             startAdornment: <CheckCircleRoundedIcon style={{ color: '#00ff00' }} />
                         }}
@@ -146,7 +140,7 @@ export default function Register(props) {
                     {t('title.signup')}
                 </Button>
             </Box>
-            <LoadingDialog open={loading}/>
+            <LoadingDialog open={loading} />
         </Container>
     );
 }

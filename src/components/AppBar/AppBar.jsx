@@ -15,17 +15,12 @@ import Button from '@mui/material/Button';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import SignInSignUp from '../SignIn-SignUp/SignIn-SignUp';
 import MailNotification from '../MailNotification/MailNotification';
+import DialogAuth from '../DialogAuth/DialogAuth';
 import { t } from 'i18next';
 import './AppBar.scss';
 
 export default function NavBar() {
     const [open, setOpen] = useState(false);
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-    const handleClose = () => {
-        setOpen(false);
-    };
     const user = useSelector((state) => state.user.current);
 
     return (
@@ -48,7 +43,7 @@ export default function NavBar() {
                 </div>
 
                 {user === null ? (
-                    <Button className="element" onClick={handleClickOpen} startIcon={<AccountCircle />}>
+                    <Button className="element" onClick={e=>setOpen(true)} startIcon={<AccountCircle />}>
                         {t('title.signin')}/{t('title.signup')}
                     </Button>
                 ) : (
@@ -60,11 +55,9 @@ export default function NavBar() {
                     </>
                 )}
                 {open && (
-                    <SignInSignUp
-                        value={1}
-                        title={t('title.signin') + '/' + t('title.signup')}
+                    <DialogAuth
                         open={open}
-                        onClose={handleClose}
+                        setOpen= {setOpen}
                     />
                 )}
             </Toolbar>

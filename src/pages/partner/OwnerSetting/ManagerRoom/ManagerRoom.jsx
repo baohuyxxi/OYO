@@ -12,6 +12,7 @@ import { useParams } from 'react-router-dom';
 import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import ValuationDiscountSetting from '~/components/HostSetting/ValuationDiscountSetting/ValuationDiscount';
+import PriceDiscountSurchagre from '~/components/HostSetting/PriceDiscountSurchagre/PriceDiscountSurchagre';
 
 const infoLink = {
     name: 'Chi tiết nhà cho thuê',
@@ -33,7 +34,7 @@ const ManagerRoom = () => {
 
     const detailPriceRoom = {
         pricePerNight: dataHomeDetail?.pricePerNight,
-        discounts: dataHomeDetail?.discounts ? dataHomeDetail?.discounts : [],
+        discount: dataHomeDetail?.discount ? dataHomeDetail?.discount : 10,
         surchargeList: dataHomeDetail?.surchargeList ? dataHomeDetail?.surchargeList : []
     };
 
@@ -77,13 +78,13 @@ const ManagerRoom = () => {
             id: '#section5',
             to: 'section5',
             info: 'Tiện nghi',
-            comp: <ConvenientSetting convent={dataHomeDetail?.facilityCategoryList} />
+            comp: <ConvenientSetting convent={dataHomeDetail?.facilityCategoryList} locationRoom={locationRoom}  />
         },
         {
             id: '#section6',
             to: 'section6',
             info: 'Định giá và phụ phí',
-            comp: <ValuationDiscountSetting detailPriceRoom={detailPriceRoom} />
+            comp: <PriceDiscountSurchagre detailPriceRoom={detailPriceRoom} />
         }
     ];
 

@@ -9,6 +9,7 @@ const CountRoomSetting = (props) => {
     const navigate = useNavigate();
     const [allCate, setAllCate] = useState([]);
     const [accomCate, setAccomCate] = useState();
+    
     useEffect(() => {
         setAccomCate(props.accomCateName);
         publicAccomPlaceAPI.getAllAccomCategoryInfo().then((res) => {
@@ -30,7 +31,7 @@ const CountRoomSetting = (props) => {
                 <p>Loại chỗ ở</p>
                 <CustomInput
                     select={true}
-                    value={accomCate || null}
+                    value={accomCate || ''}
                     width={500}
                     onChange={(e) => setAccomCate(e.target.value)}
                     content={allCate.map((option, index) => (

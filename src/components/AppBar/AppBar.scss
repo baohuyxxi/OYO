@@ -47,6 +47,9 @@
           padding-right: 15px;
       }
   }
- 
+  .MuiButton-root {
+    text-transform: none !important;
+    font-family: serif !important;
+  }
 }
 

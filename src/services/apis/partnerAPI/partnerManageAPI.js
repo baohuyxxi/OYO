@@ -29,15 +29,19 @@ const partnerManageAPI = {
         return res.data;
     },
     setSurcharge: async(data) =>{
-        console.log(data)
-        return 0
+        const res = await axios.put(`/partner/accoms/surcharge?accomId=${data.id}`,data.data);
+        return res.data;
     },
     updateAddressHome: async(data) => {
         const res = await axios.put(`/partner/accoms/address?accomId=${data.id}`,data.data);
         return res.data;
     },
      updatePriceHome: async(data) => {
-        const res = await axios.put(`/partner/accoms/change-price?pricePerNight=${data.pricePerNight}&accomId=${data.id}`);
+        const res = await axios.put(`/partner/accoms/change-price?pricePerNight=${data.data}&accomId=${data.id}`);
+        return res.data;
+    },
+    updateDiscount: async(data) => {
+        const res = await axios.put(`/partner/accoms/discount?discount=${data.data}&accomId=${data.id}`);
         return res.data;
     },
     updateRoomHome: async(data) => {
@@ -53,7 +57,8 @@ const partnerManageAPI = {
     updateImagesHome: async(data) =>{
         const res = await axios.put(`partner/accoms/images?accomId=${data.id}`,data.data)
         return res.data
-    }
+    },
+
     
 };
 export default partnerManageAPI;

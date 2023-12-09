@@ -11,7 +11,6 @@ import Visibility from '@mui/icons-material/Visibility';
 import LoadingButton from '@mui/lab/LoadingButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import CustomInput from '~/assets/custom/CustomInput';
-import SignInSignUp from '../SignIn-SignUp/SignIn-SignUp';
 import authAPI from '~/services/apis/authAPI/authAPI';
 import { SigninRequest } from '~/share/models/auth';
 import { validate } from '~/utils/validate';
@@ -31,6 +30,7 @@ export default function SignIn(props) {
     const [showPasswordInput, setShowPasswordInput] = useState(false);
     const [showRegisterButton, setShowRegisterButton] = useState(false);
     const [showLoginButton, setShowLoginButton] = useState(false);
+    const [showForgotPassword, setShowForgotPassword] = useState(false);
     const [showStatusButton, setShowStatusButton] = useState(false);
     const [showLoadingButton, setShowLoadingButton] = useState(false);
     const [showValidEmail, setShowValidEmail] = useState(false);
@@ -40,35 +40,36 @@ export default function SignIn(props) {
     const handleLogin = async (event) => {
         event.preventDefault();
         if (!signin.password) {
-            setErrorPassword('Không được để trống Password');
+            setErrorPassword(t('validate.passwordRequire'));
             return;
         }
-        authAPI
+        await authAPI
             .loginRequest(signin)
             .then((res) => {
+                console.log(res);
                 if (res.statusCode === 200) {
                     dispatch(userSlice.actions.signin(res.data));
                     enqueueSnackbar(t('message.signin'), { variant: 'success' });
                     props.handleClose();
-                } else if (res.statusCode === 408) {
+                } else if (res.statusCode === 202) {
                     enqueueSnackbar('Tài khoản đang chờ xác thực', { variant: 'warning' });
                 }
             })
-            .catch(
-                setErrorPassword('Mật khẩu không đúng'),
-                enqueueSnackbar(t('message.signinError'), { variant: 'error' })
-            );
+            .catch((error) => {
+                setErrorPassword(t('message.signinError'));
+                enqueueSnackbar(t('message.signinError'), { variant: 'error' });
+            });
     };
 
-    const [open, setOpen] = useState(false);
-    const handleRegister = () => {
-        setOpen(true);
-    };
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-    const status = ['PasswordInput', 'RegisterButton', 'LoginButton', 'StatusButton', 'LoadingButton', 'ValidEmail'];
+    const status = [
+        'PasswordInput',
+        'RegisterButton',
+        'LoginButton',
+        'StatusButton',
+        'LoadingButton',
+        'ValidEmail',
+        'ForgotPassword'
+    ];
     const toggleShow = (ShowNames) => {
         status.forEach((statusName) => {
             if (ShowNames.includes(statusName)) {
@@ -91,7 +92,7 @@ export default function SignIn(props) {
                 authAPI
                     .checkAccount(signin)
                     .then(() => {
-                        toggleShow(['PasswordInput', 'LoginButton']);
+                        toggleShow(['PasswordInput', 'LoginButton', 'ForgotPassword']);
                     })
                     .catch(toggleShow(['RegisterButton']));
             }, 2000);
@@ -113,6 +114,15 @@ export default function SignIn(props) {
         setSignin({ ...signin, password: event.target.value });
     };
 
+    const handleRegister = () => {
+        props.setEmail(signin.email);
+        props.setPosition('SignUp');
+    };
+    const handleForgotPassword = () => {
+        props.setEmail(signin.email);
+        props.setPosition('ForgotPassword');
+    };
+
     return (
         <Container component="main" maxWidth="xs" className="form-signin">
             <Box component="form" onSubmit={handleLogin} noValidate sx={{ mt: 1 }}>
@@ -121,7 +131,6 @@ export default function SignIn(props) {
                         title={t('label.email') + '/' + t('label.phone')}
                         id="email"
                         name="email"
-                        autoComplete="email"
                         value={signin.email}
                         onChange={handleEmailChange}
                         placeholder={t('contentMess.accountExample')}
@@ -170,6 +179,13 @@ export default function SignIn(props) {
                         {t('title.signin')}
                     </Button>
                 )}
+                  {showForgotPassword && (
+                    <div className="form-button">
+                        <Button className="forgotpassword" onClick={handleForgotPassword}>
+                            {t('link.forgotpassword')}
+                        </Button>
+                    </div>
+                )}
                 {showRegisterButton && (
                     <Button className="form-button to-register" fullWidth variant="contained" onClick={handleRegister}>
                         {t('title.signup')}
@@ -199,13 +215,6 @@ export default function SignIn(props) {
                         {t('contentPolicy.ofYOY')}
                     </h6>
                 </div>
-                <SignInSignUp
-                    email={signin.email}
-                    value={2}
-                    title={t('title.accountSignUp')}
-                    open={open}
-                    onClose={handleClose}
-                />
             </Box>
         </Container>
     );

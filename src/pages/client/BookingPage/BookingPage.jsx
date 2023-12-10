@@ -69,7 +69,6 @@ const BookingPage = () => {
         setPriceAfterChoosePayment(result);
         dispatch(bookingSlice.actions.addTotalTransfer(result));
     }, [dataBooking.paymentPolicy, dataBooking.paymentMethod, dataBooking.originPay]);
-    console.log(dataBooking)
     return (
         <FramePage>
             <div className="booking__page">

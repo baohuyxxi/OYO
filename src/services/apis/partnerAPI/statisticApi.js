@@ -1,9 +1,39 @@
 import axios from '~/services/axios';
 
 const statisticApi = {
-    getStatisticOfHost: (year) =>{
-        const url = `api/v1/cms/statistic/owner${year}`;
-        return axios.get(url);
+    getStatisticOfHost: async (year) =>{
+        // const url = `api/v1/cms/statistic/owner${year}`;
+        // return axios.get(url);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        const res ={
+            statusCode: 200,
+            data : {
+                totalNumberOfBooking: 150,
+                totalNumberOfBookingFinish: 120,
+                homeStatistic: [
+                    { homeName: 'Home 1', numberOfBooking: 50 },
+                    { homeName: 'Home 2', numberOfBooking: 70 },
+                    { homeName: 'Home 3', numberOfBooking: 30 },
+                ],
+                revenueStatistics: [
+                    { month: 'Jan', revenue: 2000, amount: 500 },
+                    { month: 'Feb', revenue: 2500, amount: 600 },
+                    { month: 'March', revenue: 1800, amount: 450 },
+                    { month: 'April', revenue: 1800, amount: 700 },
+                    { month: 'May', revenue: 1800, amount: 800 },
+                    { month: 'June', revenue: 1800, amount: 340 },
+                    { month: 'July', revenue: 1800, amount: 300 },
+                    { month: 'August', revenue: 1800, amount: 1000 },
+                    { month: 'September', revenue: 1800, amount: 900 },
+                    { month: 'Oct', revenue: 1800, amount: 700 },
+                    { month: 'Nov', revenue: 1800, amount: 1000 },
+                    { month: 'Dec', revenue: 1800, amount: 1300 },
+
+                ],
+            }
+        }
+        
+        return res
     },
     getStatisticOfAdmin:  (year) =>{
         const url = `api/v1/cms/statistic/admin?year=${year}`;

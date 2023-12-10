@@ -57,9 +57,8 @@ const HistoryBookingPage = () => {
                     <div className="list-booking-history">
                         {dataHistory.length === 0 ? (
                             <div className="paper nodata">
-                               <p>Bạn chưa đặt chỗ</p>
+                                <p>Bạn chưa đặt chỗ</p>
                                 <img src="/src/assets/video/BookingNow.gif" class="color-filter"></img>
-                            
                             </div>
                         ) : (
                             <>
@@ -90,8 +89,10 @@ const HistoryBookingPage = () => {
                                                     history?.numAdult
                                                 }`}</p>
                                                 <div className="date-history__booking">
-                                                    <p>{`${t('label.fromDay')} ${history?.checkIn}`}</p>
-                                                    <p>{`${t('label.toDay')} ${history?.checkOut}`}</p>
+                                                    <p>{`${history?.checkIn} - ${history?.checkOut}`}</p>
+                                                </div>
+                                                <div className="date-history__booking">
+                                                    <p>{`${history?.checkIn} - ${history?.checkOut}`}</p>
                                                 </div>
                                             </div>
                                             <div className="price-history__booking">
@@ -113,9 +114,10 @@ const HistoryBookingPage = () => {
                                                 <PopoverRefundPolicy dataShow={history?.refundPolicy} />
                                             </div> */}
                                                 <div style={{ justifyContent: 'left', width: '130px' }}>
-                                                    {history?.status !== 'WAITING' ? (
+                                                    <p className={history?.status}>{status}</p>
+                                                    {
+                                                        history?.status === 'CHECK_OUT' && (
                                                         <>
-                                                            <p className={history?.status}>{status}</p>
                                                             {history.reviewed === true ? (
                                                                 <div style={{ display: 'flex' }}>
                                                                     <h3 className="reviewed">
@@ -132,7 +134,8 @@ const HistoryBookingPage = () => {
                                                                 </button>
                                                             )}
                                                         </>
-                                                    ) : (
+                                                    )}
+                                                    {history?.status === 'WAITING' && (
                                                         <ModalConfirmDelete idRemove={history.bookingCode} />
                                                     )}
                                                 </div>

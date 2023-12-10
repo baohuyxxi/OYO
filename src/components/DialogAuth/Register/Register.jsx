@@ -11,7 +11,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import CustomInput from '~/assets/custom/CustomInput';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import authAPI from '~/services/apis/authAPI/authAPI';
-import LoadingDialog from '~/components/LoadingDialog/LoadingDialog';
+import globalSlice from '~/redux/globalSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { RegisterRequest } from '~/share/models/auth';
 import { useSnackbar } from 'notistack';
@@ -19,11 +19,11 @@ import { t } from 'i18next';
 
 export default function Register(props) {
     const [register, setRegister] = useState(RegisterRequest);
-    const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState({});
     const [showPassword, setShowPassword] = useState(false);
     const [formValid, setformValid] = useState(false);
     const { enqueueSnackbar } = useSnackbar();
+    const dispatch = useDispatch();
     const handleChange = (event) => {
         setRegister({ ...register, [event.target.name]: event.target.value });
     };
@@ -45,7 +45,7 @@ export default function Register(props) {
         event.preventDefault();
         const check = validate(register);
         if (Object.keys(check).length === 0) {
-            setLoading(true);
+            dispatch(globalSlice.actions.setLoading(true))
             await authAPI
                 .registerRequest(register)
                 .then((res) => {
@@ -53,7 +53,7 @@ export default function Register(props) {
                         enqueueSnackbar('Đăng ký thành công, vui lòng xác thực tài khoản', {
                             variant: 'success'
                         });
-                        setLoading(false);
+                        dispatch(globalSlice.actions.setLoading(false))
                         props.handleClose();
                     } else if (res.statusCode === 400) {
                         enqueueSnackbar(t('message.accountExist'), { variant: 'error' });
@@ -61,7 +61,7 @@ export default function Register(props) {
                 })
                 .catch((error) => {
                     console.error('Lỗi trong quá trình đăng ký: ', error);
-                    setLoading(false);
+                    dispatch(globalSlice.actions.setLoading(false))
                 });
         } else {
             setErrors(check);
@@ -140,7 +140,7 @@ export default function Register(props) {
                     {t('title.signup')}
                 </Button>
             </Box>
-            <LoadingDialog open={loading} />
+         
         </Container>
     );
 }

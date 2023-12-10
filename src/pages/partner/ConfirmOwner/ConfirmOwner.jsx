@@ -9,9 +9,8 @@ import { useSelector } from 'react-redux';
 import formatPrice from '~/utils/formatPrice';
 import { t } from 'i18next';
 
-const ConfirmOwner = () => {
+const ConfirmOwner = (props) => {
     const setupRoomHost = useSelector((state) => state.settingowner.detailRoom);
-
     return (
         <div className="confirm-page">
             <NavLink to="/" className="logo">
@@ -62,7 +61,7 @@ const ConfirmOwner = () => {
                         }}
                     >
                         <div className="img-confirm">
-                                {setupRoomHost.imagesOfHome.map((image, index) => (
+                                {props?.imagesOfHome.map((image, index) => (
                                     <img
                                         key={index}
                                         src={URL.createObjectURL(new Blob([image], { type: 'image/jpeg' }))}

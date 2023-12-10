@@ -1,7 +1,5 @@
 .convenient-room {
-    margin-top: 1rem;
-    margin-left: 1em;
-    display: flex;
+    margin: 30px;
     h1 {
         padding-bottom: 20px;
     }
@@ -12,7 +10,6 @@
         display: flex;
         padding-bottom: 15px;
         margin: 0;
-        width: 40%;
 
         .icon-convenient {
             margin: 0;
@@ -26,10 +23,13 @@
             filter: var(--filter-icon);
         }
         p {
-            text-wrap: nowrap;
+            // text-wrap: nowrap;
             font-size: 17px;
             padding-top: 4px;
             padding-left: 10px;
+            white-space: nowrap; /* Ngăn chặn văn bản từ việc xuống dòng */
+            overflow: hidden; /* Ẩn nội dung dư thừa */
+            text-overflow: ellipsis; /* Hiển thị dấu "..." khi văn bản tràn ra ngoài */
         }
     }
 }

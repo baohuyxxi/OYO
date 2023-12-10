@@ -36,7 +36,7 @@ const StepperTwo = (props) => {
                             select={true}
                             size="small"
                             id="cateName"
-                            value={props.accomCateName}
+                            value=""
                             onChange={(event) => {
                                 props.setAccomCate(event.target.value.accomCateName);
                             }}
@@ -53,7 +53,7 @@ const StepperTwo = (props) => {
                             <CountNumberGuest setCountGuest={props.setCountGuest} />
                         </div>
                         {props.dataStep2?.map((room, index) => (
-                            console.log(props.dataStep2),
+    
                             <div key={index}>
                                 <div className="count ">
                                     <p>{room.name}</p>

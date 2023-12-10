@@ -46,7 +46,6 @@ export default function SignIn(props) {
         await authAPI
             .loginRequest(signin)
             .then((res) => {
-                console.log(res);
                 if (res.statusCode === 200) {
                     dispatch(userSlice.actions.signin(res.data));
                     enqueueSnackbar(t('message.signin'), { variant: 'success' });

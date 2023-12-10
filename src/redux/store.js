@@ -6,6 +6,7 @@ import userSlice from './userSlice';
 import bookingSlice from '../pages/client/BookingPage/bookingSlice';
 import setupOwnerSlice from '../pages/partner/SetupOwner/setupOwnerSlice';
 import notificationSlice from './notificationSlice';
+import globalSlice from './globalSlice';
 // Tạo Redux store với các reducers đã chỉ định
 
 const persistConfig = {
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
     user: userSlice.reducer,
     booking: bookingSlice.reducer,
     settingowner: setupOwnerSlice.reducer,
-    notification: notificationSlice.reducer
+    notification: notificationSlice.reducer,
+    global: globalSlice.reducer
     //user: persistReducer(userPersistConfig, userReducer),
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);

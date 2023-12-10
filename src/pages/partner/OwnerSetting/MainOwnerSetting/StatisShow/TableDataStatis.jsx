@@ -18,9 +18,9 @@ const TableDataStatis = (props) => {
     });
 
     useEffect(() => {
-        statisticApi.getStatisticOfAdminForOwnerByMonth(dateStatistic).then((dataRes) => {
-            setDataStatisticMonth(dataRes.data.content);
-        });
+        // statisticApi.getStatisticOfAdminForOwnerByMonth(dateStatistic).then((dataRes) => {
+        //     setDataStatisticMonth(dataRes.data.content);
+        // });
     }, [dateStatistic, props.reCall]);
 
     const rows = [];

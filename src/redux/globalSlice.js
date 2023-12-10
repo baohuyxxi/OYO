@@ -5,7 +5,8 @@ const globalSlice = createSlice({
     initialState: {
         mode: '',
         color: '',
-        language: 'vi'
+        language: 'vi',
+        loading: false
     },
     reducers: {
         setMode: (state, action) => {
@@ -13,6 +14,9 @@ const globalSlice = createSlice({
                 ...state,
                 mode: action.payload
             }
+        },
+        setLoading:(state, action) =>{
+            state.loading = action.payload
         },
 
         setColor: (state, action) => {

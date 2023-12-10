@@ -31,7 +31,6 @@ export default function EditAccount() {
             const dateOfBirth = new Date(
                 `${user.birthday}/${user.monthOfBirth}/${user.yearOfBirth}`
             ).toLocaleDateString('en-GB');
-            console.log(dateOfBirth);
             setUser({
                 ...user,
                 dateOfBirth: dateOfBirth

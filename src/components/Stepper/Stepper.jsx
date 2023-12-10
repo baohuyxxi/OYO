@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Stepper from '@mui/material/Stepper';
-
+import uploadMedia from '~/services/apis/media/uploadMedia';
 import userSlice from '~/redux/userSlice';
 
 import ConfirmOwner from '~/pages/partner/ConfirmOwner/ConfirmOwner';
@@ -58,8 +58,6 @@ export default function StepperComponent() {
     const [dataStep3, setDataStep3] = useState([]);
     const [dataStep4, setDataStep4] = useState([]);
 
-    const setDataStep4URL = [];
-    const [checkImage, setCheckImage] = useState(false);
 
     const [dataStep5, setDataStep5] = useState('');
 
@@ -108,26 +106,14 @@ export default function StepperComponent() {
             dispatch(setupOwnerSlice.actions.addamenitiesOfHomeRoom(dataIdList));
             setActiveStep((prevActiveStep) => prevActiveStep + 1);
         } else if (activeStep === 3) {
-            setActiveStep((prevActiveStep) => prevActiveStep + 1);
             if (dataStep4.length < 5) {
                 enqueueSnackbar(t('message.maxImage'), {
                     anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
                     variant: 'warning'
                 });
-            } else if (dataStep4.length > 5) {
-                enqueueSnackbar(t('message.fullImage'), {
-                    anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
-                    variant: 'warning'
-                });
             } else {
-                if (!checkImage) {
-                    enqueueSnackbar(t('message.uploadImagePlease'), {
-                        anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
-                        variant: 'warning'
-                    });
-                } else {
-                    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-                }
+                dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(dataStep4));
+                setActiveStep((prevActiveStep) => prevActiveStep + 1);
             }
         } else if (activeStep === 4) {
             if (
@@ -162,25 +148,11 @@ export default function StepperComponent() {
         setDataStep5(value);
     };
 
-    const handleUpload = async () => {
-        if (dataStep4.length >= 0) {
-            dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(dataStep4));
-        } else if (dataStep4.length < 5) {
-            enqueueSnackbar(t('message.maxImage'), {
-                anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
-                variant: 'warning'
-            });
-        } else {
-            enqueueSnackbar(t('message.fullImage'), {
-                anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
-                variant: 'warning'
-            });
-        }
-    };
-
     const handlePostRoom = (e) => {
         e.preventDefault();
-        partnerManageAPI.createHomeDetailByHost(setupRoomHost)
+        setLoad(true);
+        partnerManageAPI
+            .createHomeDetailByHost(setupRoomHost)
             .then((dataResponse) => {
                 enqueueSnackbar(t('message.postHomeSuccess'), {
                     anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
@@ -190,6 +162,7 @@ export default function StepperComponent() {
                 partnerManageAPI.addImageHomeByHost({ imageList: dataStep4, id: id });
                 // dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(dataResponse.data.thumbnail));
                 // dispatch(userSlice.actions.updateHost());
+                setLoad(false);
                 navigate('/congratulation');
             })
             .catch((error) => {
@@ -197,6 +170,7 @@ export default function StepperComponent() {
                     anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
                     variant: 'error'
                 });
+                setLoad(false);
             });
     };
 
@@ -228,7 +202,7 @@ export default function StepperComponent() {
             </Stepper>
             {activeStep === steps.length ? (
                 <React.Fragment>
-                    <ConfirmOwner />
+                    <ConfirmOwner imagesOfHome={dataStep4}/>
                     <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2, marginRight: '40px' }}>
                         <Box sx={{ flex: '1 1 auto' }} />
                         <Button onClick={handlePostRoom}>Đăng lên</Button>
@@ -269,17 +243,6 @@ export default function StepperComponent() {
                             Back
                         </Button>
                         <Box sx={{ flex: '1 1 auto' }} />
-
-                        {activeStep === 3 && (
-                            <LoadingButton
-                                variant="contained"
-                                loading={load}
-                                onClick={handleUpload}
-                                style={{ marginRight: '10px', textAlign: 'center' }}
-                            >
-                                {t('common.uploadImage')}
-                            </LoadingButton>
-                        )}
                         <Button onClick={handleNext}>{activeStep === steps.length - 1 ? 'Finish' : 'Next'}</Button>
                     </Box>
                 </React.Fragment>

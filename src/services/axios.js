@@ -6,9 +6,9 @@ const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const instance = axios.create({
     baseURL: 'http://localhost:8080/api/v1',
-    timeout: 10000,
+    timeout: 20000,
     validateStatus: function (status) {
-        return (status >= 200 && status < 400 )  
+        return status >= 200 && status < 400;
     }
 });
 instance.interceptors.request.use(
@@ -33,25 +33,25 @@ instance.interceptors.response.use(
             const refreshToken = getRefreshToken();
             if (refreshToken) {
                 try {
-                    const response = await axios.post('http://localhost:8080/api/v1/auth/refresh-token', {
-                        refreshToken: refreshToken
-                    });
-                    if (response.data?.statusCode ===200) {
-                        const acessToken = response.data.data.accessToken;
-                        updateToken(acessToken);
-                        originalConfig.headers['Authorization'] = `Bearer ${acessToken}`;
-                        return axios(originalConfig);
-                    } else {
-                        console.error('Refresh token response is missing accessToken', response);
-                        return Promise.reject(error);
-                    }
-                } catch (refreshError) {
-                    localStorage.removeItem('accessToken')
-                    localStorage.removeItem('refreshToken')
-                    localStorage.removeItem('persist:root')
-                    window.location.reload()
-                    console.error('Refresh token failed', refreshError);
-                    return Promise.reject(refreshError);
+                    let newAccessToken;
+                    await axios
+                        .post('http://localhost:8080/api/v1/auth/refresh-token', { refreshToken: refreshToken })
+                        .then((res) => {
+                            updateToken(res.data.data.accessToken);
+                            newAccessToken = res.data.data.accessToken;
+                        })
+                        .catch((err) => {
+                            localStorage.removeItem('accessToken');
+                            localStorage.removeItem('refreshToken');
+                            localStorage.removeItem('persist:root');
+                            window.location.reload();
+                        });
+                    originalConfig.headers['Authorization'] = `Bearer ${newAccessToken}`;
+                    return axios(originalConfig);
+                } catch {
+                    (err) => {
+                        return Promise.reject(err);
+                    };
                 }
             }
         }

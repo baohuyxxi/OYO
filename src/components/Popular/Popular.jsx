@@ -29,7 +29,7 @@ const Popular = () => {
     }, []);
 
     const handleLinkToProvince = (province) => {
-        navigate(`list-room?provinceCode=${province.codename}&`);
+        navigate(`list-accom?provinceCode=${province.codename}&`);
     };
 
     return (

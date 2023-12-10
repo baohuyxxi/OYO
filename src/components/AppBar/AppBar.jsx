@@ -41,6 +41,12 @@ export default function NavBar() {
                 <div className="element">
                     <NavLink to="/host">{t('navbar.host')}</NavLink>
                 </div>
+                <div className="element">
+                    <NavLink to="/list-accom">{t('navbar.listroom')}</NavLink>
+                </div>
+                <div className="element">
+                    <NavLink to="/wishlists">{t('navbar.listLove')}</NavLink>
+                </div>
 
                 {user === null ? (
                     <Button className="element" onClick={e=>setOpen(true)} startIcon={<AccountCircle />}>

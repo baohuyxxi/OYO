@@ -238,7 +238,7 @@
                     text-align: center;
                     border-bottom-right-radius: 5px;
                     border-bottom-left-radius: 5px;
-                     .dropdown-btn {
+                    .dropdown-btn {
                         svg {
                         }
                     }
@@ -308,7 +308,7 @@
             display: flex;
             justify-content: center;
             margin-top: 10px;
-            padding-bottom: 20px;
+            padding-bottom: 5px;
 
             .btn-booking-room {
                 padding: 8px 28px;
@@ -325,6 +325,23 @@
             .btn-booking-room:disabled {
                 background-color: var(--disabled-br);
                 color: var(--disabled-cl);
+            }
+        }
+        .btn-love {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding-bottom: 10px;
+            .btn-love-room {
+                padding: 8px 28px;
+                cursor: pointer;
+                border: none;
+                background-color: var(--main-color-blue);
+                color: white;
+                border-radius: 5px;
+            }
+            .btn-love-room:hover{
+                background-color: var(--second-color-blue);
             }
         }
     }

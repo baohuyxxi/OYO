@@ -45,12 +45,12 @@ const partnerManageAPI = {
         return res.data;
     },
     updateRoomHome: async(data) => {
-        console.log(data)
+
         const res = await axios.put(`/partner/accoms/room?accomId=${data.id}`,data.data);
         return res.data;
     },
     updateFacility: async(data) => {
-        console.log(data)
+
         const res = await axios.put(`/partner/accoms/facility?accomId=${data.id}`,data.data);
         return res.data;
     },

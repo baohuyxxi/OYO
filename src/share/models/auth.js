@@ -23,4 +23,5 @@ export const ChangePassword = {
   email: "",
   oldPassword: "",
   newPassword: "",
+  enterNewPassword: ""
 };

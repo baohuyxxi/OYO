@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Rating } from '@mui/material';
 import uploadMedia from '~/services/apis/media/uploadMedia';
 import bookingAPI from '~/services/apis/clientAPI/clientBookingAPI';
+import { useDispatch } from 'react-redux';
+import globalSlice from '~/redux/globalSlice';
 import './FormEvaluate.scss';
 
 const FormEvaluate = (props) => {
@@ -16,6 +18,7 @@ const FormEvaluate = (props) => {
     const [content, setContent] = useState('');
     const [valueReview, setValueReview] = useState(5);
     const [selectedImages, setSelectedImages] = useState([]);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const { enqueueSnackbar } = useSnackbar();
@@ -34,24 +37,34 @@ const FormEvaluate = (props) => {
     const submitFormHandler = async (event) => {
         event.preventDefault();
         if (selectedImages.length > 0) {
-            uploadMedia.multipleFile(selectedImages).then((res) => {
-                const imagesUrls = res.data.flatMap((img) => img.imageUrl);
-                const dataReview = {
-                    title: title,
-                    content: content,
-                    rateStar: valueReview,
-                    imagesUrls: imagesUrls,
-                    bookingCode: props.bookingCode
-                };
-                bookingAPI.createReviewBooking(dataReview).then((res) => {
-                    if (res.statusCode === 200) {
-                        enqueueSnackbar(t('message.reviewSuccess'), {
-                            variant: 'success'
-                        });
-                        setOpen(false);
-                    }
+            dispatch(globalSlice.actions.setLoading(true))
+            uploadMedia
+                .multipleFile(selectedImages)
+                .then((res) => {
+                    const imagesUrls = res.data.flatMap((img) => img.imageUrl);
+                    const dataReview = {
+                        title: title,
+                        content: content,
+                        rateStar: valueReview,
+                        imagesUrls: imagesUrls,
+                        bookingCode: props.bookingCode
+                    };
+                    bookingAPI.createReviewBooking(dataReview).then((res) => {
+                        if (res.statusCode === 200) {
+                            enqueueSnackbar(t('message.reviewSuccess'), {
+                                variant: 'success'
+                            });
+                            setOpen(false);
+                        }
+                    });
+                    dispatch(globalSlice.actions.setLoading(false))
+                })
+                .catch((err) => {
+                    enqueueSnackbar(err, {
+                        variant: 'error'
+                    });
+                    dispatch(globalSlice.actions.setLoading(false))
                 });
-            });
         } else {
             const dataReview = {
                 title: title,

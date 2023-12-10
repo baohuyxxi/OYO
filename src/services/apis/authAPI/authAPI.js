@@ -1,4 +1,3 @@
-import { ErrorSharp } from "@mui/icons-material";
 import axios from "~/services/axios";
 
 const authAPI = {
@@ -23,7 +22,7 @@ const authAPI = {
       return res.data;
   },
   updateInfoRequest: async (data) => {
-    console.log(data)
+
       const res = await axios.put("general/update-info", data, {
         data: { mail: data.mail },
       });

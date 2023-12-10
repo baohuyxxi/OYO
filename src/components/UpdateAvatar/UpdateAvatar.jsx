@@ -3,22 +3,22 @@ import { useRef, useState } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import authAPI from '~/services/apis/authAPI/authAPI';
 import PublicIcon from '@mui/icons-material/Public';
-import { useDispatch } from 'react-redux';
 import userSlice from '~/redux/userSlice';
 import { useSnackbar } from 'notistack';
-import LoadingDialog from '~/components/LoadingDialog/LoadingDialog';
+import { useDispatch } from 'react-redux';
+import globalSlice from '~/redux/globalSlice';
 import './UpdateAvatar.scss';
 import { t } from 'i18next';
 
 export default function UpdateAvatar({ imageFile, modalOpen, setModalOpen, setImageFile }) {
     const { enqueueSnackbar } = useSnackbar();
     const [slideValue, setSlideValue] = useState(10);
-    const [loading, setLoading] = useState(false);
+
     const cropRef = useRef(null);
     const dispatch = useDispatch();
     const handleSave = async () => {
         if (imageFile) {
-            setLoading(true);
+            dispatch(globalSlice.actions.setLoading(true))
             setModalOpen(false);
             const scaledImage = cropRef.current.getImageScaledToCanvas().toDataURL();
             const scaledImageFile = await fetch(scaledImage)
@@ -34,7 +34,7 @@ export default function UpdateAvatar({ imageFile, modalOpen, setModalOpen, setIm
                 .catch((err) => {
                     enqueueSnackbar(err, { variant: 'error' });
                 });
-            setLoading(false);
+                dispatch(globalSlice.actions.setLoading(false))
         }
     };
     const handleCancel = () => {
@@ -79,7 +79,6 @@ export default function UpdateAvatar({ imageFile, modalOpen, setModalOpen, setIm
                     </Box>
                 </Box>
             </Modal>
-            <LoadingDialog open={loading} />
         </>
     );
 }

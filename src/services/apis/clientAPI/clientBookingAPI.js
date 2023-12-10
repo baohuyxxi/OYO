@@ -10,9 +10,9 @@ const bookingAPI = {
         const res = await axios.get(`/client/booking/history?pageNumber=0&pageSize=10`);
         return res.data;
     },
-    cancelBooking: async () => {
-      
-        return null
+    cancelBooking: async (data) => {
+        const res = await axios.put(`/client/booking/cancel?bookingCode=${data}`);
+        return res.data;
     },
     createReviewBooking: async (data) => {
         const res = await axios.post(`/client/reviews/create`, data);

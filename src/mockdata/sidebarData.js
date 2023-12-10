@@ -43,19 +43,19 @@ const SidebarData = {
             display_name: 'Loại tiện ích',
             route: '/admin/facilitycategories',
             icon: 'bx bxl-dropbox'
-        }
+        },
         // {
         //     id: 8,
         //     display_name: 'Giảm giá nhà',
         //     route: '/admin/discount',
         //     icon: 'bx bx-gift'
         // },
-        // {
-        //     id: 9,
-        //     display_name: 'Danh mục phụ phí',
-        //     route: '/admin/surcharge',
-        //     icon: 'bx bx-card'
-        // }
+        {
+            id: 8,
+            display_name: 'Danh mục phụ phí',
+            route: '/admin/surcharge',
+            icon: 'bx bx-card'
+        }
     ],
     Setting: [
         {

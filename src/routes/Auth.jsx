@@ -5,6 +5,7 @@ import ListAccomPage from '~/pages/public/ListAccomPage/ListAccomPage';
 import LayoutAdmin from '~/pages/admin/LayoutAdmin/LayoutAdmin';
 import PrivateRoute from '~/components/PrivateRoute/PrivateRoute';
 import LoadingPage from '~/pages/public/LoadingPage/LoadingPage';
+import ActiveAccountPage from '~/pages/public/ActiveAccountPage/ActiveAccountPage';
 const Auth = () => {
     // Public Page
     const HomePage = React.lazy(() => import('../pages/public/HomePage/HomePage'));
@@ -44,7 +45,7 @@ const Auth = () => {
                 path="/active-account"
                 element={
                     <Suspense>
-                        <HomePage />
+                        <ActiveAccountPage />
                     </Suspense>
                 }
             />

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import authAPI from '~/services/apis/authAPI/authAPI';
-import queryString from 'query-string';
-import Loading from '../components/LoadingError/Loading';
+import Loading from '~/components/Loading/Loading';
 import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 

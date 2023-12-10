@@ -2,20 +2,14 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import Visibility from '@mui/icons-material/Visibility';
-import { validate } from '~/utils/validate';
-import InputAdornment from '@mui/material/InputAdornment';
 import CustomInput from '~/assets/custom/CustomInput';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import authAPI from '~/services/apis/authAPI/authAPI';
-import LoadingDialog from '~/components/LoadingDialog/LoadingDialog';
-import { useDispatch, useSelector } from 'react-redux';
-import { RegisterRequest } from '~/share/models/auth';
 import { useSnackbar } from 'notistack';
+import { useDispatch } from 'react-redux';
+import globalSlice from '~/redux/globalSlice';
 import { t } from 'i18next';
 import './ForgotPassword.scss';
 
@@ -24,8 +18,8 @@ function ForgotPassword(props) {
     const [userInput, setUserInput] = useState('');
     const [errors, setErrors] = useState(null);
     const canvasRef = useRef(null);
-    const [loading, setLoading] = useState(false);
     const { enqueueSnackbar } = useSnackbar();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -78,14 +72,14 @@ function ForgotPassword(props) {
 
     const handleCaptchaSubmit = async() => {
         if (userInput === captchaText) {
-            setLoading(true)
+            dispatch(globalSlice.actions.setLoading(true))
             await authAPI.resetPassword(props.email).then(res =>
                 {
                     enqueueSnackbar(t('message.changePassword'), { variant: 'success' });
-                    setLoading(false)
+                    dispatch(globalSlice.actions.setLoading(false))
                     props.handleClose();
                 }).catch(err =>{
-                    console.log(err)
+    
                 })
         } else {
             const canvas = canvasRef.current;
@@ -139,7 +133,6 @@ function ForgotPassword(props) {
                     </Button>
                 </div>
             </Box>
-            <LoadingDialog open={loading} />
         </Container>
     );
 }

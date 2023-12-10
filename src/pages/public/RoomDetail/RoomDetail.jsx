@@ -22,8 +22,7 @@ import DateIsBooking from '~/components/DateIsBooking/DateIsBooking';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import SkeletonRoomDetail from '~/components/Skeleton/SkeletonRoomDetail';
 import formatPrice from '~/utils/formatPrice';
-
-
+import wishAPI from '~/services/apis/clientAPI/clientWishAPI';
 import bookingSlice from '~/pages/client/BookingPage/bookingSlice';
 import { guestsModel } from '~/share/models/booking';
 
@@ -41,13 +40,15 @@ export default function RoomDetail() {
     const [surcharge, setSurcharge] = useState('');
     const [totalBill, setTotalBill] = useState('');
     const [disBooking, setDisBooking] = useState(true);
+    const [love, setLove] = useState(false);
     const dataBooking = useSelector((state) => state.booking);
-    
+
     useEffect(() => {
         publicAccomPlaceAPI.getRoomDetail(roomId.id).then((dataResponse) => {
             setDataDetalHome(dataResponse.data);
             setLoading(false);
         });
+        wishAPI.checkWish(roomId.id).then((res) => setLove(res.data.message));
     }, [roomId?.id]);
     const stars = [];
     for (let i = 0; i < dataDetailHome.gradeRate; i++) {
@@ -65,7 +66,6 @@ export default function RoomDetail() {
                 setDisBooking(false);
                 setSurcharge(response.data.costSurcharge);
                 setTotalBill(response?.data?.totalBill);
-                console.log(response)
             } else {
                 setDisBooking(true);
             }
@@ -100,7 +100,12 @@ export default function RoomDetail() {
     const handleChangeGuests = (value) => {
         setGuests(value);
     };
-
+    const handleLove = () => {
+        wishAPI.likeFavoriteRoom(roomId.id).then((res) => {
+            enqueueSnackbar(res.data.message, { variant: 'success' });
+            setLove(true)
+        });
+    };
     return (
         <FramePage>
             {loading ? (
@@ -139,10 +144,18 @@ export default function RoomDetail() {
                                             <div className="desc-room">
                                                 <h2>{t('contentMain.descHome')}</h2>
                                                 <p>{dataDetailHome.description}</p>
-                                                <h3>{t('home.addressDetail')}: {dataDetailHome.addressDetail}</h3>
-                                                <h3>{t('home.acreage')}: {dataDetailHome.acreage} m²</h3>
-                                                <h3>{t('home.numPeople')}: {dataDetailHome.numPeople}</h3>
-                                                <h3>{t('home.numBathRoom')}: {dataDetailHome.numBathRoom}</h3>
+                                                <h3>
+                                                    {t('home.addressDetail')}: {dataDetailHome.addressDetail}
+                                                </h3>
+                                                <h3>
+                                                    {t('home.acreage')}: {dataDetailHome.acreage} m²
+                                                </h3>
+                                                <h3>
+                                                    {t('home.numPeople')}: {dataDetailHome.numPeople}
+                                                </h3>
+                                                <h3>
+                                                    {t('home.numBathRoom')}: {dataDetailHome.numBathRoom}
+                                                </h3>
                                             </div>
 
                                             <hr className="divider" />
@@ -157,7 +170,7 @@ export default function RoomDetail() {
                                         </div>
                                         <DateIsBooking bookedDates={dataDetailHome.bookedDates} />
                                     </div>
-                                   
+
                                     <div className="col l-4 m-5 c-12">
                                         <div className="card-book__detail paper">
                                             <div className="price-room">
@@ -218,11 +231,18 @@ export default function RoomDetail() {
                                                     {t('common.booking')}
                                                 </button>
                                             </div>
+                                            {love === false && (
+                                                <div className="btn-love">
+                                                    <button className="btn-love-room" onClick={handleLove}>
+                                                        {t('common.love')}
+                                                    </button>
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <CommentReview id={roomId.id}/>
+                            <CommentReview id={roomId.id} />
                         </div>
                     </div>
                 </>

@@ -19,6 +19,7 @@ const Auth = () => {
         import('../pages/partner/IntroSettingOwnerPage/IntroSettingOwnerPage')
     );
     const ContactForm = React.lazy(() => import('../pages/public/Contact/Contact'));
+    const FavoritesPage = React.lazy(() => import('../pages/client/FavoritesPage/FavoritesPage'));
     // Host Owner Page
     const StepperMain = React.lazy(() => import('~/pages/partner/SetupOwner/StepperMain/StepperMain'));
     const OwnerSetting = React.lazy(() => import('~/pages/partner/OwnerSetting/MainOwnerSetting/OwnerSetting'));
@@ -60,7 +61,7 @@ const Auth = () => {
                     />
                 }
             />
-            {/* <Route path="/account/*" element={<PrivateRoute element={<InfoUserPage />} />} /> */}
+
             <Route
                 path="/room-detail/:id"
                 element={
@@ -74,6 +75,14 @@ const Auth = () => {
                 element={
                     <Suspense>
                         <ContactForm />
+                    </Suspense>
+                }
+            />
+            <Route
+                path="/wishlists"
+                element={
+                    <Suspense>
+                        <FavoritesPage />
                     </Suspense>
                 }
             />

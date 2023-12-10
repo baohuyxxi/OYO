@@ -69,7 +69,7 @@ const setupOwnerSlice = createSlice({
             state.detailRoom.facilityNameList = action.payload;
         },
         addimagesOfHomeRoom(state, action) {
-            // state.detailRoom.imagesOfHome = action.payload;
+            state.imagesOfHome = action.payload;
         },
         addInfoOfHomeRoom(state, action) {
             state.detailRoom.accomName = action.payload.name;

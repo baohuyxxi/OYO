@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import { ChangePassword } from '~/share/models/auth';
 import authAPI from '~/services/apis/authAPI/authAPI';
 import { useDispatch, useSelector } from 'react-redux';
+import { validate } from '~/utils/validate';
 
 import { useSnackbar } from 'notistack';
 
@@ -17,11 +18,16 @@ import { t } from 'i18next';
 
 export default function passwordSecurity() {
     const { enqueueSnackbar } = useSnackbar();
+    const user = useSelector((state) => state.user.current);
     const [showPassword, setShowPassword] = useState({
         newPassword: false,
         checkPassword: false
     });
-
+    const [errors, setErrors] = useState({
+        oldPassword: null,
+        newPassword: null,
+        enterNewPassword: null
+    });
     const [changePassword, setChangePassword] = useState(ChangePassword);
 
     const handleShowPassword = (fieldName) => {
@@ -33,16 +39,24 @@ export default function passwordSecurity() {
     };
 
     useEffect(() => {
-        setChangePassword({ ...changePassword });
-    }, []);
+        setChangePassword({ ...changePassword, email: user.mail });
+    }, [user?.mail]);
 
     const handleChangePassword = async (event) => {
         event.preventDefault();
-        const res = await authAPI.changePasswordRequest(changePassword, accessToken);
-        if (res.status === 200) {
-            enqueueSnackbar(t('message.changePassword'), { variant: 'success' });
-        } else if (res.status === 400) {
-            enqueueSnackbar('Đổi mật khẩu thất bại', { variant: 'error' });
+        if (!changePassword.oldPassword) {
+            setErrors({ ...errors, oldPassword: t('validate.passwordRequire') });
+        } else if (changePassword.newPassword !== changePassword.enterNewPassword) {
+            setErrors({ ...errors, enterNewPassword: t('validate.passwordConfirmError') });
+        } else {
+            await authAPI
+                .changePasswordRequest(changePassword)
+                .then((res) => {
+                    enqueueSnackbar(t('message.changePassword'), { variant: 'success' });
+                })
+                .catch((err) => {
+                    enqueueSnackbar('Đổi mật khẩu thất bại', { variant: 'error' });
+                });
         }
     };
     return (
@@ -59,6 +73,7 @@ export default function passwordSecurity() {
                             value={changePassword.oldPassword}
                             onChange={handleInput}
                         ></CustomInput>
+                        {errors.oldPassword && <h5>{errors.oldPassword}</h5>}
                     </Grid>
                     <Grid item xs={12}>
                         <CustomInput
@@ -80,8 +95,9 @@ export default function passwordSecurity() {
                     </Grid>
                     <Grid item xs={12}>
                         <CustomInput
-                            name="enterNew-password"
+                            name="enterNewPassword"
                             title={t('label.enterANewPassword')}
+                            value={changePassword.enterNewPassword}
                             onChange={handleInput}
                             type={showPassword.checkPassword ? 'text' : 'password'}
                             InputProps={{
@@ -94,6 +110,7 @@ export default function passwordSecurity() {
                                 )
                             }}
                         ></CustomInput>
+                        {errors.enterNewPassword && <h5>{errors.enterNewPassword}</h5>}
                     </Grid>
                     <Grid container justifyContent={{ xs: 'center', md: 'flex-end' }} item xs={12}>
                         <Button className="button change-password" variant="contained" type="submit">

@@ -20,7 +20,7 @@ const style = {
     width: 400,
     boxShadow: 24,
     p: 4,
-    paddingBottom: '25px',
+    paddingBottom: '25px'
 };
 
 export default function ModalConfirmDelete(props) {
@@ -30,12 +30,9 @@ export default function ModalConfirmDelete(props) {
 
     const { enqueueSnackbar } = useSnackbar();
 
-    const handleCancelBooking = () => {
-        const dataCancel = {
-            bookingId: props.idRemove,
-        };
-        bookingApi
-            .cancelBooking(dataCancel)
+    const handleCancelBooking = async () => {
+        await bookingAPI
+            .cancelBooking(props.idRemove)
             .then((data) => {
                 enqueueSnackbar(t('message.cancelSuccess'), { variant: 'success' });
                 setOpen(false);
@@ -47,7 +44,9 @@ export default function ModalConfirmDelete(props) {
 
     return (
         <div>
-            <button className='CANCEL' onClick={handleOpen}>{t('common.cancelBooking')}</button>
+            <button className="CANCEL" onClick={handleOpen}>
+                {t('common.cancelBooking')}
+            </button>
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
@@ -56,7 +55,7 @@ export default function ModalConfirmDelete(props) {
                 closeAfterTransition
             >
                 <Fade in={open}>
-                    <Box className='paper' sx={style}>
+                    <Box className="paper" sx={style}>
                         <Typography id="transition-modal-title" variant="h4" component="h2">
                             {t('title.cancelPopup')}
                         </Typography>

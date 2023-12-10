@@ -12,6 +12,7 @@ const StatisShow = () => {
     const currentYear = new Date().getFullYear();
     const [year, setYear] = useState(currentYear);
     const [reCall, setReCall] = useState(false);
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         statisticApi.getStatisticOfHost('').then((dataResponse) => {
@@ -29,7 +30,6 @@ const StatisShow = () => {
             setDataStatis(dataResponse.data);
         });
     };
-
     return (
         <div className="statis-show">
             <div className="choose-year">

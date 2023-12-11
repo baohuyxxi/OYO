@@ -19,7 +19,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './BookingPage.scss';
 import { t } from 'i18next';
 import { da } from 'date-fns/locale';
-import bookingSlice from './bookingSlice';
+import bookingSlice from '~/redux/bookingSlice';
 
 const BookingPage = () => {
     const dispatch = useDispatch();

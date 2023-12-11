@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
 // import SelectedLocate from '~/pages/partner/SetupOwner/StepperOne/SelectedLocate';
 import SelectAddress from '~/components/SelectAddress/SelectAddress';
 import './LocationSetting.scss';
@@ -64,7 +64,7 @@ export default function LocationSetting(props) {
             <form onSubmit={onSubmit}>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
+                       expandicon={<ExpandCircleDownIcon/>}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >

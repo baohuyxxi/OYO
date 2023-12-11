@@ -27,7 +27,7 @@ const FavoritesPage = () => {
     }, []);
 
     const handleLinkToDetail = (idRoom) => {
-        navigate(`/detail/${idRoom}`);
+        navigate(`/room-detail/${idRoom}`);
     };
 
     return (
@@ -54,7 +54,7 @@ const FavoritesPage = () => {
                             <div className="row">
                                 {listDataFavorites?.map((room, index) => (
                                     <div className="col l-4" key={index}>
-                                        <div className="card-item__favorite">
+                                        <div className="card-item__favorite paper">
                                             <div
                                                 className="content__favorite"
                                                 onClick={() => handleLinkToDetail(room?.id)}

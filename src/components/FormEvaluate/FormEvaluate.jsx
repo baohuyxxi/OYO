@@ -3,8 +3,6 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { t } from 'i18next';
 import { useSnackbar } from 'notistack';
 
-import { useNavigate } from 'react-router-dom';
-
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Rating } from '@mui/material';
 import uploadMedia from '~/services/apis/media/uploadMedia';
 import bookingAPI from '~/services/apis/clientAPI/clientBookingAPI';
@@ -19,8 +17,6 @@ const FormEvaluate = (props) => {
     const [valueReview, setValueReview] = useState(5);
     const [selectedImages, setSelectedImages] = useState([]);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-
     const { enqueueSnackbar } = useSnackbar();
 
     useEffect(() => {
@@ -125,13 +121,13 @@ const FormEvaluate = (props) => {
                             required
                         />
 
-                        <input hidden type="file" id="imageUpload" accept="image/*" onChange={handleImageChange} />
+                        <input hidden type="file" id="imageUpload" accept="image/*" multiple onChange={handleImageChange} />
                         <button
                             type="button"
                             className="btn-upload"
                             onClick={() => document.getElementById('imageUpload').click()}
                         >
-                            {t('common.uploadImage')}
+                            {t('common.addImage')}
                         </button>
 
                         {selectedImages.length > 0 && (
@@ -149,7 +145,7 @@ const FormEvaluate = (props) => {
                         )}
                     </DialogContent>
                     <DialogActions>
-                        <button onClick={handleClose} className="btn-review-cancel">
+                        <button  type="button" onClick={handleClose} className="btn-review-cancel">
                             {t('common.cancel')}
                         </button>
                         <button type="submit" className="btn-review-detail">

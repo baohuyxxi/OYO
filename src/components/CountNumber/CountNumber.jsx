@@ -43,14 +43,14 @@ const CountNumber = (props) => {
     return (
         <div className="count-number">
             {counter === 0 ? (
-                <button className="btn-notallow">-</button>
+                <button type='button' className="btn-notallow">-</button>
             ) : (
-                <button onClick={handleReducer} className="btn-reducer">
+                <button type='button' onClick={handleReducer} className="btn-reducer">
                     -
                 </button>
             )}
             <h1>{counter}</h1>
-            <button onClick={handleIncrease} className="btn-increase">
+            <button type='button' onClick={handleIncrease} className="btn-increase">
                 +
             </button>
         </div>

@@ -3,7 +3,7 @@ import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, 
 import storage from 'redux-persist/lib/storage';
 
 import userSlice from './userSlice';
-import bookingSlice from '../pages/client/BookingPage/bookingSlice';
+import bookingSlice from './bookingSlice';
 import setupOwnerSlice from '../pages/partner/SetupOwner/setupOwnerSlice';
 import notificationSlice from './notificationSlice';
 import globalSlice from './globalSlice';

@@ -40,14 +40,17 @@ export default function UpdateForm(props) {
         if (props.updateData) {
             props.updateData(data, props.data.id);
         }
+        handleClose();
     };
 
     return (
         <div>
             <img
-                src="https://img.icons8.com/color/48/000000/edit--v1.png"
-                alt="icon__update"
+                width="24"
+                height="24"
+                src="https://img.icons8.com/pastel-glyph/25/FAB005/create-new--v3.png"
                 className="icon__btn"
+                alt="create-new--v3"
                 onClick={handleClickOpen}
             />
             <Dialog
@@ -56,35 +59,50 @@ export default function UpdateForm(props) {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
-                <DialogTitle id="alert-dialog-title" sx={{ paddingBottom: 0, fontSize: '18px', marginLeft: '10px' }}>
+                <DialogTitle id="alert-dialog-title" sx={{ paddingBottom: 0, fontSize: '20px', marginLeft: '10px' }}>
                     {'Cập nhật thông tin'}
                 </DialogTitle>
                 <form className="dialog__update" onSubmit={handleSubmit(onSubmit)}>
                     <DialogContent>
                         <div className="row">
-                            {props.fieldData?.map((field, index) => (
+                            {props.fieldData?.map((item, index) => (
                                 <div className="col l-12 key-col" key={index}>
-                                    <h2 className="title-field">{field.title}</h2>
-                                    <input
-                                        type="text"
-                                        className="update-form__input"
-                                        placeholder={field.placeholder}
-                                        {...register(field.nameRegister, {
-                                            required: field.nameRequire
-                                        })}
-                                    />
-                                    {errors[field.nameRegister] && (
+                                    <h2 className="title-field">{item.title}</h2>
+                                    {item.nameRegister === 'status' ? (
+                                        <select
+                                            {...register(item.nameRegister, { required: item.nameRequire })}
+                                            className="update-form__select"
+                                        >
+                                            <option value="">Chọn trạng thái</option>
+                                            <option value="ENABLE">ENABLE</option>
+                                            <option value="DISABLE">DISABLE</option>
+                                        </select>
+                                    ) : (
+                                        <input
+                                            type="text"
+                                            className="update-form__input"
+                                            placeholder={item.placeholder}
+                                            {...register(item.nameRegister, {
+                                                required: item.nameRequire
+                                            })}
+                                        />
+                                    )}
+                                    {errors[item.nameRegister] && (
                                         <span className="message_error">{`${
-                                            errors[field.nameRegister] && errors[field.nameRegister]?.message
+                                            errors[item.nameRegister] && errors[item.nameRegister]?.message
                                         }`}</span>
                                     )}
                                 </div>
                             ))}
                         </div>
                     </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleClose}>Cancel</Button>
-                        <Button type="submit">Update</Button>
+                    <DialogActions sx={{ padding: 3 }}>
+                        <Button onClick={handleClose} variant="outlined" color="error">
+                            Cancel
+                        </Button>
+                        <Button type="submit" variant="contained" color="success">
+                            Update
+                        </Button>
                     </DialogActions>
                 </form>
             </Dialog>

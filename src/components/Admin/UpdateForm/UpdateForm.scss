@@ -8,18 +8,32 @@
 
         .title-field {
             margin-bottom: 5px;
-            font-size: 14px;
+            font-size: 15px;
         }
 
         .update-form__input {
+            border-radius: 8px;
             border: 1px solid black;
             width: 100%;
             padding: 5px 20px 5px 10px;
+            height: 40px;
             margin-bottom: 2px;
+        }
+        .update-form__select {
+            border-radius: 8px;
+            border: 1px solid black;
+            width: 30%;
+            padding: 5px 20px 5px 10px;
+            margin-bottom: 2px;
+            font-size: 15px;
+            text-align: center;
+            font-weight: 300;
         }
 
         .message_error {
-            color: red;
+            padding: 10px;
+            color: var(--main-color-red);
+            font-size: 14px;
         }
     }
 }

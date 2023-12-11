@@ -238,6 +238,7 @@
                     text-align: center;
                     border-bottom-right-radius: 5px;
                     border-bottom-left-radius: 5px;
+                    border: 2px solid var(--divider);
                     .dropdown-btn {
                         svg {
                         }
@@ -327,21 +328,29 @@
                 color: var(--disabled-cl);
             }
         }
-        .btn-love {
+        .card-like {
+            bottom: 0;
+            height: 40px;
             width: 100%;
+            // border-top: 1px solid #bdbdbd;
             display: flex;
             justify-content: center;
-            padding-bottom: 10px;
-            .btn-love-room {
-                padding: 8px 28px;
-                cursor: pointer;
-                border: none;
-                background-color: var(--main-color-blue);
+            align-items: center;
+
+            .icon_love {
                 color: white;
-                border-radius: 5px;
+                font-size: 25px;
             }
-            .btn-love-room:hover{
-                background-color: var(--second-color-blue);
+
+            .icon_love__true {
+                color: red;
+                font-size: 25px;
+            }
+
+            p {
+                margin: 0;
+                font-size: 16px;
+                padding-left: 10px;
             }
         }
     }

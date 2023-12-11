@@ -7,10 +7,7 @@ const IconLoveLike = (props) => {
     const [like, setLike] = useState(true);
 
     const handleFavorite = () => {
-        const dataSend = {
-            homeId: props.idHome,
-        };
-        wishAPI.likeFavoriteRoom(dataSend).then((data) => {
+        wishAPI.likeFavoriteRoom(props.idHome).then((data) => {
             setLike(!like);
         });
     };

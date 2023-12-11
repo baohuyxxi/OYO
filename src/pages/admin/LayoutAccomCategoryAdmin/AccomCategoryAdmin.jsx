@@ -6,7 +6,7 @@ import 'reactjs-popup/dist/index.css';
 import cmsAccomCategoryAPI from '~/services/apis/adminAPI/cmsAccomCategoryAPI';
 import UpdateForm from '~/components/Admin/UpdateForm/UpdateForm';
 import AddForm from '~/components/Admin/AddForm/AddForm';
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import './AccomCategoryAdmin.scss';
 
 const customerTableHead = ['', 'Tên loại hình cho thuê', 'Mô tả', 'Icon', 'Trạng thái'];
@@ -33,8 +33,7 @@ const fieldData = [
     {
         title: 'Trạng thái',
         nameRegister: 'status',
-        nameRequire: 'Trạng thái phải là ENABLE hoặc DISABLE',
-        placeholder: 'Vd: ENABLE...'
+        nameRequire: 'Vui lòng chọn status'
     }
 ];
 
@@ -45,17 +44,23 @@ const AccomCategoryAdmin = (props) => {
 
     const { enqueueSnackbar } = useSnackbar();
 
-    const renderBody = (item, index) => (
+    const renderBody = (item, index, initNum) => (
         <tr key={index}>
-            <td>{index + 1}</td>
+            <td>{index + 1 + initNum}</td>
             <td>{item.accomCateName}</td>
             <td>{item.description}</td>
             <td>{item.icon}</td>
             <td>{item.status}</td>
             <td>
+                <UpdateForm fieldData={fieldData} data={item} updateData={handleUpdate} />
+            </td>
+            <td>
                 <Popup
                     trigger={
-                        <DeleteIcon className="icon__btn" sx={{ color: 'red', cursor: 'pointer', fontSize: '18px' }} />
+                        <DeleteOutlineIcon
+                            className="icon__btn"
+                            sx={{ color: 'red', cursor: 'pointer', fontSize: 25 }}
+                        />
                     }
                     position="bottom center"
                 >
@@ -82,9 +87,6 @@ const AccomCategoryAdmin = (props) => {
                     </div>
                 </Popup>
             </td>
-            <td>
-                <UpdateForm fieldData={fieldData} data={item} updateData={handleUpdate} />
-            </td>
         </tr>
     );
 
@@ -95,7 +97,7 @@ const AccomCategoryAdmin = (props) => {
         cmsAccomCategoryAPI
             .addAccomCategory(dataAdd)
             .then((dataResponse) => {
-                props.setList([...props.data, dataResponse.data]);
+                props.setList([dataResponse.data, ...props.data]);
                 enqueueSnackbar('Thêm mới thành công', { variant: 'success' });
             })
             .catch((error) => {
@@ -119,6 +121,7 @@ const AccomCategoryAdmin = (props) => {
     };
 
     const Update = (id, data) => {
+
         props.setList(
             props.data?.map((item) => {
                 if (item.id === id) {
@@ -133,7 +136,7 @@ const AccomCategoryAdmin = (props) => {
         cmsAccomCategoryAPI
             .updateAccomCategory(data, id)
             .then((dataResponse) => {
-                Update(data.id, dataResponse.data);
+                Update(dataResponse.data.id, dataResponse.data);
                 enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
             })
             .catch((error) => {
@@ -160,7 +163,7 @@ const AccomCategoryAdmin = (props) => {
                                     headData={customerTableHead}
                                     renderHead={(item, index) => renderHead(item, index)}
                                     bodyData={props?.data}
-                                    renderBody={(item, index) => renderBody(item, index)}
+                                    renderBody={(item, index, initNum) => renderBody(item, index, initNum)}
                                 />
                             </div>
                         </div>

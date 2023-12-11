@@ -34,8 +34,9 @@ export default function ViewIamge(props) {
                 aria-describedby="alert-dialog-description"
                 fullWidth={true}
                 maxWidth="md"
+                PaperProps={{ style: { background: 'transparent', boxShadow: 'none' } }}
             >
-                <div className="dialog__imgs paper">
+                <div className="dialog__imgs">
                     <DialogTitle
                         id="alert-dialog-title"
                         style={{ fontSize: '18px', fontWeight: 'bold', width: '600px', marginBottom: '20px' }}

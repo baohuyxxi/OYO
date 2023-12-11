@@ -5,7 +5,7 @@ import { useSnackbar } from 'notistack';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
 import Accordion from '@mui/material/Accordion';
 
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -124,7 +124,7 @@ export default function ValuationDiscountSetting(props) {
                 <h4>Định giá</h4>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
+                       expandicon={<ExpandCircleDownIcon/>}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >
@@ -155,7 +155,7 @@ export default function ValuationDiscountSetting(props) {
                     <form onSubmit={handleSubmit(onSubmitDiscount)} key={index}>
                         <Accordion expanded={expanded === `panel${i}`} onChange={handleChange(`panel${i}`)}>
                             <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
+                               expandicon={<ExpandCircleDownIcon/>}
                                 aria-controls="panel1bh-content"
                                 id="panel1bh-header"
                             >
@@ -216,7 +216,7 @@ export default function ValuationDiscountSetting(props) {
                     <form onSubmit={handleSubmit(onSubmitSurcharge)} key={index}>
                         <Accordion expanded={expanded === `panel${j}`} onChange={handleChange(`panel${j}`)} key={j}>
                             <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
+                               expandicon={<ExpandCircleDownIcon/>}
                                 aria-controls="panel1bh-content"
                                 id="panel1bh-header"
                             >

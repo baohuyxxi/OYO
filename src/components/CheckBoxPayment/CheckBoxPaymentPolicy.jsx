@@ -5,7 +5,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import { useDispatch } from 'react-redux';
 
-import bookingSlice from '~/pages/client/BookingPage/bookingSlice';
+import bookingSlice from '~/redux/bookingSlice';
 
 import './CheckBoxPayment.scss';
 import { t } from 'i18next';

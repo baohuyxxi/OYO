@@ -3,6 +3,7 @@ import { t } from 'i18next';
 import moment from 'moment';
 import format from 'date-fns/format';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,7 +24,7 @@ import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import SkeletonRoomDetail from '~/components/Skeleton/SkeletonRoomDetail';
 import formatPrice from '~/utils/formatPrice';
 import wishAPI from '~/services/apis/clientAPI/clientWishAPI';
-import bookingSlice from '~/pages/client/BookingPage/bookingSlice';
+import bookingSlice from '~/redux/bookingSlice';
 import { guestsModel } from '~/share/models/booking';
 
 export default function RoomDetail() {
@@ -34,14 +35,13 @@ export default function RoomDetail() {
     const user = useSelector((state) => state.user.current);
     const [loading, setLoading] = useState(true);
     const [dataDetailHome, setDataDetalHome] = useState('');
-    const [dateBook, setDateBook] = useState([moment().format('DD/MM/yyyy'), moment().format('DD/MM/yyyy')]);
+    const [dateBook, setDateBook] = useState([moment().format('DD/MM/yyyy'), moment().add(1, 'days').format('DD/MM/yyyy')]);
     const [guests, setGuests] = useState(guestsModel);
     const [detailPrice, setDetailPrice] = useState([]);
     const [surcharge, setSurcharge] = useState('');
     const [totalBill, setTotalBill] = useState('');
     const [disBooking, setDisBooking] = useState(true);
     const [love, setLove] = useState(false);
-    const dataBooking = useSelector((state) => state.booking);
 
     useEffect(() => {
         publicAccomPlaceAPI.getRoomDetail(roomId.id).then((dataResponse) => {
@@ -55,6 +55,10 @@ export default function RoomDetail() {
         stars.push(<img key={i} src={iconStar} alt="icon__star" className="star" />);
     }
     useEffect(() => {
+        if(dateBook[0] !== dateBook[1])
+        {
+            
+        }
         const dataCheck = {
             checkIn: dateBook[0],
             checkOut: dateBook[1],
@@ -103,7 +107,7 @@ export default function RoomDetail() {
     const handleLove = () => {
         wishAPI.likeFavoriteRoom(roomId.id).then((res) => {
             enqueueSnackbar(res.data.message, { variant: 'success' });
-            setLove(true)
+            setLove(!love);
         });
     };
     return (
@@ -184,7 +188,6 @@ export default function RoomDetail() {
                                                 <DateGo
                                                     size="vertical"
                                                     setDataDay={handleChangeDayBooking}
-                                                    setDateBook={setDateBook}
                                                 />
                                             </div>
                                             <div className="count__guest">
@@ -231,13 +234,12 @@ export default function RoomDetail() {
                                                     {t('common.booking')}
                                                 </button>
                                             </div>
-                                            {love === false && (
-                                                <div className="btn-love">
-                                                    <button className="btn-love-room" onClick={handleLove}>
-                                                        {t('common.love')}
-                                                    </button>
-                                                </div>
-                                            )}
+                                            <div className="card-like" onClick={handleLove}>
+                                                <FavoriteOutlinedIcon
+                                                    className={love ? 'icon_love__true' : 'icon_love'}
+                                                />
+                                                <p>{love ? t('common.unlove') : t('common.love')}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

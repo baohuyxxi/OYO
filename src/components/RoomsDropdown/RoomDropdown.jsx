@@ -55,12 +55,12 @@ const RoomDropdown = ({ options }) => {
               <div className="row">
                 <div className="col-md-12">
                   <span className="fw-bold">Set Persons</span>
-                  <div class="d-flex flex-row p-1 justify-content-between">
-                    <div class="">
+                  <div className="d-flex flex-row p-1 justify-content-between">
+                    <div className="">
                       {" "}
                       <span>Adults</span>
                     </div>
-                    <div class="">
+                    <div className="">
                       <div className={style.optionCounter}>
                         <button
                           disabled={options.adult <= 1}
@@ -81,12 +81,12 @@ const RoomDropdown = ({ options }) => {
                       </div>
                     </div>
                   </div>
-                  <div class="d-flex flex-row p-1 justify-content-between">
-                    <div class="">
+                  <div className="d-flex flex-row p-1 justify-content-between">
+                    <div className="">
                       {" "}
                       <span>Childrens</span>
                     </div>
-                    <div class="">
+                    <div className="">
                       <div className={style.optionCounter}>
                         <button
                           disabled={options.adult <= 1}
@@ -110,12 +110,12 @@ const RoomDropdown = ({ options }) => {
                 </div>
                 <div className="col-md-12">
                   <span className="fw-bold">Set Rooms</span>
-                  <div class="d-flex flex-row p-1 justify-content-between">
-                    <div class="">
+                  <div className="d-flex flex-row p-1 justify-content-between">
+                    <div className="">
                       {" "}
                       <span>Single Room</span>
                     </div>
-                    <div class="">
+                    <div className="">
                       <div className={style.optionCounter}>
                         <button
                           disabled={options.adult <= 1}
@@ -136,12 +136,12 @@ const RoomDropdown = ({ options }) => {
                       </div>
                     </div>
                   </div>
-                  <div class="d-flex flex-row p-1 justify-content-between">
-                    <div class="">
+                  <div className="d-flex flex-row p-1 justify-content-between">
+                    <div className="">
                       {" "}
                       <span>Twin Room</span>
                     </div>
-                    <div class="">
+                    <div className="">
                       <div className={style.optionCounter}>
                         <button
                           disabled={options.adult <= 1}
@@ -162,12 +162,12 @@ const RoomDropdown = ({ options }) => {
                       </div>
                     </div>
                   </div>
-                  <div class="d-flex flex-row p-1 justify-content-between">
-                    <div class="">
+                  <div className="d-flex flex-row p-1 justify-content-between">
+                    <div className="">
                       {" "}
                       <span>Family Room</span>
                     </div>
-                    <div class="">
+                    <div className="">
                       <div className={style.optionCounter}>
                         <button
                           disabled={options.adult <= 1}

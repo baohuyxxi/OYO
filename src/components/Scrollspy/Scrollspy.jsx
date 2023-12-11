@@ -5,19 +5,31 @@ import './Scrollspy.scss';
 
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
-const ScrollspyComponent = (props ) => {
+const ScrollspyComponent = (props) => {
     let navigate = useNavigate();
     return (
         <div className="scroll-spy">
-            {props.backUrl && <p onClick={() => navigate(-1)} style={{ margin: 0, fontSize: '16px', paddingTop: '-30px', paddingLeft: '150px', position: 'fixed', color: 'black', cursor: 'pointer'}}><ArrowBackIosIcon />Quay lại trang</p>}
+            {props.backUrl && (
+                <p
+                    onClick={() => navigate(-1)}
+                    style={{
+                        margin: 0,
+                        fontSize: '16px',
+                        paddingTop: '-30px',
+                        paddingLeft: '150px',
+                        position: 'fixed',
+                        color: 'black',
+                        cursor: 'pointer'
+                    }}
+                >
+                    <ArrowBackIosIcon />
+                    Quay lại trang
+                </p>
+            )}
             <div>
                 <div>
-                    {props.children?.map((child, index ) => (
-                        <section
-                            id={child.to}
-                            key={index}
-                            style={{ marginLeft: '28%', paddingTop: '20px' }}
-                        >
+                    {props.children?.map((child, index) => (
+                        <section id={child.to} key={index} style={{ marginLeft: '28%', paddingTop: '20px' }}>
                             {child?.comp}
                         </section>
                     ))}
@@ -30,7 +42,6 @@ const ScrollspyComponent = (props ) => {
                             height: '100vh',
                             marginTop: '130px',
                             top: '0',
-                            backgroundColor: 'white',
                             listStyle: 'none',
                             color: 'var(--border-scroll)',
                             fontSize: '1.4rem',
@@ -38,7 +49,9 @@ const ScrollspyComponent = (props ) => {
                             paddingLeft: '150px'
                         }}
                     >
-                        <Link to={props.infoLink.urlLink} className='link-sidebar'>{props.infoLink.name}</Link>
+                        <Link  className="link-sidebar">
+                            {props.infoLink.name}
+                        </Link>
                         {props.children?.map((child, index) => (
                             <li key={index}>
                                 <a href={child.id}>{child.info}</a>
@@ -47,7 +60,6 @@ const ScrollspyComponent = (props ) => {
                     </Scrollspy>
                 </div>
             </div>
-
         </div>
     );
 };

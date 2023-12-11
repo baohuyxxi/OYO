@@ -18,9 +18,6 @@ const CountRoomSetting = (props) => {
     }, [props.accomCateName]);
     const params = useParams();
 
-    const handleChangePage = () => {
-        navigate(`/host/setting/countroomdetail/${params.idHome}`);
-    };
 
     return (
         <div className="setting-count__room">
@@ -28,8 +25,8 @@ const CountRoomSetting = (props) => {
                 <p>Chỗ ở và phòng</p>
             </div>
             <div className="content-count__room">
-                <p>Loại chỗ ở</p>
-                <CustomInput
+                <p>Loại chỗ ở: {accomCate}</p>
+                {/* <CustomInput
                     select={true}
                     value={accomCate || ''}
                     width={500}
@@ -39,7 +36,7 @@ const CountRoomSetting = (props) => {
                             {option.accomCateName}
                         </MenuItem>
                     ))}
-                />
+                /> */}
                 <p>Khách có thể dùng chung một số khu vực</p>
                 <CountRoomDetailSetting accomCate={accomCate}/>
             </div>

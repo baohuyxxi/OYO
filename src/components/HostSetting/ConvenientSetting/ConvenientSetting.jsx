@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
 import ConvenientItem from '~/components/ConvenientItem/ConvenientItem';
 import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 import publicFacilityAPI from '~/services/apis/publicAPI/publicFacilityAPI';
@@ -75,7 +75,7 @@ export default function ConvenientSetting(props) {
             <form onSubmit={handleSave}>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
+                        expandIcon={<ExpandCircleDownIcon/>}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >
@@ -88,7 +88,7 @@ export default function ConvenientSetting(props) {
                             <></>
                         ) : (
                             <AccordionDetails
-                                expandIcon={<ExpandMoreIcon />}
+                                expandIcon={<ExpandCircleDownIcon/>}
                                 aria-controls="panel1bh-content"
                                 id="panel1bh-header"
                                 className="container__facilityCate"

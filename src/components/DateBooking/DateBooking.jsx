@@ -8,7 +8,7 @@ import 'react-date-range/dist/theme/default.css';
 import './DateBooking.scss';
 // import pricesOfHomeApi from '~/services/pricesOfHomeApi';
 import { useDispatch } from 'react-redux';
-import bookingSlice from '~/pages/client/BookingPage/bookingSlice';
+import bookingSlice from '~/redux/bookingSlice';
 import { t } from 'i18next';
 
 const DateBooking = (props) => {

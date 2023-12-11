@@ -51,7 +51,7 @@ const ManagerRoom = () => {
             info: 'Hình ảnh',
             comp: (
                 <ImageSetting
-                    listImage={dataHomeDetail?.imageAccomsUrls.slice(1)}
+                    listImage={dataHomeDetail?.imageAccomsUrls}
                     thumbnail={dataHomeDetail?.imageAccomsUrls[0]}
                 />
             )
@@ -66,7 +66,7 @@ const ManagerRoom = () => {
             id: '#section3',
             to: 'section3',
             info: 'Chổ ở và phòng',
-            comp: <CountRoomSetting accomCateName={dataHomeDetail?.accomCateName} countRoom={dataHomeDetail?.numberOfRooms} />
+            comp: <CountRoomSetting accomCateName={dataHomeDetail?.accomCateName}  />
         },
         {
             id: '#section4',

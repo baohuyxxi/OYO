@@ -16,6 +16,7 @@ import FramePage from '~/components/FramePage/FramePage';
 import PopoverRefundPolicy from '~/components/PopoverRefundPolicy/PopoverRefundPolicy';
 import bookingAPI from '~/services/apis/clientAPI/clientBookingAPI';
 import formatPrice from '~/utils/formatPrice';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './HistoryBookingPage.scss';
 
 AOS.init();
@@ -25,6 +26,7 @@ const HistoryBookingPage = () => {
     const [loading, setLoading] = useState(true);
     const [showFormReview, setShowFormReview] = useState(false);
     const [idBooking, setIdBooking] = useState('');
+    const navigate = useNavigate();
     useEffect(() => {
         bookingAPI.getHistoryBooking().then((dataResponse) => {
             setDataHistory(dataResponse?.data?.content);
@@ -41,6 +43,9 @@ const HistoryBookingPage = () => {
         setShowFormReview(false);
     };
 
+    const handleView= (id) =>{
+        navigate(`/room-detail/${id}`);
+    }
     return (
         <FramePage>
             <div className="history-booking__page">
@@ -58,7 +63,7 @@ const HistoryBookingPage = () => {
                         {dataHistory.length === 0 ? (
                             <div className="paper nodata">
                                 <p>Bạn chưa đặt chỗ</p>
-                                <img src="/src/assets/video/BookingNow.gif" class="color-filter"></img>
+                                <img src="/src/assets/video/BookingNow.gif" className="color-filter"></img>
                             </div>
                         ) : (
                             <>
@@ -73,7 +78,7 @@ const HistoryBookingPage = () => {
                                     }
                                     return (
                                         <div className="item__booking paper" key={index}>
-                                            <div className="img-item__booking">
+                                            <div className="img-item__booking" onClick={e=>handleView(history?.accomId)}>
                                                 <img src={history.imageUrl} alt="img-booking" className="img-booking" />
                                             </div>
                                             <div className="info-history__booking">
@@ -92,7 +97,7 @@ const HistoryBookingPage = () => {
                                                     <p>{`${history?.checkIn} - ${history?.checkOut}`}</p>
                                                 </div>
                                                 <div className="date-history__booking">
-                                                    <p>{`${history?.checkIn} - ${history?.checkOut}`}</p>
+                                                    <p>{`${history?.refundPolicy}`}</p>
                                                 </div>
                                             </div>
                                             <div className="price-history__booking">

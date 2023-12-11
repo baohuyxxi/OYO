@@ -46,6 +46,7 @@ const ConvenientOwnerSetting = () => {
                 info: dataListCatagoryConvenient[i]?.faciCateName,
                 comp: (
                     <ConvenientItem
+                        key={i}
                         data={data}
                         setData={setData}
                         dataConveni={dataListCatagoryConvenient[i]?.infoFacilityList}

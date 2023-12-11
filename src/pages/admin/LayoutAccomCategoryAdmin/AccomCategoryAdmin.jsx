@@ -97,7 +97,6 @@ const AccomCategoryAdmin = (props) => {
         cmsAccomCategoryAPI
             .addAccomCategory(dataAdd)
             .then((dataResponse) => {
-                console.log(dataResponse.data);
                 props.setList([dataResponse.data, ...props.data]);
                 enqueueSnackbar('Thêm mới thành công', { variant: 'success' });
             })
@@ -122,7 +121,7 @@ const AccomCategoryAdmin = (props) => {
     };
 
     const Update = (id, data) => {
-        console.log(id, data);
+
         props.setList(
             props.data?.map((item) => {
                 if (item.id === id) {
@@ -137,7 +136,6 @@ const AccomCategoryAdmin = (props) => {
         cmsAccomCategoryAPI
             .updateAccomCategory(data, id)
             .then((dataResponse) => {
-                console.log(dataResponse);
                 Update(dataResponse.data.id, dataResponse.data);
                 enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
             })

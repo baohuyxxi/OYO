@@ -29,7 +29,8 @@
     "contactUs": "Contact us",
     "send": "Send",
     "reload": "Reload", 
-    "enterCapcha" :"Enter the text in the image"
+    "enterCapcha" :"Enter the text in the image",
+    "addImage": "Add image"
   },
   "message": {
     "signin": "Sign in successfully",
@@ -44,6 +45,7 @@
     "bookingSuccess": "Booking successfully",
     "addressEmpty": "Address must be not blank",
     "maxImage": "Please choose all 5 pictures",
+    "minImage":"Minimum number of images is 5",
     "fullImage": "You have selected more than 5 required images",
     "uploadImagePlease": "Please click upload photo before continue",
     "fullinfo": "Please complete all information",

@@ -1,5 +1,9 @@
 import axiosClient from '~/services/axios';
 const cmsFacilityCategoryAPI = {
+    getAllFacilityCategoryWithPaging: async () => {
+        const response = await axiosClient.get(`/cms/facility-categories/pages?pageNumber=0&pageSize=50`);
+        return response.data;
+    },
     addFacilityCategory: async (data) => {
         const response = await axiosClient.post('/cms/facility-categories/create', data);
         return response.data;

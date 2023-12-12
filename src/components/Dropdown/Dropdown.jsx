@@ -1,5 +1,5 @@
 import './Dropdown.scss';
-import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { t } from 'i18next';
 import { useState, useRef, useEffect, ChangeEvent } from 'react';
 

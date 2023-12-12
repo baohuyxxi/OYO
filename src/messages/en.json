@@ -30,7 +30,8 @@
     "send": "Send",
     "reload": "Reload", 
     "enterCapcha" :"Enter the text in the image",
-    "addImage": "Add image"
+    "addImage": "Add image",
+    "noRefunds":"No refunds"
   },
   "message": {
     "signin": "Sign in successfully",

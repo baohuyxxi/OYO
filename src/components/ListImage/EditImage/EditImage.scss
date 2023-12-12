@@ -9,33 +9,35 @@
         .img__preview {
             position: relative;
             width: 270px;
-            height: 300px;
+            height: 270px;
             text-align: center;
             justify-content: center;
-            .image{
+            justify-items: center;
+            display: flex;
+            align-items: center;
+            .image {
                 object-fit: cover;
                 width: 250px;
-                height: 280px;
+                height: 250px;
                 border-radius: 5px;
-     
             }
-            .remove-image{
+            .remove-image {
                 position: absolute;
-                top: -10px;
+                top: 0;
                 right: 0px;
                 z-index: 100;
                 border-radius: 50%;
                 border: 1px solid var(--text-color);
-                color: var(--text-color );
+                color: var(--text-color);
             }
-            .remove-image:hover{
+            .remove-image:hover {
                 font-weight: 600;
                 border: 1px solid var(--btn-red);
                 color: var(--btn-red);
             }
         }
     }
-   
+
     .form-button {
         font-weight: bold;
         height: 45px;
@@ -80,7 +82,6 @@
         border-bottom: 1px solid; /* Màu của đường gạch ngang */
         margin: 0 10px; /* Khoảng cách giữa đường gạch và chữ */
     }
- 
 
     .btn-cancel {
         border: none;
@@ -98,14 +99,14 @@
     }
 }
 .btn-upload {
-       
     border: none;
     border-radius: 5px;
     padding: 9px 25px;
     margin-right: 16px;
     cursor: pointer;
     font-weight: 600;
-}   .btn-save {
+}
+.btn-save {
     border: none;
     border-radius: 5px;
     padding: 9px 25px;

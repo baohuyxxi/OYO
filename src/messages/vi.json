@@ -30,7 +30,8 @@
     "send": "Gửi",
     "reload": "Làm mới", 
     "enterCapcha" :"Nhập nội dung trong hình",
-    "addImage": "Thêm hình ảnh"
+    "addImage": "Thêm hình ảnh",
+    "noRefunds":"Không được hoàn trả"
   },
   "message": {
     "signin": "Đăng nhập thành công",

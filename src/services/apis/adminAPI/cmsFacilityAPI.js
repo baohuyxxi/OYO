@@ -1,5 +1,9 @@
 import axiosClient from '~/services/axios';
 const cmsFacilityAPI = {
+    getAllFacilityWithPaging: async () => {
+        const response = await axiosClient.get(`/cms/facilities/pages?pageNumber=0&pageSize=200`);
+        return response.data;
+    },
     addFacility: async (data) => {
         const response = await axiosClient.post('/cms/facilities/create', data);
         return response.data;

@@ -88,7 +88,7 @@ export default function SignIn(props) {
                     toggleShow(['StatusButton', 'ValidEmail']);
                     return;
                 }
-                authAPI
+                await authAPI
                     .checkAccount(signin)
                     .then(() => {
                         toggleShow(['PasswordInput', 'LoginButton', 'ForgotPassword']);

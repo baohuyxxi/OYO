@@ -10,11 +10,11 @@ const publicAccomPlaceAPI = {
         return res.data;
     },
     getRoomCategory: async () => {
-        const res = await axios.get(`/public/accoms/cate-info`)
+        const res = await axios.get(`/public/accoms/cate-info`);
         return res.data;
     },
     getTophome: async (data) => {
-        const res = await axios.get(`/public/accoms/top?pageNumber=${data.number}&pageSize=${data.size}`)
+        const res = await axios.get(`/public/accoms/top?pageNumber=${data.number}&pageSize=${data.size}`);
         return res.data;
     },
     getListHomeOfHost: async (data) => {
@@ -25,8 +25,12 @@ const publicAccomPlaceAPI = {
         const res = await axios.post(`/public/accoms/check-booking`, data);
         return res.data;
     },
-    getReviewHome: async(data) =>{
-        const res = await axios.get(`/public/accoms/${data}/reviews`)
+    getReviewHome: async (data) => {
+        const res = await axios.get(`/public/accoms/${data}/reviews`);
+        return res.data;
+    },
+    getAllRoomsWithFilter: async (data) => {    
+        const res = await axios.get(`/public/accoms/filters?${data.queryParams}&pageNum=0&pageSize=${data.pageSize}`);
         return res.data;
     }
 };

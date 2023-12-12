@@ -5,6 +5,7 @@ import Auth from "./routes/Auth";
 import LoadingDialog from '~/components/LoadingDialog/LoadingDialog';
 import globalSlice from "./redux/globalSlice";
 import { useSelector } from 'react-redux';
+import libretranslate from "./services/apis/publicAPI/libretranslate";
 import "./App.css";
 function App() {
     const loading = useSelector(state=> state.global.loading)

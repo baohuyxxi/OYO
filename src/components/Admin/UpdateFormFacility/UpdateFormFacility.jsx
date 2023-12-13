@@ -9,6 +9,69 @@ import { useForm } from 'react-hook-form';
 
 import './UpdateFormFacility.scss';
 
+const renderItem = ({ item, dataFacilityCategory, setValue, register }) => {
+    const handleChangeFaciCateName = (e) => {
+        const faciCateName = e.target.value;
+        const faciCateCode =
+            dataFacilityCategory.find((item) => item.faciCateName === faciCateName)?.faciCateCode ||
+            'Mã loại tiện ích tương ứng';
+        console.log(faciCateCode);
+        setValue('facilityCateCode', faciCateCode);
+    };
+
+    switch (item.nameRegister) {
+        case 'status':
+            return (
+                <select
+                    {...register(item.nameRegister, { required: item.nameRequire })}
+                    className="update-form__select"
+                >
+                    <option value="">Chọn trạng thái</option>
+                    <option value="ENABLE">ENABLE</option>
+                    <option value="DISABLE">DISABLE</option>
+                </select>
+            );
+        case 'facilityCateName':
+            return (
+                <select
+                    {...register(item.nameRegister, {
+                        required: item.nameRequire,
+                        onChange: (e) => handleChangeFaciCateName(e)
+                    })}
+                    className="update-form__select"
+                >
+                    <option value="">Chọn loại tiện ích</option>
+                    {dataFacilityCategory.map((itemFaciCate, index) => (
+                        <option value={itemFaciCate.faciCateName} key={index}>
+                            {itemFaciCate.faciCateName}
+                        </option>
+                    ))}
+                </select>
+            );
+        case 'facilityCateCode':
+            return (
+                <input
+                    type="text"
+                    className="update-form__select"
+                    {...register(item.nameRegister)}
+                    disabled
+                    placeholder={item.placeholder}
+                />
+            );
+        default:
+            return (
+                <input
+                    type="text"
+                    className="update-form__input"
+                    placeholder={item.placeholder}
+                    {...register(item.nameRegister, {
+                        required: item.nameRequire
+                    })}
+                />
+            );
+    }
+};
+
 export default function UpdateFormFacility(props) {
     const [open, setOpen] = useState(false);
 
@@ -30,9 +93,6 @@ export default function UpdateFormFacility(props) {
     useEffect(() => {
         for (let i = 0; i < props.fieldData.length; i++) {
             setValue(props.fieldData[i].nameRegister, props.data[props.fieldData[i].nameRegister]);
-        }
-        if (props.data?.category?.id !== undefined) {
-            setValue('categoryId', props.data.category.id);
         }
     }, [setValue, props.data, props.fieldData]);
 
@@ -68,25 +128,13 @@ export default function UpdateFormFacility(props) {
                             {props.fieldData?.map((item, index) => (
                                 <div className="col l-12 key-col" key={index}>
                                     <h2 className="title-field">{item.title}</h2>
-                                    {item.nameRegister === 'status' ? (
-                                        <select
-                                            {...register(item.nameRegister, { required: item.nameRequire })}
-                                            className="update-form__select"
-                                        >
-                                            <option value="">Chọn trạng thái</option>
-                                            <option value="ENABLE">ENABLE</option>
-                                            <option value="DISABLE">DISABLE</option>
-                                        </select>
-                                    ) : (
-                                        <input
-                                            type="text"
-                                            className="update-form__input"
-                                            placeholder={item.placeholder}
-                                            {...register(item.nameRegister, {
-                                                required: item.nameRequire
-                                            })}
-                                        />
-                                    )}
+                                    {renderItem({
+                                        item,
+                                        dataFacilityCategory: props.dataFacilityCategory,
+                                        register,
+                                        setValue,
+                                        errors
+                                    })}
                                     {errors[item.nameRegister] && (
                                         <span className="message_error">{`${
                                             errors[item.nameRegister] && errors[item.nameRegister]?.message

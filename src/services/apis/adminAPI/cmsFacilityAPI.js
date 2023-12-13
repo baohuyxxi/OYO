@@ -9,15 +9,15 @@ const cmsFacilityAPI = {
         return response.data;
     },
     updateFacility: async (data, id) => {
-        const response = await axiosClient.put(`/cms/facilities${id}/update`, data);
+        const response = await axiosClient.put(`/cms/facilities/${id}/update`, data);
         return response.data;
     },
     changeStatusFacility: async (status, id) => {
-        const response = await axiosClient.put(`/cms/facilities${id}/change-status?status=${status}`);
+        const response = await axiosClient.put(`/cms/facilities/${id}/change-status?status=${status}`);
         return response.data;
     },
     deleteFacility: async (id) => {
-        const response = await axiosClient.delete(`/cms/facilities${id}/delete`);
+        const response = await axiosClient.delete(`/cms/facilities/${id}/delete`);
         return response.data;
     }
 };

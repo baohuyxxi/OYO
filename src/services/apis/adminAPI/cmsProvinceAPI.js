@@ -5,11 +5,11 @@ const cmsProvinceAPI = {
         return response.data;
     },
     updateProvince: async (data, id) => {
-        const response = await axiosClient.put(`/cms/provinces${id}/update`, data);
+        const response = await axiosClient.put(`/cms/provinces/${id}/update`, data);
         return response.data;
     },
     deleteProvince: async (id) => {
-        const response = await axiosClient.delete(`/cms/provinces${id}/delete`);
+        const response = await axiosClient.delete(`/cms/provinces/${id}/delete`);
         return response.data;
     }
 };

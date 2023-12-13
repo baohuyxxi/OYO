@@ -3,25 +3,15 @@ import { useEffect, useState, useRef } from 'react';
 
 import { useForm } from 'react-hook-form';
 
-const renderItem = ({ item, dataFacilityCategory, register, errors }) => {
-    const [selectedFacilityCateCode, setSelectedFacilityCateCode] = useState('dss');
-    // const facilityCateCodeRef = useRef('svdfb');
-
+const renderItem = ({ item, dataFacilityCategory, setValue, register }) => {
     const handleChangeFaciCateName = (e) => {
         const faciCateName = e.target.value;
         const faciCateCode =
-            dataFacilityCategory.find((item) => item.faciCateName === faciCateName)?.faciCateCode || '';
-        // facilityCateCodeRef.current = faciCateCode;
-        // console.log(facilityCateCodeRef);
+            dataFacilityCategory.find((item) => item.faciCateName === faciCateName)?.faciCateCode ||
+            'Mã loại tiện ích tương ứng';
         console.log(faciCateCode);
-        setSelectedFacilityCateCode(faciCateCode);
+        setValue('facilityCateCode', faciCateCode);
     };
-
-    // useEffect(() => {
-    //     console.log(selectedFacilityCateCode);
-    //     console.log(facilityCateCodeRef.current);
-    //     facilityCateCodeRef.current.value = selectedFacilityCateCode;
-    // }, [selectedFacilityCateCode, dataFacilityCategory]);
 
     switch (item.nameRegister) {
         case 'status':
@@ -54,14 +44,9 @@ const renderItem = ({ item, dataFacilityCategory, register, errors }) => {
                 <input
                     type="text"
                     className="add-form__input"
-                    {...register(item.nameRegister, {
-                        required: item.nameRequire
-                    })}
+                    {...register(item.nameRegister)}
                     disabled
-                    // defaultValue={selectedFacilityCateCode}
-                    // onChange={}
-                    // ref={facilityCateCodeRef.current}
-                    defaultValue={selectedFacilityCateCode}
+                    placeholder={item.placeholder}
                 />
             );
         default:
@@ -83,6 +68,7 @@ const AddFormFacility = (props) => {
         register,
         reset,
         handleSubmit,
+        setValue,
         formState: { errors }
     } = useForm();
 
@@ -100,37 +86,17 @@ const AddFormFacility = (props) => {
                     {props?.fieldData?.map((item, index) => (
                         <div className="col l-6 key-col" key={index}>
                             <h2 className="title-field">{item.title}</h2>
-                            {/* {item.nameRegister === 'status' ? (
-                                <select
-                                    {...register(item.nameRegister, { required: item.nameRequire })}
-                                    className="add-form__select"
-                                >
-                                    <option value="">Chọn trạng thái</option>
-                                    <option value="ENABLE">ENABLE</option>
-                                    <option value="DISABLE">DISABLE</option>
-                                </select>
-                            ) : (
-                                <input
-                                    type="text"
-                                    className="add-form__input"
-                                    placeholder={item.placeholder}
-                                    {...register(item.nameRegister, {
-                                        required: item.nameRequire
-                                    })}
-                                />
-                            )} */}
-
-                            {/* {errors[item.nameRegister] && (
-                                <span className="message_error">{`${
-                                    errors[item.nameRegister] && errors[item.nameRegister]?.message
-                                }`}</span>
-                            )} */}
                             {renderItem({
                                 item,
                                 dataFacilityCategory: props.dataFacilityCategory,
                                 register,
-                                errors
+                                setValue
                             })}
+                            {errors[item.nameRegister] && (
+                                <span className="message_error">{`${
+                                    errors[item.nameRegister] && errors[item.nameRegister]?.message
+                                }`}</span>
+                            )}
                         </div>
                     ))}
                 </div>

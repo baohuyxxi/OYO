@@ -4,10 +4,10 @@ import { useSnackbar } from 'notistack';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import cmsFacilityAPI from '~/services/apis/adminAPI/cmsFacilityAPI';
-import UpdateForm from '~/components/Admin/UpdateForm/UpdateForm';
 import AddFormFacility from '~/components/Admin/AddFormFacility/AddFormFacility';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import './FacilityAdmin.scss';
+import UpdateFormFacility from '~/components/Admin/UpdateFormFacility/UpdateFormFacility';
 
 const customerTableHead = ['', 'Tên tiện ích', 'Mã tiện ích', 'Link hình ảnh', 'Loại tiện ích', 'Trạng thái'];
 
@@ -31,12 +31,11 @@ const fieldData = [
         placeholder: 'Vd: Tiêu chuẩn...'
     },
 
-    // Không hiển thị
     {
         title: 'Mã loại tiện ích',
         nameRegister: 'facilityCateCode',
         nameRequire: 'mã loại tiện ích là bắt buộc',
-        placeholder: 'Vd: FACI_CATE_001...'
+        placeholder: 'Mã loại tiện ích tương ứng'
     },
     {
         title: 'Trạng thái',
@@ -61,7 +60,12 @@ const FacilityAdmin = (props) => {
             <td>{item.facilityCateName}</td>
             <td>{item.status}</td>
             <td>
-                <UpdateForm fieldData={fieldData} data={item} updateData={handleUpdate} />
+                <UpdateFormFacility
+                    fieldData={fieldData}
+                    data={item}
+                    updateData={handleUpdate}
+                    dataFacilityCategory={props.dataFacilityCategory}
+                />
             </td>
             <td>
                 <Popup
@@ -141,6 +145,7 @@ const FacilityAdmin = (props) => {
     };
 
     const handleUpdate = (data, id) => {
+        console.log(data, id);
         cmsFacilityAPI
             .updateFacility(data, id)
             .then((dataResponse) => {
@@ -148,7 +153,7 @@ const FacilityAdmin = (props) => {
                 enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
             })
             .catch((error) => {
-                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+                enqueueSnackbar(error.response?.data.detail, { variant: 'error' });
             });
     };
 

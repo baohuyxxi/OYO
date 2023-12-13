@@ -88,7 +88,7 @@ export default function ConvenientSetting(props) {
                             <></>
                         ) : (
                             <AccordionDetails
-                                expandIcon={<ExpandCircleDownIcon/>}
+                            
                                 aria-controls="panel1bh-content"
                                 id="panel1bh-header"
                                 className="container__facilityCate"

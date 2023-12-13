@@ -53,7 +53,7 @@ export default function StepperComponent() {
     const [addressDetail, setAddressDetail] = useState('');
 
     const [dataStep2, setDataStep2] = useState(typeRoom);
-    const [countGuest, setCountGuest] = useState(0);
+    const [countGuest, setCountGuest] = useState(1);
     const [accomCate, setAccomCate] = useState('');
     const [dataStep3, setDataStep3] = useState([]);
     const [dataStep4, setDataStep4] = useState([]);

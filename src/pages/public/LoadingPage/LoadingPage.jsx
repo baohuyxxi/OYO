@@ -6,7 +6,7 @@ const LoadingPage = () => {
     return (
         <FramePage>
             <div className="loading__page">
-                <img src={snailLoading} alt="" />
+                <img src={LoadingIcon} alt="" />
             </div>
         </FramePage>
     );

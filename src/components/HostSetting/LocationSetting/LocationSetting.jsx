@@ -17,6 +17,7 @@ export default function LocationSetting(props) {
 
     const [address, setAddress] = useState(addressFormData);
     const [addressDetail, setAddressDetail] = useState('');
+    const { enqueueSnackbar } = useSnackbar();
     const params = useParams();
 
     useEffect(() => {
@@ -29,7 +30,6 @@ export default function LocationSetting(props) {
         }
     }, [props.locationRoom.addressDetail, props.locationRoom.addressDetail1]);
 
-    const { enqueueSnackbar } = useSnackbar();
 
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
@@ -49,7 +49,18 @@ export default function LocationSetting(props) {
             },
             id: params.idHome
         };
-        partnerManageAPI.updateAddressHome(newData);
+        partnerManageAPI
+            .updateAddressHome(newData)
+            .then((res) => {
+                enqueueSnackbar('Cập nhật thành công', {
+                    variant: 'success'
+                });
+            })
+            .catch((err) => {
+                enqueueSnackbar(err, {
+                    variant: 'error'
+                });
+            });
         // .then((dataResponse) => {
         //     enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
         // })
@@ -59,16 +70,16 @@ export default function LocationSetting(props) {
     };
 
     return (
-        <div className='container__locationSetting'>
+        <div className="container__locationSetting">
             <h3>Vị trí</h3>
             <form onSubmit={onSubmit}>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
-                       expandicon={<ExpandCircleDownIcon/>}
+                        expandicon={<ExpandCircleDownIcon />}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >
-                         <p style={{ width: '33%', flexShrink: 0 }}>Địa chỉ chi tiết</p>
+                        <p style={{ width: '33%', flexShrink: 0 }}>Địa chỉ chi tiết</p>
                         <p style={{ color: 'text.secondary' }}>{props.locationRoom.addressDetail}</p>
                     </AccordionSummary>
                     <AccordionDetails>

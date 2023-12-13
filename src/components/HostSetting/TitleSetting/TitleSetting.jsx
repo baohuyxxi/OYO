@@ -95,7 +95,7 @@ export default function TittleSetting(props) {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
-                       expandicon={<ExpandCircleDownIcon/>}
+                       expandIcon={<ExpandCircleDownIcon/>}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >
@@ -120,7 +120,7 @@ export default function TittleSetting(props) {
                 </Accordion>
                 <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
                     <AccordionSummary
-                       expandicon={<ExpandCircleDownIcon/>}
+                       expandIcon={<ExpandCircleDownIcon/>}
                         aria-controls="panel2bh-content"
                         id="panel2bh-header"
                     >
@@ -146,7 +146,7 @@ export default function TittleSetting(props) {
                 </Accordion>
                 <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
                     <AccordionSummary
-                       expandicon={<ExpandCircleDownIcon/>}
+                       expandIcon={<ExpandCircleDownIcon/>}
                         aria-controls="panel3bh-content"
                         id="panel3bh-header"
                     >
@@ -169,7 +169,7 @@ export default function TittleSetting(props) {
                 </Accordion>
                 <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
                     <AccordionSummary
-                       expandicon={<ExpandCircleDownIcon/>}
+                       expandIcon={<ExpandCircleDownIcon/>}
                         aria-controls="panel4bh-content"
                         id="panel4bh-header"
                     >

@@ -10,7 +10,7 @@
   align-items: center;
   margin: 0 auto;
   font-weight: 500;
-  font-family: serif!important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif!important;
   background-color: var(--background-paper)!important;  
   .toolbar{
       background-color: var(--background-paper);
@@ -49,7 +49,7 @@
   }
   .MuiButton-root {
     text-transform: none !important;
-    font-family: serif !important;
+    // font-family: serif !important;
   }
 }
 

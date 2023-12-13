@@ -75,7 +75,7 @@ export default function PriceDiscountSurchagre(props) {
             <form onSubmit={handleSave}>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
-                       expandicon={<ExpandCircleDownIcon/>}
+                       expandIcon={<ExpandCircleDownIcon/>}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >

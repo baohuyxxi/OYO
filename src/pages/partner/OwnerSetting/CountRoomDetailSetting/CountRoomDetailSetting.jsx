@@ -96,7 +96,7 @@ const CountRoomDetailSetting = (props) => {
             <form onSubmit={handleSaveRoom}>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
-                       expandicon={<ExpandCircleDownIcon/>}
+                       expandIcon={<ExpandCircleDownIcon/>}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >
@@ -109,7 +109,7 @@ const CountRoomDetailSetting = (props) => {
                         </div>
                     </AccordionSummary>
                     <AccordionDetails
-                       expandicon={<ExpandCircleDownIcon/>}
+                       expandIcon={<ExpandCircleDownIcon/>}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                         style={{ display: 'flex' }}
@@ -128,7 +128,7 @@ const CountRoomDetailSetting = (props) => {
                         </div>
                     </AccordionDetails>
                     <AccordionDetails
-                       expandicon={<ExpandCircleDownIcon/>}
+                       expandIcon={<ExpandCircleDownIcon/>}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                         style={{ display: 'flex' }}

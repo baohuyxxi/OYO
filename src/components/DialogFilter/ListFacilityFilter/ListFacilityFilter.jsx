@@ -6,7 +6,7 @@ const ListFacilityFilter = () => {
     const [facilityCateList, setFacilityCateList] = useState(null);
     useEffect(() => {
         async function fetchData() {
-            const res = await publicFacilityAPI.getAllDataFacilityRequest();
+            const res = await publicFacilityAPI.getAllDataFacility();
             setFacilityCateList(res.data);
         }
         fetchData();
@@ -28,14 +28,14 @@ const ListFacilityFilter = () => {
           </div>
         </div>
       ))} */}
-            {facilityCateList?.map((current, index) => (
+            {/* {facilityCateList?.map((current, index) => (
                 <div key={index}>
                     <ListFacilityByCategory
                         facilityList={current.facilityListName}
                         facilityCateName={current.faciCateName}
                     />
                 </div>
-            ))}
+            ))} */}
         </div>
     );
 };

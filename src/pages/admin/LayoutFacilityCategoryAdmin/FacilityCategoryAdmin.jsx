@@ -3,20 +3,26 @@ import Table from '~/components/Table/Table';
 import { useSnackbar } from 'notistack';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import cmsTypeBedAPI from '~/services/apis/adminAPI/cmsTypeBedAPI';
+import cmsFacilityCategoryAPI from '~/services/apis/adminAPI/cmsFacilityCategoryAPI';
 import UpdateForm from '~/components/Admin/UpdateForm/UpdateForm';
 import AddForm from '~/components/Admin/AddForm/AddForm';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import './TypeBedAdmin.scss';
+import './FacilityCategoryAdmin.scss';
 
-const customerTableHead = ['', 'Tên loại giường', 'Mã code', 'Trạng thái'];
+const customerTableHead = ['', 'Tên loại tiện ích', 'Mô tả', 'Mã loại tiện ích', 'Trạng thái'];
 
 const fieldData = [
     {
-        title: 'Tên loại giường',
-        nameRegister: 'typeBedName',
-        nameRequire: 'Tên loại giường là bắt buộc',
-        placeholder: 'Vd: Giường kingen...'
+        title: 'Tên loại tiện ích',
+        nameRegister: 'faciCateName',
+        nameRequire: 'Tên loại tiện ích bắt buộc',
+        placeholder: 'Vd: Cơ bản...'
+    },
+    {
+        title: 'Mô tả',
+        nameRegister: 'description',
+        nameRequire: 'Mô tả là bắt buộc',
+        placeholder: 'Vd: Cung cấp các tiện ích cơ bản cho người dùng...'
     },
     {
         title: 'Trạng thái',
@@ -27,7 +33,7 @@ const fieldData = [
 
 const renderHead = (item, index) => <th key={index}>{item}</th>;
 
-const TypeBedAdmin = (props) => {
+const FacilityCategoryAdmin = (props) => {
     const [onAdd, setOnAdd] = useState(false);
 
     const { enqueueSnackbar } = useSnackbar();
@@ -35,8 +41,9 @@ const TypeBedAdmin = (props) => {
     const renderBody = (item, index, initNum) => (
         <tr key={index}>
             <td>{index + 1 + initNum}</td>
-            <td>{item.typeBedName}</td>
-            <td>{item.typeBedCode}</td>
+            <td>{item.faciCateName}</td>
+            <td>{item.description}</td>
+            <td>{item.faciCateCode}</td>
             <td>{item.status}</td>
             <td>
                 <UpdateForm fieldData={fieldData} data={item} updateData={handleUpdate} />
@@ -81,20 +88,20 @@ const TypeBedAdmin = (props) => {
         const dataAdd = {
             ...data
         };
-        cmsTypeBedAPI
-            .addTypeBed(dataAdd)
+        cmsFacilityCategoryAPI
+            .addFacilityCategory(dataAdd)
             .then((dataResponse) => {
                 props.setList([dataResponse.data, ...props.data]);
                 enqueueSnackbar('Thêm mới thành công', { variant: 'success' });
             })
             .catch((error) => {
-                enqueueSnackbar('Thêm mới thất bại', { variant: 'error' });
+                enqueueSnackbar(`Thêm mới thất bại  ${error.response.data.detail}`, { variant: 'error' });
             });
     };
 
     const handleDelete = (idDelete) => {
-        cmsTypeBedAPI
-            .deleteTypeBed(idDelete)
+        cmsFacilityCategoryAPI
+            .deleteFacilityCategory(idDelete)
             .then(() => {
                 const dataAfterDelete = props.data.filter((dataDelete) => {
                     return dataDelete.id !== idDelete;
@@ -119,8 +126,8 @@ const TypeBedAdmin = (props) => {
     };
 
     const handleUpdate = (data, id) => {
-        cmsTypeBedAPI
-            .updateTypeBed(data, id)
+        cmsFacilityCategoryAPI
+            .updateFacilityCategory(data, id)
             .then((dataResponse) => {
                 Update(dataResponse.data.id, dataResponse.data);
                 enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
@@ -131,7 +138,7 @@ const TypeBedAdmin = (props) => {
     };
 
     return (
-        <div className="type__bed__admin">
+        <div className="facility__category__admin">
             <div className="header__customer">
                 <h2 className="page-header">Loại giường</h2>
                 <button className="btn__add-customer__admin" onClick={() => setOnAdd(!onAdd)}>
@@ -162,4 +169,4 @@ const TypeBedAdmin = (props) => {
     );
 };
 
-export default TypeBedAdmin;
+export default FacilityCategoryAdmin;

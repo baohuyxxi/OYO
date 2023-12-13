@@ -88,7 +88,7 @@ const TypeBedAdmin = (props) => {
                 enqueueSnackbar('Thêm mới thành công', { variant: 'success' });
             })
             .catch((error) => {
-                enqueueSnackbar('Thêm mới thất bại', { variant: 'error' });
+                enqueueSnackbar(`Thêm mới thất bại.  ${error.response.data.detail}`, { variant: 'error' });
             });
     };
 

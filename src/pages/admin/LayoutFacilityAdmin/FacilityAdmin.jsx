@@ -114,7 +114,8 @@ const FacilityAdmin = (props) => {
                 enqueueSnackbar('Thêm mới thành công', { variant: 'success' });
             })
             .catch((error) => {
-                enqueueSnackbar('Thêm mới thất bại', { variant: 'error' });
+                console.log();
+                enqueueSnackbar(`Thêm mới thất bại. ${error.response.data.detail}`, { variant: 'error' });
             });
     };
 

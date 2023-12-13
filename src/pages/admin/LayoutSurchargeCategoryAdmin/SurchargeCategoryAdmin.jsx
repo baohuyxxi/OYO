@@ -7,16 +7,17 @@ import cmsTypeBedAPI from '~/services/apis/adminAPI/cmsTypeBedAPI';
 import UpdateForm from '~/components/Admin/UpdateForm/UpdateForm';
 import AddForm from '~/components/Admin/AddForm/AddForm';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import './TypeBedAdmin.scss';
+import './SurchargeCategoryAdmin.scss';
+import cmsSurchargeCategoryAPI from '~/services/apis/adminAPI/cmsSurchargeCategoryAPI';
 
-const customerTableHead = ['', 'Tên loại giường', 'Mã code', 'Trạng thái'];
+const customerTableHead = ['', 'Tên loại phụ phí', 'Mã phụ phí', 'Trạng thái'];
 
 const fieldData = [
     {
-        title: 'Tên loại giường',
-        nameRegister: 'typeBedName',
-        nameRequire: 'Tên loại giường là bắt buộc',
-        placeholder: 'Vd: Giường kingen...'
+        title: 'Tên loại phụ phí',
+        nameRegister: 'surchargeCateName',
+        nameRequire: 'Tên loại phụ phí là bắt buộc',
+        placeholder: 'Vd: Phí dịch vụ...'
     },
     {
         title: 'Trạng thái',
@@ -27,7 +28,7 @@ const fieldData = [
 
 const renderHead = (item, index) => <th key={index}>{item}</th>;
 
-const TypeBedAdmin = (props) => {
+const SurchargeCategoryAdmin = (props) => {
     const [onAdd, setOnAdd] = useState(false);
 
     const { enqueueSnackbar } = useSnackbar();
@@ -35,8 +36,8 @@ const TypeBedAdmin = (props) => {
     const renderBody = (item, index, initNum) => (
         <tr key={index}>
             <td>{index + 1 + initNum}</td>
-            <td>{item.typeBedName}</td>
-            <td>{item.typeBedCode}</td>
+            <td>{item.surchargeCateName}</td>
+            <td>{item.surchargeCode}</td>
             <td>{item.status}</td>
             <td>
                 <UpdateForm fieldData={fieldData} data={item} updateData={handleUpdate} />
@@ -81,20 +82,20 @@ const TypeBedAdmin = (props) => {
         const dataAdd = {
             ...data
         };
-        cmsTypeBedAPI
-            .addTypeBed(dataAdd)
+        cmsSurchargeCategoryAPI
+            .addSurchargeCategory(dataAdd)
             .then((dataResponse) => {
                 props.setList([dataResponse.data, ...props.data]);
                 enqueueSnackbar('Thêm mới thành công', { variant: 'success' });
             })
             .catch((error) => {
-                enqueueSnackbar('Thêm mới thất bại', { variant: 'error' });
+                enqueueSnackbar(`Thêm mới thất bại.  ${error.response.data.detail}`, { variant: 'error' });
             });
     };
 
     const handleDelete = (idDelete) => {
-        cmsTypeBedAPI
-            .deleteTypeBed(idDelete)
+        cmsSurchargeCategoryAPI
+            .deleteSurchargeCategory(idDelete)
             .then(() => {
                 const dataAfterDelete = props.data.filter((dataDelete) => {
                     return dataDelete.id !== idDelete;
@@ -119,8 +120,8 @@ const TypeBedAdmin = (props) => {
     };
 
     const handleUpdate = (data, id) => {
-        cmsTypeBedAPI
-            .updateTypeBed(data, id)
+        cmsSurchargeCategoryAPI
+            .updateSurchargeCategory(data, id)
             .then((dataResponse) => {
                 Update(dataResponse.data.id, dataResponse.data);
                 enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
@@ -131,7 +132,7 @@ const TypeBedAdmin = (props) => {
     };
 
     return (
-        <div className="type__bed__admin">
+        <div className="surcharge__category__admin">
             <div className="header__customer">
                 <h2 className="page-header">Loại giường</h2>
                 <button className="btn__add-customer__admin" onClick={() => setOnAdd(!onAdd)}>
@@ -162,4 +163,4 @@ const TypeBedAdmin = (props) => {
     );
 };
 
-export default TypeBedAdmin;
+export default SurchargeCategoryAdmin;

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import Button from '@mui/material/Button';
-
+import { t } from 'i18next';
 import './FilterBar.scss';
 import DialogFilter from '../DialogFilter/DialogFilter';
 
@@ -35,6 +35,7 @@ const FilterBar = (props) => {
                     props.filterData(dataResponse.data.content);
                 });
         } else {
+            props.setLoading(true);
             publicAccomPlaceAPI
                 .getAllRoomsWithFilter({
                     queryParams: `accomCateName=${current?.accomCateName}`,
@@ -42,12 +43,16 @@ const FilterBar = (props) => {
                 })
                 .then((dataResponse) => {
                     props.filterData(dataResponse.data.content);
+                    props.setLoading(false);
                 });
         }
     };
-    const handleReset = () => {
-        publicAccomPlaceAPI.getAllRoomsWithFilter({ queryParams: ``, pageSize: props?.pagi }).then((dataResponse) => {
+    const handleReset = async (e) => {
+        e.preventDefault();
+      
+        await publicAccomPlaceAPI.getAllRoomsWithFilter({ queryParams: ``, pageSize: props?.pagi }).then((dataResponse) => {
             props.filterData(dataResponse.data.content);
+          
         });
     };
     // const handleFilter = (idActive, idFilter) => {
@@ -89,7 +94,7 @@ const FilterBar = (props) => {
                 ))}
             </Slider>
             <DialogFilter filterData={props.filterData} pagi={props.pagi} dataQueryDefauld={props.dataQueryDefauld} />
-            <Button onClick={handleReset}>Làm mới</Button>
+            <Button onClick={handleReset}>{t('common.reload')}</Button>
         </div>
     );
 };

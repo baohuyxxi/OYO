@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import { t } from 'i18next';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DialogActions from '@mui/material/DialogActions';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
@@ -10,19 +10,55 @@ import RangePriceFilter from './RangePriceFilter/RangePriceFilter';
 import SelectAddress from '../SelectAddress/SelectAddress';
 import ListFacilityFilter from './ListFacilityFilter/ListFacilityFilter';
 import CountRoomFilter from './CountRoomFilter/CountRoomFilter';
-import { addressFormData } from '~/share/models/address';
+import { useSearchParams } from 'react-router-dom';
+import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import './DialogFilter.scss';
 
-const DialogFilter = () => {
+const DialogFilter = (props) => {
+    const [searchParams] = useSearchParams();
     const [open, setOpen] = useState(false);
     const [address, setAddress] = useState({});
+    const [valuePriceRange, setValuePriceRange] = useState([1, 10000000]);
+    const [filter, setFilter] = useState('');
     const handleClose = () => {
         setOpen(false);
     };
     const handleClickOpen = () => {
         setOpen(true);
     };
-    console.log(address)
+    useEffect(() => {
+        if (searchParams.get('provinceCode')) {
+            setAddress({
+                provinceCode: searchParams.get('provinceCode')
+            });
+        }
+    }, [searchParams]);
+    console.log(valuePriceRange)
+
+    useEffect(() => {
+        let temp = '';
+        if (address.provinceCode) {
+            temp = `provinceCode=${address.provinceCode}`;
+            if (address.districtCode) {
+                temp += `&districtCode=${address.districtCode}`;
+                if (address.wardCode) {
+                    temp += `&wardCode=${address.wardCode}`;
+                }
+            }
+        
+        }
+        if (valuePriceRange[0] !== 1 || valuePriceRange[1] !== 10000000) {
+            temp += `&priceFrom=${valuePriceRange[0]}&priceTo=${valuePriceRange[1]}`;
+        }
+        setFilter(temp);
+    }, [address, valuePriceRange]);
+    console.log(filter)
+    const handleFilter = () => {
+        publicAccomPlaceAPI.getAllRoomsWithFilter({ queryParams: filter, pageSize: props?.pagi }).then((dataResponse) => {
+            props.filterData(dataResponse.data.content);
+            handleClose();
+        })
+    };
     return (
         <div className="dialog-filter">
             <Button variant="outlined" onClick={handleClickOpen} className="btn-show">
@@ -56,7 +92,7 @@ const DialogFilter = () => {
                     <DialogContent sx={{ fontSize: '19px', fontWeight: 'bold' }}>
                         {t('label.priceRange')}
                         <div style={{ marginTop: '30px' }}>
-                            <RangePriceFilter />
+                            <RangePriceFilter values={valuePriceRange} setValues={setValuePriceRange} />
                         </div>
                         <br /> <hr />
                     </DialogContent>
@@ -95,7 +131,7 @@ const DialogFilter = () => {
                             CLOSE
                         </Button>
                         <Button
-                            // onClick={handleFilter}
+                            onClick={handleFilter}
                             autoFocus
                             sx={{
                                 fontSize: '16px',

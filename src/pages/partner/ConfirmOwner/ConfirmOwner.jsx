@@ -71,7 +71,6 @@ const ConfirmOwner = (props) => {
                                 ))} */}
                             </div>
                         <div className="card">
-                            
                             <h2>{setupRoomHost.accomCateName}: {setupRoomHost.accomName}</h2>
                             <h3>Diện tích: {setupRoomHost.acreage}</h3>
                             <h3>{setupRoomHost.numHouseAndStreetName}, {setupRoomHost.wardName},  {setupRoomHost.districtName},  {setupRoomHost.provinceName}</h3>

@@ -13,7 +13,6 @@ import CountRoomFilter from './CountRoomFilter/CountRoomFilter';
 import { useSearchParams } from 'react-router-dom';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import './DialogFilter.scss';
-
 const DialogFilter = (props) => {
     const [searchParams] = useSearchParams();
     const [open, setOpen] = useState(false);
@@ -33,7 +32,7 @@ const DialogFilter = (props) => {
             });
         }
     }, [searchParams]);
-    console.log(valuePriceRange)
+    console.log(valuePriceRange);
 
     useEffect(() => {
         let temp = '';
@@ -45,24 +44,25 @@ const DialogFilter = (props) => {
                     temp += `&wardCode=${address.wardCode}`;
                 }
             }
-        
         }
         if (valuePriceRange[0] !== 1 || valuePriceRange[1] !== 10000000) {
             temp += `&priceFrom=${valuePriceRange[0]}&priceTo=${valuePriceRange[1]}`;
         }
         setFilter(temp);
     }, [address, valuePriceRange]);
-    console.log(filter)
+    console.log(filter);
     const handleFilter = () => {
-        publicAccomPlaceAPI.getAllRoomsWithFilter({ queryParams: filter, pageSize: props?.pagi }).then((dataResponse) => {
-            props.filterData(dataResponse.data.content);
-            handleClose();
-        })
+        publicAccomPlaceAPI
+            .getAllRoomsWithFilter({ queryParams: filter, pageSize: props?.pagi })
+            .then((dataResponse) => {
+                props.filterData(dataResponse.data.content);
+                handleClose();
+            });
     };
     return (
         <div className="dialog-filter">
             <Button variant="outlined" onClick={handleClickOpen} className="btn-show">
-                Bộ lọc
+                {t('common.filter')}
             </Button>
             <Dialog
                 open={open}

@@ -57,6 +57,7 @@ const ListAccomPage = () => {
                 queryParams={queryParams}
                 pagi={state.items.length}
                 dataQueryDefauld={queryParams}
+                setLoading={setLoading}
             />
             <div>
                 <InfiniteScroll

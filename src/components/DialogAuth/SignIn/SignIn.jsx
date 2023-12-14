@@ -93,7 +93,7 @@ export default function SignIn(props) {
                     .then(() => {
                         toggleShow(['PasswordInput', 'LoginButton', 'ForgotPassword']);
                     })
-                    .catch(toggleShow(['RegisterButton']));
+                    .catch(()=>toggleShow(['RegisterButton']));
             }, 2000);
         } else if (signin.email === '') {
             toggleShow(['StatusButton']);

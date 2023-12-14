@@ -9,7 +9,7 @@ import libretranslate from './services/apis/publicAPI/libretranslate';
 import './App.css';
 function App() {
     const dispatch = useDispatch();
-    dispatch(globalSlice.actions.setLoading(false));
+    // dispatch(globalSlice.actions.setLoading(false));
     const loading = useSelector((state) => state.global.loading);
     const { t } = useTranslation();
     useEffect(() => {

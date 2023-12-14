@@ -79,7 +79,7 @@ function ForgotPassword(props) {
                     dispatch(globalSlice.actions.setLoading(false))
                     props.handleClose();
                 }).catch(err =>{
-    
+                    
                 })
         } else {
             const canvas = canvasRef.current;

@@ -61,14 +61,14 @@ const ConfirmOwner = (props) => {
                         }}
                     >
                         <div className="img-confirm">
-                                {props?.imagesOfHome.map((image, index) => (
+                                {/* {props?.imagesOfHome.map((image, index) => (
                                     <img
                                         key={index}
                                         src={URL.createObjectURL(new Blob([image], { type: 'image/jpeg' }))}
                                         alt={image.name}
                                         style={{ width: '200px', margin: '5px' }}
                                     />
-                                ))}
+                                ))} */}
                             </div>
                         <div className="card">
                             

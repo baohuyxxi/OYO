@@ -3,6 +3,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
+import Button from '@mui/material/Button';
 
 import './FilterBar.scss';
 import DialogFilter from '../DialogFilter/DialogFilter';
@@ -25,12 +26,30 @@ const FilterBar = (props) => {
         }
         fetchData();
     }, []);
-    const handleFilterCate = (index, current) =>{
+    const handleFilterCate = (index, current) => {
         setIndexActive(index);
-        console.log(index, current)
-        console.log(props.queryParams)
-    }
-    
+        if (current === null) {
+            publicAccomPlaceAPI
+                .getAllRoomsWithFilter({ queryParams: ``, pageSize: props?.pagi })
+                .then((dataResponse) => {
+                    props.filterData(dataResponse.data.content);
+                });
+        } else {
+            publicAccomPlaceAPI
+                .getAllRoomsWithFilter({
+                    queryParams: `accomCateName=${current?.accomCateName}`,
+                    pageSize: props?.pagi
+                })
+                .then((dataResponse) => {
+                    props.filterData(dataResponse.data.content);
+                });
+        }
+    };
+    const handleReset = () => {
+        publicAccomPlaceAPI.getAllRoomsWithFilter({ queryParams: ``, pageSize: props?.pagi }).then((dataResponse) => {
+            props.filterData(dataResponse.data.content);
+        });
+    };
     // const handleFilter = (idActive, idFilter) => {
     //     console.log(idActive, idFilter)
     //     setIndexActive(idActive);
@@ -55,7 +74,10 @@ const FilterBar = (props) => {
             <Slider {...settings}>
                 {listAccomCateData?.map((current, index) => (
                     <div key={index}>
-                        <div className={`slider__item-filter  ${index === indexActive && 'active'}`} onClick={() => handleFilterCate(index, current)}>
+                        <div
+                            className={`slider__item-filter  ${index === indexActive && 'active'}`}
+                            onClick={() => handleFilterCate(index, current)}
+                        >
                             <div className="icon-filter">
                                 <img src={current?.icon} alt="icon-filter" />
                             </div>
@@ -66,8 +88,8 @@ const FilterBar = (props) => {
                     </div>
                 ))}
             </Slider>
-            <DialogFilter />
-            {/* <Button>Bộ Lọc</Button> */}
+            <DialogFilter filterData={props.filterData} pagi={props.pagi} dataQueryDefauld={props.dataQueryDefauld} />
+            <Button onClick={handleReset}>Làm mới</Button>
         </div>
     );
 };

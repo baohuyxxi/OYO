@@ -11,6 +11,7 @@ const ListFacilityFilter = () => {
         }
         fetchData();
     }, []);
+    console.log(facilityCateList);
     return (
         <div style={{ marginTop: '30px' }}>
             {/* {listAccomCateData?.map((current, index) => (
@@ -28,14 +29,14 @@ const ListFacilityFilter = () => {
           </div>
         </div>
       ))} */}
-            {/* {facilityCateList?.map((current, index) => (
+            {facilityCateList?.slice(0,3)?.map((current, index) => (
                 <div key={index}>
                     <ListFacilityByCategory
-                        facilityList={current.facilityListName}
+                        facilityList={current.infoFacilityList}
                         facilityCateName={current.faciCateName}
                     />
                 </div>
-            ))} */}
+            ))}
         </div>
     );
 };

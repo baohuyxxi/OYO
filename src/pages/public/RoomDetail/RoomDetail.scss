@@ -221,16 +221,36 @@
                 }
 
                 .calendarElement {
-                    margin-left: -100px;
+                    margin-left: -375px;
                 }
 
                 .calendarWrap {
-                    margin-top: 0;
+                    display: flex;
+                
+                    width: 100%;
+                    z-index: 91;
+                    .info_date {
+                        display: flex;
+                        flex-wrap: wrap;
+                
+                        .output {
+                            width: 158px;
+                
+                            input {
+                                // padding: 8px;
+                                width: 100%;
+                            }
+                        }
+                
+                        .output:nth-child(2) {
+                         
+                        }
+                    }
                 }
             }
 
             .count__guest {
-                margin-top: 37px;
+                // margin-top: 37px;
                 .dropdown {
                     margin: 0 12px;
                     border: 2px solid;

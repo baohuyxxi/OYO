@@ -20,6 +20,7 @@ import './BookingPage.scss';
 import { t } from 'i18next';
 import { da } from 'date-fns/locale';
 import bookingSlice from '~/redux/bookingSlice';
+import globalSlice from '~/redux/globalSlice';
 
 const BookingPage = () => {
     const dispatch = useDispatch();
@@ -30,9 +31,11 @@ const BookingPage = () => {
     const [dataDetailHomeBooking, setDataDetailHomeBooking] = useState();
     const [priceAfterChoosePayment, setPriceAfterChoosePayment] = useState(dataBooking?.originPay);
     const handleBookingRoom = () => {
+        dispatch(globalSlice.actions.setLoading(true));
         bookingAPI.createBooking(dataBooking).then((dataResponse) => {
             enqueueSnackbar(t('message.bookingSuccess'), { variant: 'success' });
             dispatch(bookingSlice.actions.clearInfoBooking());
+            dispatch(globalSlice.actions.setLoading(false));
             navigate('/');
         });
 

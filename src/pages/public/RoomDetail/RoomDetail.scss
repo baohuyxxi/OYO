@@ -121,7 +121,7 @@
 
         p {
             margin-top: 0px;
-            font-size: smaller;
+            font-size: medium;
         }
 
         .title-room {
@@ -226,24 +226,24 @@
 
                 .calendarWrap {
                     display: flex;
-                
+
                     width: 100%;
                     z-index: 91;
                     .info_date {
                         display: flex;
                         flex-wrap: wrap;
-                
+
                         .output {
                             width: 158px;
-                
+
                             input {
-                                // padding: 8px;
+                                background-color: initial;
+                                color: inherit;
                                 width: 100%;
                             }
                         }
-                
+
                         .output:nth-child(2) {
-                         
                         }
                     }
                 }
@@ -352,26 +352,34 @@
             bottom: 0;
             height: 40px;
             width: 100%;
-            // border-top: 1px solid #bdbdbd;
             display: flex;
             justify-content: center;
             align-items: center;
 
             .icon_love {
-                color: white;
-                font-size: 25px;
-            }
-
-            .icon_love__true {
                 color: red;
                 font-size: 25px;
             }
+
+
 
             p {
                 margin: 0;
                 font-size: 16px;
                 padding-left: 10px;
             }
+        }
+        .MuiAccordionSummary-content {
+            justify-content: space-between;
+            margin: 0px;
+        }
+        .MuiAccordionSummary-expandIconWrapper {
+            margin-right: -24px;
+        }
+        .MuiAccordionSummary-root {
+            min-height: 0px;
+        }
+        .MuiAccordionSummary-contentGutters {
         }
     }
 }

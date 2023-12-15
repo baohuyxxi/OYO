@@ -43,7 +43,7 @@ export default function TabComponent() {
                         <TableDataHostSummary
                             data={dataWaiting}
                             dataCheckIn={dataCheckIn}
-                            idTab="0"
+                            idTab="Check In"
                             setDataCheckIn={setDataCheckIn}
                             setDataWaiting={setDataWaiting}
                             setLoad={setLoad}
@@ -55,7 +55,7 @@ export default function TabComponent() {
                 </TabPanel>
                 <TabPanel value="2">
                     {dataCheckIn.length !== 0 ? (
-                        <TableDataHostSummary data={dataCheckIn} idTab="1" setLoad={setLoad} load={load} />
+                        <TableDataHostSummary data={dataCheckIn} idTab="Check Out" setLoad={setLoad} load={load} />
                     ) : (
                         <ListDataNull />
                     )}

@@ -16,6 +16,9 @@ const StepperTwo = (props) => {
             setData(dataResponse?.data);
         });
     }, []);
+    const onChangeCateAccom = (event) => {
+        props.setAccomCate(event.target.value);
+    };
     return (
         <div className="step-two">
             <div className="row">
@@ -36,14 +39,12 @@ const StepperTwo = (props) => {
                             select={true}
                             size="small"
                             id="cateName"
-                            value=""
-                            onChange={(event) => {
-                                props.setAccomCate(event.target.value.accomCateName);
-                            }}
+                            value={props.accomCate}
+                            onChange={onChangeCateAccom}
                             title={t(`title.category`)}
                             width={400}
                             content={data.map((cate, index) => (
-                                <MenuItem key={index} value={cate}>
+                                <MenuItem key={index} value={cate.accomCateName}>
                                     {cate.accomCateName}
                                 </MenuItem>
                             ))}
@@ -53,7 +54,6 @@ const StepperTwo = (props) => {
                             <CountNumberGuest setCountGuest={props.setCountGuest} />
                         </div>
                         {props.dataStep2?.map((room, index) => (
-    
                             <div key={index}>
                                 <div className="count ">
                                     <p>{room.name}</p>

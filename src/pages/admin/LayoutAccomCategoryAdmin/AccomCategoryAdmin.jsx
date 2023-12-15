@@ -101,7 +101,7 @@ const AccomCategoryAdmin = (props) => {
                 enqueueSnackbar('Thêm mới thành công', { variant: 'success' });
             })
             .catch((error) => {
-                enqueueSnackbar('Thêm mới thất bại', { variant: 'error' });
+                enqueueSnackbar(`Thêm mới thất bại\n ${error.response.data.detail}`, { variant: 'error' });
             });
     };
 
@@ -121,7 +121,6 @@ const AccomCategoryAdmin = (props) => {
     };
 
     const Update = (id, data) => {
-
         props.setList(
             props.data?.map((item) => {
                 if (item.id === id) {

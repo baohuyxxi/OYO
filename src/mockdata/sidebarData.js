@@ -53,7 +53,7 @@ const SidebarData = {
         {
             id: 8,
             display_name: 'Danh mục phụ phí',
-            route: '/admin/surcharge',
+            route: '/admin/surchargecategories',
             icon: 'bx bx-card'
         }
     ],

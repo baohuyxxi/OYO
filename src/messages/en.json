@@ -30,7 +30,9 @@
     "send": "Send",
     "reload": "Reload", 
     "enterCapcha" :"Enter the text in the image",
-    "addImage": "Add image"
+    "addImage": "Add image",
+    "noRefunds":"No refunds",
+    "surcharge": "Surcharge"
   },
   "message": {
     "signin": "Sign in successfully",
@@ -223,6 +225,7 @@
       "content_4": "Read genuine reviews and get dedicated support. We will serve you every step of the way."
     },
     "allHome": "Entire villa. Host",
+    "all": "All ",
     "convenient": "This place has what for you",
     "descHome": "About the house / room",
     "bedroom": "Where you will sleep",

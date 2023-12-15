@@ -330,4 +330,12 @@ html[mode='dark'] {
         margin-top: 4px;
         margin-bottom: 4px;
     }
+    .MuiAccordion-rounded {
+        background-color: initial;
+        color: inherit;
+    }
+    .MuiAccordionSummary-expandIconWrapper{
+        background-color: initial;
+        color: inherit;
+    }
 }

@@ -184,7 +184,6 @@ function DataTable(props) {
                 columns={columns}
                 pageSize={5}
                 rowsPerPageOptions={[5]}
-                checkboxSelection
                 disableSelectionOnClick={true}
                 sx={{ fontSize: '17px', overflowX: 'hidden' }}
                 // onCellClick={onCellClick}

@@ -10,17 +10,17 @@ const ListFacilityByCategory = ({ facilityList, facilityCateName }) => {
       <div className="title">{facilityCateName}</div>
       <FormGroup>
         <div className="row">
-          {facilityList?.map((facility, index) => (
+          {facilityList.slice(0,2)?.map((facility, index) => (
             <div className="col l-6" key={index}>
               <FormControlLabel
                 control={
                   <Checkbox
                     //   onChange={handleChangeBox}
-                    value={facility}
+                    // value={facility}
                     sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
                   />
                 }
-                label={facility}
+                label={facility.facilityName}
                 sx={{ ".MuiTypography-root": { fontSize: 17 } }}
               />
             </div>

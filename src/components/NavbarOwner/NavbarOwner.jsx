@@ -75,6 +75,9 @@ const NavbarOwner = () => {
                 <img src={Logo} alt="company logo" className="logo-bg" />
             </NavLink>
             <div className="navbar-right menu">
+                <NavLink to="/" end={true}>
+                    {t('navbar.home')}
+                </NavLink>
                 <NavLink to="/host" end={true}>
                     {t('navbar.today')}
                 </NavLink>

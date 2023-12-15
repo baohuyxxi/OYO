@@ -88,12 +88,12 @@ export default function SignIn(props) {
                     toggleShow(['StatusButton', 'ValidEmail']);
                     return;
                 }
-                authAPI
+                await authAPI
                     .checkAccount(signin)
                     .then(() => {
                         toggleShow(['PasswordInput', 'LoginButton', 'ForgotPassword']);
                     })
-                    .catch(toggleShow(['RegisterButton']));
+                    .catch(()=>toggleShow(['RegisterButton']));
             }, 2000);
         } else if (signin.email === '') {
             toggleShow(['StatusButton']);

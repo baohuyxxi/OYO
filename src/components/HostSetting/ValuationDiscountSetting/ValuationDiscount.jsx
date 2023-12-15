@@ -124,7 +124,7 @@ export default function ValuationDiscountSetting(props) {
                 <h4>Định giá</h4>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
-                       expandicon={<ExpandCircleDownIcon/>}
+                       expandIcon={<ExpandCircleDownIcon/>}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >
@@ -155,7 +155,7 @@ export default function ValuationDiscountSetting(props) {
                     <form onSubmit={handleSubmit(onSubmitDiscount)} key={index}>
                         <Accordion expanded={expanded === `panel${i}`} onChange={handleChange(`panel${i}`)}>
                             <AccordionSummary
-                               expandicon={<ExpandCircleDownIcon/>}
+                               expandIcon={<ExpandCircleDownIcon/>}
                                 aria-controls="panel1bh-content"
                                 id="panel1bh-header"
                             >
@@ -216,7 +216,7 @@ export default function ValuationDiscountSetting(props) {
                     <form onSubmit={handleSubmit(onSubmitSurcharge)} key={index}>
                         <Accordion expanded={expanded === `panel${j}`} onChange={handleChange(`panel${j}`)} key={j}>
                             <AccordionSummary
-                               expandicon={<ExpandCircleDownIcon/>}
+                               expandIcon={<ExpandCircleDownIcon/>}
                                 aria-controls="panel1bh-content"
                                 id="panel1bh-header"
                             >

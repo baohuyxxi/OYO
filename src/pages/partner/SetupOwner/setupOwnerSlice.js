@@ -50,9 +50,11 @@ const setupOwnerSlice = createSlice({
         },
         addAccomCateName(state, action)
         {
+            console.log(action.payload)
             state.detailRoom.accomCateName = action.payload;
         }, 
         addNumberOfGuestsRoom(state, action) {
+            console.log(state.detailRoom.accomCateName)
             state.detailRoom.numPeople = action.payload;
         },
         addroomsOfHomeRoom(state, action) {

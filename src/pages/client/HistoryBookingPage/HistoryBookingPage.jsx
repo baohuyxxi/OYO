@@ -60,7 +60,7 @@ const HistoryBookingPage = () => {
                     data-aos-anchor-placement="top-center"
                 >
                     <div className="list-booking-history">
-                        {dataHistory.length === 0 ? (
+                        {dataHistory.length === 0 && loading===false ? (
                             <div className="paper nodata">
                                 <p>Bạn chưa đặt chỗ</p>
                                 <img src="/src/assets/video/BookingNow.gif" className="color-filter"></img>
@@ -97,7 +97,7 @@ const HistoryBookingPage = () => {
                                                     <p>{`${history?.checkIn} - ${history?.checkOut}`}</p>
                                                 </div>
                                                 <div className="date-history__booking">
-                                                    <p>{`${history?.refundPolicy}`}</p>
+                                                    <p>{history?.refundPolicy|| t('common.noRefunds')} </p>
                                                 </div>
                                             </div>
                                             <div className="price-history__booking">

@@ -6,11 +6,12 @@ const ListFacilityFilter = () => {
     const [facilityCateList, setFacilityCateList] = useState(null);
     useEffect(() => {
         async function fetchData() {
-            const res = await publicFacilityAPI.getAllDataFacilityRequest();
+            const res = await publicFacilityAPI.getAllDataFacility();
             setFacilityCateList(res.data);
         }
         fetchData();
     }, []);
+    console.log(facilityCateList);
     return (
         <div style={{ marginTop: '30px' }}>
             {/* {listAccomCateData?.map((current, index) => (
@@ -28,10 +29,10 @@ const ListFacilityFilter = () => {
           </div>
         </div>
       ))} */}
-            {facilityCateList?.map((current, index) => (
+            {facilityCateList?.slice(0,3)?.map((current, index) => (
                 <div key={index}>
                     <ListFacilityByCategory
-                        facilityList={current.facilityListName}
+                        facilityList={current.infoFacilityList}
                         facilityCateName={current.faciCateName}
                     />
                 </div>

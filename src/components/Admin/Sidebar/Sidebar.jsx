@@ -9,7 +9,6 @@ const Sidebar = () => {
     const location = useLocation();
     const activeItem = SidebarData.All.findIndex((item) => item.route === location.pathname);
     const navigate = useNavigate();
-    // const searchContext = useContext(SearchContext);
 
     const handleHome = () => {
         navigate('/');

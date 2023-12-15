@@ -3,7 +3,7 @@ import { useState } from 'react';
 import './CountNumber.scss';
 
 const CountNumberGuest = (props) => {
-    const [counter, setCounter] = useState(0);
+    const [counter, setCounter] = useState(1);
 
     const handleIncrease = () => {
         setCounter((preState) => preState + 1); // Set state Callback

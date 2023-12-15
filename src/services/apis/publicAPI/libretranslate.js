@@ -8,7 +8,14 @@ const libretranslate = {
             target: "en",
             format: "text",
         })
-        const res = await axios.post('https://libretranslate.com/translate',{body:body},{headers: { "Content-Type": "application/json" }} );
+        let formData = new FormData();
+        formData.append('q', data);
+        formData.append('source', 'q');
+        formData.append('target', 'e');
+        formData.append('format', 'text');
+        formData.append('api_key', '');
+        formData.append('secret', 'VWC5W9G');
+        const res = await axios.post('https://libretranslate.com/translate',formData);
         return res.data;
     },
 };

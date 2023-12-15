@@ -69,7 +69,6 @@ function DataTable(props) {
                 columns={columns}
                 pageSize={6}
                 rowsPerPageOptions={[6]}
-                // checkboxSelection
                 sx={{ fontSize: '17px', overflowX: 'hidden' }}
             />
         </div>

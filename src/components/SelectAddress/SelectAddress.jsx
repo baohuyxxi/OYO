@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import Axios from 'axios';
 import { t } from 'i18next';
 import publicProvinceAPI from '~/services/apis/publicAPI/publicProvinceAPI';
 import './SelectAddress.scss';
@@ -12,30 +11,28 @@ export default function SelectAddress(props) {
     const [selectedDistrict, setSelectedDistrict] = useState(null);
     const [selectedWard, setSelectedWard] = useState(null);
 
-    // const [provinces, setProvinces] = useState([]);
     const [districts, setDistricts] = useState([]);
     const [wards, setWards] = useState([]);
-
-    useEffect(() => {
-        if ((selectedWard !== undefined) & (selectedWard !== null)) {
-            props.setData((prevData) => ({
-                ...prevData,
-                provinceCode: selectedProvince?.provinceCode,
-                provinceName: selectedProvince?.provinceName,
-                districtCode: selectedDistrict?.districtCode,
-                districtName: selectedDistrict?.districtName,
-                wardCode: selectedWard?.wardCode,
-                wardName: selectedWard?.wardName
-            }));
-        }
-    }, [selectedWard]);
     const [provinces, setProvinces] = useState(() => {
         const storedData = localStorage.getItem('allProvinces');
         return storedData ? JSON.parse(storedData) : [];
     });
+    useEffect(() => {
+        if (provinces.length === 0) {
+            publicProvinceAPI
+                .getAllProvinceDetails()
+                .then((res) => {
+                    setProvinces(res.data);
+                    localStorage.setItem('allProvinces', JSON.stringify(res.data));
+                })
+                .catch((error) => {
+                    console.error('Lỗi khi lấy thông tin tỉnh thành:', error);
+                });
+        }
+    }, [provinces]);
 
     useEffect(() => {
-        const temp = provinces.find((option) => option.provinceName === props.data.provinceName) || null;
+        const temp = provinces.find((option) => option.provinceCode === props.data.provinceCode) || null;
         if (temp !== null) {
             setSelectedProvince(temp);
             setDistricts(temp.districtSet);
@@ -43,7 +40,7 @@ export default function SelectAddress(props) {
     }, [provinces]);
 
     useEffect(() => {
-        const temp = districts.find((option) => option.districtName === props.data.districtName) || null;
+        const temp = districts.find((option) => option.districtCode === props.data.districtCode) || null;
         if (temp !== null) {
             setSelectedDistrict(temp);
             setWards(temp.wardSet);
@@ -51,64 +48,56 @@ export default function SelectAddress(props) {
     }, [districts.length]);
 
     useEffect(() => {
-        const temp = wards.find((option) => option.wardName === props.data.wardName) || null;
+        const temp = wards.find((option) => option.wardCode === props.data.wardCode) || null;
         if (temp !== null) {
             setSelectedWard(temp);
         }
     }, [wards]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await publicProvinceAPI.getAllProvinceDetails();
-                const provincesData = response.data.data;
-                localStorage.setItem('allProvinces', JSON.stringify(provincesData));
-
-                setProvinces(provincesData);
-            } catch (error) {
-                console.error('Lỗi khi lấy thông tin tỉnh thành:', error);
-            }
-        };
-
-        if (provinces.length === 0) {
-            fetchData();
-        }
-    }, [provinces]);
-
     const handleProvinceChange = (event, newValue) => {
         setSelectedProvince(newValue);
         setSelectedWard(null);
         setSelectedDistrict(null);
+        const provinceCode = newValue ? newValue.provinceCode : null;
+        props.setData((prevData) => ({
+            ...prevData,
+            provinceCode,
+            districtCode: null,
+            wardCode: null
+        }));
 
-        if (newValue) {
-            const provinceId = newValue.provinceCode;
-            const province = provinces.find((p) => p.provinceCode === provinceId);
-            if (province) {
-                setDistricts(province.districtSet);
-            }
-        } else {
-            setDistricts([]);
-        }
+        setDistricts(newValue ? newValue.districtSet : []);
+        setWards([]);
     };
 
     const handleDistrictChange = (event, newValue) => {
         setSelectedDistrict(newValue);
         setSelectedWard(null);
-        if (newValue) {
-            const districtId = newValue.districtCode;
-            const district = districts.find((d) => d.districtCode === districtId);
-            if (district) {
-                setWards(district.wardSet);
-            }
-        } else {
-            setWards([]);
-        }
+
+        const districtCode = newValue ? newValue.districtCode : null;
+        props.setData((prevData) => ({
+            ...prevData,
+            districtCode,
+            wardCode: null
+        }));
+
+        setWards(newValue ? newValue.wardSet : []);
+    };
+    const handleWardChange = (newValue) => {
+        setSelectedWard(newValue);
+
+        const wardCode = newValue ? newValue.wardCode : null;
+        props.setData((prevData) => ({
+            ...prevData,
+            wardCode
+        }));
     };
 
     return (
         <>
-            <div className='container__address'>
+            <div className="container__address">
                 <Autocomplete
+                    name="provinceCode"
                     className="input__address"
                     value={selectedProvince}
                     onChange={handleProvinceChange}
@@ -131,6 +120,7 @@ export default function SelectAddress(props) {
 
                 <Autocomplete
                     className="input__address"
+                    name="districtCode"
                     value={selectedDistrict}
                     onChange={handleDistrictChange}
                     options={districts}
@@ -151,8 +141,9 @@ export default function SelectAddress(props) {
                 />
                 <Autocomplete
                     className="input__address"
+                    name="wardCode"
                     value={selectedWard}
-                    onChange={(event, newValue) => setSelectedWard(newValue)}
+                    onChange={(event, newValue) => handleWardChange(newValue)}
                     options={wards}
                     getOptionLabel={(option) => option.wardName}
                     noOptionsText={'Không có kết quả phù hợp'}

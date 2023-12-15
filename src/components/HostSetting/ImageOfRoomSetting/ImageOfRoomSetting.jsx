@@ -29,7 +29,7 @@ const ImageOfRoomSetting = (props ) => {
             {props?.listRoomOfHome?.map((room, index) => (
                 <Accordion expanded={expanded === `panel${index}`} onChange={handleChange(`panel${index}`)} key={index}>
                     <AccordionSummary
-                       expandicon={<ExpandCircleDownIcon/>}
+                       expandIcon={<ExpandCircleDownIcon/>}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >

@@ -23,8 +23,8 @@ export default function CommentReview(props) {
         <>
             {loading ? (
                 <div className="container__emtyComment">
-                     <p>Chưa có bình luận nào</p>
-                    <img src="/src/assets/video/crabtyping.gif" className='emtyComment'></img>
+                     <p>Chưa có đánh giá nào</p>
+                    {/* <img src="/src/assets/video/crabtyping.gif" className='emtyComment'></img> */}
                    
                 </div>
             ) : (

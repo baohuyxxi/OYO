@@ -39,7 +39,7 @@ export default function NavBar() {
                     <LanguageSelect />
                 </div>
                 <div className="element">
-                    <NavLink to="/hot">{t('navbar.home')}</NavLink>
+                    <NavLink to="/">{t('navbar.home')}</NavLink>
                 </div>
                 <div className="element">
                     <NavLink to="/host">{t('navbar.host')}</NavLink>

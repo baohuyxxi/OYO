@@ -31,7 +31,8 @@
     "reload": "Làm mới", 
     "enterCapcha" :"Nhập nội dung trong hình",
     "addImage": "Thêm hình ảnh",
-    "noRefunds":"Không được hoàn trả"
+    "noRefunds":"Không được hoàn trả",
+    "surcharge": "Phụ phí"
   },
   "message": {
     "signin": "Đăng nhập thành công",
@@ -227,6 +228,7 @@
       "content_4": "Đọc đánh giá chân thực và được hỗ trợ tận tình. Chúng tôi sẽ phục vụ bạn từng bước."
     },
     "allHome": "Toàn bộ biệt thự. Chủ nhà",
+    "all": "Toàn bộ ",
     "convenient": "Nơi này có những gì cho bạn",
     "descHome": "Giới thiệu về nhà / phòng",
     "bedroom": "Nơi bạn sẽ ngủ nghỉ",

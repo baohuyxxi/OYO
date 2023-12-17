@@ -13,14 +13,6 @@ const authAPI = {
     verifyTokenMail: async (data) => {
         const res = await axios.post(`/auth/verify?email=${data.email}&token=${data.token}`);
         return res.data;
-        // const response = {
-        //     success: true,
-        //     statusCode: 200,
-        //     data: {
-        //         message: 'Active User thành công'
-        //     }
-        // };
-        // return response;
     },
     registerRequest: async (data) => {
         const res = await axios.post('auth/signup', data);
@@ -49,7 +41,7 @@ const authAPI = {
     resetPassword: async (data) => {
         const res = await axios.post(`/auth/reset-password?mail=${data}`);
         return res.data;
-    },
+    }
 };
 
 export default authAPI;

@@ -18,6 +18,7 @@ import { useSnackbar } from 'notistack';
 import { useDispatch } from 'react-redux';
 import userSlice from '~/redux/userSlice';
 import { t } from 'i18next';
+import { GOOGLE_AUTH_URL } from '~/mockdata';
 
 export default function SignIn(props) {
     const dispatch = useDispatch();
@@ -93,7 +94,7 @@ export default function SignIn(props) {
                     .then(() => {
                         toggleShow(['PasswordInput', 'LoginButton', 'ForgotPassword']);
                     })
-                    .catch(()=>toggleShow(['RegisterButton']));
+                    .catch(() => toggleShow(['RegisterButton']));
             }, 2000);
         } else if (signin.email === '') {
             toggleShow(['StatusButton']);
@@ -178,7 +179,7 @@ export default function SignIn(props) {
                         {t('title.signin')}
                     </Button>
                 )}
-                  {showForgotPassword && (
+                {showForgotPassword && (
                     <div className="form-button">
                         <Button className="forgotpassword" onClick={handleForgotPassword}>
                             {t('link.forgotpassword')}
@@ -196,7 +197,7 @@ export default function SignIn(props) {
                     <span className="centered-line" />
                 </h4>
                 <div className="social-container">
-                    <Button fullWidth variant="outlined" className="form-button google">
+                    <Button fullWidth variant="outlined" className="form-button google" href={GOOGLE_AUTH_URL}>
                         <img src={googleIcon} alt="Your Image" width="24" height="24" />
                         {t('title.withGoogle')}
                     </Button>

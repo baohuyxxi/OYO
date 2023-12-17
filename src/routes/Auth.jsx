@@ -6,6 +6,8 @@ import LayoutAdmin from '~/pages/admin/LayoutAdmin/LayoutAdmin';
 import PrivateRoute from '~/components/PrivateRoute/PrivateRoute';
 import LoadingPage from '~/pages/public/LoadingPage/LoadingPage';
 import ActiveAccountPage from '~/pages/public/ActiveAccountPage/ActiveAccountPage';
+import OAuth2RedirectHandler from '~/helper/OAuth2RedirectHandler';
+
 const Auth = () => {
     // Public Page
     const HomePage = React.lazy(() => import('../pages/public/HomePage/HomePage'));
@@ -42,6 +44,14 @@ const Auth = () => {
     const HistoryBookingPage = React.lazy(() => import('../pages/client/HistoryBookingPage/HistoryBookingPage'));
     return (
         <Routes>
+            <Route
+                path="/oauth2/redirect"
+                element={
+                    <Suspense>
+                        <OAuth2RedirectHandler />
+                    </Suspense>
+                }
+            ></Route>
             <Route
                 path="/active-account"
                 element={

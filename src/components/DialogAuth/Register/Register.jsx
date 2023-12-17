@@ -25,13 +25,13 @@ export default function Register(props) {
     const { enqueueSnackbar } = useSnackbar();
     const dispatch = useDispatch();
     const handleChange = (event) => {
-        setRegister({ ...register, [event.target.name]: event.target.value , email:event.target.value  });
+        setRegister({ ...register, [event.target.name]: event.target.value });
     };
     const handleTogglePassword = () => {
         setShowPassword(!showPassword);
     };
     useEffect(() => {
-        setRegister({ ...register, email: props.email });
+        setRegister({ ...register, 'email': props.email });
     }, [props.email]);
     useEffect(() => {
         if (register.password.length < 8 || !register.firstName || !register.lastName) {

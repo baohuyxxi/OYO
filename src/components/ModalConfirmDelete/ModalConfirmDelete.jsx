@@ -35,6 +35,7 @@ export default function ModalConfirmDelete(props) {
             .cancelBooking(props.idRemove)
             .then((data) => {
                 enqueueSnackbar(t('message.cancelSuccess'), { variant: 'success' });
+                props.handleReload();
                 setOpen(false);
             })
             .catch((error) => {

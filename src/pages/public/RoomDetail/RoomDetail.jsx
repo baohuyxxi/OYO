@@ -39,7 +39,7 @@ export default function RoomDetail() {
     const [dataDetailHome, setDataDetalHome] = useState('');
     const [dateBook, setDateBook] = useState([
         moment().format('DD/MM/yyyy'),
-        moment().add(1, 'days').format('DD/MM/yyyy')
+        moment().format('DD/MM/yyyy')
     ]);
     const [guests, setGuests] = useState(guestsModel);
     const [detailPrice, setDetailPrice] = useState([]);

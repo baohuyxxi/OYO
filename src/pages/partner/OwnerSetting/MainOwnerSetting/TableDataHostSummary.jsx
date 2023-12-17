@@ -41,7 +41,7 @@ const TableDataHostSummary = (props) => {
                         setRefreshSelection((prev) => !prev);   
                     }
                 });
-            } else if (props.idTab === '1') {
+            } else if (props.idTab === 'Check Out') {
                 summaryHomeApi.setCheckOut(id).then((res) => {
                     enqueueSnackbar('Check out thành công', { variant: 'success' });
                     if (res.statusCode === 200) {

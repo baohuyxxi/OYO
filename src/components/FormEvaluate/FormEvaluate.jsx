@@ -51,6 +51,7 @@ const FormEvaluate = (props) => {
                                 variant: 'success'
                             });
                             setOpen(false);
+                            props.handleReload()
                         }
                     });
                     dispatch(globalSlice.actions.setLoading(false))
@@ -74,8 +75,10 @@ const FormEvaluate = (props) => {
                     enqueueSnackbar(t('message.reviewSuccess'), {
                         variant: 'success'
                     });
+                    props.handleReload()
                     setOpen(false);
                 }
+                dispatch(globalSlice.actions.setLoading(false))
             });
         }
     };

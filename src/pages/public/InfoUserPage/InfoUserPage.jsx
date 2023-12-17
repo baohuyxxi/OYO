@@ -1,12 +1,9 @@
 import { Link } from 'react-router-dom';
-import AppBar from '~/components/AppBar/AppBar';
 import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import EditInfo from './EditAccount/EditAccount';
 import PasswordSecurity from './passwordSecurity/passwordSecurity';
-import Footer from '~/components/Footer/Footer';
-import Paper from '@mui/material/Paper';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import CardInfo from './CardInfo/CardInfo';
 import FramePage from '~/components/FramePage/FramePage';
 import './InfoUserPage.scss';

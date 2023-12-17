@@ -27,12 +27,13 @@ const HistoryBookingPage = () => {
     const [showFormReview, setShowFormReview] = useState(false);
     const [idBooking, setIdBooking] = useState('');
     const navigate = useNavigate();
+    const [reload, setReload] = useState(false);
     useEffect(() => {
         bookingAPI.getHistoryBooking().then((dataResponse) => {
             setDataHistory(dataResponse?.data?.content);
             setLoading(false);
         });
-    }, []);
+    }, [reload]);
 
     const handleReview = (value) => {
         setIdBooking(value);
@@ -45,6 +46,9 @@ const HistoryBookingPage = () => {
 
     const handleView= (id) =>{
         navigate(`/room-detail/${id}`);
+    }
+    const handleReload =()=>{
+        setReload(!reload);
     }
     return (
         <FramePage>
@@ -141,7 +145,7 @@ const HistoryBookingPage = () => {
                                                         </>
                                                     )}
                                                     {history?.status === 'WAITING' && (
-                                                        <ModalConfirmDelete idRemove={history.bookingCode} />
+                                                        <ModalConfirmDelete idRemove={history.bookingCode} handleReload={handleReload}/>
                                                     )}
                                                 </div>
                                             </div>
@@ -153,6 +157,7 @@ const HistoryBookingPage = () => {
                         <FormEvaluate
                             showFormReview={showFormReview}
                             handleCloseReview={handleCloseReview}
+                            handleReload={handleReload}
                             bookingCode={idBooking}
                         />
                     </div>

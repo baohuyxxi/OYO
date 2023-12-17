@@ -3,7 +3,6 @@ import FactCheckOutlinedIcon from '@mui/icons-material/FactCheckOutlined';
 import WysiwygOutlinedIcon from '@mui/icons-material/WysiwygOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import Paper from '@mui/material/Paper';
 import { useDispatch, useSelector } from 'react-redux';
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
@@ -40,8 +39,8 @@ export default function CardInfo() {
         handleCloseMenu();
     }
 
-    const handleLogout = async (e) =>{
-        await dispatch(userSlice.actions.logout());
+    const handleLogout =  (e) =>{
+        dispatch(userSlice.actions.logout());
         navigate('/');
     }
     const [src, setSrc] = useState(null);

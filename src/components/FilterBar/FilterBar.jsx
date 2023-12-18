@@ -56,7 +56,6 @@ const FilterBar = (props) => {
         });
     };
     // const handleFilter = (idActive, idFilter) => {
-    //     console.log(idActive, idFilter)
     //     setIndexActive(idActive);
     //     if (idFilter === null) {
     //         filterApi.getAllRoomsWithFilter({ queryParams: ``, pageSize: props?.pagi }).then((dataResponse) => {

@@ -37,10 +37,7 @@ export default function RoomDetail() {
     const user = useSelector((state) => state.user.current);
     const [loading, setLoading] = useState(true);
     const [dataDetailHome, setDataDetalHome] = useState('');
-    const [dateBook, setDateBook] = useState([
-        moment().format('DD/MM/yyyy'),
-        moment().format('DD/MM/yyyy')
-    ]);
+    const [dateBook, setDateBook] = useState([moment().format('DD/MM/yyyy'), moment().format('DD/MM/yyyy')]);
     const [guests, setGuests] = useState(guestsModel);
     const [detailPrice, setDetailPrice] = useState([]);
     const [surcharge, setSurcharge] = useState('');
@@ -91,7 +88,7 @@ export default function RoomDetail() {
                 priceDay: dataDetailHome?.pricePerNight,
                 surcharge: surcharge,
                 originPay: totalBill,
-                nameCustomer: user.firstName + user.lastName,
+                nameCustomer: user.firstName + ' '+ user.lastName,
                 phoneNumberCustomer: user.phone
             };
             dispatch(bookingSlice.actions.addInfoBooking(dataBooking));
@@ -163,15 +160,6 @@ export default function RoomDetail() {
                                                 <p>
                                                     {t('home.addressDetail')}: {dataDetailHome.addressDetail}
                                                 </p>
-                                                {/* <h3>
-                                                    {t('home.acreage')}: {dataDetailHome.acreage} m²
-                                                </h3> */}
-                                                {/* <h3>
-                                                    {t('home.numPeople')}: {dataDetailHome.numPeople}
-                                                </h3>
-                                                <h3>
-                                                    {t('home.numBathRoom')}: {dataDetailHome.numBathRoom}
-                                                </h3> */}
                                             </div>
 
                                             <hr className="divider" />
@@ -196,7 +184,7 @@ export default function RoomDetail() {
                                                 <DateGo size="vertical" setDataDay={handleChangeDayBooking} />
                                             </div>
                                             <div className="count__guest">
-                                                {/* <p>{t('numberCount.countClient')}</p> */}
+                                        
                                                 <Dropdown
                                                     guests={guests}
                                                     setGuests={setGuests}

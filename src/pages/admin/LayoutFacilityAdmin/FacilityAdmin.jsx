@@ -114,7 +114,7 @@ const FacilityAdmin = (props) => {
                 enqueueSnackbar('Thêm mới thành công', { variant: 'success' });
             })
             .catch((error) => {
-                console.log();
+
                 enqueueSnackbar(`Thêm mới thất bại. ${error.response.data.detail}`, { variant: 'error' });
             });
     };
@@ -146,7 +146,7 @@ const FacilityAdmin = (props) => {
     };
 
     const handleUpdate = (data, id) => {
-        console.log(data, id);
+
         cmsFacilityAPI
             .updateFacility(data, id)
             .then((dataResponse) => {

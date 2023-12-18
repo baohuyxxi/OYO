@@ -44,7 +44,7 @@ const ScrollspyComponent = (props) => {
                             top: '0',
                             listStyle: 'none',
                             color: 'var(--border-scroll)',
-                            fontSize: '1.4rem',
+                            fontSize: '1rem',
                             fontWeight: '600',
                             paddingLeft: '150px'
                         }}

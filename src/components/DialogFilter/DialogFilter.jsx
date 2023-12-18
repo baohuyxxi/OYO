@@ -32,7 +32,6 @@ const DialogFilter = (props) => {
             });
         }
     }, [searchParams]);
-    console.log(valuePriceRange);
 
     useEffect(() => {
         let temp = '';
@@ -50,7 +49,6 @@ const DialogFilter = (props) => {
         }
         setFilter(temp);
     }, [address, valuePriceRange]);
-    console.log(filter);
     const handleFilter = () => {
         publicAccomPlaceAPI
             .getAllRoomsWithFilter({ queryParams: filter, pageSize: props?.pagi })

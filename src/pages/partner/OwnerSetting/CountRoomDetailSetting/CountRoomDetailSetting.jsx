@@ -6,7 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
-import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import './CountRoomDetailSetting.scss';
 
 import { useEffect, useState } from 'react';
@@ -96,20 +96,19 @@ const CountRoomDetailSetting = (props) => {
             <form onSubmit={handleSaveRoom}>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
-                       expandIcon={<ExpandCircleDownIcon/>}
+                       expandIcon={<ExpandMoreIcon/>}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >
-                        <div className="header__typeRoom">
+                        <div  className="header__typeRoom">
                             {numRoom?.map((room, index) => (
-                                <div key={index} className="typeRoom">
-                                    <p>{room.name}</p>
+                                <div key={index} className="typeRoom" >
+                                    <p >{room.name} ({room.number})</p>
                                 </div>
                             ))}
                         </div>
                     </AccordionSummary>
                     <AccordionDetails
-                       expandIcon={<ExpandCircleDownIcon/>}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                         style={{ display: 'flex' }}
@@ -128,7 +127,6 @@ const CountRoomDetailSetting = (props) => {
                         </div>
                     </AccordionDetails>
                     <AccordionDetails
-                       expandIcon={<ExpandCircleDownIcon/>}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                         style={{ display: 'flex' }}

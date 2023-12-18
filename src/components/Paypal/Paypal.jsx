@@ -14,15 +14,17 @@ function Paypal(props) {
                 options={{
                     'client-id': PAYPAL_CLIENT_ID,
                 }}
+             
             >
                 <PayPalButtons 
+   
                 forceReRender={[paid]}
                     createOrder={(data, actions) => {
                         return actions.order.create({
                             purchase_units: [
                                 {
                                     amount: {
-                                        value: paid,
+                                        value: paid
                                     },
                                 },
                             ],
@@ -30,8 +32,6 @@ function Paypal(props) {
                     }}
                     onApprove={async (data, actions) => {
                         const details = await actions.order.capture();
-                        // const name = details.payer.name.given_name;
-                        // alert('Transaction completed by ' + name);
                         if (details.status === 'COMPLETED') {
                             await props.booking();
                         }

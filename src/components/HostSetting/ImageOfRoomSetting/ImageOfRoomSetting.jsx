@@ -3,7 +3,7 @@ import './ImageOfRoomSetting.scss';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
-import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import React from 'react';
 import DialogCountOfRoom from '~/components/DialogCountOfRoom/DialogCountOfRoom';
 
@@ -29,7 +29,7 @@ const ImageOfRoomSetting = (props ) => {
             {props?.listRoomOfHome?.map((room, index) => (
                 <Accordion expanded={expanded === `panel${index}`} onChange={handleChange(`panel${index}`)} key={index}>
                     <AccordionSummary
-                       expandIcon={<ExpandCircleDownIcon/>}
+                       expandIcon={<ExpandMoreIcon/>}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >

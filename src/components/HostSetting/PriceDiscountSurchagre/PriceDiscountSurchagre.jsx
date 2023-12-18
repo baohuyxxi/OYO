@@ -2,7 +2,7 @@
 import { useSnackbar } from 'notistack';
 import { useParams } from 'react-router-dom';
 
-import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Accordion from '@mui/material/Accordion';
 
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -11,11 +11,11 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 import publicSurcharge from '~/services/apis/publicAPI/surcharge';
 import formatPrice from '../../../utils/formatPrice';
-// import DateDiscount from '../../DateDiscount/DateDiscount';
 import './PriceDiscountSurchagre.scss';
 import { useEffect, useState } from 'react';
 
 export default function PriceDiscountSurchagre(props) {
+
     const [expanded, setExpanded] = useState(false);
     const params = useParams();
     const { enqueueSnackbar } = useSnackbar();
@@ -75,21 +75,20 @@ export default function PriceDiscountSurchagre(props) {
             <form onSubmit={handleSave}>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
-                       expandIcon={<ExpandCircleDownIcon/>}
+                       expandIcon={<ExpandMoreIcon/>}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >
                         <p style={{ width: '33%', flexShrink: 0 }}>Định giá</p>
                         <p style={{ color: 'text.secondary' }}>Giá tiền, giảm giá, phụ phí</p>
                     </AccordionSummary>
-
                     <AccordionDetails>
                         <div className="content-input">
                             <h4>Giá theo đêm</h4>
                             <p>Bạn chịu trách nhiệm chọn giá cho thuê nhà/phòng của mình.</p>
                             <input
                                 className="input-price-room__setting"
-                                value={pricePerNight}
+                                value={pricePerNight || 0}
                                 onChange={(e) => setPricePerNight(e.target.value)}
                             />
                         </div>

@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from 'react';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import SkeletonRoomItem from '~/components/Skeleton/SkeletonRoomItem';
 import RoomItem from '~/components/RoomItem/RoomItem';
+
 const ListAccomPage = () => {
     const [listDataRoom, setListDataRoom] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -17,8 +18,7 @@ const ListAccomPage = () => {
         items: Array.from({ length: 8 }),
         hasMore: true
     });
-    
-
+ 
     useEffect(() => {
         publicAccomPlaceAPI
             .getAllRoomsWithFilter({ queryParams: queryParams, pageNum: 0, pageSize: state.items.length })

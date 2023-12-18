@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import './RoomItem.scss';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
@@ -10,8 +10,10 @@ import 'slick-carousel/slick/slick-theme.css';
 import formatPrice from '~/utils/formatPrice';
 import { useNavigate } from 'react-router-dom';
 import IconLove from '../RoomPopular/IconLove';
+import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
+import wishAPI from '~/services/apis/clientAPI/clientWishAPI';
 import { t } from 'i18next';
-
+import iconStar from '~/assets/svg/star.svg';
 const RoomItem = (props) => {
     const settings = {
         dots: true,
@@ -19,14 +21,22 @@ const RoomItem = (props) => {
         infinite: true,
         speed: 500,
         slidesToShow: 1,
-        slidesToScroll: 1,
+        slidesToScroll: 1
     };
-
+    const [love, setLove] = useState(false);
+    useEffect(() => {
+        wishAPI.checkWish(props.infoRoom.id).then((res) => setLove(res.data.message));
+    }, [props.infoRoom.id]);
     const navigate = useNavigate();
 
     const handleLinkToDetail = (idRoom) => {
         navigate(`/detail/${idRoom}`);
     };
+
+    const stars = [];
+    for (let i = 0; i < props.infoRoom.gradeRate; i++) {
+        stars.push(<img key={i} src={iconStar} alt="icon__star" className="star" />);
+    }
 
     return (
         <div className="col l-3 m-6 c-12">
@@ -38,31 +48,12 @@ const RoomItem = (props) => {
                         </div>
                     ))}
                 </Slider>
-                <IconLove idHome={props?.infoRoom?.id} isFavorite={props?.infoRoom?.isFavorite} />
+                <IconLove idHome={props?.infoRoom?.id} isFavorite={love} />
                 <div className="info__room" onClick={() => handleLinkToDetail(props?.infoRoom?.id)}>
                     <h2>{props?.infoRoom?.accomName}</h2>
                     <div className="obility__room">
                         <p>{props.infoRoom.accomCateName}</p>
-                        {/* <img
-                            src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
-                            alt="icon__star"
-                        />
-                        <img
-                            src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
-                            alt="icon__star"
-                        />
-                        <img
-                            src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
-                            alt="icon__star"
-                        />
-                        <img
-                            src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
-                            alt="icon__star"
-                        />
-                        <img
-                            src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/6/6a1fad158b76ff0ed231eceede8458f2.svg"
-                            alt="icon__star"
-                        /> */}
+                        {stars}
                     </div>
                     <div className="locate__room">
                         <FmdGoodIcon className="icon_locate" />
@@ -70,7 +61,7 @@ const RoomItem = (props) => {
                     </div>
                     <div className="price__room">
                         <p>{`${t('numberCount.price')} ${formatPrice(props?.infoRoom?.pricePerNight)} ${t(
-                            'numberCount.priceDay',
+                            'numberCount.priceDay'
                         )}`}</p>
                         <p>{`${t('numberCount.view')} ${props?.infoRoom?.numView}`}</p>
                     </div>

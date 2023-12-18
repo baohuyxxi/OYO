@@ -64,8 +64,22 @@
           .MuiSvgIcon-root {
             color: var(--info-main);
           }
+         
         }
-
+        .elementerror {
+          .MuiOutlinedInput-root  {
+            border: 2px solid red;
+          }
+          .MuiInputBase-root:focus  {
+            border: 2px solid red;
+          }
+          .MuiInputBase-root{
+            border: 2px solid red;
+          }
+          // .MuiInputBase-root-MuiOutlinedInput-root
+          // .Mui-focused 
+          // .MuiOutlinedInput-notchedOutline
+        }
         .form-button {
           display: flex;
           margin-top: 10px;

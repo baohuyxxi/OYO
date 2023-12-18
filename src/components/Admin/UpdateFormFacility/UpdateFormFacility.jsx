@@ -15,7 +15,6 @@ const renderItem = ({ item, dataFacilityCategory, setValue, register }) => {
         const faciCateCode =
             dataFacilityCategory.find((item) => item.faciCateName === faciCateName)?.faciCateCode ||
             'Mã loại tiện ích tương ứng';
-        console.log(faciCateCode);
         setValue('facilityCateCode', faciCateCode);
     };
 

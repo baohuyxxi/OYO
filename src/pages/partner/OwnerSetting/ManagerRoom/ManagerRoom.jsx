@@ -34,7 +34,7 @@ const ManagerRoom = () => {
 
     const detailPriceRoom = {
         pricePerNight: dataHomeDetail?.pricePerNight,
-        discount: dataHomeDetail?.discount ? dataHomeDetail?.discount : 10,
+        discount: dataHomeDetail?.discount ? dataHomeDetail?.discount : 0,
         surchargeList: dataHomeDetail?.surchargeList ? dataHomeDetail?.surchargeList : []
     };
 

@@ -11,7 +11,6 @@ const ListFacilityFilter = () => {
         }
         fetchData();
     }, []);
-    console.log(facilityCateList);
     return (
         <div style={{ marginTop: '30px' }}>
             {/* {listAccomCateData?.map((current, index) => (

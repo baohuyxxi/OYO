@@ -29,8 +29,9 @@ export default function EditAccount() {
     useEffect(() => {
         if (user.birthday && user.monthOfBirth && user.yearOfBirth) {
             const dateOfBirth = new Date(
-                `${user.birthday}/${user.monthOfBirth}/${user.yearOfBirth}`
+                Date.parse(`${user.birthday}/${user.monthOfBirth}/${user.yearOfBirth}`)
             ).toLocaleDateString('en-GB');
+            console.log(dateOfBirth);
             setUser({
                 ...user,
                 dateOfBirth: dateOfBirth
@@ -71,11 +72,11 @@ export default function EditAccount() {
         yearOfBirth.push({ id: i, value: i, label: i.toString() });
     }
     const customInputList = [
-        createCustomInput(6, 'userName', user?.userName|| '',handleUser),
+        createCustomInput(6, 'userName', user?.userName || '', handleUser),
         createCustomInput(6, 'phone', user?.phone || '', handleUser),
-        createCustomInput(6, 'firstName', user?.firstName|| '',handleUser),
-        createCustomInput(6, 'lastName', user?.lastName|| '', handleUser),
-        createCustomInput(12, 'address', user?.address|| '', handleUser),
+        createCustomInput(6, 'firstName', user?.firstName || '', handleUser),
+        createCustomInput(6, 'lastName', user?.lastName || '', handleUser),
+        createCustomInput(12, 'address', user?.address || '', handleUser),
         createCustomInput(
             3,
             'gender',

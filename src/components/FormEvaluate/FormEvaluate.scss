@@ -57,6 +57,11 @@
             margin-right: 16px;
             cursor: pointer;
             font-weight: 600;
+            svg {
+                position: absolute;
+                margin-top: -5px;
+                margin-left: -20px;
+            }
         }
         .btn-review-detail {
             border: none;
@@ -65,13 +70,12 @@
             margin-right: 16px;
             cursor: pointer;
             font-weight: 600;
-            background-color: var( --main-color);
+            background-color: var(--main-color);
             color: #fff;
         }
 
         .btn-review-detail:hover {
             background-color: var(--second-color);
-           
         }
 
         .btn-review-cancel {
@@ -88,16 +92,15 @@
             background-color: var(--second-color-red);
             color: #fff;
         }
-        .container__preview{
+        .container__preview {
             display: flex;
             margin-top: 20px;
-            .img__preview{
+            .img__preview {
                 border-radius: 3px;
                 margin-left: 3px;
                 height: 100px;
                 width: 100px;
             }
         }
-      
     }
 }

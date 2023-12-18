@@ -21,7 +21,6 @@ const OAuth2RedirectHandler = () => {
             infoUserResponse
         };
 
-        console.log(infoUser);
         if (accessToken) {
             dispatch(userSlice.actions.signin(infoUser));
         } else {

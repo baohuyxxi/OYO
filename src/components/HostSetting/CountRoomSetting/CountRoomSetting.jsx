@@ -22,7 +22,7 @@ const CountRoomSetting = (props) => {
     return (
         <div className="setting-count__room">
             <div className="header-setting__count__room">
-                <p>Chỗ ở và phòng</p>
+                <h3>Chỗ ở và phòng</h3>
             </div>
             <div className="content-count__room">
                 <p>Loại chỗ ở: {accomCate}</p>
@@ -37,7 +37,6 @@ const CountRoomSetting = (props) => {
                         </MenuItem>
                     ))}
                 /> */}
-                <p>Khách có thể dùng chung một số khu vực</p>
                 <CountRoomDetailSetting accomCate={accomCate}/>
             </div>
         </div>

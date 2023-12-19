@@ -17,7 +17,7 @@ import { t } from 'i18next';
 
 import './DropdownUser.scss';
 
-export default function CustomizedMenus() {
+export default function DropdownUser() {
     const user = useSelector((state) => state.user.current);
     const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = React.useState(null);

@@ -14,7 +14,6 @@ import iconStar from '~/assets/svg/star.svg';
 import ListImage from '~/components/ListImage/ListImage';
 import Convenient from '~/components/Convenient/Convenient';
 import DialogConvenient from '~/components/DialogConvenient/DialogConvenient';
-import BedRoomSlider from '~/components/BedRoomSlider/BedRoomSlider';
 import SurchargeList from './Surcharge';
 import DateGo from '~/components/DateGo/DateGo';
 import Dropdown from '~/components/Dropdown/Dropdown';
@@ -66,10 +65,10 @@ export default function RoomDetail() {
             numAdult: guests.numAdult
         };
         publicAccomPlaceAPI.checkBooking(dataCheck).then((response) => {
+            setSurcharge(response.data.costSurcharge);
+            setTotalBill(response?.data?.totalBill);
             if (response?.statusCode === 200) {
                 setDisBooking(false);
-                setSurcharge(response.data.costSurcharge);
-                setTotalBill(response?.data?.totalBill);
             } else {
                 setDisBooking(true);
             }
@@ -132,8 +131,6 @@ export default function RoomDetail() {
                                         </div>
                                     </div>
                                     <div className="heading__right">
-                                        {/* <StarIcon className="icon_rate" />
-                                        <p>{dataDetailHome?.averageRate}</p> */}
                                         <p className="link__rate">
                                             {`(${dataDetailHome?.numView} ${t('numberCount.viewInDetal')})`}
                                         </p>

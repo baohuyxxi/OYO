@@ -55,7 +55,11 @@ export const validate = (data) => {
 
 export const validateInfo = (data) => {
     const errors = {};
-    if(data.username && data.username.trim()){}
+    if(data.userName && data.userName.trim()){
+        if(data.userName.length > 15){
+            errors.userName = t('validate.maxCharacter');
+        }
+    }
     else{
         errors.username = 'Không thể bỏ trống';
     }

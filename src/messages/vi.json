@@ -32,7 +32,9 @@
     "enterCapcha" :"Nhập nội dung trong hình",
     "addImage": "Thêm hình ảnh",
     "noRefunds":"Không được hoàn trả",
-    "surcharge": "Phụ phí"
+    "surcharge": "Phụ phí",
+    "viewImage": "Xem ảnh",
+    "changeAvatar": "Thay đổi ảnh đại diện"
   },
   "message": {
     "signin": "Đăng nhập thành công",
@@ -78,8 +80,8 @@
     "passwordUpperCaseError": "Mật khẩu phải có ít nhất 1 chữ cái viết hoa",
     "passwordLowerCaseError": "Mật khẩu phải có ít nhất 1 chữ cái thường",
     "passwordNumberError": "Mật khẩu phải có ít nhất 1 số",
-    "passwordSpecialCharError": "Mật khẩu phải có ít nhất 1 kí tự đặc biệt"
-
+    "passwordSpecialCharError": "Mật khẩu phải có ít nhất 1 kí tự đặc biệt",
+    "maxCharacter": "Không được nhập quá 15 kí tự"
   },
   "contentMess": {
     "messOTP_1": "Để bảo mật thông tin, chúng tôi cần bạn xác thực tài khoản. Chúng tôi đã gửi cho bạn mã OTP xác thực qua gmail ",
@@ -273,7 +275,7 @@
   "navbar": {
     "home": "Trang chủ",
     "host": "Trở thành chủ nhà",
-    "listroom": "Danh sách nhà",
+    "listroom": "Danh sách chỗ ở  ",
     "historyBookingClient": "Lịch sử đặt phòng",
     "signin": "Đăng nhập",
     "signup": "Đăng ký",

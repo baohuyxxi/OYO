@@ -13,6 +13,7 @@ import notifications from '../../mockdata/notification.json';
 import notificationApi from '~/services/apis/publicAPI/notificationApi';
 // import BellRing from '../BellRing/BellRing';
 import DropdownHost from '../DropdownHost/DropdownHost';
+import DropdownUser from '../DropdownUser/DropdownUser';
 import './NavbarOwner.scss';
 
 const NavbarOwner = () => {

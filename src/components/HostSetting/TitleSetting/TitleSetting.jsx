@@ -5,12 +5,14 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useForm } from 'react-hook-form';
 import { useSnackbar } from 'notistack';
-
+import { useDispatch } from 'react-redux';
+import settingAccomSlice from '~/redux/settingAccomSlice';
 import './TitleSetting.scss';
 import { useParams } from 'react-router-dom';
 import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 
 export default function TittleSetting(props) {
+    const dispatch = useDispatch()
     const [expanded, setExpanded] = React.useState(false);
 
     const {
@@ -83,6 +85,7 @@ export default function TittleSetting(props) {
                 .updateTitleHome(newData)
                 .then((dataResponse) => {
                     enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
+                    dispatch(settingAccomSlice.actions.reload());
                 })
                 .catch((error) => {
                     enqueueSnackbar(error.response?.data.message, { variant: 'error' });

@@ -9,10 +9,10 @@ import ConvenientSetting from '~/components/HostSetting/ConvenientSetting/Conven
 import CountRoomSetting from '~/components/HostSetting/CountRoomSetting/CountRoomSetting';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
-import ValuationDiscountSetting from '~/components/HostSetting/ValuationDiscountSetting/ValuationDiscount';
 import PriceDiscountSurchagre from '~/components/HostSetting/PriceDiscountSurchagre/PriceDiscountSurchagre';
+import settingAccomSlice from '~/redux/settingAccomSlice';
+import { useSelector, useDispatch } from 'react-redux';
 
 const infoLink = {
     name: 'Chi tiết nhà cho thuê',
@@ -24,7 +24,8 @@ const backUrl = '/host/setting';
 const item = ['', 'section1', 'section2', 'section3', 'section4', 'section5', 'section6'];
 
 const ManagerRoom = () => {
-    const [dataHomeDetail, setDataHomeDetail] = useState();
+    const dispatch = useDispatch();
+    const dataHomeDetail = useSelector((state) => state.settingaccom.accom);
     const infoRoom = {
         accomName: dataHomeDetail?.accomName ? dataHomeDetail?.accomName : '',
         description: dataHomeDetail?.description,
@@ -92,7 +93,7 @@ const ManagerRoom = () => {
 
     useEffect(() => {
         publicAccomPlaceAPI.getRoomDetail(params.idHome).then((dataResponse) => {
-            setDataHomeDetail(dataResponse.data);
+            dispatch(settingAccomSlice.actions.setAccom(dataResponse.data));
         });
     }, [params.idHome]);
 

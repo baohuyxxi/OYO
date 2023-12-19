@@ -25,7 +25,7 @@ const RoomItem = (props) => {
     };
     const [love, setLove] = useState(false);
     useEffect(() => {
-        wishAPI.checkWish(props.infoRoom.id).then((res) => setLove(res.data.message));
+        wishAPI.checkWish(props.infoRoom.id).then((res) => setLove(res));
     }, [props.infoRoom.id]);
     const navigate = useNavigate();
 
@@ -48,7 +48,8 @@ const RoomItem = (props) => {
                         </div>
                     ))}
                 </Slider>
-                <IconLove idHome={props?.infoRoom?.id} isFavorite={love} />
+                { love!== null && <IconLove idHome={props?.infoRoom?.id} isFavorite={love} />   }
+                
                 <div className="info__room" onClick={() => handleLinkToDetail(props?.infoRoom?.id)}>
                     <h2>{props?.infoRoom?.accomName}</h2>
                     <div className="obility__room">

@@ -9,6 +9,8 @@ import userSlice from '~/redux/userSlice';
 import authAPI from '~/services/apis/authAPI/authAPI';
 import { useSnackbar } from 'notistack';
 import { t } from 'i18next';
+import { da } from 'date-fns/locale';
+import { clear } from 'i/lib/inflections';
 
 export default function EditAccount() {
     const { enqueueSnackbar } = useSnackbar();
@@ -20,6 +22,7 @@ export default function EditAccount() {
         if (user && user.dateOfBirth) {
             const updatedUser = { ...user };
             const birthDate = new Date(user.dateOfBirth);
+            console.log(birthDate);
             updatedUser.birthday = birthDate.getDate();
             updatedUser.monthOfBirth = birthDate.getMonth() + 1;
             updatedUser.yearOfBirth = birthDate.getFullYear();
@@ -29,8 +32,9 @@ export default function EditAccount() {
     useEffect(() => {
         if (user.birthday && user.monthOfBirth && user.yearOfBirth) {
             const dateOfBirth = new Date(
-                `${user.birthday}/${user.monthOfBirth}/${user.yearOfBirth}`
+                Date.parse(`${user.birthday}/${user.monthOfBirth}/${user.yearOfBirth}`)
             ).toLocaleDateString('en-GB');
+            console.log(dateOfBirth);
             setUser({
                 ...user,
                 dateOfBirth: dateOfBirth
@@ -71,11 +75,11 @@ export default function EditAccount() {
         yearOfBirth.push({ id: i, value: i, label: i.toString() });
     }
     const customInputList = [
-        createCustomInput(6, 'userName', user?.userName|| '',handleUser),
+        createCustomInput(6, 'userName', user?.userName || '', handleUser),
         createCustomInput(6, 'phone', user?.phone || '', handleUser),
-        createCustomInput(6, 'firstName', user?.firstName|| '',handleUser),
-        createCustomInput(6, 'lastName', user?.lastName|| '', handleUser),
-        createCustomInput(12, 'address', user?.address|| '', handleUser),
+        createCustomInput(6, 'firstName', user?.firstName || '', handleUser),
+        createCustomInput(6, 'lastName', user?.lastName || '', handleUser),
+        createCustomInput(12, 'address', user?.address || '', handleUser),
         createCustomInput(
             3,
             'gender',

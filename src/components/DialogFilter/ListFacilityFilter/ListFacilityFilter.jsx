@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import ListFacilityByCategory from './ListFacilityByCategory/ListFacilittByCategory';
 import publicFacilityAPI from '~/services/apis/publicAPI/publicFacilityAPI';
 
-const ListFacilityFilter = () => {
+const ListFacilityFilter = (props) => {
     const [facilityCateList, setFacilityCateList] = useState(null);
     useEffect(() => {
         async function fetchData() {
@@ -13,24 +13,11 @@ const ListFacilityFilter = () => {
     }, []);
     return (
         <div style={{ marginTop: '30px' }}>
-            {/* {listAccomCateData?.map((current, index) => (
-        <div key={index}>
-          <div
-            className={`slider__item-filter`}
-            onClick={() => handleFilter(index, filter?.id)}
-          >
-            <div className="icon-filter">
-              <img src={current?.icon} alt="icon-filter" />
-            </div>
-            <div className="title-filter">
-              <p>{current?.accomCateName}</p>
-            </div>
-          </div>
-        </div>
-      ))} */}
-            {facilityCateList?.slice(0,3)?.map((current, index) => (
+            {facilityCateList?.map((current, index) => (
                 <div key={index}>
                     <ListFacilityByCategory
+                        data={props.data}
+                        setData={props.setData}
                         facilityList={current.infoFacilityList}
                         facilityCateName={current.faciCateName}
                     />

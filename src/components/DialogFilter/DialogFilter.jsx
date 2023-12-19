@@ -18,6 +18,9 @@ const DialogFilter = (props) => {
     const [open, setOpen] = useState(false);
     const [address, setAddress] = useState({});
     const [valuePriceRange, setValuePriceRange] = useState([1, 10000000]);
+    const [facility, setFacility] = useState([]);
+    const [numBathRoom, setNumBathRoom] = useState(0);
+    const [numBedRoom, setNumBedRoom] = useState(0);
     const [filter, setFilter] = useState('');
     const handleClose = () => {
         setOpen(false);
@@ -47,8 +50,17 @@ const DialogFilter = (props) => {
         if (valuePriceRange[0] !== 1 || valuePriceRange[1] !== 10000000) {
             temp += `&priceFrom=${valuePriceRange[0]}&priceTo=${valuePriceRange[1]}`;
         }
+        if (facility.length > 0) {
+            temp += `&${facility.map((item) => `facilityCode=${item}`).join('&')}`;
+        }
+        if (numBathRoom > 0) {
+            temp += `&numBathRoom=${numBathRoom}`;
+        }
+        if (numBedRoom > 0) {
+            temp += `&numBedRoom=${numBedRoom}`;
+        }
         setFilter(temp);
-    }, [address, valuePriceRange]);
+    }, [address, valuePriceRange, facility, numBathRoom, numBedRoom]);
     const handleFilter = () => {
         publicAccomPlaceAPI
             .getAllRoomsWithFilter({ queryParams: filter, pageSize: props?.pagi })
@@ -96,15 +108,14 @@ const DialogFilter = (props) => {
                     </DialogContent>
                     <DialogContent sx={{ fontSize: '19px', fontWeight: 'bold' }}>
                         {t('label.convenient')}
-                        <ListFacilityFilter />
+                        <ListFacilityFilter data={facility} setData={setFacility} />
                     </DialogContent>
 
                     <DialogContent sx={{ fontSize: '19px', fontWeight: 'bold' }}>
                         {t('label.room')}
                         <div style={{ marginTop: '30px', marginBottom: '50px' }}>
-                            <CountRoomFilter name={t('label.bedroom')} />
-                            <CountRoomFilter name={t('label.bed')} />
-                            <CountRoomFilter name={t('label.bathroom')} />
+                            <CountRoomFilter name={t('label.bedroom')} data={numBedRoom} setData={setNumBedRoom} />
+                            <CountRoomFilter name={t('label.bathroom')} data={numBathRoom} setData={setNumBathRoom} />
                         </div>
                         <hr />
                     </DialogContent>

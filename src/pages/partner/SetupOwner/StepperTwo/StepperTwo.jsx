@@ -3,7 +3,7 @@ import { t } from 'i18next';
 
 import ConfirmClose from '~/components/ConfirmClose/ConfirmClose';
 import CountNumber from '~/components/CountNumber/CountNumber';
-import CountNumberGuest from '~/components/CountNumber/CountNumberGuest';
+
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import CustomInput from '~/assets/custom/CustomInput';
 import MenuItem from '@mui/material/MenuItem';
@@ -23,14 +23,7 @@ const StepperTwo = (props) => {
         <div className="step-two">
             <div className="row">
                 <div className="col l-6 m-6">
-                    <div className="require-step2">
-                        {/* <img
-                            src="https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/Gif_Pro/tao-nhieu-moi-cau-thu-hut-khach-hang-tiem-nang.png"
-                            alt=""
-                            className="image-step2"
-                        />
-                        <h1>{t('setupOwner.content_step_two')}</h1> */}
-                    </div>
+                    <div className="require-step2"></div>
                 </div>
                 <div className="col l-6 m-6">
                     <div className="info-count__room">
@@ -42,7 +35,7 @@ const StepperTwo = (props) => {
                             value={props.accomCate}
                             onChange={onChangeCateAccom}
                             title={t(`title.category`)}
-                            width={400}
+                            width={520}
                             content={data.map((cate, index) => (
                                 <MenuItem key={index} value={cate.accomCateName}>
                                     {cate.accomCateName}
@@ -51,9 +44,20 @@ const StepperTwo = (props) => {
                         ></CustomInput>
                         <div className="count tenant">
                             <p>{t('setupOwner.client')}</p>
-                            <CountNumberGuest setCountGuest={props.setCountGuest} />
+                            <input
+                                value={props.countGuest}
+                                type="number"
+                                className="input__count_guest"
+                                min={1}
+                                onChange={(e) => {
+                                    const newValue = parseInt(e.target.value, 10);
+                                    if (newValue >= 1) {
+                                        props.setCountGuest(newValue);
+                                    }
+                                }}
+                            />
                         </div>
-                        {props.dataStep2?.map((room, index) => (
+                        {/* {props.dataStep2?.map((room, index) => (
                             <div key={index}>
                                 <div className="count ">
                                     <p>{room.name}</p>
@@ -62,6 +66,27 @@ const StepperTwo = (props) => {
                                         data={props.dataStep2}
                                         setData={props.setDataStep2}
                                         number={room.number}
+                                    />
+                                </div>
+                            </div>
+                        ))} */}
+                        {props.dataStep2?.map((room, index) => (
+                            <div key={index}>
+                                <div className="count">
+                                    <p>{room.name}</p>
+                                    <input
+                                        value={room.number}
+                                        type="number"
+                                        className="input__count_guest"
+                                        min={1}
+                                        onChange={(e) => {
+                                            const newValue = parseInt(e.target.value, 10);
+                                            if (newValue >= 0 ) {
+                                                const newDataStep2 = [...props.dataStep2];
+                                                newDataStep2[index] = { ...room, number: newValue };
+                                                props.setDataStep2(newDataStep2);
+                                            }
+                                        }}
                                     />
                                 </div>
                             </div>

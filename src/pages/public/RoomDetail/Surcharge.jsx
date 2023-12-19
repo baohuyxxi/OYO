@@ -6,7 +6,6 @@ import { useState, useEffect } from 'react';
 import formatPrice from '~/utils/formatPrice';
 import { t } from 'i18next';
 export default function SurchargeList(props) {
-    console.log(props.data);
     const [expanded, setExpanded] = useState(false);
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);

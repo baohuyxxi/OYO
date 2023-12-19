@@ -9,6 +9,7 @@ import userSlice from '~/redux/userSlice';
 import authAPI from '~/services/apis/authAPI/authAPI';
 import { useSnackbar } from 'notistack';
 import { format, parse } from 'date-fns';
+import { validateInfo } from '~/utils/validate';
 import { t } from 'i18next';
 
 export default function EditAccount() {
@@ -49,16 +50,17 @@ export default function EditAccount() {
 
     const handleSave = async (event) => {
         event.preventDefault();
-        if (user.phone.length < 10 || user.phone.length > 11) {
-            setErrors({ ...errors, phone: true });
-            return
-        }
-        const res = await authAPI.updateInfoRequest(user);
-        if (res.statusCode === 200) {
-            dispatch(userSlice.actions.editInfo(res.data));
-            enqueueSnackbar(t('message.updateSuccess'), { variant: 'success' });
+        const check = validateInfo(user);
+        if (Object.keys(check).length === 0) {
+            const res = await authAPI.updateInfoRequest(user);
+            if (res.statusCode === 200) {
+                dispatch(userSlice.actions.editInfo(res.data));
+                enqueueSnackbar(t('message.updateSuccess'), { variant: 'success' });
+            } else {
+                enqueueSnackbar('Cập nhật thất bại', { variant: 'error' });
+            }
         } else {
-            enqueueSnackbar('Cập nhật thất bại', { variant: 'error' });
+            setErrors(check);
         }
     };
     const genderSelect = [

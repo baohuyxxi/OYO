@@ -24,7 +24,7 @@ const ConfirmOwner = (props) => {
                             height: '80vh',
                             display: 'grid',
                             alignContent: 'center',
-                            paddingLeft: '50px',
+                            paddingLeft: '50px'
                         }}
                     >
                         <h1>{t('setupOwner.confirm.ready')}</h1>
@@ -57,11 +57,11 @@ const ConfirmOwner = (props) => {
                         style={{
                             height: '90vh',
                             alignContent: 'center',
-                            paddingRight: '50px',
+                            paddingRight: '50px'
                         }}
                     >
                         <div className="img-confirm">
-                                {/* {props?.imagesOfHome.map((image, index) => (
+                            {/* {props?.imagesOfHome.map((image, index) => (
                                     <img
                                         key={index}
                                         src={URL.createObjectURL(new Blob([image], { type: 'image/jpeg' }))}
@@ -69,15 +69,25 @@ const ConfirmOwner = (props) => {
                                         style={{ width: '200px', margin: '5px' }}
                                     />
                                 ))} */}
+                        </div>
+                        <div className="container__card">
+                            <div className='card'>
+                                <h2>
+                                    {setupRoomHost.accomCateName}: {setupRoomHost.accomName}
+                                </h2>
+                                <h3>Diện tích: {setupRoomHost.acreage}</h3>
+                                <h3>
+                                    {setupRoomHost.numHouseAndStreetName}, {setupRoomHost.wardName},{' '}
+                                    {setupRoomHost.districtName}, {setupRoomHost.provinceName}
+                                </h3>
+                                <h3>{setupRoomHost.numPeople}</h3>
+                                <h3>
+                                    {setupRoomHost.numBathRoom} phòng tắm, {setupRoomHost.numBedRoom} phòng ngủ,{' '}
+                                    {setupRoomHost.numKitchen} phòng bếp
+                                </h3>
+                                <h3>{setupRoomHost.description}</h3>
+                                <span>{`${setupRoomHost.pricePerNight} VND / ngày`}</span>
                             </div>
-                        <div className="card">
-                            <h2>{setupRoomHost.accomCateName}: {setupRoomHost.accomName}</h2>
-                            <h3>Diện tích: {setupRoomHost.acreage}</h3>
-                            <h3>{setupRoomHost.numHouseAndStreetName}, {setupRoomHost.wardName},  {setupRoomHost.districtName},  {setupRoomHost.provinceName}</h3>
-                            <h3>{setupRoomHost.numPeople}</h3>
-                            <h3>{setupRoomHost.numBathRoom} phòng tắm, {setupRoomHost.numBedRoom} phòng ngủ, {setupRoomHost.numKitchen} phòng bếp</h3>
-                            <h3>{setupRoomHost.description}</h3>
-                            <span>{`${setupRoomHost.pricePerNight} VND / ngày`}</span>
                         </div>
                     </div>
                 </div>

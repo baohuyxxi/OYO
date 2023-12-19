@@ -19,12 +19,13 @@ const StepperFour = (props) => {
             <div className="row">
                 <div className="col l-6 m-6">
                     <div className="require-step4">
+                    <h1>{t('setupOwner.content_step_four')}</h1>
                         <img
                             src="https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/Gif_Pro/3625504_Mesa-de-trabajo-1.png"
                             alt=""
                             className="image-step4"
                         />
-                        <h1>{t('setupOwner.content_step_four')}</h1>
+                      
                     </div>
                 </div>
                 <div className="col l-6 m-6">

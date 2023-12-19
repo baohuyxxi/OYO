@@ -30,7 +30,7 @@ const RoomItem = (props) => {
     const navigate = useNavigate();
 
     const handleLinkToDetail = (idRoom) => {
-        navigate(`/detail/${idRoom}`);
+        navigate(`/room-detail/${idRoom}`);
     };
 
     const stars = [];

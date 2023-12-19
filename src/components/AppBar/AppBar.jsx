@@ -31,17 +31,18 @@ export default function NavBar() {
                 </div>
                 <div className="appbar-right-menu" />
                 <div className="element">
+                    <NavLink to="/">{t('navbar.home')}</NavLink>
+                </div>
+                <div className="element">
                     <ModeToggle />
                 </div>
                 <div className="element">
                     <LanguageSelect />
                 </div>
-                <div className="element">
-                    <NavLink to="/">{t('navbar.home')}</NavLink>
-                </div>
-                <div className="element">
+              
+                {/* <div className="element">
                     <NavLink to="/host">{t('navbar.host')}</NavLink>
-                </div>
+                </div> */}
                 <div className="element">
                     <NavLink to="/list-accom">{t('navbar.listroom')}</NavLink>
                 </div>

@@ -25,8 +25,9 @@ const CountRoomSetting = (props) => {
                 <h3>Chỗ ở và phòng</h3>
             </div>
             <div className="content-count__room">
-                <p>Loại chỗ ở: {accomCate}</p>
-                {/* <CustomInput
+                {/* <p>Loại chỗ ở: {accomCate}</p> */}
+                <p>Loại chỗ ở</p>
+                <CustomInput
                     select={true}
                     value={accomCate || ''}
                     width={500}
@@ -36,7 +37,7 @@ const CountRoomSetting = (props) => {
                             {option.accomCateName}
                         </MenuItem>
                     ))}
-                /> */}
+                />
                 <CountRoomDetailSetting accomCate={accomCate}/>
             </div>
         </div>

@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-undef */
 import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
@@ -24,9 +23,7 @@ export default function SignIn(props) {
     const dispatch = useDispatch();
     const [signin, setSignin] = useState(SigninRequest);
     const [errorEmail, setErrorEmail] = useState();
-
     const [errorPassword, setErrorPassword] = useState();
-    const handleTogglePassword = () => setShowPassword(!showPassword);
 
     const [showPasswordInput, setShowPasswordInput] = useState(false);
     const [showRegisterButton, setShowRegisterButton] = useState(false);
@@ -42,23 +39,25 @@ export default function SignIn(props) {
         event.preventDefault();
         if (!signin.password) {
             setErrorPassword(t('validate.passwordRequire'));
-            return;
+        } else {
+            await authAPI
+                .loginRequest(signin)
+                .then((res) => {
+                    if (res.statusCode === 200) {
+                        dispatch(userSlice.actions.signin(res.data));
+                        enqueueSnackbar(t('message.signin'), { variant: 'success' });
+                        props.handleClose();
+                    } else if (res.statusCode === 202) {
+                        enqueueSnackbar(t('message.accountPending'), { variant: 'warning' });
+                    } else if (res.statusCode === 203) {
+                        enqueueSnackbar(t('message.accountBlock'), { variant: 'error' });
+                    }
+                })
+                .catch(() => {
+                    setErrorPassword(t('message.passwordWrong'));
+                    enqueueSnackbar(t('message.signinError'), { variant: 'error' });
+                });
         }
-        await authAPI
-            .loginRequest(signin)
-            .then((res) => {
-                if (res.statusCode === 200) {
-                    dispatch(userSlice.actions.signin(res.data));
-                    enqueueSnackbar(t('message.signin'), { variant: 'success' });
-                    props.handleClose();
-                } else if (res.statusCode === 202) {
-                    enqueueSnackbar('Tài khoản đang chờ xác thực', { variant: 'warning' });
-                }
-            })
-            .catch((error) => {
-                setErrorPassword(t('message.signinError'));
-                enqueueSnackbar(t('message.signinError'), { variant: 'error' });
-            });
     };
 
     const status = [
@@ -128,7 +127,7 @@ export default function SignIn(props) {
             <Box component="form" onSubmit={handleLogin} noValidate sx={{ mt: 1 }}>
                 <div className="form-element">
                     <CustomInput
-                        title={t('label.email') + '/' + t('label.phone')}
+                        title={t('label.email')}
                         id="email"
                         name="email"
                         value={signin.email}
@@ -150,13 +149,13 @@ export default function SignIn(props) {
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment position="end">
-                                        <IconButton onClick={handleTogglePassword} edge="end">
+                                        <IconButton onClick={(e) => setShowPassword(!showPassword)} edge="end">
                                             {showPassword ? <Visibility /> : <VisibilityOff />}
                                         </IconButton>
                                     </InputAdornment>
                                 )
                             }}
-                        />{' '}
+                        />
                         {errorPassword && <h5>{errorPassword}</h5>}
                     </div>
                 )}

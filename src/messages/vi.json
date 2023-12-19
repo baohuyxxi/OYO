@@ -60,7 +60,10 @@
     "OTPActived": "Đã gửi OTP về gmail của bạn",
     "accountExist": "Tài khoản đã tồn tại",
     "requestSigin": "Bạn phải đăng nhập để thực hiện được chức năng này",
-    "requestPhone": "Bạn phải nhập số điện thoại để thực hiện được chức năng này"
+    "requestPhone": "Bạn phải nhập số điện thoại để thực hiện được chức năng này",
+    "accountPending": "Tài khoản đang chờ xác thực",
+    "accountBlock": "Tài khoản đã bị khóa",
+    "passwordWrong": "Mật khẩu không đúng"
   },
   "validate": {
     "emailRequire": "Email được yêu cầu",

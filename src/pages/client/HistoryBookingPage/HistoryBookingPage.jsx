@@ -5,18 +5,17 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { t } from 'i18next';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
-
 import LinearProgress from '@mui/material/LinearProgress';
+import DoneIcon from '@mui/icons-material/Done';
 
 import FormEvaluate from '~/components/FormEvaluate/FormEvaluate';
-import DoneIcon from '@mui/icons-material/Done';
 import ModalConfirmDelete from '~/components/ModalConfirmDelete/ModalConfirmDelete';
 
 import FramePage from '~/components/FramePage/FramePage';
-import PopoverRefundPolicy from '~/components/PopoverRefundPolicy/PopoverRefundPolicy';
 import bookingAPI from '~/services/apis/clientAPI/clientBookingAPI';
+
 import formatPrice from '~/utils/formatPrice';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './HistoryBookingPage.scss';
 
 AOS.init();
@@ -119,9 +118,6 @@ const HistoryBookingPage = () => {
                                                 </div>
                                             </div>
                                             <div className="btn__booking">
-                                                {/* <div>
-                                                <PopoverRefundPolicy dataShow={history?.refundPolicy} />
-                                            </div> */}
                                                 <div style={{ justifyContent: 'left', width: '130px' }}>
                                                     <p className={history?.status}>{status}</p>
                                                     {

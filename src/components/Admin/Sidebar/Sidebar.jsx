@@ -2,9 +2,9 @@ import React from 'react';
 import SidebarData from '~/mockdata/sidebarData';
 import SidebarItem from '~/components/Admin/Sidebar/SidebarItem';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import logoYoy from '~/assets/logo.svg';
 import './Sidebar.scss';
 
-const logo = 'https://cdn6.agoda.net/images/kite-js/logo/agoda/color-default.svg';
 const Sidebar = () => {
     const location = useLocation();
     const activeItem = SidebarData.All.findIndex((item) => item.route === location.pathname);
@@ -17,7 +17,7 @@ const Sidebar = () => {
     return (
         <div className="sidebar">
             <div className="sidebar__logo" onClick={handleHome}>
-                <img src={logo} alt="company logo" />
+                <img src={logoYoy} alt="company logo" />
             </div>
 
             <p className="sub__header">Tổng quan</p>

@@ -20,7 +20,7 @@ const Popular = () => {
                 setLoading(false);
             })
             .catch((err) => {
-                console.log(err);
+
             });
     }, []);
 

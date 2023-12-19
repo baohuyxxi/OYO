@@ -59,7 +59,8 @@
     "isActiveAccount": "Tài khoản của bạn đã được kích hoạt",
     "OTPActived": "Đã gửi OTP về gmail của bạn",
     "accountExist": "Tài khoản đã tồn tại",
-    "requestSigin": "Bạn phải đăng nhập để thực hiện được chức năng này"
+    "requestSigin": "Bạn phải đăng nhập để thực hiện được chức năng này",
+    "requestPhone": "Bạn phải nhập số điện thoại để thực hiện được chức năng này"
   },
   "validate": {
     "emailRequire": "Email được yêu cầu",
@@ -139,7 +140,10 @@
       "totalPrice": "Tổng tiền thanh toán",
       "method": "Phương thức thanh toán",
       "paypal": "Thanh toán qua PayPal",
-      "direct": "Thanh toán trực tiếp"
+      "direct": "Thanh toán trực tiếp",
+      "infoOfYou": "Thông tin của bạn",
+      "name": "Họ tên",
+      "phone": "Số điện thoại"
     },
     "history": "Danh sách đặt phòng của bạn",
     "refundPolicy": "Chính sách hủy phòng",
@@ -274,7 +278,7 @@
     "homeHost": "Nhà / Phòng cho thuê",
     "book": "Đặt phòng",
     "calender": "Lịch",
-    "setHost": "Tạo mục chủ nhà",
+    "setHost": "Đăng chỗ ở",
     "historyHost": "Lịch sử giao dịch",
     "account": "Tài khoản",
     "listLove": "Danh sách yêu thích",

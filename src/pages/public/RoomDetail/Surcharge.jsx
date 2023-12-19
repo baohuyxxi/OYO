@@ -14,6 +14,7 @@ export default function SurchargeList(props) {
     const handleClose = () => {
         setExpanded(false);
     };
+    const totalCost = props?.data?.reduce((sum, surcharge) => sum + surcharge.cost, 0);
     return (
         <>
             <Accordion className='paper' expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
@@ -27,7 +28,7 @@ export default function SurchargeList(props) {
                         <p className="name-surcharge">{t('common.surcharge')}</p>
                     </div>
                     <div className="real-price">
-                        <p className="cost-surcharge">{formatPrice(32100)}</p>
+                        <p className="cost-surcharge">{formatPrice(totalCost)}</p>
                     </div>
                 </AccordionSummary>
                 <AccordionDetails>

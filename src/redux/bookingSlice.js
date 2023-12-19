@@ -16,8 +16,9 @@ const bookingSlice = createSlice({
         surcharge: 0,
         totalTransfer: 0,
         paymentPolicy: 'PAYMENT_FULL',
-        paymentMethod: 'DIRECT',
+        paymentMethod: 'PAYPAL',
         accomId: 0,
+        canBooking: true,
     },
     reducers: {
         addInfoBooking(state, action) {
@@ -51,6 +52,11 @@ const bookingSlice = createSlice({
            state.surcharge = action.payload.costSurcharge
            state.originPay = action.payload.totalBill;
            state.totalCostAccom = action.payload.totalCostAccom;
+           state.canBooking = action.payload.canBooking;
+        },
+        updateInfoUserBooking(state, action) {
+            state.nameCustomer = action.payload.name
+            state.phoneNumberCustomer = action.payload.phoneNumber;
         },
         clearInfoBooking(state, action ){
             state.nameCustomer = '';
@@ -65,7 +71,7 @@ const bookingSlice = createSlice({
             state.surcharge = 0;
             state.totalTransfer = 0;
             state.paymentPolicy = 'PAYMENT_FULL';
-            state.paymentMethod = 'DIRECT';
+            state.paymentMethod = 'PAYPAL';
             state.accomId = 0;
         }
     },

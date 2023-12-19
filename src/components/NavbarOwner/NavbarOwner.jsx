@@ -89,16 +89,6 @@ const NavbarOwner = () => {
                 <NavLink to="/intro-host">{t('navbar.setHost')}</NavLink>
                 <NavLink to="/host/setting/transactionhistory">{t('navbar.historyHost')}</NavLink>
             </div>
-            <div className="navbar-right" style={{ display: 'flex' }}>
-                <DropdownHost />
-                {/* <BellRing
-                    icon="bx bx-bell"
-                    badge={1}
-                    contentData={notifications}
-                    renderItems={(item, index) => renderNotificationItem(item, index)}
-                    renderFooter={() => <p>View all</p>}
-                /> */}
-            </div>
         </div>
     );
 };

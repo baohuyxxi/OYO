@@ -1,28 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { t } from 'i18next';
 import { useSnackbar } from 'notistack';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+import wishAPI from '~/services/apis/clientAPI/clientWishAPI';
 import './RoomPopular.scss';
 
 const IconLove = (props) => {
     const [like, setLike] = useState(props.isFavorite);
     const [loading, setLoading] = useState(false);
     const { enqueueSnackbar } = useSnackbar();
+    useEffect(() => {
+        setLike(props.isFavorite);
+    }, [props.isFavorite]);
 
     const handleFavorite = () => {
-        // Simulate API call (replace with actual API call)
-        if (!loading) {
-            setLoading(true);
-            setTimeout(() => {
-                setLike(!like);
-                setLoading(false);
-                if (like) {
-                    enqueueSnackbar(t('message.unlove'), { variant: 'success' });
-                } else {
-                    enqueueSnackbar(t('message.love'), { variant: 'success' });
-                }
-            }, 1000); // Simulate success response after 1 second
-        }
+        wishAPI.likeFavoriteRoom(props.idHome).then((res) => {
+            setLike(!like);
+            enqueueSnackbar(res.data.message, { variant: 'success' });
+        });
     };
 
     return (

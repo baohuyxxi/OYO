@@ -81,6 +81,7 @@ const DateRangePickerComp = (props) => {
                         editableDateInputs={true}
                         moveRangeOnFirstSelection={false}
                         ranges={range}
+                        minDate={new Date()} 
                         months={2}
                         direction={props.size}
                         className="calendarElement"

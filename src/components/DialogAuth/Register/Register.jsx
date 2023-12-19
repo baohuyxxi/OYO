@@ -21,7 +21,6 @@ export default function Register(props) {
     const [register, setRegister] = useState(RegisterRequest);
     const [errors, setErrors] = useState({});
     const [showPassword, setShowPassword] = useState(false);
-    const [formValid, setformValid] = useState(false);
     const { enqueueSnackbar } = useSnackbar();
     const dispatch = useDispatch();
     const handleChange = (event) => {
@@ -33,13 +32,6 @@ export default function Register(props) {
     useEffect(() => {
         setRegister({ ...register, 'email': props.email });
     }, [props.email]);
-    useEffect(() => {
-        if (register.password.length < 8 || !register.firstName || !register.lastName) {
-            setformValid(false);
-        } else {
-            setformValid(true);
-        }
-    }, [register]);
 
     const handleRegister = async (event) => {
         event.preventDefault();
@@ -135,7 +127,6 @@ export default function Register(props) {
                     type="submit"
                     fullWidth
                     variant="contained"
-                    disabled={!formValid}
                 >
                     {t('title.signup')}
                 </Button>

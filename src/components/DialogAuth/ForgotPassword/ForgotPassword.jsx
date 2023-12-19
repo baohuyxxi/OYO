@@ -40,23 +40,26 @@ function ForgotPassword(props) {
             .sort(() => Math.random() - 0.5)
             .join('');
     };
-
     const drawCaptchaOnCanvas = (ctx, captcha) => {
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
         const textColors = ['rgb(0,0,0)', 'rgb(130,130,130)'];
         const letterSpace = 150 / captcha.length;
+        const canvasWidth = ctx.canvas.width;
+        const canvasHeight = ctx.canvas.height;
         for (let i = 0; i < captcha.length; i++) {
             const xInitialSpace = 25;
+    
             ctx.font = '40px Roboto Mono';
             ctx.fillStyle = textColors[Math.floor(Math.random() * 2)];
-            ctx.fillText(
-                captcha[i],
-                xInitialSpace + i * letterSpace,
-                Math.floor(Math.random() * 16 + 25),
-                100
-            );
+            ctx.textAlign = 'center';
+            const xPosition = xInitialSpace + i * letterSpace + letterSpace / 2;
+            ctx.textBaseline = 'middle';
+            const yPosition = canvasHeight / 2;
+    
+            ctx.fillText(captcha[i], xPosition, yPosition);
         }
     };
+    
 
     const initializeCaptcha = (ctx) => {
         setErrors(null)
@@ -123,7 +126,7 @@ function ForgotPassword(props) {
                     <CustomInput
                         type="text"
                         className='user-input'
-                        title="Enter the text in the image"
+                        title= {t('common.enterCapcha')}
                         value={userInput}
                         onChange={handleUserInputChange}
                     />

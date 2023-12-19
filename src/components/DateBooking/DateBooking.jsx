@@ -9,7 +9,6 @@ import bookingSlice from '~/redux/bookingSlice';
 import { t } from 'i18next';
 
 const DateBooking = (props) => {
-    console.log(props);
     const [range, setRange] = useState([
         {
             startDate: new Date(),
@@ -17,7 +16,6 @@ const DateBooking = (props) => {
             key: 'selection',
         },
     ]);
-    console.log(range);
     const [open, setOpen] = useState(false);
     const refOne = useRef(null);
 

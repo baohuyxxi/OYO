@@ -49,30 +49,14 @@ const FilterBar = (props) => {
     };
     const handleReset = async (e) => {
         e.preventDefault();
-      
+        setIndexActive(-1)
         await publicAccomPlaceAPI.getAllRoomsWithFilter({ queryParams: ``, pageSize: props?.pagi }).then((dataResponse) => {
             props.filterData(dataResponse.data.content);
           
         });
+      
     };
-    // const handleFilter = (idActive, idFilter) => {
-    //     setIndexActive(idActive);
-    //     if (idFilter === null) {
-    //         filterApi.getAllRoomsWithFilter({ queryParams: ``, pageSize: props?.pagi }).then((dataResponse) => {
-    //             props.filterData(dataResponse.data.content);
-    //         });
-    //         navigate({
-    //             search: ``
-    //         });
-    //     } else {
-    //         publicAccomPlaceAPI.getAllRoomsWithFilter({ queryParams: 0, pagi: props?.pagi }).then((dataResponse) => {
-    //             props.filterData(dataResponse.data.content);
-    //         });
-    //         navigate({
-    //             search: `amenityId=${idFilter}&`
-    //         });
-    //     }
-    // };
+   
     return (
         <div className="filter-bar">
             <Slider {...settings}>

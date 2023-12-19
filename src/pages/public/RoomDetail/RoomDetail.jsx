@@ -14,7 +14,6 @@ import iconStar from '~/assets/svg/star.svg';
 import ListImage from '~/components/ListImage/ListImage';
 import Convenient from '~/components/Convenient/Convenient';
 import DialogConvenient from '~/components/DialogConvenient/DialogConvenient';
-import BedRoomSlider from '~/components/BedRoomSlider/BedRoomSlider';
 import SurchargeList from './Surcharge';
 import DateGo from '~/components/DateGo/DateGo';
 import Dropdown from '~/components/Dropdown/Dropdown';
@@ -37,10 +36,7 @@ export default function RoomDetail() {
     const user = useSelector((state) => state.user.current);
     const [loading, setLoading] = useState(true);
     const [dataDetailHome, setDataDetalHome] = useState('');
-    const [dateBook, setDateBook] = useState([
-        moment().format('DD/MM/yyyy'),
-        moment().add(1, 'days').format('DD/MM/yyyy')
-    ]);
+    const [dateBook, setDateBook] = useState([moment().format('DD/MM/yyyy'), moment().format('DD/MM/yyyy')]);
     const [guests, setGuests] = useState(guestsModel);
     const [detailPrice, setDetailPrice] = useState([]);
     const [surcharge, setSurcharge] = useState('');
@@ -69,10 +65,10 @@ export default function RoomDetail() {
             numAdult: guests.numAdult
         };
         publicAccomPlaceAPI.checkBooking(dataCheck).then((response) => {
+            setSurcharge(response.data.costSurcharge);
+            setTotalBill(response?.data?.totalBill);
             if (response?.statusCode === 200) {
                 setDisBooking(false);
-                setSurcharge(response.data.costSurcharge);
-                setTotalBill(response?.data?.totalBill);
             } else {
                 setDisBooking(true);
             }
@@ -91,7 +87,7 @@ export default function RoomDetail() {
                 priceDay: dataDetailHome?.pricePerNight,
                 surcharge: surcharge,
                 originPay: totalBill,
-                nameCustomer: user.firstName + user.lastName,
+                nameCustomer: user.firstName + ' '+ user.lastName,
                 phoneNumberCustomer: user.phone
             };
             dispatch(bookingSlice.actions.addInfoBooking(dataBooking));
@@ -135,8 +131,6 @@ export default function RoomDetail() {
                                         </div>
                                     </div>
                                     <div className="heading__right">
-                                        {/* <StarIcon className="icon_rate" />
-                                        <p>{dataDetailHome?.averageRate}</p> */}
                                         <p className="link__rate">
                                             {`(${dataDetailHome?.numView} ${t('numberCount.viewInDetal')})`}
                                         </p>
@@ -163,15 +157,6 @@ export default function RoomDetail() {
                                                 <p>
                                                     {t('home.addressDetail')}: {dataDetailHome.addressDetail}
                                                 </p>
-                                                {/* <h3>
-                                                    {t('home.acreage')}: {dataDetailHome.acreage} m²
-                                                </h3> */}
-                                                {/* <h3>
-                                                    {t('home.numPeople')}: {dataDetailHome.numPeople}
-                                                </h3>
-                                                <h3>
-                                                    {t('home.numBathRoom')}: {dataDetailHome.numBathRoom}
-                                                </h3> */}
                                             </div>
 
                                             <hr className="divider" />
@@ -196,7 +181,7 @@ export default function RoomDetail() {
                                                 <DateGo size="vertical" setDataDay={handleChangeDayBooking} />
                                             </div>
                                             <div className="count__guest">
-                                                {/* <p>{t('numberCount.countClient')}</p> */}
+                                        
                                                 <Dropdown
                                                     guests={guests}
                                                     setGuests={setGuests}

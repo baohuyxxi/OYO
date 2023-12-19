@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 
 import { t } from 'i18next';
 import { useSnackbar } from 'notistack';
-
+import AddIcon from '@mui/icons-material/Add';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Rating } from '@mui/material';
 import uploadMedia from '~/services/apis/media/uploadMedia';
 import bookingAPI from '~/services/apis/clientAPI/clientBookingAPI';
@@ -51,6 +51,7 @@ const FormEvaluate = (props) => {
                                 variant: 'success'
                             });
                             setOpen(false);
+                            props.handleReload()
                         }
                     });
                     dispatch(globalSlice.actions.setLoading(false))
@@ -74,8 +75,10 @@ const FormEvaluate = (props) => {
                     enqueueSnackbar(t('message.reviewSuccess'), {
                         variant: 'success'
                     });
+                    props.handleReload()
                     setOpen(false);
                 }
+                dispatch(globalSlice.actions.setLoading(false))
             });
         }
     };
@@ -127,7 +130,7 @@ const FormEvaluate = (props) => {
                             className="btn-upload"
                             onClick={() => document.getElementById('imageUpload').click()}
                         >
-                            {t('common.addImage')}
+                            <AddIcon/>{t('common.addImage')}
                         </button>
 
                         {selectedImages.length > 0 && (

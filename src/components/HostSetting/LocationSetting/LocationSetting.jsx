@@ -2,34 +2,34 @@ import { useState, useEffect } from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
-import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
-// import SelectedLocate from '~/pages/partner/SetupOwner/StepperOne/SelectedLocate';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import SelectAddress from '~/components/SelectAddress/SelectAddress';
 import './LocationSetting.scss';
-import { useForm } from 'react-hook-form';
 import { useSnackbar } from 'notistack';
-import { addressFormData } from '~/share/models/address';
 import { useParams } from 'react-router-dom';
 import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 
 export default function LocationSetting(props) {
     const [expanded, setExpanded] = useState(false);
 
-    const [address, setAddress] = useState(addressFormData);
+    const [address, setAddress] = useState({});
     const [addressDetail, setAddressDetail] = useState('');
     const { enqueueSnackbar } = useSnackbar();
     const params = useParams();
 
     useEffect(() => {
         if (props.locationRoom.addressDetail !== undefined) {
-            // Check if addressDetail1 is undefined as well
-            if (props.locationRoom.addressDetail1 === undefined) {
-                // Use optional chaining (?.) to safely access properties
-                setAddressDetail(props?.locationRoom.addressDetail.split(',')[0].trim());
-            }
+            const addressParts = props.locationRoom.addressDetail.split(',').map((part) => part.trim());
+            const [detail ,wardName, districtName, provinceName] = addressParts;
+            setAddressDetail(detail);
+            setAddress({
+                wardName: wardName,
+                districtName: districtName,
+                provinceName: provinceName
+            });
+            console.log(addressParts);
         }
-    }, [props.locationRoom.addressDetail, props.locationRoom.addressDetail1]);
-
+    }, [expanded]);
 
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
@@ -39,7 +39,7 @@ export default function LocationSetting(props) {
         setExpanded(false);
     };
 
-    const onSubmit = (dataAddress) => {
+    const onSubmit = () => {
         const newData = {
             data: {
                 provinceCode: address.provinceCode,
@@ -61,12 +61,6 @@ export default function LocationSetting(props) {
                     variant: 'error'
                 });
             });
-        // .then((dataResponse) => {
-        //     enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
-        // })
-        // .catch((error) => {
-        //     enqueueSnackbar(error.response?.data.message, { variant: 'error' });
-        // });
     };
 
     return (
@@ -75,7 +69,7 @@ export default function LocationSetting(props) {
             <form onSubmit={onSubmit}>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
-                        expandicon={<ExpandCircleDownIcon />}
+                        expandicon={<ExpandMoreIcon />}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >

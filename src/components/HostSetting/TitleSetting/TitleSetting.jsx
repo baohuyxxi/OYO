@@ -2,25 +2,24 @@ import * as React from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
-import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
-
-import { AxiosError } from 'axios';
-
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useForm } from 'react-hook-form';
 import { useSnackbar } from 'notistack';
-
+import { useDispatch } from 'react-redux';
+import settingAccomSlice from '~/redux/settingAccomSlice';
 import './TitleSetting.scss';
 import { useParams } from 'react-router-dom';
 import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 
 export default function TittleSetting(props) {
+    const dispatch = useDispatch()
     const [expanded, setExpanded] = React.useState(false);
 
     const {
         handleSubmit,
         register,
         setValue,
-        formState: { isSubmitting },
+        formState: { isSubmitting }
     } = useForm();
     const [refundTitle, setRefundTitle] = React.useState('');
 
@@ -51,7 +50,13 @@ export default function TittleSetting(props) {
             setValue('refundPolicy', 'Trước 7 ngày');
             setRefundTitle('Trước 7 ngày');
         }
-    }, [props.infoRoom.accomName, props.infoRoom.description, props.infoRoom.guide, props.infoRoom.refundPolicy, setValue]);
+    }, [
+        props.infoRoom.accomName,
+        props.infoRoom.description,
+        props.infoRoom.guide,
+        props.infoRoom.refundPolicy,
+        setValue
+    ]);
 
     const onSubmit = (data) => {
         if (
@@ -72,14 +77,15 @@ export default function TittleSetting(props) {
                     nameAccom: data.accomName,
                     description: data.description,
                     guide: data.guide,
-                    refundPolicy: tempRefund,
+                    refundPolicy: tempRefund
                 },
-                id: params.idHome,
+                id: params.idHome
             };
             partnerManageAPI
                 .updateTitleHome(newData)
                 .then((dataResponse) => {
                     enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
+                    dispatch(settingAccomSlice.actions.reload());
                 })
                 .catch((error) => {
                     enqueueSnackbar(error.response?.data.message, { variant: 'error' });
@@ -95,12 +101,12 @@ export default function TittleSetting(props) {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
-                       expandIcon={<ExpandCircleDownIcon/>}
+                        expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >
-                        <p style={{ width: '33%', flexShrink: 0 }}>Tiêu đề phòng cho thuê</p>
-                        <p style={{ color: 'text.secondary' }}>{props?.infoRoom?.accomName}</p>
+                        <p style={{ width: '33%', flexShrink: 0 , fontWeight:'600'}}>Tiêu đề phòng cho thuê</p>
+                        <p style={{ color: 'text.secondary' , fontWeight:'600'}}>{props?.infoRoom?.accomName}</p>
                     </AccordionSummary>
                     <AccordionDetails>
                         <div className="content-input">
@@ -108,26 +114,7 @@ export default function TittleSetting(props) {
                             <p>Tiêu đề nhà/phòng cho thuê của bạn cần nổi bật được những điểm đặc biệt của chỗ ở.</p>
                             <input className="input-info" {...register('accomName')} />
                         </div>
-                        <div className="btn">
-                            <p onClick={handleClose} className="btn-close">
-                                Hủy
-                            </p>
-                            <button className="btn-save" disabled={isSubmitting}>
-                                Lưu
-                            </button>
-                        </div>
-                    </AccordionDetails>
-                </Accordion>
-                <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
-                    <AccordionSummary
-                       expandIcon={<ExpandCircleDownIcon/>}
-                        aria-controls="panel2bh-content"
-                        id="panel2bh-header"
-                    >
-                        <p style={{ width: '33%', flexShrink: 0 }}>Mô tả</p>
-                        <p style={{ color: 'text.secondary' }}>{props.infoRoom.description}</p>
-                    </AccordionSummary>
-                    <AccordionDetails>
+
                         <div className="content-input">
                             <h4>Mô tả nhà/phòng cho thuê</h4>
                             <p>
@@ -136,47 +123,13 @@ export default function TittleSetting(props) {
                             </p>
                             <textarea className="text-input" {...register('description')} />
                         </div>
-                        <div className="btn">
-                            <p onClick={handleClose} className="btn-close">
-                                Hủy
-                            </p>
-                            <button className="btn-save">Lưu</button>
-                        </div>
-                    </AccordionDetails>
-                </Accordion>
-                <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
-                    <AccordionSummary
-                       expandIcon={<ExpandCircleDownIcon/>}
-                        aria-controls="panel3bh-content"
-                        id="panel3bh-header"
-                    >
-                        <p style={{ width: '33%', flexShrink: 0 }}>Hướng dẫn</p>
-                        <p style={{ color: 'text.secondary' }}>{props.infoRoom.guide}</p>
-                    </AccordionSummary>
-                    <AccordionDetails>
+
                         <div className="content-input">
                             <h4>Hướng dẫn nhà/phòng cho thuê</h4>
                             <p>Thêm hướng dẫn cho nơi ở của bạn để khách có thể dể dàng tiếp cận hơn.</p>
-                            <input className="input-info" {...register('guide')} />
+                            <textarea className="text-input" {...register('guide')} />
                         </div>
-                        <div className="btn">
-                            <p onClick={handleClose} className="btn-close">
-                                Hủy
-                            </p>
-                            <button className="btn-save">Lưu</button>
-                        </div>
-                    </AccordionDetails>
-                </Accordion>
-                <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
-                    <AccordionSummary
-                       expandIcon={<ExpandCircleDownIcon/>}
-                        aria-controls="panel4bh-content"
-                        id="panel4bh-header"
-                    >
-                        <p style={{ width: '33%', flexShrink: 0 }}>Chính sách hoàn tiền</p>
-                        <p style={{ color: 'text.secondary' }}>{refundTitle}</p>
-                    </AccordionSummary>
-                    <AccordionDetails>
+
                         <div className="content-input">
                             <h4>Chính sách hoàn tiền cho căn nhà của bạn</h4>
                             <p>Vui lòng điền theo mẫu: Không hoàn tiền, Trước 1 ngày, Trước 7 ngày</p>
@@ -186,7 +139,9 @@ export default function TittleSetting(props) {
                             <p onClick={handleClose} className="btn-close">
                                 Hủy
                             </p>
-                            <button className="btn-save">Lưu</button>
+                            <button className="btn-save" disabled={isSubmitting}>
+                                Lưu
+                            </button>
                         </div>
                     </AccordionDetails>
                 </Accordion>

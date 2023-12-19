@@ -78,7 +78,7 @@ export default function StepperComponent() {
         }
 
         if (activeStep === 0) {
-            if (addressDetail !== '' && dataStep1.wardCode !== undefined) {
+            if (addressDetail !== '' && dataStep1.wardCode !== undefined && dataStep1.wardCode !== null) {
                 dispatch(setupOwnerSlice.actions.addAddressRoom(dataStep1));
                 dispatch(setupOwnerSlice.actions.addAddressDetailRoom(addressDetail));
                 setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -225,6 +225,7 @@ export default function StepperComponent() {
                                 <StepperTwo
                                     dataStep2={dataStep2}
                                     setDataStep2={setDataStep2}
+                                    countGuest={countGuest}
                                     setCountGuest={setCountGuest}
                                     accomCate={accomCate}
                                     setAccomCate={setAccomCate}

@@ -10,8 +10,11 @@ const wishAPI = {
         return res.data;
     },
     checkWish: async (data) => {
+        if(localStorage.getItem('accessToken') === null){
+            return null
+        }
         const res = await axios.post(`/client/wish/check-accom-user?accomId=${data}` );
-        return res.data;
+        return res.data.data.message;
     },
 
     getHistoryBooking: async () => {

@@ -36,9 +36,10 @@ const DataCount = [
     number: 8,
   },
 ];
-const CountRoomFilter = ({ name }) => {
-  const [idActive, setIdActive] = useState(0);
+const CountRoomFilter = ({ name, data, setData }) => {
+  const [idActive, setIdActive] = useState(data);
   const handleSetActive = (id) => {
+    setData(id)
     setIdActive(id);
   };
   return (

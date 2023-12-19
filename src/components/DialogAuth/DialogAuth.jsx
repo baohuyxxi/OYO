@@ -1,17 +1,17 @@
 import Button from '@mui/material/Button';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
-
 import CloseIcon from '@mui/icons-material/Close';
+
 import SignIn from './SignIn/SignIn';
 import Register from './Register/Register';
-import './DialogAuth.scss';
-import { t } from 'i18next';
-import { useEffect, useState } from 'react';
 import ForgotPassword from './ForgotPassword/ForgotPassword';
 
+import {  useState } from 'react';
+import { t } from 'i18next';
+import './DialogAuth.scss';
+
 export default function DialogAuth(props) {
-    // const [title, setTitle] = useState('');
     const [position, setPosition] = useState('');
     const [email, setEmail] = useState('');
     const handleClose = () => {

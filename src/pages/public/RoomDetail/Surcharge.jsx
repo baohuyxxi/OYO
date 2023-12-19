@@ -14,35 +14,38 @@ export default function SurchargeList(props) {
     const handleClose = () => {
         setExpanded(false);
     };
+    const totalCost = props?.data?.reduce((sum, surcharge) => sum + surcharge.cost, 0);
     return (
-        <>
-            <Accordion className='paper' expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-                <AccordionSummary
-                    className="price-total"
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1bh-content"
-                    id="panel1bh-header"
-                >
-                    <div className="title-price">
-                        <p className="name-surcharge">{t('common.surcharge')}</p>
-                    </div>
-                    <div className="real-price">
-                        <p className="cost-surcharge">{formatPrice(32100)}</p>
-                    </div>
-                </AccordionSummary>
-                <AccordionDetails>
-                    {props.data?.map((sur, index) => (
-                        <div className="price-total" key={index}>
-                            <div className="title-price">
-                                <p className="name-surcharge">{`${sur?.surchargeName}`}</p>
-                            </div>
-                            <div className="real-price">
-                                <p className="cost-surcharge">{formatPrice(sur?.cost)}</p>
-                            </div>
+            <>
+            {totalCost > 0 && (
+                <Accordion className="paper" expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+                    <AccordionSummary
+                        className="price-total"
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1bh-content"
+                        id="panel1bh-header"
+                    >
+                        <div className="title-price">
+                            <p className="name-surcharge">{t('common.surcharge')}</p>
                         </div>
-                    ))}
-                </AccordionDetails>
-            </Accordion>
+                        <div className="real-price">
+                            <p className="cost-surcharge">{formatPrice(totalCost)}</p>
+                        </div>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        {props.data?.map((sur, index) => (
+                            <div className="price-total" key={index}>
+                                <div className="title-price">
+                                    <p className="name-surcharge">{`${sur?.surchargeName}`}</p>
+                                </div>
+                                <div className="real-price">
+                                    <p className="cost-surcharge">{formatPrice(sur?.cost)}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </AccordionDetails>
+                </Accordion>
+            )}
         </>
     );
 }

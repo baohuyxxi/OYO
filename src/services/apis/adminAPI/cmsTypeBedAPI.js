@@ -9,7 +9,6 @@ const cmsTypeBedAPI = {
         return response.data;
     },
     updateTypeBed: async (data, id) => {
-        console.log(data, id);
         const response = await axiosClient.put(`/cms/type-beds/${id}/update`, data);
         return response.data;
     },

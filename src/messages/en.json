@@ -32,7 +32,9 @@
     "enterCapcha" :"Enter the text in the image",
     "addImage": "Add image",
     "noRefunds":"No refunds",
-    "surcharge": "Surcharge"
+    "surcharge": "Surcharge",
+    "viewImage": "View image",
+    "changeAvatar": "Change avatar"
   },
   "message": {
     "signin": "Sign in successfully",
@@ -57,7 +59,10 @@
     "updateSuccess": "Update successfully",
     "isActiveAccount": "Your account is actived",
     "OTPActived": "OTP sent to your gmail",
-    "accountExist": "Account already exists"
+    "accountExist": "Account already exists",
+    "accountPending": "Account is pending",
+    "accountBlock": "Account is blocked",
+    "passwordWrong": "Password is wrong"
   },
   "validate": {
     "emailRequire": "Email is required",
@@ -72,7 +77,8 @@
     "passwordUpperCaseError": "Password must have at least 1 uppercase letter",
     "passwordLowerCaseError": "Password must have at least 1 lowercase letter",
     "passwordNumberError": "Password must have at least 1 number",
-    "passwordSpecialCharError": "Password must have at least 1 special character"
+    "passwordSpecialCharError": "Password must have at least 1 special character",
+    "maxCharacter": "Maximum number of characters 15"
   },
   "contentMess": {
     "messOTP_1": "To keep your information secure, we need you to authenticate your account. We have sent you a verification OTP via gmail ",

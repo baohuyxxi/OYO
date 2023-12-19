@@ -1,12 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { DateRangePicker } from 'react-date-range';
 import format from 'date-fns/format';
-
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
-
 import './DateBooking.scss';
-// import pricesOfHomeApi from '~/services/pricesOfHomeApi';
 import { useDispatch } from 'react-redux';
 import bookingSlice from '~/redux/bookingSlice';
 import { t } from 'i18next';
@@ -14,8 +11,8 @@ import { t } from 'i18next';
 const DateBooking = (props) => {
     const [range, setRange] = useState([
         {
-            checkIn: new Date(props.checkIn),
-            checkOut: new Date(props.checkOut),
+            startDate: new Date(),
+            endDate: new Date(),
             key: 'selection',
         },
     ]);
@@ -45,14 +42,6 @@ const DateBooking = (props) => {
         const checkIn = format(value[0].startDate, 'dd/MM/yyyy');
         const checkOut = format(value[0].endDate, 'dd/MM/yyyy');
         dispatch(bookingSlice.actions.addDay({checkIn, checkOut }));
-        // pricesOfHomeApi.showPriceByRangeDay(props?.idHome, dateFrom, dateTo).then((dataResponse) => {
-        //     if (props.handleChangePriceDay) {
-        //         props.handleChangePriceDay(dataResponse?.data?.totalCost);
-        //         dispatch(
-        //             bookingSlice.actions.addPriceTotal({ priceTotal: dataResponse?.data?.totalCostWithSurcharge }),
-        //         );
-        //     }
-        // });
     };
 
     return (
@@ -78,6 +67,7 @@ const DateBooking = (props) => {
                         moveRangeOnFirstSelection={false}
                         ranges={range}
                         months={2}
+                        minDate={new Date()}    
                         direction={props.size}
                         className="calendarElement"
                         showDateDisplay={false}

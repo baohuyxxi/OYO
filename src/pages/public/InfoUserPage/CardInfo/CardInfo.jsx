@@ -1,9 +1,9 @@
 import React, { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import FactCheckOutlinedIcon from '@mui/icons-material/FactCheckOutlined';
 import WysiwygOutlinedIcon from '@mui/icons-material/WysiwygOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import Paper from '@mui/material/Paper';
 import { useDispatch, useSelector } from 'react-redux';
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
@@ -40,20 +40,12 @@ export default function CardInfo() {
         handleCloseMenu();
     }
 
-    const handleLogout = async (e) =>{
-        await dispatch(userSlice.actions.logout());
+    const handleLogout =  (e) =>{
+        dispatch(userSlice.actions.logout());
         navigate('/');
     }
-    const [src, setSrc] = useState(null);
     const [imageFile, setImageFile] = useState(null);
-
-    // preview
-    const [preview, setPreview] = useState(null);
-
-    // modal state
     const [modalOpen, setModalOpen] = useState(false);
-
-    // ref to control input element
     const inputRef = useRef(null);
 
     // handle Change
@@ -93,30 +85,30 @@ export default function CardInfo() {
                 </div>
                 <Divider />
                 <div className='options-card'>
-                    <a href="/myBooking" className="option">
+                    {/* <Link to="/myBooking" className="option">
                         <div className="option-icon">
                             <FactCheckOutlinedIcon />
                         </div>
                         {t('navbar.myBooking')}
-                    </a>
-                    <a href="/myBooking" className="option">
+                    </Link> */}
+                    <Link to="/myBooking" className="option">
                         <div className="option-icon">
                             <WysiwygOutlinedIcon />
                         </div>
                         {t('navbar.historyBookingClient')}
-                    </a>
-                    <a href="/account" className="option edit-profile">
+                    </Link>
+                    <Link to="/account" className="option edit-profile">
                         <div className="option-icon">
                             <SettingsOutlinedIcon />
                         </div>
                         {t('navbar.account')}
-                    </a>
-                    <a href="/" className="option logout" onClick={handleLogout}>
+                    </Link>
+                    <Link to="/" className="option logout" onClick={handleLogout}>
                         <div className="option-icon">
                             <LogoutOutlinedIcon />
                         </div>
                         {t('navbar.signout')}
-                    </a>
+                    </Link>
                 </div>
             </div>
             <Menu
@@ -124,8 +116,8 @@ export default function CardInfo() {
                 open={Boolean(anchorEl)}
                 onClose={handleCloseMenu}
             >
-                <MenuItem onClick={handleViewAvatar}>View Avatar</MenuItem>
-                <MenuItem onClick={handleChangeAvatar}>Change Avatar</MenuItem>
+                <MenuItem onClick={handleViewAvatar}>{t('common.viewImage')}</MenuItem>
+                <MenuItem onClick={handleChangeAvatar}>{t('common.changeAvatar')}</MenuItem>
             </Menu>
             <ViewIamge images={viewImg} setImages={setViewImg}/>
         </div>

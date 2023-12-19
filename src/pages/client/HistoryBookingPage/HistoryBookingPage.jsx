@@ -5,18 +5,17 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { t } from 'i18next';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
-
 import LinearProgress from '@mui/material/LinearProgress';
+import DoneIcon from '@mui/icons-material/Done';
 
 import FormEvaluate from '~/components/FormEvaluate/FormEvaluate';
-import DoneIcon from '@mui/icons-material/Done';
 import ModalConfirmDelete from '~/components/ModalConfirmDelete/ModalConfirmDelete';
 
 import FramePage from '~/components/FramePage/FramePage';
-import PopoverRefundPolicy from '~/components/PopoverRefundPolicy/PopoverRefundPolicy';
 import bookingAPI from '~/services/apis/clientAPI/clientBookingAPI';
+
 import formatPrice from '~/utils/formatPrice';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './HistoryBookingPage.scss';
 
 AOS.init();
@@ -27,12 +26,13 @@ const HistoryBookingPage = () => {
     const [showFormReview, setShowFormReview] = useState(false);
     const [idBooking, setIdBooking] = useState('');
     const navigate = useNavigate();
+    const [reload, setReload] = useState(false);
     useEffect(() => {
         bookingAPI.getHistoryBooking().then((dataResponse) => {
             setDataHistory(dataResponse?.data?.content);
             setLoading(false);
         });
-    }, []);
+    }, [reload]);
 
     const handleReview = (value) => {
         setIdBooking(value);
@@ -45,6 +45,9 @@ const HistoryBookingPage = () => {
 
     const handleView= (id) =>{
         navigate(`/room-detail/${id}`);
+    }
+    const handleReload =()=>{
+        setReload(!reload);
     }
     return (
         <FramePage>
@@ -115,9 +118,6 @@ const HistoryBookingPage = () => {
                                                 </div>
                                             </div>
                                             <div className="btn__booking">
-                                                {/* <div>
-                                                <PopoverRefundPolicy dataShow={history?.refundPolicy} />
-                                            </div> */}
                                                 <div style={{ justifyContent: 'left', width: '130px' }}>
                                                     <p className={history?.status}>{status}</p>
                                                     {
@@ -141,7 +141,7 @@ const HistoryBookingPage = () => {
                                                         </>
                                                     )}
                                                     {history?.status === 'WAITING' && (
-                                                        <ModalConfirmDelete idRemove={history.bookingCode} />
+                                                        <ModalConfirmDelete idRemove={history.bookingCode} handleReload={handleReload}/>
                                                     )}
                                                 </div>
                                             </div>
@@ -153,6 +153,7 @@ const HistoryBookingPage = () => {
                         <FormEvaluate
                             showFormReview={showFormReview}
                             handleCloseReview={handleCloseReview}
+                            handleReload={handleReload}
                             bookingCode={idBooking}
                         />
                     </div>

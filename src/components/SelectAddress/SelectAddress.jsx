@@ -7,6 +7,7 @@ import publicProvinceAPI from '~/services/apis/publicAPI/publicProvinceAPI';
 import './SelectAddress.scss';
 
 export default function SelectAddress(props) {
+    console.log(props.data);
     const [selectedProvince, setSelectedProvince] = useState(null);
     const [selectedDistrict, setSelectedDistrict] = useState(null);
     const [selectedWard, setSelectedWard] = useState(null);
@@ -32,15 +33,15 @@ export default function SelectAddress(props) {
     }, [provinces]);
 
     useEffect(() => {
-        const temp = provinces.find((option) => option.provinceCode === props.data.provinceCode) || null;
+        const temp = provinces.find((option) => option.provinceCode === props.data.provinceCode || option.provinceName === props.data.provinceName) || null;
         if (temp !== null) {
             setSelectedProvince(temp);
             setDistricts(temp.districtSet);
         }
-    }, [provinces]);
+    }, [ provinces.length, props.data.provinceCode, props.data.provinceName]);
 
     useEffect(() => {
-        const temp = districts.find((option) => option.districtCode === props.data.districtCode) || null;
+        const temp = districts.find((option) => option.districtCode === props.data.districtCode || option.districtName === props.data.districtName) || null;
         if (temp !== null) {
             setSelectedDistrict(temp);
             setWards(temp.wardSet);
@@ -48,7 +49,7 @@ export default function SelectAddress(props) {
     }, [districts.length]);
 
     useEffect(() => {
-        const temp = wards.find((option) => option.wardCode === props.data.wardCode) || null;
+        const temp = wards.find((option) => option.wardCode === props.data.wardCode || option.wardName === props.data.wardName) || null;
         if (temp !== null) {
             setSelectedWard(temp);
         }
@@ -60,7 +61,7 @@ export default function SelectAddress(props) {
         setSelectedDistrict(null);
         const provinceCode = newValue ? newValue.provinceCode : null;
         props.setData((prevData) => ({
-            ...prevData,
+
             provinceCode,
             districtCode: null,
             wardCode: null

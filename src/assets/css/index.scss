@@ -294,7 +294,12 @@ html[mode='dark'] {
         color: inherit;
         background: var(--input-background);
     }
-
+    .MuiInputBase-root{
+        input:disabled {
+            color: var(--disabled-cl);
+            background: var(--disabled-br);
+        }
+    }
     .MuiOutlinedInput-input {
         color: inherit;
     }
@@ -334,7 +339,7 @@ html[mode='dark'] {
         background-color: initial;
         color: inherit;
     }
-    .MuiAccordionSummary-expandIconWrapper{
+    .MuiAccordionSummary-expandIconWrapper {
         background-color: initial;
         color: inherit;
     }

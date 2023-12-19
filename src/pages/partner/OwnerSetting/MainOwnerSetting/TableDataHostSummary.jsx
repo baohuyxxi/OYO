@@ -1,18 +1,18 @@
 import { DataGrid } from '@mui/x-data-grid';
-// import './TableDataHostSummary.scss';
 import { useState, useEffect } from 'react';
+import { Dialog, DialogActions, DialogContent, DialogTitle, Button } from '@mui/material'; 
 import summaryHomeApi from '~/services/apis/partnerAPI/summaryHostApi';
 import formatPrice from '~/utils/formatPrice';
-import { AxiosError } from 'axios';
 import { useSnackbar } from 'notistack';
-import Skeleton from 'react-loading-skeleton';
 import { FaSpinner } from 'react-icons/fa';
+import ModalConfirm from '~/components/ModalConfirm/ModalConfirm';
 
 const TableDataHostSummary = (props) => {
     const { enqueueSnackbar } = useSnackbar();
-
     const [rows, setRows] = useState([]);
-
+    const [confirm, setConfirm] = useState(false);
+    const [openConfirm, setOpenConfirm] = useState(false);
+    const [selectedId, setSelectedId] = useState(null);
     const [refreshSelection, setRefreshSelection] = useState(false);
     useEffect(() => {
         const newRows = props.data.map((item, index) => ({
@@ -31,26 +31,33 @@ const TableDataHostSummary = (props) => {
     }, [props.data]);
 
 
-
     const handleCheck = (id) => {
+        setOpenConfirm(true);
+        setSelectedId(id);
+    };
+    useEffect(() => {
+        if (confirm) {
             if (props.idTab === 'Check In') {
-                summaryHomeApi.setCheckIn(id).then((res) => {
+                summaryHomeApi.setCheckIn(selectedId).then((res) => {
                     enqueueSnackbar('Check in thành công', { variant: 'success' });
                     if (res.statusCode === 200) {
-                        props.setLoad(props.load === false);
-                        setRefreshSelection((prev) => !prev);   
+                        props.setLoad((prevLoad) => !prevLoad);
+                        setRefreshSelection((prev) => !prev);
                     }
                 });
-            } else if (props.idTab === '1') {
-                summaryHomeApi.setCheckOut(id).then((res) => {
+            } else if (props.idTab === 'Check Out') {
+                summaryHomeApi.setCheckOut(selectedId).then((res) => {
                     enqueueSnackbar('Check out thành công', { variant: 'success' });
                     if (res.statusCode === 200) {
-                        props.setLoad(props.load === false);
+                        props.setLoad((prevLoad) => !prevLoad);
                         setRefreshSelection((prev) => !prev);
                     }
                 });
             }
-    };
+            setConfirm(false);
+            setOpenConfirm(false);
+        }
+    }, [confirm, props.idTab, selectedId]);
 
     return (
         <div className="listdata_summary">
@@ -60,6 +67,7 @@ const TableDataHostSummary = (props) => {
                 idTab={props.idTab}
                 refreshSelection={refreshSelection}
             />
+          {openConfirm &&<ModalConfirm setOpen={setOpenConfirm} setConfirm={setConfirm} title={`Xác nhận ${props.idTab}`} />}
         </div>
     );
 };
@@ -68,28 +76,28 @@ function DataTable(props) {
     const columns = [
         { field: 'id', headerName: 'STT', width: 50 },
 
-        { field: 'nameAccom', headerName: 'Nhà / phòng cho thuê', width: 260 },
-        { field: 'nameCustomer', headerName: 'Tên khách hàng', width: 140 },
+        { field: 'nameAccom', headerName: 'Nhà / phòng cho thuê', width: 300 },
+        { field: 'nameCustomer', headerName: 'Tên khách hàng', width: 200 },
         {
             field: 'checkIn',
-            headerName: 'Ngày nhận phòng',
-            width: 160
+            headerName: 'Nhận phòng',
+            width: 130
         },
         {
             field: 'checkOut',
-            headerName: 'Ngày trả phòng',
-            width: 160
+            headerName: 'Trả phòng',
+            width: 130
         },
-        {
-            field: 'guests',
-            headerName: 'Lượng khách',
-            width: 120
-        },
+        // {
+        //     field: 'guests',
+        //     headerName: 'Khách',
+        //     width: 80
+        // },
         { field: 'totalBill', headerName: 'Tổng tiền', width: 130 },
         { field: 'totalTransfer', headerName: 'Đã thanh toán', width: 140 },
         {
             field: 'CheckIn',
-            headerName: 'Check In',
+            headerName: props.idTab,
             width: 140,
             renderCell: (params) => (
                 <button onClick={(e) => props.handleCheck(params.row.bookingCode)} className="btn-check-status">
@@ -123,11 +131,7 @@ function DataTable(props) {
                         const selectedRows = props.rows.filter((row) => selectedIDs.has(row.id));
                     }}
                 />
-                {loading && (
-                    <div style={{ textAlign: 'center', marginTop: '50px' }}>
-                        <FaSpinner className="spinner" />
-                    </div>
-                )}
+            
             </div>
         </div>
     );

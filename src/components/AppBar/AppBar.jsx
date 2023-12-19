@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-undef */
 import {useState} from 'react';
 import {useSelector } from 'react-redux';
 
@@ -13,7 +12,6 @@ import DropdownUser from '../DropdownUser/DropdownUser';
 import LanguageSelect from '../LanguageSelected/LanguageSelected';
 import Button from '@mui/material/Button';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import SignInSignUp from '../SignIn-SignUp/SignIn-SignUp';
 import MailNotification from '../MailNotification/MailNotification';
 import DialogAuth from '../DialogAuth/DialogAuth';
 import { t } from 'i18next';
@@ -33,17 +31,18 @@ export default function NavBar() {
                 </div>
                 <div className="appbar-right-menu" />
                 <div className="element">
+                    <NavLink to="/">{t('navbar.home')}</NavLink>
+                </div>
+                <div className="element">
                     <ModeToggle />
                 </div>
                 <div className="element">
                     <LanguageSelect />
                 </div>
-                <div className="element">
-                    <NavLink to="/">{t('navbar.home')}</NavLink>
-                </div>
-                <div className="element">
+              
+                {/* <div className="element">
                     <NavLink to="/host">{t('navbar.host')}</NavLink>
-                </div>
+                </div> */}
                 <div className="element">
                     <NavLink to="/list-accom">{t('navbar.listroom')}</NavLink>
                 </div>

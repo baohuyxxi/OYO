@@ -32,7 +32,9 @@
     "enterCapcha" :"Nhập nội dung trong hình",
     "addImage": "Thêm hình ảnh",
     "noRefunds":"Không được hoàn trả",
-    "surcharge": "Phụ phí"
+    "surcharge": "Phụ phí",
+    "viewImage": "Xem ảnh",
+    "changeAvatar": "Thay đổi ảnh đại diện"
   },
   "message": {
     "signin": "Đăng nhập thành công",
@@ -59,7 +61,11 @@
     "isActiveAccount": "Tài khoản của bạn đã được kích hoạt",
     "OTPActived": "Đã gửi OTP về gmail của bạn",
     "accountExist": "Tài khoản đã tồn tại",
-    "requestSigin": "Bạn phải đăng nhập để thực hiện được chức năng này"
+    "requestSigin": "Bạn phải đăng nhập để thực hiện được chức năng này",
+    "requestPhone": "Bạn phải nhập số điện thoại để thực hiện được chức năng này",
+    "accountPending": "Tài khoản đang chờ xác thực",
+    "accountBlock": "Tài khoản đã bị khóa",
+    "passwordWrong": "Mật khẩu không đúng"
   },
   "validate": {
     "emailRequire": "Email được yêu cầu",
@@ -74,8 +80,8 @@
     "passwordUpperCaseError": "Mật khẩu phải có ít nhất 1 chữ cái viết hoa",
     "passwordLowerCaseError": "Mật khẩu phải có ít nhất 1 chữ cái thường",
     "passwordNumberError": "Mật khẩu phải có ít nhất 1 số",
-    "passwordSpecialCharError": "Mật khẩu phải có ít nhất 1 kí tự đặc biệt"
-
+    "passwordSpecialCharError": "Mật khẩu phải có ít nhất 1 kí tự đặc biệt",
+    "maxCharacter": "Không được nhập quá 15 kí tự"
   },
   "contentMess": {
     "messOTP_1": "Để bảo mật thông tin, chúng tôi cần bạn xác thực tài khoản. Chúng tôi đã gửi cho bạn mã OTP xác thực qua gmail ",
@@ -139,7 +145,10 @@
       "totalPrice": "Tổng tiền thanh toán",
       "method": "Phương thức thanh toán",
       "paypal": "Thanh toán qua PayPal",
-      "direct": "Thanh toán trực tiếp"
+      "direct": "Thanh toán trực tiếp",
+      "infoOfYou": "Thông tin của bạn",
+      "name": "Họ tên",
+      "phone": "Số điện thoại"
     },
     "history": "Danh sách đặt phòng của bạn",
     "refundPolicy": "Chính sách hủy phòng",
@@ -266,7 +275,7 @@
   "navbar": {
     "home": "Trang chủ",
     "host": "Trở thành chủ nhà",
-    "listroom": "Danh sách nhà",
+    "listroom": "Danh sách chỗ ở  ",
     "historyBookingClient": "Lịch sử đặt phòng",
     "signin": "Đăng nhập",
     "signup": "Đăng ký",
@@ -274,7 +283,7 @@
     "homeHost": "Nhà / Phòng cho thuê",
     "book": "Đặt phòng",
     "calender": "Lịch",
-    "setHost": "Tạo mục chủ nhà",
+    "setHost": "Đăng chỗ ở",
     "historyHost": "Lịch sử giao dịch",
     "account": "Tài khoản",
     "listLove": "Danh sách yêu thích",

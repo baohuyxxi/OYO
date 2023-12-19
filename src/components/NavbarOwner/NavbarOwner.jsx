@@ -13,6 +13,7 @@ import notifications from '../../mockdata/notification.json';
 import notificationApi from '~/services/apis/publicAPI/notificationApi';
 // import BellRing from '../BellRing/BellRing';
 import DropdownHost from '../DropdownHost/DropdownHost';
+import DropdownUser from '../DropdownUser/DropdownUser';
 import './NavbarOwner.scss';
 
 const NavbarOwner = () => {
@@ -88,16 +89,6 @@ const NavbarOwner = () => {
                 <NavLink to="/host/setting/calendar">{t('navbar.calender')}</NavLink>
                 <NavLink to="/intro-host">{t('navbar.setHost')}</NavLink>
                 <NavLink to="/host/setting/transactionhistory">{t('navbar.historyHost')}</NavLink>
-            </div>
-            <div className="navbar-right" style={{ display: 'flex' }}>
-                <DropdownHost />
-                {/* <BellRing
-                    icon="bx bx-bell"
-                    badge={1}
-                    contentData={notifications}
-                    renderItems={(item, index) => renderNotificationItem(item, index)}
-                    renderFooter={() => <p>View all</p>}
-                /> */}
             </div>
         </div>
     );

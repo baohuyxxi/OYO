@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import userSlice from '~/redux/userSlice';
 import authAPI from '~/services/apis/authAPI/authAPI';
 import { useSnackbar } from 'notistack';
+import { format, parse } from 'date-fns';
+import { validateInfo } from '~/utils/validate';
 import { t } from 'i18next';
 
 export default function EditAccount() {
@@ -15,25 +17,29 @@ export default function EditAccount() {
     const [submit, setSubmit] = useState(false);
     const userCurrent = useSelector((state) => state.user.current);
     const [user, setUser] = useState(userCurrent);
+    const [errors, setErrors] = useState({});
     const dispatch = useDispatch();
     useEffect(() => {
         if (user && user.dateOfBirth) {
             const updatedUser = { ...user };
-            const birthDate = new Date(user.dateOfBirth);
-            updatedUser.birthday = birthDate.getDate();
-            updatedUser.monthOfBirth = birthDate.getMonth() + 1;
-            updatedUser.yearOfBirth = birthDate.getFullYear();
+            const parsedDate = parse(user.dateOfBirth, 'dd/MM/yyyy', new Date());
+            updatedUser.birthday = format(parsedDate, 'dd');
+            updatedUser.monthOfBirth = format(parsedDate, 'MM');
+            updatedUser.yearOfBirth = format(parsedDate, 'yyyy');
             setUser(updatedUser);
         }
     }, [userCurrent]);
     useEffect(() => {
         if (user.birthday && user.monthOfBirth && user.yearOfBirth) {
-            const dateOfBirth = new Date(
-                `${user.birthday}/${user.monthOfBirth}/${user.yearOfBirth}`
-            ).toLocaleDateString('en-GB');
+            const dateOfBirth = Date.parse(
+                `${user.yearOfBirth}-${user.monthOfBirth}-${user.birthday}`,
+                'yyyy-MM-dd',
+                new Date()
+            );
+
             setUser({
                 ...user,
-                dateOfBirth: dateOfBirth
+                dateOfBirth: format(dateOfBirth, 'dd/MM/yyyy')
             });
         }
     }, [user.birthday, user.monthOfBirth, user.yearOfBirth]);
@@ -44,12 +50,17 @@ export default function EditAccount() {
 
     const handleSave = async (event) => {
         event.preventDefault();
-        const res = await authAPI.updateInfoRequest(user);
-        if (res.statusCode === 200) {
-            dispatch(userSlice.actions.editInfo(res.data));
-            enqueueSnackbar(t('message.updateSuccess'), { variant: 'success' });
+        const check = validateInfo(user);
+        if (Object.keys(check).length === 0) {
+            const res = await authAPI.updateInfoRequest(user);
+            if (res.statusCode === 200) {
+                dispatch(userSlice.actions.editInfo(res.data));
+                enqueueSnackbar(t('message.updateSuccess'), { variant: 'success' });
+            } else {
+                enqueueSnackbar('Cập nhật thất bại', { variant: 'error' });
+            }
         } else {
-            enqueueSnackbar('Cập nhật thất bại', { variant: 'error' });
+            setErrors(check);
         }
     };
     const genderSelect = [
@@ -58,12 +69,14 @@ export default function EditAccount() {
     ];
     const birthday = [];
     for (let i = 1; i <= 31; i++) {
-        birthday.push({ id: i, value: i, label: i.toString() });
+        const formattedValue = i.toString().padStart(2, '0');
+        birthday.push({ id: i, value: formattedValue, label: formattedValue });
     }
 
     const monthOfBirth = [];
     for (let i = 1; i <= 12; i++) {
-        monthOfBirth.push({ id: i, value: i, label: i.toString() });
+        const formattedValue = i.toString().padStart(2, '0');
+        monthOfBirth.push({ id: i, value: formattedValue, label: formattedValue });
     }
 
     const yearOfBirth = [];
@@ -71,15 +84,16 @@ export default function EditAccount() {
         yearOfBirth.push({ id: i, value: i, label: i.toString() });
     }
     const customInputList = [
-        createCustomInput(6, 'userName', user.userName, handleUser),
-        createCustomInput(6, 'phone', user.phone, handleUser),
-        createCustomInput(6, 'firstName', user.firstName, handleUser),
-        createCustomInput(6, 'lastName', user.lastName, handleUser),
-        createCustomInput(12, 'address', user.address, handleUser),
+        createCustomInput(errors.userName, 6, 'userName', user?.userName || '', handleUser),
+        createCustomInput(errors.phone, 6, 'phone', user?.phone || '', handleUser),
+        createCustomInput(errors.firstName, 6, 'firstName', user?.firstName || '', handleUser),
+        createCustomInput(errors.lastName, 6, 'lastName', user?.lastName || '', handleUser),
+        createCustomInput(errors.address, 12, 'address', user?.address || '', handleUser),
         createCustomInput(
+            errors.gender,
             3,
             'gender',
-            user.gender,
+            user.gender || '',
             handleUser,
             true,
             genderSelect.map((option) => (
@@ -89,6 +103,7 @@ export default function EditAccount() {
             ))
         ),
         createCustomInput(
+            errors.birthday,
             3,
             'birthday',
             user.birthday || '',
@@ -101,6 +116,7 @@ export default function EditAccount() {
             ))
         ),
         createCustomInput(
+            errors.monthOfBirth,
             3,
             'monthOfBirth',
             user.monthOfBirth || '',
@@ -113,6 +129,7 @@ export default function EditAccount() {
             ))
         ),
         createCustomInput(
+            errors.yearOfBirth,
             3,
             'yearOfBirth',
             user.yearOfBirth || '',
@@ -152,7 +169,7 @@ export default function EditAccount() {
         </div>
     );
 }
-function createCustomInput(xs, name, value, onChange, select = false, content = []) {
+function createCustomInput(error, xs, name, value, onChange, select = false, content = []) {
     return (
         <CustomInput
             id={name}
@@ -163,7 +180,7 @@ function createCustomInput(xs, name, value, onChange, select = false, content = 
             onChange={onChange}
             select={select}
             content={content}
-            className={`element ${name}`}
+            className={error ? `elementerror` : `element${name}`}
             xs={xs}
         />
     );

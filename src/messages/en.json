@@ -57,7 +57,10 @@
     "updateSuccess": "Update successfully",
     "isActiveAccount": "Your account is actived",
     "OTPActived": "OTP sent to your gmail",
-    "accountExist": "Account already exists"
+    "accountExist": "Account already exists",
+    "accountPending": "Account is pending",
+    "accountBlock": "Account is blocked",
+    "passwordWrong": "Password is wrong"
   },
   "validate": {
     "emailRequire": "Email is required",

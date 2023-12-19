@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-undef */
 import {useState} from 'react';
 import {useSelector } from 'react-redux';
 
@@ -13,7 +12,6 @@ import DropdownUser from '../DropdownUser/DropdownUser';
 import LanguageSelect from '../LanguageSelected/LanguageSelected';
 import Button from '@mui/material/Button';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import SignInSignUp from '../SignIn-SignUp/SignIn-SignUp';
 import MailNotification from '../MailNotification/MailNotification';
 import DialogAuth from '../DialogAuth/DialogAuth';
 import { t } from 'i18next';

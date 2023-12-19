@@ -13,7 +13,6 @@ const Auth = () => {
     const HomePage = React.lazy(() => import('../pages/public/HomePage/HomePage'));
     const InfoUserPage = React.lazy(() => import('../pages/public/InfoUserPage/InfoUserPage'));
     const RoomDetail = React.lazy(() => import('../pages/public/RoomDetail/RoomDetail'));
-    const Register = React.lazy(() => import('../components/Register/Register'));
     const NotFoundPage = React.lazy(() => import('../pages/public/NotFoundPage/NotFoundPage'));
     const CongratulationPage = React.lazy(() => import('../pages/partner/CongratulationPage/Congratulation'));
     const TestComponet = React.lazy(() => import('~/components/Test/Test'));

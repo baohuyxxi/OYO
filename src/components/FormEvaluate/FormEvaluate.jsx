@@ -33,7 +33,7 @@ const FormEvaluate = (props) => {
     const submitFormHandler = async (event) => {
         event.preventDefault();
         if (selectedImages.length > 0) {
-            dispatch(globalSlice.actions.setLoading(true))
+            dispatch(globalSlice.actions.setLoading(true));
             uploadMedia
                 .multipleFile(selectedImages)
                 .then((res) => {
@@ -51,16 +51,16 @@ const FormEvaluate = (props) => {
                                 variant: 'success'
                             });
                             setOpen(false);
-                            props.handleReload()
+                            props.handleReload();
                         }
                     });
-                    dispatch(globalSlice.actions.setLoading(false))
+                    dispatch(globalSlice.actions.setLoading(false));
                 })
                 .catch((err) => {
                     enqueueSnackbar(err, {
                         variant: 'error'
                     });
-                    dispatch(globalSlice.actions.setLoading(false))
+                    dispatch(globalSlice.actions.setLoading(false));
                 });
         } else {
             const dataReview = {
@@ -71,20 +71,28 @@ const FormEvaluate = (props) => {
                 bookingCode: props.bookingCode
             };
             bookingAPI.createReviewBooking(dataReview).then((res) => {
+                setOpen(false);
                 if (res.statusCode === 200) {
                     enqueueSnackbar(t('message.reviewSuccess'), {
                         variant: 'success'
                     });
-                    props.handleReload()
-                    setOpen(false);
+                    props.handleReload();
                 }
-                dispatch(globalSlice.actions.setLoading(false))
+                dispatch(globalSlice.actions.setLoading(false));
             });
         }
     };
 
     const handleImageChange = (event) => {
         const files = event.target.files;
+        const allowedImageTypes = ['image/jpeg', 'image/png', 'image/bmp', 'image/webp', 'image/jpg'];
+
+        for (const file of files) {
+            if (!allowedImageTypes.includes(file.type)) {
+                alert(t('validate.invalidImageType'));
+                return;
+            }
+        }
         const fileArray = Array.from(files);
         setSelectedImages([...selectedImages, ...fileArray]);
     };
@@ -124,13 +132,21 @@ const FormEvaluate = (props) => {
                             required
                         />
 
-                        <input hidden type="file" id="imageUpload" accept="image/*" multiple onChange={handleImageChange} />
+                        <input
+                            hidden
+                            type="file"
+                            id="imageUpload"
+                            accept="image/jpeg, image/jpg, image/png, image/bmp, image/webp"
+                            multiple
+                            onChange={handleImageChange}
+                        />
                         <button
                             type="button"
                             className="btn-upload"
                             onClick={() => document.getElementById('imageUpload').click()}
                         >
-                            <AddIcon/>{t('common.addImage')}
+                            <AddIcon />
+                            {t('common.addImage')}
                         </button>
 
                         {selectedImages.length > 0 && (
@@ -148,7 +164,7 @@ const FormEvaluate = (props) => {
                         )}
                     </DialogContent>
                     <DialogActions>
-                        <button  type="button" onClick={handleClose} className="btn-review-cancel">
+                        <button type="button" onClick={handleClose} className="btn-review-cancel">
                             {t('common.cancel')}
                         </button>
                         <button type="submit" className="btn-review-detail">

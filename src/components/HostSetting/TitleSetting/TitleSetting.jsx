@@ -83,9 +83,9 @@ export default function TittleSetting(props) {
             };
             partnerManageAPI
                 .updateTitleHome(newData)
-                .then((dataResponse) => {
+                .then((res) => {
                     enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
-                    dispatch(settingAccomSlice.actions.reload());
+                    dispatch(settingAccomSlice.actions.setAccom(res.data));
                 })
                 .catch((error) => {
                     enqueueSnackbar(error.response?.data.message, { variant: 'error' });

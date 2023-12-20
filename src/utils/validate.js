@@ -12,8 +12,42 @@ export const validateEmail = (email) => {
     }
     return errors;
 };
-
+export const validateChangePassword = (data) => {
+    const errors = {};
+    if (data.newPassword) {
+        if (data.newPassword.length < 8) {
+            errors.newPassword = t('validate.passwordMinError');
+        } else if (!data.newPassword.match(/[A-Z]/)) {
+            errors.newPassword = t('validate.passwordUpperCaseError');
+        } else if (!data.newPassword.match(/[a-z]/)) {
+            errors.newPassword = t('validate.passwordLowerCaseError');
+        } else if (!data.newPassword.match(/[0-9]/)) {
+            errors.newPassword = t('validate.passwordNumberError');
+        } else if (!data.newPassword.match(/[!@#$%^&?*]/)) {
+            errors.newPassword = t('validate.passwordSpecialCharError');
+        }
+    } else {
+        errors.newPassword = t('validate.passwordRequire');
+    }
+    if (data.enterNewPassword) {
+        if (data.enterNewPassword !== data.newPassword) {
+            errors.enterNewPassword = t('validate.passwordConfirmError');
+        }
+    } else {
+        errors.enterNewPassword = t('validate.passwordRequire');
+    }
+    if(data.oldPassword){
+        if(data.oldPassword.length < 8){
+            errors.oldPassword = t('validate.passwordMinError');
+        }
+    }
+    else{
+        errors.oldPassword = t('validate.passwordRequire');
+    }
+    return errors;
+}
 export const validate = (data) => {
+    console.log(data);
     const errors = {};
 
     if (data.firstName && data.firstName.trim()) {

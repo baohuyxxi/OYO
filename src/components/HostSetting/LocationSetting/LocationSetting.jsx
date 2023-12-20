@@ -8,8 +8,10 @@ import './LocationSetting.scss';
 import { useSnackbar } from 'notistack';
 import { useParams } from 'react-router-dom';
 import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
-
+import { useDispatch } from 'react-redux';
+import settingAccomSlice from '~/redux/settingAccomSlice';
 export default function LocationSetting(props) {
+    const dispatch = useDispatch()
     const [expanded, setExpanded] = useState(false);
 
     const [address, setAddress] = useState({});
@@ -19,7 +21,7 @@ export default function LocationSetting(props) {
 
     useEffect(() => {
         if (props.locationRoom.addressDetail !== undefined) {
-            const addressParts = props.locationRoom.addressDetail.split(',').map((part) => part.trim());
+            const addressParts = props?.locationRoom.addressDetail.split(',').map((part) => part.trim());
             const [detail ,wardName, districtName, provinceName] = addressParts;
             setAddressDetail(detail);
             setAddress({
@@ -55,6 +57,7 @@ export default function LocationSetting(props) {
                 enqueueSnackbar('Cập nhật thành công', {
                     variant: 'success'
                 });
+                dispatch(settingAccomSlice.actions.setAccom(res.data));
             })
             .catch((err) => {
                 enqueueSnackbar(err, {

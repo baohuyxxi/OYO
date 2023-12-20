@@ -51,7 +51,7 @@ const HistoryBookingPage = () => {
     }
     return (
         <FramePage>
-            <div className="history-booking__page">
+            <div className="history-booking__page content">
                 <h1>{t('title.history')}</h1>
                 {loading && <LinearProgress />}
                 <div

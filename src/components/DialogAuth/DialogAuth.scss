@@ -1,5 +1,5 @@
 .form-dialog {
-    width: 475px;
+    width: 450px;
     align-items: center;
     .form-button {
         font-weight: bold;
@@ -28,7 +28,11 @@
         background-color: #df440f;
     }
     .continue {
+        margin-top: 10px;
         color: #fff;
+    }
+    .to-forgotpassword{
+
     }
     .register {
         margin-top: 15px;
@@ -64,12 +68,16 @@
         margin-top: 0;
     }
     h4 {
+        margin-top: 10px;
+        margin-bottom: 10px;
         text-align: center;
         position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: smaller;
+        font-weight: 400;
+        font-size: small;
+        color: var( --mainColor-main)
     }
     header {
         font-weight: bold;
@@ -82,7 +90,9 @@
         margin: 0 10px; /* Khoảng cách giữa đường gạch và chữ */
     }
     .policy {
+       h6{
         font-size: small;
+       }
     }
     .wrapper {
         display: flex;

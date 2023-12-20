@@ -6,7 +6,8 @@ const globalSlice = createSlice({
         mode: '',
         color: '',
         language: 'vi',
-        loading: false
+        loading: false,
+        viewImages: [],
     },
     reducers: {
         setMode: (state, action) => {
@@ -35,6 +36,12 @@ const globalSlice = createSlice({
             return {
                 ...state,
                 language: action.payload
+            }
+        },
+        setViewImg: (state, action) => {
+            return {
+                ...state,
+                viewImages: action.payload
             }
         }
     }

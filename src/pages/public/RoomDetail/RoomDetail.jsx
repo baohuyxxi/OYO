@@ -42,14 +42,14 @@ export default function RoomDetail() {
     const [surcharge, setSurcharge] = useState('');
     const [totalBill, setTotalBill] = useState('');
     const [disBooking, setDisBooking] = useState(true);
-    const [love, setLove] = useState(false);
+    const [love, setLove] = useState(null);
 
     useEffect(() => {
         publicAccomPlaceAPI.getRoomDetail(roomId.id).then((dataResponse) => {
             setDataDetalHome(dataResponse.data);
             setLoading(false);
         });
-        wishAPI.checkWish(roomId.id).then((res) => setLove(res.data.message));
+        wishAPI.checkWish(roomId.id).then((res) => setLove(res));
     }, [roomId?.id]);
     const stars = [];
     for (let i = 0; i < dataDetailHome.gradeRate; i++) {
@@ -87,7 +87,7 @@ export default function RoomDetail() {
                 priceDay: dataDetailHome?.pricePerNight,
                 surcharge: surcharge,
                 originPay: totalBill,
-                nameCustomer: user.firstName + ' '+ user.lastName,
+                nameCustomer: user.firstName + ' ' + user.lastName,
                 phoneNumberCustomer: user.phone
             };
             dispatch(bookingSlice.actions.addInfoBooking(dataBooking));
@@ -181,7 +181,6 @@ export default function RoomDetail() {
                                                 <DateGo size="vertical" setDataDay={handleChangeDayBooking} />
                                             </div>
                                             <div className="count__guest">
-                                        
                                                 <Dropdown
                                                     guests={guests}
                                                     setGuests={setGuests}
@@ -214,17 +213,18 @@ export default function RoomDetail() {
                                                 </button>
                                             </div>
                                             <div className="card-like" onClick={handleLove}>
-                                                {love ? (
-                                                    <>
-                                                        <FavoriteIcon className="icon_love" />
-                                                        <p>{t('common.unlove')}</p>
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                        <FavoriteBorderOutlinedIcon className="icon_love" />
-                                                        <p>{t('common.love')}</p>
-                                                    </>
-                                                )}
+                                                {love !== null &&
+                                                    (love ? (
+                                                        <>
+                                                            <FavoriteIcon className="icon_love" />
+                                                            <p>{t('common.unlove')}</p>
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            <FavoriteBorderOutlinedIcon className="icon_love" />
+                                                            <p>{t('common.love')}</p>
+                                                        </>
+                                                    ))}
                                             </div>
                                         </div>
                                     </div>

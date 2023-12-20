@@ -55,7 +55,7 @@ const CongratulationPage = () => {
                                 <p style={{ color: 'red', padding: 0, fontWeight: 'bold' }}>{t('setupOwner.note')}</p>
                                 <p style={{ padding: 0, marginLeft: '8px' }}>{t('setupOwner.rose')}</p>
                             </div>
-                            <h2>-- YOY --</h2>
+                            <h2>-- OYO --</h2>
                         </div>
                         <button type="submit" onClick={nextPage}>
                             {t('common.continue')}

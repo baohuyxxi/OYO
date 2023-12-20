@@ -1,21 +1,21 @@
-import {useState} from 'react';
-import {useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import { NavLink } from 'react-router-dom';
 
-import logoYoy from '~/assets/logo.svg';
+import logoOYO from '~/assets/logo.svg';
 
-import ModeToggle from '../ModeToggle/ModeToggle';
-import DropdownUser from '../DropdownUser/DropdownUser';
-import LanguageSelect from '../LanguageSelected/LanguageSelected';
+import ModeToggle from '~/components/ModeToggle/ModeToggle';
+import DropdownUser from '~/components/DropdownUser/DropdownUser';
+import LanguageSelected from '~/components/LanguageSelected/LanguageSelected';
 import Button from '@mui/material/Button';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailNotification from '../MailNotification/MailNotification';
-import DialogAuth from '../DialogAuth/DialogAuth';
+import MailNotification from '~/components/MailNotification/MailNotification';
+import DialogAuth from '~/components/DialogAuth/DialogAuth';
 import { t } from 'i18next';
-import './AppBar.scss';
+import './NavBar.scss';
 
 export default function NavBar() {
     const [open, setOpen] = useState(false);
@@ -26,7 +26,7 @@ export default function NavBar() {
             <Toolbar className="toolbar">
                 <div className="logo">
                     <NavLink to="/">
-                        <img src={logoYoy} alt="company logo" className="logo-bg" />
+                        <img src={logoOYO} alt="company logo" className="logo-bg" />
                     </NavLink>
                 </div>
                 <div className="appbar-right-menu" />
@@ -37,37 +37,32 @@ export default function NavBar() {
                     <ModeToggle />
                 </div>
                 <div className="element">
-                    <LanguageSelect />
+                    <LanguageSelected />
                 </div>
-              
+
                 {/* <div className="element">
                     <NavLink to="/host">{t('navbar.host')}</NavLink>
                 </div> */}
                 <div className="element">
                     <NavLink to="/list-accom">{t('navbar.listroom')}</NavLink>
                 </div>
-                <div className="element">
-                    <NavLink to="/wishlists">{t('navbar.listLove')}</NavLink>
-                </div>
 
                 {user === null ? (
-                    <Button className="element" onClick={e=>setOpen(true)} startIcon={<AccountCircle />}>
+                    <Button className="element" onClick={(e) => setOpen(true)} startIcon={<AccountCircle />}>
                         {t('title.signin')}/{t('title.signup')}
                     </Button>
                 ) : (
                     <>
+                        <div className="element">
+                            <NavLink to="/wishlists">{t('navbar.listLove')}</NavLink>
+                        </div>
                         <MailNotification />
                         <div className="element">
                             <DropdownUser />
                         </div>
                     </>
                 )}
-                {open && (
-                    <DialogAuth
-                        open={open}
-                        setOpen= {setOpen}
-                    />
-                )}
+                {open && <DialogAuth open={open} setOpen={setOpen} />}
             </Toolbar>
         </AppBar>
     );

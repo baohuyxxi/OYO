@@ -18,7 +18,7 @@ const TableHistoryOwner = () => {
     const rows = [];
     for (var i = 0; i < dataListHistory.length; i++) {
         rows.push({
-            id: i,
+            id: i+1,
             bookingCode: dataListHistory[i].bookingCode,
             nameCustomer: dataListHistory[i]?.nameCustomer ? dataListHistory[i].nameCustomer : '',
             totalBill: dataListHistory[i]?.totalBill ? formatPrice(dataListHistory[i].totalBill) : '',
@@ -39,7 +39,7 @@ const TableHistoryOwner = () => {
 
 const columns = [
     { field: 'id', headerName: 'STT', width: 50 },
-    { field: 'bookingCode', headerName: 'ID', width: 70, hide: true },
+    { field: 'bookingCode', headerName: 'Mã giao dịch', width: 400, hide: true },
     { field: 'nameCustomer', headerName: 'Tên khách hàng', width: 200 },
     { field: 'totalBill', headerName: 'Tổng thanh toán', width: 160 },
     {
@@ -54,10 +54,10 @@ const columns = [
     },
     {
         field: 'guests',
-        headerName: 'Lượng khách',
-        width: 120,
+        headerName: 'Khách',
+        width: 80,
     },
-    { field: 'nameAccom', headerName: 'Tên nhà thuê', width: 180 },
+    { field: 'nameAccom', headerName: 'Tên nhà thuê', width: 300 },
     { field: 'status', headerName: 'Tình trạng', width: 120 },
 ];
 

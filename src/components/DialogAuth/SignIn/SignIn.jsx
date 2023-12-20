@@ -179,11 +179,9 @@ export default function SignIn(props) {
                     </Button>
                 )}
                 {showForgotPassword && (
-                    <div className="form-button">
-                        <Button className="forgotpassword" onClick={handleForgotPassword}>
-                            {t('link.forgotpassword')}
-                        </Button>
-                    </div>
+                    <Button className="to-forgotpassword" fullWidth variant='text' onClick={handleForgotPassword}>
+                        {t('link.forgotpassword')}
+                    </Button>
                 )}
                 {showRegisterButton && (
                     <Button className="form-button to-register" fullWidth variant="contained" onClick={handleRegister}>
@@ -211,7 +209,7 @@ export default function SignIn(props) {
                         <Link to="" className="link-policy">
                             {t('link.privacyPolicy')}
                         </Link>
-                        {t('contentPolicy.ofYOY')}
+                        {t('contentPolicy.ofOYO')}
                     </h6>
                 </div>
             </Box>

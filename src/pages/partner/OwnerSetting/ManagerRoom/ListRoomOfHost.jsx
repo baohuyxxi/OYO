@@ -35,7 +35,7 @@ const ListRoomOfHost = () => {
     for (var i = 0; i < dataListhome.length; i++) {
        
         rows.push({
-            id: i,
+            id: i +1,
             idroom: dataListhome[i].id,
             name: dataListhome[i]?.accomName || '',
             status: dataListhome[i].status,
@@ -74,7 +74,7 @@ const ListRoomOfHost = () => {
 
 const columns = [
     // { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'idroom', headerName: 'ID', width: 70, hide: true },
+    { field: 'id', headerName: 'STT', width: 70, hide: true },
     { field: 'name', headerName: 'Nhà / phòng cho thuê', width: 360 },
     { field: 'status', headerName: 'Trạng thái', width: 100 },
     {

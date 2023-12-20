@@ -32,7 +32,12 @@
     "enterCapcha" :"Enter the text in the image",
     "addImage": "Add image",
     "noRefunds":"No refunds",
-    "surcharge": "Surcharge"
+    "surcharge": "Surcharge",
+    "viewImage": "View image",
+    "changeAvatar": "Change avatar",
+    "all": "All",
+    "noReview": "No reviews",
+    "noFavorite": "No favorites"
   },
   "message": {
     "signin": "Sign in successfully",
@@ -75,13 +80,15 @@
     "passwordUpperCaseError": "Password must have at least 1 uppercase letter",
     "passwordLowerCaseError": "Password must have at least 1 lowercase letter",
     "passwordNumberError": "Password must have at least 1 number",
-    "passwordSpecialCharError": "Password must have at least 1 special character"
+    "passwordSpecialCharError": "Password must have at least 1 special character",
+    "maxCharacter": "Maximum number of characters 15",
+    "invalidImageType": "Please select a valid image file. Supported formats: JPEG, PNG, BMP, WebP."
   },
   "contentMess": {
     "messOTP_1": "To keep your information secure, we need you to authenticate your account. We have sent you a verification OTP via gmail ",
     "messOTP_2": ". Please check your gmail and enter the verification code here:",
     "messReSendOTP": "You did not receive the code, resend it?",
-    "changePassword": "Enter the email address used to create YOY account and we will send you a link to reset your account password.",
+    "changePassword": "Enter the email address used to create OYO account and we will send you a link to reset your account password.",
     "confirmSendOTP": "We have sent OTP to change password via email. Please check your email.",
     "FillOTP": "Enter the code we sent to your gmail",
     "countClient": "1 Adult, 0 Children, 0 Baby",
@@ -98,7 +105,7 @@
     "policyAuth": "By registering or logging in, you understand and agree to ",
     "and": " and ",
     "informationOfYou": "Your information is completely confidential.",
-    "ofYOY": "của YOY."
+    "ofOYO": "của OYO."
   },
   "link": {
     "rules": "Terms Of Use",
@@ -117,13 +124,13 @@
     "home": "THE WORLD IS FULL OF FUN",
     "endow": "Hot deals",
     "exploreVN": "Explore Vietnam",
-    "whySelected": "Why should you choose YOY",
+    "whySelected": "Why should you choose OYO",
     "popularRoom": "Most Viewed Featured House",
     "convenient": "This place has what for you",
     "priceDetail": "Base price details",
     "discountCompain": "Discount campaign",
     "bookingOfYou": {
-      "tilte": "Reservation request/reservation • YOY",
+      "tilte": "Reservation request/reservation • OYO",
       "drive": "Your trip",
       "client": "Guests",
       "day": "Date",
@@ -133,7 +140,7 @@
       "pay50": "Pay 50%",
       "fullHome": "Full home",
       "owner": "Owner",
-      "policy": "Your reservation is protected by YOY.",
+      "policy": "Your reservation is protected by OYO.",
       "surcharges": "The surcharge is included",
       "price": "Price of room",
       "totalPrice": "Total payment",
@@ -295,8 +302,8 @@
   "footer": {
     "titleFooter": "Save time and money!",
     "contentFooter": "Sign up and we'll send you the best deals",
-    "intro": " All content here © 2005 – 2022 YOY Private Company Limited. All Rights Reserved. YOY.com is a member of Min Close Group, the world's leading provider of online travel & related services.",
-    "contact_1": "About YOY",
+    "intro": " All content here © 2005 – 2022 OYO Private Company Limited. All Rights Reserved. OYO.com is a member of Min Close Group, the world's leading provider of online travel & related services.",
+    "contact_1": "About OYO",
     "contact_link_1": "How to make a reservation",
     "contact_link_2": "Contact us",
     "contact_link_3": "Help",
@@ -334,17 +341,17 @@
     "maxUpload": "Please choose all 5 steps to increase the attractiveness of your home",
     "client": "Guests",
     "beforePostHome": "Hosts are at the heart of everything we do and we look forward to experiencing the magic of welcoming guests.",
-    "rose": "For each transaction, YOY will discount 10% of the commission",
+    "rose": "For each transaction, OYO will discount 10% of the commission",
     "note": "Note:",
     "welcome": "Welcome",
     "confirm": {
       "ready": "You are ready to post!",
-      "content_1": "When you hit post, guests can find your listing on YOY and book any available dates.",
+      "content_1": "When you hit post, guests can find your listing on OYO and book any available dates.",
       "content_2": "In addition, please go to the landlord section to be able to update more information (surcharge, special day rates, ...) for your home to add more details.",
       "create": "Create a house/room for rent",
       "completed": "Completed!",
       "active": "Verify your account",
-      "active_content": "When you hit post, guests can find your listing on YOY and book any available dates."
+      "active_content": "When you hit post, guests can find your listing on OYO and book any available dates."
     }
   },
   "language": {

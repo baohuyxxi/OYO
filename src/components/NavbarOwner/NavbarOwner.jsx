@@ -13,6 +13,7 @@ import notifications from '../../mockdata/notification.json';
 import notificationApi from '~/services/apis/publicAPI/notificationApi';
 // import BellRing from '../BellRing/BellRing';
 import DropdownHost from '../DropdownHost/DropdownHost';
+import DropdownUser from '../DropdownUser/DropdownUser';
 import './NavbarOwner.scss';
 
 const NavbarOwner = () => {
@@ -85,10 +86,12 @@ const NavbarOwner = () => {
                     {t('navbar.homeHost')}
                 </NavLink>
                 {/* <NavLink to="/list-room">{t('navbar.book')}</NavLink> */}
-                <NavLink to="/host/setting/calendar">{t('navbar.calender')}</NavLink>
+                {/* <NavLink to="/host/setting/calendar">{t('navbar.calender')}</NavLink> */}
                 <NavLink to="/intro-host">{t('navbar.setHost')}</NavLink>
                 <NavLink to="/host/setting/transactionhistory">{t('navbar.historyHost')}</NavLink>
+              
             </div>
+            <DropdownUser/>
         </div>
     );
 };

@@ -12,7 +12,7 @@
     color: var(--mainColor-contrastText);
   }
   .slick-slider {
-    width: 90%;
+    width: 80%;
     margin-right: 25px;
   }
 
@@ -26,6 +26,9 @@
     .icon-filter {
       display: grid;
       justify-content: center;
+      img{
+        filter: var(--filter-icon-black);
+      }
     }
 
     .title-filter {
@@ -50,5 +53,10 @@
 
   .slick-dots {
     display: none !important;
+  }
+  .btn-all{
+    margin-top: 10px;
+    margin-left: 10px;
+    height: 35px;
   }
 }

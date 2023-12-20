@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes , useParams} from 'react-router-dom';
 import EditInfo from './EditAccount/EditAccount';
 import PasswordSecurity from './passwordSecurity/passwordSecurity';
 import { useSelector } from 'react-redux';
@@ -11,7 +11,8 @@ import { t } from 'i18next';
 
 export default function InfoUserPage() {
     const user = useSelector((state) => state.user.current);
-    const [selectedItem, setSelectedItem] = useState('profile');
+    const params = useParams();
+    const [selectedItem, setSelectedItem] = useState(params['*']);
 
     const handleItemClick = (item) => {
         setSelectedItem(item);

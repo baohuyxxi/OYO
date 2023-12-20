@@ -7,7 +7,7 @@ import publicProvinceAPI from '~/services/apis/publicAPI/publicProvinceAPI';
 import './SelectAddress.scss';
 
 export default function SelectAddress(props) {
-
+    console.log(props.data);
     const [selectedProvince, setSelectedProvince] = useState(null);
     const [selectedDistrict, setSelectedDistrict] = useState(null);
     const [selectedWard, setSelectedWard] = useState(null);
@@ -38,7 +38,7 @@ export default function SelectAddress(props) {
             setSelectedProvince(temp);
             setDistricts(temp.districtSet);
         }
-    }, [provinces]);
+    }, [ provinces.length, props.data.provinceCode, props.data.provinceName]);
 
     useEffect(() => {
         const temp = districts.find((option) => option.districtCode === props.data.districtCode || option.districtName === props.data.districtName) || null;
@@ -61,7 +61,7 @@ export default function SelectAddress(props) {
         setSelectedDistrict(null);
         const provinceCode = newValue ? newValue.provinceCode : null;
         props.setData((prevData) => ({
-            ...prevData,
+
             provinceCode,
             districtCode: null,
             wardCode: null

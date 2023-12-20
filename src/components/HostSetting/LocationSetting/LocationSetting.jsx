@@ -3,15 +3,15 @@ import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-// import SelectedLocate from '~/pages/partner/SetupOwner/StepperOne/SelectedLocate';
 import SelectAddress from '~/components/SelectAddress/SelectAddress';
 import './LocationSetting.scss';
-import { useForm } from 'react-hook-form';
 import { useSnackbar } from 'notistack';
 import { useParams } from 'react-router-dom';
 import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
-
+import { useDispatch } from 'react-redux';
+import settingAccomSlice from '~/redux/settingAccomSlice';
 export default function LocationSetting(props) {
+    const dispatch = useDispatch()
     const [expanded, setExpanded] = useState(false);
 
     const [address, setAddress] = useState({});
@@ -21,7 +21,7 @@ export default function LocationSetting(props) {
 
     useEffect(() => {
         if (props.locationRoom.addressDetail !== undefined) {
-            const addressParts = props.locationRoom.addressDetail.split(',').map((part) => part.trim());
+            const addressParts = props?.locationRoom.addressDetail.split(',').map((part) => part.trim());
             const [detail ,wardName, districtName, provinceName] = addressParts;
             setAddressDetail(detail);
             setAddress({
@@ -29,10 +29,9 @@ export default function LocationSetting(props) {
                 districtName: districtName,
                 provinceName: provinceName
             });
-
-          
+            console.log(addressParts);
         }
-    }, [props.locationRoom.addressDetail]);
+    }, [expanded]);
 
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
@@ -42,7 +41,7 @@ export default function LocationSetting(props) {
         setExpanded(false);
     };
 
-    const onSubmit = (dataAddress) => {
+    const onSubmit = () => {
         const newData = {
             data: {
                 provinceCode: address.provinceCode,
@@ -58,6 +57,7 @@ export default function LocationSetting(props) {
                 enqueueSnackbar('Cập nhật thành công', {
                     variant: 'success'
                 });
+                dispatch(settingAccomSlice.actions.setAccom(res.data));
             })
             .catch((err) => {
                 enqueueSnackbar(err, {

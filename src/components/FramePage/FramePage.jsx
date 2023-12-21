@@ -16,7 +16,7 @@ export default function FramePage({ children }) {
         window.scrollTo(0, 0);
     }, []);
     return (
-        <div className="background">
+        <div className="background__frame-page">
             <NavBar />
             <div className="body-page">{children}</div>
             {viewImages && <ViewIamge viewImages={viewImages} />}

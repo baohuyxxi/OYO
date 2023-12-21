@@ -47,7 +47,6 @@ export const validateChangePassword = (data) => {
     return errors;
 }
 export const validate = (data) => {
-    console.log(data);
     const errors = {};
 
     if (data.firstName && data.firstName.trim()) {

@@ -18,29 +18,40 @@ export default function DialogAuth(props) {
     const handleClose = () => {
         props.setOpen(false);
     };
-    const TransitionComponent = (props) => <Slide direction="up" {...props} />;
+
     let dialogContent;
     let title;
+    let amination = true;
     switch (position) {
         case 'SignUp':
             title = `${t('title.accountSignUp')}`;
+            amination = false;  
             dialogContent = (
                 <Register email={email} setEmail={setEmail} setPosition={setPosition} handleClose={handleClose} />
             );
             break;
         case 'ForgotPassword':
             title = `${t('link.forgotpassword')}`;
+            amination = false;
             dialogContent = (
                 <ForgotPassword email={email} setEmail={setEmail} setPosition={setPosition} handleClose={handleClose} />
             );
             break;
         default:
             title = `${t('title.signin')}/ ${t('title.signup')}`;
+            amination = true;
             dialogContent = <SignIn setEmail={setEmail} setPosition={setPosition} handleClose={handleClose} />;
     }
+    const TransitionComponent = (props) => <Slide direction="up" {...props} />;
+    console.log(amination);
     return (
         <>
-            <Dialog onClose={handleClose} open={props.open} TransitionComponent={TransitionComponent} keepMounted>
+            <Dialog
+                onClose={handleClose}
+                open={props.open}
+                TransitionComponent={amination ? TransitionComponent : 'none'}
+                keepMounted
+            >
                 <DialogTitle className="paper form-dialog">
                     <header>{title}</header>
 

@@ -43,15 +43,15 @@ const RoomItem = (props) => {
             <div className="container__room paper">
                 <Slider {...settings}>
                     {props?.infoRoom?.imageAccomsUrls?.map((image, index) => (
-                        <div key={index}>
+                        <div key={index} onClick={() => handleLinkToDetail(props?.infoRoom?.id)}>
                             <img src={image} alt="room_hot" className="image-home" />
                         </div>
                     ))}
                 </Slider>
                 { love!== null && <IconLove idHome={props?.infoRoom?.id} isFavorite={love} />   }
                 
-                <div className="info__room" onClick={() => handleLinkToDetail(props?.infoRoom?.id)}>
-                    <h2>{props?.infoRoom?.accomName}</h2>
+                <div className="info__room" >
+                    <h2 onClick={() => handleLinkToDetail(props?.infoRoom?.id)}>{props?.infoRoom?.accomName}</h2>
                     <div className="obility__room">
                         <p>{props.infoRoom.accomCateName}</p>
                         {stars}

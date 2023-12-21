@@ -14,6 +14,7 @@
         border: 2px solid var(--divider);
         // min-height: 200px;
         height: max-content;
+        min-height: 125px;
 
         .commentator {
             display: flex;
@@ -61,11 +62,16 @@
             }
 
             .comment-content {
+                display: flex;
                 font-size: small;
                 font-weight: 500;
                 margin-bottom: 5px;
+                margin-top: -5px;
             }
-
+            .image-list {
+                display: flex;
+                padding-bottom: 10px;
+            }
             .comment-image {
                 height: 100px;
                 width: 100px;
@@ -92,7 +98,6 @@
     }
 }
 .container__emtyComment {
-    
     margin-top: 25px;
     padding-top: 20px;
     padding-bottom: 10px;
@@ -104,6 +109,5 @@
     p {
         font-weight: 600;
         font-size: x-large;
-       
     }
 }

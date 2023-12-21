@@ -25,7 +25,7 @@ const IntroSettingOwnerPage = () => {
     }, [userLogin, navigate]);
 
     return (
-            <div className="introsettingowner-page content">
+            <div className="introsettingowner-page">
                 <div className="row">
                     <div className="col l-6">
                         {/* <div className="sidebar__logo" onClick={backHome}>
@@ -36,7 +36,7 @@ const IntroSettingOwnerPage = () => {
                         <div className="text-thanks">
                             <h1>{t('setupOwner.title')}</h1>
                             <p>{t('setupOwner.commit')}</p>
-                            <h2>-- YOY</h2>
+                            <h2>-- OYO --</h2>
                         </div>
                         <p className="btn-out" onClick={backHome}>
                             {t('common.close')}

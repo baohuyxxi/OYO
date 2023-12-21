@@ -1,11 +1,9 @@
 import axios from 'axios';
 import { getToken, getRefreshToken, updateToken } from './token';
-import process from 'process';
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const instance = axios.create({
-    baseURL: 'http://localhost:8080/api/v1',
+    baseURL: API_BASE_URL,
     timeout: 20000,
     validateStatus: function (status) {
         return status >= 200 && status < 400;
@@ -35,7 +33,7 @@ instance.interceptors.response.use(
                 try {
                     let newAccessToken;
                     await axios
-                        .post('http://localhost:8080/api/v1/auth/refresh-token', { refreshToken: refreshToken })
+                        .post(`${API_BASE_URL}/auth/refresh-token`, { refreshToken: refreshToken })
                         .then((res) => {
                             updateToken(res.data.data.accessToken);
                             newAccessToken = res.data.data.accessToken;

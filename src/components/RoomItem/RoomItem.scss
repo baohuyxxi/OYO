@@ -5,9 +5,15 @@
 .row {
     margin-left: -9px;
     margin-right: -9px;
+    .container__room:hover{
+        
+    }
     .container__room {
         padding: 10px;
-        height: 450px;
+        height: 425px;
+        .slick-slider {
+            height: 215px;
+        }
         h1 {
             font-size: 2.5rem;
             font-weight: 600;
@@ -65,7 +71,7 @@
         }
 
         .info__room {
-            margin-top: 48px;
+            margin-top: 5px;
             position: relative;
             cursor: pointer;
 
@@ -73,6 +79,10 @@
                 font-size: large;
                 padding-left: 10px;
                 margin: 0;
+                word-wrap: break-word;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
 
             .obility__room {
@@ -105,6 +115,10 @@
                     margin: 0;
                     font-size: medium;
                     color: rgba(2, 100, 200, 1);
+                    word-wrap: break-word;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
                 .icon_locate {
                     color: rgba(2, 100, 200, 1);
@@ -114,14 +128,15 @@
             }
 
             .price__room {
-                display: flex;
+                display: block;
                 justify-content: space-between;
                 margin-left: 10px;
                 margin-right: 10px;
-
+                margin-top: -5px;
                 p {
                     font-size: medium;
                     color: var(--success-mode);
+                    
                 }
             }
         }

@@ -5,6 +5,7 @@ import DialogActions from '@mui/material/DialogActions';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
 import RangePriceFilter from './RangePriceFilter/RangePriceFilter';
 // import LocateFilter from "~/components/DialogFilter/LocateFilter/LocateFilter";
 import SelectAddress from '../SelectAddress/SelectAddress';
@@ -17,7 +18,7 @@ const DialogFilter = (props) => {
     const [searchParams] = useSearchParams();
     const [open, setOpen] = useState(false);
     const [address, setAddress] = useState({});
-    const [valuePriceRange, setValuePriceRange] = useState([1, 10000000]);
+    const [valuePriceRange, setValuePriceRange] = useState([1, 5000000]);
     const [facility, setFacility] = useState([]);
     const [numBathRoom, setNumBathRoom] = useState(0);
     const [numBedRoom, setNumBedRoom] = useState(0);
@@ -47,7 +48,7 @@ const DialogFilter = (props) => {
                 }
             }
         }
-        if (valuePriceRange[0] !== 1 || valuePriceRange[1] !== 10000000) {
+        if (valuePriceRange[0] !== 1 || valuePriceRange[1] !== 5000000) {
             temp += `&priceFrom=${valuePriceRange[0]}&priceTo=${valuePriceRange[1]}`;
         }
         if (facility.length > 0) {
@@ -72,7 +73,7 @@ const DialogFilter = (props) => {
     return (
         <div className="dialog-filter">
             <Button variant="outlined" onClick={handleClickOpen} className="btn-show">
-                {t('common.filter')}
+                <FilterAltOutlinedIcon/>{t('common.filter')}
             </Button>
             <Dialog
                 open={open}
@@ -117,40 +118,31 @@ const DialogFilter = (props) => {
                             <CountRoomFilter name={t('label.bedroom')} data={numBedRoom} setData={setNumBedRoom} />
                             <CountRoomFilter name={t('label.bathroom')} data={numBathRoom} setData={setNumBathRoom} />
                         </div>
-                        <hr />
                     </DialogContent>
                 </div>
-                <div
-                    style={{
-                        position: 'fixed',
-                        bottom: 0,
-                        marginBottom: '33px',
-                        width: '885px'
-                    }}
-                >
-                    <DialogActions>
-                        <Button
-                            onClick={handleClose}
-                            color="error"
-                            sx={{
-                                fontSize: '16px',
-                                textTransform: 'uppercase'
-                            }}
-                        >
-                            CLOSE
-                        </Button>
-                        <Button
-                            onClick={handleFilter}
-                            autoFocus
-                            sx={{
-                                fontSize: '16px',
-                                textTransform: 'uppercase'
-                            }}
-                        >
-                            OK
-                        </Button>
-                    </DialogActions>
-                </div>
+
+                <DialogActions>
+                    <Button
+                        onClick={handleClose}
+                        color="error"
+                        sx={{
+                            fontSize: '16px',
+                            textTransform: 'uppercase'
+                        }}
+                    >
+                        {t('common.close')}
+                    </Button>
+                    <Button
+                        onClick={handleFilter}
+                        autoFocus
+                        sx={{
+                            fontSize: '16px',
+                            textTransform: 'uppercase'
+                        }}
+                    >
+                        {t('common.save')}
+                    </Button>
+                </DialogActions>
             </Dialog>
         </div>
     );

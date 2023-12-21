@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './CommentReview.scss';
 import { Avatar } from '@mui/material';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import comment from '~/mockdata/comment.json';
+import {format } from 'date-fns';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
+import { t } from 'i18next';
 export default function CommentReview(props) {
     const [dataComment, setDataaCommet] = useState([]);
     const [showMoreComments, setShowMoreComments] = useState(false);
@@ -23,7 +24,7 @@ export default function CommentReview(props) {
         <>
             {loading ? (
                 <div className="container__emtyComment">
-                     <p>Chưa có đánh giá nào</p>
+                     <p>{t('common.noReview')}</p>
                     {/* <img src="/src/assets/video/crabtyping.gif" className='emtyComment'></img> */}
                    
                 </div>
@@ -41,7 +42,7 @@ export default function CommentReview(props) {
 
                                     <div className="comment-time">
                                         <AccessTimeIcon />
-                                        <p> {item.createdDate}</p>
+                                        <p>{format(new Date(item.createdDate), 'dd/MM/yyyy')}</p>
                                     </div>
                                 </div>
 

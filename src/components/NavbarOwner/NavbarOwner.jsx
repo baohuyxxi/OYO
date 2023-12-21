@@ -86,10 +86,12 @@ const NavbarOwner = () => {
                     {t('navbar.homeHost')}
                 </NavLink>
                 {/* <NavLink to="/list-room">{t('navbar.book')}</NavLink> */}
-                <NavLink to="/host/setting/calendar">{t('navbar.calender')}</NavLink>
+                {/* <NavLink to="/host/setting/calendar">{t('navbar.calender')}</NavLink> */}
                 <NavLink to="/intro-host">{t('navbar.setHost')}</NavLink>
                 <NavLink to="/host/setting/transactionhistory">{t('navbar.historyHost')}</NavLink>
+              
             </div>
+            <DropdownUser/>
         </div>
     );
 };

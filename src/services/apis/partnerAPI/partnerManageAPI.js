@@ -4,7 +4,7 @@ import { id } from 'date-fns/locale';
 const partnerManageAPI = {
     createHomeDetailByHost: async (data) => {
         const res = await axios.post(`/partner/accoms/create`, data);
-        return res;
+        return res.data;
     },
     addImageHomeByHost: async (data) => {
         let formData = new FormData();

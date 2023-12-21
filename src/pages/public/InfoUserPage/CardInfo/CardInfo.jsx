@@ -4,23 +4,25 @@ import FactCheckOutlinedIcon from '@mui/icons-material/FactCheckOutlined';
 import WysiwygOutlinedIcon from '@mui/icons-material/WysiwygOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import { useDispatch, useSelector } from 'react-redux';
+
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import UpdateAvatar from '~/components/UpdateAvatar/UpdateAvatar'
+import UpdateAvatar from '~/components/UpdateAvatar/UpdateAvatar';
 import userSlice from '~/redux/userSlice';
-import ViewIamge from '~/components/ViewImage/ViewImage';
-import './CardInfo.scss'
+import { useDispatch, useSelector } from 'react-redux';
+import globalSlice from '~/redux/globalSlice';
+
+import './CardInfo.scss';
 import { t } from 'i18next';
 import { Button } from '@mui/material';
 
 export default function CardInfo() {
-    const user = useSelector((state) => state.user.current)
+    const user = useSelector((state) => state.user.current);
+
     const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = useState(null);
-    const [viewImg, setViewImg] = useState([])
     const handleOpenMenu = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -29,28 +31,33 @@ export default function CardInfo() {
         setAnchorEl(null);
     };
 
-    const handleViewAvatar = () => {
-        setViewImg([user.avatarUrl])
+    const handleViewAvatar = (e) => {
+        e.preventDefault();
         handleCloseMenu();
+        dispatch(globalSlice.actions.setViewImg([user.avatarUrl]));
     };
 
     const handleChangeAvatar = (e) => {
         e.preventDefault();
         inputRef.current.click();
         handleCloseMenu();
-    }
+    };
 
-    const handleLogout =  (e) =>{
+    const handleLogout = (e) => {
         dispatch(userSlice.actions.logout());
         navigate('/');
-    }
+    };
     const [imageFile, setImageFile] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
     const inputRef = useRef(null);
 
-    // handle Change
     const handleImgChange = (e) => {
-        setImageFile(e.target.files[0])
+        const allowedImageTypes = ['image/jpeg', 'image/png', 'image/bmp', 'image/webp', 'image/jpg'];
+        if (!allowedImageTypes.includes(e.target.files[0].type)) {
+            alert(t('validate.invalidImageType'));
+            return;
+        }
+        setImageFile(e.target.files[0]);
         setModalOpen(true);
         inputRef.current.value = '';
     };
@@ -61,36 +68,25 @@ export default function CardInfo() {
                 imageFile={imageFile}
                 setModalOpen={setModalOpen}
                 setImageFile={setImageFile}
-              
             />
             <input
                 hidden
                 type="file"
-                accept="image/*"
+                // accept="image/*"
+                accept="image/jpeg, image/png, image/bmp, image/webp, image/jpg"
                 ref={inputRef}
                 onChange={handleImgChange}
             />
             <div className="paper card-info">
                 <div className="user-info">
-                    <Avatar
-                        className="user-avatar"
-                        alt="Cindy Baker"
-                        src={user.avatarUrl}
-                        onClick={handleOpenMenu}
-                    />
+                    <Avatar className="user-avatar" alt="Cindy Baker" src={user.avatarUrl} onClick={handleOpenMenu} />
                     <div className="user-details">
                         <h3 className="user-name">{user.userName}</h3>
                         <div className="user-email">{user.mail}</div>
                     </div>
                 </div>
                 <Divider />
-                <div className='options-card'>
-                    {/* <Link to="/myBooking" className="option">
-                        <div className="option-icon">
-                            <FactCheckOutlinedIcon />
-                        </div>
-                        {t('navbar.myBooking')}
-                    </Link> */}
+                <div className="options-card">
                     <Link to="/myBooking" className="option">
                         <div className="option-icon">
                             <WysiwygOutlinedIcon />
@@ -111,15 +107,10 @@ export default function CardInfo() {
                     </Link>
                 </div>
             </div>
-            <Menu
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleCloseMenu}
-            >
+            <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleCloseMenu}>
                 <MenuItem onClick={handleViewAvatar}>{t('common.viewImage')}</MenuItem>
                 <MenuItem onClick={handleChangeAvatar}>{t('common.changeAvatar')}</MenuItem>
             </Menu>
-            <ViewIamge images={viewImg} setImages={setViewImg}/>
         </div>
     );
 }

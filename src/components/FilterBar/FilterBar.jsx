@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import { t } from 'i18next';
 import './FilterBar.scss';
 import DialogFilter from '../DialogFilter/DialogFilter';
+import {useNavigate} from 'react-router-dom'
 
 const FilterBar = (props) => {
     const settings = {
@@ -17,6 +18,7 @@ const FilterBar = (props) => {
         slidesToScroll: 10,
         initialSlide: 0
     };
+    const nagavite = useNavigate()
     const [listAccomCateData, setListAccomCateData] = useState(null);
     const [indexActive, setIndexActive] = useState(-1);
     useEffect(() => {
@@ -49,6 +51,7 @@ const FilterBar = (props) => {
     };
     const handleReset = async (e) => {
         e.preventDefault();
+        nagavite('/list-accom')
         setIndexActive(-1)
         await publicAccomPlaceAPI.getAllRoomsWithFilter({ queryParams: ``, pageSize: props?.pagi }).then((dataResponse) => {
             props.filterData(dataResponse.data.content);
@@ -77,7 +80,9 @@ const FilterBar = (props) => {
                 ))}
             </Slider>
             <DialogFilter filterData={props.filterData} pagi={props.pagi} dataQueryDefauld={props.dataQueryDefauld} />
-            <Button onClick={handleReset}>{t('common.reload')}</Button>
+            <Button className='btn-all' variant='outlined' onClick={handleReset}>{t('common.reload')} </Button>
+            
+           
         </div>
     );
 };

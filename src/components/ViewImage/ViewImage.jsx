@@ -5,24 +5,27 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-
+import globalSlice from '~/redux/globalSlice';
+import { useSelector, useDispatch} from 'react-redux';
 import './ViewImage.scss';
 import { t } from 'i18next';
 
 export default function ViewIamge(props) {
+    const viewImages = useSelector(state => state.global.viewImages)
+    const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
     useEffect(() => {
-        if (props.images.length > 0) {
+        if (props.viewImages.length > 0) {
             setOpen(true);
         }
-    }, [props.images]);
+    }, [props.viewImages]);
 
     const handleClickOpen = () => {
         setOpen(true);
     };
 
     const handleClose = () => {
-        props.setImages([]);
+        dispatch(globalSlice.actions.setViewImg([]))
         setOpen(false);
     };
     return (
@@ -46,7 +49,7 @@ export default function ViewIamge(props) {
                         </Button>
                     </DialogTitle>
                     <DialogContent className="container__imgs">
-                        {props?.images?.map((img, index) => (
+                        {props?.viewImages?.map((img, index) => (
                             <img key={index} className="img" src={img}></img>
                         ))}
                     </DialogContent>

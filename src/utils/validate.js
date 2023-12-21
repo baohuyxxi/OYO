@@ -36,16 +36,15 @@ export const validateChangePassword = (data) => {
     } else {
         errors.enterNewPassword = t('validate.passwordRequire');
     }
-    if(data.oldPassword){
-        if(data.oldPassword.length < 8){
+    if (data.oldPassword) {
+        if (data.oldPassword.length < 8) {
             errors.oldPassword = t('validate.passwordMinError');
         }
-    }
-    else{
+    } else {
         errors.oldPassword = t('validate.passwordRequire');
     }
     return errors;
-}
+};
 export const validate = (data) => {
     const errors = {};
 
@@ -88,12 +87,11 @@ export const validate = (data) => {
 
 export const validateInfo = (data) => {
     const errors = {};
-    if(data.userName && data.userName.trim()){
-        if(data.userName.length > 15){
+    if (data.userName && data.userName.trim()) {
+        if (data.userName.length > 15) {
             errors.userName = t('validate.maxCharacter');
         }
-    }
-    else{
+    } else {
         errors.username = 'Không thể bỏ trống';
     }
     if (data.phone && data.phone.trim()) {
@@ -117,6 +115,20 @@ export const validateInfo = (data) => {
     } else {
         errors.address = 'Không thể bỏ trống';
     }
-   
+
+    return errors;
+};
+
+export const validateBooking = (data) => {
+  
+    const errors = {};
+
+    if (data.phoneNumberCustomer && data.phoneNumberCustomer.trim()) {
+        if (data.phoneNumberCustomer.length !== 10 || !data.phoneNumberCustomer.match(/^[0-9]+$/)) {
+            errors.phoneNumberCustomer = t('validate.phoneError');
+        }
+    } else {
+        errors.phoneNumberCustomer = t('validate.phoneRequire');
+    }
     return errors;
 };

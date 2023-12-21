@@ -69,7 +69,7 @@ export default function RoomPopular() {
                                 </Slider>
                                 {/* <IconLove idHome={home?.id} isFavorite={home?.isFavorite} /> */}
                                 <div className="info__room">
-                                    <h2>{home?.accomName}</h2>
+                                    <h2 onClick={() => handleLinkToDetail(home?.id)}>{home?.accomName}</h2>
                                     <div className="obility__room">
                                         <p>{home.accomCateName}</p> {stars(home?.gradeRate)}
                                     </div>

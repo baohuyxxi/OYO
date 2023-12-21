@@ -2,12 +2,13 @@ import Button from '@mui/material/Button';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import CloseIcon from '@mui/icons-material/Close';
+import Slide from '@mui/material/Slide';
 
 import SignIn from './SignIn/SignIn';
 import Register from './Register/Register';
 import ForgotPassword from './ForgotPassword/ForgotPassword';
 
-import {  useState } from 'react';
+import { useState } from 'react';
 import { t } from 'i18next';
 import './DialogAuth.scss';
 
@@ -17,7 +18,7 @@ export default function DialogAuth(props) {
     const handleClose = () => {
         props.setOpen(false);
     };
-
+    const TransitionComponent = (props) => <Slide direction="up" {...props} />;
     let dialogContent;
     let title;
     switch (position) {
@@ -39,7 +40,7 @@ export default function DialogAuth(props) {
     }
     return (
         <>
-            <Dialog onClose={handleClose} open={props.open}>
+            <Dialog onClose={handleClose} open={props.open} TransitionComponent={TransitionComponent} keepMounted>
                 <DialogTitle className="paper form-dialog">
                     <header>{title}</header>
 

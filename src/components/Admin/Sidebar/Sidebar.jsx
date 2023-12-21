@@ -2,7 +2,7 @@ import React from 'react';
 import SidebarData from '~/mockdata/sidebarData';
 import SidebarItem from '~/components/Admin/Sidebar/SidebarItem';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import logoYoy from '~/assets/logo.svg';
+import logoOYO from '~/assets/logo.svg';
 import './Sidebar.scss';
 
 const Sidebar = () => {
@@ -17,7 +17,7 @@ const Sidebar = () => {
     return (
         <div className="sidebar">
             <div className="sidebar__logo" onClick={handleHome}>
-                <img src={logoYoy} alt="company logo" />
+                <img src={logoOYO} alt="company logo" />
             </div>
 
             <p className="sub__header">Tổng quan</p>

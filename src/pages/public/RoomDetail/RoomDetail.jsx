@@ -14,7 +14,6 @@ import iconStar from '~/assets/svg/star.svg';
 import ListImage from '~/components/ListImage/ListImage';
 import Convenient from '~/components/Convenient/Convenient';
 import DialogConvenient from '~/components/DialogConvenient/DialogConvenient';
-import BedRoomSlider from '~/components/BedRoomSlider/BedRoomSlider';
 import SurchargeList from './Surcharge';
 import DateGo from '~/components/DateGo/DateGo';
 import Dropdown from '~/components/Dropdown/Dropdown';
@@ -43,16 +42,14 @@ export default function RoomDetail() {
     const [surcharge, setSurcharge] = useState('');
     const [totalBill, setTotalBill] = useState('');
     const [disBooking, setDisBooking] = useState(true);
-    const [love, setLove] = useState(false);
-    // console.log(formatPrice(dataDetailHome?.pricePerNight));
-    console.log(totalBill);
+    const [love, setLove] = useState(null);
 
     useEffect(() => {
         publicAccomPlaceAPI.getRoomDetail(roomId.id).then((dataResponse) => {
             setDataDetalHome(dataResponse.data);
             setLoading(false);
         });
-        wishAPI.checkWish(roomId.id).then((res) => setLove(res.data.message));
+        wishAPI.checkWish(roomId.id).then((res) => setLove(res));
     }, [roomId?.id]);
     const stars = [];
     for (let i = 0; i < dataDetailHome.gradeRate; i++) {
@@ -69,11 +66,10 @@ export default function RoomDetail() {
         };
         console.log(dataCheck);
         publicAccomPlaceAPI.checkBooking(dataCheck).then((response) => {
-            console.log(response);
+            setSurcharge(response.data.costSurcharge);
+            setTotalBill(response?.data?.totalBill);
             if (response?.statusCode === 200) {
                 setDisBooking(false);
-                setSurcharge(response.data.costSurcharge);
-                setTotalBill(response?.data?.totalBill);
             } else {
                 setDisBooking(true);
             }
@@ -136,8 +132,6 @@ export default function RoomDetail() {
                                         </div>
                                     </div>
                                     <div className="heading__right">
-                                        {/* <StarIcon className="icon_rate" />
-                                        <p>{dataDetailHome?.averageRate}</p> */}
                                         <p className="link__rate">
                                             {`(${dataDetailHome?.numView} ${t('numberCount.viewInDetal')})`}
                                         </p>
@@ -220,17 +214,18 @@ export default function RoomDetail() {
                                                 </button>
                                             </div>
                                             <div className="card-like" onClick={handleLove}>
-                                                {love ? (
-                                                    <>
-                                                        <FavoriteIcon className="icon_love" />
-                                                        <p>{t('common.unlove')}</p>
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                        <FavoriteBorderOutlinedIcon className="icon_love" />
-                                                        <p>{t('common.love')}</p>
-                                                    </>
-                                                )}
+                                                {love !== null &&
+                                                    (love ? (
+                                                        <>
+                                                            <FavoriteIcon className="icon_love" />
+                                                            <p>{t('common.unlove')}</p>
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            <FavoriteBorderOutlinedIcon className="icon_love" />
+                                                            <p>{t('common.love')}</p>
+                                                        </>
+                                                    ))}
                                             </div>
                                         </div>
                                     </div>

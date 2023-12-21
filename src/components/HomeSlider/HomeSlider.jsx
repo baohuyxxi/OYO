@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
 import bannerOne from "~/assets/imageBanner/banner3.jpg";
-import bannerTwo from "~/assets/imageBanner/banner2.png";
-import bannerThree from "~/assets/imageBanner/banner1.png";
-import bannerFour from "~/assets/imageBanner/banner4.jpg";
+import bannerTwo from "~/assets/imageBanner/banner6.jpg";
+import bannerThree from "~/assets/imageBanner/banner8.jpg";
+import bannerFour from "~/assets/imageBanner/banner7.jpg";
+import bannerFive from "~/assets/imageBanner/banner9.jpg";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./HomeSlider.scss";
@@ -59,6 +60,9 @@ export default class SimpleSlider extends Component {
           </div>
           <div>
             <img src={bannerFour} alt="home" className="slider__home-item" />
+          </div>
+          <div>
+            <img src={bannerFive} alt="home" className="slider__home-item" />
           </div>
         </Slider>
       </div>

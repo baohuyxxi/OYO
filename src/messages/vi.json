@@ -32,7 +32,12 @@
     "enterCapcha" :"Nhập nội dung trong hình",
     "addImage": "Thêm hình ảnh",
     "noRefunds":"Không được hoàn trả",
-    "surcharge": "Phụ phí"
+    "surcharge": "Phụ phí",
+    "viewImage": "Xem ảnh",
+    "changeAvatar": "Thay đổi ảnh đại diện",
+    "all": "Tất cả",
+    "noReview": "Chưa có đánh giá",
+    "noFavorite": "Chưa có mục yêu thích"
   },
   "message": {
     "signin": "Đăng nhập thành công",
@@ -78,14 +83,15 @@
     "passwordUpperCaseError": "Mật khẩu phải có ít nhất 1 chữ cái viết hoa",
     "passwordLowerCaseError": "Mật khẩu phải có ít nhất 1 chữ cái thường",
     "passwordNumberError": "Mật khẩu phải có ít nhất 1 số",
-    "passwordSpecialCharError": "Mật khẩu phải có ít nhất 1 kí tự đặc biệt"
-
+    "passwordSpecialCharError": "Mật khẩu phải có ít nhất 1 kí tự đặc biệt",
+    "maxCharacter": "Không được nhập quá 15 kí tự",
+    "invalidImageType": "Vui lòng chọn một tập tin hình ảnh hợp lệ. Các định dạng được hỗ trợ: JPEG, PNG, BMP, WebP."
   },
   "contentMess": {
     "messOTP_1": "Để bảo mật thông tin, chúng tôi cần bạn xác thực tài khoản. Chúng tôi đã gửi cho bạn mã OTP xác thực qua gmail ",
     "messOTP_2": ". Bạn vui lòng kiểm tra gmail và nhập mã xác thực vào đây:",
     "messReSendOTP": "Bạn không nhận được mã code, gửi lại?",
-    "changePassword": "Nhập địa chỉ email sử dụng để tạo tài khoản YOY và chúng tôi sẽ gửi link để đặt lại mật khẩu tài khoản đến bạn",
+    "changePassword": "Nhập địa chỉ email sử dụng để tạo tài khoản OYO và chúng tôi sẽ gửi link để đặt lại mật khẩu tài khoản đến bạn",
     "confirmSendOTP": "Chúng tôi đã gửi OTP để thay đổi mật khẩu thông qua email. Vui lòng kiểm tra email của bạn.",
     "FillOTP": "Nhập mã code mà chúng tôi đã gửi về gmail của bạn",
     "countClient": "1 Người lớn, 0 Trẻ em, 0 Trẻ sơ sinh",
@@ -102,7 +108,7 @@
     "policyAuth": "Bằng cách đăng ký hoặc đăng nhập, bạn đã hiểu và đồng ý với ",
     "and": " và ",
     "informationOfYou": "Thông tin của bạn hoàn toàn được bảo mật.",
-    "ofYOY": "của YOY."
+    "ofOYO": "của OYO."
   },
   "link": {
     "rules": "Điều Khoản Sử Dụng",
@@ -121,13 +127,13 @@
     "home": "THẾ GIỚI TRỌN NIỀM VUI",
     "endow": "Ưu đãi hấp dẫn",
     "exploreVN": "Khám phá Việt Nam",
-    "whySelected": "Vì sao bạn nên chọn YOY",
+    "whySelected": "Vì sao bạn nên chọn OYO",
     "popularRoom": "Nhà nổi bật được xem nhiều nhất",
     "convenient": "Nơi này có những gì cho bạn",
     "priceDetail": "Chi tiết giá cơ sở",
     "discountCompain": "Chương trình giảm giá",
     "bookingOfYou": {
-      "tilte": "Yêu cầu đặt phòng/đặt chỗ • YOY",
+      "tilte": "Yêu cầu đặt phòng/đặt chỗ • OYO",
       "drive": "Chuyến đi của bạn",
       "client": "Khách",
       "day": "Ngày",
@@ -137,7 +143,7 @@
       "pay50": "Thanh toán 50%",
       "fullHome": "Toàn bộ ngôi nhà",
       "owner": "Chủ nhà",
-      "policy": "Đặt phòng của bạn được bảo vệ bởi YOY.",
+      "policy": "Đặt phòng của bạn được bảo vệ bởi OYO.",
       "surcharges": "Phụ phí bao gồm",
       "price": "Giá phòng",
       "totalPrice": "Tổng tiền thanh toán",
@@ -273,7 +279,7 @@
   "navbar": {
     "home": "Trang chủ",
     "host": "Trở thành chủ nhà",
-    "listroom": "Danh sách nhà",
+    "listroom": "Danh sách chỗ ở  ",
     "historyBookingClient": "Lịch sử đặt phòng",
     "signin": "Đăng nhập",
     "signup": "Đăng ký",
@@ -302,8 +308,8 @@
   "footer": {
     "titleFooter": "Tiết kiệm thời gian và tiền bạc!",
     "contentFooter": "Hãy đăng ký và chúng tôi sẽ gửi những ưu đãi tốt nhất cho bạn",
-    "intro": " Mọi nội dung tại đây © 2005 – 2022 Công ty TNHH Tư nhân YOY. Bảo Lưu Mọi Quyền. YOY.com là thành viên của Tập đoàn Min Close, nhà cung cấp dịch vụ du lịch trực tuyến & các dịch vụ có liên quan hàng đầu thế giới.",
-    "contact_1": "Về YOY",
+    "intro": " Mọi nội dung tại đây © 2005 – 2022 Công ty TNHH Tư nhân OYO. Bảo Lưu Mọi Quyền. OYO.com là thành viên của Tập đoàn Min Close, nhà cung cấp dịch vụ du lịch trực tuyến & các dịch vụ có liên quan hàng đầu thế giới.",
+    "contact_1": "Về OYO",
     "contact_link_1": "Cách đặt chỗ",
     "contact_link_2": "Liên hệ chúng tôi",
     "contact_link_3": "Trợ giúp",
@@ -341,17 +347,17 @@
     "maxUpload": "Vui lòng chọn đủ 5 bước hình để tăng thu hút cho căn nhà của bạn",
     "client": "Khách",
     "beforePostHome": "Chủ nhà là trung tâm trong mọi hoạt động của chúng tôi và chúng tôi rất mong bạn sẽ được trải nghiệm sự kì diệu của việc đón tiếp khách.",
-    "rose": "Với mỗi lần giao dịch, YOY sẽ chiết khấu 10% hoa hồng",
+    "rose": "Với mỗi lần giao dịch, OYO sẽ chiết khấu 10% hoa hồng",
     "note": "Lưu ý:",
     "welcome": "Hân hạnh chào đón",
     "confirm": {
       "ready": "Bạn đã sẵn sàng đăng!",
-      "content_1": "Khi bạn nhấn đăng, khách có thể tìm thấy nhà/phòng cho thuê của bạn trên YOY và đặt bất kì ngày nào còn trống.",
+      "content_1": "Khi bạn nhấn đăng, khách có thể tìm thấy nhà/phòng cho thuê của bạn trên OYO và đặt bất kì ngày nào còn trống.",
       "content_2": "Ngoài ra, bạn hãy vào phần chủ nhà để có thể cập nhật thêm nhiều thông tin (phụ phí, giá theo ngày đặc biệt, ...) cho ngôi nhà của bạn để thêm phần chi tiết.",
       "create": "Tạo mục nhà/phòng cho thuê",
       "completed": "Hoàn tất!",
       "active": "Xác nhận tài khoản của bạn",
-      "active_content": "Khi bạn nhấn đăng, khách có thể tìm thấy nhà/phòng cho thuê của bạn trên YOY và đặt bất kì ngày nào còn trống."
+      "active_content": "Khi bạn nhấn đăng, khách có thể tìm thấy nhà/phòng cho thuê của bạn trên OYO và đặt bất kì ngày nào còn trống."
     }
   },
   "language": {

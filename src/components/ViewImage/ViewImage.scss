@@ -2,9 +2,11 @@
     .container__imgs {
         text-align: center;
         .img {
-            width: 65%;
+            min-width: 500px;
+            min-height: 500px;
             margin-bottom: 30px;
             max-height: 500px;
+            max-width: 1000px;
             object-fit: cover;
         }
     }

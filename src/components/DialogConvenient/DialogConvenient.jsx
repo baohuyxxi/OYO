@@ -5,11 +5,12 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-
+import CloseIcon from '@mui/icons-material/Close';
 import './DialogConvenient.scss';
 import { t } from 'i18next';
 
 export default function DialogConvenient(props) {
+    console.log(props?.listConvenient);
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -32,13 +33,20 @@ export default function DialogConvenient(props) {
                 fullWidth={true}
                 maxWidth="md"
             >
-                <div>
-                    <DialogTitle
-                        id="alert-dialog-title"
-                        style={{ fontSize: '18px', fontWeight: 'bold', width: '600px', marginBottom: '20px' }}
+                <DialogTitle
+                    id="alert-dialog-title"
+                    style={{ fontSize: '18px', fontWeight: 'bold', width: '600px', marginBottom: '20px' }}
+                >
+                    {t('title.convenient')}
+                    <Button
+                        className="closeDialog"
+                        style={{ position: 'absolute', right: '8px', top: '8px' }}
+                        onClick={handleClose}
                     >
-                        {t('title.convenient')}
-                    </DialogTitle>
+                        <CloseIcon />
+                    </Button>
+                </DialogTitle>
+                <div>
                     {props?.listConvenient?.map((faciCate, index) => (
                         <DialogContent
                             style={{
@@ -49,8 +57,8 @@ export default function DialogConvenient(props) {
                             key={index}
                         >
                             {faciCate?.faciCateName}
-                            {faciCate?.infoFacilityList.map((facility, i) => 
-                                (  <DialogContentText
+                            {faciCate?.infoFacilityList.map((facility, i) => (
+                                <DialogContentText
                                     id="alert-dialog-description"
                                     style={{
                                         fontSize: '14px',
@@ -59,24 +67,22 @@ export default function DialogConvenient(props) {
                                     }}
                                     key={i}
                                 >
+                                    <img src={facility.imageUrl} />
                                     {facility.facilityName}
-                                </DialogContentText >)
-                              
-                            )}
-
-                            <hr />
+                                </DialogContentText>
+                            ))}
                         </DialogContent>
                     ))}
                 </div>
 
-                <DialogActions>
+                {/* <DialogActions>
                     <Button onClick={handleClose} color="error" style={{ fontSize: '14px' }}>
-                        Close
+                        {t('common.close')}
                     </Button>
                     <Button onClick={handleClose} autoFocus style={{ fontSize: '14px', textTransform: 'none' }}>
-                        OK
+                        {t('common.ok')}
                     </Button>
-                </DialogActions>
+                </DialogActions> */}
             </Dialog>
         </div>
     );

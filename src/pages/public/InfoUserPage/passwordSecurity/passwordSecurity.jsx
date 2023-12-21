@@ -10,7 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import { ChangePassword } from '~/share/models/auth';
 import authAPI from '~/services/apis/authAPI/authAPI';
 import { useDispatch, useSelector } from 'react-redux';
-import { validate } from '~/utils/validate';
+import { validateChangePassword } from '~/utils/validate';
 
 import { useSnackbar } from 'notistack';
 
@@ -41,13 +41,12 @@ export default function passwordSecurity() {
     useEffect(() => {
         setChangePassword({ ...changePassword, email: user.mail });
     }, [user?.mail]);
-
+console.log(errors);
     const handleChangePassword = async (event) => {
         event.preventDefault();
-        if (!changePassword.oldPassword) {
-            setErrors({ ...errors, oldPassword: t('validate.passwordRequire') });
-        } else if (changePassword.newPassword !== changePassword.enterNewPassword) {
-            setErrors({ ...errors, enterNewPassword: t('validate.passwordConfirmError') });
+        const check = validateChangePassword(changePassword)
+        if (check) {
+            setErrors(check);
         } else {
             await authAPI
                 .changePasswordRequest(changePassword)
@@ -69,6 +68,7 @@ export default function passwordSecurity() {
                         <CustomInput
                             type="password"
                             name="oldPassword"
+                            size="medium"
                             title={t('label.currentPassword')}
                             value={changePassword.oldPassword}
                             onChange={handleInput}
@@ -92,6 +92,7 @@ export default function passwordSecurity() {
                                 )
                             }}
                         ></CustomInput>
+                        {errors.newPassword && <h5>{errors.newPassword}</h5>}
                     </Grid>
                     <Grid item xs={12}>
                         <CustomInput

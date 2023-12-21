@@ -70,7 +70,8 @@
     "scss": "^0.2.4",
     "slick-carousel": "^1.8.1",
     "styled-components": "^6.1.0",
-    "use-local-storage": "^3.0.0"
+    "use-local-storage": "^3.0.0",
+    "vite-plugin-env": "^1.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

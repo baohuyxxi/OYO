@@ -17,7 +17,7 @@ function Paypal(props) {
              
             >
                 <PayPalButtons 
-   
+                disabled={!props?.canBooking}
                 forceReRender={[paid]}
                     createOrder={(data, actions) => {
                         return actions.order.create({

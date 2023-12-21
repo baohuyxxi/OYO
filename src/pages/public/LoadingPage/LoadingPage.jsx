@@ -5,7 +5,7 @@ import FramePage from '~/components/FramePage/FramePage';
 const LoadingPage = () => {
     return (
         <FramePage>
-            <div className="loading__page">
+            <div className="loading__page content">
                 <img src={LoadingIcon} alt="" />
             </div>
         </FramePage>

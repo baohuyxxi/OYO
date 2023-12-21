@@ -46,6 +46,7 @@ export default function RoomDetail() {
 
     useEffect(() => {
         publicAccomPlaceAPI.getRoomDetail(roomId.id).then((dataResponse) => {
+            console.log(dataResponse.data);
             setDataDetalHome(dataResponse.data);
             setLoading(false);
         });

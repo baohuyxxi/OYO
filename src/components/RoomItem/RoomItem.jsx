@@ -51,7 +51,7 @@ const RoomItem = (props) => {
                 { love!== null && <IconLove idHome={props?.infoRoom?.id} isFavorite={love} />   }
                 
                 <div className="info__room" >
-                    <h2>{props?.infoRoom?.accomName}</h2>
+                    <h2 onClick={() => handleLinkToDetail(props?.infoRoom?.id)}>{props?.infoRoom?.accomName}</h2>
                     <div className="obility__room">
                         <p>{props.infoRoom.accomCateName}</p>
                         {stars}

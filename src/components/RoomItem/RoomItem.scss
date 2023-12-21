@@ -5,6 +5,9 @@
 .row {
     margin-left: -9px;
     margin-right: -9px;
+    .container__room:hover{
+        
+    }
     .container__room {
         padding: 10px;
         height: 425px;
@@ -79,6 +82,7 @@
                 word-wrap: break-word;
                 white-space: nowrap;
                 overflow: hidden;
+                text-overflow: ellipsis;
             }
 
             .obility__room {
@@ -111,6 +115,10 @@
                     margin: 0;
                     font-size: medium;
                     color: rgba(2, 100, 200, 1);
+                    word-wrap: break-word;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
                 .icon_locate {
                     color: rgba(2, 100, 200, 1);

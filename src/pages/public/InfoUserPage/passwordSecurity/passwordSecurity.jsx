@@ -41,11 +41,10 @@ export default function passwordSecurity() {
     useEffect(() => {
         setChangePassword({ ...changePassword, email: user.mail });
     }, [user?.mail]);
-console.log(errors);
     const handleChangePassword = async (event) => {
         event.preventDefault();
         const check = validateChangePassword(changePassword)
-        if (check) {
+        if (Object.keys(check).length !==0 ) {
             setErrors(check);
         } else {
             await authAPI

@@ -1,10 +1,8 @@
 .Dropdown {
     padding-left: 1em;
-
-    // .avatar {
-    //     height: 50%;
-        
-    // }
+    z-index: 10000;
+    position: relative;
+   
 }
 
 .dropdown-menu {

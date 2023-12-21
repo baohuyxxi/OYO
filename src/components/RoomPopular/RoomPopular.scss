@@ -5,124 +5,134 @@
     .row {
         margin-left: -9px;
         margin-right: -9px;
-    }
+        .container__room {
+            padding: 10px;
+            height: 425px;
+            .slick-slider {
+                height: 215px;
+            }
+            h1 {
+                font-size: 2.5rem;
+                font-weight: 600;
+                font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Droid Sans, Helvetica Neue, Helvetica,
+                    Arial, sans-serif;
+                margin-bottom: 20px;
+            }
 
-    .l-3 {
-        padding: 10px;
-        position: relative;
-    }
+            .slick-list {
+                height: 215px;
+                border-radius: 5px;
+            }
 
-    h1 {
-        font-size: 2.5rem;
-        font-weight: 600;
-        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
-        margin-bottom: 20px;
-    }
+            .slick-next {
+                border-radius: 100%;
+                margin-top: 15px;
+                left: 90%;
+                z-index: 100;
+            }
 
-    .slick-list {
-        height: 215px;
-        border-radius: 5px;
-    }
+            .slick-prev {
+                width: 100px;
+                margin-top: 15px;
+                z-index: 100;
+            }
 
-    .slick-next {
-        border-radius: 100%;
-        margin-top: 15px;
-        left: 90%;
-        z-index: 100;
-    }
+            .slick-dots {
+                margin-top: -55px;
+                position: relative;
+            }
 
-    .slick-prev {
-        width: 100px;
-        margin-top: 15px;
-        z-index: 100;
-    }
-    
-    .slick-dots {
-        margin-top: -55px;
-        position: relative;
-    }
+            .image-home {
+                width: 100%;
+                height: 215px;
+            }
 
-    .image-home {
-        width: 100%;
-        height: 215px;
-    }
+            .love_room {
+                position: absolute;
+                top: 0;
+                right: 0;
+                margin-top: 20px;
+                margin-right: 25px;
 
-    .love_room {
-        position: absolute;
-        top: 0;
-        right: 0;
-        margin-top: 20px;
-        margin-right: 25px;
-        
-        .icon_love {
-            cursor: pointer;
-            color: white;
-            font-size: 30px;
-        }
+                .icon_love {
+                    cursor: pointer;
+                    color: white;
+                    font-size: 30px;
+                }
 
-        .icon_love__true {
-            cursor: pointer;
-            color: red;
-            font-size: 30px;
-        }
-    }
+                .icon_love__true {
+                    cursor: pointer;
+                    color: red;
+                    font-size: 30px;
+                }
+            }
 
-    .info__room {
-        margin-top: 48px;
-        position: relative;
-        cursor: pointer;
-
-        h2 {
-            padding-left: 10px;
-            margin: 0;
-        }
-
-        .obility__room {
-            display: flex;
-
-            img {
-                width: 16px;
+            .info__room {
                 margin-top: 5px;
-            }
+                // position: relative;
+                cursor: pointer;
 
-            p {
-                padding: 3px 18px;
-                color: rgba(2,100,200,1.00);
-                font-size: 1.2rem;
-                background-color: #bbdefb;
-                border-radius: 10px;
-                margin: 0;
-                margin-top: 8px;
-                margin-right: 5px;
-                margin-left: 10px;
-            }
-        }
+                h2 {
+                    font-size: medium;
+                    padding-left: 10px;
+                    word-wrap: break-word;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    margin: 0;
+                }
 
-        .locate__room {
-            margin-top: 10px;
-            display: flex;
-            margin-left: 5px;
+                .obility__room {
+                    display: flex;
 
-            p {
-                margin: 0;
-                font-size: 1.2rem;
-                color: rgba(2,100,200,1.00);
-            }
-            .icon_locate {
-                color: rgba(2,100,200,1.00);
-                font-size: 1.6rem;
-                margin-right: 5px;
-            }
-        }
+                    img {
+                        width: 16px;
+                        margin-top: 5px;
+                    }
 
-        .price__room {
-            display: flex;
-            justify-content: space-between;
-            margin-left: 10px;
-            margin-right: 10px;
+                    p {
+                        font-size: medium;
+                        padding: 3px 18px;
+                        color: rgba(2, 100, 200, 1);
+                        background-color: #bbdefb;
+                        border-radius: 10px;
+                        margin: 0;
+                        margin-top: 8px;
+                        margin-right: 5px;
+                        margin-left: 10px;
+                    }
+                }
 
-            p {
-                font-size: 1.2rem;
+                .locate__room {
+                    margin-top: 10px;
+                    display: flex;
+                    margin-left: 10px;
+
+                    p {
+                        margin: 0;
+                        font-size: medium;
+                        color: rgba(2, 100, 200, 1);
+                        // word-wrap: break-word;
+                        // white-space: nowrap;
+                        // overflow: hidden;
+                    }
+                    .icon_locate {
+                        color: rgba(2, 100, 200, 1);
+                        font-size: 1.6rem;
+                        margin-right: 5px;
+                    }
+                }
+
+                .price__room {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-left: 10px;
+                    margin-right: 10px;
+
+                    p {
+                        font-size: medium;
+                        color: var(--success-mode);
+                    }
+                }
             }
         }
     }

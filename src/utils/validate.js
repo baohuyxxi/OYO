@@ -1,85 +1,122 @@
-import { t } from 'i18next'
+import { el } from 'date-fns/locale';
+import { t } from 'i18next';
 
-export const validateEmail =(email) =>{
-  const errors = {};
-  if (!email) {
-    errors.email = "Nhập email của bạn";
-  } else if (!/\S+@\S+\.\S+/.test(email)) {
-    errors.email = t("validate.emailError")
-  } else {
-    delete errors.email;
-  }
-  return errors
+export const validateEmail = (email) => {
+    const errors = {};
+    if (!email) {
+        errors.email = 'Nhập email của bạn';
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+        errors.email = t('validate.emailError');
+    } else {
+        delete errors.email;
+    }
+    return errors;
+};
+export const validateChangePassword = (data) => {
+    const errors = {};
+    if (data.newPassword) {
+        if (data.newPassword.length < 8) {
+            errors.newPassword = t('validate.passwordMinError');
+        } else if (!data.newPassword.match(/[A-Z]/)) {
+            errors.newPassword = t('validate.passwordUpperCaseError');
+        } else if (!data.newPassword.match(/[a-z]/)) {
+            errors.newPassword = t('validate.passwordLowerCaseError');
+        } else if (!data.newPassword.match(/[0-9]/)) {
+            errors.newPassword = t('validate.passwordNumberError');
+        } else if (!data.newPassword.match(/[!@#$%^&?*]/)) {
+            errors.newPassword = t('validate.passwordSpecialCharError');
+        }
+    } else {
+        errors.newPassword = t('validate.passwordRequire');
+    }
+    if (data.enterNewPassword) {
+        if (data.enterNewPassword !== data.newPassword) {
+            errors.enterNewPassword = t('validate.passwordConfirmError');
+        }
+    } else {
+        errors.enterNewPassword = t('validate.passwordRequire');
+    }
+    if(data.oldPassword){
+        if(data.oldPassword.length < 8){
+            errors.oldPassword = t('validate.passwordMinError');
+        }
+    }
+    else{
+        errors.oldPassword = t('validate.passwordRequire');
+    }
+    return errors;
 }
-
-
-// export const validatePassword =(password) =>{
-//   const errors="";
-//   if (!password) {
-//     errors = "Nhập mật khẩu";
-//   } else if (password.length < 8) {
-//     errors = "Mật khẩu cần ít nhất 8 ký tự";
-//   }
-//   else if (password.match(/[A-Z]/)) {
-//     errors = "Mật khẩu phải có ít nhất 1 chữ cái viết hoa";
-//   }
-//   else if (!password.match(/[0-9]/)) {
-//     errors = "Mật khẩu phải có ít nhất 1 số";
-//   }
-//   else if (!password.match(/[!@#$%^&?*]/)) {
-//     errors = "Mật khẩu phải có ít nhất 1 kí tự đặc biệt";
-//   } else {
-//     errors = null
-//   }
-//   return errors;
-// }
 export const validate = (data) => {
-  const errors = {};
+    const errors = {};
 
-  // Validate Name
-  if (data.firstName && data.firstName.trim()) {
-    // Tất cả thuộc tính firstName và lastName tồn tại và không rỗng
-  } else {
-    errors.firstName = "Không thể bỏ trống";
-  }
+    if (data.firstName && data.firstName.trim()) {
+    } else {
+        errors.firstName = 'Không thể bỏ trống';
+    }
 
-  if (data.lastName && data.lastName.trim()) {
-    // Tất cả thuộc tính firstName và lastName tồn tại và không rỗng
-  } else {
-    errors.lastName = "Không thể bỏ trống";
-  }
+    if (data.lastName && data.lastName.trim()) {
+    } else {
+        errors.lastName = 'Không thể bỏ trống';
+    }
 
-  // // Validate Address
-  // if (data.address && data.address.trim()) {
-  //   // Thuộc tính address tồn tại và không rỗng
-  //   errors.address = "Nhập địa chỉ";
-  // } else {
+    if (data.email) {
+        if (!/\S+@\S+\.\S+/.test(data.email)) {
+            errors.email = t('validate.emailError');
+        }
+    } else {
+        errors.email = 'Nhập email của bạn';
+    }
+
+    // Validate Password
+    if (data.password) {
+        if (data.password.length < 8) {
+            errors.password = t('validate.passwordMinError');
+        } else if (!data.password.match(/[A-Z]/)) {
+            errors.password = t('validate.passwordUpperCaseError');
+        } else if (!data.password.match(/[a-z]/)) {
+            errors.password = t('validate.passwordLowerCaseError');
+        } else if (!data.password.match(/[0-9]/)) {
+            errors.password = t('validate.passwordNumberError');
+        } else if (!data.password.match(/[!@#$%^&?*]/)) {
+            errors.password = t('validate.passwordSpecialCharError');
+        }
+    } else {
+        errors.password = t('validate.passwordRequire');
+    }
+    return errors;
+};
+
+export const validateInfo = (data) => {
+    const errors = {};
+    if(data.userName && data.userName.trim()){
+        if(data.userName.length > 15){
+            errors.userName = t('validate.maxCharacter');
+        }
+    }
+    else{
+        errors.username = 'Không thể bỏ trống';
+    }
+    if (data.phone && data.phone.trim()) {
+        if (data.phone.length !== 10 || !data.phone.match(/^[0-9]+$/)) {
+            errors.phone = 'Số điện thoại không hợp lệ';
+        }
+    } else {
+        errors.phone = 'Không thể bỏ trống';
+    }
+
+    if (data.firstName && data.firstName.trim()) {
+    } else {
+        errors.firstName = 'Không thể bỏ trống';
+    }
+
+    if (data.lastName && data.lastName.trim()) {
+    } else {
+        errors.lastName = 'Không thể bỏ trống';
+    }
+    if (data.address && data.address.trim()) {
+    } else {
+        errors.address = 'Không thể bỏ trống';
+    }
    
-  // }
-
-  // Validate Email
-  if (data.email) {
-    if (!/\S+@\S+\.\S+/.test(data.email)) {
-      errors.email = t("validate.emailError")
-    }
-  } else {
-    errors.email = "Nhập email của bạn";
-  }
-
-  // Validate Password
-  if (data.password) {
-    if (data.password.length < 8) {
-      errors.password = "Mật khẩu cần ít nhất 8 ký tự";
-    } else if (!data.password.match(/[A-Z]/)) {
-      errors.password = "Mật khẩu phải có ít nhất 1 chữ cái viết hoa";
-    } else if (!data.password.match(/[0-9]/)) {
-      errors.password = "Mật khẩu phải có ít nhất 1 số";
-    } else if (!data.password.match(/[!@#$%^&?*]/)) {
-      errors.password = "Mật khẩu phải có ít nhất 1 kí tự đặc biệt";
-    }
-  } else {
-    errors.password = "Nhập mật khẩu";
-  }
-
-  return errors;
+    return errors;
 };

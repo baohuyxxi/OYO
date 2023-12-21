@@ -3,37 +3,29 @@ import { t } from 'i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import SkeletonProvince from '../Skeleton/SkeletonProvince';
 import ProvinceVN from '~/mockdata/ProvinceVN.json';
+import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import './Popular.scss';
 
 const Popular = () => {
     const [listProvince, setListProvince] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
         setLoading(true);
+        publicAccomPlaceAPI
+            .getTopHomeOfProvince()
+            .then((res) => {
+                setListProvince(res.data.content);
+                setLoading(false);
+            })
+            .catch((err) => {
 
-        // Simulate API call
-        setTimeout(() => {
-            // Get the first 10 provinces from ProvinceVN.json
-            const first10Provinces = ProvinceVN.slice(0, 8);
-            
-            // Simulated data response
-            const dataResponse = {
-                data: {
-                    content: first10Provinces,
-                },
-            };
-
-            if (dataResponse?.data?.content) {
-                setListProvince(dataResponse.data.content);
-            }
-            setLoading(false);
-        }, 1000);
+            });
     }, []);
 
     const handleLinkToProvince = (province) => {
-        navigate(`list-room?provinceCode=${province.codename}&`);
+        navigate(`list-accom?provinceCode=${province.provinceCode}`);
     };
 
     return (
@@ -55,7 +47,7 @@ const Popular = () => {
                                             <div className="package-info">
                                                 <h3 className="package-heading">{province?.name}</h3>
                                                 <span className="package-desc">
-                                                    {`${province?.numberBooking} ${t('numberCount.countBooking')}`}
+                                                    {`${province?.numBooking} ${t('numberCount.countBooking')}`}
                                                 </span>
                                             </div>
                                         </div>

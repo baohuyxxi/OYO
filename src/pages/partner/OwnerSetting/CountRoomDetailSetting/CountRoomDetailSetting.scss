@@ -1,0 +1,67 @@
+.content-count__roomdetail__setting {
+    // padding-left: 150px;
+    // padding-right: 150px;
+
+    p {
+        font-size: 14px;
+    }
+
+    .card-roomdetail__count {
+        border: 1px solid var(--text-color);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px 1px rgba(96, 92, 92, 0.22);
+        display: flex;
+        justify-content: space-between;
+
+        p {
+            padding-left: 30px;
+        }
+
+        .edit-count {
+            padding-right: 30px;
+            cursor: pointer;
+        }
+
+        .edit-count:hover {
+            text-decoration: underline;
+        }
+    }
+    .countRoom {
+        margin-top: -20px;
+        p {
+            font-size: large;
+            font-weight: 600;
+        }
+        display: flex;
+        .count-number {
+            width: 300px;
+            display: flex;
+            place-content: center;
+        }
+    }
+    .header__typeRoom {
+        p {
+            font-size: medium;
+            font-weight: 600;
+        }
+        display: flex;
+        .typeRoom {
+            width: 300px;
+            text-align: center;
+        }
+    }
+    .container__bedroom {
+        padding-left: 100px;
+        .option__bed {
+            p {
+                padding-right: 100px;
+                font-size: large;
+                font-weight: 600;
+            }
+            display: flex;
+            .MuiSelect-select {
+                padding-left: 50px;
+                width: 200px !important;
+            }
+        }
+    }
+}

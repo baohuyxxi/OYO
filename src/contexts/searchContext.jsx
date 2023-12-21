@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import { createContext, useState } from 'react';
 
 const SearchContext = createContext(null);
 
@@ -10,7 +10,7 @@ const SearchProvider = ({ children }) => {
         searchText,
         setSearchText,
         hanldSearch,
-        setHanldSearch,
+        setHanldSearch
     };
 
     return <SearchContext.Provider value={value}>{children}</SearchContext.Provider>;

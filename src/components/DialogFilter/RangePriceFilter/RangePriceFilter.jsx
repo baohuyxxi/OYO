@@ -4,10 +4,10 @@ import "./RangePriceFilter.scss";
 import Slider from "@mui/material/Slider";
 
 const MIN = 0;
-const AVERAGE = 5000000;
-const MAX = 10000000;
-const RangePriceFilter = () => {
-  const [values, setValues] = useState([MIN, AVERAGE]);
+const AVERAGE = 2500000;
+const MAX = 5000000;
+const RangePriceFilter = (props) => {
+  const {values, setValues} = props;
   const handleChange = (event, newValue) => {
     setValues(newValue);
   };

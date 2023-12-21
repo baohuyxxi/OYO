@@ -3,13 +3,13 @@ import Box from '@mui/material/Box'
 
 export default function CustomInput(props) {
   return (
-    <Box className={props.className}>
-      <label style={{ fontWeight: '500' }} htmlFor={props.id}>
+    <Box className={props.className} width={props.width}>
+      <label htmlFor={props.id}>
         {props.title}
       </label>
       <TextField
         className='customInput'
-        fullWidth
+        fullWidth ={props.fullWidth? false: true }
         margin="dense"
         size={props.size || "medium"}
         name={props.name}

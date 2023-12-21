@@ -1,0 +1,48 @@
+.count-number {
+    display: flex;
+    width: 150px;
+    justify-content: space-between;
+
+    h1 {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .btn-reducer {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: white;
+        border: 1px solid var(--text-color);
+        font-weight: bold;
+        margin-top: 20px;
+    }
+
+    .btn-increase {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: white;
+        border: 1px solid var(--text-color);
+        font-weight: bold;
+        margin-top: 20px;
+    }
+
+    .btn-reducer:hover {
+        border: 1.5px solid black;
+    }
+
+    .btn-increase:hover {
+        border: 1.5px solid black;
+    }
+
+    .btn-notallow {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: white;
+        border: 1px solid var(--text-color);
+        cursor: not-allowed;
+        margin-top: 20px;   
+    }
+}

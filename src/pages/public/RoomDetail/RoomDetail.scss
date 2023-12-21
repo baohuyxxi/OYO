@@ -1,0 +1,384 @@
+.detail-room {
+    max-width: 1080px;
+    margin-top: 40px;
+    height: max-content;
+    .info-room {
+        padding-top: 30px;
+        .header-room {
+            h1 {
+                font-size: 28px;
+                margin: 0;
+                margin-bottom: 5px;
+            }
+
+            .heading {
+                display: flex;
+                justify-content: space-between;
+
+                .heading__left {
+                    display: flex;
+
+                    .obility__room {
+                        display: block;
+
+                        img {
+                            width: 16px;
+                            margin-top: 5px;
+                        }
+
+                        p {
+                            color: rgba(2, 100, 200, 1);
+                            font-size: 1.2rem;
+                            background-color: (--background-paper);
+                            border-radius: 10px;
+                            margin: 0;
+                            margin-top: 8px;
+                            margin-right: 5px;
+                        }
+                    }
+
+                    .locate__room {
+                        margin-top: 9px;
+                        display: flex;
+                        margin-left: 5px;
+                        padding-left: 20px;
+
+                        p {
+                            margin: 0;
+                            font-size: 1.3rem;
+                            color: rgba(2, 100, 200, 1);
+                        }
+
+                        .icon_locate {
+                            color: rgba(2, 100, 200, 1);
+                            font-size: 1.6rem;
+                            margin-right: 5px;
+                        }
+                    }
+                }
+
+                .heading__right {
+                    text-align: right;
+                    display: flex;
+                    justify-items: center;
+
+                    .icon_rate {
+                        font-size: 2rem;
+                        color: blue;
+                    }
+
+                    p {
+                        margin: 0;
+                        font-size: 1.4rem;
+                        margin-top: 3px;
+                        margin-left: 3px;
+                    }
+
+                    .link__rate {
+                        font-size: 1.4rem;
+                        margin-top: 3px;
+                        margin-left: 5px;
+                    }
+                }
+
+                .card-room {
+                    padding-left: 15px;
+                    padding-right: 15px;
+
+                    .button-Favorite {
+                    }
+
+                    .button-Favorite {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding-bottom: 20px;
+                    }
+
+                    .button-booking {
+                        padding-bottom: 20px;
+                    }
+                }
+
+                .price-room {
+                    font-weight: 600;
+                    font-size: large;
+                    color: var(--orange-main);
+                }
+            }
+        }
+    }
+
+    .about-room {
+        h2 {
+            font-size: large;
+            padding-top: 10px;
+            margin-bottom: 0px;
+        }
+
+        p {
+            margin-top: 0px;
+            font-size: medium;
+        }
+
+        .title-room {
+            padding-left: 15px;
+            padding-right: 15px;
+
+            .desc-room {
+                h3 {
+                    margin-left: 10px;
+                    font-size: 16px;
+                }
+
+                h4 {
+                    font-size: 13px;
+                    margin-left: 10px;
+                }
+                p {
+                    word-wrap: break-word;
+                    overflow: hidden;
+                }
+            }
+
+            .bed-room {
+                padding-bottom: 1px;
+            }
+        }
+
+        .card-room {
+            padding-left: 15px;
+            padding-right: 15px;
+
+            .desc-room {
+            }
+
+            .button-Favorite {
+            }
+
+            .button-Favorite {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding-bottom: 20px;
+            }
+        }
+
+        .card-book__detail {
+            width: 100%;
+            height: auto;
+            margin: auto;
+
+            border-radius: 10px;
+            position: relative;
+            z-index: 90;
+
+            .price-room {
+                padding: 20px;
+                padding-top: 30px;
+                font-size: 1.8rem;
+                font-weight: bold;
+                font-size: medium;
+            }
+
+            .date-book {
+                .title__date-book {
+                    display: flex;
+                    margin-left: 30px;
+
+                    p {
+                        font-size: medium;
+                        margin-bottom: 5px;
+                        margin-right: 50px;
+                        font-weight: bold;
+                    }
+                }
+
+                .info_date {
+                    display: flex;
+                    margin: auto;
+
+                    .output {
+                        // width: 160px;
+                        margin-left: 0;
+
+                        input {
+                            padding: 10px;
+                            width: 100%;
+                        }
+                    }
+                    .start {
+                        input {
+                            border-top-left-radius: 5px;
+                            border: 2px solid var(--divider);
+                        }
+                    }
+                    .end {
+                        input {
+                            border-top-right-radius: 5px;
+                            border: 2px solid var(--divider);
+                        }
+                    }
+                }
+
+                .calendarElement {
+                    margin-left: -375px;
+                }
+
+                .calendarWrap {
+                    display: flex;
+
+                    width: 100%;
+                    z-index: 91;
+                    .info_date {
+                        display: flex;
+                        flex-wrap: wrap;
+
+                        .output {
+                            width: 158px;
+
+                            input {
+                                background-color: initial;
+                                color: inherit;
+                                width: 100%;
+                            }
+                        }
+
+                        .output:nth-child(2) {
+                        }
+                    }
+                }
+            }
+
+            .count__guest {
+                // margin-top: 37px;
+                .dropdown {
+                    margin: 0 12px;
+                    border: 2px solid;
+                    padding-bottom: 10px;
+                    text-align: center;
+                    border-bottom-right-radius: 5px;
+                    border-bottom-left-radius: 5px;
+                    border: 2px solid var(--divider);
+                    .dropdown-btn {
+                        svg {
+                        }
+                    }
+                }
+
+                // p {
+                //     padding-left: 30px;
+                //     font-size: 1.3rem;
+                //     font-weight: bold;
+                // }
+
+                // .dropdown {
+                //     width: auto;
+                //     padding: 0;
+                //     margin-right: 28px;
+                //     margin-left: 28px;
+                // }
+            }
+        }
+        .price-total {
+            display: flex;
+            justify-content: space-between;
+            margin-left: 25px;
+            margin-right: 25px;
+            .title-price {
+                display: flex;
+                align-items: center;
+
+                .name-surcharge {
+                    margin: 5px 0;
+                }
+            }
+
+            .real-price {
+                .cost-surcharge {
+                    margin: 5px 0;
+                    font-weight: 550;
+                }
+            }
+
+            p {
+                font-size: small;
+            }
+        }
+
+        .discount-campain {
+            margin-left: 25px;
+            margin-right: 25px;
+
+            .discount-campain__title {
+                display: flex;
+                align-items: center;
+
+                .title {
+                    margin: 0;
+                    color: red;
+                }
+            }
+
+            p {
+                font-size: 15px;
+            }
+        }
+
+        .btn-booking {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            padding-bottom: 5px;
+
+            .btn-booking-room {
+                padding: 8px 28px;
+                cursor: pointer;
+                border: none;
+                background-color: #43a047;
+                color: white;
+                border-radius: 5px;
+            }
+
+            .btn-booking-room:hover {
+                background-color: #388e3c;
+            }
+            .btn-booking-room:disabled {
+                background-color: var(--disabled-br);
+                color: var(--disabled-cl);
+            }
+        }
+        .card-like {
+            bottom: 0;
+            height: 40px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .icon_love {
+                color: red;
+                font-size: 25px;
+            }
+
+            p {
+                margin: 0;
+                font-size: 16px;
+                padding-left: 10px;
+            }
+        }
+        .MuiAccordionSummary-content {
+            justify-content: space-between;
+            margin: 0px;
+        }
+        .MuiAccordionSummary-expandIconWrapper {
+            margin-right: -24px;
+        }
+        .MuiAccordionSummary-root {
+            min-height: 0px;
+        }
+        .MuiAccordionSummary-contentGutters {
+        }
+    }
+}

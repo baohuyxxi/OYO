@@ -3,10 +3,12 @@
     margin: 2px 0;
     width: 100%;
     margin-top: 75px;
+    z-index: 1000;
 
     .slider__home-item {
         width: 100%;
-        
+        height: 450px;
+        object-fit: cover;
     }
 
     .slick-next {

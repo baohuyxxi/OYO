@@ -1,36 +1,82 @@
-.App {
-    text-align: center;
-  
-    h1 {
-      font-size: 24px;
-    }
-  
-    .slick-dots {
-      position: absolute;
-      bottom: 20px;
-      list-style: none;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-  
-      li {
-        display: inline;
-        margin: 0 5px;
-        button {
-          background: #ccc;
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-        }
-      }
-    }
-  
-    .slick-prev,
-    .slick-next {
-      font-size: 24px;
-    }
-  }
-  .img{
-    width: 300px;
-    height: 300px;
-  }
+/*style.css*/
+
+* { 
+	padding: 0; 
+	margin: 0; 
+	box-sizing: border-box; 
+} 
+
+body { 
+	height: 100vh; 
+	background: white; 
+} 
+
+.container { 
+	width: 30rem; 
+	background-color: #ffffff; 
+	padding: 70px; 
+	border-radius: 30px; 
+	position: absolute; 
+	transform: translate(-50%, -50%); 
+	top: 45%; 
+	left: 50%; 
+	box-shadow: 0px 0px 30px 0px black; 
+} 
+
+.heading { 
+	margin: 50px; 
+	font-size: 30px; 
+	text-align: center; 
+	color: green; 
+} 
+
+.wrapper { 
+	display: flex; 
+	align-content: center; 
+	justify-content: space-between; 
+	margin: 1em 0; 
+} 
+
+canvas { 
+	border: 2px solid crimson; 
+	border-radius: 20px; 
+} 
+
+button#reload-button { 
+	font-size: 26px; 
+	width: 4.6em; 
+	background-color: green; 
+	cursor: pointer; 
+	border: none; 
+	border-radius: 0.4em; 
+	color: #ffffff; 
+} 
+
+button#reload-button:hover { 
+	background-color: rgb(46, 153, 46); 
+} 
+
+input[type='text'] { 
+	font-family: 'Roboto Mono', monospace; 
+	font-size: 1rem; 
+	width: 100%; 
+	padding: 16px; 
+	border: 2px solid crimson; 
+	border-radius: 20px; 
+} 
+
+button#submit-button { 
+	width: 100%; 
+	color: #ffffff; 
+	font-size: 1.5em; 
+	border: none; 
+	margin-top: 1em; 
+	padding: 0.8em 0; 
+	border-radius: 0.4em; 
+	background-color: green; 
+	cursor: pointer; 
+} 
+
+button#submit-button:hover { 
+	background-color: rgb(53, 175, 53); 
+}

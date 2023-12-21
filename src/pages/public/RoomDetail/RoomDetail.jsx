@@ -44,6 +44,8 @@ export default function RoomDetail() {
     const [totalBill, setTotalBill] = useState('');
     const [disBooking, setDisBooking] = useState(true);
     const [love, setLove] = useState(false);
+    // console.log(formatPrice(dataDetailHome?.pricePerNight));
+    console.log(totalBill);
 
     useEffect(() => {
         publicAccomPlaceAPI.getRoomDetail(roomId.id).then((dataResponse) => {
@@ -65,7 +67,9 @@ export default function RoomDetail() {
             accomId: roomId.id,
             numAdult: guests.numAdult
         };
+        console.log(dataCheck);
         publicAccomPlaceAPI.checkBooking(dataCheck).then((response) => {
+            console.log(response);
             if (response?.statusCode === 200) {
                 setDisBooking(false);
                 setSurcharge(response.data.costSurcharge);
@@ -88,7 +92,7 @@ export default function RoomDetail() {
                 priceDay: dataDetailHome?.pricePerNight,
                 surcharge: surcharge,
                 originPay: totalBill,
-                nameCustomer: user.firstName + ' '+ user.lastName,
+                nameCustomer: user.firstName + ' ' + user.lastName,
                 phoneNumberCustomer: user.phone
             };
             dispatch(bookingSlice.actions.addInfoBooking(dataBooking));
@@ -184,7 +188,6 @@ export default function RoomDetail() {
                                                 <DateGo size="vertical" setDataDay={handleChangeDayBooking} />
                                             </div>
                                             <div className="count__guest">
-                                        
                                                 <Dropdown
                                                     guests={guests}
                                                     setGuests={setGuests}

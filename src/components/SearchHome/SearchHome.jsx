@@ -62,11 +62,11 @@ function SearchHome({ placeholder, data }) {
                 <div className="dataResult" ref={refOne}>
                     {filteredData?.map((value, index) => {
                         return (
-                            <Link className="dataItem" to={`detail/${value.id}`} target="_blank" key={index}>
+                            <Link className="dataItem" to={`room-detail/${value.id}`} target="_blank" key={index}>
                                 <div className="image-item-search">
                                     <img src={value?.imageAccomsUrls[0]} alt="" />
                                 </div>
-                                <p>{value?.name} </p>
+                                <p>{value?.accomName} </p>
                                 <p className="price-item-search">{`Từ ${formatPrice(value?.pricePerNight)}`}</p>
                             </Link>
                         );

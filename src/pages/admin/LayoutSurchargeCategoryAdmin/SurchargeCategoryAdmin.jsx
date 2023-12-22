@@ -134,7 +134,7 @@ const SurchargeCategoryAdmin = (props) => {
     return (
         <div className="surcharge__category__admin">
             <div className="header__customer">
-                <h2 className="page-header">Loại giường</h2>
+                <h2 className="page-header">Danh mục phụ phí</h2>
                 <button className="btn__add-customer__admin" onClick={() => setOnAdd(!onAdd)}>
                     <p className="text__admin">{onAdd ? 'Danh sách loại giường' : 'Thêm mới'}</p>
                 </button>

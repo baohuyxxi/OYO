@@ -8,7 +8,7 @@ import LoadingDialog from '~/components/LoadingDialog/LoadingDialog';
 import './App.css';
 function App() {
     const dispatch = useDispatch();
-    // dispatch(globalSlice.actions.setLoading(false));
+        // dispatch(globalSlice.actions.setLoading(false));
     const loading = useSelector((state) => state.global.loading);
     const { t } = useTranslation();
     useEffect(() => {

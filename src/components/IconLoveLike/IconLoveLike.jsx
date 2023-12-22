@@ -1,14 +1,17 @@
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import { useState } from 'react';
 import wishAPI from '~/services/apis/clientAPI/clientWishAPI';
+import { useSnackbar } from 'notistack';
 import { t } from 'i18next';
 
 const IconLoveLike = (props) => {
     const [like, setLike] = useState(true);
-
+    const { enqueueSnackbar } = useSnackbar();
     const handleFavorite = () => {
-        wishAPI.likeFavoriteRoom(props.idHome).then((data) => {
+        wishAPI.likeFavoriteRoom(props.idHome).then((res) => {
             setLike(!like);
+            enqueueSnackbar(res.data.message, { variant: 'success' });
+            setLove(!love);
         });
     };
 

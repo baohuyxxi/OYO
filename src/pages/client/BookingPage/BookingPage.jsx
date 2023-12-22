@@ -14,6 +14,7 @@ import Paypal from '~/components/Paypal/Paypal';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import bookingAPI from '~/services/apis/clientAPI/clientBookingAPI';
 import { useDispatch, useSelector } from 'react-redux';
+import { validateBooking } from '~/utils/validate';
 import './BookingPage.scss';
 import { t } from 'i18next';
 import bookingSlice from '~/redux/bookingSlice';
@@ -28,18 +29,20 @@ const BookingPage = () => {
     const [dataDetailHomeBooking, setDataDetailHomeBooking] = useState();
     const [priceAfterChoosePayment, setPriceAfterChoosePayment] = useState(dataBooking?.originPay);
     const [errors, setErrors] = useState({});
+
     const handleBookingRoom = () => {
-        if(dataBooking.phoneNumberCustomer.length < 10 || dataBooking.phoneNumberCustomer.length > 11){
-            setErrors({phone: t('message.requestPhone')});
-            return;
+        const checkValidate = validateBooking(dataBooking);
+        if (Object.keys(checkValidate).length === 0) {
+            dispatch(globalSlice.actions.setLoading(true));
+            bookingAPI.createBooking(dataBooking).then((dataResponse) => {
+                enqueueSnackbar(t('message.bookingSuccess'), { variant: 'success' });
+                dispatch(bookingSlice.actions.clearInfoBooking());
+                dispatch(globalSlice.actions.setLoading(false));
+                navigate('/');
+            });
+        } else {
+            setErrors(checkValidate);
         }
-        dispatch(globalSlice.actions.setLoading(true));
-        bookingAPI.createBooking(dataBooking).then((dataResponse) => {
-            enqueueSnackbar(t('message.bookingSuccess'), { variant: 'success' });
-            dispatch(bookingSlice.actions.clearInfoBooking());
-            dispatch(globalSlice.actions.setLoading(false));
-            navigate('/');
-        });
     };
     useEffect(() => {
         setLoading(true);
@@ -72,9 +75,10 @@ const BookingPage = () => {
         setPriceAfterChoosePayment(result);
         dispatch(bookingSlice.actions.addTotalTransfer(result));
     }, [dataBooking.paymentPolicy, dataBooking.paymentMethod, dataBooking.originPay]);
+
     return (
         <FramePage>
-            <div className="booking__page">
+            <div className="booking__page content">
                 <div className="content-booking">
                     <h1>{t('title.bookingOfYou.tilte')}</h1>
                     <div className="row">
@@ -86,6 +90,7 @@ const BookingPage = () => {
                                 checkOut={dataBooking.checkOut}
                                 idHome={dataBooking.accomId}
                             />
+                            {dataBooking.canBooking === false && <p className='error'>{t('common.candontBooking')}</p>}
                             <hr className="line" />
 
                             <div className="count-customer">
@@ -95,7 +100,7 @@ const BookingPage = () => {
                                 </div>
                             </div>
                             <InfoUserBooking />
-                            {errors?.phone && <p className="error">{errors.phone}</p>}
+                            {errors?.phoneNumberCustomer && <p className="error">{errors.phoneNumberCustomer}</p>}
                             <hr className="line" />
                             <div className="count-customer">
                                 <div>
@@ -115,7 +120,7 @@ const BookingPage = () => {
 
                             {dataBooking.paymentMethod === 'PAYPAL' ? (
                                 <div className="payment__paypal">
-                                    <Paypal  pricePayment={priceAfterChoosePayment} booking={handleBookingRoom} />
+                                    <Paypal pricePayment={priceAfterChoosePayment} booking={handleBookingRoom} canBooking={dataBooking.canBooking} />
                                 </div>
                             ) : (
                                 <div className="btn__booking">

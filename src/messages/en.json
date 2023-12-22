@@ -37,7 +37,8 @@
     "changeAvatar": "Change avatar",
     "all": "All",
     "noReview": "No reviews",
-    "noFavorite": "No favorites"
+    "noFavorite": "No favorites",
+    "candontBooking": "Can't book"
   },
   "message": {
     "signin": "Sign in successfully",
@@ -82,7 +83,9 @@
     "passwordNumberError": "Password must have at least 1 number",
     "passwordSpecialCharError": "Password must have at least 1 special character",
     "maxCharacter": "Maximum number of characters 15",
-    "invalidImageType": "Please select a valid image file. Supported formats: JPEG, PNG, BMP, WebP."
+    "invalidImageType": "Please select a valid image file. Supported formats: JPEG, PNG, BMP, WebP.",
+    "phoneRequire": "Phone is required",
+    "phoneError": "Phone is invalid"
   },
   "contentMess": {
     "messOTP_1": "To keep your information secure, we need you to authenticate your account. We have sent you a verification OTP via gmail ",

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import { NavLink } from 'react-router-dom';
+import { useLocation , NavLink } from 'react-router-dom';
 
 import logoOYO from '~/assets/logo.svg';
 
@@ -20,7 +20,7 @@ import './NavBar.scss';
 export default function NavBar() {
     const [open, setOpen] = useState(false);
     const user = useSelector((state) => state.user.current);
-
+    const location = useLocation().pathname;
     return (
         <AppBar className="appbar">
             <Toolbar className="toolbar">
@@ -30,8 +30,8 @@ export default function NavBar() {
                     </NavLink>
                 </div>
                 <div className="appbar-right-menu" />
-                <div className="element">
-                    <NavLink to="/">{t('navbar.home')}</NavLink>
+                <div className={`element${location==='/' ?'__actived':''}`} >
+                    <NavLink  to="/">{t('navbar.home')}</NavLink>
                 </div>
                 <div className="element">
                     <ModeToggle />
@@ -43,7 +43,7 @@ export default function NavBar() {
                 {/* <div className="element">
                     <NavLink to="/host">{t('navbar.host')}</NavLink>
                 </div> */}
-                <div className="element">
+                <div className={`element${location==='/list-accom' ? '__actived' :''}`} >
                     <NavLink to="/list-accom">{t('navbar.listroom')}</NavLink>
                 </div>
 
@@ -53,7 +53,7 @@ export default function NavBar() {
                     </Button>
                 ) : (
                     <>
-                        <div className="element">
+                        <div className={`element${location==='/wishlists' ?'__actived':''}`}>
                             <NavLink to="/wishlists">{t('navbar.listLove')}</NavLink>
                         </div>
                         <MailNotification />

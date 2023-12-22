@@ -37,7 +37,8 @@
     "changeAvatar": "Thay đổi ảnh đại diện",
     "all": "Tất cả",
     "noReview": "Chưa có đánh giá",
-    "noFavorite": "Chưa có mục yêu thích"
+    "noFavorite": "Chưa có mục yêu thích",
+    "candontBooking": "Không thể đặt phòng"
   },
   "message": {
     "signin": "Đăng nhập thành công",
@@ -85,7 +86,9 @@
     "passwordNumberError": "Mật khẩu phải có ít nhất 1 số",
     "passwordSpecialCharError": "Mật khẩu phải có ít nhất 1 kí tự đặc biệt",
     "maxCharacter": "Không được nhập quá 15 kí tự",
-    "invalidImageType": "Vui lòng chọn một tập tin hình ảnh hợp lệ. Các định dạng được hỗ trợ: JPEG, PNG, BMP, WebP."
+    "invalidImageType": "Vui lòng chọn một tập tin hình ảnh hợp lệ. Các định dạng được hỗ trợ: JPEG, PNG, BMP, WebP.",
+    "phoneRequire": "Số điện thoại được yêu cầu",
+    "phoneError": "Số điện thoại không hợp lệ"
   },
   "contentMess": {
     "messOTP_1": "Để bảo mật thông tin, chúng tôi cần bạn xác thực tài khoản. Chúng tôi đã gửi cho bạn mã OTP xác thực qua gmail ",

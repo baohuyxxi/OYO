@@ -5,6 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
 import formatPrice from '~/utils/formatPrice';
 import removeVietnameseTones from '~/utils/convertStringVietNamese';
+import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 
 function SearchHome({ placeholder, data }) {
     const [filteredData, setFilteredData] = useState([]);
@@ -28,16 +29,11 @@ function SearchHome({ placeholder, data }) {
 
         const convertStringToEnglish = removeVietnameseTones(searchWord);
         const text = convertStringToEnglish.replace(' ', '%20');
-
-        // provinceApi.searchByProvince(text).then((dataResponse) => {
-        //     if (dataResponse.data?.content) {
-        //         setFilteredData(dataResponse.data?.content);
-        //     }
-        // });
-
-        // const newFilter = data.filter((value ) => {
-        //     return value.title.toLowerCase().includes(searchWord.toLowerCase());
-        // });
+        publicAccomPlaceAPI.getSearchHome(text).then((dataResponse) => {
+            if (dataResponse.data?.content) {
+                setFilteredData(dataResponse.data?.content);
+            }
+        })
 
         if (searchWord === '') {
             setFilteredData([]);
@@ -64,14 +60,14 @@ function SearchHome({ placeholder, data }) {
             </div>
             {filteredData.length !== 0 && (
                 <div className="dataResult" ref={refOne}>
-                    {filteredData.slice(0, 15)?.map((value, index) => {
+                    {filteredData?.map((value, index) => {
                         return (
                             <Link className="dataItem" to={`detail/${value.id}`} target="_blank" key={index}>
                                 <div className="image-item-search">
-                                    <img src={value?.thumbnail} alt="" />
+                                    <img src={value?.imageAccomsUrls[0]} alt="" />
                                 </div>
                                 <p>{value?.name} </p>
-                                <p className="price-item-search">{`Từ ${formatPrice(value?.costPerNightDefault)}`}</p>
+                                <p className="price-item-search">{`Từ ${formatPrice(value?.pricePerNight)}`}</p>
                             </Link>
                         );
                     })}

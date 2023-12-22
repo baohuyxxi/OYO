@@ -7,6 +7,7 @@ import ScrollspyComponent from '~/components/Scrollspy/Scrollspy';
 import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 import publicFacilityAPI from '~/services/apis/publicAPI/publicFacilityAPI';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
+import './ConvenientOwnerSetting.scss';
 const infoLink = {
     name: 'Tiện nghi',
     urlLink: '/host/setting/convenient'

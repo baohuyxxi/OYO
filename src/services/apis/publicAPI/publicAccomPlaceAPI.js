@@ -36,6 +36,10 @@ const publicAccomPlaceAPI = {
     getAllRoomsWithFilter: async (data) => {    
         const res = await axios.get(`/public/accoms/filters?${data.queryParams}&pageNum=0&pageSize=${data.pageSize}`);
         return res.data;
+    },
+    getSearchHome : async (data) => {
+        const res = await axios.get(`/public/accoms/search?keyword=${data}&pageNum=0&pageSize=10`);
+        return res.data;
     }
 };
 export default publicAccomPlaceAPI;

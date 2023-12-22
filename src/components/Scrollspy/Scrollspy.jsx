@@ -13,7 +13,8 @@ const ScrollspyComponent = (props) => {
                 <p
                     onClick={() => navigate(-1)}
                     style={{
-                        margin: 0,
+                        top: '90px',
+                        margin: '0px',
                         fontSize: '16px',
                         paddingTop: '-30px',
                         paddingLeft: '150px',

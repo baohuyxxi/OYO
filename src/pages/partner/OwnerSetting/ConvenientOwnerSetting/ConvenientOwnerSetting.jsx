@@ -77,7 +77,6 @@ const ConvenientOwnerSetting = () => {
                         childrenData={dataListCatagoryConvenient}
                     />
                 </div>
-              
             )}
         </>
     );

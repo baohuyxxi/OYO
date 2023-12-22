@@ -5,8 +5,11 @@ import bannerTwo from "~/assets/imageBanner/banner6.jpg";
 import bannerThree from "~/assets/imageBanner/banner8.jpg";
 import bannerFour from "~/assets/imageBanner/banner7.jpg";
 import bannerFive from "~/assets/imageBanner/banner9.jpg";
+import SearchHome from "../SearchHome/SearchHome";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import SearchData from '../../mockdata/SearchData.json';
+import { t } from 'i18next';
 import "./HomeSlider.scss";
 export default class SimpleSlider extends Component {
   render() {
@@ -65,6 +68,11 @@ export default class SimpleSlider extends Component {
             <img src={bannerFive} alt="home" className="slider__home-item" />
           </div>
         </Slider>
+        <div className="content-search">
+                <h1 className="title-home">{t('title.home')}</h1>
+                <p>{t('contentMain.homeinsearch')}</p>
+                <SearchHome placeholder={t('placeholder.searchHome')} data={SearchData} />
+            </div>
       </div>
     );
   }

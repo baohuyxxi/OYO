@@ -43,7 +43,6 @@ export default function DialogAuth(props) {
             dialogContent = <SignIn setEmail={setEmail} setPosition={setPosition} handleClose={handleClose} />;
     }
     const TransitionComponent = (props) => <Slide direction="up" {...props} />;
-    console.log(amination);
     return (
         <>
             <Dialog

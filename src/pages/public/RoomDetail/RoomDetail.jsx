@@ -46,7 +46,6 @@ export default function RoomDetail() {
 
     useEffect(() => {
         publicAccomPlaceAPI.getRoomDetail(roomId.id).then((dataResponse) => {
-            console.log(dataResponse.data);
             setDataDetalHome(dataResponse.data);
             setLoading(false);
         });
@@ -65,7 +64,6 @@ export default function RoomDetail() {
             accomId: roomId.id,
             numAdult: guests.numAdult
         };
-        console.log(dataCheck);
         publicAccomPlaceAPI.checkBooking(dataCheck).then((response) => {
             setSurcharge(response.data.costSurcharge);
             setTotalBill(response?.data?.totalBill);

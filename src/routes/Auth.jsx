@@ -7,6 +7,7 @@ import PrivateRoute from '~/components/PrivateRoute/PrivateRoute';
 import LoadingPage from '~/pages/public/LoadingPage/LoadingPage';
 import ActiveAccountPage from '~/pages/public/ActiveAccountPage/ActiveAccountPage';
 import OAuth2RedirectHandler from '~/helper/OAuth2RedirectHandler';
+import LoginAdmin from '~/pages/admin/LoginAdmin/LoginAdmin';
 
 const Auth = () => {
     // Public Page
@@ -268,6 +269,7 @@ const Auth = () => {
                 }
             />
             <Route path="/admin/*" element={<LayoutAdmin />} />
+            <Route path="/admin/login" element={<LoginAdmin />} />
         </Routes>
     );
 };

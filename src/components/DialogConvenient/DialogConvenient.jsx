@@ -10,7 +10,6 @@ import './DialogConvenient.scss';
 import { t } from 'i18next';
 
 export default function DialogConvenient(props) {
-    console.log(props?.listConvenient);
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {

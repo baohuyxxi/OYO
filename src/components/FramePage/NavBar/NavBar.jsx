@@ -21,7 +21,6 @@ export default function NavBar() {
     const [open, setOpen] = useState(false);
     const user = useSelector((state) => state.user.current);
     const location = useLocation().pathname;
-    console.log(location);
     return (
         <AppBar className="appbar">
             <Toolbar className="toolbar">

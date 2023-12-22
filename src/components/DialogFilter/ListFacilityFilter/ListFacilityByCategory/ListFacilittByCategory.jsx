@@ -17,7 +17,7 @@ const ListFacilityByCategory = ({ facilityList, facilityCateName, data, setData 
             <div className="title">{facilityCateName}</div>
             <FormGroup>
                 <div className="row">
-                    {facilityList?.map((facility, index) => (
+                    {facilityList?.slice(0,2).map((facility, index) => (
                         <div className="col l-6" key={index}>
                             <FormControlLabel
                                 control={

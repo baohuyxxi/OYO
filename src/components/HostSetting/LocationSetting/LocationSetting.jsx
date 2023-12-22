@@ -11,7 +11,7 @@ import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 import { useDispatch } from 'react-redux';
 import settingAccomSlice from '~/redux/settingAccomSlice';
 export default function LocationSetting(props) {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const [expanded, setExpanded] = useState(false);
 
     const [address, setAddress] = useState({});
@@ -21,15 +21,21 @@ export default function LocationSetting(props) {
 
     useEffect(() => {
         if (props.locationRoom.addressDetail !== undefined) {
-            const addressParts = props?.locationRoom.addressDetail.split(',').map((part) => part.trim());
-            const [detail ,wardName, districtName, provinceName] = addressParts;
-            setAddressDetail(detail);
-            setAddress({
-                wardName: wardName,
-                districtName: districtName,
-                provinceName: provinceName
-            });
-            console.log(addressParts);
+            const addressParts = props?.locationRoom?.addressDetail?.split(',').map((part) => part.trim());
+
+            // Check if addressParts is not undefined and is an array before destructuring
+            if (Array.isArray(addressParts) && addressParts.length >= 4) {
+                const [detail, wardName, districtName, provinceName] = addressParts;
+                setAddressDetail(detail);
+                setAddress({
+                    wardName: wardName,
+                    districtName: districtName,
+                    provinceName: provinceName
+                });
+            } else {
+                // Handle the case where the addressParts array is not as expected
+                console.error('Invalid address format:', addressParts);
+            }
         }
     }, [expanded]);
 

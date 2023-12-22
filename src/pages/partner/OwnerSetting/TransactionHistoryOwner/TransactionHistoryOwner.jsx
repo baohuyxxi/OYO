@@ -4,19 +4,19 @@ import './TransactionHistoryOwner.scss';
 
 const TransactionHistoryOwner = () => {
     return (
-        <div>
+        <div className="owner__setting">
             <NavbarOwner />
             <div className="welcome-card">
                 <div className="welcome-content">
-                    <h1>Hôm nay bạn thế nào</h1>
-                    <p>Chào mừng bạn! Bạn sắp trở thành một Chủ nhà tuyệt vời. Bắt đầu ngay nào.</p>
+                    <h1>Quản lý hiệu quả</h1>
+                    <p>Chào mừng bạn! Việc quản lý tốt sẽ giúp thu hút nhiều khách hàng hơn.</p>
                 </div>
                 <div className="tab-content">
-                <TableHistoryOwner />
+                    <TableHistoryOwner />
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default TransactionHistoryOwner;

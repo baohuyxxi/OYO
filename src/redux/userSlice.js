@@ -4,18 +4,25 @@ const userSlice = createSlice({
     name: 'user',
     initialState: {
         current: null,
+        role: null,
         settings: false
     },
     reducers: {
         signup(state, action) {
         },
         signin(state, action) {
+            state.role = action.payload.role
             localStorage.setItem('accessToken', action.payload.accessToken)
             localStorage.setItem('refreshToken', action.payload.refreshToken)
             // localStorage.setItem('user', JSON.stringify(action.payload.infoUserResponse))
             // state.accessToken = action.payload.accessToken
             // state.refreshToken = action.payload.refreshToken
             state.current= action.payload.infoUserResponse
+        },
+        signinAdmin(state, action) {
+            state.role = action.payload.role
+            localStorage.setItem('accessTokenAdmin', action.payload.accessToken)
+            localStorage.setItem('refreshTokenAdmin', action.payload.refreshToken)
         },
         setProfile(state, action) {
             localStorage.setItem('user', JSON.stringify(action.payload.data))

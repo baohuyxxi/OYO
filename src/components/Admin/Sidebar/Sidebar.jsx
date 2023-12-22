@@ -20,12 +20,12 @@ const Sidebar = () => {
                 <img src={logoOYO} alt="company logo" />
             </div>
 
-            <p className="sub__header">Tổng quan</p>
+            {/* <p className="sub__header">Tổng quan</p>
             {SidebarData.Overview.map((item, index) => (
                 <Link to={item.route} key={item.id} onClick={handleResetSearchText}>
                     <SidebarItem title={item.display_name} icon={item.icon} active={item.id === activeItem} />
                 </Link>
-            ))}
+            ))} */}
             <p className="sub__header">Quản lý</p>
             {SidebarData.Manage.map((item, index) => (
                 <Link to={item.route} key={item.id} onClick={handleResetSearchText}>
@@ -33,12 +33,12 @@ const Sidebar = () => {
                 </Link>
             ))}
 
-            <p className="sub__header">Cài đặt</p>
+            {/* <p className="sub__header">Cài đặt</p>
             {SidebarData.Setting.map((item, index) => (
                 <Link to={item.route} key={item.id} onClick={handleResetSearchText}>
                     <SidebarItem title={item.display_name} icon={item.icon} active={item.id === activeItem} />
                 </Link>
-            ))}
+            ))} */}
         </div>
     );
 };

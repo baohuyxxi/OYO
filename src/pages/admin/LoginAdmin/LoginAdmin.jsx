@@ -11,6 +11,12 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { useForm } from 'react-hook-form';
+import userSlice from '~/redux/userSlice';
+import authAPI from '~/services/apis/authAPI/authAPI';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useSnackbar } from 'notistack';
+import { t } from 'i18next';
 import './LoginAdmin.scss';
 
 function Copyright(props) {
@@ -32,13 +38,22 @@ export default function LoginAdmin() {
         handleSubmit,
         formState: { errors }
     } = useForm();
-
-    const onSubmit = (data) => {
-        // const data = new FormData(event.currentTarget);
-        // console.log({
-        //     email: data.get('email'),
-        //     password: data.get('password')
-        // });
+    const dispatch = useDispatch();
+    const { enqueueSnackbar } = useSnackbar();
+    const navigate = useNavigate();
+    const onSubmit = async (data) => {
+        await authAPI
+            .loginRequest(data)
+            .then((res) => {
+                if (res.statusCode === 200 && res.data.roles.find((role) => role === 'ROLE_ADMIN')) {
+                    dispatch(userSlice.actions.signin(res.data));
+                    enqueueSnackbar(t('message.signin'), { variant: 'success' });
+                    navigate('/admin');
+                }
+            })
+            .catch(() => {
+                enqueueSnackbar(t('message.signinError'), { variant: 'error' });
+            });
     };
 
     return (

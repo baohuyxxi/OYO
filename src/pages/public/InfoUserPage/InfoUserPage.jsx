@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes , useParams} from 'react-router-dom';
 import EditInfo from './EditAccount/EditAccount';
 import PasswordSecurity from './passwordSecurity/passwordSecurity';
@@ -13,10 +13,9 @@ export default function InfoUserPage() {
     const user = useSelector((state) => state.user.current);
     const params = useParams();
     const [selectedItem, setSelectedItem] = useState(params['*']);
-
-    const handleItemClick = (item) => {
-        setSelectedItem(item);
-    };
+    useEffect(() => {
+        setSelectedItem(params['*'])
+    }, [params['*']])
     return (
         <FramePage>
             <div className="content info-user">
@@ -27,9 +26,8 @@ export default function InfoUserPage() {
                             <h1 className="heading">{t('common.setting')} </h1>
                             <div className="options">
                                 <Link
-                                    to="/account"
+                                    to="/account/profile"
                                     className={`option ${selectedItem === 'profile' ? 'selected-option' : ''}`}
-                                    onClick={() => handleItemClick('profile')}
                                 >
                                     {t('navbar.profile')}
                                 </Link>
@@ -38,21 +36,20 @@ export default function InfoUserPage() {
                                     className={`option ${
                                         selectedItem === 'password&Security' ? 'selected-option' : ''
                                     }`}
-                                    onClick={() => handleItemClick('password&Security')}
                                 >
                                     {t('navbar.passwordAndSecurity')}
                                 </Link>
-                                <Link
+                                {/* <Link
                                     to="/account/payment"
                                     className={`option ${selectedItem === 'billing' ? 'selected-option' : ''}`}
                                     onClick={() => handleItemClick('billing')}
                                 >
                                     {t('navbar.billingInformation')}
-                                </Link>
+                                </Link> */}
                             </div>
                             <div className="paper card-content">
                                 <Routes>
-                                    <Route path="/" element={<EditInfo />} />
+                                    <Route path="/profile" element={<EditInfo />} />
                                     <Route path="/password&Security" element={<PasswordSecurity />} />
                                 </Routes>
                             </div>

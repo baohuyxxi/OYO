@@ -4,6 +4,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import SelectAddress from '~/components/SelectAddress/SelectAddress';
+import { decodeAddress } from '~/utils/decodeAddress';
 import './LocationSetting.scss';
 import { useSnackbar } from 'notistack';
 import { useParams } from 'react-router-dom';
@@ -15,27 +16,13 @@ export default function LocationSetting(props) {
     const [expanded, setExpanded] = useState(false);
 
     const [address, setAddress] = useState({});
-    const [addressDetail, setAddressDetail] = useState('');
     const { enqueueSnackbar } = useSnackbar();
     const params = useParams();
-
     useEffect(() => {
-        if (props.locationRoom.addressDetail !== undefined) {
-            const addressParts = props?.locationRoom?.addressDetail?.split(',').map((part) => part.trim());
-
-            // Check if addressParts is not undefined and is an array before destructuring
-            if (Array.isArray(addressParts) && addressParts.length >= 4) {
-                const [detail, wardName, districtName, provinceName] = addressParts;
-                setAddressDetail(detail);
-                setAddress({
-                    wardName: wardName,
-                    districtName: districtName,
-                    provinceName: provinceName
-                });
-            } else {
-                // Handle the case where the addressParts array is not as expected
-                console.error('Invalid address format:', addressParts);
-            }
+        if (props.locationRoom.addressDetail !== undefined ) {
+            setAddress(decodeAddress(props.locationRoom.addressDetail));
+        } else {
+            console.error('Invalid address format:', addressParts);
         }
     }, [expanded]);
 
@@ -53,7 +40,7 @@ export default function LocationSetting(props) {
                 provinceCode: address.provinceCode,
                 districtCode: address.districtCode,
                 wardCode: address.wardCode,
-                addressDetail: addressDetail
+                addressDetail: address.addressDetail
             },
             id: params.idHome
         };
@@ -89,8 +76,8 @@ export default function LocationSetting(props) {
                         <SelectAddress setData={setAddress} data={address}></SelectAddress>
                         <input
                             className="input-address"
-                            value={addressDetail}
-                            onChange={(e) => setAddressDetail(e.target.value)}
+                            value={address?.addressDetail}
+                            onChange={(e) =>  setAddress({...address, addressDetail: e.target.value})}
                         />
                         <div className="btn">
                             <p onClick={handleClose} className="btn-close">

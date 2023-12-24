@@ -58,7 +58,7 @@ function DropdownMenu() {
 
     return (
         <div className="dropdown" style={{ height: '100px' }} ref={dropdownRef}>
-            <Link to="/account" className="dropdown__link">
+            <Link to="account/profile" className="dropdown__link">
                 {t('navbar.account')}
             </Link>
             {user.current.role === 'ADMIN' && (

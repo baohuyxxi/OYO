@@ -38,7 +38,9 @@
     "all": "All",
     "noReview": "No reviews",
     "noFavorite": "No favorites",
-    "candontBooking": "Can't book"
+    "candontBooking": "Can't book",
+    "youNoHaveMail": "You don't have mail",
+    "selectAddressYouWant": "Select the address you want"
   },
   "message": {
     "signin": "Sign in successfully",

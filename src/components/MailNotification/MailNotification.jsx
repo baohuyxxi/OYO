@@ -39,7 +39,7 @@ export default function MailNotification() {
                     {!0 ?
                         <>
                             <img src={notificationNone} className="notificationNone"></img>
-                            <ul>Bạn không có thư</ul>
+                            <ul>{t('common.youNoHaveMail')}</ul>
                         </>
                         :
                         <></>

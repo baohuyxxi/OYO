@@ -38,7 +38,9 @@
     "all": "Tất cả",
     "noReview": "Chưa có đánh giá",
     "noFavorite": "Chưa có mục yêu thích",
-    "candontBooking": "Không thể đặt phòng"
+    "candontBooking": "Không thể đặt phòng",
+    "youNoHaveMail": "Bạn chưa có thư",
+    "selectAddressYouWant": "Chọn địa chỉ bạn muốn đến"
   },
   "message": {
     "signin": "Đăng nhập thành công",
@@ -283,7 +285,7 @@
     "home": "Trang chủ",
     "host": "Trở thành chủ nhà",
     "listroom": "Danh sách chỗ ở  ",
-    "historyBookingClient": "Lịch sử đặt phòng",
+    "historyBookingClient": "Lịch sử đặt chỗ",
     "signin": "Đăng nhập",
     "signup": "Đăng ký",
     "today": "Hôm nay",

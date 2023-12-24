@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import './ConfirmOwner.scss';
-
+import Slider from 'react-slick';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Logo from '~/assets/svg/logo.svg';
 
@@ -11,6 +11,13 @@ import { t } from 'i18next';
 
 const ConfirmOwner = (props) => {
     const setupRoomHost = useSelector((state) => state.settingowner.detailRoom);
+    const settings = {
+        fade: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    };
     return (
         <div className="confirm-page">
             <NavLink to="/" className="logo">
@@ -69,9 +76,21 @@ const ConfirmOwner = (props) => {
                                         style={{ width: '200px', margin: '5px' }}
                                     />
                                 ))} */}
+                            <Slider {...settings}>
+                                {props?.imagesOfHome.length !== 0 &&
+                                    props?.imagesOfHome?.map((image, index) => (
+                                        <div key={index} onClick={() => handleLinkToDetail(home?.id)}>
+                                            <img
+                                                src={URL.createObjectURL(new Blob([image], { type: 'image/jpeg' }))}
+                                                alt="room_hot"
+                                                className="image-home"
+                                            />
+                                        </div>
+                                    ))}
+                            </Slider>
                         </div>
                         <div className="container__card">
-                            <div className='card'>
+                            <div className="card">
                                 <h2>
                                     {setupRoomHost.accomCateName}: {setupRoomHost.accomName}
                                 </h2>

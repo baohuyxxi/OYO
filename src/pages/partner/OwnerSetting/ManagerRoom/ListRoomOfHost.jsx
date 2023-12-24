@@ -13,6 +13,7 @@ import SearchHomeByOwner from '~/components/SearchHomeByOwner/SearchHomeByOwner'
 // import homeApi from '~/services/homeApi';
 import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 import {  useNavigate } from 'react-router-dom';
+import Footer from '~/components/Footer/Footer';
 import './ListRoomOfHost.scss';
 
 const ListRoomOfHost = () => {
@@ -40,7 +41,7 @@ const ListRoomOfHost = () => {
             name: dataListhome[i]?.accomName || '',
             status: dataListhome[i].status,
             bedroom: dataListhome[i].numBedRoom|| '0',
-            giuong: dataListhome[i].numBedRoom || '0',
+            kitchenroom: dataListhome[i].numKitchen || '0',
             badroom: dataListhome[i].numBathRoom || '0',
             location: dataListhome[i].addressGeneral ||'',
             editrecent: format(new Date(dataListhome[i].lastModifiedDate), 'dd/MM/yyyy'),
@@ -68,6 +69,7 @@ const ListRoomOfHost = () => {
             <div className="data-table">
                 <DataTable rows={rows} />
             </div>
+            <Footer/>
         </div>
     );
 };
@@ -75,28 +77,33 @@ const ListRoomOfHost = () => {
 const columns = [
     // { field: 'id', headerName: 'ID', width: 70 },
     { field: 'id', headerName: 'STT', width: 70, hide: true },
-    { field: 'name', headerName: 'Nhà / phòng cho thuê', width: 360 },
-    { field: 'status', headerName: 'Trạng thái', width: 100 },
+    { field: 'name', headerName: 'Nhà / phòng cho thuê', width: 300 },
+    { field: 'location', headerName: 'Vị trí', width: 300 },
+   
     {
         field: 'bedroom',
         headerName: 'Phòng ngủ',
         type: 'number',
-        width: 120,
+        width: 100,
+        align: 'center',
     },
     {
-        field: 'giuong',
-        headerName: 'Giường',
+        field: 'kitchenroom',
+        headerName: 'Phòng bếp',
         type: 'number',
-        width: 125,
+        width: 100,
+        align: 'center',
     },
     {
         field: 'badroom',
         headerName: 'Phòng tắm',
         type: 'number',
-        width: 120,
+        width: 100,
+        align: 'center',    
     },
-    { field: 'location', headerName: 'Vị trí', width: 180 },
-    { field: 'editrecent', headerName: 'Sửa đổi gần nhất', width: 180 },
+    
+    { field: 'editrecent', headerName: 'Sửa đổi gần nhất', width: 180, align: 'center' },
+    { field: 'status', headerName: 'Trạng thái', width: 100 },
     {
         field: 'view',
         headerName: '',
@@ -178,7 +185,7 @@ function DataTable(props) {
     // };
 
     return (
-        <div style={{ height: 400, width: '100%', marginBottom: '50px' }}>
+        <div style={{ minHeight: 400, maxHeight: 600, width: '100%', marginBottom: '50px' }}>
             <DataGrid
                 rows={props.rows}
                 columns={columns}

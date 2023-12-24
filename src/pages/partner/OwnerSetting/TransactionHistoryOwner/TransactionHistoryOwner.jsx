@@ -1,5 +1,6 @@
 import NavbarOwner from '~/components/NavbarOwner/NavbarOwner';
 import TableHistoryOwner from './TableHistoryOwner';
+import Footer from '~/components/Footer/Footer';
 import './TransactionHistoryOwner.scss';
 
 const TransactionHistoryOwner = () => {
@@ -11,10 +12,11 @@ const TransactionHistoryOwner = () => {
                     <h1>Quản lý hiệu quả</h1>
                     <p>Chào mừng bạn! Việc quản lý tốt sẽ giúp thu hút nhiều khách hàng hơn.</p>
                 </div>
-                <div className="tab-content">
-                    <TableHistoryOwner />
-                </div>
             </div>
+            <div className="tab-content">
+                <TableHistoryOwner />
+            </div>
+            <Footer />
         </div>
     );
 };

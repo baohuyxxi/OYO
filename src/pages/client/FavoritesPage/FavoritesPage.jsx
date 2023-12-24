@@ -22,7 +22,9 @@ const FavoritesPage = () => {
     useEffect(() => {
         wishAPI.getAllFavoritesRoom().then((dataResponse) => {
             setListDataFavorites(dataResponse.data.content);
-            setLoading(false);
+            if (dataResponse.data.content.length !== 0) {
+                setLoading(false);
+            }
         });
     }, []);
 

@@ -6,6 +6,7 @@ import MenuItem from '@mui/material/MenuItem'
 import vi from '~/assets/imageMaster/vi.png'
 import en from '~/assets/imageMaster/en.png'
 import check from '~/assets/svg/check.svg'
+import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import StyledMenu from '~/assets/custom/StyleMenu'
 import Menu from '@mui/material/Menu'
@@ -53,12 +54,12 @@ export default function LanguageSelected() {
         <MenuItem onClick={() => changeLanguage('vi')} >
           <img src={vi} alt={currentLanguage} className="flag" />
           {t('language.vi')}
-          {currentLanguage === 'vi' && <img src={check} className="check-icon" />}
+          {currentLanguage === 'vi' && <CheckOutlinedIcon className="check-icon" />}
         </MenuItem>
         <MenuItem onClick={() => changeLanguage('en')} >
           <img src={en} alt={currentLanguage} className="flag" />
           {t('language.en')}
-          {currentLanguage === 'en' && <img src={check} className="check-icon" />}
+          {currentLanguage === 'en' && <CheckOutlinedIcon className="check-icon" />}
         </MenuItem>
       </Menu>
     </div>

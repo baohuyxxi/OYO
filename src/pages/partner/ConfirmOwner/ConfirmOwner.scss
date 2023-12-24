@@ -62,7 +62,7 @@
         }
 
         .container__card {
-            margin-top: 100px;
+            margin-top: 10px;
             border: 1px solid var(--text-color);
             width: 400px;
             min-width: 200px;   
@@ -116,6 +116,10 @@
             letter-spacing: 1px;
             transition: transform 50ms ease-in;
             margin-top: 10px;
+        }
+
+        .image-home{
+            height: 200px;
         }
     }
 }

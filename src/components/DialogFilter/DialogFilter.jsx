@@ -70,6 +70,7 @@ const DialogFilter = (props) => {
                 handleClose();
             });
     };
+
     return (
         <div className="dialog-filter">
             <Button variant="outlined" onClick={handleClickOpen} className="btn-show">
@@ -82,6 +83,7 @@ const DialogFilter = (props) => {
                 aria-describedby="alert-dialog-description"
                 fullWidth={true}
                 maxWidth="md"
+                
             >
                 <div className="container__filter paper">
                     <DialogTitle
@@ -92,11 +94,12 @@ const DialogFilter = (props) => {
                             width: '600px',
                             marginBottom: '20px'
                         }}
+                        
                     >
                         {t('common.filter')}
                     </DialogTitle>
                     <DialogContent sx={{ fontSize: '19px', fontWeight: 'bold' }}>
-                        Chọn tỉnh thành bạn muốn đến
+                        {t('common.selectAddressYouWant')}
                         <SelectAddress data={address} setData={setAddress} />
                         <br /> <hr />
                     </DialogContent>

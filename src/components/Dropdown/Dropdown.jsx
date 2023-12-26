@@ -2,6 +2,7 @@ import './Dropdown.scss';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { t } from 'i18next';
 import { useState, useRef, useEffect, ChangeEvent } from 'react';
+import { guests } from '~/utils/formatForm';
 
 const Dropdown = (props) => {
     const [isActive, setIsActive] = useState(false);
@@ -17,20 +18,18 @@ const Dropdown = (props) => {
             setIsActive(false);
         }
     };
-
     const handleChange = (event) => {
-        if (props.handleChangeGuests) {
-            props.handleChangeGuests({...props.guests, [event.target.name]: event.target.value})
+        if(event.target.value >= 0 && event.target.value <99){
+            if (props.handleChangeGuests) {
+                props.handleChangeGuests({...props.guests, [event.target.name]: event.target.value})
+            }
         }
-    
     }
 
     return (
         <div className="dropdown" ref={refOne}>
             <div className="dropdown-btn" onClick={(e) => setIsActive(!isActive)}>
-                {`${props.guests.numAdult} ${t('contentMain.countClient.adults')}, ${props.guests.numChild} ${t(
-                    'contentMain.countClient.children',
-                )}, ${props.guests.numBornChild} ${t('contentMain.countClient.baby')}`}
+              {guests( props.guests)}
                 <ExpandMoreIcon />
             </div>
             {isActive && (
@@ -42,7 +41,6 @@ const Dropdown = (props) => {
                             id="numAdult"
                             name="numAdult"
                             min="1"
-                            max="1000"
                             defaultValue={props.guests.numAdult}
                             onChange={handleChange}
                         ></input>
@@ -54,7 +52,6 @@ const Dropdown = (props) => {
                             id="numChild"
                             name="numChild"
                             min="0"
-                            max="1000"
                             defaultValue={props.guests.numChild}
                             onChange={handleChange}
                         ></input>
@@ -66,7 +63,7 @@ const Dropdown = (props) => {
                             id="numBornChild"
                             name="numBornChild"
                             min="0"
-                            max="1000"
+
                             defaultValue={props.guests.numBornChild}
                             onChange={handleChange}
                         ></input>

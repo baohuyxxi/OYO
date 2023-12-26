@@ -4,14 +4,14 @@ const userSlice = createSlice({
     name: 'user',
     initialState: {
         current: null,
-        role: null,
+        roles: null,
         settings: false
     },
     reducers: {
         signup(state, action) {
         },
         signin(state, action) {
-            state.role = action.payload.role
+            state.roles = action.payload.roles
             localStorage.setItem('accessToken', action.payload.accessToken)
             localStorage.setItem('refreshToken', action.payload.refreshToken)
             // localStorage.setItem('user', JSON.stringify(action.payload.infoUserResponse))
@@ -20,7 +20,7 @@ const userSlice = createSlice({
             state.current= action.payload.infoUserResponse
         },
         signinAdmin(state, action) {
-            state.role = action.payload.role
+            state.roles = action.payload.roles
             localStorage.setItem('accessTokenAdmin', action.payload.accessToken)
             localStorage.setItem('refreshTokenAdmin', action.payload.refreshToken)
         },
@@ -32,6 +32,7 @@ const userSlice = createSlice({
             localStorage.removeItem('accessToken')
             localStorage.removeItem('refreshToken')
             state.current = null
+            state.roles = null
         },
         editInfo(state, action) {
             state.current= action.payload

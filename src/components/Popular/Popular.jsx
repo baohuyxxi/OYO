@@ -4,9 +4,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import SkeletonProvince from '../Skeleton/SkeletonProvince';
 import ProvinceVN from '~/mockdata/ProvinceVN.json';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
+import { transLateProvince } from '~/services/apis/translateAPI/translateAPI';
+import { useDispatch} from 'react-redux';
+import filterAcomSlice from '~/redux/filterAccom';
 import './Popular.scss';
 
 const Popular = () => {
+    const dispatch = useDispatch();
     const [listProvince, setListProvince] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
@@ -15,8 +19,11 @@ const Popular = () => {
         setLoading(true);
         publicAccomPlaceAPI
             .getTopHomeOfProvince()
-            .then((res) => {
-                setListProvince(res.data.content);
+            .then(async (res) => {
+                const data = await Promise.all(res.data.content.flatMap((item) => {
+                    return transLateProvince(item);
+                }));
+                setListProvince(data);
                 setLoading(false);
             })
             .catch((err) => {
@@ -25,7 +32,9 @@ const Popular = () => {
     }, []);
 
     const handleLinkToProvince = (province) => {
-        navigate(`list-accom?provinceCode=${province.provinceCode}`);
+        dispatch(filterAcomSlice.actions.reset());
+        dispatch(filterAcomSlice.actions.province(province.provinceCode));
+        navigate(`list-accom`);
     };
 
     return (
@@ -45,7 +54,7 @@ const Popular = () => {
                                         <div className="package-overlay">
                                             <img src={province?.thumbnail} alt="" className="package-thumbnail" />
                                             <div className="package-info">
-                                                <h3 className="package-heading">{province?.name}</h3>
+                                                <h3 className="package-heading">{province?.provinceName}</h3>
                                                 <span className="package-desc">
                                                     {`${province?.numBooking} ${t('numberCount.countBooking')}`}
                                                 </span>

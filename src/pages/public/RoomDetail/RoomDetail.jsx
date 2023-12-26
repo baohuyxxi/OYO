@@ -27,7 +27,7 @@ import formatPrice from '~/utils/formatPrice';
 import wishAPI from '~/services/apis/clientAPI/clientWishAPI';
 import bookingSlice from '~/redux/bookingSlice';
 import { guestsModel } from '~/share/models/booking';
-
+import { transLateRoom } from '~/services/apis/translateAPI/translateAPI';
 export default function RoomDetail() {
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
@@ -43,18 +43,24 @@ export default function RoomDetail() {
     const [totalBill, setTotalBill] = useState('');
     const [disBooking, setDisBooking] = useState(true);
     const [love, setLove] = useState(null);
-
-    useEffect(() => {
-        publicAccomPlaceAPI.getRoomDetail(roomId.id).then((dataResponse) => {
-            setDataDetalHome(dataResponse.data);
-            setLoading(false);
-        });
-        wishAPI.checkWish(roomId.id).then((res) => setLove(res));
-    }, [roomId?.id]);
     const stars = [];
     for (let i = 0; i < dataDetailHome.gradeRate; i++) {
         stars.push(<img key={i} src={iconStar} alt="icon__star" className="star" />);
     }
+
+    useEffect(() => {
+        publicAccomPlaceAPI.getRoomDetail(roomId.id).then(async (dataResponse) => {
+            const data = await transLateRoom(dataResponse.data)
+            setDataDetalHome(data);
+            setLoading(false);
+        });
+        wishAPI.checkWish(roomId.id).then((res) => setLove(res));
+    }, [roomId?.id]);
+
+
+
+   
+
     useEffect(() => {
         if (dateBook[0] !== dateBook[1]) {
         }
@@ -105,7 +111,14 @@ export default function RoomDetail() {
     };
     const handleLove = () => {
         wishAPI.likeFavoriteRoom(roomId.id).then((res) => {
-            enqueueSnackbar(res.data.message, { variant: 'success' });
+            if(res.data.message === 'Add wish item success')
+            {
+                enqueueSnackbar(t('message.love'), { variant: 'success' });
+            }
+            else{
+                enqueueSnackbar(t('message.unlove'), { variant: 'success' });
+            }
+            
             setLove(!love);
         });
     };

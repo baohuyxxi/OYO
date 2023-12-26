@@ -16,7 +16,14 @@ const IconLove = (props) => {
     const handleFavorite = () => {
         wishAPI.likeFavoriteRoom(props.idHome).then((res) => {
             setLike(!like);
-            enqueueSnackbar(res.data.message, { variant: 'success' });
+            if(res.data.message === 'Add wish item success')
+            {
+                enqueueSnackbar(t('message.love'), { variant: 'success' });
+            }
+            else{
+                enqueueSnackbar(t('message.unlove'), { variant: 'success' });
+            }
+          
         });
     };
 

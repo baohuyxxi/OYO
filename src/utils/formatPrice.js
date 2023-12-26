@@ -1,5 +1,12 @@
 const formatPrice = (value) => {
-    return `${new Intl.NumberFormat('vi-VN').format(parseInt(value))} VND`
-}
+    let formattedValue;
+    if (localStorage.getItem('selectedLanguage') === 'en') {
+        formattedValue = (parseFloat(value / 24335)).toFixed(1);
+        return `${new Intl.NumberFormat('en-US').format(formattedValue)} USD`;
+    } else {
+        formattedValue = parseInt(value);
+        return `${new Intl.NumberFormat('vi-VN').format(formattedValue)} VND`;
+    }
+};
 
-export default formatPrice
+export default formatPrice;

@@ -50,16 +50,12 @@ export default function RoomDetail() {
 
     useEffect(() => {
         publicAccomPlaceAPI.getRoomDetail(roomId.id).then(async (dataResponse) => {
-            const data = await transLateRoom(dataResponse.data)
+            const data = await transLateRoom(dataResponse.data);
             setDataDetalHome(data);
             setLoading(false);
         });
         wishAPI.checkWish(roomId.id).then((res) => setLove(res));
     }, [roomId?.id]);
-
-
-
-   
 
     useEffect(() => {
         if (dateBook[0] !== dateBook[1]) {
@@ -111,14 +107,12 @@ export default function RoomDetail() {
     };
     const handleLove = () => {
         wishAPI.likeFavoriteRoom(roomId.id).then((res) => {
-            if(res.data.message === 'Add wish item success')
-            {
+            if (res.data.message === 'Add wish item success') {
                 enqueueSnackbar(t('message.love'), { variant: 'success' });
-            }
-            else{
+            } else {
                 enqueueSnackbar(t('message.unlove'), { variant: 'success' });
             }
-            
+
             setLove(!love);
         });
     };
@@ -184,7 +178,8 @@ export default function RoomDetail() {
                                     <div className="col l-4 m-5 c-12">
                                         <div className="card-book__detail paper">
                                             <div className="price-room">
-                                                {formatPrice(dataDetailHome?.pricePerNight)}/Đêm
+                                                {formatPrice(dataDetailHome?.pricePerNight)}
+                                                {t('numberCount.priceDay')}
                                             </div>
                                             <div className="date-book">
                                                 <div className="title__date-book">
@@ -215,6 +210,20 @@ export default function RoomDetail() {
                                             </div>
 
                                             <SurchargeList data={dataDetailHome?.surchargeList} />
+                                            {dataDetailHome.discount !== 0 && (
+                                                <div className="discount-campain">
+                                                    <div className="discount-campain__title">
+                                                        <h2 className="title">
+                                                            {t('title.discountCompain')}
+                                                            {` ${dataDetailHome.discount}%`}
+                                                        </h2>
+                                                        <img
+                                                            src="https://img.icons8.com/emoji/30/null/fire.png"
+                                                            alt=""
+                                                        />
+                                                    </div>
+                                                </div>
+                                            )}
 
                                             <div className="btn-booking">
                                                 <button

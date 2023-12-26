@@ -7,7 +7,7 @@ import IconLoveLike from '~/components/IconLoveLike/IconLoveLike';
 import { useNavigate } from 'react-router-dom';
 import FramePage from '~/components/FramePage/FramePage';
 import LinearProgress from '@mui/material/LinearProgress';
-
+import { transLateListTitle } from '~/services/apis/translateAPI/translateAPI';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { t } from 'i18next';
@@ -20,8 +20,12 @@ const FavoritesPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        wishAPI.getAllFavoritesRoom().then((dataResponse) => {
-            setListDataFavorites(dataResponse.data.content);
+        wishAPI.getAllFavoritesRoom().then(async (dataResponse) => {
+         
+            const data = await Promise.all (dataResponse.data.content.flatMap((item) => {
+                return transLateListTitle(item);
+            }))
+            setListDataFavorites(data);
             if (dataResponse.data.content.length !== 0) {
                 setLoading(false);
             }

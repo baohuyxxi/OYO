@@ -57,7 +57,7 @@ export default function DropdownUser() {
                 onClose={handleClose}
             >
                 <header className="header-myAccount"> {t('navbar.myAccount')}</header>
-                <NavLink to="/account" onClick={handleClose}>
+                <NavLink to="/account/profile" onClick={handleClose}>
                     <MenuItem disableRipple>
                         <PermIdentityOutlinedIcon />
                         {t('navbar.accountManagement')}

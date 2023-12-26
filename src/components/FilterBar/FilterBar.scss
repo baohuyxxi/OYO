@@ -6,8 +6,7 @@
   padding-right: 50px;
   padding-top: 15px;
   display: flex;
-
-  z-index: 97;
+  z-index: 100;
   .slick-arrow:before {
     color: var(--mainColor-contrastText);
   }
@@ -26,6 +25,7 @@
     .icon-filter {
       display: grid;
       justify-content: center;
+      z-index: 100;
       img{
         filter: var(--filter-icon-black);
       }

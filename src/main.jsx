@@ -14,7 +14,7 @@ import './assets/css/grid.scss';
 import './assets/css/frame.scss';
 import './assets/css/index.scss';
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <React.StrictMode>
+    // <React.StrictMode>
         <SearchProvider>
             <BrowserRouter>
                 <Provider store={store}>
@@ -33,5 +33,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 </Provider>
             </BrowserRouter>
         </SearchProvider>
-    </React.StrictMode>
+    // </React.StrictMode>
 );

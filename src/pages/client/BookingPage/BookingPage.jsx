@@ -19,7 +19,7 @@ import './BookingPage.scss';
 import { t } from 'i18next';
 import bookingSlice from '~/redux/bookingSlice';
 import globalSlice from '~/redux/globalSlice';
-
+import { transLateRoom } from '~/services/apis/translateAPI/translateAPI';
 const BookingPage = () => {
     const dispatch = useDispatch();
     const { enqueueSnackbar } = useSnackbar();
@@ -46,8 +46,9 @@ const BookingPage = () => {
     };
     useEffect(() => {
         setLoading(true);
-        publicAccomPlaceAPI.getRoomDetail(dataBooking.accomId).then((dataResponse) => {
-            setDataDetailHomeBooking(dataResponse.data);
+        publicAccomPlaceAPI.getRoomDetail(dataBooking.accomId).then(async (dataResponse) => {
+            const data = await transLateRoom(dataResponse.data)
+            setDataDetailHomeBooking(data);
             setLoading(false);
         });
     }, []);

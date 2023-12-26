@@ -25,7 +25,7 @@ export default function DialogAuth(props) {
     switch (position) {
         case 'SignUp':
             title = `${t('title.accountSignUp')}`;
-            amination = false;  
+            amination = false;
             dialogContent = (
                 <Register email={email} setEmail={setEmail} setPosition={setPosition} handleClose={handleClose} />
             );
@@ -42,13 +42,18 @@ export default function DialogAuth(props) {
             amination = true;
             dialogContent = <SignIn setEmail={setEmail} setPosition={setPosition} handleClose={handleClose} />;
     }
-    const TransitionComponent = (props) => <Slide direction="up" {...props} />;
+    const TransitionComponent = (props) => {
+        if (amination) return <Slide direction="up" {...props} />;
+        else {
+             return <>{props.children}</>;    
+        }
+    };
     return (
         <>
             <Dialog
                 onClose={handleClose}
                 open={props.open}
-                TransitionComponent={amination ? TransitionComponent : 'none'}
+                TransitionComponent={TransitionComponent}
                 keepMounted
             >
                 <DialogTitle className="paper form-dialog">

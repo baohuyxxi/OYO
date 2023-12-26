@@ -1,4 +1,11 @@
 .dropdown {
+    margin: 0 14px;
+    border: 2px solid;
+    padding-bottom: 10px;
+    text-align: center;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border: 2px solid var(--divider);
     // width: 400px;
     // margin-left: 15px;
     // padding-top: 20px;
@@ -19,7 +26,11 @@
     //     align-items: center;
     //     justify-content: space-between;
     // }
-
+    .dropdown-btn {
+        display: flex;
+        justify-content: space-between;
+        padding-left: 10px;
+    }
     .dropdown-content {
         position: absolute;
         padding: 10px;

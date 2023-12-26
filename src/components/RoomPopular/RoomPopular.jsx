@@ -11,6 +11,7 @@ import publicAccomPlaceAPI from '../../services/apis/publicAPI/publicAccomPlaceA
 import formatPrice from '~/utils/formatPrice';
 import iconStar from '~/assets/svg/star.svg';
 import { t } from 'i18next';
+import { transLateListTitle } from '~/services/apis/translateAPI/translateAPI';
 
 export default function RoomPopular() {
     const settings = {
@@ -39,7 +40,10 @@ export default function RoomPopular() {
     }
     useEffect(() => {
         setLoading(true);
-        publicAccomPlaceAPI.getTophome({ number: 0, size: 8 }).then((dataResponse) => {
+        publicAccomPlaceAPI.getTophome({ number: 0, size: 8 }).then(async (dataResponse) => {
+            const data = await Promise.all (dataResponse.data.content.flatMap((item) => {
+                return transLateListTitle(item);
+            }))
             setListHome(dataResponse.data);
             setLoading(false);
         });

@@ -8,7 +8,7 @@ import setupOwnerSlice from '../pages/partner/SetupOwner/setupOwnerSlice';
 import notificationSlice from './notificationSlice';
 import globalSlice from './globalSlice';
 import settingAccomSlice from './settingAccomSlice';
-
+import filterAcomSlice from './filterAccom';
 
 const persistConfig = {
     key: 'root',
@@ -22,7 +22,8 @@ const rootReducer = combineReducers({
     settingowner: setupOwnerSlice.reducer,
     notification: notificationSlice.reducer,
     global: globalSlice.reducer,
-    settingaccom: settingAccomSlice.reducer
+    settingaccom: settingAccomSlice.reducer,
+    filterAccom: filterAcomSlice.reducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

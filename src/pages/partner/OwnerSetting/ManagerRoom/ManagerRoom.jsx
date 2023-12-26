@@ -40,7 +40,6 @@ const ManagerRoom = () => {
     };
 
     const locationRoom = {
-
         addressGeneral: dataHomeDetail?.addressGeneral,
         addressDetail: dataHomeDetail?.addressDetail
     };

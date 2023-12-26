@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import { useLocation , NavLink } from 'react-router-dom';
+import { useLocation, NavLink } from 'react-router-dom';
 
 import logoOYO from '~/assets/logo.svg';
 
@@ -24,14 +24,12 @@ export default function NavBar() {
     return (
         <AppBar className="appbar">
             <Toolbar className="toolbar">
-                <div className="logo">
-                    <NavLink to="/">
-                        <img src={logoOYO} alt="company logo" className="logo-bg" />
-                    </NavLink>
-                </div>
+                <NavLink to="/" className="logo">
+                    <img src={logoOYO} alt="company logo" className="logo-bg" />
+                </NavLink>
                 <div className="appbar-right-menu" />
-                <div className={`element${location==='/' ?'__actived':''}`} >
-                    <NavLink  to="/">{t('navbar.home')}</NavLink>
+                <div className={`element${location === '/' ? '__actived' : ''}`}>
+                    <NavLink to="/">{t('navbar.home')}</NavLink>
                 </div>
                 <div className="element">
                     <ModeToggle />
@@ -43,7 +41,7 @@ export default function NavBar() {
                 {/* <div className="element">
                     <NavLink to="/host">{t('navbar.host')}</NavLink>
                 </div> */}
-                <div className={`element${location==='/list-accom' ? '__actived' :''}`} >
+                <div className={`element${location === '/list-accom' ? '__actived' : ''}`}>
                     <NavLink to="/list-accom">{t('navbar.listroom')}</NavLink>
                 </div>
 
@@ -53,7 +51,7 @@ export default function NavBar() {
                     </Button>
                 ) : (
                     <>
-                        <div className={`element${location==='/wishlists' ?'__actived':''}`}>
+                        <div className={`element${location === '/wishlists' ? '__actived' : ''}`}>
                             <NavLink to="/wishlists">{t('navbar.listLove')}</NavLink>
                         </div>
                         <MailNotification />

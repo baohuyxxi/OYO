@@ -8,7 +8,7 @@ export const decodeAddress = (data) => {
         });
     }
     let result = '';
-    if (data !== '') {
+    if (data) {
         const address = data?.split(',').map((item) => item.trim());
         if (Array.isArray(address) && address.length >= 4) {
             const [detail, wardName, districtName, provinceName] = address;

@@ -7,6 +7,7 @@ import publicProvinceAPI from '~/services/apis/publicAPI/publicProvinceAPI';
 import './SelectAddress.scss';
 
 export default function SelectAddress(props) {
+    console.log(props.data);
     const [selectedProvince, setSelectedProvince] = useState(null);
     const [selectedDistrict, setSelectedDistrict] = useState(null);
     const [selectedWard, setSelectedWard] = useState(null);

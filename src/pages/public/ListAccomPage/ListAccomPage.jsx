@@ -6,30 +6,61 @@ import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import SkeletonRoomItem from '~/components/Skeleton/SkeletonRoomItem';
 import RoomItem from '~/components/RoomItem/RoomItem';
 import loader from '~/assets/video/loader.gif';
+import { transLateListTitle } from '~/services/apis/translateAPI/translateAPI';
+import { useSelector } from 'react-redux';
 import './ListAccomPage.scss';
 const ListAccomPage = () => {
     const [listDataRoom, setListDataRoom] = useState([]);
     const [loading, setLoading] = useState(true);
-
-    const queryParams = useMemo(() => {
-        return location.search.slice(1);
-    }, [location.search]);
-
+    const [queryParams, setQueryParams] = useState(false);
+    const filterAccom = useSelector((state) => state.filterAccom);
+    useEffect(() => {
+        const fildeFiler = [
+            'provinceCode',
+            'districtCode',
+            'wardCode',
+            'priceFrom',
+            'priceTo',
+            'numBathRoom',
+            'numBedRoom',
+            'accomCateName'
+        ];
+        let query = '';
+        fildeFiler.forEach((item) => {
+            if (filterAccom[item]) {
+                query += `${item}=${filterAccom[item]}&`;
+            }
+        });
+        if(filterAccom?.facilityCode.length > 0){
+            query += `${filterAccom.facilityCode.map((item) => `facilityCode=${item}`).join('&')}`;
+        }
+        setQueryParams(query);
+    }, [filterAccom]);
+    console.log(queryParams);
     const [state, setState] = useState({
         items: Array.from({ length: 12 }),
         hasMore: true
     });
 
     useEffect(() => {
-        publicAccomPlaceAPI
-            .getAllRoomsWithFilter({ queryParams: queryParams, pageNum: 0, pageSize: state.items.length })
-            .then((res) => {
-                setListDataRoom(res.data.content);
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.error('Lỗi khi lấy dữ liệu:', error);
-            });
+        if (queryParams !== false) {
+            setLoading(true);
+            publicAccomPlaceAPI
+                .getAllRoomsWithFilter({ queryParams: queryParams, pageNum: 0, pageSize: state.items.length })
+                .then(async (res) => {
+                    const data = await Promise.all(
+                        res.data.content.flatMap((item) => {
+                            return transLateListTitle(item);
+                        })
+                    );
+                    setListDataRoom(data);
+                    setLoading(false);
+                })
+                .catch((error) => {
+                    console.error('Lỗi khi lấy dữ liệu:', error);
+                    setLoading(false);
+                }); 
+        }
     }, [queryParams, state.items.length]);
 
     const filterData = (listDataNew) => {
@@ -39,7 +70,6 @@ const ListAccomPage = () => {
     const fetchMoreData = () => {
         setTimeout(() => {
             if (listDataRoom.length < state.items.length) {
-                // Không cần lấy thêm dữ liệu
                 setState((prevState) => ({
                     ...prevState,
                     hasMore: false
@@ -47,7 +77,6 @@ const ListAccomPage = () => {
                 return;
             }
 
-            // Lấy thêm 8 phần tử tiếp theo
             const newItems = Array.from({ length: 8 });
             setState((prevState) => ({
                 items: prevState.items.concat(newItems),
@@ -60,6 +89,7 @@ const ListAccomPage = () => {
             <FilterBar
                 filterData={filterData}
                 queryParams={queryParams}
+                setQueryParams={setQueryParams}
                 pagi={state.items.length}
                 dataQueryDefauld={queryParams}
                 setLoading={setLoading}

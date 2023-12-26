@@ -8,8 +8,9 @@ import LoadingPage from '~/pages/public/LoadingPage/LoadingPage';
 import ActiveAccountPage from '~/pages/public/ActiveAccountPage/ActiveAccountPage';
 import OAuth2RedirectHandler from '~/helper/OAuth2RedirectHandler';
 import LoginAdmin from '~/pages/admin/LoginAdmin/LoginAdmin';
-
+import { useSelector } from 'react-redux';
 const Auth = () => {
+    const roles = useSelector((state) => state.user.roles);
     // Public Page
     const HomePage = React.lazy(() => import('../pages/public/HomePage/HomePage'));
     const InfoUserPage = React.lazy(() => import('../pages/public/InfoUserPage/InfoUserPage'));
@@ -268,7 +269,8 @@ const Auth = () => {
                     </Suspense>
                 }
             />
-            <Route path="/admin/*" element={<LayoutAdmin />} />
+            {roles?.find((role) => role === 'ROLE_ADMIN') && <Route path="/admin/*" element={<LayoutAdmin />} />}
+
             <Route path="/admin/login" element={<LoginAdmin />} />
         </Routes>
     );

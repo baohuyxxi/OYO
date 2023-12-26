@@ -7,15 +7,15 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
 import RangePriceFilter from './RangePriceFilter/RangePriceFilter';
-// import LocateFilter from "~/components/DialogFilter/LocateFilter/LocateFilter";
 import SelectAddress from '../SelectAddress/SelectAddress';
 import ListFacilityFilter from './ListFacilityFilter/ListFacilityFilter';
 import CountRoomFilter from './CountRoomFilter/CountRoomFilter';
-import { useSearchParams } from 'react-router-dom';
-import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import './DialogFilter.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import filterAcomSlice from '~/redux/filterAccom';
 const DialogFilter = (props) => {
-    const [searchParams] = useSearchParams();
+    const dispatch = useDispatch();
+    const filterAccom = useSelector((state) => state.filterAccom);
     const [open, setOpen] = useState(false);
     const [address, setAddress] = useState({});
     const [valuePriceRange, setValuePriceRange] = useState([1, 5000000]);
@@ -30,45 +30,22 @@ const DialogFilter = (props) => {
         setOpen(true);
     };
     useEffect(() => {
-        if (searchParams.get('provinceCode')) {
-            setAddress({
-                provinceCode: searchParams.get('provinceCode')
-            });
-        }
-    }, [searchParams]);
+        setAddress({
+            provinceCode: filterAccom.provinceCode,
+            districtCode: filterAccom.districtCode,
+            wardCode: filterAccom.wardCode
+        });
+    }, [filterAccom]);
 
-    useEffect(() => {
-        let temp = '';
-        if (address.provinceCode) {
-            temp = `provinceCode=${address.provinceCode}`;
-            if (address.districtCode) {
-                temp += `&districtCode=${address.districtCode}`;
-                if (address.wardCode) {
-                    temp += `&wardCode=${address.wardCode}`;
-                }
-            }
-        }
-        if (valuePriceRange[0] !== 1 || valuePriceRange[1] !== 5000000) {
-            temp += `&priceFrom=${valuePriceRange[0]}&priceTo=${valuePriceRange[1]}`;
-        }
-        if (facility.length > 0) {
-            temp += `&${facility.map((item) => `facilityCode=${item}`).join('&')}`;
-        }
-        if (numBathRoom > 0) {
-            temp += `&numBathRoom=${numBathRoom}`;
-        }
-        if (numBedRoom > 0) {
-            temp += `&numBedRoom=${numBedRoom}`;
-        }
-        setFilter(temp);
-    }, [address, valuePriceRange, facility, numBathRoom, numBedRoom]);
     const handleFilter = () => {
-        publicAccomPlaceAPI
-            .getAllRoomsWithFilter({ queryParams: filter, pageSize: props?.pagi })
-            .then((dataResponse) => {
-                props.filterData(dataResponse.data.content);
-                handleClose();
-            });
+        dispatch(filterAcomSlice.actions.address(address));
+        if(valuePriceRange[0] !== 1 || valuePriceRange[1] !== 5000000){
+            dispatch(filterAcomSlice.actions.valuePriceRange(valuePriceRange));
+        }
+        dispatch(filterAcomSlice.actions.facility(facility));
+        dispatch(filterAcomSlice.actions.numBathRoom(numBathRoom));
+        dispatch(filterAcomSlice.actions.numBedRoom(numBedRoom));
+        handleClose();
     };
 
     return (

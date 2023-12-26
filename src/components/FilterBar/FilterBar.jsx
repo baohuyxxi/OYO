@@ -7,7 +7,9 @@ import Button from '@mui/material/Button';
 import { t } from 'i18next';
 import './FilterBar.scss';
 import DialogFilter from '../DialogFilter/DialogFilter';
-import {useNavigate} from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import filterAcomSlice from '~/redux/filterAccom';
+import { useNavigate } from 'react-router-dom';
 
 const FilterBar = (props) => {
     const settings = {
@@ -18,7 +20,8 @@ const FilterBar = (props) => {
         slidesToScroll: 10,
         initialSlide: 0
     };
-    const nagavite = useNavigate()
+    const nagavite = useNavigate();
+    const dispatch = useDispatch();
     const [listAccomCateData, setListAccomCateData] = useState(null);
     const [indexActive, setIndexActive] = useState(-1);
     useEffect(() => {
@@ -31,35 +34,18 @@ const FilterBar = (props) => {
     const handleFilterCate = (index, current) => {
         setIndexActive(index);
         if (current === null) {
-            publicAccomPlaceAPI
-                .getAllRoomsWithFilter({ queryParams: ``, pageSize: props?.pagi })
-                .then((dataResponse) => {
-                    props.filterData(dataResponse.data.content);
-                });
+            dispatch(filterAcomSlice.actions.cateAcoom());
         } else {
-            props.setLoading(true);
-            publicAccomPlaceAPI
-                .getAllRoomsWithFilter({
-                    queryParams: `accomCateName=${current?.accomCateName}`,
-                    pageSize: props?.pagi
-                })
-                .then((dataResponse) => {
-                    props.filterData(dataResponse.data.content);
-                    props.setLoading(false);
-                });
+            dispatch(filterAcomSlice.actions.cateAcoom(current?.accomCateName));
         }
     };
     const handleReset = async (e) => {
         e.preventDefault();
-        nagavite('/list-accom')
-        setIndexActive(-1)
-        await publicAccomPlaceAPI.getAllRoomsWithFilter({ queryParams: ``, pageSize: props?.pagi }).then((dataResponse) => {
-            props.filterData(dataResponse.data.content);
-          
-        });
-      
+        nagavite('/list-accom');
+        setIndexActive(-1);
+        dispatch(filterAcomSlice.actions.reset());
     };
-   
+
     return (
         <div className="filter-bar">
             <Slider {...settings}>
@@ -80,9 +66,9 @@ const FilterBar = (props) => {
                 ))}
             </Slider>
             <DialogFilter filterData={props.filterData} pagi={props.pagi} dataQueryDefauld={props.dataQueryDefauld} />
-            <Button className='btn-all' variant='outlined' onClick={handleReset}>{t('common.reload')} </Button>
-            
-           
+            <Button className="btn-all" variant="outlined" onClick={handleReset}>
+                {t('common.reload')}{' '}
+            </Button>
         </div>
     );
 };

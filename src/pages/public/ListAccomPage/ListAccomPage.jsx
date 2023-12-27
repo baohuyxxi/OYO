@@ -38,13 +38,13 @@ const ListAccomPage = () => {
     }, [filterAccom]);
     console.log(queryParams);
     const [state, setState] = useState({
-        items: Array.from({ length: 12 }),
+        items: Array.from({ length: 8 }),
         hasMore: true
     });
+    console.log(state.items.length);
 
     useEffect(() => {
         if (queryParams !== false) {
-            setLoading(true);
             publicAccomPlaceAPI
                 .getAllRoomsWithFilter({ queryParams: queryParams, pageNum: 0, pageSize: state.items.length })
                 .then(async (res) => {
@@ -77,7 +77,7 @@ const ListAccomPage = () => {
                 return;
             }
 
-            const newItems = Array.from({ length: 8 });
+            const newItems = Array.from({ length: 4 });
             setState((prevState) => ({
                 items: prevState.items.concat(newItems),
                 hasMore: true

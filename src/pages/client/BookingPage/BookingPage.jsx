@@ -38,7 +38,7 @@ const BookingPage = () => {
                 enqueueSnackbar(t('message.bookingSuccess'), { variant: 'success' });
                 dispatch(bookingSlice.actions.clearInfoBooking());
                 dispatch(globalSlice.actions.setLoading(false));
-                navigate('/');
+                navigate(`/room-detail/${dataDetailHomeBooking.id}`);
             });
         } else {
             setErrors(checkValidate);

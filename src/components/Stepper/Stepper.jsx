@@ -112,7 +112,7 @@ export default function StepperComponent() {
                     variant: 'warning'
                 });
             } else {
-                dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(dataStep4));
+                // dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(dataStep4));
                 setActiveStep((prevActiveStep) => prevActiveStep + 1);
             }
         } else if (activeStep === 4) {
@@ -158,10 +158,9 @@ export default function StepperComponent() {
                     anchorOrigin: { horizontal: 'left', vertical: 'bottom' },
                     variant: 'success'
                 });
-                const id = dataResponse.data.data.id;
-                partnerManageAPI.addImageHomeByHost({ imageList: dataStep4, id: id });
-                // dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(dataResponse.data.thumbnail));
-                // dispatch(userSlice.actions.updateHost());
+                const id = dataResponse.data.id;
+                partnerManageAPI.addImageHomeByHost({ imageList: dataStep4, id: id })
+               
                 setLoad(false);
                 navigate('/congratulation');
             })

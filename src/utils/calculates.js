@@ -18,6 +18,6 @@ export const pricePay = (data) => {
     const checkInDate = parse(data.start, 'dd/MM/yyyy', new Date());
     const checkOutDate = parse(data.end, 'dd/MM/yyyy', new Date());
     
-    const daysDifference = differenceInDays(checkOutDate, checkInDate);
+    const daysDifference = differenceInDays(checkOutDate, checkInDate) +1;
     return daysDifference
  }

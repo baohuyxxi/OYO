@@ -90,7 +90,8 @@ export default function RoomDetail() {
                 surcharge: surcharge,
                 originPay: totalBill,
                 nameCustomer: user.firstName + ' ' + user.lastName,
-                phoneNumberCustomer: user.phone
+                phoneNumberCustomer: user.phone, 
+                discount: dataDetailHome?.discount,
             };
             dispatch(bookingSlice.actions.addInfoBooking(dataBooking));
             navigate('/booking');
@@ -177,8 +178,31 @@ export default function RoomDetail() {
 
                                     <div className="col l-4 m-5 c-12">
                                         <div className="card-book__detail paper">
+                                            {dataDetailHome.discount !== 0 && (
+                                                <div className="discount-campain">
+                                                    <div className="discount-campain__title">
+                                                        <h2 className="title">
+                                                            {t('title.discountCompain')}
+                                                            {` ${dataDetailHome.discount}%`}
+                                                        </h2>
+                                                        <img
+                                                            src="https://img.icons8.com/emoji/30/null/fire.png"
+                                                            alt=""
+                                                        />
+                                                    </div>
+                                                </div>
+                                            )}
+                                            {dataDetailHome.discount > 0 && (
+                                                <div className="price-room root">
+                                                    {formatPrice(dataDetailHome?.pricePerNight)}
+                                                    {t('numberCount.priceDay')}
+                                                </div>
+                                            )}
+
                                             <div className="price-room">
-                                                {formatPrice(dataDetailHome?.pricePerNight)}
+                                                {formatPrice(
+                                                    dataDetailHome?.pricePerNight * (1 - dataDetailHome?.discount / 100)
+                                                )}
                                                 {t('numberCount.priceDay')}
                                             </div>
                                             <div className="date-book">
@@ -204,26 +228,19 @@ export default function RoomDetail() {
                                                 <div className="title-price">
                                                     <PopoverPrice detailPrice={detailPrice} />
                                                 </div>
-                                                <div className="real-price">
-                                                    <p style={{ fontWeight: '550' }}>{formatPrice(totalBill)}</p>
+                                                <div className="real-price ">
+                                                    {dataDetailHome.discount > 0 && (
+                                                        <p className="root" style={{ fontWeight: '550' }}>
+                                                            {formatPrice(totalBill)}
+                                                        </p>
+                                                    )}
+                                                    <p style={{ fontWeight: '550' }}>
+                                                        {formatPrice(totalBill * (1 - dataDetailHome?.discount / 100))}
+                                                    </p>
                                                 </div>
                                             </div>
 
                                             <SurchargeList data={dataDetailHome?.surchargeList} />
-                                            {dataDetailHome.discount !== 0 && (
-                                                <div className="discount-campain">
-                                                    <div className="discount-campain__title">
-                                                        <h2 className="title">
-                                                            {t('title.discountCompain')}
-                                                            {` ${dataDetailHome.discount}%`}
-                                                        </h2>
-                                                        <img
-                                                            src="https://img.icons8.com/emoji/30/null/fire.png"
-                                                            alt=""
-                                                        />
-                                                    </div>
-                                                </div>
-                                            )}
 
                                             <div className="btn-booking">
                                                 <button

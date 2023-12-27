@@ -59,10 +59,9 @@ export default function SelectAddress(props) {
         setSelectedProvince(newValue);
         setSelectedWard(null);
         setSelectedDistrict(null);
-        const provinceCode = newValue ? newValue.provinceCode : null;
         props.setData((prevData) => ({
-
-            provinceCode,
+            provinceCode: newValue.provinceCode || null,
+            provinceName: newValue.provinceName || null,
             districtCode: null,
             wardCode: null
         }));
@@ -74,11 +73,10 @@ export default function SelectAddress(props) {
     const handleDistrictChange = (event, newValue) => {
         setSelectedDistrict(newValue);
         setSelectedWard(null);
-
-        const districtCode = newValue ? newValue.districtCode : null;
         props.setData((prevData) => ({
             ...prevData,
-            districtCode,
+            districtCode: newValue.districtCode || null,
+            districtName: newValue.districtName || null,
             wardCode: null
         }));
 
@@ -86,11 +84,10 @@ export default function SelectAddress(props) {
     };
     const handleWardChange = (newValue) => {
         setSelectedWard(newValue);
-
-        const wardCode = newValue ? newValue.wardCode : null;
         props.setData((prevData) => ({
             ...prevData,
-            wardCode
+            wardCode: newValue.wardCode || null,
+            wardName: newValue.wardName || null
         }));
     };
 

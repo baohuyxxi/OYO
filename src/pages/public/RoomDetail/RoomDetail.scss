@@ -172,13 +172,18 @@
             border-radius: 10px;
             position: relative;
             z-index: 90;
-
             .price-room {
-                padding: 20px;
-                padding-top: 30px;
+                padding-left: 20px;
+                padding-bottom: 5px;
+                padding-top: 5px;
                 font-size: 1.8rem;
                 font-weight: bold;
                 font-size: medium;
+            }
+            .root{
+                font-weight: 400!important;
+                text-decoration: line-through;
+                color: red; /* Màu của đường gạch ngang */
             }
 
             .date-book {

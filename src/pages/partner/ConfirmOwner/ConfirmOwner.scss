@@ -68,7 +68,8 @@
             min-width: 200px;   
             .card {
                 margin: 10px;
-                height: 500px;
+                min-height: 300px;
+                height: max-content;
                 background: white;
                 margin-bottom: 20px;
                 position: relative;

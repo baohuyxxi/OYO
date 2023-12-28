@@ -60,8 +60,8 @@ export default function SelectAddress(props) {
         setSelectedWard(null);
         setSelectedDistrict(null);
         props.setData((prevData) => ({
-            provinceCode: newValue.provinceCode || null,
-            provinceName: newValue.provinceName || null,
+            provinceCode: newValue?.provinceCode || null,
+            provinceName: newValue?.provinceName || null,
             districtCode: null,
             wardCode: null
         }));

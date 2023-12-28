@@ -22,7 +22,6 @@ const DialogFilter = (props) => {
     const [facility, setFacility] = useState([]);
     const [numBathRoom, setNumBathRoom] = useState(0);
     const [numBedRoom, setNumBedRoom] = useState(0);
-    const [filter, setFilter] = useState('');
     const handleClose = () => {
         setOpen(false);
     };
@@ -35,7 +34,11 @@ const DialogFilter = (props) => {
             districtCode: filterAccom.districtCode,
             wardCode: filterAccom.wardCode
         });
-    }, [filterAccom]);
+        setValuePriceRange([filterAccom.priceFrom, filterAccom.priceTo]);
+        setFacility(filterAccom.facilityCode);
+        setNumBedRoom(filterAccom.numBedRoom);
+        setNumBathRoom(filterAccom.numBathRoom);
+    }, [filterAccom, open]);
 
     const handleFilter = () => {
         dispatch(filterAcomSlice.actions.address(address));

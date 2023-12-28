@@ -7,13 +7,14 @@ import SkeletonRoomItem from '~/components/Skeleton/SkeletonRoomItem';
 import RoomItem from '~/components/RoomItem/RoomItem';
 import loader from '~/assets/video/loader.gif';
 import { transLateListTitle } from '~/services/apis/translateAPI/translateAPI';
-import { useSelector } from 'react-redux';
+import { useSelector , useDispatch} from 'react-redux';
+import filterAcomSlice from '~/redux/filterAccom';
 import './ListAccomPage.scss';
 const ListAccomPage = () => {
     const [listDataRoom, setListDataRoom] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [queryParams, setQueryParams] = useState(false);
     const filterAccom = useSelector((state) => state.filterAccom);
+    const dispatch = useDispatch();
     useEffect(() => {
         const fildeFiler = [
             'provinceCode',
@@ -52,14 +53,14 @@ const ListAccomPage = () => {
                         })
                     );
                     setListDataRoom(data);
-                    setLoading(false);
+                    dispatch(filterAcomSlice.actions.setLoading(false));
                 })
                 .catch((error) => {
                     console.error('Lỗi khi lấy dữ liệu:', error);
-                    setLoading(false);
+                    dispatch(filterAcomSlice.actions.setLoading(false));
                 }); 
         }
-    }, [queryParams, state.items.length]);
+    }, [queryParams, state.items.length, filterAccom.loading]);
 
     const filterData = (listDataNew) => {
         setListDataRoom(listDataNew);
@@ -91,7 +92,7 @@ const ListAccomPage = () => {
                 setQueryParams={setQueryParams}
                 pagi={state.items.length}
                 dataQueryDefauld={queryParams}
-                setLoading={setLoading}
+                setState={setState}
             />
 
             <InfiniteScroll
@@ -107,7 +108,7 @@ const ListAccomPage = () => {
                 style={{ paddingTop: '10px', zIndex: '-1', margin: '0 100px' }}
             >
                 <div className="row" style={{ margin: 0 }}>
-                    {loading ? (
+                    {filterAccom.loading ? (
                         <SkeletonRoomItem />
                     ) : (
                         listDataRoom.map((room, index) => <RoomItem key={index} infoRoom={room} />)

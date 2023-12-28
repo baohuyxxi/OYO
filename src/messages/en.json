@@ -40,7 +40,8 @@
     "noFavorite": "No favorites",
     "candontBooking": "Can't book",
     "youNoHaveMail": "You don't have mail",
-    "selectAddressYouWant": "Select the address you want"
+    "selectAddressYouWant": "Select the address you want",
+    "discountFrom": "Discount from"
   },
   "message": {
     "signin": "Sign in successfully",

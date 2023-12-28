@@ -13,7 +13,7 @@ import ModalConfirmDelete from '~/components/ModalConfirmDelete/ModalConfirmDele
 
 import FramePage from '~/components/FramePage/FramePage';
 import bookingAPI from '~/services/apis/clientAPI/clientBookingAPI';
-
+import { transLateHistoryBooking } from '~/services/apis/translateAPI/translateAPI';
 import formatPrice from '~/utils/formatPrice';
 import { useNavigate } from 'react-router-dom';
 import './HistoryBookingPage.scss';
@@ -28,8 +28,14 @@ const HistoryBookingPage = () => {
     const navigate = useNavigate();
     const [reload, setReload] = useState(false);
     useEffect(() => {
-        bookingAPI.getHistoryBooking().then((dataResponse) => {
-            setDataHistory(dataResponse?.data?.content);
+        bookingAPI.getHistoryBooking().then(async (dataResponse) => {
+            const data = await Promise.all(
+                dataResponse?.data?.content.flatMap((item) => {
+                    return transLateHistoryBooking(item);
+                })
+            );
+
+            setDataHistory(data);
             setLoading(false);
         });
     }, [reload]);
@@ -43,12 +49,12 @@ const HistoryBookingPage = () => {
         setShowFormReview(false);
     };
 
-    const handleView= (id) =>{
+    const handleView = (id) => {
         navigate(`/room-detail/${id}`);
-    }
-    const handleReload =()=>{
+    };
+    const handleReload = () => {
         setReload(!reload);
-    }
+    };
     return (
         <FramePage>
             <div className="history-booking__page content">
@@ -63,7 +69,7 @@ const HistoryBookingPage = () => {
                     data-aos-anchor-placement="top-center"
                 >
                     <div className="list-booking-history">
-                        {dataHistory.length === 0 && loading===false ? (
+                        {dataHistory.length === 0 && loading === false ? (
                             <div className="paper nodata">
                                 <p>Bạn chưa đặt chỗ</p>
                                 <img src="/src/assets/video/BookingNow.gif" className="color-filter"></img>
@@ -81,7 +87,10 @@ const HistoryBookingPage = () => {
                                     }
                                     return (
                                         <div className="item__booking paper" key={index}>
-                                            <div className="img-item__booking" onClick={e=>handleView(history?.accomId)}>
+                                            <div
+                                                className="img-item__booking"
+                                                onClick={(e) => handleView(history?.accomId)}
+                                            >
                                                 <img src={history.imageUrl} alt="img-booking" className="img-booking" />
                                             </div>
                                             <div className="info-history__booking">
@@ -100,7 +109,7 @@ const HistoryBookingPage = () => {
                                                     <p>{`${history?.checkIn} - ${history?.checkOut}`}</p>
                                                 </div>
                                                 <div className="date-history__booking">
-                                                    <p>{history?.refundPolicy|| t('common.noRefunds')} </p>
+                                                    <p>{history?.refundPolicy || t('common.noRefunds')} </p>
                                                 </div>
                                             </div>
                                             <div className="price-history__booking">
@@ -120,8 +129,7 @@ const HistoryBookingPage = () => {
                                             <div className="btn__booking">
                                                 <div style={{ justifyContent: 'left', width: '130px' }}>
                                                     <p className={history?.status}>{status}</p>
-                                                    {
-                                                        history?.status === 'CHECK_OUT' && (
+                                                    {history?.status === 'CHECK_OUT' && (
                                                         <>
                                                             {history.reviewed === true ? (
                                                                 <div style={{ display: 'flex' }}>
@@ -141,7 +149,10 @@ const HistoryBookingPage = () => {
                                                         </>
                                                     )}
                                                     {history?.status === 'WAITING' && (
-                                                        <ModalConfirmDelete idRemove={history.bookingCode} handleReload={handleReload}/>
+                                                        <ModalConfirmDelete
+                                                            idRemove={history.bookingCode}
+                                                            handleReload={handleReload}
+                                                        />
                                                     )}
                                                 </div>
                                             </div>

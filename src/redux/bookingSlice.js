@@ -19,6 +19,7 @@ const bookingSlice = createSlice({
         paymentMethod: 'PAYPAL',
         accomId: 0,
         canBooking: true,
+        discount: 0,
     },
     reducers: {
         addInfoBooking(state, action) {
@@ -32,6 +33,7 @@ const bookingSlice = createSlice({
             state.originPay = action.payload.originPay;
             state.nameCustomer = action.payload.nameCustomer
             state.phoneNumberCustomer = action.payload.phoneNumberCustomer;
+            state.discount = action.payload.discount;
 
         },
         addDay(state, action) {

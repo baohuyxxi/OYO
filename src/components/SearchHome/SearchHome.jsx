@@ -29,12 +29,13 @@ function SearchHome({ placeholder, data }) {
 
         const convertStringToEnglish = removeVietnameseTones(searchWord);
         const text = convertStringToEnglish.replace(' ', '%20');
-        publicAccomPlaceAPI.getSearchHome(text).then((dataResponse) => {
-            if (dataResponse.data?.content) {
-                setFilteredData(dataResponse.data?.content);
-            }
-        })
-
+        if (text.length > 1) {
+            publicAccomPlaceAPI.getSearchHome(text).then((dataResponse) => {
+                if (dataResponse.data?.content) {
+                    setFilteredData(dataResponse.data?.content);
+                }
+            });
+        }
         if (searchWord === '') {
             setFilteredData([]);
         }

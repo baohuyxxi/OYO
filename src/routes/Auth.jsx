@@ -132,7 +132,7 @@ const Auth = () => {
                 element={
                     <PrivateRoute
                         element={
-                            <Suspense fallback={<LoadingPage />}>
+                            <Suspense >
                                 <HistoryBookingPage />
                             </Suspense>
                         }
@@ -161,7 +161,7 @@ const Auth = () => {
                 element={
                     <PrivateRoute
                         element={
-                            <Suspense fallback={<LoadingPage />}>
+                            <Suspense >
                                 <StepperMain />
                             </Suspense>
                         }
@@ -173,7 +173,7 @@ const Auth = () => {
                 element={
                     <PrivateRoute
                         element={
-                            <Suspense fallback={<LoadingPage />}>
+                            <Suspense >
                                 <OwnerSetting />
                             </Suspense>
                         }
@@ -185,7 +185,7 @@ const Auth = () => {
                 element={
                     <PrivateRoute
                         element={
-                            <Suspense fallback={<LoadingPage />}>
+                            <Suspense >
                                 <ListRoomOfHost />
                             </Suspense>
                         }
@@ -197,7 +197,7 @@ const Auth = () => {
                 element={
                     <PrivateRoute
                         element={
-                            <Suspense fallback={<LoadingPage />}>
+                            <Suspense >
                                 <ManagerRoom />
                             </Suspense>
                         }
@@ -210,7 +210,7 @@ const Auth = () => {
                 element={
                     <PrivateRoute
                         element={
-                            <Suspense fallback={<LoadingPage />}>
+                            <Suspense >
                                 <ConvenientOwnerSetting />
                             </Suspense>
                         }

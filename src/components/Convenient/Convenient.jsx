@@ -4,7 +4,7 @@ import './Convenient.scss';
 
 const Convenient = (props) => {
     const row = props.row
-    const length = props.listConvenient.length +1
+    const length = props.listConvenient.length 
     const infoFacilityList = props.listConvenient.flatMap(item =>  item.infoFacilityList).slice(0,10);
     const element = [];
     for (let i = 0; i < row; i++) {

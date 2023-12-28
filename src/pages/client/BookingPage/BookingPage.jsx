@@ -29,7 +29,7 @@ const BookingPage = () => {
     const [dataDetailHomeBooking, setDataDetailHomeBooking] = useState();
     const [priceAfterChoosePayment, setPriceAfterChoosePayment] = useState(dataBooking?.originPay);
     const [errors, setErrors] = useState({});
-
+    const [totalBill, setTotalBill] = useState(0);
     const handleBookingRoom = () => {
         const checkValidate = validateBooking(dataBooking);
         if (Object.keys(checkValidate).length === 0) {
@@ -38,7 +38,7 @@ const BookingPage = () => {
                 enqueueSnackbar(t('message.bookingSuccess'), { variant: 'success' });
                 dispatch(bookingSlice.actions.clearInfoBooking());
                 dispatch(globalSlice.actions.setLoading(false));
-                navigate('/');
+                navigate(`/room-detail/${dataDetailHomeBooking.id}`);
             });
         } else {
             setErrors(checkValidate);
@@ -47,7 +47,7 @@ const BookingPage = () => {
     useEffect(() => {
         setLoading(true);
         publicAccomPlaceAPI.getRoomDetail(dataBooking.accomId).then(async (dataResponse) => {
-            const data = await transLateRoom(dataResponse.data)
+            const data = await transLateRoom(dataResponse.data);
             setDataDetailHomeBooking(data);
             setLoading(false);
         });
@@ -65,14 +65,20 @@ const BookingPage = () => {
     }, [dataBooking.checkIn, dataBooking.checkOut]);
     useEffect(() => {
         let result = dataBooking.originPay;
+        let total = dataBooking.originPay;
         if (dataBooking.paymentPolicy === 'PAYMENT_HALF') {
             result /= 2;
+            total *= 0.5;
         }
         if (dataBooking.paymentMethod === 'PAYPAL') {
             result *= 0.9;
+            total *= 0.9;
         } else {
             result = 0;
         }
+        result *= 1 - dataBooking.discount / 100;
+        total *= 1 - dataBooking.discount / 100;
+        setTotalBill(total);
         setPriceAfterChoosePayment(result);
         dispatch(bookingSlice.actions.addTotalTransfer(result));
     }, [dataBooking.paymentPolicy, dataBooking.paymentMethod, dataBooking.originPay]);
@@ -91,7 +97,7 @@ const BookingPage = () => {
                                 checkOut={dataBooking.checkOut}
                                 idHome={dataBooking.accomId}
                             />
-                            {dataBooking.canBooking === false && <p className='error'>{t('common.candontBooking')}</p>}
+                            {dataBooking.canBooking === false && <p className="error">{t('common.candontBooking')}</p>}
                             <hr className="line" />
 
                             <div className="count-customer">
@@ -121,7 +127,11 @@ const BookingPage = () => {
 
                             {dataBooking.paymentMethod === 'PAYPAL' ? (
                                 <div className="payment__paypal">
-                                    <Paypal pricePayment={priceAfterChoosePayment} booking={handleBookingRoom} canBooking={dataBooking.canBooking} />
+                                    <Paypal
+                                        pricePayment={priceAfterChoosePayment}
+                                        booking={handleBookingRoom}
+                                        canBooking={dataBooking.canBooking}
+                                    />
                                 </div>
                             ) : (
                                 <div className="btn__booking">
@@ -180,16 +190,38 @@ const BookingPage = () => {
                                             ))}
                                         </div>
                                         <div className="price-booking">
+                                            {dataBooking.discount !== 0 && (
+                                                <div className="price-total-booking">
+                                                    <p style={{ color: '#757575' }}>
+                                                        {t('common.discountFrom')} {dataDetailHomeBooking.accomCateName}
+                                                    </p>
+                                                    <p style={{ fontWeight: '300' }}>
+                                                        {`-` +
+                                                            formatPrice(
+                                                                (dataBooking?.originPay * dataBooking.discount) / 100
+                                                            )}
+                                                    </p>
+                                                </div>
+                                            )}
                                             <div className="price-total-booking">
                                                 <p style={{ color: '#757575' }}>
                                                     {dataBooking.paymentMethod === 'DIRECT'
                                                         ? t('title.bookingOfYou.direct')
                                                         : t('title.bookingOfYou.paypal')}
                                                 </p>
-                                                <p style={{ fontWeight: '550' }}>
+                                                <p style={{ fontWeight: '300' }}>
                                                     {dataBooking.paymentMethod === 'DIRECT'
-                                                        ? formatPrice(dataBooking?.originPay)
-                                                        : formatPrice(dataBooking?.originPay * 0.9)}
+                                                        ?  `-` + formatPrice(0)
+                                                        : `-` + formatPrice((dataBooking?.originPay * (100 -dataBooking.discount)) / 100 * 0.1)}
+                                                </p>
+                                            </div>
+
+                                            <div className="price-total-booking">
+                                                <p style={{ color: '#757575' }}>
+                                                    {t('title.bookingOfYou.totalPrice')}
+                                                </p>
+                                                <p style={{ fontWeight: '550' }}>
+                                                  {formatPrice(totalBill)} 
                                                 </p>
                                             </div>
                                         </div>

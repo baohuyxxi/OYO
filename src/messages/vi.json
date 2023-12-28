@@ -40,7 +40,8 @@
     "noFavorite": "Chưa có mục yêu thích",
     "candontBooking": "Không thể đặt phòng",
     "youNoHaveMail": "Bạn chưa có thư",
-    "selectAddressYouWant": "Chọn địa chỉ bạn muốn đến"
+    "selectAddressYouWant": "Chọn địa chỉ bạn muốn đến",
+    "discountFrom": "Giảm giá từ"
   },
   "message": {
     "signin": "Đăng nhập thành công",
@@ -143,7 +144,7 @@
       "client": "Khách",
       "day": "Ngày",
       "payOnline": "Thanh toán online (Bạn vui lòng thanh toán trước để đặt phòng)",
-      "payBefore": "Số tiền bạn cần thanh toán online",
+      "payBefore": "Số tiền bạn cần thanh toán trước là",
       "payfull": "Thanh toán toàn bộ",
       "pay50": "Thanh toán 50%",
       "fullHome": "Toàn bộ ngôi nhà",

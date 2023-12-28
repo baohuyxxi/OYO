@@ -61,3 +61,12 @@ export const transLateRoom = async (data) => {
     }));
     return result;
 };
+
+export const transLateHistoryBooking = async (data) => {
+    let result = data;
+    const fieldsToTranslate = ['generalAddress', 'nameAccom', 'refundPolicy'];
+    for (const field of fieldsToTranslate) {
+        result[field] = await translateText(result[field]);
+    }
+    return result;
+};

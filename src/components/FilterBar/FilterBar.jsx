@@ -41,7 +41,12 @@ const FilterBar = (props) => {
     };
     const handleReset = async (e) => {
         e.preventDefault();
-        nagavite('/list-accom');
+        props.setState(() => ({
+            items: Array.from({ length: 12 }),
+            hasMore: true
+        }));
+        dispatch(filterAcomSlice.actions.setLoading(true));
+        // nagavite('/list-accom');
         setIndexActive(-1);
         dispatch(filterAcomSlice.actions.reset());
     };

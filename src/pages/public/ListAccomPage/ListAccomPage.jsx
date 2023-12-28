@@ -36,12 +36,10 @@ const ListAccomPage = () => {
         }
         setQueryParams(query);
     }, [filterAccom]);
-    console.log(queryParams);
     const [state, setState] = useState({
-        items: Array.from({ length: 8 }),
+        items: Array.from({ length: 12 }),
         hasMore: true
     });
-    console.log(state.items.length);
 
     useEffect(() => {
         if (queryParams !== false) {
@@ -66,7 +64,7 @@ const ListAccomPage = () => {
     const filterData = (listDataNew) => {
         setListDataRoom(listDataNew);
     };
-
+    console.log(listDataRoom.length , state.items.length)
     const fetchMoreData = () => {
         setTimeout(() => {
             if (listDataRoom.length < state.items.length) {
@@ -77,12 +75,13 @@ const ListAccomPage = () => {
                 return;
             }
 
-            const newItems = Array.from({ length: 4 });
+            const newItems = Array.from({ length: 8 });
             setState((prevState) => ({
                 items: prevState.items.concat(newItems),
                 hasMore: true
             }));
         }, 1000);
+      
     };
     return (
         <FramePage>

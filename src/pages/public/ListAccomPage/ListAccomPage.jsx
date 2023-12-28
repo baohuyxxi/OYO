@@ -7,7 +7,7 @@ import SkeletonRoomItem from '~/components/Skeleton/SkeletonRoomItem';
 import RoomItem from '~/components/RoomItem/RoomItem';
 import loader from '~/assets/video/loader.gif';
 import { transLateListTitle } from '~/services/apis/translateAPI/translateAPI';
-import { useSelector , useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import filterAcomSlice from '~/redux/filterAccom';
 import './ListAccomPage.scss';
 const ListAccomPage = () => {
@@ -32,57 +32,63 @@ const ListAccomPage = () => {
                 query += `${item}=${filterAccom[item]}&`;
             }
         });
-        if(filterAccom?.facilityCode.length > 0){
+        if (filterAccom?.facilityCode.length > 0) {
             query += `${filterAccom.facilityCode.map((item) => `facilityCode=${item}`).join('&')}`;
         }
         setQueryParams(query);
     }, [filterAccom]);
     const [state, setState] = useState({
-        items: Array.from({ length: 12 }),
+        items: Array.from({ length: 0 }),
         hasMore: true
     });
 
     useEffect(() => {
         if (queryParams !== false) {
             publicAccomPlaceAPI
-                .getAllRoomsWithFilter({ queryParams: queryParams, pageNum: 0, pageSize: state.items.length })
+                .getAllRoomsWithFilter({ queryParams: queryParams, pageNum: state.items.length, pageSize: 8 })
                 .then(async (res) => {
                     const data = await Promise.all(
                         res.data.content.flatMap((item) => {
                             return transLateListTitle(item);
                         })
                     );
-                    setListDataRoom(data);
+                    if (state.items.length === 0) {
+                        setListDataRoom(data);
+                    } else {
+                        setListDataRoom((prevState) => prevState.concat(data));
+                    }
+                    if (data.length === 0) {
+                        dispatch(filterAcomSlice.actions.setMaxed(true));
+                        setState((prevState) => ({
+                            ...prevState,
+                            hasMore: false
+                        }));
+                    } else {
+                        dispatch(filterAcomSlice.actions.setMaxed(false));
+                    }
                     dispatch(filterAcomSlice.actions.setLoading(false));
                 })
                 .catch((error) => {
-                    console.error('Lỗi khi lấy dữ liệu:', error);
                     dispatch(filterAcomSlice.actions.setLoading(false));
-                }); 
+                });
         }
     }, [queryParams, state.items.length, filterAccom.loading]);
 
     const filterData = (listDataNew) => {
         setListDataRoom(listDataNew);
     };
-    console.log(listDataRoom.length , state.items.length)
     const fetchMoreData = () => {
-        setTimeout(() => {
-            if (listDataRoom.length < state.items.length) {
-                setState((prevState) => ({
-                    ...prevState,
-                    hasMore: false
-                }));
-                return;
-            }
-
-            const newItems = Array.from({ length: 8 });
+        if (filterAccom.maxed === false) {
             setState((prevState) => ({
-                items: prevState.items.concat(newItems),
+                items: prevState.items.concat(Array.from({ length: 1 })),
                 hasMore: true
             }));
-        }, 1000);
-      
+        } else {
+            setState((prevState) => ({
+                ...prevState,
+                hasMore: false
+            }));
+        }
     };
     return (
         <FramePage>

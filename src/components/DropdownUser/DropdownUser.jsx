@@ -11,11 +11,13 @@ import LogoutOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 import HomeWorkOutlinedIcon from '@mui/icons-material/HomeWorkOutlined';
 import AddHomeWorkOutlinedIcon from '@mui/icons-material/AddHomeWorkOutlined';
 import { useDispatch, useSelector } from 'react-redux';
+import ModalConfirm from '../ModalConfirm/ModalConfirm';
 import userSlice from '~/redux/userSlice';
 import { Avatar } from '@mui/material';
 import { t } from 'i18next';
 
 import './DropdownUser.scss';
+import { set } from 'date-fns';
 
 export default function DropdownUser() {
     const user = useSelector((state) => state.user.current);
@@ -29,9 +31,18 @@ export default function DropdownUser() {
         setAnchorEl(null);
     };
     const handleLogout = () => {
-        dispatch(userSlice.actions.logout());
+        setOpenConfirm(true);
+        // dispatch(userSlice.actions.logout());
     };
 
+    const [confirmLogout, setConfirmLogout] = React.useState(false);
+    const [openConfirm, setOpenConfirm] = React.useState(false);
+    React.useEffect(() => {
+        if (confirmLogout === true) {
+            dispatch(userSlice.actions.logout());
+            setConfirmLogout(false);
+        }
+    }, [confirmLogout]);
     return (
         <div className="Dropdown">
             <Button
@@ -83,13 +94,16 @@ export default function DropdownUser() {
                         {t('navbar.managerHost')}
                     </MenuItem>
                 </NavLink>
-               
+
                 <hr className="divider" />
                 <MenuItem onClick={handleLogout} disableRipple>
                     <LogoutOutlinedIcon />
                     {t('navbar.signout')}
                 </MenuItem>
             </Menu>
+            {openConfirm && (
+                <ModalConfirm setOpen={setOpenConfirm} setConfirm={setConfirmLogout} title={t('common.youWantLogout')} />
+            )}
         </div>
     );
 }

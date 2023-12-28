@@ -41,7 +41,8 @@
     "candontBooking": "Không thể đặt phòng",
     "youNoHaveMail": "Bạn chưa có thư",
     "selectAddressYouWant": "Chọn địa chỉ bạn muốn đến",
-    "discountFrom": "Giảm giá từ"
+    "discountFrom": "Giảm giá từ",
+    "youWantLogout": "Bạn có muốn đăng xuất không?"
   },
   "message": {
     "signin": "Đăng nhập thành công",

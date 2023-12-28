@@ -2,7 +2,7 @@ import axios from '~/services/axios';
 
 const wishAPI = {
     getAllFavoritesRoom: async () => {
-        const res = await axios.get(`/client/wish/pages?pageNumber=0&pageSize=10`);
+        const res = await axios.get(`/client/wish/pages?pageNumber=0&pageSize=20`);
         return res.data;
     },
     likeFavoriteRoom: async (data) => {

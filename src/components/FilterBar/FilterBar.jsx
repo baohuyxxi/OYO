@@ -42,7 +42,7 @@ const FilterBar = (props) => {
     const handleReset = async (e) => {
         e.preventDefault();
         props.setState(() => ({
-            items: Array.from({ length: 12 }),
+            items: Array.from({ length: 0 }),
             hasMore: true
         }));
         dispatch(filterAcomSlice.actions.setLoading(true));
@@ -70,7 +70,7 @@ const FilterBar = (props) => {
                     </div>
                 ))}
             </Slider>
-            <DialogFilter filterData={props.filterData} pagi={props.pagi} dataQueryDefauld={props.dataQueryDefauld} />
+            <DialogFilter setState={props.setState} filterData={props.filterData} pagi={props.pagi} dataQueryDefauld={props.dataQueryDefauld} />
             <Button className="btn-all" variant="outlined" onClick={handleReset}>
                 {t('common.reload')}{' '}
             </Button>

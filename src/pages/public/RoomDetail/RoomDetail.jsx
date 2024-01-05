@@ -68,7 +68,7 @@ export default function RoomDetail() {
         };
         publicAccomPlaceAPI.checkBooking(dataCheck).then((response) => {
             setSurcharge(response.data.costSurcharge);
-            setTotalBill(response?.data?.totalBill);
+            setTotalBill(response?.data?.totalCostAccom);
             if (response?.statusCode === 200) {
                 setDisBooking(false);
             } else {

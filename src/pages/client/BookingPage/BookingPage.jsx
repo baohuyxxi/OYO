@@ -68,22 +68,21 @@ const BookingPage = () => {
     useEffect(() => {
         let surcharge = parseInt( dataDetailHomeBooking?.surchargeList?.reduce((total, item) => { return total + item.cost }, 0))
         setSurcharge(surcharge);
-        let result = dataBooking.originPay +surcharge;
-        let total = dataBooking.originPay +surcharge ;
+        let result = dataBooking.originPay;
+        let total = dataBooking.originPay;
         if (dataBooking.paymentPolicy === 'PAYMENT_HALF') {
             result /= 2;
             total *= 0.5;
         }
         if (dataBooking.paymentMethod === 'PAYPAL') {
-            result *= 0.9;
-            total *= 0.9;
+            result = result* 0.9 *(1 - dataBooking.discount / 100) + surcharge;
+            total = total* 0.9 *(1 - dataBooking.discount / 100) + surcharge;
         } else {
             result = 0;
+            total = total *(1 - dataBooking.discount / 100) + surcharge;
         }
-        result *= 1 - dataBooking.discount / 100;
-        total *= 1 - dataBooking.discount / 100;
-        setTotalBill(total);
-        setPriceAfterChoosePayment(result);
+        setTotalBill(total  );
+        setPriceAfterChoosePayment(result );
         dispatch(bookingSlice.actions.addTotalTransfer(result));
     }, [dataBooking.paymentPolicy, dataBooking.paymentMethod, dataBooking.originPay, dataDetailHomeBooking?.surchargeList]);
 
@@ -202,7 +201,7 @@ const BookingPage = () => {
                                                     <p style={{ fontWeight: '300' }}>
                                                         {`-` +
                                                             formatPrice(
-                                                                ((dataBooking?.originPay +surcharge)* dataBooking.discount) / 100
+                                                                ((dataBooking?.originPay )* dataBooking.discount) / 100
                                                             )}
                                                     </p>
                                                 </div>
@@ -216,7 +215,7 @@ const BookingPage = () => {
                                                 <p style={{ fontWeight: '300' }}>
                                                     {dataBooking.paymentMethod === 'DIRECT'
                                                         ?  `-` + formatPrice(0)
-                                                        : `-` + formatPrice(((dataBooking?.originPay +surcharge)* (100 -dataBooking.discount)) / 100 * 0.1)}
+                                                        : `-` + formatPrice(((dataBooking?.originPay)* (100 -dataBooking.discount)) / 100 * 0.1)}
                                                 </p>
                                             </div>
 

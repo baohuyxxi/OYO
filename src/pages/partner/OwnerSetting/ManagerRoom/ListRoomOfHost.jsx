@@ -12,7 +12,7 @@ import NavbarOwner from '~/components/NavbarOwner/NavbarOwner';
 import SearchHomeByOwner from '~/components/SearchHomeByOwner/SearchHomeByOwner';
 // import homeApi from '~/services/homeApi';
 import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Footer from '~/components/Footer/Footer';
 import './ListRoomOfHost.scss';
 
@@ -27,26 +27,24 @@ const ListRoomOfHost = () => {
 
     const handleSearchByHomeName = (value) => {
         partnerManageAPI.getListHomeOfPartner().then((dataResponse) => {
-            
             setDataListHome(dataResponse.data.content);
         });
     };
 
     const rows = [];
     for (var i = 0; i < dataListhome.length; i++) {
-       
         rows.push({
-            id: i +1,
+            id: i + 1,
             idroom: dataListhome[i].id,
             name: dataListhome[i]?.accomName || '',
             status: dataListhome[i].status,
-            bedroom: dataListhome[i].numBedRoom|| '0',
+            bedroom: dataListhome[i].numBedRoom || '0',
             kitchenroom: dataListhome[i].numKitchen || '0',
             badroom: dataListhome[i].numBathRoom || '0',
-            location: dataListhome[i].addressGeneral ||'',
+            location: dataListhome[i].addressGeneral || '',
             editrecent: format(new Date(dataListhome[i].lastModifiedDate), 'dd/MM/yyyy'),
             view: dataListhome[i].id,
-            remove: dataListhome[i],
+            remove: dataListhome[i]
         });
     }
 
@@ -69,7 +67,7 @@ const ListRoomOfHost = () => {
             <div className="data-table">
                 <DataTable rows={rows} />
             </div>
-            <Footer/>
+            <Footer />
         </div>
     );
 };
@@ -79,29 +77,29 @@ const columns = [
     { field: 'id', headerName: 'STT', width: 70, hide: true },
     { field: 'name', headerName: 'Nhà / phòng cho thuê', width: 300 },
     { field: 'location', headerName: 'Vị trí', width: 300 },
-   
+
     {
         field: 'bedroom',
         headerName: 'Phòng ngủ',
         type: 'number',
         width: 100,
-        align: 'center',
+        align: 'center'
     },
     {
         field: 'kitchenroom',
         headerName: 'Phòng bếp',
         type: 'number',
         width: 100,
-        align: 'center',
+        align: 'center'
     },
     {
         field: 'badroom',
         headerName: 'Phòng tắm',
         type: 'number',
         width: 100,
-        align: 'center',    
+        align: 'center'
     },
-    
+
     { field: 'editrecent', headerName: 'Sửa đổi gần nhất', width: 180, align: 'center' },
     { field: 'status', headerName: 'Trạng thái', width: 100 },
     {
@@ -110,7 +108,7 @@ const columns = [
         width: 10,
         renderCell: (params) => (
             <RemoveRedEyeIcon onClick={() => handleView(params.row.view)} sx={{ cursor: 'pointer' }} />
-        ),
+        )
     },
     {
         field: 'remove',
@@ -148,7 +146,7 @@ const columns = [
                             marginBottom: '7px',
                             marginRight: '10px',
                             cursor: 'pointer',
-                            color: 'white',
+                            color: 'white'
                         }}
                         onClick={() =>
                             handleDelete(params.row.remove.id, params.row.remove.status === 'LOCK' ? 'ACTIVE' : 'LOCK')
@@ -158,8 +156,8 @@ const columns = [
                     </p>
                 </div>
             </Popup>
-        ),
-    },
+        )
+    }
 ];
 
 async function handleDelete(id, status) {
@@ -172,8 +170,7 @@ async function handleDelete(id, status) {
     // });
 }
 
-function handleView(id ) {
-    
+function handleView(id) {
     window.location.href = `/host/setting/${id}`;
 }
 
@@ -185,7 +182,7 @@ function DataTable(props) {
     // };
 
     return (
-        <div style={{ minHeight: 400, maxHeight: 600, width: '100%', marginBottom: '50px' }}>
+        <div style={{ height: 400, width: '100%', marginBottom: '30px' }}>
             <DataGrid
                 rows={props.rows}
                 columns={columns}

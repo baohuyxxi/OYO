@@ -99,13 +99,15 @@ const ConfirmOwner = (props) => {
                                     {setupRoomHost.numHouseAndStreetName}, {setupRoomHost.wardName},{' '}
                                     {setupRoomHost.districtName}, {setupRoomHost.provinceName}
                                 </h3>
-                                <h3>{setupRoomHost.numPeople}</h3>
+                                <h3>{setupRoomHost.numPeople} Khách</h3>
                                 <h3>
                                     {setupRoomHost.numBathRoom} phòng tắm, {setupRoomHost.numBedRoom} phòng ngủ,{' '}
                                     {setupRoomHost.numKitchen} phòng bếp
                                 </h3>
                                 {/* <h3>{setupRoomHost.description}</h3> */}
-                                <span>{`${setupRoomHost.pricePerNight} VND / ngày`}</span>
+                                <div className='price'>
+                                    <span>{`${setupRoomHost.pricePerNight} VND / ngày`}</span>
+                                </div>
                             </div>
                         </div>
                     </div>

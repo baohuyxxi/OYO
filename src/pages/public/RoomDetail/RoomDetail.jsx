@@ -40,7 +40,7 @@ export default function RoomDetail() {
     const [guests, setGuests] = useState(guestsModel);
     const [detailPrice, setDetailPrice] = useState([]);
     const [surcharge, setSurcharge] = useState('');
-    const [totalBill, setTotalBill] = useState('');
+    const [totalBill, setTotalBill] = useState(0);
     const [disBooking, setDisBooking] = useState(true);
     const [love, setLove] = useState(null);
     const stars = [];

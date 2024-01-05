@@ -52,7 +52,7 @@ const bookingSlice = createSlice({
         },
         updateInfoBooking(state, action) {
            state.surcharge = action.payload.costSurcharge
-           state.originPay = action.payload.totalBill;
+           state.originPay = action.payload.totalCostAccom;
            state.totalCostAccom = action.payload.totalCostAccom;
            state.canBooking = action.payload.canBooking;
         },

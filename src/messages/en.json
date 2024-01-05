@@ -41,7 +41,8 @@
     "candontBooking": "Can't book",
     "youNoHaveMail": "You don't have mail",
     "selectAddressYouWant": "Select the address you want",
-    "discountFrom": "Discount from"
+    "discountFrom": "Discount from",
+    "youWantLogout": "Do you want to log out?"
   },
   "message": {
     "signin": "Sign in successfully",

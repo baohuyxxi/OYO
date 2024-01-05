@@ -25,7 +25,7 @@ const RangePriceFilter = (props) => {
         <input
           type="number"
           className="pricerange"
-          value={values[0]}
+          value={values[0] || 0}
           onChange={(event) =>
             setValues([parseInt(event.target.value), values[1]])
           }
@@ -33,7 +33,7 @@ const RangePriceFilter = (props) => {
         <input
           type="number"
           className="pricerange"
-          value={values[1]}
+          value={values[1] || 0}
           onChange={(event) =>
             setValues([values[0], parseInt(event.target.value)])
           }

@@ -18,7 +18,7 @@ const DialogFilter = (props) => {
     const filterAccom = useSelector((state) => state.filterAccom);
     const [open, setOpen] = useState(false);
     const [address, setAddress] = useState({});
-    const [valuePriceRange, setValuePriceRange] = useState([1, 5000000]);
+    const [valuePriceRange, setValuePriceRange] = useState([]);
     const [facility, setFacility] = useState([]);
     const [numBathRoom, setNumBathRoom] = useState(0);
     const [numBedRoom, setNumBedRoom] = useState(0);
@@ -48,6 +48,10 @@ const DialogFilter = (props) => {
         dispatch(filterAcomSlice.actions.facility(facility));
         dispatch(filterAcomSlice.actions.numBathRoom(numBathRoom));
         dispatch(filterAcomSlice.actions.numBedRoom(numBedRoom));
+        props.setState(() => ({
+            items: Array.from({ length: 0 }),
+            hasMore: true
+        }));
         handleClose();
     };
 

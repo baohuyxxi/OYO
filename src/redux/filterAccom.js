@@ -13,6 +13,7 @@ const filterAcomSlice = createSlice({
         numBedRoom: null,
         numBathRoom: null,
         loading: true,
+        maxed: false
     },
     reducers: {
         reset(state, action) {
@@ -33,13 +34,11 @@ const filterAcomSlice = createSlice({
             state.accomCateName = action.payload;
         },
         address(state, action) {
-            console.log(action.payload);
             state.provinceCode = action.payload.provinceCode;
             state.districtCode = action.payload.districtCode;
             state.wardCode = action.payload.wardCode;
         },
         valuePriceRange(state, action) {
-            console.log(action.payload);
             state.priceFrom = action.payload[0]
             state.priceTo =action.payload[1]
         },
@@ -54,6 +53,9 @@ const filterAcomSlice = createSlice({
         },
         setLoading(state, action) {
             state.loading = action.payload;
+        },
+        setMaxed(state, action) {
+            state.maxed = action.payload;
         }
     }
 });

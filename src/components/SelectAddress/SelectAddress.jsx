@@ -7,7 +7,6 @@ import publicProvinceAPI from '~/services/apis/publicAPI/publicProvinceAPI';
 import './SelectAddress.scss';
 
 export default function SelectAddress(props) {
-    console.log(props.data);
     const [selectedProvince, setSelectedProvince] = useState(null);
     const [selectedDistrict, setSelectedDistrict] = useState(null);
     const [selectedWard, setSelectedWard] = useState(null);
@@ -33,15 +32,15 @@ export default function SelectAddress(props) {
     }, [provinces]);
 
     useEffect(() => {
-        const temp = provinces.find((option) => option.provinceCode === props.data.provinceCode || option.provinceName === props.data.provinceName) || null;
+        const temp = provinces.find((option) => option.provinceCode === props?.data.provinceCode || option.provinceName === props?.data.provinceName) || null;
         if (temp !== null) {
             setSelectedProvince(temp);
             setDistricts(temp.districtSet);
         }
-    }, [ provinces.length, props.data.provinceCode, props.data.provinceName]);
+    }, [ provinces.length, props?.data.provinceCode, props?.data.provinceName]);
 
     useEffect(() => {
-        const temp = districts.find((option) => option.districtCode === props.data.districtCode || option.districtName === props.data.districtName) || null;
+        const temp = districts.find((option) => option.districtCode === props?.data.districtCode || option.districtName === props?.data.districtName) || null;
         if (temp !== null) {
             setSelectedDistrict(temp);
             setWards(temp.wardSet);
@@ -49,7 +48,7 @@ export default function SelectAddress(props) {
     }, [districts.length]);
 
     useEffect(() => {
-        const temp = wards.find((option) => option.wardCode === props.data.wardCode || option.wardName === props.data.wardName) || null;
+        const temp = wards.find((option) => option.wardCode === props?.data.wardCode || option.wardName === props?.data.wardName) || null;
         if (temp !== null) {
             setSelectedWard(temp);
         }
@@ -59,7 +58,7 @@ export default function SelectAddress(props) {
         setSelectedProvince(newValue);
         setSelectedWard(null);
         setSelectedDistrict(null);
-        props.setData((prevData) => ({
+        props?.setData((prevData) => ({
             provinceCode: newValue?.provinceCode || null,
             provinceName: newValue?.provinceName || null,
             districtCode: null,
@@ -73,7 +72,7 @@ export default function SelectAddress(props) {
     const handleDistrictChange = (event, newValue) => {
         setSelectedDistrict(newValue);
         setSelectedWard(null);
-        props.setData((prevData) => ({
+        props?.setData((prevData) => ({
             ...prevData,
             districtCode: newValue.districtCode || null,
             districtName: newValue.districtName || null,
@@ -84,7 +83,7 @@ export default function SelectAddress(props) {
     };
     const handleWardChange = (newValue) => {
         setSelectedWard(newValue);
-        props.setData((prevData) => ({
+        props?.setData((prevData) => ({
             ...prevData,
             wardCode: newValue.wardCode || null,
             wardName: newValue.wardName || null
@@ -109,7 +108,7 @@ export default function SelectAddress(props) {
                             InputLabelProps={{
                                 shrink: false,
                                 style: {
-                                    display: params.inputProps.value ? 'none' : 'block'
+                                    display: params.inputprops?.value ? 'none' : 'block'
                                 }
                             }}
                         />
@@ -131,7 +130,7 @@ export default function SelectAddress(props) {
                             InputLabelProps={{
                                 shrink: false,
                                 style: {
-                                    display: params.inputProps.value ? 'none' : 'block'
+                                    display: params.inputprops?.value ? 'none' : 'block'
                                 }
                             }}
                         />
@@ -152,7 +151,7 @@ export default function SelectAddress(props) {
                             InputLabelProps={{
                                 shrink: false,
                                 style: {
-                                    display: params.inputProps.value ? 'none' : 'block'
+                                    display: params.inputprops?.value ? 'none' : 'block'
                                 }
                             }}
                         />

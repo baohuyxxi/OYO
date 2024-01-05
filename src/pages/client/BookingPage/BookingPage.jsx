@@ -30,6 +30,7 @@ const BookingPage = () => {
     const [priceAfterChoosePayment, setPriceAfterChoosePayment] = useState(dataBooking?.originPay);
     const [errors, setErrors] = useState({});
     const [totalBill, setTotalBill] = useState(0);
+    const [surcharge, setSurcharge] = useState(0);
     const handleBookingRoom = () => {
         const checkValidate = validateBooking(dataBooking);
         if (Object.keys(checkValidate).length === 0) {
@@ -63,9 +64,12 @@ const BookingPage = () => {
             dispatch(bookingSlice.actions.updateInfoBooking(response.data));
         });
     }, [dataBooking.checkIn, dataBooking.checkOut]);
+    console.log(dataBooking);
     useEffect(() => {
-        let result = dataBooking.originPay;
-        let total = dataBooking.originPay;
+        let surcharge = parseInt( dataDetailHomeBooking?.surchargeList?.reduce((total, item) => { return total + item.cost }, 0))
+        setSurcharge(surcharge);
+        let result = dataBooking.originPay +surcharge;
+        let total = dataBooking.originPay +surcharge ;
         if (dataBooking.paymentPolicy === 'PAYMENT_HALF') {
             result /= 2;
             total *= 0.5;
@@ -81,7 +85,7 @@ const BookingPage = () => {
         setTotalBill(total);
         setPriceAfterChoosePayment(result);
         dispatch(bookingSlice.actions.addTotalTransfer(result));
-    }, [dataBooking.paymentPolicy, dataBooking.paymentMethod, dataBooking.originPay]);
+    }, [dataBooking.paymentPolicy, dataBooking.paymentMethod, dataBooking.originPay, dataDetailHomeBooking?.surchargeList]);
 
     return (
         <FramePage>
@@ -198,7 +202,7 @@ const BookingPage = () => {
                                                     <p style={{ fontWeight: '300' }}>
                                                         {`-` +
                                                             formatPrice(
-                                                                (dataBooking?.originPay * dataBooking.discount) / 100
+                                                                ((dataBooking?.originPay +surcharge)* dataBooking.discount) / 100
                                                             )}
                                                     </p>
                                                 </div>
@@ -212,7 +216,7 @@ const BookingPage = () => {
                                                 <p style={{ fontWeight: '300' }}>
                                                     {dataBooking.paymentMethod === 'DIRECT'
                                                         ?  `-` + formatPrice(0)
-                                                        : `-` + formatPrice((dataBooking?.originPay * (100 -dataBooking.discount)) / 100 * 0.1)}
+                                                        : `-` + formatPrice(((dataBooking?.originPay +surcharge)* (100 -dataBooking.discount)) / 100 * 0.1)}
                                                 </p>
                                             </div>
 

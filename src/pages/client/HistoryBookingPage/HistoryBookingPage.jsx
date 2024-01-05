@@ -116,7 +116,7 @@ const HistoryBookingPage = () => {
                                                 <div className="price-day__booking">
                                                     <p>{t('label.priceNight')}</p>
                                                     <p style={{ paddingLeft: '5px', fontWeight: '600' }}>
-                                                        {formatPrice(history?.originPay)}
+                                                        {formatPrice(history?.pricePerNight)}
                                                     </p>
                                                 </div>
                                                 <div className="price-total__booking">

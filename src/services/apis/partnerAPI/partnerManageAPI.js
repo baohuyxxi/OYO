@@ -7,13 +7,10 @@ const partnerManageAPI = {
         return res.data;
     },
     addImageHomeByHost: async (data) => {
-        console.log(data) 
         let formData = new FormData();
-        console.log(data)
         data.imageList.forEach((image) => {
             formData.append('files', image);
         });
-        console.log(formData)
         const res = await axios.post(`/partner/accoms/${data.id}/images/create`, formData);
         return res.data;
     },

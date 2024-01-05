@@ -32,6 +32,7 @@ const BookingPage = () => {
     const [totalBill, setTotalBill] = useState(0);
     const [surcharge, setSurcharge] = useState(0);
     const handleBookingRoom = () => {
+        setErrors({});
         const checkValidate = validateBooking(dataBooking);
         if (Object.keys(checkValidate).length === 0) {
             dispatch(globalSlice.actions.setLoading(true));
@@ -45,6 +46,11 @@ const BookingPage = () => {
             setErrors(checkValidate);
         }
     };
+    useEffect(() => {
+        const checkValidate = validateBooking(dataBooking);
+        console.log(checkValidate);
+        setErrors(checkValidate);
+    },[dataBooking.phoneNumberCustomer]);
     useEffect(() => {
         setLoading(true);
         publicAccomPlaceAPI.getRoomDetail(dataBooking.accomId).then(async (dataResponse) => {
@@ -75,13 +81,13 @@ const BookingPage = () => {
             total *= 0.5;
         }
         if (dataBooking.paymentMethod === 'PAYPAL') {
-            result = result* 0.9 *(1 - dataBooking.discount / 100) + surcharge;
-            total = total* 0.9 *(1 - dataBooking.discount / 100) + surcharge;
+            result =( result *(1 - dataBooking.discount / 100) + surcharge ) * 0.9;
+            total =  ( total *(1 - dataBooking.discount / 100) + surcharge ) * 0.9
         } else {
             result = 0;
             total = total *(1 - dataBooking.discount / 100) + surcharge;
         }
-        setTotalBill(total  );
+        setTotalBill(total);
         setPriceAfterChoosePayment(result );
         dispatch(bookingSlice.actions.addTotalTransfer(result));
     }, [dataBooking.paymentPolicy, dataBooking.paymentMethod, dataBooking.originPay, dataDetailHomeBooking?.surchargeList]);
@@ -134,6 +140,7 @@ const BookingPage = () => {
                                         pricePayment={priceAfterChoosePayment}
                                         booking={handleBookingRoom}
                                         canBooking={dataBooking.canBooking}
+                                        errors={errors}
                                     />
                                 </div>
                             ) : (
@@ -215,7 +222,7 @@ const BookingPage = () => {
                                                 <p style={{ fontWeight: '300' }}>
                                                     {dataBooking.paymentMethod === 'DIRECT'
                                                         ?  `-` + formatPrice(0)
-                                                        : `-` + formatPrice(((dataBooking?.originPay)* (100 -dataBooking.discount)) / 100 * 0.1)}
+                                                        : `-` + formatPrice(((dataBooking?.originPay)* (1 -dataBooking.discount/100) + surcharge) /10)}
                                                 </p>
                                             </div>
 

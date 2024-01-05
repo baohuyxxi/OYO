@@ -32,6 +32,7 @@ const BookingPage = () => {
     const [totalBill, setTotalBill] = useState(0);
     const [surcharge, setSurcharge] = useState(0);
     const handleBookingRoom = () => {
+        setErrors({});
         const checkValidate = validateBooking(dataBooking);
         if (Object.keys(checkValidate).length === 0) {
             dispatch(globalSlice.actions.setLoading(true));
@@ -45,6 +46,11 @@ const BookingPage = () => {
             setErrors(checkValidate);
         }
     };
+    useEffect(() => {
+        const checkValidate = validateBooking(dataBooking);
+        console.log(checkValidate);
+        setErrors(checkValidate);
+    },[dataBooking.phoneNumberCustomer]);
     useEffect(() => {
         setLoading(true);
         publicAccomPlaceAPI.getRoomDetail(dataBooking.accomId).then(async (dataResponse) => {
@@ -134,6 +140,7 @@ const BookingPage = () => {
                                         pricePayment={priceAfterChoosePayment}
                                         booking={handleBookingRoom}
                                         canBooking={dataBooking.canBooking}
+                                        errors={errors}
                                     />
                                 </div>
                             ) : (

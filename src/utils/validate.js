@@ -120,7 +120,6 @@ export const validateInfo = (data) => {
 };
 
 export const validateBooking = (data) => {
-  
     const errors = {};
 
     if (data.phoneNumberCustomer && data.phoneNumberCustomer.trim()) {

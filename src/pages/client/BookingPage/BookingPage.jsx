@@ -75,15 +75,14 @@ const BookingPage = () => {
             total *= 0.5;
         }
         if (dataBooking.paymentMethod === 'PAYPAL') {
-            result *= 0.9;
-            total *= 0.9;
+            result = result* 0.9 *(1 - dataBooking.discount / 100) + surcharge;
+            total = total* 0.9 *(1 - dataBooking.discount / 100) + surcharge;
         } else {
             result = 0;
+            total = total *(1 - dataBooking.discount / 100) + surcharge;
         }
-        result *= 1 - dataBooking.discount / 100;
-        total *= 1 - dataBooking.discount / 100;
-        setTotalBill(total+surcharge);
-        setPriceAfterChoosePayment(result +surcharge);
+        setTotalBill(total  );
+        setPriceAfterChoosePayment(result );
         dispatch(bookingSlice.actions.addTotalTransfer(result));
     }, [dataBooking.paymentPolicy, dataBooking.paymentMethod, dataBooking.originPay, dataDetailHomeBooking?.surchargeList]);
 

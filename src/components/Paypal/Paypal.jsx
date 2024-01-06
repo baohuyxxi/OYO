@@ -5,18 +5,15 @@ const PAYPAL_CLIENT_ID = import.meta.env.VITE_PAYPAL_CLIENT_ID;
 function Paypal(props) {
     const [paid, setPaid] = useState(props?.pricePayment);
     const [canBooking, setCanBooking] = useState(false);
+    console.log(props?.canBooking)
     useEffect(() => {
-        if (props?.canBooking === false) {
-            setCanBooking(true);
-        }
-        console.log(Object.keys(props.errors).length);
-        if (Object.keys(props.errors).length !== 0) {
+        if (Object.keys(props.errors).length !== 0 || props?.canBooking === false) {
             setCanBooking(true);
         }
         else{
             setCanBooking(false);
         }
-    }, [props]);
+    }, [props?.canBooking,props.errors]);
     useEffect(() => {
         setPaid(props?.pricePayment);
     }, [props?.pricePayment]);

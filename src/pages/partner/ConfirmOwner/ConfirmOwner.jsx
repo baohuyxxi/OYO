@@ -79,7 +79,7 @@ const ConfirmOwner = (props) => {
                             <Slider {...settings}>
                                 {props?.imagesOfHome.length !== 0 &&
                                     props?.imagesOfHome?.map((image, index) => (
-                                        <div key={index} onClick={() => handleLinkToDetail(home?.id)}>
+                                        <div key={index} >
                                             <img
                                                 src={URL.createObjectURL(new Blob([image], { type: 'image/jpeg' }))}
                                                 alt="room_hot"
@@ -91,9 +91,9 @@ const ConfirmOwner = (props) => {
                         </div>
                         <div className="container__card">
                             <div className="card">
-                                <h2>
+                                <h3>
                                     {setupRoomHost.accomCateName}: {setupRoomHost.accomName}
-                                </h2>
+                                </h3>
                                 <h3>Diện tích: {setupRoomHost.acreage}</h3>
                                 <h3>
                                     {setupRoomHost.numHouseAndStreetName}, {setupRoomHost.wardName},{' '}
@@ -106,7 +106,8 @@ const ConfirmOwner = (props) => {
                                 </h3>
                                 {/* <h3>{setupRoomHost.description}</h3> */}
                                 <div className='price'>
-                                    <span>{`${setupRoomHost.pricePerNight} VND / ngày`}</span>
+                                    <h3></h3>
+                                    <h3>{`${setupRoomHost.pricePerNight} VND / ngày`}</h3>
                                 </div>
                             </div>
                         </div>

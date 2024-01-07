@@ -108,7 +108,7 @@ export default function SelectAddress(props) {
                             InputLabelProps={{
                                 shrink: false,
                                 style: {
-                                    display: params.inputprops?.value ? 'none' : 'block'
+                                    display: params.inputProps?.value ? 'none' : 'block'
                                 }
                             }}
                         />
@@ -130,7 +130,7 @@ export default function SelectAddress(props) {
                             InputLabelProps={{
                                 shrink: false,
                                 style: {
-                                    display: params.inputprops?.value ? 'none' : 'block'
+                                    display: params.inputProps?.value ? 'none' : 'block'
                                 }
                             }}
                         />
@@ -151,7 +151,7 @@ export default function SelectAddress(props) {
                             InputLabelProps={{
                                 shrink: false,
                                 style: {
-                                    display: params.inputprops?.value ? 'none' : 'block'
+                                    display: params.inputProps?.value ? 'none' : 'block'
                                 }
                             }}
                         />

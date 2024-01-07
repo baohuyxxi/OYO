@@ -226,7 +226,7 @@ export default function RoomDetail() {
 
                                             <div className="price-total">
                                                 <div className="title-price">
-                                                    <PopoverPrice detailPrice={detailPrice} />
+                                                    {/* <PopoverPrice detailPrice={detailPrice} /> */}
                                                 </div>
                                                 <div className="real-price ">
                                                     {dataDetailHome.discount > 0 && (

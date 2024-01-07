@@ -9,7 +9,6 @@ const StepperFive = (props) => {
     const [descRoom, setDescRoom] = useState('')
     const [priceRoom, setPriceRoom] = useState('')
     const [acreage, setAreage] = useState('')
-
     const handleChangeNameRoom = (event) => {
         setNameRoom(event.currentTarget?.value);
         if (props.handleSetDataStep5) {
@@ -35,6 +34,9 @@ const StepperFive = (props) => {
     };
 
     const handleChangePriceRoom = (event) => {
+        if (event.currentTarget?.value < 0) {
+            return;
+        }
         setPriceRoom(event.currentTarget?.value);
         if (props.handleSetDataStep5) {
             props.handleSetDataStep5({
@@ -47,6 +49,9 @@ const StepperFive = (props) => {
     };
 
     const handleChangeAcreage = (event) =>{
+        if (event.currentTarget?.value < 0) {
+            return;
+        }
         setAreage(event.currentTarget?.value);
         if (props.handleSetDataStep5) {
             props.handleSetDataStep5({
@@ -91,7 +96,7 @@ const StepperFive = (props) => {
                         <p className="title-desc-step5">{t('label.acreageHome')}</p>
                         <input
                             type="number"
-                            placeholder={t('placeholder.priceVND')}
+                            placeholder={t('placeholder.acreageM2')}
                             className="input-step5"
                             onChange={handleChangeAcreage}
                         />

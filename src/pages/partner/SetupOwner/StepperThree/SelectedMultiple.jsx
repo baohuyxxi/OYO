@@ -38,7 +38,7 @@ export default function SelectedMultiple(props) {
     const amenityArrays = useMemo(() => props.dataList.map(() => []), [props.dataList]);
 
     return (
-        <div className="selected-multiple-step3" style={{ width: '100%', padding: '0 40px', marginTop: '100px' }}>
+        <div className="selected-multiple-step3" style={{ width: '100%', padding: '0 40px', marginTop: '100px', height:'575px', overflowX:'hidden' }}>
             {props.dataList?.map((listCate, index) => {
                 listCate.infoFacilityList.map((convi, conviIndex) => {
                     const option = { label: convi.facilityName, value: conviIndex };

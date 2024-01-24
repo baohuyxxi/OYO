@@ -5,6 +5,9 @@ import format from 'date-fns/format';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+
+import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
+
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,10 +18,12 @@ import ListImage from '~/components/ListImage/ListImage';
 import Convenient from '~/components/Convenient/Convenient';
 import DialogConvenient from '~/components/DialogConvenient/DialogConvenient';
 import SurchargeList from './Surcharge';
+import DrawerHome from '~/components/DrawerHome/DrawerHome';
 import DateGo from '~/components/DateGo/DateGo';
 import Dropdown from '~/components/Dropdown/Dropdown';
 import PopoverPrice from '~/components/PopoverPrice/PopoverPrice';
 import CommentReview from '~/components/CommentReview/CommentReview';
+import BreadcrumbsHome from './BreadcrumbsHome';
 import FramePage from '~/components/FramePage/FramePage';
 import DateIsBooking from '~/components/DateIsBooking/DateIsBooking';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
@@ -43,6 +48,7 @@ export default function RoomDetail() {
     const [totalBill, setTotalBill] = useState(0);
     const [disBooking, setDisBooking] = useState(true);
     const [love, setLove] = useState(null);
+    const [openDrawer, setOpenDrawer] = useState(false);
     const stars = [];
     for (let i = 0; i < dataDetailHome.gradeRate; i++) {
         stars.push(<img key={i} src={iconStar} alt="icon__star" className="star" />);
@@ -90,8 +96,8 @@ export default function RoomDetail() {
                 surcharge: surcharge,
                 originPay: totalBill,
                 nameCustomer: user.firstName + ' ' + user.lastName,
-                phoneNumberCustomer: user.phone, 
-                discount: dataDetailHome?.discount,
+                phoneNumberCustomer: user.phone,
+                discount: dataDetailHome?.discount
             };
             dispatch(bookingSlice.actions.addInfoBooking(dataBooking));
             navigate('/booking');
@@ -124,28 +130,44 @@ export default function RoomDetail() {
             ) : (
                 <>
                     <div className="content detail-room">
+                        <BreadcrumbsHome data={dataDetailHome.addressDetail} />
                         <div className="info-room">
                             <div className="header-room">
                                 <h1>{dataDetailHome.accomName}</h1>
+
                                 <div className="heading">
                                     <div className="heading__left">
-                                        <div className="obility__room">
-                                            <p>{dataDetailHome.accomCateId}</p>
+                                        <div className="star-rating__home">
+                                            {/* {dataDetailHome.accomCateId} */}
                                             {stars}
                                         </div>
                                         <div className="locate__room">
-                                            <FmdGoodIcon className="icon_locate" />
-                                            <p>{dataDetailHome.addressGeneral}</p>
+                                            <FmdGoodOutlinedIcon className="icon_locate" />
+                                            <p>{dataDetailHome.addressDetail}</p>
                                         </div>
                                     </div>
                                     <div className="heading__right">
                                         <p className="link__rate">
                                             {`(${dataDetailHome?.numView} ${t('numberCount.viewInDetal')})`}
                                         </p>
+                                        <div className="card-like" onClick={handleLove}>
+                                            {love !== null &&
+                                                (love ? (
+                                                    <>
+                                                        <FavoriteIcon className="icon_love" />
+                                                        <p>{t('common.liked')}</p>
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <FavoriteBorderOutlinedIcon className="icon_love" />
+                                                        <p>{t('common.like')}</p>
+                                                    </>
+                                                ))}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <ListImage listImage={dataDetailHome.imageAccomsUrls} />
+                            <ListImage listImage={dataDetailHome.imageAccomsUrls} setOpen={setOpenDrawer}/>
                             <div className="about-room">
                                 <span style={{ fontWeight: '600', fontSize: 'large' }}>
                                     {t('contentMain.all')} {dataDetailHome?.accomCateName}:{' '}
@@ -158,7 +180,7 @@ export default function RoomDetail() {
                                 </span>
                                 <div className="row">
                                     <div className="col l-8 m-7 c-12">
-                                        <div className="paper title-room">
+                                        <div className=" title-room">
                                             <div className="desc-room">
                                                 <h2>{t('contentMain.descHome')}</h2>
                                                 <p>{dataDetailHome.description}</p>
@@ -251,29 +273,17 @@ export default function RoomDetail() {
                                                     {t('common.booking')}
                                                 </button>
                                             </div>
-                                            <div className="card-like" onClick={handleLove}>
-                                                {love !== null &&
-                                                    (love ? (
-                                                        <>
-                                                            <FavoriteIcon className="icon_love" />
-                                                            <p>{t('common.unlove')}</p>
-                                                        </>
-                                                    ) : (
-                                                        <>
-                                                            <FavoriteBorderOutlinedIcon className="icon_love" />
-                                                            <p>{t('common.love')}</p>
-                                                        </>
-                                                    ))}
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <CommentReview id={roomId.id} />
                         </div>
+                        <DrawerHome open={openDrawer} setOpen={setOpenDrawer} data={dataDetailHome} stars={stars}/>
                     </div>
                 </>
             )}
+          
         </FramePage>
     );
 }

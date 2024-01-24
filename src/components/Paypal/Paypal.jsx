@@ -5,7 +5,6 @@ const PAYPAL_CLIENT_ID = import.meta.env.VITE_PAYPAL_CLIENT_ID;
 function Paypal(props) {
     const [paid, setPaid] = useState(props?.pricePayment);
     const [canBooking, setCanBooking] = useState(false);
-    console.log(props?.canBooking)
     useEffect(() => {
         if (Object.keys(props.errors).length !== 0 || props?.canBooking === false) {
             setCanBooking(true);

@@ -42,7 +42,9 @@
     "youNoHaveMail": "You don't have mail",
     "selectAddressYouWant": "Select the address you want",
     "discountFrom": "Discount from",
-    "youWantLogout": "Do you want to log out?"
+    "youWantLogout": "Do you want to log out?",
+    "like": "Like",
+    "likeed": "Liked"
   },
   "message": {
     "signin": "Sign in successfully",

@@ -42,7 +42,9 @@
     "youNoHaveMail": "Bạn chưa có thư",
     "selectAddressYouWant": "Chọn địa chỉ bạn muốn đến",
     "discountFrom": "Giảm giá từ",
-    "youWantLogout": "Bạn có muốn đăng xuất không?"
+    "youWantLogout": "Bạn có muốn đăng xuất không?",
+    "like": "Thích",
+    "liked": "Đã thích"
   },
   "message": {
     "signin": "Đăng nhập thành công",

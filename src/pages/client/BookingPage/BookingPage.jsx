@@ -48,7 +48,6 @@ const BookingPage = () => {
     };
     useEffect(() => {
         const checkValidate = validateBooking(dataBooking);
-        console.log(checkValidate);
         setErrors(checkValidate);
     },[dataBooking.phoneNumberCustomer]);
     useEffect(() => {
@@ -70,7 +69,6 @@ const BookingPage = () => {
             dispatch(bookingSlice.actions.updateInfoBooking(response.data));
         });
     }, [dataBooking.checkIn, dataBooking.checkOut]);
-    console.log(dataBooking);
     useEffect(() => {
         let surcharge = parseInt( dataDetailHomeBooking?.surchargeList?.reduce((total, item) => { return total + item.cost }, 0))
         setSurcharge(surcharge);

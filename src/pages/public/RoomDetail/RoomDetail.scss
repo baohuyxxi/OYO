@@ -2,13 +2,18 @@
     max-width: 1080px;
     margin-top: 40px;
     height: max-content;
+    padding-top: 40px;
+    .breadcrumb {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+    }
     .info-room {
-        padding-top: 30px;
         .header-room {
             h1 {
-                font-size: 28px;
+                font-size: 24px;
+                font-weight: 600;
                 margin: 0;
-                margin-bottom: 5px;
+                font-family: Arial, Helvetica, sans-serif;
             }
 
             .heading {
@@ -16,8 +21,12 @@
                 justify-content: space-between;
 
                 .heading__left {
-                    display: flex;
-
+                    display: grid;
+                    .star-rating__home {
+                        .star {
+                            height: 20px;
+                        }
+                    }
                     .obility__room {
                         display: block;
 
@@ -38,30 +47,26 @@
                     }
 
                     .locate__room {
-                        margin-top: 9px;
                         display: flex;
-                        margin-left: 5px;
-                        padding-left: 20px;
-
                         p {
                             margin: 0;
-                            font-size: 1.3rem;
-                            color: rgba(2, 100, 200, 1);
+                            font-family: Arial, Helvetica, sans-serif;
+                            font-size: 14px;
                         }
 
                         .icon_locate {
                             color: rgba(2, 100, 200, 1);
-                            font-size: 1.6rem;
-                            margin-right: 5px;
+                            height: 20px;
                         }
                     }
                 }
 
                 .heading__right {
                     text-align: right;
-                    display: flex;
+                    display: grid;
                     justify-items: center;
-
+                    font-size: 14px;
+                    width: 100px;
                     .icon_rate {
                         font-size: 2rem;
                         color: blue;
@@ -69,15 +74,33 @@
 
                     p {
                         margin: 0;
-                        font-size: 1.4rem;
+
                         margin-top: 3px;
                         margin-left: 3px;
                     }
 
                     .link__rate {
-                        font-size: 1.4rem;
                         margin-top: 3px;
                         margin-left: 5px;
+                    }
+                    .card-like {
+                        bottom: 0;
+                        height: 40px;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        .icon_love {
+                            color: red;
+                            font-size: 25px;
+                        }
+
+                        p {
+                            margin: 0;
+                            font-size: 16px;
+                            padding-left: 10px;
+                        }
                     }
                 }
 
@@ -180,8 +203,8 @@
                 font-weight: bold;
                 font-size: medium;
             }
-            .root{
-                font-weight: 400!important;
+            .root {
+                font-weight: 400 !important;
                 text-decoration: line-through;
                 color: red; /* Màu của đường gạch ngang */
             }
@@ -256,7 +279,6 @@
             }
 
             .count__guest {
-              
             }
         }
         .price-total {

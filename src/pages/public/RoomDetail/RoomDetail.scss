@@ -133,6 +133,9 @@
     }
 
     .about-room {
+        span {
+            margin-left: 16px;
+        }
         h2 {
             font-size: large;
             padding-top: 10px;
@@ -197,18 +200,37 @@
             z-index: 90;
             .price-room {
                 padding-left: 20px;
-                padding-bottom: 5px;
+
                 padding-top: 5px;
                 font-size: 1.8rem;
-                font-weight: bold;
-                font-size: medium;
+                font-weight: 600;
+                font-size: 24px;
+                line-height: 29px;
+                font-family: Montserrat, sans-serif;
             }
             .root {
                 font-weight: 400 !important;
+                font-size: 15px;
                 text-decoration: line-through;
                 color: red; /* Màu của đường gạch ngang */
             }
-
+            .discount-percent {
+                padding-left: 10px;
+              
+             
+                padding-top: 5px;
+                line-height: 29px;
+                height: 34px;
+                p {
+                    font-size: 15px;
+                    font-weight: 600;
+                    font-family: Montserrat, sans-serif;
+                    color: white;
+                    background-color: red;
+                    border-radius: 5px;
+                    padding-left: 5px;
+                }
+            }
             .date-book {
                 .title__date-book {
                     display: flex;

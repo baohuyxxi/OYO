@@ -22,7 +22,7 @@ export default function BreadcrumbsHome(props) {
     };
     console.log(address);
     return (
-        <Breadcrumbs aria-label="breadcrumb" separator={<NavigateNextIcon fontSize="small" />}>
+        <Breadcrumbs aria-label="breadcrumb" className='breadcrumb' separator={<NavigateNextIcon fontSize="small" />}>
             <Link
                 underline="hover"
                 color="inherit"

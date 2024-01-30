@@ -1,0 +1,49 @@
+.date-range-selector {
+    display: flex;
+    place-content: center;
+    
+    .info_date {
+        border-radius: 5px;
+        border: 2px solid var(--divider);
+        justify-content: space-between;
+        width: 90%;
+        display: flex;
+        height: 60px;
+        .checkin {
+           width: 50%;
+           border-right: 2px solid var(--divider);
+           text-align: center;
+           position: relative;
+           .title__checkin {
+                padding-top: 5px;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+              
+           }
+           .icon__expand{
+                position: absolute;
+                z-index: 100;
+                right: 0; 
+                top: 15px;
+           }
+        }
+        .checkout {
+            width: 50%;
+            text-align: center;
+            position: relative;
+            .title__checkout {
+                padding-top: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .icon__expand{
+                position: absolute;
+                z-index: 100;
+                right: 0; 
+                top: 15px;
+           }
+        }
+    }
+}

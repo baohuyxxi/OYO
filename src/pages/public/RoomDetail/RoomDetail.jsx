@@ -20,6 +20,7 @@ import DialogConvenient from '~/components/DialogConvenient/DialogConvenient';
 import SurchargeList from './Surcharge';
 import DrawerHome from '~/components/DrawerHome/DrawerHome';
 import DateGo from '~/components/DateGo/DateGo';
+import DateRangeSelector from '~/components/DateRangeSelector/DateRangeSelector';
 import Dropdown from '~/components/Dropdown/Dropdown';
 import PopoverPrice from '~/components/PopoverPrice/PopoverPrice';
 import CommentReview from '~/components/CommentReview/CommentReview';
@@ -167,7 +168,7 @@ export default function RoomDetail() {
                                     </div>
                                 </div>
                             </div>
-                            <ListImage listImage={dataDetailHome.imageAccomsUrls} setOpen={setOpenDrawer}/>
+                            <ListImage listImage={dataDetailHome.imageAccomsUrls} setOpen={setOpenDrawer} />
                             <div className="about-room">
                                 <span style={{ fontWeight: '600', fontSize: 'large' }}>
                                     {t('contentMain.all')} {dataDetailHome?.accomCateName}:{' '}
@@ -200,7 +201,7 @@ export default function RoomDetail() {
 
                                     <div className="col l-4 m-5 c-12">
                                         <div className="card-book__detail paper">
-                                            {dataDetailHome.discount !== 0 && (
+                                            {/* {dataDetailHome.discount !== 0 && (
                                                 <div className="discount-campain">
                                                     <div className="discount-campain__title">
                                                         <h2 className="title">
@@ -213,27 +214,28 @@ export default function RoomDetail() {
                                                         />
                                                     </div>
                                                 </div>
-                                            )}
-                                            {dataDetailHome.discount > 0 && (
-                                                <div className="price-room root">
-                                                    {formatPrice(dataDetailHome?.pricePerNight)}
-                                                    {t('numberCount.priceDay')}
-                                                </div>
-                                            )}
-
+                                            )} */}
                                             <div className="price-room">
                                                 {formatPrice(
                                                     dataDetailHome?.pricePerNight * (1 - dataDetailHome?.discount / 100)
                                                 )}
                                                 {t('numberCount.priceDay')}
                                             </div>
-                                            <div className="date-book">
-                                                <div className="title__date-book">
-                                                    <p>{t('contentMain.fromDay')}</p>
-                                                    <p>{t('contentMain.toDay')}</p>
+                                            {dataDetailHome.discount > 0 && (
+                                                <div style={{ display: 'flex' }}>
+                                                    <div className="price-room root">
+                                                        {formatPrice(dataDetailHome?.pricePerNight)}
+                                                        {t('numberCount.priceDay')}
+                                                    </div>
+                                                    <div className="discount-percent">
+                                                        <p>
+                                                            {`-${dataDetailHome.discount}%`}
+                                                        </p>
+                                                    </div>
                                                 </div>
-                                                <DateGo size="vertical" setDataDay={handleChangeDayBooking} />
-                                            </div>
+                                            )}
+                                            {/* <DateGo setDataDay={handleChangeDayBooking} /> */}
+                                            <DateRangeSelector setDataDay={handleChangeDayBooking} />
                                             <div className="count__guest">
                                                 <Dropdown
                                                     guests={guests}
@@ -279,11 +281,10 @@ export default function RoomDetail() {
                             </div>
                             <CommentReview id={roomId.id} />
                         </div>
-                        <DrawerHome open={openDrawer} setOpen={setOpenDrawer} data={dataDetailHome} stars={stars}/>
+                        <DrawerHome open={openDrawer} setOpen={setOpenDrawer} data={dataDetailHome} stars={stars} />
                     </div>
                 </>
             )}
-          
         </FramePage>
     );
 }

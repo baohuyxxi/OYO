@@ -238,6 +238,32 @@
                 }
             }
         }
+        .price__home{
+            display: grid;
+            .price__before-discount {
+                display: flex;
+                justify-content: space-between;
+                padding: 0 20px;
+                height: 10px;
+                .price__home__root{
+                    text-decoration: line-through;
+                    color: red; /* Màu của đường gạch ngang */
+                    font-size: smaller;
+                    font-weight: 600;
+                }
+                .title-price{
+                    min-width: 1px;
+                }
+            }
+            .real-price {
+                display: flex;
+                justify-content: space-between;
+                padding: 0 20px;
+                .title-price{
+                    min-width: 1px;
+                }
+            }
+        }
         .price-total {
             display: flex;
             justify-content: space-between;
@@ -253,6 +279,7 @@
             }
 
             .real-price {
+                display: flex;
                 .cost-surcharge {
                     margin: 5px 0;
                     font-weight: 550;

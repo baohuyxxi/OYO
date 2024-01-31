@@ -34,6 +34,7 @@ import wishAPI from '~/services/apis/clientAPI/clientWishAPI';
 import bookingSlice from '~/redux/bookingSlice';
 import { guestsModel } from '~/share/models/booking';
 import { transLateRoom } from '~/services/apis/translateAPI/translateAPI';
+import { dayGap } from '~/utils/calculates';
 export default function RoomDetail() {
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
@@ -103,13 +104,13 @@ export default function RoomDetail() {
                 phoneNumberCustomer: user.phone,
                 discount: dataDetailHome?.discount
             };
-            console.log(dataBooking)
+            console.log(dataBooking);
             dispatch(bookingSlice.actions.addInfoBooking(dataBooking));
             navigate('/booking');
         }
     };
 
-    const handleChangeDayBooking = (startDate,endDate) => {
+    const handleChangeDayBooking = (startDate, endDate) => {
         const checkIn = format(startDate, 'dd/MM/yyyy');
         const checkOut = format(endDate, 'dd/MM/yyyy');
         setDateBook([checkIn, checkOut]);
@@ -153,21 +154,23 @@ export default function RoomDetail() {
                                     </div>
                                     <div className="heading__right">
                                         <div className="card-like__container" onClick={handleLove}>
-                                            <div className="card-like">
-                                                {love !== null &&
+                                            {love !== null && (
+                                                <div className="card-like">
                                                     (love ? (
-                                                        <>
-                                                            <FavoriteIcon className="icon_love" />
-                                                            <p>{t('common.liked')}</p>
-                                                        </>
+                                                    <>
+                                                        <FavoriteIcon className="icon_love" />
+                                                        <p>{t('common.liked')}</p>
+                                                    </>
                                                     ) : (
-                                                        <>
-                                                            <FavoriteBorderOutlinedIcon className="icon_love" />
-                                                            <p>{t('common.like')}</p>
-                                                        </>
-                                                    ))}
-                                            </div>
+                                                    <>
+                                                        <FavoriteBorderOutlinedIcon className="icon_love" />
+                                                        <p>{t('common.like')}</p>
+                                                    </>
+                                                    ))
+                                                </div>
+                                            )}
                                         </div>
+
                                         <p className="link__rate">
                                             {`(${dataDetailHome?.numView} ${t('numberCount.viewInDetal')})`}
                                         </p>
@@ -251,9 +254,9 @@ export default function RoomDetail() {
                                                 <hr />
                                             </div>
 
-                                            <div className="price-total">
+                                            {/* <div className="price-total">
                                                 <div className="title-price">
-                                                    {/* <PopoverPrice detailPrice={detailPrice} /> */}
+                                                    <PopoverPrice detailPrice={detailPrice} />
                                                 </div>
                                                 <div className="real-price ">
                                                     {dataDetailHome.discount > 0 && (
@@ -265,8 +268,23 @@ export default function RoomDetail() {
                                                         {formatPrice(totalBill * (1 - dataDetailHome?.discount / 100))}
                                                     </p>
                                                 </div>
+                                            </div> */}
+                                            <div className="price__home">
+                                                {dataDetailHome.discount > 0 && (
+                                                    <div className="price__before-discount ">
+                                                        <div className='title-price'></div>
+                                                        <p className="price__home__root">
+                                                            {formatPrice(totalBill)}
+                                                        </p>
+                                                    </div>
+                                                )}
+                                                <div className="real-price ">
+                                                    <p className="title-price">{`${t("common.priceFor")} ${dataDetailHome.accomCateName} x ${ dayGap({ start: dateBook[0], end: dateBook[1] })}`}</p>
+                                                    <p style={{ fontWeight: '550' }}>
+                                                        {formatPrice(totalBill * (1 - dataDetailHome?.discount / 100))}
+                                                    </p>
+                                                </div>
                                             </div>
-
                                             <SurchargeList data={dataDetailHome?.surchargeList} />
 
                                             <div className="btn-booking">

@@ -44,7 +44,8 @@
     "discountFrom": "Giảm giá từ",
     "youWantLogout": "Bạn có muốn đăng xuất không?",
     "like": "Thích",
-    "liked": "Đã thích"
+    "liked": "Đã thích",
+    "priceFor": "Giá cho"
   },
   "message": {
     "signin": "Đăng nhập thành công",

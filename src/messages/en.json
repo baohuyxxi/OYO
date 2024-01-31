@@ -44,7 +44,8 @@
     "discountFrom": "Discount from",
     "youWantLogout": "Do you want to log out?",
     "like": "Like",
-    "likeed": "Liked"
+    "likeed": "Liked",
+    "priceFor": "Price for"
   },
   "message": {
     "signin": "Sign in successfully",

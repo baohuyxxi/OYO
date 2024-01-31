@@ -280,7 +280,7 @@
   "numberCount": {
     "countBooking": "lượt đặt",
     "price": "Giá",
-    "priceDay": "/ Đêm",
+    "priceDay": "/đêm",
     "view": "Lượt xem:",
     "viewInDetal": "lượt xem",
     "countClient": "Số khách"

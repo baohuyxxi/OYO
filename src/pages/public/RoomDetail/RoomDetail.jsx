@@ -12,7 +12,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
-
+import { addDays } from 'date-fns';
 import iconStar from '~/assets/svg/star.svg';
 import ListImage from '~/components/ListImage/ListImage';
 import Convenient from '~/components/Convenient/Convenient';
@@ -42,7 +42,11 @@ export default function RoomDetail() {
     const user = useSelector((state) => state.user.current);
     const [loading, setLoading] = useState(true);
     const [dataDetailHome, setDataDetalHome] = useState('');
-    const [dateBook, setDateBook] = useState([moment().format('DD/MM/yyyy'), moment().format('DD/MM/yyyy')]);
+    const [dateBook, setDateBook] = useState([
+        moment().format('DD/MM/yyyy'),
+        moment(addDays(new Date(), 1)).format('DD/MM/yyyy')
+    ]);
+
     const [guests, setGuests] = useState(guestsModel);
     const [detailPrice, setDetailPrice] = useState([]);
     const [surcharge, setSurcharge] = useState('');
@@ -54,7 +58,6 @@ export default function RoomDetail() {
     for (let i = 0; i < dataDetailHome.gradeRate; i++) {
         stars.push(<img key={i} src={iconStar} alt="icon__star" className="star" />);
     }
-
     useEffect(() => {
         publicAccomPlaceAPI.getRoomDetail(roomId.id).then(async (dataResponse) => {
             const data = await transLateRoom(dataResponse.data);
@@ -100,14 +103,15 @@ export default function RoomDetail() {
                 phoneNumberCustomer: user.phone,
                 discount: dataDetailHome?.discount
             };
+            console.log(dataBooking)
             dispatch(bookingSlice.actions.addInfoBooking(dataBooking));
             navigate('/booking');
         }
     };
 
-    const handleChangeDayBooking = (value) => {
-        const checkIn = format(value[0].startDate, 'dd/MM/yyyy');
-        const checkOut = format(value[0].endDate, 'dd/MM/yyyy');
+    const handleChangeDayBooking = (startDate,endDate) => {
+        const checkIn = format(startDate, 'dd/MM/yyyy');
+        const checkOut = format(endDate, 'dd/MM/yyyy');
         setDateBook([checkIn, checkOut]);
     };
     const handleChangeGuests = (value) => {
@@ -148,23 +152,25 @@ export default function RoomDetail() {
                                         </div>
                                     </div>
                                     <div className="heading__right">
+                                        <div className="card-like__container" onClick={handleLove}>
+                                            <div className="card-like">
+                                                {love !== null &&
+                                                    (love ? (
+                                                        <>
+                                                            <FavoriteIcon className="icon_love" />
+                                                            <p>{t('common.liked')}</p>
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            <FavoriteBorderOutlinedIcon className="icon_love" />
+                                                            <p>{t('common.like')}</p>
+                                                        </>
+                                                    ))}
+                                            </div>
+                                        </div>
                                         <p className="link__rate">
                                             {`(${dataDetailHome?.numView} ${t('numberCount.viewInDetal')})`}
                                         </p>
-                                        <div className="card-like" onClick={handleLove}>
-                                            {love !== null &&
-                                                (love ? (
-                                                    <>
-                                                        <FavoriteIcon className="icon_love" />
-                                                        <p>{t('common.liked')}</p>
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                        <FavoriteBorderOutlinedIcon className="icon_love" />
-                                                        <p>{t('common.like')}</p>
-                                                    </>
-                                                ))}
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -228,21 +234,18 @@ export default function RoomDetail() {
                                                         {t('numberCount.priceDay')}
                                                     </div>
                                                     <div className="discount-percent">
-                                                        <p>
-                                                            {`-${dataDetailHome.discount}%`}
-                                                        </p>
+                                                        <p>{`-${dataDetailHome.discount}%`}</p>
                                                     </div>
                                                 </div>
                                             )}
                                             {/* <DateGo setDataDay={handleChangeDayBooking} /> */}
                                             <DateRangeSelector setDataDay={handleChangeDayBooking} />
-                                            <div className="count__guest">
-                                                <Dropdown
-                                                    guests={guests}
-                                                    setGuests={setGuests}
-                                                    handleChangeGuests={handleChangeGuests}
-                                                />
-                                            </div>
+
+                                            <Dropdown
+                                                guests={guests}
+                                                setGuests={setGuests}
+                                                handleChangeGuests={handleChangeGuests}
+                                            />
 
                                             <div className="line">
                                                 <hr />

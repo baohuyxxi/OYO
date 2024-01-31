@@ -55,7 +55,6 @@
                         }
 
                         .icon_locate {
-                            color: rgba(2, 100, 200, 1);
                             height: 20px;
                         }
                     }
@@ -80,26 +79,34 @@
                     }
 
                     .link__rate {
-                        margin-top: 3px;
+                       
                         margin-left: 5px;
                     }
-                    .card-like {
-                        bottom: 0;
-                        height: 40px;
+                    .card-like__container {
+                        position: relative;
+                        height: 23px;
                         width: 100%;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
 
-                        .icon_love {
-                            color: red;
-                            font-size: 25px;
-                        }
+                   
+                        .card-like {
+                            position: absolute;
+                            padding: 0 5px;
+                            right: 0;
+                            width: max-content;
+                            display: flex;
+                            border: 2px solid red;
+                            border-radius: 5px;
 
-                        p {
-                            margin: 0;
-                            font-size: 16px;
-                            padding-left: 10px;
+                            .icon_love {
+                                color: red;
+                                font-size: 25px;
+                            }
+
+                            p {
+                                margin: 0;
+                                font-size: 16px;
+                                padding-left: 10px;
+                            }
                         }
                     }
                 }
@@ -216,8 +223,7 @@
             }
             .discount-percent {
                 padding-left: 10px;
-              
-             
+
                 padding-top: 5px;
                 line-height: 29px;
                 height: 34px;
@@ -230,77 +236,6 @@
                     border-radius: 5px;
                     padding-left: 5px;
                 }
-            }
-            .date-book {
-                .title__date-book {
-                    display: flex;
-                    margin-left: 30px;
-
-                    p {
-                        font-size: medium;
-                        margin-bottom: 5px;
-                        margin-right: 50px;
-                        font-weight: bold;
-                    }
-                }
-
-                .info_date {
-                    display: flex;
-                    margin: auto;
-
-                    .output {
-                        // width: 160px;
-                        margin-left: 0;
-
-                        input {
-                            padding: 10px;
-                            width: 100%;
-                        }
-                    }
-                    .start {
-                        input {
-                            border-top-left-radius: 5px;
-                            border: 2px solid var(--divider);
-                        }
-                    }
-                    .end {
-                        input {
-                            border-top-right-radius: 5px;
-                            border: 2px solid var(--divider);
-                        }
-                    }
-                }
-
-                .calendarElement {
-                    margin-left: -375px;
-                }
-
-                .calendarWrap {
-                    display: flex;
-
-                    width: 100%;
-                    z-index: 91;
-                    .info_date {
-                        display: flex;
-                        flex-wrap: wrap;
-
-                        .output {
-                            width: 158px;
-
-                            input {
-                                background-color: initial;
-                                color: inherit;
-                                width: 100%;
-                            }
-                        }
-
-                        .output:nth-child(2) {
-                        }
-                    }
-                }
-            }
-
-            .count__guest {
             }
         }
         .price-total {

@@ -1,17 +1,17 @@
-import { createSlice  } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import moment from 'moment';
-
+import { addDays } from 'date-fns';
 const bookingSlice = createSlice({
     name: 'booking',
     initialState: {
         nameCustomer: '',
         phoneNumberCustomer: 0,
         checkIn: moment().format('DD/MM/yyyy'),
-        checkOut: moment().format('DD/MM/yyyy'),
+        checkOut: moment(addDays(new Date(), 1)).format('DD/MM/yyyy'),
         numAdult: 1,
         numChild: 0,
         numBornChild: 0,
-        totalCostAccom:0,
+        totalCostAccom: 0,
         originPay: 0,
         surcharge: 0,
         totalTransfer: 0,
@@ -19,7 +19,7 @@ const bookingSlice = createSlice({
         paymentMethod: 'PAYPAL',
         accomId: 0,
         canBooking: true,
-        discount: 0,
+        discount: 0
     },
     reducers: {
         addInfoBooking(state, action) {
@@ -29,12 +29,11 @@ const bookingSlice = createSlice({
             state.numAdult = action.payload.guests.numAdult;
             state.numChild = action.payload.guests.numChild;
             state.numBornChild = action.payload.guests.numBornChild;
-            state.surcharge = action.payload.surcharge
+            state.surcharge = action.payload.surcharge;
             state.originPay = action.payload.originPay;
-            state.nameCustomer = action.payload.nameCustomer
+            state.nameCustomer = action.payload.nameCustomer;
             state.phoneNumberCustomer = action.payload.phoneNumberCustomer;
             state.discount = action.payload.discount;
-
         },
         addDay(state, action) {
             state.checkIn = action.payload.checkIn;
@@ -51,20 +50,20 @@ const bookingSlice = createSlice({
             state.totalTransfer = action.payload;
         },
         updateInfoBooking(state, action) {
-           state.surcharge = action.payload.costSurcharge
-           state.originPay = action.payload.totalCostAccom;
-           state.totalCostAccom = action.payload.totalCostAccom;
-           state.canBooking = action.payload.canBooking;
+            state.surcharge = action.payload.costSurcharge;
+            state.originPay = action.payload.totalCostAccom;
+            state.totalCostAccom = action.payload.totalCostAccom;
+            state.canBooking = action.payload.canBooking;
         },
         updateInfoUserBooking(state, action) {
-            state.nameCustomer = action.payload.name
+            state.nameCustomer = action.payload.name;
             state.phoneNumberCustomer = action.payload.phoneNumber;
         },
-        clearInfoBooking(state, action ){
+        clearInfoBooking(state, action) {
             state.nameCustomer = '';
             state.phoneNumberCustomer = 0;
             state.checkIn = moment().format('DD/MM/yyyy');
-            state.checkOut = moment().format('DD/MM/yyyy');
+            state.checkOut = moment(addDays(new Date(), 1)).format('DD/MM/yyyy');
             state.numAdult = 1;
             state.numChild = 0;
             state.numBornChild = 0;
@@ -76,9 +75,7 @@ const bookingSlice = createSlice({
             state.paymentMethod = 'PAYPAL';
             state.accomId = 0;
         }
-    },
+    }
 });
-
-
 
 export default bookingSlice;

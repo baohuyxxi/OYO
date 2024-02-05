@@ -27,21 +27,22 @@ export default function RoomPopular() {
     const [loading, setLoading] = useState(true);
     const [listHome, setListHome] = useState();
 
-
     const stars = (gradeRate) => {
         const stars = [];
         for (let i = 0; i < gradeRate; i++) {
             stars.push(<img key={i} src={iconStar} alt="icon__star" className="star" />);
         }
         return stars;
-    }
+    };
     useEffect(() => {
         setLoading(true);
         publicAccomPlaceAPI.getTophome({ number: 0, size: 8 }).then(async (dataResponse) => {
-            const data = await Promise.all (dataResponse.data.content.flatMap(async (item) => {
-                item.isFavorite = await wishAPI.checkWish(item.id)
-                return transLateListTitle(item);
-            }))
+            const data = await Promise.all(
+                dataResponse.data.content.flatMap(async (item) => {
+                    item.isFavorite = await wishAPI.checkWish(item.id);
+                    return transLateListTitle(item);
+                })
+            );
             setListHome(dataResponse.data);
             setLoading(false);
         });
@@ -67,8 +68,10 @@ export default function RoomPopular() {
                                             </div>
                                         ))}
                                 </Slider>
-                                { home.isFavorite!== null &&   <IconLove idHome={home?.id} isFavorite={home?.isFavorite} />}
-                              
+                                {home.isFavorite !== null && (
+                                    <IconLove idHome={home?.id} isFavorite={home?.isFavorite} />
+                                )}
+
                                 <div className="info__room">
                                     <h2 onClick={() => handleLinkToDetail(home?.id)}>{home?.accomName}</h2>
                                     <div className="obility__room">

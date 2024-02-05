@@ -17,10 +17,8 @@ export default function BreadcrumbsHome(props) {
         }
         dispatch(filterAcomSlice.actions.reset());
         dispatch(filterAcomSlice.actions.address(filterAcom));
-        console.log(filterAcom);
         navigate(`/list-accom`);
     };
-    console.log(address);
     return (
         <Breadcrumbs aria-label="breadcrumb" className='breadcrumb' separator={<NavigateNextIcon fontSize="small" />}>
             <Link

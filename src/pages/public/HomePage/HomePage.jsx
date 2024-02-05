@@ -2,6 +2,7 @@ import HomeSlider from '~/components/HomeSlider/HomeSlider';
 import Popular from '~/components/Popular/Popular';
 import RoomPopular from '~/components/RoomPopular/RoomPopular';
 import FramePage from '~/components/FramePage/FramePage';
+import TypeAccomPopupar from '~/components/TypeAccomPopular/TypeAccomPopupar';
 
 export default function HomePage() {
     return (
@@ -9,6 +10,7 @@ export default function HomePage() {
             <HomeSlider />
             {/* <SearchForm /> */}
             <Popular />
+            <TypeAccomPopupar />
             <RoomPopular />
         </FramePage>
     );

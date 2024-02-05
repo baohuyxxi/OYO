@@ -10,7 +10,6 @@ import './FramePage.scss';
 import { vi } from 'date-fns/locale';
 
 export default function FramePage({ children }) {
-
     const viewImages = useSelector((state) => state.global.viewImages);
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -20,7 +19,6 @@ export default function FramePage({ children }) {
             <NavBar />
             <div className="body-page">{children}</div>
             {viewImages && <ViewIamge viewImages={viewImages} />}
-          
             <Footer />
         </div>
     );

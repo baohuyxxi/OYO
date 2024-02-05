@@ -1,10 +1,11 @@
-.background__frame-page{
+.background__frame-page {
     background-color: var(--background-default);
     color: var(--background-contrastText);
 }
-.body-page{
+.body-page {
     color: var(--background-contrastText);
     background-color: var(--background-default);
+    // background-color: #fafcff;
     align-items: center;
     max-width: 1500px;
     min-height: 600px;

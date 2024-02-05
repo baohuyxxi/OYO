@@ -36,18 +36,18 @@ export default function ViewIamge(props) {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
                 fullWidth={true}
-                maxWidth="md"
+                maxWidth="fullWidth"
                 PaperProps={{ style: { background: 'transparent', boxShadow: 'none' } }}
             >
-                <div className="dialog__imgs">
-                    <DialogTitle
+                <div className="dialog__imgs" onClick={handleClose}>
+                    {/* <DialogTitle
                         id="alert-dialog-title"
-                        style={{ fontSize: '18px', fontWeight: 'bold', width: '600px', marginBottom: '20px' }}
+                        style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '20px' }}
                     >
                         <Button onClick={handleClose} style={{ fontSize: '14px' }}>
                             X
                         </Button>
-                    </DialogTitle>
+                    </DialogTitle> */}
                     <DialogContent className="container__imgs">
                         {props?.viewImages?.map((img, index) => (
                             <img key={index} className="img" src={img}></img>

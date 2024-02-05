@@ -18,8 +18,11 @@ export const decodeAddress = (data) => {
             result = {
                 addressDetail: detail,
                 wardCode: ward.wardCode,
+                wardName: ward.wardName,
                 districtCode: district.districtCode,
-                provinceCode: province.provinceCode
+                districtName: district.districtName,
+                provinceCode: province.provinceCode,
+                provinceName: province.provinceName,
             };
         } else {
             console.error('Invalid address format:', addressParts);

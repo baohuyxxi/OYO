@@ -1,14 +1,13 @@
 .confirm-page {
     .logo {
         position: absolute;
-        top: 12%;
         left: 5%;
         font-size: 30px;
         flex: 1;
+        z-index: 100;
         color: var(--black);
-
         .logo-bg {
-            height: 30px;
+            height: 100px;
         }
     }
 
@@ -96,6 +95,7 @@
                     font-size: 1.3rem;
                 }
                 .price{
+                    display: flex;
                     justify-content: space-between;
                 }
                 span {

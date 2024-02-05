@@ -235,15 +235,15 @@ export default function StepperComponent() {
                         } else if (activeStep === 3) {
                             return <StepperFour setDataStep4={setDataStep4} />;
                         } else if (activeStep === 4) {
-                            return <StepperFive handleSetDataStep5={handleSetDataStep5} />;
+                            return <StepperFive handleSetDataStep5={handleSetDataStep5} data={dataStep5} />;
                         }
                     })()}
                     <Box sx={{ display: 'flex', pt: 2, position: 'absolute', right: '50px', bottom: '-90vh' }}>
                         <Button disabled={activeStep === 0} onClick={handleBack} sx={{ mr: 1 }}>
-                            Back
+                            Trở lại
                         </Button>
                         <Box sx={{ flex: '1 1 auto' }} />
-                        <Button onClick={handleNext}>{activeStep === steps.length - 1 ? 'Finish' : 'Next'}</Button>
+                        <Button onClick={handleNext}>{activeStep === steps.length - 1 ? 'Bắt đầu' : 'Tiếp tục'}</Button>
                     </Box>
                 </React.Fragment>
             )}

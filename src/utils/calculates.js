@@ -14,7 +14,6 @@ export const pricePay = (data) => {
 }
 
  export const dayGap = (data) =>{
-
     const checkInDate = parse(data.start, 'dd/MM/yyyy', new Date());
     const checkOutDate = parse(data.end, 'dd/MM/yyyy', new Date());
     

@@ -2,13 +2,18 @@
     max-width: 1080px;
     margin-top: 40px;
     height: max-content;
+    padding-top: 40px;
+    .breadcrumb {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+    }
     .info-room {
-        padding-top: 30px;
         .header-room {
             h1 {
-                font-size: 28px;
+                font-size: 24px;
+                font-weight: 600;
                 margin: 0;
-                margin-bottom: 5px;
+                font-family: Arial, Helvetica, sans-serif;
             }
 
             .heading {
@@ -16,8 +21,12 @@
                 justify-content: space-between;
 
                 .heading__left {
-                    display: flex;
-
+                    display: grid;
+                    .star-rating__home {
+                        .star {
+                            height: 20px;
+                        }
+                    }
                     .obility__room {
                         display: block;
 
@@ -38,30 +47,25 @@
                     }
 
                     .locate__room {
-                        margin-top: 9px;
                         display: flex;
-                        margin-left: 5px;
-                        padding-left: 20px;
-
                         p {
                             margin: 0;
-                            font-size: 1.3rem;
-                            color: rgba(2, 100, 200, 1);
+                            font-family: Arial, Helvetica, sans-serif;
+                            font-size: 14px;
                         }
 
                         .icon_locate {
-                            color: rgba(2, 100, 200, 1);
-                            font-size: 1.6rem;
-                            margin-right: 5px;
+                            height: 20px;
                         }
                     }
                 }
 
                 .heading__right {
                     text-align: right;
-                    display: flex;
+                    display: grid;
                     justify-items: center;
-
+                    font-size: 14px;
+                    width: 100px;
                     .icon_rate {
                         font-size: 2rem;
                         color: blue;
@@ -69,15 +73,41 @@
 
                     p {
                         margin: 0;
-                        font-size: 1.4rem;
+
                         margin-top: 3px;
                         margin-left: 3px;
                     }
 
                     .link__rate {
-                        font-size: 1.4rem;
-                        margin-top: 3px;
+                       
                         margin-left: 5px;
+                    }
+                    .card-like__container {
+                        position: relative;
+                        height: 23px;
+                        width: 100%;
+
+                   
+                        .card-like {
+                            position: absolute;
+                            padding: 0 5px;
+                            right: 0;
+                            width: max-content;
+                            display: flex;
+                            border: 2px solid red;
+                            border-radius: 5px;
+
+                            .icon_love {
+                                color: red;
+                                font-size: 25px;
+                            }
+
+                            p {
+                                margin: 0;
+                                font-size: 16px;
+                                padding-left: 10px;
+                            }
+                        }
                     }
                 }
 
@@ -110,6 +140,9 @@
     }
 
     .about-room {
+        span {
+           
+        }
         h2 {
             font-size: large;
             padding-top: 10px;
@@ -122,12 +155,12 @@
         }
 
         .title-room {
-            padding-left: 15px;
+
             padding-right: 15px;
 
             .desc-room {
                 h3 {
-                    margin-left: 10px;
+                    
                     font-size: 16px;
                 }
 
@@ -174,89 +207,61 @@
             z-index: 90;
             .price-room {
                 padding-left: 20px;
-                padding-bottom: 5px;
+
                 padding-top: 5px;
                 font-size: 1.8rem;
-                font-weight: bold;
-                font-size: medium;
+                font-weight: 600;
+                font-size: 24px;
+                line-height: 29px;
+                font-family: Montserrat, sans-serif;
             }
-            .root{
-                font-weight: 400!important;
+            .root {
+                font-weight: 400 !important;
+                font-size: 15px;
                 text-decoration: line-through;
                 color: red; /* Màu của đường gạch ngang */
             }
+            .discount-percent {
+                padding-left: 10px;
 
-            .date-book {
-                .title__date-book {
-                    display: flex;
-                    margin-left: 30px;
-
-                    p {
-                        font-size: medium;
-                        margin-bottom: 5px;
-                        margin-right: 50px;
-                        font-weight: bold;
-                    }
-                }
-
-                .info_date {
-                    display: flex;
-                    margin: auto;
-
-                    .output {
-                        // width: 160px;
-                        margin-left: 0;
-
-                        input {
-                            padding: 10px;
-                            width: 100%;
-                        }
-                    }
-                    .start {
-                        input {
-                            border-top-left-radius: 5px;
-                            border: 2px solid var(--divider);
-                        }
-                    }
-                    .end {
-                        input {
-                            border-top-right-radius: 5px;
-                            border: 2px solid var(--divider);
-                        }
-                    }
-                }
-
-                .calendarElement {
-                    margin-left: -375px;
-                }
-
-                .calendarWrap {
-                    display: flex;
-
-                    width: 100%;
-                    z-index: 91;
-                    .info_date {
-                        display: flex;
-                        flex-wrap: wrap;
-
-                        .output {
-                            width: 158px;
-
-                            input {
-                                background-color: initial;
-                                color: inherit;
-                                width: 100%;
-                            }
-                        }
-
-                        .output:nth-child(2) {
-                        }
-                    }
+                padding-top: 5px;
+                line-height: 29px;
+                height: 34px;
+                p {
+                    font-size: 15px;
+                    font-weight: 600;
+                    font-family: Montserrat, sans-serif;
+                    color: white;
+                    background-color: red;
+                    border-radius: 5px;
+                    padding-left: 5px;
                 }
             }
-
-            .count__guest {
-              
+        }
+        .price__home{
+            display: grid;
+            .price__before-discount {
+                display: flex;
+                justify-content: space-between;
+                padding: 0 20px;
+                height: 10px;
+                .price__home__root{
+                    text-decoration: line-through;
+                    color: red; /* Màu của đường gạch ngang */
+                    font-size: smaller;
+                    font-weight: 600;
+                }
+                .title-price{
+                    min-width: 1px;
+                }
+            }
+            .real-price {
+                display: flex;
+                justify-content: space-between;
+                padding: 0 20px;
+                .title-price{
+                    min-width: 1px;
+                }
             }
         }
         .price-total {
@@ -274,6 +279,7 @@
             }
 
             .real-price {
+                display: flex;
                 .cost-surcharge {
                     margin: 5px 0;
                     font-weight: 550;

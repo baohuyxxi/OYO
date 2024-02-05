@@ -42,7 +42,10 @@
     "youNoHaveMail": "Bạn chưa có thư",
     "selectAddressYouWant": "Chọn địa chỉ bạn muốn đến",
     "discountFrom": "Giảm giá từ",
-    "youWantLogout": "Bạn có muốn đăng xuất không?"
+    "youWantLogout": "Bạn có muốn đăng xuất không?",
+    "like": "Thích",
+    "liked": "Đã thích",
+    "priceFor": "Giá cho"
   },
   "message": {
     "signin": "Đăng nhập thành công",
@@ -278,7 +281,7 @@
   "numberCount": {
     "countBooking": "lượt đặt",
     "price": "Giá",
-    "priceDay": "/ Đêm",
+    "priceDay": "/đêm",
     "view": "Lượt xem:",
     "viewInDetal": "lượt xem",
     "countClient": "Số khách"

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { t } from 'i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import SkeletonProvince from '../Skeleton/SkeletonProvince';
-import ProvinceVN from '~/mockdata/ProvinceVN.json';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import { transLateProvince } from '~/services/apis/translateAPI/translateAPI';
 import { useDispatch} from 'react-redux';

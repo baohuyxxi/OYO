@@ -5,20 +5,27 @@ import format from 'date-fns/format';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+
+import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
+
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
-
+import { addDays } from 'date-fns';
 import iconStar from '~/assets/svg/star.svg';
 import ListImage from '~/components/ListImage/ListImage';
-import Convenient from '~/components/Convenient/Convenient';
+import Facility from './Facility/Facility';
 import DialogConvenient from '~/components/DialogConvenient/DialogConvenient';
 import SurchargeList from './Surcharge';
+import DrawerHome from '~/components/DrawerHome/DrawerHome';
 import DateGo from '~/components/DateGo/DateGo';
+import DateRangeSelector from '~/components/DateRangeSelector/DateRangeSelector';
 import Dropdown from '~/components/Dropdown/Dropdown';
 import PopoverPrice from '~/components/PopoverPrice/PopoverPrice';
+import NecessaryInformation from './NecessaryInformation/NecessaryInformation';
 import CommentReview from '~/components/CommentReview/CommentReview';
+import BreadcrumbsHome from './BreadcrumbsHome';
 import FramePage from '~/components/FramePage/FramePage';
 import DateIsBooking from '~/components/DateIsBooking/DateIsBooking';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
@@ -28,6 +35,7 @@ import wishAPI from '~/services/apis/clientAPI/clientWishAPI';
 import bookingSlice from '~/redux/bookingSlice';
 import { guestsModel } from '~/share/models/booking';
 import { transLateRoom } from '~/services/apis/translateAPI/translateAPI';
+import { dayGap } from '~/utils/calculates';
 export default function RoomDetail() {
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
@@ -36,18 +44,22 @@ export default function RoomDetail() {
     const user = useSelector((state) => state.user.current);
     const [loading, setLoading] = useState(true);
     const [dataDetailHome, setDataDetalHome] = useState('');
-    const [dateBook, setDateBook] = useState([moment().format('DD/MM/yyyy'), moment().format('DD/MM/yyyy')]);
+    const [dateBook, setDateBook] = useState([
+        moment().format('DD/MM/yyyy'),
+        moment(addDays(new Date(), 1)).format('DD/MM/yyyy')
+    ]);
+
     const [guests, setGuests] = useState(guestsModel);
     const [detailPrice, setDetailPrice] = useState([]);
     const [surcharge, setSurcharge] = useState('');
     const [totalBill, setTotalBill] = useState(0);
     const [disBooking, setDisBooking] = useState(true);
     const [love, setLove] = useState(null);
+    const [openDrawer, setOpenDrawer] = useState(false);
     const stars = [];
     for (let i = 0; i < dataDetailHome.gradeRate; i++) {
         stars.push(<img key={i} src={iconStar} alt="icon__star" className="star" />);
     }
-
     useEffect(() => {
         publicAccomPlaceAPI.getRoomDetail(roomId.id).then(async (dataResponse) => {
             const data = await transLateRoom(dataResponse.data);
@@ -56,7 +68,6 @@ export default function RoomDetail() {
         });
         wishAPI.checkWish(roomId.id).then((res) => setLove(res));
     }, [roomId?.id]);
-
     useEffect(() => {
         if (dateBook[0] !== dateBook[1]) {
         }
@@ -90,17 +101,17 @@ export default function RoomDetail() {
                 surcharge: surcharge,
                 originPay: totalBill,
                 nameCustomer: user.firstName + ' ' + user.lastName,
-                phoneNumberCustomer: user.phone, 
-                discount: dataDetailHome?.discount,
+                phoneNumberCustomer: user.phone,
+                discount: dataDetailHome?.discount
             };
             dispatch(bookingSlice.actions.addInfoBooking(dataBooking));
             navigate('/booking');
         }
     };
 
-    const handleChangeDayBooking = (value) => {
-        const checkIn = format(value[0].startDate, 'dd/MM/yyyy');
-        const checkOut = format(value[0].endDate, 'dd/MM/yyyy');
+    const handleChangeDayBooking = (startDate, endDate) => {
+        const checkIn = format(startDate, 'dd/MM/yyyy');
+        const checkOut = format(endDate, 'dd/MM/yyyy');
         setDateBook([checkIn, checkOut]);
     };
     const handleChangeGuests = (value) => {
@@ -124,28 +135,51 @@ export default function RoomDetail() {
             ) : (
                 <>
                     <div className="content detail-room">
+                        <BreadcrumbsHome data={dataDetailHome.addressDetail} />
                         <div className="info-room">
                             <div className="header-room">
                                 <h1>{dataDetailHome.accomName}</h1>
+
                                 <div className="heading">
                                     <div className="heading__left">
-                                        <div className="obility__room">
-                                            <p>{dataDetailHome.accomCateId}</p>
+                                        <div className="star-rating__home">
+                                            {/* {dataDetailHome.accomCateId} */}
                                             {stars}
                                         </div>
                                         <div className="locate__room">
-                                            <FmdGoodIcon className="icon_locate" />
-                                            <p>{dataDetailHome.addressGeneral}</p>
+                                            <FmdGoodOutlinedIcon className="icon_locate" />
+                                            <p>{dataDetailHome.addressDetail}</p>
                                         </div>
                                     </div>
                                     <div className="heading__right">
+                                        <div className="card-like__container" onClick={handleLove}>
+                                            {love !== null && (
+                                                <div className="card-like">
+                                                    {
+                                                         (love === true ? (
+                                                            <>
+                                                                <FavoriteIcon className="icon_love" />
+                                                                <p>{t('common.liked')}</p>
+                                                            </>
+                                                            ) : (
+                                                            <>
+                                                                <FavoriteBorderOutlinedIcon className="icon_love" />
+                                                                <p>{t('common.like')}</p>
+                                                            </>
+                                                            ))
+                                                    }
+                                                   
+                                                </div>
+                                            )}
+                                        </div>
+
                                         <p className="link__rate">
                                             {`(${dataDetailHome?.numView} ${t('numberCount.viewInDetal')})`}
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                            <ListImage listImage={dataDetailHome.imageAccomsUrls} />
+                            <ListImage listImage={dataDetailHome.imageAccomsUrls} setOpen={setOpenDrawer} />
                             <div className="about-room">
                                 <span style={{ fontWeight: '600', fontSize: 'large' }}>
                                     {t('contentMain.all')} {dataDetailHome?.accomCateName}:{' '}
@@ -156,9 +190,15 @@ export default function RoomDetail() {
                                     {t('label.bathroom')}, {t('label.bathroom')} {dataDetailHome.numBathRoom},{' '}
                                     {t('home.acreage')}: {dataDetailHome.acreage} m²
                                 </span>
+                                
                                 <div className="row">
                                     <div className="col l-8 m-7 c-12">
-                                        <div className="paper title-room">
+                                    <hr className="divider" />
+                                        <h2>{t('contentMain.convenient')}</h2>
+                                        <Facility data={dataDetailHome.facilityCategoryList} />
+                                        <DialogConvenient listConvenient={dataDetailHome.facilityCategoryList} />
+                                        <hr className="divider" />
+                                        <div className=" title-room">
                                             <div className="desc-room">
                                                 <h2>{t('contentMain.descHome')}</h2>
                                                 <p>{dataDetailHome.description}</p>
@@ -168,17 +208,14 @@ export default function RoomDetail() {
                                             </div>
 
                                             <hr className="divider" />
-                                            <h2>{t('contentMain.convenient')}</h2>
-                                            <Convenient listConvenient={dataDetailHome.facilityCategoryList} row={2} />
-                                            <DialogConvenient listConvenient={dataDetailHome.facilityCategoryList} />
-                                            <hr className="divider" />
+                                            <NecessaryInformation/>
                                         </div>
                                         <DateIsBooking bookedDates={dataDetailHome.bookedDates} />
                                     </div>
 
                                     <div className="col l-4 m-5 c-12">
                                         <div className="card-book__detail paper">
-                                            {dataDetailHome.discount !== 0 && (
+                                            {/* {dataDetailHome.discount !== 0 && (
                                                 <div className="discount-campain">
                                                     <div className="discount-campain__title">
                                                         <h2 className="title">
@@ -191,40 +228,39 @@ export default function RoomDetail() {
                                                         />
                                                     </div>
                                                 </div>
-                                            )}
-                                            {dataDetailHome.discount > 0 && (
-                                                <div className="price-room root">
-                                                    {formatPrice(dataDetailHome?.pricePerNight)}
-                                                    {t('numberCount.priceDay')}
-                                                </div>
-                                            )}
-
+                                            )} */}
                                             <div className="price-room">
                                                 {formatPrice(
                                                     dataDetailHome?.pricePerNight * (1 - dataDetailHome?.discount / 100)
                                                 )}
                                                 {t('numberCount.priceDay')}
                                             </div>
-                                            <div className="date-book">
-                                                <div className="title__date-book">
-                                                    <p>{t('contentMain.fromDay')}</p>
-                                                    <p>{t('contentMain.toDay')}</p>
+                                            {dataDetailHome.discount > 0 && (
+                                                <div style={{ display: 'flex' }}>
+                                                    <div className="price-room root">
+                                                        {formatPrice(dataDetailHome?.pricePerNight)}
+                                                        {t('numberCount.priceDay')}
+                                                    </div>
+                                                    <div className="discount-percent">
+                                                        <p>{`-${dataDetailHome.discount}%`}</p>
+                                                    </div>
                                                 </div>
-                                                <DateGo size="vertical" setDataDay={handleChangeDayBooking} />
-                                            </div>
-                                            <div className="count__guest">
-                                                <Dropdown
-                                                    guests={guests}
-                                                    setGuests={setGuests}
-                                                    handleChangeGuests={handleChangeGuests}
-                                                />
-                                            </div>
+                                            )}
+                                            {/* <DateGo setDataDay={handleChangeDayBooking} /> */}
+                                           
+                                            <DateRangeSelector setDataDay={handleChangeDayBooking} />
+
+                                            <Dropdown
+                                                guests={guests}
+                                                setGuests={setGuests}
+                                                handleChangeGuests={handleChangeGuests}
+                                            />
 
                                             <div className="line">
                                                 <hr />
                                             </div>
 
-                                            <div className="price-total">
+                                            {/* <div className="price-total">
                                                 <div className="title-price">
                                                     <PopoverPrice detailPrice={detailPrice} />
                                                 </div>
@@ -238,8 +274,23 @@ export default function RoomDetail() {
                                                         {formatPrice(totalBill * (1 - dataDetailHome?.discount / 100))}
                                                     </p>
                                                 </div>
+                                            </div> */}
+                                            <div className="price__home">
+                                                {dataDetailHome.discount > 0 && (
+                                                    <div className="price__before-discount ">
+                                                        <div className="title-price"></div>
+                                                        <p className="price__home__root">{formatPrice(totalBill)}</p>
+                                                    </div>
+                                                )}
+                                                <div className="real-price ">
+                                                    <p className="title-price">{`${t('common.priceFor')} ${
+                                                        dataDetailHome.accomCateName
+                                                    } x ${dayGap({ start: dateBook[0], end: dateBook[1] })}`}</p>
+                                                    <p style={{ fontWeight: '550' }}>
+                                                        {formatPrice(totalBill * (1 - dataDetailHome?.discount / 100))}
+                                                    </p>
+                                                </div>
                                             </div>
-
                                             <SurchargeList data={dataDetailHome?.surchargeList} />
 
                                             <div className="btn-booking">
@@ -251,26 +302,13 @@ export default function RoomDetail() {
                                                     {t('common.booking')}
                                                 </button>
                                             </div>
-                                            <div className="card-like" onClick={handleLove}>
-                                                {love !== null &&
-                                                    (love ? (
-                                                        <>
-                                                            <FavoriteIcon className="icon_love" />
-                                                            <p>{t('common.unlove')}</p>
-                                                        </>
-                                                    ) : (
-                                                        <>
-                                                            <FavoriteBorderOutlinedIcon className="icon_love" />
-                                                            <p>{t('common.love')}</p>
-                                                        </>
-                                                    ))}
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <CommentReview id={roomId.id} />
                         </div>
+                        <DrawerHome open={openDrawer} setOpen={setOpenDrawer} data={dataDetailHome} stars={stars} />
                     </div>
                 </>
             )}

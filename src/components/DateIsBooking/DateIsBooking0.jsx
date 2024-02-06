@@ -14,6 +14,8 @@ export default function DateIsBooking(props) {
             <h1 style={{ marginBottom: '20px', marginTop: '20px' }}>{t('contentMain.dayBooked')}</h1>
             <Calendar
                 className='paper'
+                onChange={onChange}
+                value={value}
                 tileClassName={({ date, view }) => {
                     if (props.bookedDates?.find((x) => x === moment(date).format('DD/MM/YYYY'))) {
                         return 'highlight';

@@ -7,7 +7,7 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
-
+import {Button} from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -155,20 +155,17 @@ export default function RoomDetail() {
                                         <div className="card-like__container" onClick={handleLove}>
                                             {love !== null && (
                                                 <div className="card-like">
-                                                    {
-                                                         (love === true ? (
-                                                            <>
-                                                                <FavoriteIcon className="icon_love" />
-                                                                <p>{t('common.liked')}</p>
-                                                            </>
-                                                            ) : (
-                                                            <>
-                                                                <FavoriteBorderOutlinedIcon className="icon_love" />
-                                                                <p>{t('common.like')}</p>
-                                                            </>
-                                                            ))
-                                                    }
-                                                   
+                                                    {love === true ? (
+                                                        <>
+                                                            <FavoriteIcon className="icon_love" />
+                                                            <p>{t('common.liked')}</p>
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            <FavoriteBorderOutlinedIcon className="icon_love" />
+                                                            <p>{t('common.like')}</p>
+                                                        </>
+                                                    )}
                                                 </div>
                                             )}
                                         </div>
@@ -190,10 +187,10 @@ export default function RoomDetail() {
                                     {t('label.bathroom')}, {t('label.bathroom')} {dataDetailHome.numBathRoom},{' '}
                                     {t('home.acreage')}: {dataDetailHome.acreage} m²
                                 </span>
-                                
+
                                 <div className="row">
                                     <div className="col l-8 m-7 c-12">
-                                    <hr className="divider" />
+                                        <hr className="divider" />
                                         <h2>{t('contentMain.convenient')}</h2>
                                         <Facility data={dataDetailHome.facilityCategoryList} />
                                         <DialogConvenient listConvenient={dataDetailHome.facilityCategoryList} />
@@ -208,7 +205,7 @@ export default function RoomDetail() {
                                             </div>
 
                                             <hr className="divider" />
-                                            <NecessaryInformation/>
+                                            <NecessaryInformation />
                                         </div>
                                         <DateIsBooking bookedDates={dataDetailHome.bookedDates} />
                                     </div>
@@ -247,7 +244,7 @@ export default function RoomDetail() {
                                                 </div>
                                             )}
                                             {/* <DateGo setDataDay={handleChangeDayBooking} /> */}
-                                           
+
                                             <DateRangeSelector setDataDay={handleChangeDayBooking} />
 
                                             <Dropdown
@@ -286,21 +283,35 @@ export default function RoomDetail() {
                                                     <p className="title-price">{`${t('common.priceFor')} ${
                                                         dataDetailHome.accomCateName
                                                     } x ${dayGap({ start: dateBook[0], end: dateBook[1] })}`}</p>
-                                                    <p style={{ fontWeight: '550' }}>
+                                                    <p >
                                                         {formatPrice(totalBill * (1 - dataDetailHome?.discount / 100))}
                                                     </p>
                                                 </div>
                                             </div>
                                             <SurchargeList data={dataDetailHome?.surchargeList} />
-
+                                            <div className="total-price">
+                                                <div className="title-price">Tổng giá phòng</div>
+                                                <div className="real-price ">
+                                                    <p style={{ fontWeight: '550' }}>
+                                                        {formatPrice(
+                                                            totalBill * (1 - dataDetailHome?.discount / 100) +
+                                                                dataDetailHome?.surchargeList.reduce(
+                                                                    (sum, surcharge) => sum + surcharge.cost,
+                                                                    0
+                                                                )
+                                                        )}
+                                                    </p>
+                                                </div>
+                                            </div>
                                             <div className="btn-booking">
-                                                <button
+                                                <Button
+                                                    variant="contained"
                                                     disabled={disBooking}
                                                     className="btn-booking-room"
                                                     onClick={handleBooking}
                                                 >
                                                     {t('common.booking')}
-                                                </button>
+                                                </Button>
                                             </div>
                                         </div>
                                     </div>

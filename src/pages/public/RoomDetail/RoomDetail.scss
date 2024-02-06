@@ -237,6 +237,20 @@
                     padding-left: 5px;
                 }
             }
+            .total-price{
+                display: flex;
+                justify-content: space-between;
+                padding: 0 20px;
+                height: 10px;
+                .title-price{
+                }
+                .real-price{
+
+                }
+            }
+            .list__surcharge{
+                position: static;
+            }
         }
         .price__home{
             display: grid;
@@ -282,7 +296,7 @@
                 display: flex;
                 .cost-surcharge {
                     margin: 5px 0;
-                    font-weight: 550;
+                    
                 }
             }
 
@@ -311,23 +325,26 @@
         }
 
         .btn-booking {
+          
             width: 100%;
             display: flex;
             justify-content: center;
             margin-top: 10px;
             padding-bottom: 5px;
-
+            padding-top: 10px;
+            
             .btn-booking-room {
+                width: 200px;
                 padding: 8px 28px;
                 cursor: pointer;
                 border: none;
-                background-color: #43a047;
+ 
                 color: white;
                 border-radius: 5px;
             }
 
             .btn-booking-room:hover {
-                background-color: #388e3c;
+       
             }
             .btn-booking-room:disabled {
                 background-color: var(--disabled-br);

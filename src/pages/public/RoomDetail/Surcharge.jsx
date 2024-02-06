@@ -18,7 +18,7 @@ export default function SurchargeList(props) {
     return (
             <>
             {totalCost > 0 && (
-                <Accordion className="paper" expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+                <Accordion className='list__surcharge' expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
                         className="price-total"
                         expandIcon={<ExpandMoreIcon />}

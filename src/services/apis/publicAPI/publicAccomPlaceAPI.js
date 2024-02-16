@@ -30,7 +30,7 @@ const publicAccomPlaceAPI = {
         return res.data;
     },
     getTopHomeOfProvince: async () => {
-        const res = await axios.get(`/public/provinces/top?pageNumber=0&pageSize=8`);
+        const res = await axios.get(`/public/provinces/top?pageNumber=0&pageSize=11`);
         return res.data;
     },
     getAllRoomsWithFilter: async (data) => {    

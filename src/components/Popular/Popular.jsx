@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import SkeletonProvince from '../Skeleton/SkeletonProvince';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import { transLateProvince } from '~/services/apis/translateAPI/translateAPI';
-import { useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import filterAcomSlice from '~/redux/filterAccom';
 import './Popular.scss';
 
@@ -19,15 +19,15 @@ const Popular = () => {
         publicAccomPlaceAPI
             .getTopHomeOfProvince()
             .then(async (res) => {
-                const data = await Promise.all(res.data.content.flatMap((item) => {
-                    return transLateProvince(item);
-                }));
+                const data = await Promise.all(
+                    res.data.content.flatMap((item) => {
+                        return transLateProvince(item);
+                    })
+                );
                 setListProvince(data);
                 setLoading(false);
             })
-            .catch((err) => {
-
-            });
+            .catch((err) => {});
     }, []);
 
     const handleLinkToProvince = (province) => {
@@ -42,36 +42,22 @@ const Popular = () => {
                 <div className="package-menu__head">
                     <p>{t('title.exploreVN')}</p>
                 </div>
-                <div className="row">
+                <div className='popular__container'>
                     {loading ? (
                         <SkeletonProvince />
                     ) : (
                         listProvince?.map((province, index) => {
                             return (
-                                <div className="col l-3 m-6 c-12" key={index}>
-                                    <div className="package">
-                                        <div className="package-overlay">
-                                            <img src={province?.thumbnail} alt="" className="package-thumbnail" />
-                                            <div className="package-info">
-                                                <h3 className="package-heading">{province?.provinceName}</h3>
-                                                <span className="package-desc">
-                                                    {`${province?.numBooking} ${t('numberCount.countBooking')}`}
-                                                </span>
-                                            </div>
+                               <div className={`popular__item item-${index}`}  key={index}  onClick={() => handleLinkToProvince(province)}>
+                               
+                                    <img src={province?.thumbnail} alt="" className={`package-thumbnail`} />
+                                    <div className="package-info">
+                                        <h3 className="package-heading">{province?.provinceName}</h3>
+                                        {/* <span className="package-desc">
+                                            {`${province?.numBooking} ${t('numberCount.countBooking')}`}
+                                        </span> */}
                                         </div>
-
-                                        <Link to="#" className="mobile-package__link"></Link>
-                                        <div className="package-cover hide-on-mobile-tablet">
-                                            <div className="package-btn">
-                                                <p
-                                                    className="package-btn-link"
-                                                    onClick={() => handleLinkToProvince(province)}
-                                                >
-                                                    {t('link.viewDetail')}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
+                             
                                 </div>
                             );
                         })

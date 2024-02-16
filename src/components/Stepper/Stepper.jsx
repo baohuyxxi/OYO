@@ -57,7 +57,7 @@ export default function StepperComponent() {
     const [accomCate, setAccomCate] = useState('');
     const [dataStep3, setDataStep3] = useState([]);
     const [dataStep4, setDataStep4] = useState([]);
-
+    const [videoIntroUrl, setVideoIntroUrl] = useState(null);
 
     const [dataStep5, setDataStep5] = useState('');
 
@@ -159,8 +159,8 @@ export default function StepperComponent() {
                     variant: 'success'
                 });
                 const id = dataResponse.data.id;
-                partnerManageAPI.addImageHomeByHost({ imageList: dataStep4, id: id })
-               
+                partnerManageAPI.addImageHomeByHost({ imageList: dataStep4, id: id });
+
                 setLoad(false);
                 navigate('/congratulation');
             })
@@ -201,7 +201,7 @@ export default function StepperComponent() {
             </Stepper>
             {activeStep === steps.length ? (
                 <React.Fragment>
-                    <ConfirmOwner imagesOfHome={dataStep4}/>
+                    <ConfirmOwner imagesOfHome={dataStep4} />
                     <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2, marginRight: '40px' }}>
                         <Box sx={{ flex: '1 1 auto' }} />
                         <Button onClick={handlePostRoom}>Đăng lên</Button>
@@ -233,7 +233,7 @@ export default function StepperComponent() {
                         } else if (activeStep === 2) {
                             return <StepperThree setDataStep3={handleSetDataStep3} />;
                         } else if (activeStep === 3) {
-                            return <StepperFour setDataStep4={setDataStep4} />;
+                            return <StepperFour setDataStep4={setDataStep4} setVideoIntroUrl={setVideoIntroUrl} />;
                         } else if (activeStep === 4) {
                             return <StepperFive handleSetDataStep5={handleSetDataStep5} data={dataStep5} />;
                         }

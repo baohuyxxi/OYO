@@ -6,7 +6,6 @@ import { ImageConfig } from '~/config/ImageConfig';
 import uploadImg from '~/assets/upload/cloud-upload-regular-240.png';
 import { t } from 'i18next';
 
-
 const UploadFile = (props) => {
     const wrapperRef = useRef(null);
 

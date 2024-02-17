@@ -53,9 +53,9 @@ const Popular = () => {
                                     <img src={province?.thumbnail} alt="" className={`package-thumbnail`} />
                                     <div className="package-info">
                                         <h3 className="package-heading">{province?.provinceName}</h3>
-                                        {/* <span className="package-desc">
+                                        <span className="package-desc">
                                             {`${province?.numBooking} ${t('numberCount.countBooking')}`}
-                                        </span> */}
+                                        </span>
                                         </div>
                              
                                 </div>

@@ -10,7 +10,6 @@ import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 // import { CalendarPicker } from '@mui/x-date-pickers/CalendarPicker';
-// import CalendarPicker from 'react-native-calendar-picker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';

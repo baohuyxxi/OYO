@@ -9,9 +9,10 @@ export default function HomePage() {
         <FramePage>
             <HomeSlider />
             {/* <SearchForm /> */}
-            <Popular />
+           
             <TypeAccomPopupar />
             <RoomPopular />
+            <Popular />
         </FramePage>
     );
 }

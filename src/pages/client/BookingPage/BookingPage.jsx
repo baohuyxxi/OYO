@@ -11,6 +11,7 @@ import CheckBoxPaymentMethod from '~/components/CheckBoxPayment/CheckBoxPaymentM
 import InfoUserBooking from '~/components/InfoUserBooking/InfoUserBooking';
 import DateBooking from '~/components/DateBooking/DateBooking';
 import Paypal from '~/components/Paypal/Paypal';
+import VNPay from '~/components/VNPay/VNPay';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import bookingAPI from '~/services/apis/clientAPI/clientBookingAPI';
 import { useDispatch, useSelector } from 'react-redux';
@@ -91,7 +92,7 @@ const BookingPage = () => {
     }, [dataBooking.paymentPolicy, dataBooking.paymentMethod, dataBooking.originPay, dataDetailHomeBooking?.surchargeList]);
 
     return (
-        <FramePage>
+ 
             <div className="booking__page content">
                 <div className="content-booking">
                     <h1>{t('title.bookingOfYou.tilte')}</h1>
@@ -148,6 +149,7 @@ const BookingPage = () => {
                                     </button>
                                 </div>
                             )}
+                        <VNPay/>
                         </div>
                         <div className="col l-4">
                             <div className="card-booking__room paper">
@@ -240,7 +242,6 @@ const BookingPage = () => {
                     </div>
                 </div>
             </div>
-        </FramePage>
     );
 };
 

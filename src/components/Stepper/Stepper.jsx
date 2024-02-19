@@ -1,19 +1,15 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { AxiosError } from 'axios';
 import { t } from 'i18next';
 import { useSnackbar } from 'notistack';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { LoadingButton } from '@mui/lab';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Stepper from '@mui/material/Stepper';
-import uploadMedia from '~/services/apis/media/uploadMedia';
-import userSlice from '~/redux/userSlice';
 
 import ConfirmOwner from '~/pages/partner/ConfirmOwner/ConfirmOwner';
 import setupOwnerSlice from '~/pages/partner/SetupOwner/setupOwnerSlice';
@@ -27,6 +23,7 @@ import { addressFormData } from '~/share/models/address';
 import { typeRoom } from '~/share/models/roomHome';
 import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 import LoadingMaster from '../LoadingMaster/LoadingMaster';
+import cloudinaryAPI from '~/services/thirdPartyAPI/cloudinaryAPI';
 
 const steps = [
     t('setupOwner.nameStep.one'),
@@ -57,11 +54,11 @@ export default function StepperComponent() {
     const [accomCate, setAccomCate] = useState('');
     const [dataStep3, setDataStep3] = useState([]);
     const [dataStep4, setDataStep4] = useState([]);
-    const [videoIntroUrl, setVideoIntroUrl] = useState(null);
-
+    const [videoIntro, setVideoIntro] = useState(null);
     const [dataStep5, setDataStep5] = useState('');
-
     const navigate = useNavigate();
+
+    console.log(setupRoomHost);
 
     const handleSetAddressDetail = (value) => {
         setAddressDetail(value);
@@ -90,7 +87,7 @@ export default function StepperComponent() {
             }
         } else if (activeStep === 1) {
             if (dataStep2.length > 0) {
-                dispatch(setupOwnerSlice.actions.addroomsOfHomeRoom(dataStep2));
+                dispatch(setupOwnerSlice.actions.setUpRoomOfAccom(dataStep2));
             }
             if (accomCate !== '') dispatch(setupOwnerSlice.actions.addAccomCateName(accomCate));
             if (countGuest !== 0) {
@@ -100,7 +97,7 @@ export default function StepperComponent() {
         } else if (activeStep === 2) {
             const dataIdList = [];
 
-            for (var i = 0; i < dataStep3.length; i++) {
+            for (let i = 0; i < dataStep3.length; i++) {
                 if (dataStep3[i]?.label !== undefined) dataIdList.push(dataStep3[i]?.label);
             }
             dispatch(setupOwnerSlice.actions.addamenitiesOfHomeRoom(dataIdList));
@@ -112,7 +109,9 @@ export default function StepperComponent() {
                     variant: 'warning'
                 });
             } else {
-                // dispatch(setupOwnerSlice.actions.addimagesOfHomeRoom(dataStep4));
+                if (videoIntro !== null) {
+                    dispatch(cloudinaryAPI.uploadVideoIntro(videoIntro));
+                }
                 setActiveStep((prevActiveStep) => prevActiveStep + 1);
             }
         } else if (activeStep === 4) {
@@ -123,6 +122,7 @@ export default function StepperComponent() {
                 dataStep5?.costPerNightDefault !== '' &&
                 dataStep5?.acreage !== ''
             ) {
+                console.log(setupOwnerSlice);
                 dispatch(setupOwnerSlice.actions.addInfoOfHomeRoom(dataStep5));
                 setActiveStep((prevActiveStep) => prevActiveStep + 1);
             } else {
@@ -132,7 +132,6 @@ export default function StepperComponent() {
                 });
             }
         }
-
         setSkipped(newSkipped);
     };
 
@@ -159,10 +158,11 @@ export default function StepperComponent() {
                     variant: 'success'
                 });
                 const id = dataResponse.data.id;
-                partnerManageAPI.addImageHomeByHost({ imageList: dataStep4, id: id });
-
-                setLoad(false);
-                navigate('/congratulation');
+                partnerManageAPI.addImageHomeByHost({ imageList: dataStep4, id: id }).then(() => {
+                    setLoad(false);
+                    navigate('/congratulation');
+                    dispatch(setupOwnerSlice.actions.reset());
+                });
             })
             .catch((error) => {
                 enqueueSnackbar(error.response?.data.message, {
@@ -233,7 +233,14 @@ export default function StepperComponent() {
                         } else if (activeStep === 2) {
                             return <StepperThree setDataStep3={handleSetDataStep3} />;
                         } else if (activeStep === 3) {
-                            return <StepperFour setDataStep4={setDataStep4} setVideoIntroUrl={setVideoIntroUrl} />;
+                            return (
+                                <StepperFour
+                                    setDataStep4={setDataStep4}
+                                    setVideoIntro={setVideoIntro}
+                                    dataStep4={dataStep4}
+                                    videoIntro={videoIntro}
+                                />
+                            );
                         } else if (activeStep === 4) {
                             return <StepperFive handleSetDataStep5={handleSetDataStep5} data={dataStep5} />;
                         }

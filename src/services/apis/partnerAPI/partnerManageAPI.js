@@ -14,51 +14,45 @@ const partnerManageAPI = {
         const res = await axios.post(`/partner/accoms/${data.id}/images/create`, formData);
         return res.data;
     },
-    getListHomeOfPartner: async() =>{
+    getListHomeOfPartner: async () => {
         const res = await axios.get(`/partner/accoms/pages?pageNumber=0&pageSize=99`);
         return res.data;
     },
- 
-   
-    getRoomCategory: async(data) => {
+    getRoomCategory: async (data) => {
         const res = await axios.get(`/url${data}`);
         return res.data;
     },
-    updateTitleHome: async(data) =>{
-        const res = await axios.put(`/partner/accoms/title?accomId=${data.id}`,data.data);
+    updateTitleHome: async (data) => {
+        const res = await axios.put(`/partner/accoms/title?accomId=${data.id}`, data.data);
         return res.data;
     },
-    setSurcharge: async(data) =>{
-        const res = await axios.put(`/partner/accoms/surcharge?accomId=${data.id}`,data.data);
+    setSurcharge: async (data) => {
+        const res = await axios.put(`/partner/accoms/surcharge?accomId=${data.id}`, data.data);
         return res.data;
     },
-    updateAddressHome: async(data) => {
-        const res = await axios.put(`/partner/accoms/address?accomId=${data.id}`,data.data);
+    updateAddressHome: async (data) => {
+        const res = await axios.put(`/partner/accoms/address?accomId=${data.id}`, data.data);
         return res.data;
     },
-     updatePriceHome: async(data) => {
+    updatePriceHome: async (data) => {
         const res = await axios.put(`/partner/accoms/change-price?pricePerNight=${data.data}&accomId=${data.id}`);
         return res.data;
     },
-    updateDiscount: async(data) => {
+    updateDiscount: async (data) => {
         const res = await axios.put(`/partner/accoms/discount?discount=${data.data}&accomId=${data.id}`);
         return res.data;
     },
-    updateRoomHome: async(data) => {
-
-        const res = await axios.put(`/partner/accoms/room?accomId=${data.id}`,data.data);
+    updateRoomHome: async (data) => {
+        const res = await axios.put(`/partner/accoms/room?accomId=${data.id}`, data.data);
         return res.data;
     },
-    updateFacility: async(data) => {
-
-        const res = await axios.put(`/partner/accoms/facility?accomId=${data.id}`,data.data);
+    updateFacility: async (data) => {
+        const res = await axios.put(`/partner/accoms/facility?accomId=${data.id}`, data.data);
         return res.data;
     },
-    updateImagesHome: async(data) =>{
-        const res = await axios.put(`partner/accoms/images?accomId=${data.id}`,data.data)
-        return res.data
-    },
-
-    
+    updateImagesHome: async (data) => {
+        const res = await axios.put(`partner/accoms/images?accomId=${data.id}`, data.data);
+        return res.data;
+    }
 };
 export default partnerManageAPI;

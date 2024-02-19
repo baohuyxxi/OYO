@@ -1,15 +1,20 @@
-import { useState } from 'react';
 import { t } from 'i18next';
-
 import ConfirmClose from '~/components/ConfirmClose/ConfirmClose';
 import UploadFile from '~/components/UploadFile/UploadFile';
 import './StepperFour.scss';
 
-const StepperFour = ({ setDataStep4, setVideoIntroUrl }) => {
-    const [fileList, setFileList] = useState([]);
+const StepperFour = ({ dataStep4, setDataStep4, videoIntro, setVideoIntro }) => {
     const onFileChange = (files) => {
         if (setDataStep4) {
             setDataStep4(files);
+        }
+    };
+    const onVideoDrop = (e) => {
+        if (e.target.files) {
+            const newFileVideo = e.target.files[0];
+            if (newFileVideo) {
+                setVideoIntro(newFileVideo);
+            }
         }
     };
 
@@ -28,11 +33,16 @@ const StepperFour = ({ setDataStep4, setVideoIntroUrl }) => {
                 </div>
                 <div className="col l-6 m-6">
                     <div className="upload-file">
-                        <UploadFile onFileChange={(files) => onFileChange(files)} />
+                        <UploadFile
+                            dataStep4={dataStep4}
+                            onFileChange={(files) => onFileChange(files)}
+                            videoIntro={videoIntro}
+                            setVideoIntro={setVideoIntro}
+                        />
                     </div>
                     <ConfirmClose />
                 </div>
-                <input type="file" />
+                <input type="file" value="" onChange={onVideoDrop} />
             </div>
         </div>
     );

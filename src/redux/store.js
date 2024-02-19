@@ -12,8 +12,8 @@ import filterAcomSlice from './filterAccom';
 
 const persistConfig = {
     key: 'root',
-    whiteList : ['user'],
-    blackList :['notification', 'settingowner'],
+    whiteList: ['user'],
+    blackList: ['notification', 'settingowner'],
     storage
 };
 const rootReducer = combineReducers({
@@ -23,18 +23,26 @@ const rootReducer = combineReducers({
     notification: notificationSlice.reducer,
     global: globalSlice.reducer,
     settingaccom: settingAccomSlice.reducer,
-    filterAccom: filterAcomSlice.reducer,
+    filterAccom: filterAcomSlice.reducer
 });
+
+// const rootReducer = (state, action) => {
+//     if (action.type === 'RESET') {
+//         state = {};
+//     }
+//     return combinedReducer(state, action);
+// };
+
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
+        getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+            }
+        })
 });
 
 export let persistor = persistStore(store);

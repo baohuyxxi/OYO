@@ -1,15 +1,20 @@
-import React, { useRef, useState } from 'react';
-
+import { useRef } from 'react';
 import './UploadFile.scss';
-
 import { ImageConfig } from '~/config/ImageConfig';
 import uploadImg from '~/assets/upload/cloud-upload-regular-240.png';
 import { t } from 'i18next';
+import { getFileExtension } from '~/utils/extensionFile';
 
-const UploadFile = (props) => {
+const UploadFile = ({ dataStep4, onFileChange, videoIntro, setVideoIntro }) => {
+    let fileList = null;
+    if (videoIntro) {
+        fileList = [...dataStep4, videoIntro];
+    } else {
+        fileList = [...dataStep4];
+    }
+
+    console.log(fileList);
     const wrapperRef = useRef(null);
-
-    const [fileList, setFileList] = useState([]);
 
     const onDragEnter = () => wrapperRef.current?.classList.add('dragover');
 
@@ -22,27 +27,28 @@ const UploadFile = (props) => {
             if (event.target.files.length <= 1) {
                 const newFile = event.target.files[0];
                 if (newFile) {
-                    const updatedList = [...fileList, newFile];
-                    setFileList(updatedList);
-                    props.onFileChange(updatedList);
+                    const updatedList = [...dataStep4, newFile];
+                    onFileChange(updatedList);
                 }
             } else {
-                var updatedList = [];
-                for (var i = 0; i < event.target.files.length; i++) {
+                let updatedList = [];
+                for (let i = 0; i < event.target.files.length; i++) {
                     const newFile = event.target.files[i];
                     updatedList.push(newFile);
                 }
-                setFileList(updatedList);
-                props.onFileChange(updatedList);
+                onFileChange(updatedList);
             }
         }
     };
 
     const fileRemove = (file) => {
-        const updatedList = [...fileList];
-        updatedList.splice(fileList.indexOf(file), 1);
-        setFileList(updatedList);
-        props.onFileChange(updatedList);
+        if (getFileExtension(file.name) === 'mp4') {
+            setVideoIntro(null);
+        } else {
+            const updatedList = [...dataStep4];
+            updatedList.splice(dataStep4.indexOf(file), 1);
+            onFileChange(updatedList);
+        }
     };
 
     return (

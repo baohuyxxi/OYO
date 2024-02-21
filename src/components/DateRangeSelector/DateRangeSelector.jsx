@@ -13,20 +13,19 @@ import moment from 'moment';
 import 'react-nice-dates/build/style.css';
 export default function DateRangeSelector(props) {
     const { setDataDay } = props;
-    const dataBooking = useSelector((state) => state.booking.info);
+    const dataBooking = useSelector((state) => state.booking);
     const [startDate, setStartDate] = useState();
     const [endDate, setEndDate] = useState();
-    console.log(dataBooking)
+    console.log(dataBooking);
     useEffect(() => {
         setStartDate(moment(dataBooking.checkIn, 'dd/MM/yyyy').toDate());
         setEndDate(moment(dataBooking.checkOut, 'dd/MM/yyyy').toDate());
     }, [dataBooking.checkIn, dataBooking.checkOut]);
 
     useEffect(() => {
-        if(startDate && endDate){
+        if (startDate && endDate) {
             setDataDay(startDate, endDate);
         }
-       
     }, [startDate, endDate]);
     return (
         <div className="date-range-selector">
@@ -34,7 +33,7 @@ export default function DateRangeSelector(props) {
                 startDate={startDate || new Date()}
                 endDate={endDate || addDays(new Date(), 1)}
                 onStartDateChange={(e) => {
-                    setStartDate(e)
+                    setStartDate(e);
                 }}
                 onEndDateChange={setEndDate}
                 minimumDate={new Date()}

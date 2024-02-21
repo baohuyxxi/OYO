@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { t } from 'i18next';
 const InfoUserBooking = () => {
     const dispatch = useDispatch();
-    const dataBooking = useSelector((state) => state.booking);
+    const dataBooking = useSelector((state) => state.booking.info);
     const [open, setOpen] = useState(false);
     const [name, setName] = useState(dataBooking.nameCustomer);
     const [phoneNumber, setPhoneNumber] = useState(dataBooking.phoneNumberCustomer);

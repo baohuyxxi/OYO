@@ -1,79 +1,95 @@
 import { createSlice } from '@reduxjs/toolkit';
 import moment from 'moment';
 import { addDays } from 'date-fns';
+import VNPay from '~/components/VNPay/VNPay';
 const bookingSlice = createSlice({
     name: 'booking',
     initialState: {
-        nameCustomer: '',
-        phoneNumberCustomer: 0,
-        checkIn: moment().format('DD/MM/yyyy'),
-        checkOut: moment(addDays(new Date(), 1)).format('DD/MM/yyyy'),
-        numAdult: 1,
-        numChild: 0,
-        numBornChild: 0,
-        totalCostAccom: 0,
-        originPay: 0,
-        surcharge: 0,
-        totalTransfer: 0,
-        paymentPolicy: 'PAYMENT_FULL',
-        paymentMethod: 'PAYPAL',
-        accomId: 0,
-        canBooking: true,
-        discount: 0
+        info: {
+            nameCustomer: '',
+            phoneNumberCustomer: 0,
+            checkIn: moment().format('DD/MM/yyyy'),
+            checkOut: moment(addDays(new Date(), 1)).format('DD/MM/yyyy'),
+            numAdult: 1,
+            numChild: 0,
+            numBornChild: 0,
+            totalCostAccom: 0,
+            originPay: 0,
+            surcharge: 0,
+            totalTransfer: 0,
+            paymentPolicy: 'PAYMENT_FULL',
+            paymentMethod: 'PAYPAL',
+            accomId: 0,
+            canBooking: true,
+            discount: 0
+        },
+        VNPay:{
+            vnp_TxnRef: 0,
+            vnp_TransactionStatus:null,
+        }
+        
     },
     reducers: {
         addInfoBooking(state, action) {
-            state.checkIn = action.payload.checkIn;
-            state.checkOut = action.payload.checkOut;
-            state.accomId = action.payload.accomId;
-            state.numAdult = action.payload.guests.numAdult;
-            state.numChild = action.payload.guests.numChild;
-            state.numBornChild = action.payload.guests.numBornChild;
-            state.surcharge = action.payload.surcharge;
-            state.originPay = action.payload.originPay;
-            state.nameCustomer = action.payload.nameCustomer;
-            state.phoneNumberCustomer = action.payload.phoneNumberCustomer;
-            state.discount = action.payload.discount;
+            state.info.checkIn = action.payload.checkIn;
+            state.info.checkOut = action.payload.checkOut;
+            state.info.accomId = action.payload.accomId;
+            state.info.numAdult = action.payload.guests.numAdult;
+            state.info.numChild = action.payload.guests.numChild;
+            state.info.numBornChild = action.payload.guests.numBornChild;
+            state.info.surcharge = action.payload.surcharge;
+            state.info.originPay = action.payload.originPay;
+            state.info.nameCustomer = action.payload.nameCustomer;
+            state.info.phoneNumberCustomer = action.payload.phoneNumberCustomer;
+            state.info.discount = action.payload.discount;
         },
         addDay(state, action) {
-            state.checkIn = action.payload.checkIn;
-            state.checkOut = action.payload.checkOut;
+            state.info.checkIn = action.payload.checkIn;
+            state.info.checkOut = action.payload.checkOut;
         },
 
         addPaymentMethod(state, action) {
-            state.paymentMethod = action.payload;
+            state.info.paymentMethod = action.payload;
         },
         addPaymentPolicy(state, action) {
-            state.paymentPolicy = action.payload;
+            state.info.paymentPolicy = action.payload;
         },
         addTotalTransfer(state, action) {
-            state.totalTransfer = action.payload;
+            state.info.totalTransfer = action.payload;
         },
         updateInfoBooking(state, action) {
-            state.surcharge = action.payload.costSurcharge;
-            state.originPay = action.payload.totalCostAccom;
-            state.totalCostAccom = action.payload.totalCostAccom;
-            state.canBooking = action.payload.canBooking;
+            state.info.surcharge = action.payload.costSurcharge;
+            state.info.originPay = action.payload.totalCostAccom;
+            state.info.totalCostAccom = action.payload.totalCostAccom;
+            state.info.canBooking = action.payload.canBooking;
         },
         updateInfoUserBooking(state, action) {
-            state.nameCustomer = action.payload.name;
-            state.phoneNumberCustomer = action.payload.phoneNumber;
+            state.info.nameCustomer = action.payload.name;
+            state.info.phoneNumberCustomer = action.payload.phoneNumber;
         },
+        createVNPay(state, action) {
+            console.log(action.payload);
+            state.VNPay.vnp_TxnRef= action.payload;
+
+        },
+
         clearInfoBooking(state, action) {
-            state.nameCustomer = '';
-            state.phoneNumberCustomer = 0;
-            state.checkIn = moment().format('DD/MM/yyyy');
-            state.checkOut = moment(addDays(new Date(), 1)).format('DD/MM/yyyy');
-            state.numAdult = 1;
-            state.numChild = 0;
-            state.numBornChild = 0;
-            state.totalCostAccom = 0;
-            state.originPay = 0;
-            state.surcharge = 0;
-            state.totalTransfer = 0;
-            state.paymentPolicy = 'PAYMENT_FULL';
-            state.paymentMethod = 'PAYPAL';
-            state.accomId = 0;
+            state.info.nameCustomer = '';
+            state.info.phoneNumberCustomer = 0;
+            state.info.checkIn = moment().format('DD/MM/yyyy');
+            state.info.checkOut = moment(addDays(new Date(), 1)).format('DD/MM/yyyy');
+            state.info.numAdult = 1;
+            state.info.numChild = 0;
+            state.info.numBornChild = 0;
+            state.info.totalCostAccom = 0;
+            state.info.originPay = 0;
+            state.info.surcharge = 0;
+            state.info.totalTransfer = 0;
+            state.info.paymentPolicy = 'PAYMENT_FULL';
+            state.info.paymentMethod = 'PAYPAL';
+            state.info.accomId = 0;
+            state.VNPay.vnp_TxnRef=null;
+            state.VNPay.vnp_TransactionStatus=null;
         }
     }
 });

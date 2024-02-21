@@ -1,24 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; // Import thư viện axios
 import sha512 from 'js-sha512';
-import moment from 'moment-timezone';   
+import moment from 'moment-timezone';
+import bookingSlice from '~/redux/bookingSlice';
+import { useDispatch, useSelector } from 'react-redux';
+const VNPay = (props) => {
+    const { pricePayment, booking, canBooking, errors } = props;
+    const dispatch = useDispatch();
+    const VNPay = useSelector((state) => state.booking.VNPay);
 
-const VNPay = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const vnp_TransactionStatus = urlParams.get('vnp_TransactionStatus');
+    const vnp_TxnRef = urlParams.get('vnp_TxnRef');
+    const vnp_SecureHash = urlParams.get('vnp_SecureHash');
+
+    useEffect(() => {
+        if (vnp_TransactionStatus === '00' && vnp_TxnRef == VNPay.vnp_TxnRef) {
+            const params = new URLSearchParams();
+            urlParams.forEach((value, key) => {
+                if (key !== 'vnp_SecureHash') {
+                    params.append(key, value);
+                }
+            });
+            const queryString = params.toString();
+            const secretKey = 'CLMXUQRJDTHASLQRMTNIMVVCMCRVRHBT';
+            const vnp_SecureHash = sha512.hmac.create(secretKey).update(queryString).hex();
+            if (vnp_SecureHash === urlParams.get('vnp_SecureHash')) {
+                console.log('Thanh toán thành công');
+                booking();
+            }
+        }
+    }, [vnp_TransactionStatus, vnp_TxnRef, vnp_SecureHash]);
+
     const createPaymentUrl = async () => {
         try {
             const ipAddr = await axios.get('https://api.ipify.org?format=json').then((response) => response.data.ip);
-            // Lấy thời gian hiện tại
-            const currentDateTimeVN = moment.tz(moment(), 'Asia/Ho_Chi_Minh').format();
-            const createDate = currentDateTimeVN.toISOString().replace(/[-T:]/g, '').slice(0, -5);
 
-            // Tạo thời gian 15 phút tiếp theo
-            const next15Minutes = new Date(currentDateTimeVN.getTime() + 15 * 60000);
-            const expireDate = next15Minutes.toISOString().replace(/[-T:]/g, '').slice(0, -5);
-
-            // Tạo mã ngẫu nhiên 8 số cho vnp_TxnRef
+            const createDate = moment.tz('Asia/Ho_Chi_Minh').format('YYYYMMDDHHmmss');
+            const expireDate = moment.tz('Asia/Ho_Chi_Minh').add(15, 'minutes').format('YYYYMMDDHHmmss');
             const randomTxnRef = Math.floor(10000000 + Math.random() * 90000000);
             let vnp_Params = {
-                vnp_Amount: 120000000,
+                vnp_Amount: pricePayment * 100,
                 vnp_BankCode: 'NCB',
                 vnp_Command: 'pay',
                 vnp_CreateDate: createDate,
@@ -26,21 +48,19 @@ const VNPay = () => {
                 vnp_ExpireDate: expireDate,
                 vnp_IpAddr: ipAddr,
                 vnp_Locale: 'vn',
-                vnp_OrderInfo: 'Thanh toan don hang :5',
+                vnp_OrderInfo: 'Thanh toan OYO',
                 vnp_OrderType: 'other',
                 vnp_ReturnUrl: 'http://localhost:5173/booking',
                 vnp_TmnCode: 'EXLRT5HV',
                 vnp_TxnRef: randomTxnRef,
                 vnp_Version: '2.1.0'
             };
-            console.log(vnp_Params);
             // Tạo chuỗi query từ vnp_Params sử dụng URLSearchParams
             const params = new URLSearchParams();
             for (const key in vnp_Params) {
                 params.append(key, vnp_Params[key]);
             }
             const queryString = params.toString();
-            console.log(queryString);
 
             // Tạo mã băm từ chuỗi query và secretKey
             const secretKey = 'CLMXUQRJDTHASLQRMTNIMVVCMCRVRHBT'; // Thay thế 'your_secret_key_here' bằng secretKey thực của bạn
@@ -51,6 +71,8 @@ const VNPay = () => {
                 queryString +
                 '&vnp_SecureHash=' +
                 vnp_SecureHash;
+            console.log(vnp_Params['vnp_TxnRef']);
+            dispatch(bookingSlice.actions.createVNPay(vnp_Params['vnp_TxnRef']));
             window.open(vnpUrl, '_blank');
 
             console.log(vnpUrl);

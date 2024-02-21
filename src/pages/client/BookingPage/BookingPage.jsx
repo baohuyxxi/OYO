@@ -25,7 +25,7 @@ const BookingPage = () => {
     const dispatch = useDispatch();
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
-    const dataBooking = useSelector((state) => state.booking);
+    const dataBooking = useSelector((state) => state.booking.info);
     const [loading, setLoading] = useState(true);
     const [dataDetailHomeBooking, setDataDetailHomeBooking] = useState();
     const [priceAfterChoosePayment, setPriceAfterChoosePayment] = useState(dataBooking?.originPay);
@@ -83,7 +83,7 @@ const BookingPage = () => {
             result /= 2;
             total *= 0.5;
         }
-        if (dataBooking.paymentMethod === 'PAYPAL') {
+        if (dataBooking.paymentMethod === 'PAYPAL' || dataBooking.paymentMethod === 'VNPAY') {
             result = (result * (1 - dataBooking.discount / 100) + surcharge) * 0.9;
             total = (total * (1 - dataBooking.discount / 100) + surcharge) * 0.9;
         } else {
@@ -101,158 +101,167 @@ const BookingPage = () => {
     ]);
 
     return (
-        <div className="booking__page content">
-            <div className="content-booking">
-                <h1>{t('title.bookingOfYou.tilte')}</h1>
-                <div className="row">
-                    <div className="col l-8" style={{ height: '100vh', paddingRight: '50px' }}>
-                        <h2>{t('title.bookingOfYou.drive')}</h2>
-                        <DateBooking
-                            size="horizontal"
-                            checkIn={dataBooking.checkIn}
-                            checkOut={dataBooking.checkOut}
-                            idHome={dataBooking.accomId}
-                        />
-                        {dataBooking.canBooking === false && <p className="error">{t('common.candontBooking')}</p>}
-                        <hr className="line" />
+        <FramePage>
+            <div className="booking__page content">
+                <div className="content-booking">
+                    <h1>{t('title.bookingOfYou.tilte')}</h1>
+                    <div className="row">
+                        <div className="col l-8" style={{ height: '100vh', paddingRight: '50px' }}>
+                            <h2>{t('title.bookingOfYou.drive')}</h2>
+                            <DateBooking
+                                size="horizontal"
+                                checkIn={dataBooking.checkIn}
+                                checkOut={dataBooking.checkOut}
+                                idHome={dataBooking.accomId}
+                            />
+                            {dataBooking.canBooking === false && <p className="error">{t('common.candontBooking')}</p>}
+                            <hr className="line" />
 
-                        <div className="count-customer">
-                            <div>
-                                <p className="customer-count__title">{t('title.bookingOfYou.client')}</p>
-                                <p className="count">{guests(dataBooking)}</p>
+                            <div className="count-customer">
+                                <div>
+                                    <p className="customer-count__title">{t('title.bookingOfYou.client')}</p>
+                                    <p className="count">{guests(dataBooking)}</p>
+                                </div>
                             </div>
-                        </div>
-                        <InfoUserBooking />
-                        {errors?.phoneNumberCustomer && <p className="error">{errors.phoneNumberCustomer}</p>}
-                        <hr className="line" />
-                        <div className="count-customer">
-                            <div>
-                                <p className="customer-count__title">{t('title.bookingOfYou.payOnline')}</p>
-                                <p className="count">{`${t('title.bookingOfYou.payBefore')}: ${formatPrice(
-                                    priceAfterChoosePayment
-                                )}`}</p>
+                            <InfoUserBooking />
+                            {errors?.phoneNumberCustomer && <p className="error">{errors.phoneNumberCustomer}</p>}
+                            <hr className="line" />
+                            <div className="count-customer">
+                                <div>
+                                    <p className="customer-count__title">{t('title.bookingOfYou.payOnline')}</p>
+                                    <p className="count">{`${t('title.bookingOfYou.payBefore')}: ${formatPrice(
+                                        priceAfterChoosePayment
+                                    )}`}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="count-customer">
-                            <div>
-                                <p className="customer-count__title">{t('title.bookingOfYou.method')}</p>
+                            <div className="count-customer">
+                                <div>
+                                    <p className="customer-count__title">{t('title.bookingOfYou.method')}</p>
+                                </div>
                             </div>
-                        </div>
-                        <CheckBoxPaymentMethod price={dataBooking?.priceTotal} />
-                        {/* <CheckBoxPaymentPolicy price={dataBooking?.priceTotal} /> */}
+                            <CheckBoxPaymentMethod price={dataBooking?.priceTotal} />
+                            {/* <CheckBoxPaymentPolicy price={dataBooking?.priceTotal} /> */}
 
-                        {dataBooking.paymentMethod === 'PAYPAL' ? (
-                            <div className="payment__paypal">
-                                <Paypal
-                                    pricePayment={priceAfterChoosePayment}
-                                    booking={handleBookingRoom}
-                                    canBooking={dataBooking.canBooking}
-                                    errors={errors}
-                                />
-                            </div>
-                        ) : dataBooking.paymentMethod === 'VNPAY' ? (
-                            <div className="btn__booking">
-                              <VNPay />
-                            </div>
-                        ) : (
-                            <div className="btn__booking">
-                                <button disabled={!dataBooking.canBooking} onClick={handleBookingRoom}>
-                                    {t('common.booking')}
-                                </button>
-                            </div>
-                        )}
-                        
-                    </div>
-                    <div className="col l-4">
-                        <div className="card-booking__room paper">
-                            {loading ? (
-                                <></>
+                            {dataBooking.paymentMethod === 'PAYPAL' ? (
+                                <div className="payment__paypal">
+                                    <Paypal
+                                        pricePayment={priceAfterChoosePayment}
+                                        booking={handleBookingRoom}
+                                        canBooking={dataBooking.canBooking}
+                                        errors={errors}
+                                    />
+                                </div>
+                            ) : dataBooking.paymentMethod === 'VNPAY' ? (
+                                <div className="btn__booking">
+                                    <VNPay
+                                        pricePayment={priceAfterChoosePayment}
+                                        booking={handleBookingRoom}
+                                        canBooking={dataBooking.canBooking}
+                                        errors={errors}
+                                    />
+                                </div>
                             ) : (
-                                <>
-                                    <div className="header-room__booking">
-                                        <div className="image-room__booking">
-                                            <img src={dataDetailHomeBooking?.imageAccomsUrls[0]} alt="" />
-                                        </div>
-                                        <div className="desc-room__booking">
-                                            <p className="desc-all">{t('title.bookingOfYou.fullHome')}</p>
-                                            <p className="name-room-booking">{dataDetailHomeBooking?.accomCateName}</p>
-                                            <div className="locate-room-booking">
-                                                <FmdGoodIcon className="icon-locate-booking" />
-                                                <p>{dataDetailHomeBooking.addressDetail}</p>
+                                <div className="btn__booking">
+                                    <button disabled={!dataBooking.canBooking} onClick={handleBookingRoom}>
+                                        {t('common.booking')}
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                        <div className="col l-4">
+                            <div className="card-booking__room paper">
+                                {loading ? (
+                                    <></>
+                                ) : (
+                                    <>
+                                        <div className="header-room__booking">
+                                            <div className="image-room__booking">
+                                                <img src={dataDetailHomeBooking?.imageAccomsUrls[0]} alt="" />
                                             </div>
-                                            <p className="name-host-room">{`${t('title.bookingOfYou.owner')} ${
-                                                dataDetailHomeBooking?.nameHost
-                                            }`}</p>
+                                            <div className="desc-room__booking">
+                                                <p className="desc-all">{t('title.bookingOfYou.fullHome')}</p>
+                                                <p className="name-room-booking">
+                                                    {dataDetailHomeBooking?.accomCateName}
+                                                </p>
+                                                <div className="locate-room-booking">
+                                                    <FmdGoodIcon className="icon-locate-booking" />
+                                                    <p>{dataDetailHomeBooking.addressDetail}</p>
+                                                </div>
+                                                <p className="name-host-room">{`${t('title.bookingOfYou.owner')} ${
+                                                    dataDetailHomeBooking?.nameHost
+                                                }`}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <hr className="line-card" />
-                                    <div className="policy-booking">{t('title.bookingOfYou.policy')}</div>
+                                        <hr className="line-card" />
+                                        <div className="policy-booking">{t('title.bookingOfYou.policy')}</div>
 
-                                    <hr className="line-card" />
-                                    <div className="price-booking">
-                                        <div className="price-room-booking">
-                                            <p style={{ color: '#757575' }}>{t('title.bookingOfYou.price')}</p>
-                                            <p style={{ fontWeight: '550' }}>
-                                                {formatPrice(dataBooking?.totalCostAccom)}/
-                                                {dayGap({ start: dataBooking.checkIn, end: dataBooking.checkOut })}{' '}
-                                                {t('title.bookingOfYou.day')}
-                                            </p>
+                                        <hr className="line-card" />
+                                        <div className="price-booking">
+                                            <div className="price-room-booking">
+                                                <p style={{ color: '#757575' }}>{t('title.bookingOfYou.price')}</p>
+                                                <p style={{ fontWeight: '550' }}>
+                                                    {formatPrice(dataBooking?.totalCostAccom)}/
+                                                    {dayGap({ start: dataBooking.checkIn, end: dataBooking.checkOut })}{' '}
+                                                    {t('title.bookingOfYou.day')}
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className="card-surcharge">
-                                        <p>
-                                            {t('title.bookingOfYou.surcharges')}: {dataBooking.surcharge}
-                                        </p>
-                                        {dataDetailHomeBooking?.surchargeList?.map((sur, index) => (
-                                            <li key={index}>
-                                                {sur?.surchargeName}: {formatPrice(sur.cost)}
-                                            </li>
-                                        ))}
-                                    </div>
-                                    <div className="price-booking">
-                                        {dataBooking.discount !== 0 && (
+                                        <div className="card-surcharge">
+                                            <p>
+                                                {t('title.bookingOfYou.surcharges')}: {dataBooking.surcharge}
+                                            </p>
+                                            {dataDetailHomeBooking?.surchargeList?.map((sur, index) => (
+                                                <li key={index}>
+                                                    {sur?.surchargeName}: {formatPrice(sur.cost)}
+                                                </li>
+                                            ))}
+                                        </div>
+                                        <div className="price-booking">
+                                            {dataBooking.discount !== 0 && (
+                                                <div className="price-total-booking">
+                                                    <p style={{ color: '#757575' }}>
+                                                        {t('common.discountFrom')} {dataDetailHomeBooking.accomCateName}
+                                                    </p>
+                                                    <p style={{ fontWeight: '300' }}>
+                                                        {`-` +
+                                                            formatPrice(
+                                                                (dataBooking?.originPay * dataBooking.discount) / 100
+                                                            )}
+                                                    </p>
+                                                </div>
+                                            )}
                                             <div className="price-total-booking">
                                                 <p style={{ color: '#757575' }}>
-                                                    {t('common.discountFrom')} {dataDetailHomeBooking.accomCateName}
+                                                    {dataBooking.paymentMethod === 'DIRECT'
+                                                        ? t('title.bookingOfYou.direct')
+                                                        : t('title.bookingOfYou.paypal')}
                                                 </p>
                                                 <p style={{ fontWeight: '300' }}>
-                                                    {`-` +
-                                                        formatPrice(
-                                                            (dataBooking?.originPay * dataBooking.discount) / 100
-                                                        )}
+                                                    {dataBooking.paymentMethod === 'DIRECT'
+                                                        ? `-` + formatPrice(0)
+                                                        : `-` +
+                                                          formatPrice(
+                                                              (dataBooking?.originPay *
+                                                                  (1 - dataBooking.discount / 100) +
+                                                                  surcharge) /
+                                                                  10
+                                                          )}
                                                 </p>
                                             </div>
-                                        )}
-                                        <div className="price-total-booking">
-                                            <p style={{ color: '#757575' }}>
-                                                {dataBooking.paymentMethod === 'DIRECT'
-                                                    ? t('title.bookingOfYou.direct')
-                                                    : t('title.bookingOfYou.paypal')}
-                                            </p>
-                                            <p style={{ fontWeight: '300' }}>
-                                                {dataBooking.paymentMethod === 'DIRECT'
-                                                    ? `-` + formatPrice(0)
-                                                    : `-` +
-                                                      formatPrice(
-                                                          (dataBooking?.originPay * (1 - dataBooking.discount / 100) +
-                                                              surcharge) /
-                                                              10
-                                                      )}
-                                            </p>
-                                        </div>
 
-                                        <div className="price-total-booking">
-                                            <p style={{ color: '#757575' }}>{t('title.bookingOfYou.totalPrice')}</p>
-                                            <p style={{ fontWeight: '550' }}>{formatPrice(totalBill)}</p>
+                                            <div className="price-total-booking">
+                                                <p style={{ color: '#757575' }}>{t('title.bookingOfYou.totalPrice')}</p>
+                                                <p style={{ fontWeight: '550' }}>{formatPrice(totalBill)}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </>
-                            )}
+                                    </>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </FramePage>
     );
 };
 

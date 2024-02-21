@@ -8,7 +8,6 @@ import 'slick-carousel/slick/slick-theme.css';
 export default function Facility(props) {
     const { data } = props;
     const infoFacilityList = data.flatMap(item =>  item.infoFacilityList)
-    console.log(infoFacilityList);
 
     var settings = {
         dots: false,

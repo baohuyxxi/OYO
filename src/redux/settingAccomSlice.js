@@ -3,7 +3,7 @@ const settingAccomSlice = createSlice({
     name: 'settingaccom',
     initialState: {
         accom: {
-          accomName: null,
+            accomName: null,
             description: null,
             addressDetail: null,
             userId: 0,
@@ -24,15 +24,15 @@ const settingAccomSlice = createSlice({
             guide: null,
             refundPolicy: null,
             facilityCategoryList: [],
-            surchargeList: [],
+            surchargeList: []
         }
     },
     reducers: {
-      setAccom(state, action) {
-        state.accom = action.payload;
-        state.reload = false;
-      }
-    },
+        setAccom(state, action) {
+            state.accom = action.payload;
+            state.reload = false;
+        }
+    }
 });
 
 export default settingAccomSlice;

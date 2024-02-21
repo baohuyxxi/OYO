@@ -9,7 +9,7 @@ import 'react-date-range/dist/theme/default.css';
 
 import './DateGo.scss';
 const DateRangePickerComp = (props) => {
-    const dataBooking = useSelector((state) => state.booking);
+    const dataBooking = useSelector((state) => state.booking.info);
     const [range, setRange] = useState([
         {
             startDate: new Date(),

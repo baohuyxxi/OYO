@@ -25,7 +25,7 @@ const BookingPage = () => {
     const dispatch = useDispatch();
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
-    const dataBooking = useSelector((state) => state.booking);
+    const dataBooking = useSelector((state) => state.booking.info);
     const [loading, setLoading] = useState(true);
     const [dataDetailHomeBooking, setDataDetailHomeBooking] = useState();
     const [priceAfterChoosePayment, setPriceAfterChoosePayment] = useState(dataBooking?.originPay);
@@ -50,7 +50,7 @@ const BookingPage = () => {
     useEffect(() => {
         const checkValidate = validateBooking(dataBooking);
         setErrors(checkValidate);
-    },[dataBooking.phoneNumberCustomer]);
+    }, [dataBooking.phoneNumberCustomer]);
     useEffect(() => {
         setLoading(true);
         publicAccomPlaceAPI.getRoomDetail(dataBooking.accomId).then(async (dataResponse) => {
@@ -71,7 +71,11 @@ const BookingPage = () => {
         });
     }, [dataBooking.checkIn, dataBooking.checkOut]);
     useEffect(() => {
-        let surcharge = parseInt( dataDetailHomeBooking?.surchargeList?.reduce((total, item) => { return total + item.cost }, 0))
+        let surcharge = parseInt(
+            dataDetailHomeBooking?.surchargeList?.reduce((total, item) => {
+                return total + item.cost;
+            }, 0)
+        );
         setSurcharge(surcharge);
         let result = dataBooking.originPay;
         let total = dataBooking.originPay;
@@ -79,20 +83,25 @@ const BookingPage = () => {
             result /= 2;
             total *= 0.5;
         }
-        if (dataBooking.paymentMethod === 'PAYPAL') {
-            result =( result *(1 - dataBooking.discount / 100) + surcharge ) * 0.9;
-            total =  ( total *(1 - dataBooking.discount / 100) + surcharge ) * 0.9
+        if (dataBooking.paymentMethod === 'PAYPAL' || dataBooking.paymentMethod === 'VNPAY') {
+            result = (result * (1 - dataBooking.discount / 100) + surcharge) * 0.9;
+            total = (total * (1 - dataBooking.discount / 100) + surcharge) * 0.9;
         } else {
             result = 0;
-            total = total *(1 - dataBooking.discount / 100) + surcharge;
+            total = total * (1 - dataBooking.discount / 100) + surcharge;
         }
         setTotalBill(total);
-        setPriceAfterChoosePayment(result );
+        setPriceAfterChoosePayment(result);
         dispatch(bookingSlice.actions.addTotalTransfer(result));
-    }, [dataBooking.paymentPolicy, dataBooking.paymentMethod, dataBooking.originPay, dataDetailHomeBooking?.surchargeList]);
+    }, [
+        dataBooking.paymentPolicy,
+        dataBooking.paymentMethod,
+        dataBooking.originPay,
+        dataDetailHomeBooking?.surchargeList
+    ]);
 
     return (
- 
+        <FramePage>
             <div className="booking__page content">
                 <div className="content-booking">
                     <h1>{t('title.bookingOfYou.tilte')}</h1>
@@ -142,6 +151,15 @@ const BookingPage = () => {
                                         errors={errors}
                                     />
                                 </div>
+                            ) : dataBooking.paymentMethod === 'VNPAY' ? (
+                                <div className="btn__booking">
+                                    <VNPay
+                                        pricePayment={priceAfterChoosePayment}
+                                        booking={handleBookingRoom}
+                                        canBooking={dataBooking.canBooking}
+                                        errors={errors}
+                                    />
+                                </div>
                             ) : (
                                 <div className="btn__booking">
                                     <button disabled={!dataBooking.canBooking} onClick={handleBookingRoom}>
@@ -149,7 +167,6 @@ const BookingPage = () => {
                                     </button>
                                 </div>
                             )}
-                        <VNPay/>
                         </div>
                         <div className="col l-4">
                             <div className="card-booking__room paper">
@@ -208,7 +225,7 @@ const BookingPage = () => {
                                                     <p style={{ fontWeight: '300' }}>
                                                         {`-` +
                                                             formatPrice(
-                                                                ((dataBooking?.originPay )* dataBooking.discount) / 100
+                                                                (dataBooking?.originPay * dataBooking.discount) / 100
                                                             )}
                                                     </p>
                                                 </div>
@@ -221,18 +238,20 @@ const BookingPage = () => {
                                                 </p>
                                                 <p style={{ fontWeight: '300' }}>
                                                     {dataBooking.paymentMethod === 'DIRECT'
-                                                        ?  `-` + formatPrice(0)
-                                                        : `-` + formatPrice(((dataBooking?.originPay)* (1 -dataBooking.discount/100) + surcharge) /10)}
+                                                        ? `-` + formatPrice(0)
+                                                        : `-` +
+                                                          formatPrice(
+                                                              (dataBooking?.originPay *
+                                                                  (1 - dataBooking.discount / 100) +
+                                                                  surcharge) /
+                                                                  10
+                                                          )}
                                                 </p>
                                             </div>
 
                                             <div className="price-total-booking">
-                                                <p style={{ color: '#757575' }}>
-                                                    {t('title.bookingOfYou.totalPrice')}
-                                                </p>
-                                                <p style={{ fontWeight: '550' }}>
-                                                  {formatPrice(totalBill)} 
-                                                </p>
+                                                <p style={{ color: '#757575' }}>{t('title.bookingOfYou.totalPrice')}</p>
+                                                <p style={{ fontWeight: '550' }}>{formatPrice(totalBill)}</p>
                                             </div>
                                         </div>
                                     </>
@@ -242,6 +261,7 @@ const BookingPage = () => {
                     </div>
                 </div>
             </div>
+        </FramePage>
     );
 };
 

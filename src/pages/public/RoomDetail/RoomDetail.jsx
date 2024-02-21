@@ -7,7 +7,7 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
-import {Button} from '@mui/material';
+import { Button } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -283,7 +283,7 @@ export default function RoomDetail() {
                                                     <p className="title-price">{`${t('common.priceFor')} ${
                                                         dataDetailHome.accomCateName
                                                     } x ${dayGap({ start: dateBook[0], end: dateBook[1] })}`}</p>
-                                                    <p >
+                                                    <p>
                                                         {formatPrice(totalBill * (1 - dataDetailHome?.discount / 100))}
                                                     </p>
                                                 </div>

@@ -158,11 +158,10 @@ export default function StepperComponent() {
                     variant: 'success'
                 });
                 const id = dataResponse.data.id;
-                partnerManageAPI.addImageHomeByHost({ imageList: dataStep4, id: id }).then(() => {
-                    setLoad(false);
-                    navigate('/congratulation');
-                    dispatch(setupOwnerSlice.actions.reset());
-                });
+                partnerManageAPI.addImageHomeByHost({ imageList: dataStep4, id: id });
+                setLoad(false);
+                navigate('/congratulation');
+                dispatch(setupOwnerSlice.actions.reset());
             })
             .catch((error) => {
                 enqueueSnackbar(error.response?.data.message, {

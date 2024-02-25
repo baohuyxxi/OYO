@@ -13,7 +13,7 @@ import moment from 'moment';
 import 'react-nice-dates/build/style.css';
 export default function DateRangeSelector(props) {
     const { setDataDay } = props;
-    const dataBooking = useSelector((state) => state.booking);
+    const dataBooking = useSelector((state) => state.booking.info);
     const [startDate, setStartDate] = useState();
     const [endDate, setEndDate] = useState();
     console.log(dataBooking);

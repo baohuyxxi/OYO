@@ -11,6 +11,7 @@ const settingAccomSlice = createSlice({
             accomCateName: null,
             addressGeneral: null,
             imageAccomsUrls: [],
+            cldVideoId: '',
             acreage: 0,
             numPeople: 0,
             numBathRoom: 0,

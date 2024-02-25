@@ -1,6 +1,6 @@
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './FileUpload.scss';
 
 import { Cloudinary } from '@cloudinary/url-gen';
@@ -12,6 +12,26 @@ const resourceType = 'auto';
 
 const FileUpload = ({ file, setFile }) => {
     const [crop, setCrop] = useState(null);
+    const cld = new Cloudinary({
+        cloud: {
+            cloudName: 'dyv5zrsgj'
+        }
+    });
+
+    useEffect(() => {
+        if (file?.cldVideoId) {
+            console.log('hello');
+            setCrop(
+                cld
+                    .video(file?.cldVideoId)
+                    .resize(scale().width(810).height(500).aspectRatio('16:9'))
+                    .quality('auto')
+                    .format('auto')
+            );
+        }
+        console.log(file);
+        console.log(crop);
+    }, [file?.cldVideoId]);
     // let crop = null;
 
     const callApi = async (file) => {
@@ -53,15 +73,14 @@ const FileUpload = ({ file, setFile }) => {
         callApi(fileUpload);
     };
 
-    const cld = new Cloudinary({
-        cloud: {
-            cloudName: 'dyv5zrsgj'
-        }
-    });
+    const submit = () => {};
 
     return (
         <>
-            <div className={`upload-card ${file?.isUploading == false ? 'active' : ''}`}>
+            <div className={`file-upload-card ${file?.isUploading == false ? 'active' : ''}`}>
+                <button className="file-upload-card__btn-save" onClick={submit}>
+                    Lưu
+                </button>
                 {file?.isUploading === false && crop !== null ? (
                     <AdvancedVideo
                         autoPlay
@@ -72,8 +91,8 @@ const FileUpload = ({ file, setFile }) => {
                     />
                 ) : (
                     <label htmlFor="singleImage">
-                        <div className="upload-card__inner">
-                            <div className="upload-card__img-initial">
+                        <div className="file-upload-card__inner">
+                            <div className="file-upload-card__img-initial">
                                 <img src="https://i.ibb.co/5cQkzZN/img-upload.png" alt="ảnh" />
                                 <h3>Kéo thả hoặc click vào để tải ảnh lên.</h3>
                             </div>

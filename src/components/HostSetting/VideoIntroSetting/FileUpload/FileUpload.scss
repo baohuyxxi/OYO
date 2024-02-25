@@ -1,4 +1,4 @@
-.upload-card {
+.file-upload-card {
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -10,15 +10,28 @@
     cursor: pointer;
     width: 50%;
     min-height: 230px;
+    position: relative;
 
     &.active {
         padding: 0;
         border: 0;
     }
+    .file-upload-card__btn-save {
+        position: absolute;
+        right: -21rem;
+        top: 0rem;
+        background: #4caf50;
+        border-radius: 5px;
+        cursor: pointer;
+        border: none;
+        padding: 6px 15px;
+        color: #fff;
+        font-weight: 600;
+    }
     label {
         cursor: pointer;
     }
-    .upload-card__inner {
+    .file-upload-card__inner {
         align-items: center;
         display: flex;
         flex-direction: column;
@@ -26,7 +39,7 @@
         justify-content: center;
         width: 100%;
 
-        .upload-card__img-initial {
+        .file-upload-card__img-initial {
             text-align: center;
 
             img {

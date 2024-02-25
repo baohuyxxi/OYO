@@ -61,7 +61,7 @@ const ManagerRoom = () => {
             id: '#section2',
             to: 'section2',
             info: 'Video intro',
-            comp: <VideoIntroSetting />
+            comp: <VideoIntroSetting cldVideoId={dataHomeDetail?.cldVideoId} />
         },
         {
             id: '#section2',

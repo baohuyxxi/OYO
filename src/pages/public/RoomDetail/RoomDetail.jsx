@@ -137,6 +137,7 @@ export default function RoomDetail() {
                 <>
                     <div className="content detail-room">
                         {/* <BreadcrumbsHome data={dataDetailHome.addressDetail} /> */}
+                        
                         <div className="info-room">
                             <div className="header-room">
                                 <h1>{dataDetailHome.accomName}</h1>
@@ -177,7 +178,11 @@ export default function RoomDetail() {
                                     </div>
                                 </div>
                             </div>
-                            <ListImage listImage={dataDetailHome.imageAccomsUrls} setOpen={setOpenDrawer} />
+                            <ListImage
+                                listImage={dataDetailHome.imageAccomsUrls}
+                                setOpen={setOpenDrawer}
+                                cldVideoId={dataDetailHome.cldVideoId}
+                            />
                             <div className="about-room">
                                 <span style={{ fontWeight: '600', fontSize: 'large' }}>
                                     {t('contentMain.all')} {dataDetailHome?.accomCateName}:{' '}

@@ -13,7 +13,7 @@ const initialState = {
         districtName: '',
         wardCode: '',
         wardName: '',
-        videoIntroUrl: '',
+        cldVideoId: '',
         numKitchen: '',
         acreage: '',
         numPeople: '',
@@ -83,7 +83,7 @@ const setupOwnerSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(cloudinaryAPI.uploadVideoIntro.fulfilled, (state, action) => {
-            state.detailRoom.videoIntroUrl = action.payload.url;
+            state.detailRoom.cldVideoId = action.payload.public_id;
         });
     }
 });

@@ -22,10 +22,9 @@ export default function DateRangeSelector(props) {
     }, [ dataBooking.checkIn, dataBooking.checkOut]);
 
     useEffect(() => {
-        if(startDate && endDate){
+        if (startDate && endDate) {
             setDataDay(startDate, endDate);
         }
-       
     }, [startDate, endDate]);
     return (
         <div className="date-range-selector">
@@ -33,7 +32,7 @@ export default function DateRangeSelector(props) {
                 startDate={startDate || new Date()}
                 endDate={endDate || addDays(new Date(), 1)}
                 onStartDateChange={(e) => {
-                    setStartDate(e)
+                    setStartDate(e);
                 }}
                 onEndDateChange={setEndDate}
                 minimumDate={new Date()}

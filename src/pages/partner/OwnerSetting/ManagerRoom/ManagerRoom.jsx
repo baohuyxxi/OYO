@@ -13,6 +13,7 @@ import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import PriceDiscountSurchagre from '~/components/HostSetting/PriceDiscountSurchagre/PriceDiscountSurchagre';
 import settingAccomSlice from '~/redux/settingAccomSlice';
 import { useSelector, useDispatch } from 'react-redux';
+import VideoIntroSetting from '~/components/HostSetting/VideoIntroSetting/VideoIntroSetting';
 
 const infoLink = {
     name: 'Chi tiết nhà cho thuê',
@@ -59,6 +60,12 @@ const ManagerRoom = () => {
         {
             id: '#section2',
             to: 'section2',
+            info: 'Video intro',
+            comp: <VideoIntroSetting cldVideoId={dataHomeDetail?.cldVideoId} />
+        },
+        {
+            id: '#section2',
+            to: 'section2',
             info: 'Thông tin cơ bản',
             comp: <TittleSetting infoRoom={infoRoom} />
         },
@@ -66,7 +73,7 @@ const ManagerRoom = () => {
             id: '#section3',
             to: 'section3',
             info: 'Chổ ở và phòng',
-            comp: <CountRoomSetting accomCateName={dataHomeDetail?.accomCateName}  />
+            comp: <CountRoomSetting accomCateName={dataHomeDetail?.accomCateName} />
         },
         {
             id: '#section4',
@@ -78,7 +85,7 @@ const ManagerRoom = () => {
             id: '#section5',
             to: 'section5',
             info: 'Tiện nghi',
-            comp: <ConvenientSetting convent={dataHomeDetail?.facilityCategoryList} locationRoom={locationRoom}  />
+            comp: <ConvenientSetting convent={dataHomeDetail?.facilityCategoryList} locationRoom={locationRoom} />
         },
         {
             id: '#section6',

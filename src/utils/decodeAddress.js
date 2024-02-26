@@ -1,15 +1,21 @@
 import publicProvinceAPI from '~/services/apis/publicAPI/publicProvinceAPI';
-export const decodeAddress = (data) => {
+import { translateToVNAPI } from '~/services/apis/translateAPI/translateAPI';
+
+export const decodeAddress = async (data) => {
     let storedData = JSON.parse(localStorage.getItem('allProvinces'));
     if (!storedData) {
-        publicProvinceAPI.getAllProvinceDetails().then((res) => {
-            storedData = res.data;
-            localStorage.setItem('allProvinces', JSON.stringify(res.data));
-        });
+        const res = await publicProvinceAPI.getAllProvinceDetails();
+        storedData = res.data;
+        localStorage.setItem('allProvinces', JSON.stringify(res.data));
     }
     let result = '';
     if (data) {
-        const address = data?.split(',').map((item) => item.trim());
+        let address = data.split(',').map((item) => item.trim());
+        const target = localStorage.getItem('selectedLanguage');
+        if (target !== 'vi') {
+            const res = await translateToVNAPI(data);
+            address = res.split(',').map((item) => item.trim());
+        }
         if (Array.isArray(address) && address.length >= 4) {
             const [detail, wardName, districtName, provinceName] = address;
             const province = storedData.find((item) => item.provinceName === provinceName);
@@ -25,7 +31,7 @@ export const decodeAddress = (data) => {
                 provinceName: province.provinceName,
             };
         } else {
-            console.error('Invalid address format:', addressParts);
+            console.error('Invalid address format:', address);
         }
     }
     return result;

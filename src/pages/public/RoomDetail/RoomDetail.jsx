@@ -68,8 +68,7 @@ export default function RoomDetail() {
             setLoading(false);
         });
         wishAPI.checkWish(roomId.id).then((res) => setLove(res));
-    }, [roomId?.id]);
-    console.log(dataDetailHome)
+    }, [roomId?.id]);       
     useEffect(() => {
         if (dateBook[0] !== dateBook[1]) {
             const dataCheck = {
@@ -137,7 +136,7 @@ export default function RoomDetail() {
             ) : (
                 <>
                     <div className="content detail-room">
-                        <BreadcrumbsHome data={dataDetailHome.addressDetail} />
+                        {/* <BreadcrumbsHome data={dataDetailHome.addressDetail} /> */}
                         <div className="info-room">
                             <div className="header-room">
                                 <h1>{dataDetailHome.accomName}</h1>

@@ -70,3 +70,11 @@ export const transLateHistoryBooking = async (data) => {
     }
     return result;
 };
+
+export const translateToVNAPI = async (data) => {
+    const response = await axios.post(`${API_URL}?key=${API_KEY}`, {
+        q: data,
+        target: 'vi'
+    });
+    return response.data.data.translations[0].translatedText;
+};

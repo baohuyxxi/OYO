@@ -12,15 +12,14 @@ import { DateRangePicker, START_DATE, END_DATE } from 'react-nice-dates';
 import moment from 'moment';
 import 'react-nice-dates/build/style.css';
 export default function DateRangeSelector(props) {
-    const { setDataDay } = props;
+    const {dateBook, setDataDay } = props;
     const dataBooking = useSelector((state) => state.booking.info);
     const [startDate, setStartDate] = useState();
     const [endDate, setEndDate] = useState();
-    console.log(dataBooking)
     useEffect(() => {
-        setStartDate(moment(dataBooking.checkIn, 'dd/MM/yyyy').toDate());
-        setEndDate(moment(dataBooking.checkOut, 'dd/MM/yyyy').toDate());
-    }, [dataBooking.checkIn, dataBooking.checkOut]);
+        setStartDate(moment(dateBook[0], 'DD/MM/yyyy').toDate());
+        setEndDate(moment(dateBook[1], 'DD/MM/yyyy').toDate());
+    }, [ dataBooking.checkIn, dataBooking.checkOut]);
 
     useEffect(() => {
         if(startDate && endDate){

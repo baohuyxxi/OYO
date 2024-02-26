@@ -13,7 +13,7 @@ const UploadFile = ({ dataStep4, onFileChange, videoIntro, setVideoIntro }) => {
         fileList = [...dataStep4];
     }
 
-    console.log(fileList);
+
     const wrapperRef = useRef(null);
 
     const onDragEnter = () => wrapperRef.current?.classList.add('dragover');

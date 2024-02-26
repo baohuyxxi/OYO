@@ -68,7 +68,6 @@ const bookingSlice = createSlice({
             state.info.phoneNumberCustomer = action.payload.phoneNumber;
         },
         createVNPay(state, action) {
-            console.log(action.payload);
             state.VNPay.vnp_TxnRef= action.payload;
 
         },

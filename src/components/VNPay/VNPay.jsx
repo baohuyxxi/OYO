@@ -26,7 +26,7 @@ const VNPay = (props) => {
             const secretKey = 'CLMXUQRJDTHASLQRMTNIMVVCMCRVRHBT';
             const vnp_SecureHash = sha512.hmac.create(secretKey).update(queryString).hex();
             if (vnp_SecureHash === urlParams.get('vnp_SecureHash')) {
-                console.log('Thanh toán thành công');
+
                 booking();
             }
         }
@@ -65,17 +65,13 @@ const VNPay = (props) => {
             // Tạo mã băm từ chuỗi query và secretKey
             const secretKey = 'CLMXUQRJDTHASLQRMTNIMVVCMCRVRHBT'; // Thay thế 'your_secret_key_here' bằng secretKey thực của bạn
             const vnp_SecureHash = sha512.hmac.create(secretKey).update(queryString).hex();
-            console.log(vnp_SecureHash);
             const vnpUrl =
                 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?' +
                 queryString +
                 '&vnp_SecureHash=' +
                 vnp_SecureHash;
-            console.log(vnp_Params['vnp_TxnRef']);
             dispatch(bookingSlice.actions.createVNPay(vnp_Params['vnp_TxnRef']));
             window.open(vnpUrl, '_blank');
-
-            console.log(vnpUrl);
         } catch (error) {
             console.error('Error creating payment URL:', error);
         }

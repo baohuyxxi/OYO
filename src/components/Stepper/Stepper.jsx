@@ -58,7 +58,6 @@ export default function StepperComponent() {
     const [dataStep5, setDataStep5] = useState('');
     const navigate = useNavigate();
 
-    console.log(setupRoomHost);
 
     const handleSetAddressDetail = (value) => {
         setAddressDetail(value);
@@ -122,7 +121,7 @@ export default function StepperComponent() {
                 dataStep5?.costPerNightDefault !== '' &&
                 dataStep5?.acreage !== ''
             ) {
-                console.log(setupOwnerSlice);
+    
                 dispatch(setupOwnerSlice.actions.addInfoOfHomeRoom(dataStep5));
                 setActiveStep((prevActiveStep) => prevActiveStep + 1);
             } else {

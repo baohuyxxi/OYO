@@ -58,12 +58,11 @@ const setupOwnerSlice = createSlice({
         },
         setUpRoomOfAccom(state, action) {
             const roomsData = action.payload;
-            console.log(roomsData);
             if (Array.isArray(roomsData) && roomsData.length > 0) {
                 roomsData.forEach((room) => {
-                    console.log(state.detailRoom.hasOwnProperty('numBathRoom'));
+
                     if (state.detailRoom.hasOwnProperty(room.key)) {
-                        console.log(state.detailRoom[room.key]);
+    
                         state.detailRoom[room.key] = room.number;
                     }
                 });

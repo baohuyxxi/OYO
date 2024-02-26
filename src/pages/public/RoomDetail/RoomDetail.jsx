@@ -7,7 +7,7 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
-import {Button} from '@mui/material';
+import { Button } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,6 +24,7 @@ import DateRangeSelector from '~/components/DateRangeSelector/DateRangeSelector'
 import Dropdown from '~/components/Dropdown/Dropdown';
 import PopoverPrice from '~/components/PopoverPrice/PopoverPrice';
 import NecessaryInformation from './NecessaryInformation/NecessaryInformation';
+import GeneralPolicy from './GeneralPolicy/GeneralPolicy';
 import CommentReview from '~/components/CommentReview/CommentReview';
 import BreadcrumbsHome from './BreadcrumbsHome';
 import FramePage from '~/components/FramePage/FramePage';
@@ -68,24 +69,25 @@ export default function RoomDetail() {
         });
         wishAPI.checkWish(roomId.id).then((res) => setLove(res));
     }, [roomId?.id]);
+    console.log(dataDetailHome)
     useEffect(() => {
         if (dateBook[0] !== dateBook[1]) {
+            const dataCheck = {
+                checkIn: dateBook[0],
+                checkOut: dateBook[1],
+                accomId: roomId.id,
+                numAdult: guests.numAdult
+            };
+            publicAccomPlaceAPI.checkBooking(dataCheck).then((response) => {
+                setSurcharge(response.data.costSurcharge);
+                setTotalBill(response?.data?.totalCostAccom);
+                if (response?.statusCode === 200) {
+                    setDisBooking(false);
+                } else {
+                    setDisBooking(true);
+                }
+            });
         }
-        const dataCheck = {
-            checkIn: dateBook[0],
-            checkOut: dateBook[1],
-            accomId: roomId.id,
-            numAdult: guests.numAdult
-        };
-        publicAccomPlaceAPI.checkBooking(dataCheck).then((response) => {
-            setSurcharge(response.data.costSurcharge);
-            setTotalBill(response?.data?.totalCostAccom);
-            if (response?.statusCode === 200) {
-                setDisBooking(false);
-            } else {
-                setDisBooking(true);
-            }
-        });
     }, [guests.numAdult, dateBook]);
 
     const handleBooking = () => {
@@ -206,6 +208,7 @@ export default function RoomDetail() {
 
                                             <hr className="divider" />
                                             <NecessaryInformation />
+                                            <GeneralPolicy refundPolicy={dataDetailHome.refundPolicy}/>
                                         </div>
                                         <DateIsBooking bookedDates={dataDetailHome.bookedDates} />
                                     </div>
@@ -245,7 +248,10 @@ export default function RoomDetail() {
                                             )}
                                             {/* <DateGo setDataDay={handleChangeDayBooking} /> */}
 
-                                            <DateRangeSelector setDataDay={handleChangeDayBooking} />
+                                            <DateRangeSelector
+                                                dateBook={dateBook}
+                                                setDataDay={handleChangeDayBooking}
+                                            />
 
                                             <Dropdown
                                                 guests={guests}
@@ -283,7 +289,7 @@ export default function RoomDetail() {
                                                     <p className="title-price">{`${t('common.priceFor')} ${
                                                         dataDetailHome.accomCateName
                                                     } x ${dayGap({ start: dateBook[0], end: dateBook[1] })}`}</p>
-                                                    <p >
+                                                    <p>
                                                         {formatPrice(totalBill * (1 - dataDetailHome?.discount / 100))}
                                                     </p>
                                                 </div>

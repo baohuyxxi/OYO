@@ -45,7 +45,8 @@
     "youWantLogout": "Bạn có muốn đăng xuất không?",
     "like": "Thích",
     "liked": "Đã thích",
-    "priceFor": "Giá cho"
+    "priceFor": "Giá cho",
+    "return": "Quay lại"
   },
   "message": {
     "signin": "Đăng nhập thành công",

@@ -12,7 +12,7 @@ import { useParams } from 'react-router-dom';
 import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 
 export default function TittleSetting(props) {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const [expanded, setExpanded] = React.useState(false);
 
     const {
@@ -105,8 +105,8 @@ export default function TittleSetting(props) {
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >
-                        <p style={{ width: '33%', flexShrink: 0 , fontWeight:'600'}}>Tiêu đề phòng cho thuê</p>
-                        <p style={{ color: 'text.secondary' , fontWeight:'600'}}>{props?.infoRoom?.accomName}</p>
+                        <p style={{ width: '33%', flexShrink: 0, fontWeight: '600' }}>Tiêu đề phòng cho thuê</p>
+                        <p style={{ color: 'text.secondary', fontWeight: '600' }}>{props?.infoRoom?.accomName}</p>
                     </AccordionSummary>
                     <AccordionDetails>
                         <div className="content-input">
@@ -130,10 +130,31 @@ export default function TittleSetting(props) {
                             <textarea className="text-input" {...register('guide')} />
                         </div>
 
-                        <div className="content-input">
+                        {/* <div className="content-input">
                             <h4>Chính sách hoàn tiền cho căn nhà của bạn</h4>
                             <p>Vui lòng điền theo mẫu: Không hoàn tiền, Trước 1 ngày, Trước 7 ngày</p>
                             <input className="input-info" {...register('refundPolicy')} />
+                        </div> */}
+                        <div className="content-input">
+                            <h4>Chính sách hoàn tiền cho căn nhà của bạn</h4>
+                            <p>Thời gian được phép hủy</p>
+                            <select className="input-info">
+                                <option value="value1">Trước 1 ngày</option>
+                                <option value="value2">Trước 2 ngày</option>
+                                <option value="value3">Trước 3 ngày</option>
+                                <option value="value2">Trước 5 ngày</option>
+                                <option value="value2">Trước 1 tuần</option>
+                            </select>
+                            <p>Phí hủy</p>
+                            <select className="input-info">
+                                <option value="value1">5%</option>
+                                <option value="value2">10%</option>
+                                <option value="value3">15%</option>
+                                <option value="value2">20%</option>
+                                <option value="value2">25%</option>
+                                <option value="value2">50%</option>
+                                <option value="value2">Không hoàn trả</option>
+                            </select>
                         </div>
                         <div className="btn">
                             <p onClick={handleClose} className="btn-close">

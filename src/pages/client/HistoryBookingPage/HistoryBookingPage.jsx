@@ -16,6 +16,7 @@ import bookingAPI from '~/services/apis/clientAPI/clientBookingAPI';
 import { transLateHistoryBooking } from '~/services/apis/translateAPI/translateAPI';
 import formatPrice from '~/utils/formatPrice';
 import { useNavigate } from 'react-router-dom';
+import { showRefundPolicy } from '~/utils/showRefundPolicy';
 import './HistoryBookingPage.scss';
 
 AOS.init();
@@ -109,7 +110,7 @@ const HistoryBookingPage = () => {
                                                     <p>{`${history?.checkIn} - ${history?.checkOut}`}</p>
                                                 </div>
                                                 <div className="date-history__booking">
-                                                    <p>{history?.refundPolicy || t('common.noRefunds')} </p>
+                                                    <p>{showRefundPolicy(history?.refundPolicy) || t('common.noRefunds')} </p>
                                                 </div>
                                             </div>
                                             <div className="price-history__booking">

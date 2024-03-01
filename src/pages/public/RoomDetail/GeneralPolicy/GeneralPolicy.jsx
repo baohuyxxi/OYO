@@ -1,5 +1,6 @@
 import './GeneralPolicy.scss';
 import { t } from 'i18next';
+import { showRefundPolicy } from '~/utils/showRefundPolicy';
 export default function GeneralPolicy(props) {
     const { refundPolicy } = props;
     return (
@@ -23,18 +24,4 @@ export default function GeneralPolicy(props) {
             </div>
         </div>
     );
-    function showRefundPolicy(refundPolicy) {
-        const words = refundPolicy.split('_');
-        if (words.length === 1) {
-            return refundPolicy;
-        }
-        let result = '';
-        for (let i = 0; i < words.length; i++) {
-            result += words[i];
-            if (i !== words.length - 1) {
-                result += ' ';
-            }
-        }
-        return result;
-    }
 }

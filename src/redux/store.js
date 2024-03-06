@@ -13,7 +13,7 @@ import filterAcomSlice from './filterAccom';
 const persistConfig = {
     key: 'root',
     whiteList: ['user'],
-    blackList: ['notification', 'settingowner'],
+    blacklist: ['notification', 'settingowner', 'global'],
     storage
 };
 const rootReducer = combineReducers({

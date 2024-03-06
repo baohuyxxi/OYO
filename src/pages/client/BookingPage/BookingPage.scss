@@ -136,11 +136,12 @@
                     position: absolute;
                     font-size: 14px;
                     bottom: 0;
-                    right: 20px;
+                    // right: 20px;
                 }
             }
 
             .policy-booking {
+                display: grid;
                 padding: 10px 20px;
                 font-size: 14px;
                 margin-bottom: 5px;

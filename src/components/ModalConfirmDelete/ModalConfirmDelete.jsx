@@ -5,9 +5,10 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import bookingAPI from '~/services/apis/clientAPI/clientBookingAPI';
+import { cancellationPolicyToTime } from '~/utils/cancellationPolicy';
 
 import './ModalConfirmDelete.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AxiosError } from 'axios';
 import { useSnackbar } from 'notistack';
 import { t } from 'i18next';
@@ -24,17 +25,32 @@ const style = {
 };
 
 export default function ModalConfirmDelete(props) {
-    const [open, setOpen] = React.useState(false);
+    const [cancelBooking, setCancelBooking] = useState(true);
+    const [open, setOpen] = useState(false);
     const [reason, setReason] = useState('');
     const [otherReason, setOtherReason] = useState('');
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
     const { enqueueSnackbar } = useSnackbar();
 
+    useEffect(() => {
+        const currentDate = new Date();
+        const checkInParts = props.data.checkIn.split('/');
+        const checkInDate = new Date(checkInParts[2], checkInParts[1] - 1, checkInParts[0]);
+        checkInDate.setHours(12, 0, 0, 0);
+        const timeToCancel = cancellationPolicyToTime(props.data.cancellationPolicy);
+        const timeToCancelDate = new Date(checkInDate.getTime() - timeToCancel * 24 * 60 * 60 * 1000);
+        console.log(currentDate.getTime() , timeToCancelDate.getTime());
+        if (currentDate.getTime() > timeToCancelDate.getTime()) {
+            setCancelBooking(false);
+        }
+    }, []);
     const handleCancelBooking = async () => {
         await bookingAPI
-            .cancelBooking(props.idRemove)
+            .cancelBooking({
+                bookingCode: props.idRemove,
+                cancelReason: reason === 'Lý do khác' ? otherReason : reason
+            })
             .then((data) => {
                 enqueueSnackbar(t('message.cancelSuccess'), { variant: 'success' });
                 props.handleReload();
@@ -49,9 +65,14 @@ export default function ModalConfirmDelete(props) {
     };
     return (
         <div>
-            <button className="CANCEL" onClick={handleOpen}>
-                {t('common.cancelBooking')}
-            </button>
+            {cancelBooking ? (
+                <button className="CANCEL" onClick={handleOpen}>
+                    {t('common.cancelBooking')}
+                </button>
+            ) : (
+                <></>
+            )}
+
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
@@ -122,19 +143,19 @@ export default function ModalConfirmDelete(props) {
                                 <label htmlFor="reason4">Lý do khác</label>
                             </div>
                             {reason === 'Lý do khác' && (
-                            <div className="other-reason">
-                                <label htmlFor="other-reason">Nhập lý do khác:</label>
-                                <textarea
-                                    type="text"
-                                    id="other-reason"
-                                    className='input__other-reason'
-                                    value={otherReason}
-                                    rows={4} // Số dòng hiển thị ban đầu
-                                    cols={50} // Số ký tự hiển thị trên mỗi dòng
-                                    onChange={(e) => setOtherReason(e.target.value)}
-                                />
-                            </div>
-                        )}
+                                <div className="other-reason">
+                                    <label htmlFor="other-reason">Nhập lý do khác:</label>
+                                    <textarea
+                                        type="text"
+                                        id="other-reason"
+                                        className="input__other-reason"
+                                        value={otherReason}
+                                        rows={4} // Số dòng hiển thị ban đầu
+                                        cols={50} // Số ký tự hiển thị trên mỗi dòng
+                                        onChange={(e) => setOtherReason(e.target.value)}
+                                    />
+                                </div>
+                            )}
                         </div>
 
                         <div style={{ display: 'flex', justifyContent: 'right', marginTop: '10px' }}>

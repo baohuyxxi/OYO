@@ -5,7 +5,6 @@ import './VideoIntroSetting.scss';
 
 const VideoIntroSetting = ({ cldVideoId }) => {
     const [file, setFile] = useState({ cldVideoId, isUploading: false, name: cldVideoId });
-    console.log(file);
 
     const removeFile = () => {
         setFile(null);

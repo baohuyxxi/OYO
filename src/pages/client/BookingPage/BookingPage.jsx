@@ -21,6 +21,7 @@ import { t } from 'i18next';
 import bookingSlice from '~/redux/bookingSlice';
 import globalSlice from '~/redux/globalSlice';
 import { transLateRoom } from '~/services/apis/translateAPI/translateAPI';
+import { showRefundPolicy } from '~/utils/showRefundPolicy';
 const BookingPage = () => {
     const dispatch = useDispatch();
     const { enqueueSnackbar } = useSnackbar();
@@ -184,8 +185,10 @@ const BookingPage = () => {
                                                     {dataDetailHomeBooking?.accomCateName}
                                                 </p>
                                                 <div className="locate-room-booking">
-                                                    <FmdGoodIcon className="icon-locate-booking" />
-                                                    <p>{dataDetailHomeBooking.addressDetail}</p>
+                                                    <p>
+                                                        <FmdGoodIcon className="icon-locate-booking" />
+                                                        {dataDetailHomeBooking.addressDetail}
+                                                    </p>
                                                 </div>
                                                 <p className="name-host-room">{`${t('title.bookingOfYou.owner')} ${
                                                     dataDetailHomeBooking?.nameHost
@@ -193,7 +196,15 @@ const BookingPage = () => {
                                             </div>
                                         </div>
                                         <hr className="line-card" />
-                                        <div className="policy-booking">{t('title.bookingOfYou.policy')}</div>
+                                        <div className="policy-booking">
+                                            <a>{t('title.bookingOfYou.policy')}</a>
+                                            <a>
+                                                {showRefundPolicy({
+                                                    cancellationPolicy: dataDetailHomeBooking.cancellationPolicy,
+                                                    cancellationFeeRate: dataDetailHomeBooking.cancellationFeeRate
+                                                })}
+                                            </a>
+                                        </div>
 
                                         <hr className="line-card" />
                                         <div className="price-booking">

@@ -11,7 +11,7 @@ const bookingAPI = {
         return res.data;
     },
     cancelBooking: async (data) => {
-        const res = await axios.put(`/client/booking/cancel?bookingCode=${data}`);
+        const res = await axios.put(`/client/booking/cancel`,data);
         return res.data;
     },
     createReviewBooking: async (data) => {

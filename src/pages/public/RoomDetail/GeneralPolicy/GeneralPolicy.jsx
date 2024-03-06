@@ -1,8 +1,7 @@
 import './GeneralPolicy.scss';
 import { t } from 'i18next';
 import { showRefundPolicy } from '~/utils/showRefundPolicy';
-export default function GeneralPolicy(props) {
-    const { refundPolicy } = props;
+export default function GeneralPolicy({ cancellationPolicy, cancellationFeeRate }) {
     return (
         <div className="general-policy">
             <div className="general-policy__content-item">
@@ -20,7 +19,7 @@ export default function GeneralPolicy(props) {
             </div>
             <div className="general-policy__content-item">
                 <div className="general-policy__title">Chính sách hủy trả</div>
-                <p className="general-policy__content">{showRefundPolicy(refundPolicy)}</p>
+                <p className="general-policy__content">{showRefundPolicy({ cancellationPolicy, cancellationFeeRate })}</p>
             </div>
         </div>
     );

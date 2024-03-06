@@ -110,7 +110,12 @@ const HistoryBookingPage = () => {
                                                     <p>{`${history?.checkIn} - ${history?.checkOut}`}</p>
                                                 </div>
                                                 <div className="date-history__booking">
-                                                    <p>{showRefundPolicy(history?.refundPolicy) || t('common.noRefunds')} </p>
+                                                    <p>
+                                                        {showRefundPolicy({
+                                                            cancellationPolicy: history.cancellationPolicy,
+                                                            cancellationFeeRate: history.cancellationFeeRate
+                                                        })}
+                                                    </p>
                                                 </div>
                                             </div>
                                             <div className="price-history__booking">
@@ -153,6 +158,7 @@ const HistoryBookingPage = () => {
                                                         <ModalConfirmDelete
                                                             idRemove={history.bookingCode}
                                                             handleReload={handleReload}
+                                                            data={history}
                                                         />
                                                     )}
                                                 </div>

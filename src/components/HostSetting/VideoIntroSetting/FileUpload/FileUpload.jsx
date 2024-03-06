@@ -1,5 +1,3 @@
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import './FileUpload.scss';
 
@@ -20,7 +18,6 @@ const FileUpload = ({ file, setFile }) => {
 
     useEffect(() => {
         if (file?.cldVideoId) {
-            console.log('hello');
             setCrop(
                 cld
                     .video(file?.cldVideoId)
@@ -29,14 +26,10 @@ const FileUpload = ({ file, setFile }) => {
                     .format('auto')
             );
         }
-        console.log(file);
-        console.log(crop);
     }, [file?.cldVideoId]);
-    // let crop = null;
 
-    const callApi = async (file) => {
+    const uploadVideo = async (file) => {
         file.isUploading = true;
-        setFile(file);
         let formData = new FormData();
         formData.append('upload_preset', 'kcbcnpne');
         formData.append('folder', 'oyo_booking/video');
@@ -54,33 +47,17 @@ const FileUpload = ({ file, setFile }) => {
                 .quality('auto')
                 .format('auto')
         );
-        console.log(crop);
-        console.log(file);
-        setFile({ ...file, name: result.public_id });
+        setFile({ ...file, name: result.public_id, cldVideoId: result.public_id });
     };
     const uploadHandler = (e) => {
         const fileUpload = e.target.files[0];
-        console.log(fileUpload.name);
         if (!fileUpload) return;
-
-        // fetch(`https://api.cloudinary.com/v1_1/${cloudName}/${resourceType}/upload`, {
-        //     method: 'POST',
-        //     body: formData
-        // })
-        //     .then((res) => res.json())
-        //     .then((res) => console.log(res))
-        //     .catch((err) => console.log(err));
-        callApi(fileUpload);
+        uploadVideo(fileUpload);
     };
-
-    const submit = () => {};
 
     return (
         <>
             <div className={`file-upload-card ${file?.isUploading == false ? 'active' : ''}`}>
-                <button className="file-upload-card__btn-save" onClick={submit}>
-                    Lưu
-                </button>
                 {file?.isUploading === false && crop !== null ? (
                     <AdvancedVideo
                         autoPlay

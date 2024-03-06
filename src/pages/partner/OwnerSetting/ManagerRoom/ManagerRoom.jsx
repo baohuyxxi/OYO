@@ -7,7 +7,7 @@ import TittleSetting from '~/components/HostSetting/TitleSetting/TitleSetting';
 import './ManagerRoom.scss';
 import ConvenientSetting from '~/components/HostSetting/ConvenientSetting/ConvenientSetting';
 import CountRoomSetting from '~/components/HostSetting/CountRoomSetting/CountRoomSetting';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import PriceDiscountSurchagre from '~/components/HostSetting/PriceDiscountSurchagre/PriceDiscountSurchagre';
@@ -25,8 +25,16 @@ const backUrl = '/host/setting';
 const item = ['', 'section1', 'section2', 'section3', 'section4', 'section5', 'section6'];
 
 const ManagerRoom = () => {
+    const params = useParams();
     const dispatch = useDispatch();
     const dataHomeDetail = useSelector((state) => state.settingaccom.accom);
+
+    useEffect(() => {
+        publicAccomPlaceAPI.getRoomDetail(params.idHome).then((dataResponse) => {
+            dispatch(settingAccomSlice.actions.setAccom(dataResponse.data));
+        });
+    }, [params.idHome]);
+
     const infoRoom = {
         accomName: dataHomeDetail?.accomName ? dataHomeDetail?.accomName : '',
         description: dataHomeDetail?.description,
@@ -94,14 +102,6 @@ const ManagerRoom = () => {
             comp: <PriceDiscountSurchagre detailPriceRoom={detailPriceRoom} />
         }
     ];
-
-    const params = useParams();
-
-    useEffect(() => {
-        publicAccomPlaceAPI.getRoomDetail(params.idHome).then((dataResponse) => {
-            dispatch(settingAccomSlice.actions.setAccom(dataResponse.data));
-        });
-    }, [params.idHome]);
 
     return (
         <div className="manager-room">

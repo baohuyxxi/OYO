@@ -18,7 +18,6 @@ import './ListRoomOfHost.scss';
 
 const ListRoomOfHost = () => {
     const [dataListhome, setDataListHome] = useState([]);
-    const navigate = useNavigate();
     useEffect(() => {
         partnerManageAPI.getListHomeOfPartner().then((dataResponse) => {
             setDataListHome(dataResponse.data.content);

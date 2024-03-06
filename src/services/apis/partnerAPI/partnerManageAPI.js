@@ -22,6 +22,14 @@ const partnerManageAPI = {
         const res = await axios.get(`/url${data}`);
         return res.data;
     },
+    updateImagesHome: async (data) => {
+        const res = await axios.put(`partner/accoms/images?accomId=${data.id}`, data.data);
+        return res.data;
+    },
+    updateVideoIntro: async (data) => {
+        const res = await axios.put(`partner/accoms/video?accomId=${data.id}`, data.data);
+        return res.data;
+    },
     updateTitleHome: async (data) => {
         const res = await axios.put(`/partner/accoms/title?accomId=${data.id}`, data.data);
         return res.data;
@@ -48,10 +56,6 @@ const partnerManageAPI = {
     },
     updateFacility: async (data) => {
         const res = await axios.put(`/partner/accoms/facility?accomId=${data.id}`, data.data);
-        return res.data;
-    },
-    updateImagesHome: async (data) => {
-        const res = await axios.put(`partner/accoms/images?accomId=${data.id}`, data.data);
         return res.data;
     }
 };

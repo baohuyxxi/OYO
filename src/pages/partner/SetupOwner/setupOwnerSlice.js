@@ -6,6 +6,7 @@ const initialState = {
         accomName: '',
         description: '',
         numHouseAndStreetName: '',
+        guide: '',
         accomCateName: '',
         provinceCode: '',
         provinceName: '',
@@ -44,7 +45,8 @@ const setupOwnerSlice = createSlice({
             };
         },
         addAddressDetailRoom(state, action) {
-            state.detailRoom.numHouseAndStreetName = action.payload;
+            state.detailRoom.numHouseAndStreetName = action.payload.addressDetail;
+            state.detailRoom.guide = action.payload.guide;
         },
 
         addProvinceNameRoom(state, action) {
@@ -60,9 +62,7 @@ const setupOwnerSlice = createSlice({
             const roomsData = action.payload;
             if (Array.isArray(roomsData) && roomsData.length > 0) {
                 roomsData.forEach((room) => {
-
                     if (state.detailRoom.hasOwnProperty(room.key)) {
-    
                         state.detailRoom[room.key] = room.number;
                     }
                 });

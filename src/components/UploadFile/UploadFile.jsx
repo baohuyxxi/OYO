@@ -13,7 +13,6 @@ const UploadFile = ({ dataStep4, onFileChange, videoIntro, setVideoIntro }) => {
         fileList = [...dataStep4];
     }
 
-
     const wrapperRef = useRef(null);
 
     const onDragEnter = () => wrapperRef.current?.classList.add('dragover');
@@ -73,15 +72,7 @@ const UploadFile = ({ dataStep4, onFileChange, videoIntro, setVideoIntro }) => {
                     <div className="list-preview">
                         {fileList.map((item, index) => (
                             <div key={index} className="drop-file-preview__item">
-                                <img
-                                    src={
-                                        ImageConfig['jpeg'] ||
-                                        ImageConfig['css'] ||
-                                        ImageConfig['png'] ||
-                                        ImageConfig['default']
-                                    }
-                                    alt=""
-                                />
+                                <img src={ImageConfig[`${getFileExtension(item.name)}`]} alt="" />
                                 <div className="drop-file-preview__item__info">
                                     <p>{item.name}</p>
                                     <p className="size-file">{`${item.size} bytes`}</p>

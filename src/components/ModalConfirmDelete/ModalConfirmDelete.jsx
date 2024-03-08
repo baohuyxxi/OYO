@@ -40,7 +40,7 @@ export default function ModalConfirmDelete(props) {
         checkInDate.setHours(12, 0, 0, 0);
         const timeToCancel = cancellationPolicyToTime(props.data.cancellationPolicy);
         const timeToCancelDate = new Date(checkInDate.getTime() - timeToCancel * 24 * 60 * 60 * 1000);
-        console.log(currentDate.getTime() , timeToCancelDate.getTime());
+        console.log(currentDate.getTime(), timeToCancelDate.getTime());
         if (currentDate.getTime() > timeToCancelDate.getTime()) {
             setCancelBooking(false);
         }
@@ -52,7 +52,11 @@ export default function ModalConfirmDelete(props) {
                 cancelReason: reason === 'Lý do khác' ? otherReason : reason
             })
             .then((data) => {
-                enqueueSnackbar(t('message.cancelSuccess'), { variant: 'success' });
+                if (data.statusCode === 200) {
+                    enqueueSnackbar(t('message.cancelSuccess'), { variant: 'success' });
+                } else {
+                    enqueueSnackbar(data.data.message, { variant: 'warning' });
+                }
                 props.handleReload();
                 setOpen(false);
             })

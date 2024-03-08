@@ -5,11 +5,15 @@ import { t } from 'i18next';
 import ConfirmClose from '~/components/ConfirmClose/ConfirmClose';
 import location_marker from '~/assets/imageMaster/location_marker.png';
 
-const StepperOne = (props) => {
+const StepperOne = ({ data, setData, handleSetAddressDetail, setGuide }) => {
     const handleChangeAddrees = (event) => {
-        if (props?.handleSetAddressDetail) {
-            props?.handleSetAddressDetail(event.currentTarget?.value);
+        if (handleSetAddressDetail) {
+            handleSetAddressDetail(event.currentTarget?.value);
         }
+    };
+
+    const handleChangeGuide = (e) => {
+        setGuide(e.currentTarget?.value);
     };
 
     return (
@@ -24,7 +28,7 @@ const StepperOne = (props) => {
                 <div className="col l-6 m-6 c-6">
                     <div className="box-address">
                         <label>{t('label.address')}</label>
-                        <SelectAddress setData={props.setData} data={props.data} />
+                        <SelectAddress setData={setData} data={data} />
                         <p className="span-address-step1">{t('contentMess.address')}</p>
                         <input
                             name="input-address-step1"
@@ -32,6 +36,15 @@ const StepperOne = (props) => {
                             className="input-address-step1"
                             onChange={handleChangeAddrees}
                             required
+                        />
+                        <p style={{ marginTop: 30, fontSize: 13, fontStyle: 'italic' }} className="span-address-step1">
+                            {t('contentMess.guide')}
+                        </p>
+                        <textarea
+                            name="input-guide-step1"
+                            type="text"
+                            className="input-guide-step1"
+                            onChange={handleChangeGuide}
                         />
                         <ConfirmClose />
                     </div>

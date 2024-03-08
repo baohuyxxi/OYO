@@ -35,7 +35,50 @@
         .upload-file {
             position: absolute;
             top: 10%;
-            left: 25%;
+            left: 15%;
+        }
+
+        .step-four__upload-video {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 2px dashed #307dca;
+            border-radius: 20px;
+            margin: 0 auto;
+            cursor: pointer;
+            width: 20%;
+            min-height: 100px;
+            position: relative;
+            right: -13.8rem;
+            top: 15rem;
+
+            label {
+                cursor: pointer;
+            }
+            .step-four__inner {
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                justify-content: center;
+                width: 100%;
+
+                .step-four__img-initial {
+                    text-align: center;
+
+                    img {
+                        display: inline-block;
+                        width: 30%;
+                        height: 20%;
+                    }
+                    h3 {
+                        font-size: medium;
+                        font-weight: 500;
+                        margin: 0;
+                    }
+                }
+            }
         }
 
         .btn-out {

@@ -1,17 +1,15 @@
 import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { unstable_HistoryRouter } from 'react-router-dom';
-import ListAccomPage from '~/pages/public/ListAccomPage/ListAccomPage';
-import LayoutAdmin from '~/pages/admin/LayoutAdmin/LayoutAdmin';
-import PrivateRoute from '~/components/PrivateRoute/PrivateRoute';
-import LoadingPage from '~/pages/public/LoadingPage/LoadingPage';
-import ActiveAccountPage from '~/pages/public/ActiveAccountPage/ActiveAccountPage';
-import OAuth2RedirectHandler from '~/helper/OAuth2RedirectHandler';
-import LoginAdmin from '~/pages/admin/LoginAdmin/LoginAdmin';
 import { useSelector } from 'react-redux';
 const Auth = () => {
     const roles = useSelector((state) => state.user.roles);
+    // Admin Page
+    const LayoutAdmin = React.lazy(() => import('~/pages/admin/LayoutAdmin/LayoutAdmin'));
+    const LoginAdmin = React.lazy(() => import('~/pages/admin/LoginAdmin/LoginAdmin'));
     // Public Page
+    const PrivateRoute = React.lazy(() => import('~/components/PrivateRoute/PrivateRoute'));
+    const ActiveAccountPage = React.lazy(() => import('~/pages/public/ActiveAccountPage/ActiveAccountPage'));
     const HomePage = React.lazy(() => import('../pages/public/HomePage/HomePage'));
     const InfoUserPage = React.lazy(() => import('../pages/public/InfoUserPage/InfoUserPage'));
     const RoomDetail = React.lazy(() => import('../pages/public/RoomDetail/RoomDetail'));
@@ -24,6 +22,9 @@ const Auth = () => {
     );
     const ContactForm = React.lazy(() => import('../pages/public/Contact/Contact'));
     const FavoritesPage = React.lazy(() => import('../pages/client/FavoritesPage/FavoritesPage'));
+    const ListAccomPage =React.lazy(() => import('~/pages/public/ListAccomPage/ListAccomPage'));
+    const LoadingPage = React.lazy(() => import('~/components/LoadingPage/LoadingPage'));
+    const OAuth2RedirectHandler = React.lazy(() => import('~/helper/oAuth2RedirectHandler'));
     // Host Owner Page
     const StepperMain = React.lazy(() => import('~/pages/partner/SetupOwner/StepperMain/StepperMain'));
     const OwnerSetting = React.lazy(() => import('~/pages/partner/OwnerSetting/MainOwnerSetting/OwnerSetting'));

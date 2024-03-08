@@ -37,6 +37,7 @@ import bookingSlice from '~/redux/bookingSlice';
 import { guestsModel } from '~/share/models/booking';
 import { transLateRoom } from '~/services/apis/translateAPI/translateAPI';
 import { dayGap } from '~/utils/calculates';
+import GoogleMap from '~/components/GoogleMap/GoogleMap';
 export default function RoomDetail() {
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
@@ -330,6 +331,7 @@ export default function RoomDetail() {
                                     </div>
                                 </div>
                             </div>
+                            <GoogleMap addressDetail={dataDetailHome.addressDetail}/>
                             <CommentReview id={roomId.id} />
                         </div>
                         <DrawerHome open={openDrawer} setOpen={setOpenDrawer} data={dataDetailHome} stars={stars} />

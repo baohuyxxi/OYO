@@ -40,9 +40,29 @@ const StepperFour = ({ dataStep4, setDataStep4, videoIntro, setVideoIntro }) => 
                             setVideoIntro={setVideoIntro}
                         />
                     </div>
+
+                    <div className="step-four__upload-video">
+                        <label htmlFor="step-four__input-upload-video">
+                            <div className="step-four__inner">
+                                <div className="step-four__img-initial">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/3772/3772348.png" alt="ảnh" />
+                                    <h3>Video Upload</h3>
+                                </div>
+                            </div>
+
+                            <input
+                                type="file"
+                                id="step-four__input-upload-video"
+                                value=""
+                                onChange={onVideoDrop}
+                                accept="video/mp4,video/x-m4v,video/*"
+                                hidden
+                            />
+                        </label>
+                    </div>
+
                     <ConfirmClose />
                 </div>
-                <input type="file" value="" onChange={onVideoDrop} />
             </div>
         </div>
     );

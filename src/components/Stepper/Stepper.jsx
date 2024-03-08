@@ -48,6 +48,7 @@ export default function StepperComponent() {
     const [dataStep1, setDataStep1] = useState(addressFormData);
 
     const [addressDetail, setAddressDetail] = useState('');
+    const [guide, setGuide] = useState('');
 
     const [dataStep2, setDataStep2] = useState(typeRoom);
     const [countGuest, setCountGuest] = useState(1);
@@ -57,7 +58,6 @@ export default function StepperComponent() {
     const [videoIntro, setVideoIntro] = useState(null);
     const [dataStep5, setDataStep5] = useState('');
     const navigate = useNavigate();
-
 
     const handleSetAddressDetail = (value) => {
         setAddressDetail(value);
@@ -76,7 +76,7 @@ export default function StepperComponent() {
         if (activeStep === 0) {
             if (addressDetail !== '' && dataStep1.wardCode !== undefined && dataStep1.wardCode !== null) {
                 dispatch(setupOwnerSlice.actions.addAddressRoom(dataStep1));
-                dispatch(setupOwnerSlice.actions.addAddressDetailRoom(addressDetail));
+                dispatch(setupOwnerSlice.actions.addAddressDetailRoom({ addressDetail, guide }));
                 setActiveStep((prevActiveStep) => prevActiveStep + 1);
             } else {
                 enqueueSnackbar(t('message.addressEmpty'), {
@@ -121,7 +121,6 @@ export default function StepperComponent() {
                 dataStep5?.costPerNightDefault !== '' &&
                 dataStep5?.acreage !== ''
             ) {
-    
                 dispatch(setupOwnerSlice.actions.addInfoOfHomeRoom(dataStep5));
                 setActiveStep((prevActiveStep) => prevActiveStep + 1);
             } else {
@@ -215,6 +214,7 @@ export default function StepperComponent() {
                                     setData={setDataStep1}
                                     data={dataStep1}
                                     handleSetAddressDetail={handleSetAddressDetail}
+                                    setGuide={setGuide}
                                 />
                             );
                         } else if (activeStep === 1) {

@@ -37,45 +37,7 @@ export default function GoogleMap({addressDetail}) {
             lng: 106.74212667127827
         }
     ];
-    useEffect(() => {
-        const address = '9/7/9 đường số 7, phường Linh Chiểu, thành phố Thủ Đức, Thành phố Hồ Chí Minh';
-        // getAddressCoordinates(addressDetail).then(async (coordinates) => {
-        //     console.log('Coordinates:', coordinates);
-        //     // setLocationAccom({
-        //     //     lat: coordinates.lat,
-        //     //     lng: coordinates.lng
-        //     // })
-          
-        // });
-        getNearbyTouristAttractions().then((touristAttractions) => {
-            console.log('Tourist attractions:', touristAttractions);    
-            // Sử dụng danh sách các địa điểm vui chơi du lịch ở đây
-        });
-    }, []);
-
-    useEffect(() => {
-        const fetchCurrentPosition = () => {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        setCurrentPosition({
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude
-                        });
-                        setLoading(false);
-                    },
-                    (error) => {
-                        setLoading(false);
-                    }
-                );
-            } else {
-                console.error('Geolocation is not supported by this browser.');
-                setLoading(false);
-            }
-        };
-
-        fetchCurrentPosition();
-    }, []);
+   
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -120,9 +82,9 @@ export default function GoogleMap({addressDetail}) {
                     lat={currentPosition.lat}
                     lng={currentPosition.lng}
                 />
-                    {/* {listLocation.map((location, index) => {
+                    {listLocation.map((location, index) => {
                         return <Hotel key={index} lat={location.lat} lng={location.lng} />;
-                    })} */}
+                    })}
                     {/* <Hotel lat={locationAccom.lat} lng={locationAccom.lng} /> */}
             </GoogleMapReact>
             <Button onClick={handleGetAddress}>Get Address</Button>

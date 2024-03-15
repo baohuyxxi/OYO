@@ -2,13 +2,13 @@ import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { unstable_HistoryRouter } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import PrivateRoute from '~/components/PrivateRoute/PrivateRoute';
 const Auth = () => {
     const roles = useSelector((state) => state.user.roles);
     // Admin Page
     const LayoutAdmin = React.lazy(() => import('~/pages/admin/LayoutAdmin/LayoutAdmin'));
     const LoginAdmin = React.lazy(() => import('~/pages/admin/LoginAdmin/LoginAdmin'));
     // Public Page
-    const PrivateRoute = React.lazy(() => import('~/components/PrivateRoute/PrivateRoute'));
     const ActiveAccountPage = React.lazy(() => import('~/pages/public/ActiveAccountPage/ActiveAccountPage'));
     const HomePage = React.lazy(() => import('../pages/public/HomePage/HomePage'));
     const InfoUserPage = React.lazy(() => import('../pages/public/InfoUserPage/InfoUserPage'));

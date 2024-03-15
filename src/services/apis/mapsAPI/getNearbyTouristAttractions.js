@@ -4,16 +4,13 @@ const API_KEY = import.meta.env.VITE_API_KEY_GOOGLE;
 
 const getNearbyTouristAttractions = async (location, radius, place_id) => {
     try {
-        const touristResponse = await axios.get(`https://maps.googleapis.com/v1/api/place/json?parameters`, {
+        const name = encodeURIComponent('tourist attractions')
+        const touristResponse = await axios.get(`https://maps.googleapis.com/v1/api/place/json?`, {
             params: {
                 key: API_KEY,
-                location: `${location.lat},${location.lng}`,
-                radius: radius,
-                name: 'tourist attractions',
-                placeid: place_id,
-                loading: 'async',
-                libraries: 'places',
-                callback: 'initMap'
+                location: `ChIJ_SNvXSkCNTERwjXroGtc4LI`,
+                radius: 5000,
+                type:encodeURIComponent(`point_of_interest|shopping_mall`)
             }
         });
         return touristResponse;

@@ -40,14 +40,17 @@ export default function GoogleMap({addressDetail}) {
     ];
     useEffect(() => {
         const address = '9/7/9 đường số 7, phường Linh Chiểu, thành phố Thủ Đức, Thành phố Hồ Chí Minh';
-        getAddressCoordinates(addressDetail).then(async (coordinates) => {
-            setLocationAccom({
-                lat: coordinates.lat,
-                lng: coordinates.lng
-            })
-            getNearbyTouristAttractions(coordinates, 5000, coordinates.place_id).then((touristAttractions) => {
-                // Sử dụng danh sách các địa điểm vui chơi du lịch ở đây
-            });
+        // getAddressCoordinates(addressDetail).then(async (coordinates) => {
+        //     console.log('Coordinates:', coordinates);
+        //     // setLocationAccom({
+        //     //     lat: coordinates.lat,
+        //     //     lng: coordinates.lng
+        //     // })
+          
+        // });
+        getNearbyTouristAttractions().then((touristAttractions) => {
+            console.log('Tourist attractions:', touristAttractions);    
+            // Sử dụng danh sách các địa điểm vui chơi du lịch ở đây
         });
     }, []);
 
@@ -83,9 +86,12 @@ export default function GoogleMap({addressDetail}) {
     }
 
     const defaultProps = {
-        center: locationAccom,
+        center: {
+          lat: 10.99835602,
+          lng: 77.01502627
+        },
         zoom: 14
-    };
+      };
 
     const handleGetAddress = () => {
         if (clickedLocation) {
@@ -105,9 +111,9 @@ export default function GoogleMap({addressDetail}) {
     return (
         <div className="container__google-map">
             <GoogleMapReact
-                bootstrapURLKeys={{ key: import.meta.env.VITE_API_KEY_GOOGLE }}
-                defaultCenter={defaultProps.center}
-                defaultZoom={defaultProps.zoom}
+                bootstrapURLKeys={{ key: 'AIzaSyD6vLxBPqdXfOrMPDt4bKPy-O_96K588to' }}
+                defaultCenter={currentPosition}
+                defaultZoom={14}
                 onClick={handleMapClick}
             >
                 <LocationCurrent
@@ -115,10 +121,10 @@ export default function GoogleMap({addressDetail}) {
                     lat={currentPosition.lat}
                     lng={currentPosition.lng}
                 />
-                {/* {listLocation.map((location, index) => {
-                    return <Hotel key={index} lat={location.lat} lng={location.lng} />;
-                })} */}
-                <Hotel lat={locationAccom.lat} lng={locationAccom.lng} />
+                    {/* {listLocation.map((location, index) => {
+                        return <Hotel key={index} lat={location.lat} lng={location.lng} />;
+                    })} */}
+                    {/* <Hotel lat={locationAccom.lat} lng={locationAccom.lng} /> */}
             </GoogleMapReact>
             <Button onClick={handleGetAddress}>Get Address</Button>
         </div>

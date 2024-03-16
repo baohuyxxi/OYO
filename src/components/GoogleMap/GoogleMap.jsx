@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 import HotelIcon from '@mui/icons-material/Hotel';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import getAddressCoordinates from '~/services/apis/mapsAPI/getAddressCoordinates';
-import getNearbyTouristAttractions from '~/services/apis/mapsAPI/getNearbyTouristAttractions';
 import { Button } from '@mui/material';
 
 export default function GoogleMap({addressDetail}) {

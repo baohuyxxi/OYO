@@ -5,13 +5,12 @@ import HotelIcon from '@mui/icons-material/Hotel';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { Button } from '@mui/material';
 
-export default function GoogleMap({addressDetail}) {
-
+export default function GoogleMap({ addressDetail }) {
     const [currentPosition, setCurrentPosition] = useState(null);
     const [loading, setLoading] = useState(true);
     const [clickedLocation, setClickedLocation] = useState(null);
     const [locationAccom, setLocationAccom] = useState(null);
-    const Hotel = () => <HotelIcon style={{ color: 'red', fontSize: 'xx-large' }}/>;
+    const Hotel = () => <HotelIcon style={{ color: 'red', fontSize: 'xx-large' }} />;
     const LocationCurrent = () => <LocationOnIcon style={{ color: 'blue', fontSize: 'xx-large' }} />;
     const listLocation = [
         {
@@ -35,7 +34,26 @@ export default function GoogleMap({addressDetail}) {
             lng: 106.74212667127827
         }
     ];
-   
+
+    useEffect(() => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    setCurrentPosition({
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    });
+                    setLoading(false);
+                },
+                (error) => {
+                    setLoading(false);
+                }
+            );
+        } else {
+            console.error('Geolocation is not supported by this browser.');
+            setLoading(false);
+        }
+    }, []);
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -46,11 +64,11 @@ export default function GoogleMap({addressDetail}) {
 
     const defaultProps = {
         center: {
-          lat: 10.99835602,
-          lng: 77.01502627
+            lat: 10.99835602,
+            lng: 77.01502627
         },
         zoom: 14
-      };
+    };
 
     const handleGetAddress = () => {
         if (clickedLocation) {
@@ -80,10 +98,6 @@ export default function GoogleMap({addressDetail}) {
                     lat={currentPosition.lat}
                     lng={currentPosition.lng}
                 />
-                    {listLocation.map((location, index) => {
-                        return <Hotel key={index} lat={location.lat} lng={location.lng} />;
-                    })}
-                    {/* <Hotel lat={locationAccom.lat} lng={locationAccom.lng} /> */}
             </GoogleMapReact>
             <Button onClick={handleGetAddress}>Get Address</Button>
         </div>

@@ -10,12 +10,15 @@ import { Route, Routes, useParams } from 'react-router-dom';
 import CreateAccomCate from '../CreateAccomCate/CreateAccomCate';
 import MenuCreateAccom from '../MenuCreateAccom/MenuCreateAccom';
 import GeneralInfo from '../GeneralInfo/GeneralInfo';
+import AddressAccom from '../AddressAccom/AddressAccom';
+import Gallery from '../Gallery/Gallery';
+import Amenities from '../Amenities/Amenities';
+import RoomSetting from '../RoomSetting/RoomSetting';
 
 export default function CreateAcoom() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const accom = useSelector((state) => state.createAccom);
-    console.log(accom);
+    const createAccom = useSelector((state) => state.createAccom.accom);
 
     return (
         <FramePage>
@@ -32,12 +35,13 @@ export default function CreateAcoom() {
                                 </header>
                                 <div className=" row">
                                     <MenuCreateAccom />
-                                    <div className="col l-10 m-9 c-8">
+                                    <div className="col l-10 m-9 c-8 screen__container paper">
                                         <Routes>
-                                            <Route path="generalInfo" element={<GeneralInfo/>} />
-                                            <Route path="amenities" element={<h1>amenities</h1>} />
-                                            <Route path="gallery" element={<h1>gallery</h1>} />
-                                            <Route path="roomSetting" element={<h1>roomSetting</h1>} />
+                                            <Route path="generalInfo" element={<GeneralInfo createAccom={createAccom}/>} />
+                                            <Route path="address" element={<AddressAccom createAccom={createAccom}/>} />
+                                            <Route path="amenities" element={<Amenities createAccom={createAccom}/>} />
+                                            <Route path="gallery" element={<Gallery/>} />
+                                            <Route path="roomSetting" element={<RoomSetting/>} />
                                             <Route path="policy" element={<h1>policy</h1>} />
                                             <Route path="payment" element={<h1>payment</h1>} />
                                         </Routes>

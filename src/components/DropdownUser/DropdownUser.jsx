@@ -82,7 +82,7 @@ export default function DropdownUser() {
                 </NavLink>
 
                 <hr className="divider" />
-                <NavLink to="/intro-host" onClick={handleClose}>
+                <NavLink to="/managerHotels/createHotel" onClick={handleClose}>
                     <MenuItem onClick={handleClose} disableRipple>
                         <AddHomeWorkOutlinedIcon />
                         {t('navbar.setHost')}

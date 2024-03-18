@@ -22,6 +22,12 @@ export default function MenuCreateAccom() {
                             Thông tin chung
                         </Link>
                         <Link
+                            to="/managerHotels/createHotel/address"
+                            className={`paper option ${selectedItem === 'address' ? 'selected-option' : ''}`}
+                        >
+                            Địa chỉ chỗ nghỉ
+                        </Link>
+                        <Link
                             to="/managerHotels/createHotel/amenities"
                             className={`paper option ${selectedItem === 'amenities' ? 'selected-option' : ''}`}
                         >

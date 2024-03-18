@@ -1,0 +1,31 @@
+.menu-create-accom__container{
+    .menu-create-accom__content{
+
+        line-height: 2;
+        .options-card {
+            height: 300px;
+            .option {
+                margin: 15px 0;
+                padding: 5px 20px;
+                color: var(--mainColor-contrastText);
+                background-color: #DCEBFB;
+                font-size: 14px;
+                display: flex;
+                position: relative;
+                text-decoration: auto;
+
+                .option-icon {
+                    color: var(--info-main);
+                    padding-right: 10px;
+                }
+            }
+            .selected-option{
+                background-color: var(--primary-main);
+                color: var(--primary-contrastText);
+            }
+            .option:hover {
+                scale: 1.05;
+            }
+        }
+    }
+}

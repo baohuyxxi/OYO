@@ -9,7 +9,7 @@ import notificationSlice from './notificationSlice';
 import globalSlice from './globalSlice';
 import settingAccomSlice from './settingAccomSlice';
 import filterAcomSlice from './filterAccom';
-
+import createAccomSlice from './createAccomSlice';
 const persistConfig = {
     key: 'root',
     whiteList: ['user'],
@@ -23,7 +23,8 @@ const rootReducer = combineReducers({
     notification: notificationSlice.reducer,
     global: globalSlice.reducer,
     settingaccom: settingAccomSlice.reducer,
-    filterAccom: filterAcomSlice.reducer
+    filterAccom: filterAcomSlice.reducer,
+    createAccom: createAccomSlice.reducer
 });
 
 // const rootReducer = (state, action) => {

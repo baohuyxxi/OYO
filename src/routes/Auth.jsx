@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { unstable_HistoryRouter } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import PrivateRoute from '~/components/PrivateRoute/PrivateRoute';
+import LoadingPage from '~/pages/public/LoadingPage/LoadingPage';
 const Auth = () => {
     const roles = useSelector((state) => state.user.roles);
     // Admin Page
@@ -23,7 +24,6 @@ const Auth = () => {
     const ContactForm = React.lazy(() => import('../pages/public/Contact/Contact'));
     const FavoritesPage = React.lazy(() => import('../pages/client/FavoritesPage/FavoritesPage'));
     const ListAccomPage =React.lazy(() => import('~/pages/public/ListAccomPage/ListAccomPage'));
-    const LoadingPage = React.lazy(() => import('~/components/LoadingPage/LoadingPage'));
     const OAuth2RedirectHandler = React.lazy(() => import('~/helper/oAuth2RedirectHandler'));
     // Host Owner Page
     const StepperMain = React.lazy(() => import('~/pages/partner/SetupOwner/StepperMain/StepperMain'));
@@ -42,6 +42,7 @@ const Auth = () => {
     const CountRoomDetailSetting = React.lazy(() =>
         import('../pages/partner/OwnerSetting/CountRoomDetailSetting/CountRoomDetailSetting')
     );
+    const CreateAcoom = React.lazy(() => import('~/pages/partner/CreateAccommodation/CreateAcoom/CreateAcoom'));
     // Client Page
     const HistoryBookingPage = React.lazy(() => import('../pages/client/HistoryBookingPage/HistoryBookingPage'));
     return (
@@ -252,6 +253,26 @@ const Auth = () => {
                             </Suspense>
                         }
                     />
+                }
+            />
+             <Route
+                path="/managerHotels/createHotel/*"
+                element={
+                    <PrivateRoute
+                        element={
+                            <Suspense fallback={<LoadingPage />}>
+                                <CreateAcoom />
+                            </Suspense>
+                        }
+                    />
+                }
+            />
+             <Route
+               path="/managerHotels/createHotel/*"
+                element={
+                    <Suspense>
+                         <CreateAcoom />
+                    </Suspense>
                 }
             />
             <Route

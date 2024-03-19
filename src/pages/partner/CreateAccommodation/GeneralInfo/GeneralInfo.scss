@@ -1,43 +1,15 @@
-.general-info{
-    .general-info__container{
-        .address-info__container{
-
-            .address-info__content{
-                padding: 10px;
-
-                .address-info__title{
-
-                }
-                .box-address {
-                    .container__address {
-                      
-                        .input__address {
-                            width: 100%;
-                            height: 40px;
-                            border-radius: 5px;
-            
-                            font-size: 14px;
-                            margin-bottom: 30px;
-                        }
-                    }
-            
-                    .input-address-step1 {
-                        height: 2.3rem;
-                        border-radius: 5px;
-                        border: 0.2px solid black;
-                        width: 100% !important;
-                    }
-                    .input-guide-step1 {
-                        height: 5rem;
-                        border-radius: 5px;
-                        border: 0.2px solid black;
-                        width: 100% !important;
-                    }
-                }
-                .container__google-map{
-                    width: 100%;
-                }
-            }
-        }
+.general-info {
+    .input-step5 {
+        width: 100%;
+        padding: 10px 20px 10px 10px;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+    .text-step5 {
+        width: 100%;
+        padding: 10px 20px 10px 10px;
+        font-size: 14px;
+        height: 80px;
+        margin-bottom: 10px;
     }
 }

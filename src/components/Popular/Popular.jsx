@@ -44,7 +44,8 @@ const Popular = () => {
                 </div>
                 <div className='popular__container'>
                     {loading ? (
-                        <SkeletonProvince />
+                        // <SkeletonProvince />
+                        <></>
                     ) : (
                         listProvince?.map((province, index) => {
                             return (

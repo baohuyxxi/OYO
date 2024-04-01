@@ -10,6 +10,9 @@ const createAccomSlice = createSlice({
             provinceCode: null,
             districtCode: null,
             wardCode: null,
+            provinceName: null,
+            districtName: null,
+            wardName: null,
             numHouseAndStreetName: null,
             lat: 0,
             lng: 0,
@@ -32,10 +35,12 @@ const createAccomSlice = createSlice({
             state.accom.lng = action.payload.lng;
         },
         setAddress(state, action) {
-            console.log(action.payload);
             state.accom.provinceCode = action.payload.provinceCode;
             state.accom.districtCode = action.payload.districtCode;
             state.accom.wardCode = action.payload.wardCode;
+            state.accom.provinceName = action.payload.provinceName;
+            state.accom.districtName = action.payload.districtName;
+            state.accom.wardName = action.payload.wardName;
         },
         setNumHouseAndStreetName(state, action) {
             state.accom.numHouseAndStreetName = action.payload;

@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import createAccomSlice from '~/redux/createAccomSlice';
 export default function Amenities({createAccom}) {
-    console.log(createAccom);
     const dispatch = useDispatch();
 
     const [facilityCateList, setFacilityCateList] = useState(null);

@@ -14,6 +14,9 @@ export default function AddressAccom({ createAccom }) {
         provinceCode: createAccom.provinceCode,
         districtCode: createAccom.districtCode,
         wardCode: createAccom.wardCode,
+        provinceName: createAccom.provinceName,
+        districtName: createAccom.districtName,
+        wardName: createAccom.wardName
     });
     const LocationCurrent = () => <LocationOnIcon style={{ color: 'red', fontSize: 'xx-large' }} />;
     useEffect(() => {}, []);

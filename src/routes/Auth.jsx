@@ -267,14 +267,14 @@ const Auth = () => {
                     />
                 }
             />
-             <Route
+             {/* <Route
                path="/managerHotels/createHotel/*"
                 element={
                     <Suspense>
                          <CreateAcoom />
                     </Suspense>
                 }
-            />
+            /> */}
             <Route
                 path="*"
                 element={

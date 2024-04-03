@@ -14,12 +14,18 @@ import AddressAccom from '../AddressAccom/AddressAccom';
 import Gallery from '../Gallery/Gallery';
 import Amenities from '../Amenities/Amenities';
 import RoomSetting from '../RoomSetting/RoomSetting';
+import Policy from '../Policy/Policy';
 
 export default function CreateAcoom() {
+    const params = useParams();
+    const [indexAccom, setIndexAccom] = useState(params['*']);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const createAccom = useSelector((state) => state.createAccom.accom);
-
+    const listAccom = useSelector((state) => state.createAccom.listAccom);
+    useEffect(() => {
+        setIndexAccom(params['*'].split('/')[1]);
+    }, [params['*']]);
+    console.log(listAccom[indexAccom]);
     return (
         <FramePage>
             <div className="create-acoom__page">
@@ -37,12 +43,21 @@ export default function CreateAcoom() {
                                     <MenuCreateAccom />
                                     <div className="col l-10 m-9 c-8 screen__container paper">
                                         <Routes>
-                                            <Route path="generalInfo" element={<GeneralInfo createAccom={createAccom}/>} />
-                                            <Route path="address" element={<AddressAccom createAccom={createAccom}/>} />
-                                            <Route path="amenities" element={<Amenities createAccom={createAccom}/>} />
-                                            <Route path="gallery" element={<Gallery/>} />
-                                            <Route path="roomSetting" element={<RoomSetting/>} />
-                                            <Route path="policy" element={<h1>policy</h1>} />
+                                            <Route
+                                                path="generalInfo"
+                                                element={<GeneralInfo createAccom={listAccom[indexAccom]} />}
+                                            />
+                                            <Route
+                                                path="address"
+                                                element={<AddressAccom createAccom={listAccom[indexAccom]} />}
+                                            />
+                                            <Route
+                                                path="amenities"
+                                                element={<Amenities createAccom={listAccom[indexAccom]} />}
+                                            />
+                                            <Route path="gallery" element={<Gallery />} />
+                                            <Route path="roomSetting" element={<RoomSetting />} />
+                                            <Route path="policy" element={<Policy />} />
                                             <Route path="payment" element={<h1>payment</h1>} />
                                         </Routes>
                                     </div>

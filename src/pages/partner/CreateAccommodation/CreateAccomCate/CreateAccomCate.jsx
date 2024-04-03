@@ -19,7 +19,7 @@ export default function CreateAccomCate() {
     if (!accomCate) return null;
 
     const handleAccomCate = (cate) => {
-        dispatch(createAccomSlice.actions.setAccomCateName(cate.accomCateName));
+        // dispatch(createAccomSlice.actions.setAccomCateName(cate.accomCateName));
         navigate('/managerHotels/createHotel/generalInfo');
     };
     return (

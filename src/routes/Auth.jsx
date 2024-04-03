@@ -43,6 +43,7 @@ const Auth = () => {
         import('../pages/partner/OwnerSetting/CountRoomDetailSetting/CountRoomDetailSetting')
     );
     const CreateAcoom = React.lazy(() => import('~/pages/partner/CreateAccommodation/CreateAcoom/CreateAcoom'));
+    const DashboardPartner = React.lazy(() => import('~/pages/partner/DashboardPartner/DashboardPartner'));
     // Client Page
     const HistoryBookingPage = React.lazy(() => import('../pages/client/HistoryBookingPage/HistoryBookingPage'));
     return (
@@ -267,6 +268,19 @@ const Auth = () => {
                     />
                 }
             />
+            <Route
+                path="/managerHotels/*"
+                element={
+                    <PrivateRoute
+                        element={
+                            <Suspense fallback={<LoadingPage />}>
+                                <DashboardPartner />
+                            </Suspense>
+                        }
+                    />
+                }
+            />
+            
              {/* <Route
                path="/managerHotels/createHotel/*"
                 element={

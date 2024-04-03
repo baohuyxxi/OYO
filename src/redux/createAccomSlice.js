@@ -1,32 +1,41 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { load } from 'npm';
 const createAccomSlice = createSlice({
     name: 'createAccom',
     initialState: {
-        accom: {
-            accomName: null,
-            description: null,
-            addressDetail: null,
-            accomCateName: null,
-            provinceCode: null,
-            districtCode: null,
-            wardCode: null,
-            provinceName: null,
-            districtName: null,
-            wardName: null,
-            numHouseAndStreetName: null,
-            lat: 0,
-            lng: 0,
-            numKitchen: 0,
-            acreage: 0,
-            numPeople: 0,
-            numBathRoom: 0,
-            numBedRoom: 0,
-            pricePerNight: 0,
-            facilityNameList: [],
-            guide: null
-        }
+        listAccom : [
+            {
+                accomName: null,
+                description: null,
+                addressDetail: null,
+                accomCateName: null,
+                provinceCode: null,
+                districtCode: null,
+                wardCode: null,
+                provinceName: null,
+                districtName: null,
+                wardName: null,
+                numHouseAndStreetName: null,
+                lat: 0,
+                lng: 0,
+                numKitchen: 0,
+                acreage: 0,
+                numPeople: 0,
+                numBathRoom: 0,
+                numBedRoom: 0,
+                pricePerNight: 0,
+                facilityNameList: [],
+                guide: null
+            }
+        ],
+        loaded: false,
+        
     },
     reducers: {
+        setListAccom(state, action) {
+            state.listAccom = action.payload;
+            state.loaded = true;
+        },
         setAccomCateName(state, action) {
             state.accom.accomCateName = action.payload;
         },

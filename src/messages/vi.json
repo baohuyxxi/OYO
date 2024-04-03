@@ -238,7 +238,15 @@
         "selectDistrict": "Chọn Quận/Huyện",
         "selectWard": "Chọn Phường/Xã",
         "userName": "Tên người dùng",
-        "content": "Nội dung"
+        "content": "Nội dung",
+        "refundPolicy": "Chính sách hoàn tiền cho căn nhà của bạn",
+        "houseRefundPolicy": "Chính sách hoàn tiền cho căn nhà của bạn",
+        "homeCancellationPolicy": "Chính sách hủy đặt phòng cho nhà của bạn",
+        "cancellationPolicy": "Chính sách hủy đặt phòng",
+        "timeCancel": "Thời gian được phép hủy hủy",
+        "cancelBefore": "Chỉ được hủy phòng trước",
+        "feeCancel": "Phí hủy",
+        "policyPublic": "Chính sách chung"
     },
     "contentMain": {
         "homeinsearch": "Từ chuyến phượt 'ngẫu hứng' đến những cuộc phiêu lưu, khám phá công thức niềm vui của riêng bạn",

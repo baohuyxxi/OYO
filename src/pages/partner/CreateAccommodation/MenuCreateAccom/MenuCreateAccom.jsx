@@ -8,8 +8,9 @@ export default function MenuCreateAccom() {
     const params = useParams();
     const [selectedItem, setSelectedItem] = useState(params['*']);
     useEffect(() => {
-        setSelectedItem(params['*']);
+        setSelectedItem(params['*'].split('/')[0]);
     }, [params['*']]);
+
     return (
         <div className="col l-2 m-3 c-4">
             <div className="menu-create-accom__container">
@@ -57,6 +58,9 @@ export default function MenuCreateAccom() {
                         >
                             Thông tin thanh toán
                         </Link>
+                        <div className="progress__underway paper">
+                            <p>Tiến trình đã thực hiện được</p>
+                        </div>
                     </div>
                 </div>
             </div>

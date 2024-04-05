@@ -2,21 +2,59 @@ import axios from '~/services/axios';
 
 const partnerCreateAccomAPI = {
     registrationAccom: async (data) => {
-        const res = await axios.post(`/partner/accoms/create`, data);
+        const res = await axios.post(`/partner/accoms/registration`, data);
         return res.data;
     },
-    getListAccom: async (data) => {
+    getListAccomWaiting: async (data) => {
+        const res = await axios.get(`/partner/accoms/waiting`);
+        return res.data;
+    },
+    getListAccomApproved: async (data) => {
         const res = await axios.get(
-            `/partner/accoms/pages?pageNumber=${data.number ? data.number : 0}&pageSize=${data.size ? data.size : 10}`
+            `/partner/accoms/approved?pageNumber=${data?.number ? data?.number : 0}&pageSize=${
+                data?.size ? data?.size : 10
+            }`
         );
         return res.data;
     },
-    updateGeneralInfo: async (data) => {
-        const res = await axios.put(`/partner/accoms/general-info?accomId=${data.id}`, data.data);
+    getGeneralInfo: async (data) => {
+        const res = await axios.get(`/partner/accoms/general-info?accomId=${data}`);
         return res.data;
     },
-    updateFacilitiesAccom: async (data) => {
-        const res = await axios.put(`/partner/accoms/facility?accomId=${data.id}`, data.data);
+    getFacilitiesAccom: async (data) => {
+        const res = await axios.get(`/partner/accoms/facilities?accomId=${data}`);
+        return res.data;
+    },
+    getPolicy: async (data) => {
+        const res = await axios.get(`/partner/accoms/policies?accomId=${data}`);
+        return res.data;
+    },
+    getPayment: async (data) => {},
+    getRoomSetting: async (data) => {
+        const res = await axios.get(`/partner/accoms/room?accomId=${data}`);
+        return res.data;
+    },
+    getAddress: async (data) => {
+        const res = await axios.get(`/partner/accoms/address?accomId=${data}`);
+        return res.data;
+    },
+    getGallery: async (data) => {
+        const res = await axios.get(`/partner/accoms/gallery?accomId=${data}`);
+        return res.data;
+    },
+    getpercentCreate: async (data) => {
+        const res = await axios.get(`/partner/accoms/percent-create?accomId=${data}`);
+        return res.data;
+    },
+
+    updateGeneralInfo: async ({id, data}) => {
+        const res = await axios.put(`/partner/accoms/general-info?accomId=${id}`, data);
+        return res.data;
+    },
+    updateFacilitiesAccom: async ({id, data}) => {
+        let formData = new FormData();
+        formData.append('facilityCodes', data);
+        const res = await axios.put(`/partner/accoms/facility?accomId=${id}`, formData);
         return res.data;
     },
     updatePolicy: async (data) => {

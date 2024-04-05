@@ -4,12 +4,14 @@ import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import createAccomSlice from '~/redux/createAccomSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import partnerCreateAccomAPI from '~/services/apis/partnerAPI/partnerCreateAccomAPI';
+import { accomFormData } from '~/share/models/accom';
 
 export default function CreateAccomCate() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [accomCate, setAccomCate] = useState([]);
-
+    const listAccom = useSelector((state) => state.createAccom.listAccom);
     useEffect(() => {
         publicAccomPlaceAPI.getRoomCategory().then((dataResponse) => {
             setAccomCate(dataResponse?.data);
@@ -17,10 +19,15 @@ export default function CreateAccomCate() {
     }, []);
 
     if (!accomCate) return null;
-
     const handleAccomCate = (cate) => {
         // dispatch(createAccomSlice.actions.setAccomCateName(cate.accomCateName));
-        navigate('/managerHotels/createHotel/generalInfo');
+        partnerCreateAccomAPI
+            .registrationAccom({ accomCateName: cate.accomCateName })
+            .then((response) => {
+                navigate(`/managerHotels/createHotel/generalInfo/${response.data}`);
+            })
+            .catch((error) => {});
+        
     };
     return (
         <div className="create-acoom__page">

@@ -1,54 +1,118 @@
 import './Gallery.scss';
 import { t } from 'i18next';
 import UploadFile from '~/components/UploadFile/UploadFile';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import React, { useState } from 'react';
+import Checkbox from '~/components/Checkbox/Checkbox';
+import FileUpload from '~/components/HostSetting/VideoIntroSetting/FileUpload/FileUpload';
+import VideoIntroDetail from '~/components/HostSetting/VideoIntroSetting/VideoIntroDetail/VideoIntroDetail';
 
-export default function Gallery() {
-    const [dataStep4, setDataStep4] = useState([]);
-    const [videoIntro, setVideoIntro] = useState(null);
-    const [videoIntroUrl, setVideoIntroUrl] = useState('');
-    const onFileChange = (files) => {
-        if (setDataStep4) {
-            setDataStep4(files);
-        }
+export default function Gallery({ id, save , doneSave}) {
+    const [cldVideoId, setCldVideoId] = useState('');
+    const [images, setImages] = useState([]);
+    const [open, setOpen] = useState(false);
+    const [selectedImage, setSelectedImage] = useState([]);
+
+    const handleImageChange = (event) => {
+
+        const files = event.target.files;
+        const fileArray = Array.from(files);
+        setImages([...images, ...fileArray]);
     };
-    const onVideoDrop = (e) => {
-        if (e.target.files) {
-            const newFileVideo = e.target.files[0];
-            if (newFileVideo) {
-                setVideoIntro(newFileVideo);
-            }
-        }
+    const handleRemove = () => {
+        setImages(images.filter((_, index) => !selectedImage.includes(index)));
+        setSelectedImage([]);
+    };
+
+    const [file, setFile] = useState({ cldVideoId, isUploading: false, name: cldVideoId });
+
+    const removeFile = () => {
+        setFile(null);
+    };
+
+    const onSubmit = () => {
+        const newData = {
+            data: {
+                cldVideoId: file?.cldVideoId
+            },
+            id: params.idHome
+        };
+        partnerManageAPI
+            .updateVideoIntro(newData)
+            .then((res) => {
+                enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
+
+                dispatch(settingAccomSlice.actions.setAccom(res.data));
+            })
+            .catch((error) => {
+                enqueueSnackbar(error.response?.data.message, { variant: 'error' });
+            });
     };
     return (
-        <div className="gallery row">
-            <div className="upload-file col l-6">
-                <UploadFile
-                    dataStep4={dataStep4}
-                    onFileChange={(files) => onFileChange(files)}
-                    videoIntro={videoIntro}
-                    setVideoIntro={setVideoIntro}
+        <div className="gallery__content">
+            <div className="gallery__content__title">
+                <h3>Ảnh khách sạn</h3>
+                { 
+                    selectedImage.length>0 &&
+                    <button className="remove-images" onClick={handleRemove}>
+                        Xóa
+                    </button>
+                }
+
+                <Checkbox
+                    id={'all'}
+                    checked={selectedImage.length === images.length && images.length !== 0}
+                    onChange={(e) => {
+                        if (e.target.checked) {
+                            setSelectedImage(images.map((_, index) => index));
+                        } else {
+                            setSelectedImage([]);
+                        }
+                    }}
                 />
             </div>
-
-            <div className="upload-video col l-6">
-                <label htmlFor="input-upload-video">
-                    <div className="inner">
-                        <div className="img-initial">
-                            <img src="https://cdn-icons-png.flaticon.com/512/3772/3772348.png" alt="ảnh" />
-                    
+            <div className="images-upload__container paper">
+                <div className="row">
+                    {images.map((image, index) => (
+                        <div className="col l-2 m-3 c-4">
+                            <div className="image__container">
+                                <img src={URL.createObjectURL(image)} alt={t('alt.imageHotel')} />
+                                <div className="image__checkbox">
+                                    <Checkbox
+                                        id={index}
+                                        checked={selectedImage.includes(index)}
+                                        onChange={(e) => {
+                                            if (e.target.checked) {
+                                                setSelectedImage([...selectedImage, index]);
+                                            } else {
+                                                setSelectedImage(selectedImage.filter((item) => item !== index));
+                                            }
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                    <div className="col l-2 m-3 c-4">
+                        <div
+                            className="button-add-image__container"
+                            onClick={() => document.getElementById('imageUpload').click()}
+                        >
+                            <AddCircleOutlineIcon />
+                            <div>{t('common.addImage')}</div>
                         </div>
                     </div>
-
-                    <input
-                        type="file"
-                        id="input-upload-video"
-                        value=""
-                        onChange={onVideoDrop}
-                        accept="video/mp4,video/x-m4v,video/*"
-                        hidden
-                    />
-                </label>
+                    <input hidden type="file" id="imageUpload" accept="image/*" multiple onChange={handleImageChange} />
+                </div>
+            </div>
+            <div className="gallery__content__title">
+                <h3>Video</h3>
+            </div>
+            <div className="video-upload__container paper">
+                <div className="video-intro-setting__container">
+                    <FileUpload file={file} setFile={setFile} removeFile={removeFile} />
+                    <VideoIntroDetail file={file} removeFile={removeFile} />
+                </div>
             </div>
         </div>
     );

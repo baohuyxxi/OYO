@@ -4,30 +4,46 @@ import publicFacilityAPI from '~/services/apis/publicAPI/publicFacilityAPI';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import createAccomSlice from '~/redux/createAccomSlice';
-export default function Amenities({createAccom}) {
-    const dispatch = useDispatch();
-
+import partnerCreateAccomAPI from '~/services/apis/partnerAPI/partnerCreateAccomAPI';
+export default function Amenities({ id, save, doneSave }) {
+    const [loading, setLoading] = useState(false);
+    const [data, setData] = useState(null);
     const [facilityCateList, setFacilityCateList] = useState(null);
     useEffect(() => {
-        async function fetchData() {
-            const res = await publicFacilityAPI.getAllDataFacility();
+        publicFacilityAPI.getAllDataFacility().then((res) => {
             setFacilityCateList(res.data);
+        });
+        if (id) {
+            partnerCreateAccomAPI.getFacilitiesAccom(id).then((res) => {
+                setData(res.data.facilities.map((item) => item.facilityCode));
+                setLoading(false);
+            });
         }
-        fetchData();
     }, []);
+
+    useEffect(() => {
+        if (save) {
+            partnerCreateAccomAPI.updateFacilitiesAccom({ id, data }).then((res) => {
+                doneSave();
+            });
+            doneSave();
+        }
+    }, [save]);
+
     const firstHalf = facilityCateList?.slice(0, Math.ceil(facilityCateList.length / 2));
     const secondHalf = facilityCateList?.slice(Math.ceil(facilityCateList.length / 2));
 
     const setFacility = (facility) => {
-        dispatch(createAccomSlice.actions.setFacilityNameList(facility));
-    }
+        setData(facility);
+    };
+    console.log(data);
     return (
         <div className="amenities row">
-           <div className="col l-6">
+            <div className="col l-6">
                 {firstHalf?.map((current, index) => (
                     <ListFacilityByCategory
                         key={index}
-                        data={createAccom.facilityNameList}
+                        data={data}
                         setData={setFacility}
                         facilityList={current.infoFacilityList}
                         facilityCateName={current.faciCateName}
@@ -38,7 +54,7 @@ export default function Amenities({createAccom}) {
                 {secondHalf?.map((current, index) => (
                     <ListFacilityByCategory
                         key={index}
-                        data={createAccom.facilityNameList}
+                        data={data}
                         setData={setFacility}
                         facilityList={current.infoFacilityList}
                         facilityCateName={current.faciCateName}

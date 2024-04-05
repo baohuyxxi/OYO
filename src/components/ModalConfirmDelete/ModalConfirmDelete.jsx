@@ -40,7 +40,6 @@ export default function ModalConfirmDelete(props) {
         checkInDate.setHours(12, 0, 0, 0);
         const timeToCancel = cancellationPolicyToTime(props.data.cancellationPolicy);
         const timeToCancelDate = new Date(checkInDate.getTime() - timeToCancel * 24 * 60 * 60 * 1000);
-        console.log(currentDate.getTime(), timeToCancelDate.getTime());
         if (currentDate.getTime() > timeToCancelDate.getTime()) {
             setCancelBooking(false);
         }

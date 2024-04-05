@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import createAccomSlice from '~/redux/createAccomSlice';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
-export default function Policy() {
+export default function Policy({ id, save , doneSave}) {
     return (
         <div className="policy">
             <div className="policy__content">

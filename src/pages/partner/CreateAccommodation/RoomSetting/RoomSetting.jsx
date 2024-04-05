@@ -6,7 +6,7 @@ import { typeRoom } from '~/share/models/roomHome';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import CustomInput from '~/assets/custom/CustomInput';
 import MenuItem from '@mui/material/MenuItem';
-export default function RoomSetting() {
+export default function RoomSetting({ id, save , doneSave}) {
     const [data, setData] = useState([]);
     const [dataStep2, setDataStep2] = useState(typeRoom);
     const [accomCate, setAccomCate] = useState('');

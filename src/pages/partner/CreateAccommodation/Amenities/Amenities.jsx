@@ -37,6 +37,15 @@ export default function Amenities({ id, save, doneSave }) {
         setData(facility);
     };
     console.log(data);
+
+    useEffect(() => {
+        if (save) {
+            partnerCreateAccomAPI.updateFacilitiesAccom({ id, data }).then((res) => {
+                console.log(res);
+            });
+            doneSave();
+        }
+    }, [save]);
     return (
         <div className="amenities row">
             <div className="col l-6">

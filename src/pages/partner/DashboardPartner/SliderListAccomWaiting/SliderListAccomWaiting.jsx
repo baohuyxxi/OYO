@@ -14,9 +14,11 @@ export default function SliderListAccomWaiting({accomWaiting}) {
         // dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        
     };
+    console.log(accomWaiting);
     return (
         <div className="slider-list-accom-waiting">
             <div className="slider-list-accom-waiting__content">

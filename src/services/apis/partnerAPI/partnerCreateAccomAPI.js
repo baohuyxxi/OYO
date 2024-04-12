@@ -31,7 +31,7 @@ const partnerCreateAccomAPI = {
     },
     getPayment: async (data) => {},
     getRoomSetting: async (data) => {
-        const res = await axios.get(`/partner/accoms/room?accomId=${data}`);
+        const res = await axios.get(`/partner/accoms/room-setting?accomId=${data}`);
         return res.data;
     },
     getAddress: async (data) => {
@@ -47,14 +47,15 @@ const partnerCreateAccomAPI = {
         return res.data;
     },
 
-    updateGeneralInfo: async ({id, data}) => {
+    updateGeneralInfo: async ({ id, data }) => {
         const res = await axios.put(`/partner/accoms/general-info?accomId=${id}`, data);
         return res.data;
     },
-    updateFacilitiesAccom: async ({id, data}) => {
-        let formData = new FormData();
-        formData.append('facilityCodes', data);
-        const res = await axios.put(`/partner/accoms/facility?accomId=${id}`, formData);
+    updateFacilitiesAccom: async ({ id, data }) => {
+        console.log(facilityCodes);
+        const res = await axios.put(`/partner/accoms/facilities?accomId=${id}`, {
+            facilityCodes: data
+        });
         return res.data;
     },
     updatePolicy: async (data) => {
@@ -66,7 +67,7 @@ const partnerCreateAccomAPI = {
         return res.data;
     },
     updateRoomSetting: async (data) => {
-        const res = await axios.put(`/partner/accoms/room?accomId=${data.id}`, data.data);
+        const res = await axios.put(`partner/accoms/rooms?accomId=${data.id}`, data.data);
         return res.data;
     },
     updateAddress: async (data) => {

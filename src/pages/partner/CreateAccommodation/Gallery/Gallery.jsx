@@ -2,19 +2,38 @@ import './Gallery.scss';
 import { t } from 'i18next';
 import UploadFile from '~/components/UploadFile/UploadFile';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Checkbox from '~/components/Checkbox/Checkbox';
 import FileUpload from '~/components/HostSetting/VideoIntroSetting/FileUpload/FileUpload';
 import VideoIntroDetail from '~/components/HostSetting/VideoIntroSetting/VideoIntroDetail/VideoIntroDetail';
-
-export default function Gallery({ id, save , doneSave}) {
+import partnerCreateAccomAPI from '~/services/apis/partnerAPI/partnerCreateAccomAPI';
+export default function Gallery({ id, save, doneSave }) {
     const [cldVideoId, setCldVideoId] = useState('');
     const [images, setImages] = useState([]);
     const [open, setOpen] = useState(false);
     const [selectedImage, setSelectedImage] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [data, setData] = useState(null);
 
+    useEffect(() => {
+        if (id) {
+            partnerCreateAccomAPI.getGallery(id).then((res) => {
+                setData(res.data);
+                setImages(res.data.imageAccomUrls);
+                setLoading(false);
+            });
+        }
+    }, []);
+    console.log(data);
+    useEffect(() => {
+        if (save) {
+            partnerCreateAccomAPI.updateGeneralInfo({ id, data }).then((res) => {
+                doneSave();
+            });
+            doneSave();
+        }
+    }, [save]);
     const handleImageChange = (event) => {
-
         const files = event.target.files;
         const fileArray = Array.from(files);
         setImages([...images, ...fileArray]);
@@ -52,12 +71,11 @@ export default function Gallery({ id, save , doneSave}) {
         <div className="gallery__content">
             <div className="gallery__content__title">
                 <h3>Ảnh khách sạn</h3>
-                { 
-                    selectedImage.length>0 &&
+                {selectedImage.length > 0 && (
                     <button className="remove-images" onClick={handleRemove}>
                         Xóa
                     </button>
-                }
+                )}
 
                 <Checkbox
                     id={'all'}
@@ -76,7 +94,12 @@ export default function Gallery({ id, save , doneSave}) {
                     {images.map((image, index) => (
                         <div className="col l-2 m-3 c-4">
                             <div className="image__container">
-                                <img src={URL.createObjectURL(image)} alt={t('alt.imageHotel')} />
+                                {typeof image === 'string' ? (
+                                    <img src={image} alt={t('alt.imageHotel')} />
+                                ) : (
+                                    <img src={URL.createObjectURL(image)} alt={t('alt.imageHotel')} />
+                                )}
+
                                 <div className="image__checkbox">
                                     <Checkbox
                                         id={index}

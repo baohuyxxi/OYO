@@ -10,7 +10,7 @@ import partnerCreateAccomAPI from '~/services/apis/partnerAPI/partnerCreateAccom
 import { Button } from '@mui/material';
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
-    height: 20,
+    height: 25,
     borderRadius: 5,
     [`&.${linearProgressClasses.colorPrimary}`]: {
         backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800]
@@ -90,12 +90,14 @@ export default function MenuCreateAccom() {
                             Thông tin thanh toán
                         </Link>
                         <div className="progress__underway paper">
-                            <p>Tiến trình đã thực hiện được</p>
+                            <div>Tiến trình đã thực hiện được</div>
 
-                            <BorderLinearProgress variant="determinate" value={process}>
-                                <span style={{ color: 'white' }}>50%</span>
-                            </BorderLinearProgress>
-                            {process === 100 && (
+                            <div className="progress">
+                                <BorderLinearProgress variant="determinate" value={process}></BorderLinearProgress>
+                                <div className="percent">{process}%</div>
+                            </div>
+
+                            {process >= 90 && (
                                 <Button variant="contained" className=" option" fullWidth>
                                     Đăng chỗ nghỉ
                                 </Button>

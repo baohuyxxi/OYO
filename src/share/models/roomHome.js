@@ -29,33 +29,24 @@ export const roomHomeFormData = {
     numBathRoom: null,
     numKitchen: null
 };
+export const policiesFormData = {
+    cancellationPolicy: {
+        code: null,
+        cancellationFeeRate: null
+    },
+    generalPolicy: {
+        allowEvent: null,
+        allowPet: null,
+        allowSmoking: null
+    }
+};
 
-// accomCateId
-// : 
-// 9
-// accomCateName
-// : 
-// "Garden"
-// bedRooms
-// : 
-// total
-// : 
-// 0
-// typeBeds
-// : 
-// Array(0)
-// length
-// : 
-// 0
-// [[Prototype]]
-// : 
-// Array(0)
-// [[Prototype]]
-// : 
-// Object
-// numBathRoom
-// : 
-// null
-// numKitchen
-// : 
-// null
+// "cancellationPolicy": {
+//     "code": null,
+//     "cancellationFeeRate": null
+// },
+// "generalPolicy": {
+//     "allowEvent": null,
+//     "allowPet": null,
+//     "allowSmoking": null
+// }

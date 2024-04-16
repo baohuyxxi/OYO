@@ -75,7 +75,7 @@ const partnerCreateAccomAPI = {
         return res.data;
     },
     updateGallery: async (data) => {
-        const res = await axios.post(`/partner/accoms/images?accomId=${data.id}`, data.data);
+        const res = await axios.put(`/partner/accoms/gallery?accomId=${data.id}`, data.data);
         return res.data;
     }
 };

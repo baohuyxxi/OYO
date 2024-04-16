@@ -7,34 +7,16 @@ import { useNavigate } from 'react-router-dom';
 import partnerCreateAccomAPI from '~/services/apis/partnerAPI/partnerCreateAccomAPI';
 import { accomFormData } from '~/share/models/accom';
 
-export default function CreateAccomCate({ id, save, doneSave }) {
+export default function CreateAccomCate() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [accomCate, setAccomCate] = useState([]);
-    const [data, setData] = useState(accomFormData);
-
+    const listAccom = useSelector((state) => state.createAccom.listAccom);
     useEffect(() => {
         publicAccomPlaceAPI.getRoomCategory().then((dataResponse) => {
             setAccomCate(dataResponse?.data);
         });
-        if (id) {
-            partnerCreateAccomAPI.getRoomSetting(id).then((res) => {
-                setData(res.data);
-                
-            });
-        }
     }, []);
-
-
-
-    useEffect(() => {
-        if(save){
-            partnerCreateAccomAPI.updateRoomSetting({id, data}).then((res) => {
-                doneSave();
-            });
-            doneSave();
-        }
-    }, [save]);
 
     if (!accomCate) return null;
     const handleAccomCate = (cate) => {

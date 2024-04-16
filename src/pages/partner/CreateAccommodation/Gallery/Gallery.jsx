@@ -7,6 +7,8 @@ import Checkbox from '~/components/Checkbox/Checkbox';
 import FileUpload from '~/components/HostSetting/VideoIntroSetting/FileUpload/FileUpload';
 import VideoIntroDetail from '~/components/HostSetting/VideoIntroSetting/VideoIntroDetail/VideoIntroDetail';
 import partnerCreateAccomAPI from '~/services/apis/partnerAPI/partnerCreateAccomAPI';
+import uploadMedia from '~/services/apis/media/uploadMedia';
+import { el } from 'date-fns/locale';
 export default function Gallery({ id, save, doneSave }) {
     const [cldVideoId, setCldVideoId] = useState('');
     const [images, setImages] = useState([]);
@@ -24,20 +26,43 @@ export default function Gallery({ id, save, doneSave }) {
             });
         }
     }, []);
-    console.log(data);
+
     useEffect(() => {
-        if (save) {
-            partnerCreateAccomAPI.updateGeneralInfo({ id, data }).then((res) => {
+        const fetchData = async () => {
+            if (save) {
+                const uploadImages = await Promise.all(
+                    images.map(async (img) => {
+                        if (typeof img !== 'string') {
+                            const imageUrl = (await uploadMedia.singleFile(img)).data.imageUrl;
+                            return imageUrl; // Assuming imageUrl is always an array
+                        } else {
+                            return img;
+                        }
+                    })
+                );
+                const dataUpdate = {
+                    imageAccomUrls: uploadImages,
+                    cldVideoId: ''
+                };
+                partnerCreateAccomAPI
+                    .updateGallery({id, data: dataUpdate})
+                    .then((res) => {
+                        console.log(res);
+                    })
+                    .catch(() => {});
                 doneSave();
-            });
-            doneSave();
-        }
+            }
+        };
+
+        fetchData(); // Gọi hàm bất đồng bộ từ useEffect
     }, [save]);
+
     const handleImageChange = (event) => {
         const files = event.target.files;
         const fileArray = Array.from(files);
         setImages([...images, ...fileArray]);
     };
+
     const handleRemove = () => {
         setImages(images.filter((_, index) => !selectedImage.includes(index)));
         setSelectedImage([]);

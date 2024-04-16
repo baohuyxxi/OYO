@@ -4,7 +4,8 @@
     }
 
     &__content__item {
-        display: grid;
+        display: flex;
+        justify-content: space-between;
         // Mỗi mục trong nội dung policy
     }
 

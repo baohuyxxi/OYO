@@ -1,7 +1,14 @@
 .room-setting{
     .info-count__room {
         width: 100%;
-
+        .accomCateName{
+            margin-left: 100px;
+            margin-right: 100px;
+            label{
+                font-weight: bold;
+                font-size: 1.5rem;
+            }
+        }
         li {
             font-size: 20px !important;
         }

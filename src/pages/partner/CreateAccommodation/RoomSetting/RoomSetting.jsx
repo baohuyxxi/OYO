@@ -20,7 +20,7 @@ export default function RoomSetting({ id, save, doneSave }) {
         });
         if (id) {
             partnerCreateAccomAPI.getRoomSetting(id).then((res) => {
-                setData({ ...data, ...res.data });
+                setData({ ...data, ...res.data, numBedRoom: res.data.bedRooms.total});
                 setLoading(false);
             });
         }
@@ -29,20 +29,22 @@ export default function RoomSetting({ id, save, doneSave }) {
         if (save) {
             const tmpdata = {
                 typeBedCodes: Array.from({ length: data.numBedRoom }, () => 'TYPE_BED_001'),
-                countGuest: data.countGuest,
                 numBathRoom: data.numBathRoom,
                 numKitchen: data.numKitchen,
-                accomCateName: data.accomCateName
+                accomCateName: data.accomCateName,
+                numPeople: data.numPeople
             };
             partnerCreateAccomAPI.updateRoomSetting({ id, data: tmpdata }).then((res) => {
-                doneSave();
+                doneSave(true);
+            }).catch(() => {
+                doneSave(false);
             });
-            doneSave();
         }
     }, [save]);
     const onChangeData = (event) => {
         setData({ ...data, [event.target.name]: event.target.value });
     };
+    console.log(data);
     return (
         <div className="room-setting">
             <div className="info-count__room">
@@ -64,9 +66,9 @@ export default function RoomSetting({ id, save, doneSave }) {
                 <div className="count tenant">
                     <p>{t('setupOwner.client')}</p>
                     <input
-                        value={data?.countGuest || 0}
+                        value={data?.numPeople || 0}
                         type="number"
-                        name="countGuest"
+                        name="numPeople"
                         className="input__count_guest"
                         min={1}
                         onChange={(e) => {

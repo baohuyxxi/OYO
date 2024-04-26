@@ -23,10 +23,16 @@ export default function Amenities({ id, save, doneSave }) {
 
     useEffect(() => {
         if (save) {
-            partnerCreateAccomAPI.updateFacilitiesAccom({ id, data }).then((res) => {
-                doneSave();
-            });
-            doneSave();
+            
+            partnerCreateAccomAPI
+                .updateFacilitiesAccom({ id, data })
+                .then((res) => {
+                    console.log(res);
+                    doneSave(true);
+                })
+                .catch(() => {
+                    doneSave(false);
+                });
         }
     }, [save]);
 
@@ -36,16 +42,7 @@ export default function Amenities({ id, save, doneSave }) {
     const setFacility = (facility) => {
         setData(facility);
     };
-    console.log(data);
 
-    useEffect(() => {
-        if (save) {
-            partnerCreateAccomAPI.updateFacilitiesAccom({ id, data }).then((res) => {
-                console.log(res);
-            });
-            doneSave();
-        }
-    }, [save]);
     return (
         <div className="amenities row">
             <div className="col l-6">

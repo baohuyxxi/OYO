@@ -62,13 +62,15 @@ export default function AddressAccom({ id, save, doneSave }) {
         setData({ ...data, latitude: event.lat, longitude: event.lng });
     };
     useEffect(() => {
-        console.log(data);
-        console.log(address);
         if (save) {
-            partnerCreateAccomAPI.updateAddress({ id, data }).then((res) => {
-                console.log(res);
-            });
-            doneSave();
+            partnerCreateAccomAPI
+                .updateAddress({ id, data })
+                .then((res) => {
+                    doneSave(true);
+                })
+                .catch(() => {
+                    doneSave(false);
+                });
         }
     }, [save]);
     return (

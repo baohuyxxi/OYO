@@ -36,9 +36,10 @@ export default function Policy({ id, save, doneSave }) {
     useEffect(() => {
         if (save) {
             partnerCreateAccomAPI.updatePolicy({ id, data: policyPublic }).then((res) => {
-                console.log(res);
+                doneSave(true );
+            }).catch(() => {
+                doneSave(false);
             });
-            doneSave();
         }
     }, [save]);
     return (

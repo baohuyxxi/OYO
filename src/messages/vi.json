@@ -188,7 +188,11 @@
         "returnHome": "Bạn có muốn quay lại trang chủ không?",
         "yourMail": "Thư của bạn",
         "selectAvatar": "Chọn ảnh đại diện",
-        "category": "Loại"
+        "category": "Loại",
+        "bank": "Ngân hàng",
+        "account_number": "Số tài khoản",
+        "accountNameHost": "Tên tài khoản",
+        "swiftCode": "Mã SWIFT"
     },
     "label": {
         "email": "Địa chỉ Email",

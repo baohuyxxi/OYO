@@ -14,6 +14,7 @@ import { decodeAddress } from '~/utils/decodeAddress';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import TableAccomApproved from './TableAccomApproved/TableAccomApproved';
 import CalendarManage from './CalendarManage/CalendarManage';
+import RoomsAndRate from './RoomsAndRate/RoomsAndRate';
 export default function DashboardPartner() {
     const [loading, setLoading] = useState(false);
     const [accomWaiting, setAccomWaiting] = useState([]);
@@ -24,7 +25,7 @@ export default function DashboardPartner() {
             setAccomWaiting(res.data.content);
             setLoading(false);
         });
-        partnerCreateAccomAPI.getListAccomApproved({number: 0, size: 100}).then((res) => {
+        partnerCreateAccomAPI.getListAccomApproved({ number: 0, size: 100 }).then((res) => {
             setAccomApproved(res.data.content);
         });
     }, []);
@@ -55,7 +56,7 @@ export default function DashboardPartner() {
             </div>
 
             <div className="dashboard-partner__page">
-                {loading === true ? (
+                {loading === true && accomApproved.length>0 ? (
                     <></>
                 ) : (
                     <>
@@ -70,18 +71,24 @@ export default function DashboardPartner() {
                     </>
                 )}
             </div>
+
             <div className="dashboard-partner__page">
                 {loading === true ? (
                     <></>
                 ) : (
                     <>
                         <header className="dashboard-partner__header">
-                            <div className="dashboard-partner__header__title">
-                                Lịch của bạn 
-                            </div>
+                            <div className="dashboard-partner__header__title">Phòng và giá</div>
+                          
                         </header>
                         <div className="dashboard-partner__table">
-                            <CalendarManage accomApproved={accomApproved}/>
+                                <RoomsAndRate accomApproved={accomApproved} />
+                            </div>
+                        <header className="dashboard-partner__header">
+                            <div className="dashboard-partner__header__title">Lịch của bạn</div>
+                        </header>
+                        <div className="dashboard-partner__table">
+                            <CalendarManage accomApproved={accomApproved} />
                         </div>
                     </>
                 )}

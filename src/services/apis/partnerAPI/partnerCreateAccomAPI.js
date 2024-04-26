@@ -29,7 +29,10 @@ const partnerCreateAccomAPI = {
         const res = await axios.get(`/partner/accoms/policies?accomId=${data}`);
         return res.data;
     },
-    getPayment: async (data) => {},
+    getPaymentInfo: async (data) => {
+        const res = await axios.get(`/partner/accoms/payment?accomId=${data}`);
+        return res.data;
+    },
     getRoomSetting: async (data) => {
         const res = await axios.get(`/partner/accoms/room-setting?accomId=${data}`);
         return res.data;
@@ -52,7 +55,6 @@ const partnerCreateAccomAPI = {
         return res.data;
     },
     updateFacilitiesAccom: async ({ id, data }) => {
-        console.log(facilityCodes);
         const res = await axios.put(`/partner/accoms/facilities?accomId=${id}`, {
             facilityCodes: data
         });

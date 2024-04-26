@@ -21,9 +21,10 @@ export default function GeneralInfo({ id, save , doneSave}) {
             
             partnerCreateAccomAPI.updateGeneralInfo({id, data}).then((res) => {
                
-                doneSave();
+                doneSave(true);
+            }).catch(() => {
+                doneSave(false);
             });
-            doneSave();
         }
     }, [save]);
 

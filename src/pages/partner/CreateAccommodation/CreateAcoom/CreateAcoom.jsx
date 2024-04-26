@@ -15,17 +15,30 @@ import Gallery from '../Gallery/Gallery';
 import Amenities from '../Amenities/Amenities';
 import RoomSetting from '../RoomSetting/RoomSetting';
 import Policy from '../Policy/Policy';
+import PaymentInfo from '../PaymentInfo/PaymentInfo';
 import { Button } from '@mui/material';
+import { useSnackbar } from 'notistack';
+import { set } from 'date-fns';
 
 export default function CreateAcoom() {
     const params = useParams();
     const [idAccom, setIdAccom] = useState(null);
     const [onClickSave, setOnClickSave] = useState(false);
+    const { enqueueSnackbar } = useSnackbar();
     useEffect(() => {
         if (params['*'].split('/')[1] !== idAccom) {
             setIdAccom(params['*'].split('/')[1]);
         }
     }, [params['*']]);
+
+    const handleSave = (complete) => {
+        if (complete) {
+            enqueueSnackbar('Lưu thành công', { variant: 'success' });
+        } else {
+            enqueueSnackbar('Lưu thất bại', { variant: 'error' });
+        }
+        setOnClickSave(false);
+    };
 
     return (
         <FramePage>
@@ -52,7 +65,7 @@ export default function CreateAcoom() {
                                                             <GeneralInfo
                                                                 id={idAccom}
                                                                 save={onClickSave}
-                                                                doneSave={() => setOnClickSave(false)}
+                                                                doneSave={handleSave}
                                                             />
                                                         }
                                                     />
@@ -62,7 +75,7 @@ export default function CreateAcoom() {
                                                             <AddressAccom
                                                                 id={idAccom}
                                                                 save={onClickSave}
-                                                                doneSave={() => setOnClickSave(false)}
+                                                                doneSave={handleSave}
                                                             />
                                                         }
                                                     />
@@ -72,7 +85,7 @@ export default function CreateAcoom() {
                                                             <Amenities
                                                                 id={idAccom}
                                                                 save={onClickSave}
-                                                                doneSave={() => setOnClickSave(false)}
+                                                                doneSave={handleSave}
                                                             />
                                                         }
                                                     />
@@ -82,7 +95,7 @@ export default function CreateAcoom() {
                                                             <Gallery
                                                                 id={idAccom}
                                                                 save={onClickSave}
-                                                                doneSave={() => setOnClickSave(false)}
+                                                                doneSave={handleSave}
                                                             />
                                                         }
                                                     />
@@ -92,7 +105,7 @@ export default function CreateAcoom() {
                                                             <RoomSetting
                                                                 id={idAccom}
                                                                 save={onClickSave}
-                                                                doneSave={() => setOnClickSave(false)}
+                                                                doneSave={handleSave}
                                                             />
                                                         }
                                                     />
@@ -102,11 +115,20 @@ export default function CreateAcoom() {
                                                             <Policy
                                                                 id={idAccom}
                                                                 save={onClickSave}
-                                                                doneSave={() => setOnClickSave(false)}
+                                                                doneSave={handleSave}
                                                             />
                                                         }
                                                     />
-                                                    <Route path="payment/*" element={<h1>payment</h1>} />
+                                                    <Route
+                                                        path="payment/*"
+                                                        element={
+                                                            <PaymentInfo
+                                                                id={idAccom}
+                                                                save={onClickSave}
+                                                                doneSave={handleSave}
+                                                            />
+                                                        }
+                                                    />
                                                 </Routes>
                                             </div>
                                         )}

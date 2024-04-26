@@ -47,10 +47,10 @@ export default function Gallery({ id, save, doneSave }) {
                 partnerCreateAccomAPI
                     .updateGallery({id, data: dataUpdate})
                     .then((res) => {
-                        console.log(res);
-                    })
-                    .catch(() => {});
-                doneSave();
+                        doneSave(true );
+                    }).catch(() => {
+                        doneSave(false);
+                    });
             }
         };
 

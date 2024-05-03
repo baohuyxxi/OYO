@@ -34,12 +34,13 @@ export default function Gallery({ id, save, doneSave }) {
                     images.map(async (img) => {
                         if (typeof img !== 'string') {
                             const imageUrl = (await uploadMedia.singleFile(img)).data.imageUrl;
-                            return imageUrl; // Assuming imageUrl is always an array
+                            return imageUrl; 
                         } else {
                             return img;
                         }
                     })
                 );
+                console.log(uploadImages);
                 const dataUpdate = {
                     imageAccomUrls: uploadImages,
                     cldVideoId: ''

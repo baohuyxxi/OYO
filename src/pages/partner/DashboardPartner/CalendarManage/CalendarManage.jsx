@@ -24,30 +24,36 @@ export default function CalendarManage({ accomApproved }) {
                 try {
                     const response = await publicAccomPlaceAPI.getRoomDetail(item.id);
                     const { bookedDates } = response.data;
-                    for (const date of bookedDates) {
-                        const newItem = {
-                            id: `${item.id}-${date}`,
-                            group: item.id,
-                            title: 'item 1',
-                            start_time: moment(date, 'DD/MM/YYYY').startOf('day'),
-                            end_time: moment(date, 'DD/MM/YY').startOf('day').add(24, 'hour')
-                        };
-                        itemData.push(newItem);
+                    if (bookedDates && bookedDates.length > 0) {
+                        let start_time = moment(bookedDates[0], 'DD/MM/YYYY').add(12, 'hour');
+                        let end_time = moment(bookedDates[0], 'DD/MM/YYYY').add(36, 'hour');
+                        let i = 0;
+                        while (i < bookedDates.length) {
+                            if (start_time === null) {
+                                start_time = moment(bookedDates[i], 'DD/MM/YYYY').add(12, 'hour');
+                            }
+                            end_time = moment(bookedDates[i], 'DD/MM/YYYY').add(36, 'hour');
+                            if (end_time.diff(moment(bookedDates[i + 1], 'DD/MM/YYYY').add(36, 'hour'), 'days') == -1) {
+                                i++;
+                                continue;
+                            } else if ((start_time !== null, end_time !== null)) {
+                                itemData.push({
+                                    id: `${item.id}-${i}`,
+                                    group: item.id,
+                                    title: 'Booked',
+                                    start_time: start_time,
+                                    end_time: end_time
+                                });
+                                start_time = null;
+                                end_time = null;
+                            }
+                            i++;
+                        }
                     }
                 } catch (error) {
                     console.error('Error fetching room detail:', error);
                 }
             }
-
-            // Add additional item
-            itemData.push({
-                id: 1,
-                group: 5,
-                title: 'item test',
-                start_time: moment(),
-                end_time: moment().add(36, 'hour')
-            });
-
             setItems(itemData);
             setLoading(false);
         };
@@ -57,15 +63,12 @@ export default function CalendarManage({ accomApproved }) {
         }
     }, [accomApproved]);
 
-    console.log(items);
-  
     return (
         <div className="calendar-manage">
             {loading ? (
                 <div>Loading...</div>
             ) : (
                 <div>
-                    Rendered by react!
                     <Timeline
                         groups={groups}
                         items={items}

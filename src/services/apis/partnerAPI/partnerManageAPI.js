@@ -15,7 +15,7 @@ const partnerManageAPI = {
         return res.data;
     },
     getListHomeOfPartner: async () => {
-        const res = await axios.get(`/partner/accoms/pages?pageNumber=0&pageSize=99`);
+        const res = await axios.get(`/partner/accoms/approved?pageNumber=0&pageSize=99`);
         return res.data;
     },
     getRoomCategory: async (data) => {

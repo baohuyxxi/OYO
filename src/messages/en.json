@@ -182,7 +182,11 @@
         "returnHome": "Would you like to return to the home page?",
         "yourMail": "Your mail",
         "selectAvatar": "Select avatar",
-        "category": "Category"
+        "category": "Category",
+        "bank": "Bank account",
+        "account_number": "Account number",
+        "accountNameHost": "Account name",
+        "swiftCode": "Swift code"
     },
     "label": {
         "email": "Email",

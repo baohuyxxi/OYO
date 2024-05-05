@@ -12,7 +12,7 @@ const uploadMedia = {
     singleFile: async (data) => {
         let formData = new FormData();
         formData.append('file', data);
-        const res = await axios.post('/media/cloud/upload');
+        const res = await axios.post('/media/cloud/upload',formData);
         return res.data;
     }
 };

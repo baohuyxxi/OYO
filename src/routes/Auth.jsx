@@ -4,10 +4,11 @@ import { unstable_HistoryRouter } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import PrivateRoute from '~/components/PrivateRoute/PrivateRoute';
 import LoadingPage from '~/pages/public/LoadingPage/LoadingPage';
+import LayoutAdmin from '~/pages/admin/LayoutAdmin/LayoutAdmin';
 const Auth = () => {
     const roles = useSelector((state) => state.user.roles);
     // Admin Page
-    const LayoutAdmin = React.lazy(() => import('~/pages/admin/LayoutAdmin/LayoutAdmin'));
+    // const LayoutAdmin = React.lazy(() => import('~/pages/admin/LayoutAdmin/LayoutAdmin'));
     const LoginAdmin = React.lazy(() => import('~/pages/admin/LoginAdmin/LoginAdmin'));
     // Public Page
     const ActiveAccountPage = React.lazy(() => import('~/pages/public/ActiveAccountPage/ActiveAccountPage'));
@@ -23,7 +24,7 @@ const Auth = () => {
     );
     const ContactForm = React.lazy(() => import('../pages/public/Contact/Contact'));
     const FavoritesPage = React.lazy(() => import('../pages/client/FavoritesPage/FavoritesPage'));
-    const ListAccomPage =React.lazy(() => import('~/pages/public/ListAccomPage/ListAccomPage'));
+    const ListAccomPage = React.lazy(() => import('~/pages/public/ListAccomPage/ListAccomPage'));
     const OAuth2RedirectHandler = React.lazy(() => import('~/helper/oAuth2RedirectHandler'));
     // Host Owner Page
     const StepperMain = React.lazy(() => import('~/pages/partner/SetupOwner/StepperMain/StepperMain'));
@@ -135,7 +136,7 @@ const Auth = () => {
                 element={
                     <PrivateRoute
                         element={
-                            <Suspense >
+                            <Suspense>
                                 <HistoryBookingPage />
                             </Suspense>
                         }
@@ -164,7 +165,7 @@ const Auth = () => {
                 element={
                     <PrivateRoute
                         element={
-                            <Suspense >
+                            <Suspense>
                                 <StepperMain />
                             </Suspense>
                         }
@@ -176,7 +177,7 @@ const Auth = () => {
                 element={
                     <PrivateRoute
                         element={
-                            <Suspense >
+                            <Suspense>
                                 <OwnerSetting />
                             </Suspense>
                         }
@@ -188,7 +189,7 @@ const Auth = () => {
                 element={
                     <PrivateRoute
                         element={
-                            <Suspense >
+                            <Suspense>
                                 <ListRoomOfHost />
                             </Suspense>
                         }
@@ -200,7 +201,7 @@ const Auth = () => {
                 element={
                     <PrivateRoute
                         element={
-                            <Suspense >
+                            <Suspense>
                                 <ManagerRoom />
                             </Suspense>
                         }
@@ -213,7 +214,7 @@ const Auth = () => {
                 element={
                     <PrivateRoute
                         element={
-                            <Suspense >
+                            <Suspense>
                                 <ConvenientOwnerSetting />
                             </Suspense>
                         }
@@ -256,7 +257,7 @@ const Auth = () => {
                     />
                 }
             />
-             <Route
+            <Route
                 path="/managerHotels/createHotel/*"
                 element={
                     <PrivateRoute
@@ -280,8 +281,8 @@ const Auth = () => {
                     />
                 }
             />
-            
-             {/* <Route
+
+            {/* <Route
                path="/managerHotels/createHotel/*"
                 element={
                     <Suspense>
@@ -307,7 +308,14 @@ const Auth = () => {
             />
             {roles?.find((role) => role === 'ROLE_ADMIN') && <Route path="/admin/*" element={<LayoutAdmin />} />}
 
-            <Route path="/admin/login" element={<LoginAdmin />} />
+            <Route
+                path="/admin/login"
+                element={
+                    <Suspense>
+                        <LoginAdmin />
+                    </Suspense>
+                }
+            />
         </Routes>
     );
 };

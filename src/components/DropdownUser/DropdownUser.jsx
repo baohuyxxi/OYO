@@ -94,6 +94,12 @@ export default function DropdownUser() {
                         {t('navbar.managerHost')}
                     </MenuItem>
                 </NavLink>
+                <NavLink to="/managerHotels" onClick={handleClose}>
+                    <MenuItem onClick={handleClose} disableRipple>
+                        <HomeWorkOutlinedIcon />
+                        {t('navbar.managerHost')}
+                    </MenuItem>
+                </NavLink>
 
                 <hr className="divider" />
                 <MenuItem onClick={handleLogout} disableRipple>

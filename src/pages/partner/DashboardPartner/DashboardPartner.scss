@@ -1,3 +1,16 @@
-.dashboard-partner__page{
-    padding: 25px 50px;
+.dashboard-partner{
+    &__header{
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 100px 10px 100px;
+        font-size: x-large;
+        font-weight: 500;
+    }
+    &__slider{
+        padding: 0 75px;
+        background-color: var(--baby-blue);
+    }
+    &__table{
+        padding: 0 100px;
+    }
 }

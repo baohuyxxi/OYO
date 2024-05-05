@@ -26,11 +26,10 @@ const VideoIntroSetting = ({ cldVideoId }) => {
             .updateVideoIntro(newData)
             .then((res) => {
                 enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
-                console.log(res.data);
+
                 dispatch(settingAccomSlice.actions.setAccom(res.data));
             })
             .catch((error) => {
-                console.log(error);
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });
             });
     };

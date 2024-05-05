@@ -1,3 +1,5 @@
+import { id } from "date-fns/locale";
+
 const SidebarData = {
     Overview: [
         {
@@ -55,6 +57,12 @@ const SidebarData = {
             display_name: 'Danh mục phụ phí',
             route: '/admin/surchargecategories',
             icon: 'bx bx-card'
+        },
+        {
+            id: 9,
+            route: '/admin/new-accom',
+            display_name: 'Duyệt chỗ nghỉ mới',
+            icon: 'bx bx-check'
         }
     ],
     Setting: [

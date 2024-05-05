@@ -20,12 +20,12 @@ import DialogConvenient from '~/components/DialogConvenient/DialogConvenient';
 import SurchargeList from './Surcharge';
 import DrawerHome from '~/components/DrawerHome/DrawerHome';
 import DateGo from '~/components/DateGo/DateGo';
-import DateRangeSelector from '~/components/DateRangeSelector/DateRangeSelector';
+// import DateRangeSelector from '~/components/DateRangeSelector/DateRangeSelector';
 import Dropdown from '~/components/Dropdown/Dropdown';
 import PopoverPrice from '~/components/PopoverPrice/PopoverPrice';
 import NecessaryInformation from './NecessaryInformation/NecessaryInformation';
 import GeneralPolicy from './GeneralPolicy/GeneralPolicy';
-import CommentReview from '~/components/CommentReview/CommentReview';
+import CommentReview from '~/components/CommentReview/commentReview';
 import BreadcrumbsHome from './BreadcrumbsHome';
 import FramePage from '~/components/FramePage/FramePage';
 import DateIsBooking from '~/components/DateIsBooking/DateIsBooking';
@@ -256,10 +256,10 @@ export default function RoomDetail() {
                                             )}
                                             {/* <DateGo setDataDay={handleChangeDayBooking} /> */}
 
-                                            <DateRangeSelector
+                                            {/* <DateRangeSelector
                                                 dateBook={dateBook}
                                                 setDataDay={handleChangeDayBooking}
-                                            />
+                                            /> */}
 
                                             <Dropdown
                                                 guests={guests}

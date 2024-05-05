@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { load } from 'npm';
+
 const createAccomSlice = createSlice({
     name: 'createAccom',
     initialState: {

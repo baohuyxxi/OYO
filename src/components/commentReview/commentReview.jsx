@@ -17,8 +17,6 @@ export default function CommentReview(props) {
             }
         });
     }, []);
-    
-
     const commentsToShow = showMoreComments ? dataComment : dataComment.slice(0, 5);
     return (
         <>

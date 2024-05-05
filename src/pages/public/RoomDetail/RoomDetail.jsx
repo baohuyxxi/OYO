@@ -25,7 +25,7 @@ import Dropdown from '~/components/Dropdown/Dropdown';
 import PopoverPrice from '~/components/PopoverPrice/PopoverPrice';
 import NecessaryInformation from './NecessaryInformation/NecessaryInformation';
 import GeneralPolicy from './GeneralPolicy/GeneralPolicy';
-import CommentReview from '~/components/CommentReview/commentReview';
+import CommentReview from '~/components/CommentReview/CommentReview';
 import BreadcrumbsHome from './BreadcrumbsHome';
 import FramePage from '~/components/FramePage/FramePage';
 import DateIsBooking from '~/components/DateIsBooking/DateIsBooking';

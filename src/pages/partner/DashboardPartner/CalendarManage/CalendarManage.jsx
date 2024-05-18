@@ -62,7 +62,7 @@ export default function CalendarManage({ accomApproved }) {
             fetchData();
         }
     }, [accomApproved]);
-
+    console.log(items);
     return (
         <div className="calendar-manage">
             {loading ? (

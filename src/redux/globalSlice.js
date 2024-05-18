@@ -8,6 +8,12 @@ const globalSlice = createSlice({
         language: 'vi',
         loading: false,
         viewImages: [],
+        chatbox: {
+            open: false,
+            messages: [],
+            name: '',
+            avatar: ''
+        }
     },
     reducers: {
         setMode: (state, action) => {
@@ -42,6 +48,12 @@ const globalSlice = createSlice({
             return {
                 ...state,
                 viewImages: action.payload
+            }
+        },
+        setChatbox: (state, action) => {
+            return {
+                ...state,
+                chatbox: action.payload
             }
         }
     }

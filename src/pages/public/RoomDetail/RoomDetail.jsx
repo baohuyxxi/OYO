@@ -38,6 +38,7 @@ import { guestsModel } from '~/share/models/booking';
 import { transLateRoom } from '~/services/apis/translateAPI/translateAPI';
 import { dayGap } from '~/utils/calculates';
 import GoogleMap from '~/components/GoogleMap/GoogleMap';
+import globalSlice from '~/redux/globalSlice';
 export default function RoomDetail() {
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
@@ -129,6 +130,15 @@ export default function RoomDetail() {
 
             setLove(!love);
         });
+    };
+    const handleChat = () => {
+        const dataChat = {
+            open: true,
+            id: dataDetailHome.accomId,
+            name: dataDetailHome.nameHost,
+            avatar: 'https://images.squarespace-cdn.com/content/v1/5b9d4d4a5cfd7967a7b39d4f/1561271571971-U5Z9ASBHPVWBMASIHUCT/chatbot+avatar+Cute_V9.png?format=1500w'
+        };
+        dispatch(globalSlice.actions.setChatbox(dataChat));
     };
     return (
         <FramePage>
@@ -331,7 +341,11 @@ export default function RoomDetail() {
                                     </div>
                                 </div>
                             </div>
-                            <GoogleMap addressDetail={dataDetailHome.addressDetail}/>
+                            <Button variant="contained" onClick={handleChat}>
+                                Liên hệ chủ nhà
+                            </Button>
+                            <GoogleMap addressDetail={dataDetailHome.addressDetail} />
+
                             <CommentReview id={roomId.id} />
                         </div>
                         <DrawerHome open={openDrawer} setOpen={setOpenDrawer} data={dataDetailHome} stars={stars} />

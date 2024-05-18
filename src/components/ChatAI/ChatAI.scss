@@ -1,0 +1,63 @@
+.chat-ai {
+    position: fixed;
+    bottom: 0px;
+    right: 20px;
+    z-index: 1000;
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: auto;
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 8px;
+        margin-bottom: 16px;
+
+        .closeDialog {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+    }
+
+    &__messages {
+        display: flex;
+        flex-direction: column;
+
+        &__message {
+            margin-bottom: 16px;
+
+            &--bot {
+                background-color: #f0f0f0;
+                padding: 8px;
+                border-radius: 4px;
+            }
+        }
+
+        &__textarea {
+            width: 100%;
+            height: 100px;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            margin-bottom: 8px;
+        }
+
+        &__button {
+            align-self: flex-end;
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+            &:hover {
+                background-color: #0056b3;
+            }
+        }
+    }
+}

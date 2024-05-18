@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './CommentReview.scss';
 import { Avatar } from '@mui/material';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import {format } from 'date-fns';
+import { format } from 'date-fns';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import { t } from 'i18next';
 export default function CommentReview(props) {
@@ -17,16 +17,13 @@ export default function CommentReview(props) {
             }
         });
     }, []);
-   
-
     const commentsToShow = showMoreComments ? dataComment : dataComment.slice(0, 5);
     return (
         <>
             {loading ? (
                 <div className="container__emtyComment">
-                     <p>{t('common.noReview')}</p>
+                    <p>{t('common.noReview')}</p>
                     {/* <img src="/src/assets/video/crabtyping.gif" className='emtyComment'></img> */}
-                   
                 </div>
             ) : (
                 <div className="paper container-comments">

@@ -3,7 +3,7 @@ import ViewIamge from '~/components/ViewImage/ViewImage';
 import globalSlice from '~/redux/globalSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import LoadingDialog from '~/components/LoadingDialog/LoadingDialog';
-import NavBarOwner from './NavBarOwner/NavBarOwner';
+import NavbarOwner from '../NavbarOwner/NavbarOwner';
 import './FramePage.scss';
 import { vi } from 'date-fns/locale';
 
@@ -14,7 +14,7 @@ export default function FramePageOwner({ children }) {
     const loading = useSelector((state) => state.global.loading);
     return (
         <div className="background">
-            <NavBarOwner />
+            <NavbarOwner />
             <div className="body-page">{children}</div>
             {viewImages && <ViewIamge viewImages={viewImages} />}
             {loading && <LoadingDialog open={loading} />}

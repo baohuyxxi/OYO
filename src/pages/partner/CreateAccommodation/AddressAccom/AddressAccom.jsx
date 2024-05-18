@@ -7,37 +7,72 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import mapAPI from '~/services/apis/mapAPI/mapAPI';
 import { useDispatch, useSelector } from 'react-redux';
 import createAccomSlice from '~/redux/createAccomSlice';
+import { addressFormData, fullAddressFormData } from '~/share/models/address';
+import partnerCreateAccomAPI from '~/services/apis/partnerAPI/partnerCreateAccomAPI';
+import { set } from 'date-fns';
 
-export default function AddressAccom({ createAccom }) {
-    const dispatch = useDispatch();
-    const [address, setAddress] = useState({
-        provinceCode: createAccom.provinceCode,
-        districtCode: createAccom.districtCode,
-        wardCode: createAccom.wardCode,
-        provinceName: createAccom.provinceName,
-        districtName: createAccom.districtName,
-        wardName: createAccom.wardName
-    });
+export default function AddressAccom({ id, save, doneSave }) {
+    const [loading, setLoading] = useState(false);
+    const [data, setData] = useState(fullAddressFormData);
+    const [address, setAddress] = useState(addressFormData);
+    useEffect(() => {
+        if (id) {
+            partnerCreateAccomAPI.getAddress(id).then((res) => {
+                setAddress({
+                    provinceCode: res.data.provinceAddress.provinceCode,
+                    districtCode: res.data.districtAddress.districtCode,
+                    wardCode: res.data.wardAddress.wardCode,
+                    provinceName: res.data.provinceAddress.provinceName,
+                    districtName: res.data.districtAddress.districtName,
+                    wardName: res.data.wardAddress.wardName
+                });
+                setData({
+                    numHouseAndStreetName: res.data.numHouseAndStreetName,
+                    provinceCode: res.data.provinceAddress.provinceCode,
+                    districtCode: res.data.districtAddress.districtCode,
+                    wardCode: res.data.wardAddress.wardCode,
+                    longitude: res.data.longitude,
+                    latitude: res.data.latitude
+                });
+                setLoading(false);
+            });
+        }
+    }, []);
+
+    console.log(data.latitude && data.longitude);
     const LocationCurrent = () => <LocationOnIcon style={{ color: 'red', fontSize: 'xx-large' }} />;
     useEffect(() => {}, []);
     useEffect(() => {
-        console.log(createAccom.numHouseAndStreetName, address);
-        if (createAccom.numHouseAndStreetName && address.provinceCode && address.districtCode && address.wardCode) {
-            dispatch(createAccomSlice.actions.setAddress(address));
-           
-            const addressFull = `${createAccom.numHouseAndStreetName}, ${address.wardName}, ${address.districtName}, ${address.provinceName}`;
+        if (address.provinceCode && address.districtCode && address.wardCode && data.numHouseAndStreetName) {
+            const addressFull = `${data.numHouseAndStreetName} ,${address.wardName}, ${address.districtName}, ${address.provinceName}`;
             mapAPI.geoCodeAddress(addressFull).then((res) => {
-                dispatch(
-                    createAccomSlice.actions.setLocation({ lat: parseFloat(res[0].lat), lng: parseFloat(res[0].lon) })
-                );
+                setData({
+                    ...data,
+                    provinceCode: address.provinceCode,
+                    districtCode: address.districtCode,
+                    wardCode: address.wardCode,
+                    latitude: res[0].lat,
+                    longitude: res[0].lon
+                });
             });
         }
-    }, [createAccom.numHouseAndStreetName, address]);
+    }, [address, data.numHouseAndStreetName]);
 
     const handleMapClick = (event) => {
-        dispatch(createAccomSlice.actions.setLocation({ lat: event.lat, lng: event.lng }));
+        setData({ ...data, latitude: event.lat, longitude: event.lng });
     };
-
+    useEffect(() => {
+        if (save) {
+            partnerCreateAccomAPI
+                .updateAddress({ id, data })
+                .then((res) => {
+                    doneSave(true);
+                })
+                .catch(() => {
+                    doneSave(false);
+                });
+        }
+    }, [save]);
     return (
         <div className="address-info__content">
             <div className="row">
@@ -49,8 +84,10 @@ export default function AddressAccom({ createAccom }) {
                         name="input-address-step1"
                         type="text"
                         className="input-address-step1"
-                        defaultValue={createAccom.numHouseAndStreetName}
-                        onBlur={(e) =>  dispatch(createAccomSlice.actions.setNumHouseAndStreetName(e.currentTarget.value))}
+                        defaultValue={data.numHouseAndStreetName}
+                        onBlur={(e) => {
+                            setData({ ...data, numHouseAndStreetName: e.currentTarget.value });
+                        }}
                         required
                     />
                     <p style={{ marginTop: 30, fontSize: 13, fontStyle: 'italic' }} className="span-address-step1">
@@ -60,8 +97,10 @@ export default function AddressAccom({ createAccom }) {
                         name="input-guide-step1"
                         type="text"
                         className="input-guide-step1"
-                        defaultValue={createAccom.guide}
-                        onChange={(e) => dispatch(createAccomSlice.actions.setGuide(e.currentTarget.value))}
+                        defaultValue={data.guide}
+                        onChange={(e) => {
+                            setData({ ...data, guide: e.currentTarget.value });
+                        }}
                     />
                 </div>
                 <div className="container__google-map col l-6">
@@ -70,18 +109,18 @@ export default function AddressAccom({ createAccom }) {
                         defaultCenter={{ lat: 10.762622, lng: 106.660172 }}
                         defaultZoom={14}
                         center={
-                            createAccom.lat && createAccom.lng
-                                ? { lat: createAccom.lat, lng: createAccom.lng }
+                            data.latitude && data.longitude
+                                ? { lat: data.latitude, lng: data.longitude }
                                 : { lat: 10.762622, lng: 106.660172 }
                         }
                         onClick={handleMapClick}
                         className="google-map"
                     >
-                        {createAccom.lat && createAccom.lng && (
+                        {data.latitude && data.longitude && (
                             <LocationCurrent
                                 className="icon__location-current"
-                                lat={createAccom.lat}
-                                lng={createAccom.lng}
+                                lat={data.latitude}
+                                lng={data.longitude}
                             />
                         )}
                     </GoogleMapReact>

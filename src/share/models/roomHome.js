@@ -8,7 +8,6 @@ export const typeRoom = [
     { name: 'Phòng Ngủ', key: 'numBedRoom', number: 0 },
     { name: 'Phòng Tắm', key: 'numBathRoom', number: 0 },
     { name: 'Phòng Bếp', key: 'numKitchen', number: 0 }
-   
 ];
 
 export const typeBedRoom = [
@@ -19,3 +18,49 @@ export const typeBedRoom = [
     { name: 'Nệm', typeBedCode: 'G5', number: 0 }
 ];
 
+export const roomHomeFormData = {
+    accomCateId: null,
+    accomCateName: null,
+    typeBedCodes: [],
+    bedRooms: {
+        total: 0,
+        typeBeds: []
+    },
+    numBathRoom: 0,
+    numKitchen: 0,
+    numPeople: 0,
+};
+export const policiesFormData = {
+    cancellationPolicy: {
+        code: null,
+        cancellationFeeRate: null
+    },
+    generalPolicy: {
+        allowEvent: null,
+        allowPet: null,
+        allowSmoking: null
+    }
+};
+
+// "cancellationPolicy": {
+//     "code": null,
+//     "cancellationFeeRate": null
+// },
+// "generalPolicy": {
+//     "allowEvent": null,
+//     "allowPet": null,
+//     "allowSmoking": null
+// }
+
+
+// "bankId": null,
+// "accountNumber": null,
+// "accountNameHost": null,
+// "swiftCode": null
+
+export const bankInfo = {
+    bankId: null,
+    accountNumber: null,
+    accountNameHost: null,
+    swiftCode: null
+};

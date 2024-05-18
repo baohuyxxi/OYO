@@ -7,18 +7,83 @@ import LayoutTypeBedAdmin from '~/pages/admin/LayoutTypeBedAdmin/LayoutTypeBedAd
 import LayoutFacilityAdmin from '~/pages/admin/LayoutFacilityAdmin/LayoutFacilityAdmin';
 import LayoutFacilityCategoryAdmin from '~/pages/admin/LayoutFacilityCategoryAdmin/LayoutFacilityCategoryAdmin';
 import LayoutSurchargeCategoryAdmin from '~/pages/admin/LayoutSurchargeCategoryAdmin/LayoutSurchargeCategoryAdmin';
-
+import LayoutNewAccom from '~/pages/admin/LayoutNewAccom/LayoutNewAccom';
+import React, { Suspense } from 'react';
 const RouterAdmin = () => {
     return (
         <Routes>
-            <Route path="/" element={<DashboardAdmin />} />
-            <Route path="/users" element={<LayoutUserAdmin />} />
-            <Route path="/accomplaces" element={<LayoutAccomAdmin />} />
-            <Route path="/accomcategories" element={<LayoutAccomCategoryAdmin />} />
-            <Route path="/typebeds" element={<LayoutTypeBedAdmin />} />
-            <Route path="/facilities" element={<LayoutFacilityAdmin />} />
-            <Route path="/facilitycategories" element={<LayoutFacilityCategoryAdmin />} />
-            <Route path="/surchargecategories" element={<LayoutSurchargeCategoryAdmin />} />
+            <Route
+                path="/"
+                element={
+                    <Suspense>
+                        <DashboardAdmin />
+                    </Suspense>
+                }
+            />
+            <Route
+                path="/users"
+                element={
+                    <Suspense>
+                        <LayoutUserAdmin />
+                    </Suspense>
+                }
+            />
+            <Route
+                path="/accomplaces"
+                element={
+                    <Suspense>
+                        <LayoutAccomAdmin />
+                    </Suspense>
+                }
+            />
+            <Route
+                path="/accomcategories"
+                element={
+                    <Suspense>
+                        <LayoutAccomCategoryAdmin />
+                    </Suspense>
+                }
+            />
+            <Route
+                path="/typebeds"
+                element={
+                    <Suspense>
+                        <LayoutTypeBedAdmin />
+                    </Suspense>
+                }
+            />
+            <Route
+                path="/facilities"
+                element={
+                    <Suspense>
+                        <LayoutFacilityAdmin />
+                    </Suspense>
+                }
+            />
+            <Route
+                path="/facilitycategories"
+                element={
+                    <Suspense>
+                        <LayoutFacilityCategoryAdmin />
+                    </Suspense>
+                }
+            />
+            <Route
+                path="/surchargecategories"
+                element={
+                    <Suspense>
+                        <LayoutSurchargeCategoryAdmin />
+                    </Suspense>
+                }
+            />
+            <Route
+                path="/new-accom"
+                element={
+                    <Suspense>
+                        <LayoutNewAccom />
+                    </Suspense>
+                }
+            />
         </Routes>
     );
 };

@@ -1,0 +1,83 @@
+.rooms-and-rate-container {
+}
+
+.week-navigation {
+    margin-bottom: 10px;
+}
+
+.week-navigation button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    font-size: 14px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.week-navigation button:hover {
+    background-color: #0056b3;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-container th,
+.table-container td {
+    padding: 10px;
+    border: 2px solid #ccc;
+}
+
+.table-container th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: center;
+    font-size: small;
+}
+
+.table-container td input[type='text'] {
+    text-align: center;
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.table-container td input[type='text']:focus {
+    outline: none;
+    border-color: #007bff;
+    color: var(--info-main);
+}
+
+.rate-room {
+    &__name {
+        display: flex;
+        width: 300px;
+        white-space: nowrap; // Đảm bảo chỉ hiển thị trên một dòng
+        overflow: hidden; // Ẩn phần dư thừa nếu tên phòng dài hơn chiều rộng
+        text-overflow: ellipsis; // Hiển thị dấu chấm (...) nếu tên phòng quá dài
+        transition: width 0.3s; // Tạo hiệu ứng chuyển đổi cho việc thay đổi chiều rộng khi hover
+
+        &:hover {
+            width: auto; // Hiển thị toàn bộ nội dung khi hover
+            z-index: 9999; // Đảm bảo nội dung được hiển thị trên các phần tử khác
+            position: absolute; // Di chuyển phần tử ra khỏi vị trí ban đầu để hiển thị toàn bộ nội dung
+            background-color: white; // Màu nền khi hiển thị toàn bộ nội dung
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); // Tạo hiệu ứng bóng cho phần tử
+            padding: 10px; // Khoảng cách giữa nội dung và viền
+        }
+    }
+    &__price {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

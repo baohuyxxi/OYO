@@ -182,7 +182,11 @@
         "returnHome": "Would you like to return to the home page?",
         "yourMail": "Your mail",
         "selectAvatar": "Select avatar",
-        "category": "Category"
+        "category": "Category",
+        "bank": "Bank account",
+        "account_number": "Account number",
+        "accountNameHost": "Account name",
+        "swiftCode": "Swift code"
     },
     "label": {
         "email": "Email",
@@ -232,7 +236,14 @@
         "selectDistrict": "Select district",
         "selectWard": "Select ward",
         "userName": "User Name",
-        "content": "Content"
+        "content": "Content",
+        "houseRefundPolicy": "House Refund Policy",
+        "homeCancellationPolicy": "Home Cancellation Policy",
+        "cancellationPolicy": "Cancellation Policy",
+        "refundPolicy": "Refund Policy",
+        "timeCancel": "Time to cancel",
+        "feeCancel": "Cancellation fee",
+        "policyPublic": "Public policy"
     },
     "contentMain": {
         "homeinsearch": "From 'impromptu' rides to adventures, discover your own recipe for joy",

@@ -5,7 +5,6 @@ import createAccomSlice from '~/redux/createAccomSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import partnerCreateAccomAPI from '~/services/apis/partnerAPI/partnerCreateAccomAPI';
-import { accomFormData } from '~/share/models/accom';
 
 export default function CreateAccomCate() {
     const dispatch = useDispatch();

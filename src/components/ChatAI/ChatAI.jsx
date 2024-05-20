@@ -1,5 +1,5 @@
 import './ChatAI.scss';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import Button from '@mui/material/Button';
 import axios from 'axios';
@@ -8,52 +8,38 @@ export default function ChatAI({ onClose }) {
     const [input, setInput] = useState('');
     const [response, setResponse] = useState('');
 
-    const handleInputChange = (e) => {
-        setInput(e.target.value);
-    };
+    // Hàm để tải script Dialogflow khi component được mount
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = "https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1";
+        script.async = true;
+        document.body.appendChild(script);
 
-    const callApi = async () => {
-        try {
-            const result = await axios.post(
-                'https://api.openai.com/v1/completions', // Sử dụng endpoint miễn phí
-                {
-                    model: 'text-davinci-003', // Sử dụng một trong các mô hình miễn phí, ví dụ: text-davinci-003
-                    prompt: input,
-                    max_tokens: 100,
-                    temperature: 0.7
-                },
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${import.meta.env.VITE_APP_OPENAI_API_KEY}`,
-                    },
-                }
-            );
-            setResponse(result.data.choices[0].text);
-        } catch (error) {
-            console.error('Error calling OpenAI API:', error);
-            setResponse('An error occurred while calling the OpenAI API.');
-        }
-    };
+        // Cleanup script khi component unmount
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
 
     return (
         <div className="chat-ai paper">
-            <header>
-                <div></div>
-                <Button className="closeDialog" onClick={onClose}>
-                    <CloseIcon />
-                </Button>
-            </header>
+
             <div className="chat-ai__messages">
                 <div className="chat-ai__message chat-ai__message--bot">{response}</div>
                 <textarea
                     value={input}
-                    onChange={handleInputChange}
+                    onChange={(e) => setInput(e.target.value)}
                     placeholder="Type your prompt here..."
                     className="chat-ai__textarea"
                 />
-                <button onClick={callApi} className="chat-ai__button">Send</button>
+                <button className="chat-ai__button">Send</button>
             </div>
+            <df-messenger
+                intent="WELCOME"
+                chat-title="OYO-AI-CHAT"
+                agent-id="87607474-856f-4b85-aeef-c146b271cb9f"
+                language-code="vi"
+            ></df-messenger>
         </div>
     );
 }

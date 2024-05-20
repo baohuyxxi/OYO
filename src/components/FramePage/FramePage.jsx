@@ -31,13 +31,7 @@ export default function FramePage({ children }) {
             <div className="body-page">{children}</div>
             {viewImages && <ViewIamge viewImages={viewImages} />}
 
-            {open ? (
-                <ChatAI onClose={handleClose} />
-            ) : (
-                <div className="button-open-chatbox" onClick={(e) => setOpen(true)}>
-                    <SendOutlinedIcon />
-                </div>
-            )}
+            <ChatAI onClose={handleClose} />
             {chatbox.open === true && <ChatBox />}
             <Footer />
         </div>

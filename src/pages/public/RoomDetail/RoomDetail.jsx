@@ -344,7 +344,7 @@ export default function RoomDetail() {
                             <Button variant="contained" onClick={handleChat}>
                                 Liên hệ chủ nhà
                             </Button>
-                            <GoogleMap addressDetail={dataDetailHome.addressDetail} />
+                            <GoogleMap data={dataDetailHome} />
 
                             <CommentReview id={roomId.id} />
                         </div>

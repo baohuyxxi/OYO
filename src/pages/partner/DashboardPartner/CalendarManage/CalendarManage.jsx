@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import Timeline from 'react-calendar-timeline';
 import 'react-calendar-timeline/lib/Timeline.css';
 import moment from 'moment';
-import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
-import { id } from 'date-fns/locale';
+import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
+
 
 export default function CalendarManage({ accomApproved }) {
     const [loading, setLoading] = useState(true);
@@ -18,42 +18,29 @@ export default function CalendarManage({ accomApproved }) {
                 title: item.accomName
             }));
             setGroups(groupData);
-
+            const res = await partnerManageAPI.getListRangeDateBooking();
             const itemData = [];
-            for (const item of accomApproved) {
-                try {
-                    const response = await publicAccomPlaceAPI.getRoomDetail(item.id);
-                    const { bookedDates } = response.data;
-                    if (bookedDates && bookedDates.length > 0) {
-                        let start_time = moment(bookedDates[0], 'DD/MM/YYYY').add(12, 'hour');
-                        let end_time = moment(bookedDates[0], 'DD/MM/YYYY').add(36, 'hour');
-                        let i = 0;
-                        while (i < bookedDates.length) {
-                            if (start_time === null) {
-                                start_time = moment(bookedDates[i], 'DD/MM/YYYY').add(12, 'hour');
-                            }
-                            end_time = moment(bookedDates[i], 'DD/MM/YYYY').add(36, 'hour');
-                            if (end_time.diff(moment(bookedDates[i + 1], 'DD/MM/YYYY').add(36, 'hour'), 'days') == -1) {
-                                i++;
-                                continue;
-                            } else if ((start_time !== null, end_time !== null)) {
-                                itemData.push({
-                                    id: `${item.id}-${i}`,
-                                    group: item.id,
-                                    title: 'Booked',
-                                    start_time: start_time,
-                                    end_time: end_time
-                                });
-                                start_time = null;
-                                end_time = null;
-                            }
-                            i++;
+            const currentDate = moment();
+            res.data.content.forEach((accom) => {
+                if (accom.rangeDateBookingList.length > 0) {
+                    accom.rangeDateBookingList.forEach((dateBooking, index) => {
+                        const startDate = moment(dateBooking.dateStart, 'DD/MM/YYYY');
+                        const endDate = moment(dateBooking.dateEnd, 'DD/MM/YYYY');
+
+                        if (startDate.isBefore(currentDate) || endDate.isBefore(currentDate)) {
+                            return;
                         }
-                    }
-                } catch (error) {
-                    console.error('Error fetching room detail:', error);
+
+                        itemData.push({
+                            id: `${accom.accomId}-${index}`,
+                            group: accom.accomId,
+                            title: dateBooking.nameCustomer,
+                            start_time: startDate.add(12, 'hour'),
+                            end_time: endDate.add(12, 'hour')
+                        });
+                    });
                 }
-            }
+            });
             setItems(itemData);
             setLoading(false);
         };
@@ -62,7 +49,6 @@ export default function CalendarManage({ accomApproved }) {
             fetchData();
         }
     }, [accomApproved]);
-    console.log(items);
     return (
         <div className="calendar-manage">
             {loading ? (

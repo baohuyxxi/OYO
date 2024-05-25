@@ -4,7 +4,6 @@ import Timeline from 'react-calendar-timeline';
 import 'react-calendar-timeline/lib/Timeline.css';
 import moment from 'moment';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
-import { id } from 'date-fns/locale';
 
 export default function CalendarManage({ accomApproved }) {
     const [loading, setLoading] = useState(true);

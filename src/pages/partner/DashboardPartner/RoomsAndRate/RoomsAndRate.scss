@@ -3,6 +3,47 @@
 
 .week-navigation {
     margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    &__button {
+        margin-right: 10px;
+        padding: 5px 10px;
+        font-size: 14px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        align-items: center;
+        display: flex;
+
+        &:hover {
+            background-color: #0056b3;
+        }
+    }
+    &__icon{
+      
+        height: 30px;
+        width: 30px;
+        color: #fff;
+    }
+
+    &__save {
+        margin-right: auto;
+        padding: 5px 10px;
+        font-size: 14px;
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #218838;
+        }
+    }
 }
 
 .week-navigation button {
@@ -79,5 +120,20 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+}
+
+// Thêm các lớp màu cho giá
+.rate-room__input {
+    &.default-price {
+        color: #000000; // Màu đen
+    }
+  
+    &.higher-price {
+        color: #ffa500; // Màu cam
+    }
+  
+    &.lower-price {
+        color: #008000; // Màu xanh lá cây
     }
 }

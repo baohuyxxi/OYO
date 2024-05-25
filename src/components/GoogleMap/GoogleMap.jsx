@@ -5,51 +5,29 @@ import HotelIcon from '@mui/icons-material/Hotel';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { Button } from '@mui/material';
 
-export default function GoogleMap({addressDetail}) {
-
+export default function GoogleMap({ data }) {
     const [currentPosition, setCurrentPosition] = useState(null);
     const [loading, setLoading] = useState(true);
     const [clickedLocation, setClickedLocation] = useState(null);
     const [locationAccom, setLocationAccom] = useState(null);
-    const Hotel = () => <HotelIcon style={{ color: 'red', fontSize: 'xx-large' }}/>;
+    const Hotel = () => <HotelIcon style={{ color: 'red', fontSize: 'xx-large' }} />;
     const LocationCurrent = () => <LocationOnIcon style={{ color: 'blue', fontSize: 'xx-large' }} />;
-    const listLocation = [
-        {
-            lat: 10.85205813942859,
-            lng: 106.69234487196186
-        },
-        {
-            lat: 10.857453018305648,
-            lng: 106.59140798231343
-        },
-        {
-            lat: 10.851046588796484,
-            lng: 106.9797060169814
-        },
-        {
-            lat: 10.882403065071829,
-            lng: 106.56531545301655
-        },
-        {
-            lat: 10.804241773757928,
-            lng: 106.74212667127827
-        }
-    ];
-  
+   
+
     useEffect(() => {
         const fetchCurrentPosition = () => {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        setCurrentPosition({
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude
-                        });
-                        setLoading(false);
-                    }
-                );
+                navigator.geolocation.getCurrentPosition((position) => {
+                    setCurrentPosition({
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    });
+                    setLoading(false);
+                });
             }
         };
+
+        setLocationAccom({ lat: data.latitude, lng: data.longitude });
 
         fetchCurrentPosition();
     }, []);
@@ -81,15 +59,21 @@ export default function GoogleMap({addressDetail}) {
             lng: event.lng
         });
     };
+    console.log(data);
     return (
         <div className="container__google-map">
             <GoogleMapReact
                 bootstrapURLKeys={{ key: import.meta.env.VITE_API_KEY_GOOGLE }}
-                defaultCenter={currentPosition}
+                defaultCenter={locationAccom}
                 defaultZoom={defaultProps.zoom}
                 onClick={handleMapClick}
             >
-                <LocationCurrent
+                <Hotel
+                    className="icon__location-current"
+                    lat={locationAccom.lat}
+                    lng={locationAccom.lng}
+                />
+                 <LocationCurrent
                     className="icon__location-current"
                     lat={currentPosition.lat}
                     lng={currentPosition.lng}
@@ -99,7 +83,7 @@ export default function GoogleMap({addressDetail}) {
                 })} */}
                 {/* <Hotel lat={locationAccom.lat} lng={locationAccom.lng} /> */}
             </GoogleMapReact>
-            <Button onClick={handleGetAddress}>Get Address</Button>
+            {/* <Button onClick={handleGetAddress}>Get Address</Button> */}
         </div>
     );
 }

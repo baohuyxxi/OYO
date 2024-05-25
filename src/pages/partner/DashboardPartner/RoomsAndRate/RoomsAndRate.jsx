@@ -10,6 +10,8 @@ export default function RoomsAndRate({ accomApproved }) {
     const [accommodations, setAccommodations] = useState([]);
     const [changePrice, setChangePrice] = useState([]);
 
+    console.log(changePrice);
+
     useEffect(() => {
         setCurrentWeek(getCurrentWeekDates());
         initializeAccommodations();

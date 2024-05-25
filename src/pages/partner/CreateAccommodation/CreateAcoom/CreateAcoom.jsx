@@ -1,11 +1,7 @@
 import { ca } from 'date-fns/locale';
 import './CreateAcoom.scss';
 import React, { useState, useEffect } from 'react';
-import FramePage from '~/components/FramePage/FramePage';
-import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
-import createAccomSlice from '~/redux/createAccomSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import FramePageOwner from '~/components/FramePage/FramePageOwner';
 import { Outlet, Route, Routes, useParams } from 'react-router-dom';
 import CreateAccomCate from '../CreateAccomCate/CreateAccomCate';
 import MenuCreateAccom from '../MenuCreateAccom/MenuCreateAccom';
@@ -18,7 +14,6 @@ import Policy from '../Policy/Policy';
 import PaymentInfo from '../PaymentInfo/PaymentInfo';
 import { Button } from '@mui/material';
 import { useSnackbar } from 'notistack';
-import { set } from 'date-fns';
 
 export default function CreateAcoom() {
     const params = useParams();
@@ -41,7 +36,7 @@ export default function CreateAcoom() {
     };
 
     return (
-        <FramePage>
+        <FramePageOwner>
             <div className="create-acoom__page">
                 <Routes>
                     <Route path="/" element={<CreateAccomCate />} />
@@ -149,6 +144,6 @@ export default function CreateAcoom() {
                     />
                 </Routes>
             </div>
-        </FramePage>
+        </FramePageOwner>
     );
 }

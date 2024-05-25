@@ -57,6 +57,19 @@ const partnerManageAPI = {
     updateFacility: async (data) => {
         const res = await axios.put(`/partner/accoms/facility?accomId=${data.id}`, data.data);
         return res.data;
-    }
+    },
+    updatePriceCustom: async (data) => {
+        const res = await axios.put(`/partner/accoms/price-custom`, data);
+        return res.data;
+    },
+    getListAccomWithPriceCustom: async () => {
+        const res = await axios.get(`/partner/accoms/price-custom?pageNumber=0&pageSize=200`);
+        return res.data;
+    },
+
+    getListRangeDateBooking: async (data) => {
+        const res = await axios.get(`/partner/accoms/range-date-booking?pageNumber=0&pageSize=200`);
+        return res.data;
+    },
 };
 export default partnerManageAPI;

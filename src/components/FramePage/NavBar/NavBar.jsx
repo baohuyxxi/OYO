@@ -14,8 +14,10 @@ import Button from '@mui/material/Button';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailNotification from '~/components/MailNotification/MailNotification';
 import DialogAuth from '~/components/DialogAuth/DialogAuth';
+import Test from '~/pages/test/Test';
 import { t } from 'i18next';
 import './NavBar.scss';
+import BellRing from '~/components/BellRing/BellRing';
 
 export default function NavBar() {
     const [open, setOpen] = useState(false);
@@ -57,6 +59,9 @@ export default function NavBar() {
                         {/* <MailNotification /> */}
                         <div className="element">
                             <DropdownUser />
+                        </div>
+                        <div>
+                            <Test></Test>
                         </div>
                     </>
                 )}

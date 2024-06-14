@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { createContext } from 'react';
-import useLocalStorage from 'use-local-storage';
 import publicProvinceAPI from '~/services/apis/publicAPI/publicProvinceAPI';
 
 export const LocateContext = createContext();

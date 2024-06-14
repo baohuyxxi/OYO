@@ -33,6 +33,7 @@ const BookingPage = () => {
     const [errors, setErrors] = useState({});
     const [totalBill, setTotalBill] = useState(0);
     const [surcharge, setSurcharge] = useState(0);
+
     const handleBookingRoom = () => {
         setErrors({});
         const checkValidate = validateBooking(dataBooking);

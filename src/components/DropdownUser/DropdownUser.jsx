@@ -55,7 +55,7 @@ export default function DropdownUser() {
                 onClick={handleClick}
                 endIcon={<KeyboardArrowDownIcon />}
             >
-                {!user ? t('title.userName') : user.userName}
+                {!user ? t('title.userName') : user.firstName + ' ' + user.lastName}
             </Button>
             <Menu
                 className="dropdown-menu"

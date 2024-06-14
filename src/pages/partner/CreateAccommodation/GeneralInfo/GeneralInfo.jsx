@@ -5,7 +5,7 @@ import partnerCreateAccomAPI from '~/services/apis/partnerAPI/partnerCreateAccom
 import publicSurcharge from '~/services/apis/publicAPI/surcharge';
 export default function GeneralInfo({ id, save, doneSave }) {
     const [loading, setLoading] = useState(true);
-    const [data, setData] = useState(null);
+    const [data, setData] = useState({});
     const [allSurcharge, setAllSurchagre] = useState([]);
     useEffect(() => {
         publicSurcharge.getAllSurcharge().then((res) => {
@@ -39,7 +39,6 @@ export default function GeneralInfo({ id, save, doneSave }) {
             [name]: value
         });
     };
-    console.log(data);
     return (
         <div className="general-info">
             {loading ? (
@@ -89,7 +88,7 @@ export default function GeneralInfo({ id, save, doneSave }) {
                         name="checkInFrom"
                         type="time"
                         className="info__input"
-                        defaultValue={data?.checkInFrom}
+                        defaultValue={data?.checkInFrom || '14:00'}
                         onChange={handleChange}
                     />
                     <label className="info__title">{t('label.checkOutTo')}</label>
@@ -97,10 +96,10 @@ export default function GeneralInfo({ id, save, doneSave }) {
                         name="checkOutTo"
                         type="time"
                         className="info__input"
-                        defaultValue={data?.checkOutTo}
+                        defaultValue={data?.checkOutTo || '12:00'}
                         onChange={handleChange}
                     />
-                    <label className="info__title">{t('label.discountPercent')}</label>
+                    <label className="info__title">{t('label.pricePerNight')}</label>
                     <input
                         name="pricePerNight"
                         type="number"
@@ -117,8 +116,9 @@ export default function GeneralInfo({ id, save, doneSave }) {
                         className="info__input"
                         defaultValue={data?.discountPercent}
                         onChange={handleChange}
+                        label={t('label.discountPercent')}
                     />
-                    <label className="info__title">Surcharge List</label>
+                    <label className="info__title">{t('label.surchargeList')}</label>
                     <ul className="surcharge-list">
                         {allSurcharge.map((surcharge, index) => (
                             <div key={index}>

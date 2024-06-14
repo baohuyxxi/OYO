@@ -21,7 +21,7 @@ export default function MailNotification() {
     return (
         <>
             <IconButton onClick={handleClick}>
-                <Badge badgeContent={0} color="primary">
+                <Badge badgeContent={1} color="primary">
                     <MailOutlineIcon  />
                 </Badge>
             </IconButton>

@@ -39,25 +39,26 @@ export default function AddressAccom({ id, save, doneSave }) {
         }
     }, []);
 
-    console.log(data.latitude && data.longitude);
     const LocationCurrent = () => <LocationOnIcon style={{ color: 'red', fontSize: 'xx-large' }} />;
-    useEffect(() => {}, []);
+
     useEffect(() => {
+      
         if (address.provinceCode && address.districtCode && address.wardCode && data.numHouseAndStreetName) {
             const addressFull = `${data.numHouseAndStreetName} ,${address.wardName}, ${address.districtName}, ${address.provinceName}`;
+
             mapAPI.geoCodeAddress(addressFull).then((res) => {
+                console.log(res);
                 setData({
                     ...data,
                     provinceCode: address.provinceCode,
                     districtCode: address.districtCode,
                     wardCode: address.wardCode,
-                    latitude: res[0].lat,
-                    longitude: res[0].lon
+                    latitude: parseFloat(res[0].lat),
+                    longitude: parseFloat(res[0].lon)
                 });
             });
         }
     }, [address, data.numHouseAndStreetName]);
-
     const handleMapClick = (event) => {
         setData({ ...data, latitude: event.lat, longitude: event.lng });
     };

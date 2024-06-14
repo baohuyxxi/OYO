@@ -1,4 +1,4 @@
-import './CalendarManage.scss';
+import './CalendarDateBooked.scss';
 import React, { useState, useEffect } from 'react';
 import Timeline from 'react-calendar-timeline';
 import 'react-calendar-timeline/lib/Timeline.css';
@@ -6,7 +6,7 @@ import moment from 'moment';
 import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 
 
-export default function CalendarManage({ accomApproved }) {
+export default function CalendarDateBooked({ accomApproved }) {
     const [loading, setLoading] = useState(true);
     const [groups, setGroups] = useState([]);
     const [items, setItems] = useState([]);

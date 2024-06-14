@@ -14,17 +14,27 @@ import Policy from '../Policy/Policy';
 import PaymentInfo from '../PaymentInfo/PaymentInfo';
 import { Button } from '@mui/material';
 import { useSnackbar } from 'notistack';
+import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 
 export default function CreateAcoom() {
     const params = useParams();
     const [idAccom, setIdAccom] = useState(null);
     const [onClickSave, setOnClickSave] = useState(false);
+    const [selectedTab, setSelectedTab] = useState(0);
+    const [process, setProcess] = useState(0);
     const { enqueueSnackbar } = useSnackbar();
     useEffect(() => {
-        if (params['*'].split('/')[1] !== idAccom) {
+        let id = params['*'].split('/')[1];
+        if (id !== idAccom) {
             setIdAccom(params['*'].split('/')[1]);
         }
-    }, [params['*']]);
+        if (params['*'].split('/')[0] !== selectedTab) {
+            setSelectedTab(params['*'].split('/')[0]);
+        }
+        partnerManageAPI.getPercentCreate(id).then((res) => {
+            setProcess(res.data.percent);
+        });
+    }, [params['*']], setOnClickSave);
 
     const handleSave = (complete) => {
         if (complete) {
@@ -49,7 +59,7 @@ export default function CreateAcoom() {
                                     <h2>Tạo chỗ nghỉ mới</h2>
                                 </header>
                                 <div className=" row">
-                                    <MenuCreateAccom />
+                                    <MenuCreateAccom process={process} selectedTab={selectedTab} idAccom={idAccom}  />
                                     <div className="col l-10 m-9 c-8 screen__container">
                                         {idAccom !== null && (
                                             <div className="screen__container paper">

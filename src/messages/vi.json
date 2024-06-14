@@ -250,7 +250,14 @@
         "timeCancel": "Thời gian được phép hủy",
         "cancelBefore": "Chỉ được hủy phòng trước",
         "feeCancel": "Phí hủy",
-        "policyPublic": "Chính sách chung"
+        "policyPublic": "Chính sách chung",
+        "checkInFrom": "Nhận phòng từ",
+        "checkOutTo": "Trả phòng trước",
+        "discountPercent": "Giảm giá",
+        "surchargeList": "Danh sách phụ phí",
+        "guide": "Hướng dẫn",
+        "pricePerNight": "Giá theo đêm"
+
     },
     "contentMain": {
         "homeinsearch": "Từ chuyến phượt 'ngẫu hứng' đến những cuộc phiêu lưu, khám phá công thức niềm vui của riêng bạn",
@@ -290,7 +297,8 @@
         "nameHome": "Tên căn nhà",
         "priceVND": "Đơn vị VND",
         "acreageM2": "Đơn vị mét vuông",
-        "feedback": "Phản hồi từ khách hàng"
+        "feedback": "Phản hồi từ khách hàng",
+        "pricePerNight": "Giá theo đêm"
     },
     "numberCount": {
         "countBooking": "lượt đặt",
@@ -327,7 +335,8 @@
         "billingInformation": "Thông tin thanh toán",
         "accountManagement": "Quản lý tài khoản",
         "personalData": "Dữ liệu cá nhân",
-        "changePassword": "Đổi mật khẩu"
+        "changePassword": "Đổi mật khẩu",
+        "managerPage":"Trang quản lý"
     },
     "footer": {
         "titleFooter": "Tiết kiệm thời gian và tiền bạc!",

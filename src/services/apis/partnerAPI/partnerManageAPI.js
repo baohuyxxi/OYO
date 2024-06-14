@@ -71,5 +71,16 @@ const partnerManageAPI = {
         const res = await axios.get(`/partner/accoms/range-date-booking?pageNumber=0&pageSize=200`);
         return res.data;
     },
+    getPercentCreate: async (data) => {
+        const res = await axios.get(`/partner/accoms/percent-create-accom?accomId=${data}`);
+        return res.data;
+    },
+    // Request approval accom place
+    requestApprovalAccomPlace: async (data) => {
+        const res = await axios.post(`/partner/accoms/request-approval?accomId=${data}`);
+        return res.data;
+    },
+
+  
 };
 export default partnerManageAPI;

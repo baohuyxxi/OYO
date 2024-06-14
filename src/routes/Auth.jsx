@@ -45,6 +45,7 @@ const Auth = () => {
     );
     const CreateAcoom = React.lazy(() => import('~/pages/partner/CreateAccommodation/CreateAcoom/CreateAcoom'));
     const DashboardPartner = React.lazy(() => import('~/pages/partner/DashboardPartner/DashboardPartner'));
+    const CalendarManager = React.lazy(() => import('~/pages/partner/CalendarManager/CalendarManager'));
     // Client Page
     const HistoryBookingPage = React.lazy(() => import('../pages/client/HistoryBookingPage/HistoryBookingPage'));
     return (
@@ -264,6 +265,19 @@ const Auth = () => {
                         element={
                             <Suspense fallback={<LoadingPage />}>
                                 <CreateAcoom />
+                            </Suspense>
+                        }
+                    />
+                }
+            />
+            {/* CalendarManager */}
+            <Route
+                path="/managerHotels/calendar/*"
+                element={
+                    <PrivateRoute
+                        element={
+                            <Suspense fallback={<LoadingPage />}>
+                                <CalendarManager />
                             </Suspense>
                         }
                     />

@@ -4,6 +4,8 @@ import moment from 'moment';
 import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 import arrowRight from '~/assets/svg/arrow-right.svg';
 import arrowLeft from '~/assets/svg/arrow-left.svg';
+
+import { useSnackbar } from 'notistack';
 // arrow-right.svg
 
 export default function RoomsAndRate({ accomApproved }) {
@@ -11,7 +13,7 @@ export default function RoomsAndRate({ accomApproved }) {
     const [currentWeek, setCurrentWeek] = useState([]);
     const [accommodations, setAccommodations] = useState([]);
     const [changePrice, setChangePrice] = useState([]);
-
+    const { enqueueSnackbar } = useSnackbar();
     const [listHomeOfPartner, setListHomeOfPartner] = useState([]);
 
     useEffect(() => {
@@ -125,7 +127,7 @@ export default function RoomsAndRate({ accomApproved }) {
             ];
         }, []);
         partnerManageAPI.updatePriceCustom(data).then((res) => {
-  
+            enqueueSnackbar("Cập nhật thành công", { variant: 'success' });
         });
     };
 

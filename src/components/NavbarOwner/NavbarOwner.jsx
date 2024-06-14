@@ -76,8 +76,8 @@ const NavbarOwner = () => {
                 <img src={Logo} alt="company logo" className="logo-bg" />
             </NavLink>
             <div className="navbar-right menu">
-                <NavLink to="/" end={true}>
-                    {t('navbar.home')}
+                <NavLink to="/managerHotels" end={true}>
+                    {t('navbar.managerPage')}
                 </NavLink>
                 <NavLink to="/host" end={true}>
                     {t('navbar.today')}
@@ -86,7 +86,7 @@ const NavbarOwner = () => {
                     {t('navbar.homeHost')}
                 </NavLink>
                 {/* <NavLink to="/list-room">{t('navbar.book')}</NavLink> */}
-                <NavLink to="/host/setting/calendar">{t('navbar.calender')}</NavLink>
+                <NavLink to="/managerHotels/calendar">{t('navbar.calender')}</NavLink>
                 <NavLink to="/intro-host">{t('navbar.setHost')}</NavLink>
                 <NavLink to="/host/setting/transactionhistory">{t('navbar.historyHost')}</NavLink>
               

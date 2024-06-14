@@ -8,6 +8,7 @@ import LayoutFacilityAdmin from '~/pages/admin/LayoutFacilityAdmin/LayoutFacilit
 import LayoutFacilityCategoryAdmin from '~/pages/admin/LayoutFacilityCategoryAdmin/LayoutFacilityCategoryAdmin';
 import LayoutSurchargeCategoryAdmin from '~/pages/admin/LayoutSurchargeCategoryAdmin/LayoutSurchargeCategoryAdmin';
 import LayoutNewAccom from '~/pages/admin/LayoutNewAccom/LayoutNewAccom';
+import NewAccomWaiting from '~/components/Admin/NewAccomWaiting/NewAccomWaiting';
 import React, { Suspense } from 'react';
 const RouterAdmin = () => {
     return (
@@ -81,6 +82,14 @@ const RouterAdmin = () => {
                 element={
                     <Suspense>
                         <LayoutNewAccom />
+                    </Suspense>
+                }
+            />
+            <Route
+                path="/new-accom/:id"
+                element={
+                    <Suspense>
+                        <NewAccomWaiting />
                     </Suspense>
                 }
             />

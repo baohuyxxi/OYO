@@ -243,7 +243,13 @@
         "refundPolicy": "Refund Policy",
         "timeCancel": "Time to cancel",
         "feeCancel": "Cancellation fee",
-        "policyPublic": "Public policy"
+        "policyPublic": "Public policy",
+        "checkInFrom": "Check in from",
+        "checkOutTo": "Check out to",
+        "discountPercent": "Discount percent",
+        "surchargeList": "Surcharge list",
+        "guide": "Guide",
+        "pricePerNight":"Price per night"
     },
     "contentMain": {
         "homeinsearch": "From 'impromptu' rides to adventures, discover your own recipe for joy",
@@ -283,7 +289,8 @@
         "nameHome": "Name of the house",
         "priceVND": "Unit VND",
         "acreageM2": "Square meter unit",
-        "feedback": "Feedback from customers"
+        "feedback": "Feedback from customers",
+        "pricePerNight": "Price per night"
     },
     "numberCount": {
         "countBooking": "Bookings",
@@ -320,7 +327,8 @@
         "billingInformation": "Billing Information",
         "accountManagement": "Account management",
         "personalData": "Personal data",
-        "changePassword": "Change Password"
+        "changePassword": "Change Password",
+        "managerPage": "Manager page"
     },
     "footer": {
         "titleFooter": "Save time and money!",

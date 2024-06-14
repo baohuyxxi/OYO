@@ -10,12 +10,15 @@ import globalSlice from './globalSlice';
 import settingAccomSlice from './settingAccomSlice';
 import filterAcomSlice from './filterAccom';
 import createAccomSlice from './createAccomSlice';
+import managerAccomReducer, { autoFetchManagerAccom } from './managerAccomSlice'; // Import middleware
+
 const persistConfig = {
     key: 'root',
-    whiteList: ['user'],
+    whitelist: ['user'],
     blacklist: ['notification', 'settingowner', 'global'],
     storage
 };
+
 const rootReducer = combineReducers({
     user: userSlice.reducer,
     booking: bookingSlice.reducer,
@@ -24,15 +27,9 @@ const rootReducer = combineReducers({
     global: globalSlice.reducer,
     settingaccom: settingAccomSlice.reducer,
     filterAccom: filterAcomSlice.reducer,
-    createAccom: createAccomSlice.reducer
+    createAccom: createAccomSlice.reducer,
+    managerAccom: managerAccomReducer
 });
-
-// const rootReducer = (state, action) => {
-//     if (action.type === 'RESET') {
-//         state = {};
-//     }
-//     return combinedReducer(state, action);
-// };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
@@ -43,7 +40,7 @@ export const store = configureStore({
             serializableCheck: {
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
             }
-        })
+        }).concat(autoFetchManagerAccom) // Thêm middleware vào đây
 });
 
 export let persistor = persistStore(store);

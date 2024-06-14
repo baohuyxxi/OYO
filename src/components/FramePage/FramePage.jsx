@@ -24,7 +24,6 @@ export default function FramePage({ children }) {
     const handleClose = () => {
         setOpen(false);
     };
-    console.log('chatbox', chatbox);
     return (
         <div className="background__frame-page">
             <NavBar />

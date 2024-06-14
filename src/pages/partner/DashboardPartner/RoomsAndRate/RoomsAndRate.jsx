@@ -124,9 +124,7 @@ export default function RoomsAndRate({ accomApproved }) {
                 }))
             ];
         }, []);
-        partnerManageAPI.updatePriceCustom(data).then((res) => {
-  
-        });
+        partnerManageAPI.updatePriceCustom(data).then((res) => {});
     };
 
     return (
@@ -140,13 +138,10 @@ export default function RoomsAndRate({ accomApproved }) {
                             className="week-navigation__button"
                             onClick={() => setCurrentWeek(getPreviousWeekDates())}
                         >
-                            <img src={arrowLeft} alt="arrow-right" className='week-navigation__icon' />
-                          
-                            
+                            <img src={arrowLeft} alt="arrow-right" className="week-navigation__icon" />
                         </button>
                         <button className="week-navigation__button" onClick={() => setCurrentWeek(getNextWeekDates())}>
-                           
-                            <img src={arrowRight} alt="arrow-right" className='week-navigation__icon' />
+                            <img src={arrowRight} alt="arrow-right" className="week-navigation__icon" />
                         </button>
                         <div style={{ marginLeft: 'auto' }}></div>
                         <button className="week-navigation__save" onClick={handleSave}>

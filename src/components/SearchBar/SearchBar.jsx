@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import './SearchBar.scss';
 import CloseIcon from '@mui/icons-material/Close';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import { Link } from 'react-router-dom';
 
-function SearchBar({ placeholder, data } ) {
+function SearchBar({ placeholder, data }) {
     const [filteredData, setFilteredData] = useState([]);
     const [wordEntered, setWordEntered] = useState('');
     const refOne = useRef(null);
@@ -13,17 +13,17 @@ function SearchBar({ placeholder, data } ) {
         document.addEventListener('click', hideOnClickOutside, true);
     }, []);
 
-    const hideOnClickOutside = (e ) => {
+    const hideOnClickOutside = (e) => {
         if (refOne.current && !refOne.current.contains(e.target)) {
-            setFilteredData([])
+            setFilteredData([]);
         }
-        setWordEntered('')
+        setWordEntered('');
     };
 
-    const handleFilter = (event ) => {
+    const handleFilter = (event) => {
         const searchWord = event.target.value;
         setWordEntered(searchWord);
-        const newFilter = data.filter((value ) => {
+        const newFilter = data.filter((value) => {
             return value.title.toLowerCase().includes(searchWord.toLowerCase());
         });
 
@@ -46,7 +46,7 @@ function SearchBar({ placeholder, data } ) {
                     <LocationOnOutlinedIcon />
                 </div>
 
-                <input type="text" placeholder={placeholder} value={wordEntered} onChange={handleFilter}/>
+                <input type="text" placeholder={placeholder} value={wordEntered} onChange={handleFilter} />
 
                 <div className="searchIcon">
                     {filteredData.length === 0 ? '' : <CloseIcon id="clearBtn" onClick={clearInput} />}

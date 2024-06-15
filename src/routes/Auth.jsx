@@ -25,7 +25,7 @@ const Auth = () => {
     const ContactForm = React.lazy(() => import('../pages/public/Contact/Contact'));
     const FavoritesPage = React.lazy(() => import('../pages/client/FavoritesPage/FavoritesPage'));
     const ListAccomPage = React.lazy(() => import('~/pages/public/ListAccomPage/ListAccomPage'));
-    const OAuth2RedirectHandler = React.lazy(() => import('~/helper/oAuth2RedirectHandler'));
+    const OAuth2RedirectHandler = React.lazy(() => import('~/helper/OAuth2RedirectHandler'));
     // Host Owner Page
     const StepperMain = React.lazy(() => import('~/pages/partner/SetupOwner/StepperMain/StepperMain'));
     const OwnerSetting = React.lazy(() => import('~/pages/partner/OwnerSetting/MainOwnerSetting/OwnerSetting'));

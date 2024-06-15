@@ -1,4 +1,3 @@
-import React from 'react';
 import { styled } from '@mui/material/styles';
 import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -6,17 +5,14 @@ import Radio from '@mui/material/Radio';
 import { useDispatch } from 'react-redux';
 
 import bookingSlice from '~/redux/bookingSlice';
-
 import './CheckBoxPayment.scss';
 import { t } from 'i18next';
 
-const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />)(
-    ({ theme, checked }) => ({
-        '.MuiFormControlLabel-label': checked && {
-            color: theme.palette.primary.main,
-        },
-    }),
-);
+const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />)(({ theme, checked }) => ({
+    '.MuiFormControlLabel-label': checked && {
+        color: theme.palette.primary.main
+    }
+}));
 
 function MyFormControlLabel(props) {
     const radioGroup = useRadioGroup();
@@ -33,8 +29,8 @@ function MyFormControlLabel(props) {
 export default function CheckBoxPaymentPolicy(props) {
     const dispatch = useDispatch();
 
-    const handleChangeRadio =  (event) => {
-        dispatch(bookingSlice.actions.addPaymentPolicy( event.target.value));
+    const handleChangeRadio = (event) => {
+        dispatch(bookingSlice.actions.addPaymentPolicy(event.target.value));
     };
 
     return (
@@ -50,10 +46,7 @@ export default function CheckBoxPaymentPolicy(props) {
                     label={t('title.bookingOfYou.pay50')}
                     control={<Radio onChange={handleChangeRadio} />}
                 />
-                
             </RadioGroup>
-            
         </div>
-        
     );
 }

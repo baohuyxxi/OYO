@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import './RoomPopular.scss';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
@@ -59,7 +59,7 @@ export default function RoomPopular() {
                 ) : (
                     listHome.content?.map((home, index) => (
                         <div className="col l-3 m-6 c-12 " key={index}>
-                            <div className="container__room paper">
+                            <div className="container__room__popular paper">
                                 <Slider {...settings}>
                                     {home?.imageAccomsUrls.length !== 0 &&
                                         home?.imageAccomsUrls?.map((image, index) => (

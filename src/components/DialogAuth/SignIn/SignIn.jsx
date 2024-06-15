@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import googleIcon from '~/assets/imageMaster/google-logo.png';
@@ -18,7 +18,6 @@ import { useDispatch } from 'react-redux';
 import userSlice from '~/redux/userSlice';
 import { t } from 'i18next';
 import { GOOGLE_AUTH_URL } from '~/mockdata';
-import { connectSocketServer } from '~/services/socket/notificationSocket';
 
 export default function SignIn(props) {
     const dispatch = useDispatch();

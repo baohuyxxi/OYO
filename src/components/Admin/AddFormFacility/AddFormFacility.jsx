@@ -1,6 +1,4 @@
 import './AddFormFacility.scss';
-import { useEffect, useState, useRef } from 'react';
-
 import { useForm } from 'react-hook-form';
 
 const renderItem = ({ item, dataFacilityCategory, setValue, register }) => {

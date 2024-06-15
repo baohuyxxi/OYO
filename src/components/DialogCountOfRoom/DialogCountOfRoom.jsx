@@ -1,25 +1,22 @@
-import * as React from 'react';
+import { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-
 import { useSnackbar } from 'notistack';
-import { AxiosError } from 'axios';
-
 import './DialogCountOfRoom.scss';
 import CountNumberBedOfRoom from '../CountNumber/CountNumberBedOfRoom';
 import cmsTypeBedAPI from '~/services/apis/adminAPI/cmsTypeBedAPI';
 
 export default function DialogCountOfRoom(props) {
-    const [open, setOpen] = React.useState(false);
-    const [dataSetBedCount, setDataSetBedCount] = React.useState([]);
-    const [listBedOfRoom, setListBedOfRoom] = React.useState([]);
+    const [open, setOpen] = useState(false);
+    const [dataSetBedCount, setDataSetBedCount] = useState([]);
+    const [listBedOfRoom, setListBedOfRoom] = useState([]);
 
     const { enqueueSnackbar } = useSnackbar();
 
-    React.useEffect(() => {
+    useEffect(() => {
         cmsTypeBedAPI.getAllTypeBedWithPaging().then((dataBed) => {
             setListBedOfRoom(dataBed?.data?.content);
         });
@@ -40,7 +37,7 @@ export default function DialogCountOfRoom(props) {
                     item.descriptionOfBed = data;
                 }
                 return item;
-            }),
+            })
         );
     };
 
@@ -59,7 +56,7 @@ export default function DialogCountOfRoom(props) {
 
     const handleSave = () => {
         const newCount = {
-            listBedOfHomeDetail: dataSetBedCount,
+            listBedOfHomeDetail: dataSetBedCount
         };
         roomOfHomeApi
             .saveCountBedOfHome(newCount)

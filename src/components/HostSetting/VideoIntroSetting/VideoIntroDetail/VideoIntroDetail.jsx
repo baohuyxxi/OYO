@@ -1,4 +1,3 @@
-import React from 'react';
 import './VideoIntroDetail.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileAlt, faSpinner, faTrash } from '@fortawesome/free-solid-svg-icons';

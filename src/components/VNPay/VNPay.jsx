@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios'; // Import thư viện axios
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import sha512 from 'js-sha512';
 import moment from 'moment-timezone';
 import bookingSlice from '~/redux/bookingSlice';
@@ -26,7 +26,6 @@ const VNPay = (props) => {
             const secretKey = 'CLMXUQRJDTHASLQRMTNIMVVCMCRVRHBT';
             const vnp_SecureHash = sha512.hmac.create(secretKey).update(queryString).hex();
             if (vnp_SecureHash === urlParams.get('vnp_SecureHash')) {
-
                 booking();
             }
         }

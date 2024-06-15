@@ -1,4 +1,3 @@
-import React from 'react';
 import { styled } from '@mui/material/styles';
 import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -43,17 +42,12 @@ export default function CheckBoxPaymentMethod(props) {
                     label={t('title.bookingOfYou.paypal')}
                     control={<Radio sx={{ fontSize: '14px' }} onChange={handleChangeRadio} />}
                 />
-                  <MyFormControlLabel
-                    value="VNPAY"
-                    label={`VNPay`}
-                    control={<Radio onChange={handleChangeRadio} />}
-                />
+                <MyFormControlLabel value="VNPAY" label={`VNPay`} control={<Radio onChange={handleChangeRadio} />} />
                 <MyFormControlLabel
                     value="DIRECT"
                     label={t('title.bookingOfYou.direct')}
                     control={<Radio onChange={handleChangeRadio} />}
                 />
-               
             </RadioGroup>
         </div>
     );

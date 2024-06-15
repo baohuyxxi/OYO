@@ -5,11 +5,12 @@ import { useEffect, useState } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import CustomInput from '~/assets/custom/CustomInput';
 import CountRoomDetailSetting from '~/pages/partner/OwnerSetting/CountRoomDetailSetting/CountRoomDetailSetting';
+
 const CountRoomSetting = (props) => {
     const navigate = useNavigate();
     const [allCate, setAllCate] = useState([]);
     const [accomCate, setAccomCate] = useState();
-    
+
     useEffect(() => {
         setAccomCate(props.accomCateName);
         publicAccomPlaceAPI.getAllAccomCategoryInfo().then((res) => {
@@ -17,7 +18,6 @@ const CountRoomSetting = (props) => {
         });
     }, [props.accomCateName]);
     const params = useParams();
-
 
     return (
         <div className="setting-count__room">
@@ -38,7 +38,7 @@ const CountRoomSetting = (props) => {
                         </MenuItem>
                     ))}
                 />
-                <CountRoomDetailSetting accomCate={accomCate}/>
+                <CountRoomDetailSetting accomCate={accomCate} />
             </div>
         </div>
     );

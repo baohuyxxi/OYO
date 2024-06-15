@@ -5,7 +5,6 @@ import loadingImage from '~/assets/animation/Infinity-1.8s-200px.svg';
 
 import './LoadingMaster.scss';
 
-
 function SimpleDialog(props) {
     const { open } = props;
 

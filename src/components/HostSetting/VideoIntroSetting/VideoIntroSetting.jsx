@@ -1,10 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import FileUpload from './FileUpload/FileUpload';
 import VideoIntroDetail from './VideoIntroDetail/VideoIntroDetail';
-import { useParams } from 'react-router-dom';
 import './VideoIntroSetting.scss';
-import { useSnackbar } from 'notistack';
-import { useDispatch } from 'react-redux';
 import settingAccomSlice from '~/redux/settingAccomSlice';
 import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 

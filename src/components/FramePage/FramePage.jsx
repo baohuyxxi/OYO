@@ -1,16 +1,11 @@
 import NavBar from './NavBar/NavBar';
 import Footer from '~/components/Footer/Footer';
 import ViewIamge from '~/components/ViewImage/ViewImage';
-import globalSlice from '~/redux/globalSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import LoadingDialog from '~/components/LoadingDialog/LoadingDialog';
+import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import './FramePage.scss';
-import { vi } from 'date-fns/locale';
 import ChatAI from '../ChatAI/ChatAI';
-import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ChatBox from '../ChatBox/ChatBox';
 
 export default function FramePage({ children }) {

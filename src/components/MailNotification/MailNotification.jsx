@@ -1,20 +1,33 @@
 import './MailNotification.scss';
-import * as React from 'react';
+import { useState } from 'react';
 import { IconButton } from '@mui/material';
 import Badge from '@mui/material/Badge';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import StyledMenu from '~/assets/custom/StyleMenu';
 import Menu from '@mui/material/Menu';
 import notificationNone from '~/assets/imageMaster/notificationNone.png';
 import { t } from 'i18next';
 import ItemNotification from './ItemNotification/ItemNotification';
+import { useSelector, useDispatch } from 'react-redux';
+import notificationSlice from '~/redux/notificationSlice';
+import clientNotificationAPI from '~/services/apis/clientAPI/clientNotificationAPI';
 
 export default function MailNotification() {
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const numNotification = useSelector((state) => state.notification.numberOfNotification);
+    const [dataNotification, setDataNotification] = useState([]);
     const open = Boolean(anchorEl);
+    const dispatch = useDispatch();
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
+        clientNotificationAPI.getDataNotificationOfUser().then((res) => {
+            setDataNotification(res.data.content);
+        });
+        clientNotificationAPI.resetAllNotification().then((res) => {
+            if (res.statusCode === 200) {
+                dispatch(notificationSlice.actions.subscribeNumberOfNotification(0));
+            }
+        });
     };
     const handleClose = () => {
         setAnchorEl(null);
@@ -22,7 +35,7 @@ export default function MailNotification() {
     return (
         <>
             <IconButton onClick={handleClick}>
-                <Badge badgeContent={1} color="primary">
+                <Badge badgeContent={numNotification} color="primary">
                     <MailOutlineIcon />
                 </Badge>
             </IconButton>
@@ -31,13 +44,20 @@ export default function MailNotification() {
                 <header className="header-myAccount"> {t('title.yourMail')}</header>
                 <hr className="divider" />
                 <div className="your-mail">
-                    {!1 ? (
+                    {dataNotification.length > 0 ? (
+                        dataNotification.map((noti) => (
+                            <ItemNotification
+                                title={noti.title}
+                                content={noti.content}
+                                dateTime={noti.dateTime}
+                                key={noti.id}
+                            />
+                        ))
+                    ) : (
                         <>
                             <img src={notificationNone} className="notificationNone"></img>
                             <ul>{t('common.youNoHaveMail')}</ul>
                         </>
-                    ) : (
-                        <ItemNotification />
                     )}
                 </div>
             </Menu>

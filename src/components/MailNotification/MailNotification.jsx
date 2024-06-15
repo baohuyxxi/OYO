@@ -1,12 +1,13 @@
-import './MailNotification.scss'
-import * as React from 'react'
-import { IconButton } from '@mui/material'
-import Badge from '@mui/material/Badge'
-import MailOutlineIcon from '@mui/icons-material/MailOutline'
-import StyledMenu from '~/assets/custom/StyleMenu'
-import Menu from '@mui/material/Menu'
-import notificationNone from '~/assets/imageMaster/notificationNone.png'
-import { t } from 'i18next'
+import './MailNotification.scss';
+import * as React from 'react';
+import { IconButton } from '@mui/material';
+import Badge from '@mui/material/Badge';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import StyledMenu from '~/assets/custom/StyleMenu';
+import Menu from '@mui/material/Menu';
+import notificationNone from '~/assets/imageMaster/notificationNone.png';
+import { t } from 'i18next';
+import ItemNotification from './ItemNotification/ItemNotification';
 
 export default function MailNotification() {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -14,38 +15,32 @@ export default function MailNotification() {
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
-    }
+    };
     const handleClose = () => {
-        setAnchorEl(null)
+        setAnchorEl(null);
     };
     return (
         <>
             <IconButton onClick={handleClick}>
                 <Badge badgeContent={1} color="primary">
-                    <MailOutlineIcon  />
+                    <MailOutlineIcon />
                 </Badge>
             </IconButton>
 
-            <Menu
-                className='mailbox'
-                id="mailbox"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-            >
-                <header className='header-myAccount'> {t('title.yourMail')}</header>
-                <hr className='divider' />
-                <div className='your-mail'>
-                    {!0 ?
+            <Menu className="mailbox" id="mailbox" anchorEl={anchorEl} open={open} onClose={handleClose}>
+                <header className="header-myAccount"> {t('title.yourMail')}</header>
+                <hr className="divider" />
+                <div className="your-mail">
+                    {!1 ? (
                         <>
                             <img src={notificationNone} className="notificationNone"></img>
                             <ul>{t('common.youNoHaveMail')}</ul>
                         </>
-                        :
-                        <></>
-                    }
+                    ) : (
+                        <ItemNotification />
+                    )}
                 </div>
             </Menu>
         </>
-    )
+    );
 }

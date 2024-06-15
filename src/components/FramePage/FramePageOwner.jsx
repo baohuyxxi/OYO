@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoadingDialog from '~/components/LoadingDialog/LoadingDialog';
 import NavbarOwner from '../NavbarOwner/NavbarOwner';
 import './FramePage.scss';
-import { vi } from 'date-fns/locale';
 
 export default function FramePageOwner({ children }) {
     const dispatch = useDispatch();

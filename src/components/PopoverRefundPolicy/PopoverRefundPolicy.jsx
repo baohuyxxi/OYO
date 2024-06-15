@@ -1,10 +1,10 @@
-import * as React from 'react';
+import { useState } from 'react';
 import Popover from '@mui/material/Popover';
 import Button from '@mui/material/Button';
 import { t } from 'i18next';
 
 export default function PopoverRefundPolicy(props) {
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -34,11 +34,11 @@ export default function PopoverRefundPolicy(props) {
                 onClose={handleClose}
                 anchorOrigin={{
                     vertical: 'top',
-                    horizontal: 'left',
+                    horizontal: 'left'
                 }}
                 transformOrigin={{
                     vertical: 'bottom',
-                    horizontal: 'right',
+                    horizontal: 'right'
                 }}
             >
                 <h2 style={{ width: '300px', textAlign: 'center', paddingBottom: '6px' }}>{t('title.refundPolicy')}</h2>
@@ -50,7 +50,7 @@ export default function PopoverRefundPolicy(props) {
                         margin: '0 8px',
                         justifyContent: 'space-between',
                         padding: '5px 15px',
-                        alignItems: 'center',
+                        alignItems: 'center'
                     }}
                 >
                     <p style={{ fontSize: '14px', margin: 0 }}>

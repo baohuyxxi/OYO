@@ -1,10 +1,6 @@
-import React, { useRef, useState } from 'react';
-
 import './EditImage.scss';
-import { useDrag, useDrop, DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 import CloseIcon from '@mui/icons-material/Close';
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Rating, Button } from '@mui/material';
+import { Dialog, DialogContent, DialogContentText, DialogTitle, Rating, Button } from '@mui/material';
 import uploadMedia from '~/services/apis/media/uploadMedia';
 import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 import { useParams } from 'react-router-dom';
@@ -13,30 +9,8 @@ import { useSnackbar } from 'notistack';
 import globalSlice from '~/redux/globalSlice';
 import { t } from 'i18next';
 import AddIcon from '@mui/icons-material/Add';
+
 const DraggableImage = (props) => {
-    //   const [, drag] = useDrag({
-    //     item: { type: 'IMAGE', index: props.index, image: props.image },
-    //   });
-
-    //   const [, drop] = useDrop({
-    //     accept: 'IMAGE',
-    //     hover: (item, monitor) => {
-    //       const dragIndex = item.index;
-    //       const hoverIndex = props.index;
-
-    //       if (dragIndex === hoverIndex) {
-    //         return;
-    //       }
-
-    //       const newImages = [...props.images];
-    //       newImages.splice(dragIndex, 1);
-    //       newImages.splice(hoverIndex, 0, item.image);
-    //       props.setImages(newImages);
-
-    //       item.index = hoverIndex;
-    //     },
-    //   });
-
     return (
         <div className="img__preview" key={props.index}>
             <CloseIcon className="remove-image" onClick={(e) => props.handleRemove(props.index)} />

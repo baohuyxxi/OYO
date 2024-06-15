@@ -5,11 +5,14 @@ import Auth from './routes/Auth';
 import globalSlice from '~/redux/globalSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import LoadingDialog from '~/components/LoadingDialog/LoadingDialog';
+import { connectSocketServer } from '~/services/socket/notificationSocket';
+import clientNotificationAPI from './services/apis/clientAPI/clientNotificationAPI';
+import notificationSlice from '~/redux/notificationSlice';
 import './App.css';
-function App() {
 
+function App() {
     const dispatch = useDispatch();
-        // dispatch(globalSlice.actions.setLoading(false));
+    const user = useSelector((state) => state.user.current);
     const loading = useSelector((state) => state.global.loading);
     const { t } = useTranslation();
     useEffect(() => {
@@ -29,6 +32,17 @@ function App() {
         localStorage.setItem('mode', 'dark');
         document.documentElement.setAttribute('mode', 'dark');
     }
+
+    useEffect(() => {
+        if (user !== null) {
+            connectSocketServer({ userMail: user.mail });
+            clientNotificationAPI.getDataNotificationUnviewOfUser().then((res) => {
+                if (res.statusCode === 200) {
+                    dispatch(notificationSlice.actions.subscribeNumberOfNotification(res.data.totalElements));
+                }
+            });
+        }
+    }, [user]);
     return (
         <div>
             <Auth />

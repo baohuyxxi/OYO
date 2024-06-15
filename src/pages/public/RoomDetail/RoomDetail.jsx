@@ -2,7 +2,6 @@ import './RoomDetail.scss';
 import { t } from 'i18next';
 import moment from 'moment';
 import format from 'date-fns/format';
-import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
@@ -19,14 +18,11 @@ import Facility from './Facility/Facility';
 import DialogConvenient from '~/components/DialogConvenient/DialogConvenient';
 import SurchargeList from './Surcharge';
 import DrawerHome from '~/components/DrawerHome/DrawerHome';
-import DateGo from '~/components/DateGo/DateGo';
 import DateRangeSelector from '~/components/DateRangeSelector/DateRangeSelector';
 import Dropdown from '~/components/Dropdown/Dropdown';
-import PopoverPrice from '~/components/PopoverPrice/PopoverPrice';
 import NecessaryInformation from './NecessaryInformation/NecessaryInformation';
 import GeneralPolicy from './GeneralPolicy/GeneralPolicy';
 import CommentReview from '~/components/CommentReview/CommentReview';
-import BreadcrumbsHome from './BreadcrumbsHome';
 import FramePage from '~/components/FramePage/FramePage';
 import DateIsBooking from '~/components/DateIsBooking/DateIsBooking';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
@@ -265,8 +261,6 @@ export default function RoomDetail() {
                                                     </div>
                                                 </div>
                                             )}
-                                            {/* <DateGo setDataDay={handleChangeDayBooking} /> */}
-
                                             <DateRangeSelector
                                                 dateBook={dateBook}
                                                 setDataDay={handleChangeDayBooking}

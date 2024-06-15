@@ -1,7 +1,7 @@
 import './Dropdown.scss';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { t } from 'i18next';
-import { useState, useRef, useEffect, ChangeEvent } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { guests } from '~/utils/formatForm';
 
 const Dropdown = (props) => {

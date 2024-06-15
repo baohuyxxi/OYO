@@ -9,7 +9,7 @@ import { store, persistor } from './redux/store'; // Thêm dòng này
 import i18n from './i18n';
 import CssBaseline from '@mui/material/CssBaseline';
 import { BrowserRouter } from 'react-router-dom';
-import { SearchProvider } from '~/contexts/searchContext';
+import { SearchProvider } from '~/contexts/SearchContext';
 import './assets/css/grid.scss';
 import './assets/css/frame.scss';
 import './assets/css/index.scss';

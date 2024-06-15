@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { t } from 'i18next';
-import { Link, useNavigate } from 'react-router-dom';
-import SkeletonProvince from '../Skeleton/SkeletonProvince';
+import { useNavigate } from 'react-router-dom';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import { transLateProvince } from '~/services/apis/translateAPI/translateAPI';
 import { useDispatch } from 'react-redux';
@@ -42,23 +41,25 @@ const Popular = () => {
                 <div className="package-menu__head">
                     <p>{t('title.exploreVN')}</p>
                 </div>
-                <div className='popular__container'>
+                <div className="popular__container">
                     {loading ? (
                         // <SkeletonProvince />
                         <></>
                     ) : (
                         listProvince?.map((province, index) => {
                             return (
-                               <div className={`popular__item item-${index}`}  key={index}  onClick={() => handleLinkToProvince(province)}>
-                               
+                                <div
+                                    className={`popular__item item-${index}`}
+                                    key={index}
+                                    onClick={() => handleLinkToProvince(province)}
+                                >
                                     <img src={province?.thumbnail} alt="" className={`package-thumbnail`} />
                                     <div className="package-info">
                                         <h3 className="package-heading">{province?.provinceName}</h3>
                                         <span className="package-desc">
                                             {`${province?.numBooking} ${t('numberCount.countBooking')}`}
                                         </span>
-                                        </div>
-                             
+                                    </div>
                                 </div>
                             );
                         })

@@ -1,4 +1,3 @@
-import React from 'react';
 import SidebarData from '~/mockdata/sidebarData';
 import SidebarItem from '~/components/Admin/Sidebar/SidebarItem';
 import { Link, useLocation, useNavigate } from 'react-router-dom';

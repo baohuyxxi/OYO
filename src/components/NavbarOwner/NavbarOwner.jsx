@@ -1,17 +1,11 @@
 import { t } from 'i18next';
 import { useSelector } from 'react-redux';
-
 import { NavLink, useNavigate } from 'react-router-dom';
 import BookOnlineIcon from '@mui/icons-material/BookOnline';
-
 import HomeIcon from '@mui/icons-material/Home';
 import ManageHistoryIcon from '@mui/icons-material/ManageHistory';
-
 import Logo from '~/assets/svg/logo.svg';
-
-import notifications from '../../mockdata/notification.json';
 import notificationApi from '~/services/apis/publicAPI/notificationApi';
-// import BellRing from '../BellRing/BellRing';
 import DropdownHost from '../DropdownHost/DropdownHost';
 import DropdownUser from '../DropdownUser/DropdownUser';
 import './NavbarOwner.scss';
@@ -89,9 +83,8 @@ const NavbarOwner = () => {
                 <NavLink to="/managerHotels/calendar">{t('navbar.calender')}</NavLink>
                 <NavLink to="/intro-host">{t('navbar.setHost')}</NavLink>
                 <NavLink to="/host/setting/transactionhistory">{t('navbar.historyHost')}</NavLink>
-              
             </div>
-            <DropdownUser/>
+            <DropdownUser />
         </div>
     );
 };

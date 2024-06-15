@@ -1,5 +1,4 @@
 import './ImageOfRoomSetting.scss';
-
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -7,7 +6,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import React from 'react';
 import DialogCountOfRoom from '~/components/DialogCountOfRoom/DialogCountOfRoom';
 
-const ImageOfRoomSetting = (props ) => {
+const ImageOfRoomSetting = (props) => {
     const [expanded, setExpanded] = React.useState(false);
 
     const handleChange = (panel) => (event, isExpanded) => {
@@ -20,7 +19,7 @@ const ImageOfRoomSetting = (props ) => {
 
     const handleRemoveRoom = (idRoom) => {
         if (props.handleRemoveRoom) {
-            props?.handleRemoveRoom(idRoom)
+            props?.handleRemoveRoom(idRoom);
         }
     };
 
@@ -29,7 +28,7 @@ const ImageOfRoomSetting = (props ) => {
             {props?.listRoomOfHome?.map((room, index) => (
                 <Accordion expanded={expanded === `panel${index}`} onChange={handleChange(`panel${index}`)} key={index}>
                     <AccordionSummary
-                       expandIcon={<ExpandMoreIcon/>}
+                        expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >
@@ -44,7 +43,11 @@ const ImageOfRoomSetting = (props ) => {
                                     <h4>Bố trí chỗ ngủ</h4>
                                     <p>{room?.descriptionOfBed}</p>
                                 </div>
-                                <DialogCountOfRoom roomOfHomeId={room?.id} listRoomOfHome={props?.listRoomOfHome} setListRoomOfHome={props?.setListRoomOfHome}/>
+                                <DialogCountOfRoom
+                                    roomOfHomeId={room?.id}
+                                    listRoomOfHome={props?.listRoomOfHome}
+                                    setListRoomOfHome={props?.setListRoomOfHome}
+                                />
                             </div>
                         )}
 

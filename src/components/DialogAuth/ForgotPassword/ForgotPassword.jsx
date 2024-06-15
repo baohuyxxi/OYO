@@ -1,6 +1,4 @@
-//App.js
-
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -48,21 +46,20 @@ function ForgotPassword(props) {
         const canvasHeight = ctx.canvas.height;
         for (let i = 0; i < captcha.length; i++) {
             const xInitialSpace = 25;
-    
+
             ctx.font = '40px Roboto Mono';
             ctx.fillStyle = textColors[Math.floor(Math.random() * 2)];
             ctx.textAlign = 'center';
             const xPosition = xInitialSpace + i * letterSpace + letterSpace / 2;
             ctx.textBaseline = 'middle';
             const yPosition = canvasHeight / 2;
-    
+
             ctx.fillText(captcha[i], xPosition, yPosition);
         }
     };
-    
 
     const initializeCaptcha = (ctx) => {
-        setErrors(null)
+        setErrors(null);
         setUserInput('');
         const newCaptcha = generateCaptchaText();
         setCaptchaText(newCaptcha);
@@ -73,31 +70,29 @@ function ForgotPassword(props) {
         setUserInput(e.target.value);
     };
 
-    const handleCaptchaSubmit = async() => {
+    const handleCaptchaSubmit = async () => {
         if (userInput === captchaText) {
-            dispatch(globalSlice.actions.setLoading(true))
-            await authAPI.resetPassword(props.email).then(res =>
-                {
+            dispatch(globalSlice.actions.setLoading(true));
+            await authAPI
+                .resetPassword(props.email)
+                .then((res) => {
                     enqueueSnackbar(t('message.changePassword'), { variant: 'success' });
-                    dispatch(globalSlice.actions.setLoading(false))
+                    dispatch(globalSlice.actions.setLoading(false));
                     props.handleClose();
-                }).catch(err =>{
-                    
                 })
+                .catch((err) => {});
         } else {
             const canvas = canvasRef.current;
             const ctx = canvas.getContext('2d');
             initializeCaptcha(ctx);
-            setErrors("Capcha sai, vui lòng nhập lại")
+            setErrors('Capcha sai, vui lòng nhập lại');
         }
     };
-    const handleSubmit= async (e)=>{
-
-    }
+    const handleSubmit = async (e) => {};
     return (
         <Container component="main" maxWidth="xs">
             <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <div className="form-element">
+                <div className="form-element">
                     <CustomInput
                         title={t('label.email')}
                         value={props.email}
@@ -116,7 +111,7 @@ function ForgotPassword(props) {
                     <div className="wrapper">
                         <canvas ref={canvasRef}></canvas>
                         <Button
-                            className='btn-reload'
+                            className="btn-reload"
                             onClick={() => initializeCaptcha(canvasRef.current.getContext('2d'))}
                         >
                             {t('common.reload')}
@@ -125,14 +120,14 @@ function ForgotPassword(props) {
                     {errors && <h5>{errors}</h5>}
                     <CustomInput
                         type="text"
-                        className='user-input'
-                        title= {t('common.enterCapcha')}
+                        className="user-input"
+                        title={t('common.enterCapcha')}
                         value={userInput}
                         onChange={handleUserInputChange}
                     />
 
-                    <Button  className='form-button btn-forgotpassword' fullWidth  onClick={handleCaptchaSubmit}>
-                       {t('common.retrievalPassword')}
+                    <Button className="form-button btn-forgotpassword" fullWidth onClick={handleCaptchaSubmit}>
+                        {t('common.retrievalPassword')}
                     </Button>
                 </div>
             </Box>

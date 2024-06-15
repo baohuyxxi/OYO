@@ -1,27 +1,22 @@
-import * as React from 'react';
-import { AxiosError } from 'axios';
+import { useState, useEffect } from 'react';
 import format from 'date-fns/format';
 import { useSnackbar } from 'notistack';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
-
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Accordion from '@mui/material/Accordion';
-
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
-
 import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 import pricesOfHomeApi from '~/services/apis/partnerAPI/pricesOfHomeApi';
 import formatPrice from '../../../utils/formatPrice';
-// import DateDiscount from '../../DateDiscount/DateDiscount';
 import './ValuationDiscount.scss';
 
 export default function ValuationDiscountSetting(props) {
-    const [expanded, setExpanded] = React.useState(false);
-    const [numberLength, setNumberLength] = React.useState(0);
-    const [dateDiscountWeek, setDateDiscountWeek] = React.useState(null);
-    const [dateDiscountMonth, setDateDiscountMonth] = React.useState(null);
+    const [expanded, setExpanded] = useState(false);
+    const [numberLength, setNumberLength] = useState(0);
+    const [dateDiscountWeek, setDateDiscountWeek] = useState(null);
+    const [dateDiscountMonth, setDateDiscountMonth] = useState(null);
 
     const { handleSubmit, register, setValue } = useForm();
 
@@ -29,13 +24,13 @@ export default function ValuationDiscountSetting(props) {
 
     const { enqueueSnackbar } = useSnackbar();
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (props.detailPriceRoom.discounts) {
             setNumberLength(props.detailPriceRoom.discounts.length + 2);
         }
     }, [props.detailPriceRoom]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         setValue('pricePerNight', props?.detailPriceRoom.pricePerNight);
         for (var i = 0; i < props?.detailPriceRoom.discounts.length; i++) {
             if (props?.detailPriceRoom.discounts[i].config !== null) {
@@ -108,7 +103,7 @@ export default function ValuationDiscountSetting(props) {
 
     const onSubmitSurcharge = (dataSurcharge) => {
         const data = transformSurchargeData(dataSurcharge);
-        partnerManageAPI.setSurcharge({ data:data, id: params.idHome});
+        partnerManageAPI.setSurcharge({ data: data, id: params.idHome });
         // .then((dataResponse) => {
         //     enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
         // })
@@ -124,7 +119,7 @@ export default function ValuationDiscountSetting(props) {
                 <h4>Định giá</h4>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
-                       expandIcon={<ExpandMoreIcon/>}
+                        expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >
@@ -155,7 +150,7 @@ export default function ValuationDiscountSetting(props) {
                     <form onSubmit={handleSubmit(onSubmitDiscount)} key={index}>
                         <Accordion expanded={expanded === `panel${i}`} onChange={handleChange(`panel${i}`)}>
                             <AccordionSummary
-                               expandIcon={<ExpandMoreIcon/>}
+                                expandIcon={<ExpandMoreIcon />}
                                 aria-controls="panel1bh-content"
                                 id="panel1bh-header"
                             >
@@ -216,7 +211,7 @@ export default function ValuationDiscountSetting(props) {
                     <form onSubmit={handleSubmit(onSubmitSurcharge)} key={index}>
                         <Accordion expanded={expanded === `panel${j}`} onChange={handleChange(`panel${j}`)} key={j}>
                             <AccordionSummary
-                               expandIcon={<ExpandMoreIcon/>}
+                                expandIcon={<ExpandMoreIcon />}
                                 aria-controls="panel1bh-content"
                                 id="panel1bh-header"
                             >

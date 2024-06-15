@@ -1,19 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import './RoomItem.scss';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
-
 // Import css files
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
 import formatPrice from '~/utils/formatPrice';
 import { useNavigate } from 'react-router-dom';
 import IconLove from '../RoomPopular/IconLove';
-import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import wishAPI from '~/services/apis/clientAPI/clientWishAPI';
 import { t } from 'i18next';
 import iconStar from '~/assets/svg/star.svg';
+
 const RoomItem = (props) => {
     const settings = {
         dots: true,
@@ -48,9 +46,9 @@ const RoomItem = (props) => {
                         </div>
                     ))}
                 </Slider>
-                { love!== null && <IconLove idHome={props?.infoRoom?.id} isFavorite={love} />   }
-                
-                <div className="info__room" >
+                {love !== null && <IconLove idHome={props?.infoRoom?.id} isFavorite={love} />}
+
+                <div className="info__room">
                     <h2 onClick={() => handleLinkToDetail(props?.infoRoom?.id)}>{props?.infoRoom?.accomName}</h2>
                     <div className="obility__room">
                         <p>{props.infoRoom.accomCateName}</p>

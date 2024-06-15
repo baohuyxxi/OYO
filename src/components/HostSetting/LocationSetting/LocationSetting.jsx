@@ -11,6 +11,7 @@ import { useParams } from 'react-router-dom';
 import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 import { useDispatch } from 'react-redux';
 import settingAccomSlice from '~/redux/settingAccomSlice';
+
 export default function LocationSetting(props) {
     const dispatch = useDispatch();
     const [expanded, setExpanded] = useState(false);
@@ -19,7 +20,7 @@ export default function LocationSetting(props) {
     const { enqueueSnackbar } = useSnackbar();
     const params = useParams();
     useEffect(() => {
-        if (props.locationRoom.addressDetail !== undefined ) {
+        if (props.locationRoom.addressDetail !== undefined) {
             setAddress(decodeAddress(props.locationRoom.addressDetail));
         } else {
             console.error('Invalid address format:', addressParts);
@@ -77,7 +78,7 @@ export default function LocationSetting(props) {
                         <input
                             className="input-address"
                             value={address?.addressDetail}
-                            onChange={(e) =>  setAddress({...address, addressDetail: e.target.value})}
+                            onChange={(e) => setAddress({ ...address, addressDetail: e.target.value })}
                         />
                         <div className="btn">
                             <p onClick={handleClose} className="btn-close">

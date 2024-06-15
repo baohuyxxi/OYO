@@ -1,16 +1,10 @@
-import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
-import bookingAPI from '~/services/apis/clientAPI/clientBookingAPI';
-
 import './ModalConfirm.scss';
-
-import { AxiosError } from 'axios';
-import { useSnackbar } from 'notistack';
 import { t } from 'i18next';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const style = {
     position: 'absolute',
@@ -28,8 +22,8 @@ export default function ModalConfirm(props) {
     const handleClose = () => props.setOpen(false);
     const handleYes = () => {
         props.setConfirm(true);
-        handleClose()
-    }
+        handleClose();
+    };
 
     return (
         <div>

@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { SearchContext } from '~/contexts/searchContext';
+import { SearchContext } from '~/contexts/SearchContext';
 import UserAdmin from '~/pages/admin/LayoutUserAdmin/UserAdmin';
 import cmsUserAPI from '~/services/apis/adminAPI/cmsUserAPI';
 import LoadingAdmin from '~/components/Admin/LoadingAdmin/LoadingAdmin';
@@ -17,9 +17,7 @@ const LayoutUserAdmin = () => {
                 setListUser(dataResponse.data.content);
                 setIsLoading(false);
             })
-            .catch((error) => {
-
-            });
+            .catch((error) => {});
     }, []);
 
     return <>{isLoading ? <LoadingAdmin /> : <UserAdmin data={listUser} setListUser={setListUser} />}</>;

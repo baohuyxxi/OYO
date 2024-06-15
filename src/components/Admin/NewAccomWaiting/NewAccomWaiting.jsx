@@ -1,5 +1,5 @@
 import './NewAccomWaiting.scss';
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import listNewAccom from '~/mockdata/listNewAccom.json';
 
@@ -17,7 +17,6 @@ export default function NewAccomWaiting() {
         console.log('Rejected');
     };
 
-
     return (
         <div className="new-accom__page">
             <div className="header__admin">
@@ -32,19 +31,46 @@ export default function NewAccomWaiting() {
                         <div className="new-accom__info">
                             <h3>{newAccom.accomName}</h3>
                             <p>{newAccom.description}</p>
-                            <p><strong>Địa chỉ chi tiết:</strong> {newAccom.addressDetail}</p>
-                            <p><strong>Địa chỉ chung:</strong> {newAccom.addressGeneral}</p>
-                            <p><strong>Diện tích:</strong> {newAccom.acreage} m²</p>
-                            <p><strong>Số người:</strong> {newAccom.numPeople}</p>
-                            <p><strong>Số phòng tắm:</strong> {newAccom.numBathRoom}</p>
-                            <p><strong>Số phòng ngủ:</strong> {newAccom.numBedRoom}</p>
-                            <p><strong>Số bếp:</strong> {newAccom.numKitchen}</p>
-                            <p><strong>Lượt xem:</strong> {newAccom.numView}</p>
-                            <p><strong>Giá mỗi đêm:</strong> {newAccom.pricePerNight} VND</p>
-                            <p><strong>Chính sách hủy:</strong> {newAccom.cancellationPolicy} - Phí hủy: {newAccom.cancellationFeeRate}%</p>
-                            <p><strong>Hướng dẫn:</strong> {newAccom.guide}</p>
-                            <p><strong>Loại chỗ nghỉ:</strong> {newAccom.accomCateName}</p>
-                            <p><strong>Chủ nhà:</strong> {newAccom.nameHost}</p>
+                            <p>
+                                <strong>Địa chỉ chi tiết:</strong> {newAccom.addressDetail}
+                            </p>
+                            <p>
+                                <strong>Địa chỉ chung:</strong> {newAccom.addressGeneral}
+                            </p>
+                            <p>
+                                <strong>Diện tích:</strong> {newAccom.acreage} m²
+                            </p>
+                            <p>
+                                <strong>Số người:</strong> {newAccom.numPeople}
+                            </p>
+                            <p>
+                                <strong>Số phòng tắm:</strong> {newAccom.numBathRoom}
+                            </p>
+                            <p>
+                                <strong>Số phòng ngủ:</strong> {newAccom.numBedRoom}
+                            </p>
+                            <p>
+                                <strong>Số bếp:</strong> {newAccom.numKitchen}
+                            </p>
+                            <p>
+                                <strong>Lượt xem:</strong> {newAccom.numView}
+                            </p>
+                            <p>
+                                <strong>Giá mỗi đêm:</strong> {newAccom.pricePerNight} VND
+                            </p>
+                            <p>
+                                <strong>Chính sách hủy:</strong> {newAccom.cancellationPolicy} - Phí hủy:{' '}
+                                {newAccom.cancellationFeeRate}%
+                            </p>
+                            <p>
+                                <strong>Hướng dẫn:</strong> {newAccom.guide}
+                            </p>
+                            <p>
+                                <strong>Loại chỗ nghỉ:</strong> {newAccom.accomCateName}
+                            </p>
+                            <p>
+                                <strong>Chủ nhà:</strong> {newAccom.nameHost}
+                            </p>
                         </div>
                         <div className="new-accom__facilities">
                             <h4>Tiện ích</h4>
@@ -55,7 +81,8 @@ export default function NewAccomWaiting() {
                                     <ul>
                                         {category.infoFacilityList.map((facility) => (
                                             <li key={facility.id}>
-                                                <img src={facility.imageUrl} alt={facility.facilityName} /> {facility.facilityName}
+                                                <img src={facility.imageUrl} alt={facility.facilityName} />{' '}
+                                                {facility.facilityName}
                                             </li>
                                         ))}
                                     </ul>
@@ -73,8 +100,12 @@ export default function NewAccomWaiting() {
                             </ul>
                         </div>
                         <div className="new-accom__actions">
-                            <button onClick={handleApprove} className="approve-button">Duyệt</button>
-                            <button onClick={handleReject} className="reject-button">Từ chối</button>
+                            <button onClick={handleApprove} className="approve-button">
+                                Duyệt
+                            </button>
+                            <button onClick={handleReject} className="reject-button">
+                                Từ chối
+                            </button>
                         </div>
                     </div>
                 </div>

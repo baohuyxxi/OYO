@@ -1,7 +1,7 @@
 import { Stomp } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
-// import store from '../../redux/store';
-// import notificationSlice from '../../redux/notificationSlice';
+import { store } from '~/redux/store';
+import notificationSlice from '~/redux/notificationSlice';
 
 const VITE_WS_BASE_URL = import.meta.env.VITE_WS_BASE_URL;
 let stompClient = null;
@@ -11,7 +11,7 @@ const connectSocketServer = ({ userMail }) => {
     stompClient = Stomp.over(socket);
     stompClient.connect({}, () => {
         stompClient.subscribe(`/user/${userMail}/queue/messages`, (message) => {
-            alert(message.body);
+            store.dispatch(notificationSlice.actions.subscribeNumberOfNotification(message.body));
         });
     });
 };

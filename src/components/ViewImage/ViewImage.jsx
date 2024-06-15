@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -6,12 +6,12 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import globalSlice from '~/redux/globalSlice';
-import { useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import './ViewImage.scss';
 import { t } from 'i18next';
 
 export default function ViewIamge(props) {
-    const viewImages = useSelector(state => state.global.viewImages)
+    const viewImages = useSelector((state) => state.global.viewImages);
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
     useEffect(() => {
@@ -25,7 +25,7 @@ export default function ViewIamge(props) {
     };
 
     const handleClose = () => {
-        dispatch(globalSlice.actions.setViewImg([]))
+        dispatch(globalSlice.actions.setViewImg([]));
         setOpen(false);
     };
     return (

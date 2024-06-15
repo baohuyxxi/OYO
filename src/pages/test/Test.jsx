@@ -17,7 +17,7 @@ const Test = () => {
         setAnchorEl(event.currentTarget);
         client.publish({
             destination: '/app/booking-noti',
-            body: JSON.stringify({ senderId: currentUser.userId, accomId: })
+            body: JSON.stringify({ senderId: currentUser.userId, accomId: 1 })
         });
     };
     const handleClose = () => {

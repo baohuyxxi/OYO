@@ -18,6 +18,7 @@ import { useDispatch } from 'react-redux';
 import userSlice from '~/redux/userSlice';
 import { t } from 'i18next';
 import { GOOGLE_AUTH_URL } from '~/mockdata';
+import { connectSocketServer } from '~/services/socket/notificationSocket';
 
 export default function SignIn(props) {
     const dispatch = useDispatch();
@@ -179,7 +180,7 @@ export default function SignIn(props) {
                     </Button>
                 )}
                 {showForgotPassword && (
-                    <Button className="to-forgotpassword" fullWidth variant='text' onClick={handleForgotPassword}>
+                    <Button className="to-forgotpassword" fullWidth variant="text" onClick={handleForgotPassword}>
                         {t('link.forgotpassword')}
                     </Button>
                 )}

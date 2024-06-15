@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import AppBar from '@mui/material/AppBar';
@@ -18,11 +18,16 @@ import Test from '~/pages/test/Test';
 import { t } from 'i18next';
 import './NavBar.scss';
 import BellRing from '~/components/BellRing/BellRing';
+import { connectSocketServer } from '~/services/socket/notificationSocket';
 
 export default function NavBar() {
     const [open, setOpen] = useState(false);
     const user = useSelector((state) => state.user.current);
     const location = useLocation().pathname;
+
+    useEffect(() => {
+        if (user !== null) connectSocketServer({ userMail: user.mail });
+    }, [user]);
     return (
         <AppBar className="appbar">
             <Toolbar className="toolbar">

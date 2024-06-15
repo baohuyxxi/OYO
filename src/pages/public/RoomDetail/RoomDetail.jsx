@@ -39,6 +39,7 @@ import { transLateRoom } from '~/services/apis/translateAPI/translateAPI';
 import { dayGap } from '~/utils/calculates';
 import GoogleMap from '~/components/GoogleMap/GoogleMap';
 import globalSlice from '~/redux/globalSlice';
+
 export default function RoomDetail() {
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();

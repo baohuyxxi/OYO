@@ -9,7 +9,7 @@ import { useEffect, useRef, useState } from 'react';
 import { enGB } from 'date-fns/locale';
 import { DateRangePicker, START_DATE, END_DATE } from 'react-nice-dates';
 import moment from 'moment';
-// import 'react-nice-dates/build/style.css';
+import 'react-nice-dates/build/style.css';
 export default function DateRangeSelector(props) {
     const {dateBook, setDataDay } = props;
     const dataBooking = useSelector((state) => state.booking.info);

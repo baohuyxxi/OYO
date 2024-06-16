@@ -84,7 +84,7 @@ export default function RoomsAndRate({ accomApproved }) {
                     <td key={`${accommodation.accomId}-${date}`}>
                         <input
                             type="text"
-                            defaultValue={getPriceAccommodation(accommodation, date).toLocaleString('vi-VN')}
+                            // defaultValue={getPriceAccommodation(accommodation, date).toLocaleString('vi-VN')}
                             value={
                                 changePrice[accommodation.accomId]
                                     ? changePrice[accommodation.accomId][date]?.toLocaleString('vi-VN')
@@ -127,7 +127,7 @@ export default function RoomsAndRate({ accomApproved }) {
             ];
         }, []);
         partnerManageAPI.updatePriceCustom(data).then((res) => {
-            enqueueSnackbar("Cập nhật thành công", { variant: 'success' });
+            enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
         });
     };
 

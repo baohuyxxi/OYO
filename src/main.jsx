@@ -13,6 +13,7 @@ import { SearchProvider } from '~/contexts/searchContext';
 import './assets/css/grid.scss';
 import './assets/css/frame.scss';
 import './assets/css/index.scss';
+import './assets/css/responsive.scss';
 // import '../cloudinary-video-player/dist/cld-video-player.min.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(

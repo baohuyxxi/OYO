@@ -30,7 +30,7 @@ export default function FramePage({ children }) {
             <div className="body-page">{children}</div>
             {viewImages && <ViewIamge viewImages={viewImages} />}
 
-            <ChatAI onClose={handleClose} />
+            {/* <ChatAI onClose={handleClose} /> */}
             {chatbox.open === true && <ChatBox />}
             <Footer />
         </div>

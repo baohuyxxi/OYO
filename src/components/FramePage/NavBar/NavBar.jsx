@@ -60,9 +60,6 @@ export default function NavBar() {
                         <div className="element">
                             <DropdownUser />
                         </div>
-                        <div>
-                            <Test></Test>
-                        </div>
                     </>
                 )}
                 {open && <DialogAuth open={open} setOpen={setOpen} />}

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import './StatusCard.scss';
 
 const StatusCard = ({ icon, count, title }) => {

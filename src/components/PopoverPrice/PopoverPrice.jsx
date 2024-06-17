@@ -1,11 +1,11 @@
-import * as React from 'react';
+import { useState } from 'react';
 import Popover from '@mui/material/Popover';
 import Button from '@mui/material/Button';
 import formatPrice from '~/utils/formatPrice';
 import { t } from 'i18next';
 
 export default function PopoverPrice(props) {
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -30,11 +30,11 @@ export default function PopoverPrice(props) {
                 onClose={handleClose}
                 anchorOrigin={{
                     vertical: 'top',
-                    horizontal: 'left',
+                    horizontal: 'left'
                 }}
                 transformOrigin={{
                     vertical: 'bottom',
-                    horizontal: 'right',
+                    horizontal: 'right'
                 }}
             >
                 <h2 style={{ width: '300px', textAlign: 'center', paddingBottom: '6px' }}>{t('title.priceDetail')}</h2>
@@ -47,7 +47,7 @@ export default function PopoverPrice(props) {
                             justifyContent: 'space-between',
                             padding: '5px 15px',
                             alignItems: 'center',
-                            background: `${detail.especially && '#64b5f6'}`,
+                            background: `${detail.especially && '#64b5f6'}`
                         }}
                         key={index}
                     >

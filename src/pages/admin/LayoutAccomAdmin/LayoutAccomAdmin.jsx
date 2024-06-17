@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { SearchContext } from '~/contexts/searchContext';
+import { SearchContext } from '~/contexts/SearchContext';
 import AccomAdmin from '~/pages/admin/LayoutAccomAdmin/AccomAdmin';
 import cmsAccomPlaceAPI from '~/services/apis/adminAPI/cmsAccomPlaceAPI';
 import LoadingAdmin from '~/components/Admin/LoadingAdmin/LoadingAdmin';

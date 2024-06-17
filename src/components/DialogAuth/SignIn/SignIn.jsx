@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import googleIcon from '~/assets/imageMaster/google-logo.png';
@@ -179,7 +179,7 @@ export default function SignIn(props) {
                     </Button>
                 )}
                 {showForgotPassword && (
-                    <Button className="to-forgotpassword" fullWidth variant='text' onClick={handleForgotPassword}>
+                    <Button className="to-forgotpassword" fullWidth variant="text" onClick={handleForgotPassword}>
                         {t('link.forgotpassword')}
                     </Button>
                 )}

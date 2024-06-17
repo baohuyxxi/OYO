@@ -1,12 +1,9 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import { useLocation, NavLink } from 'react-router-dom';
-
 import logoOYO from '~/assets/logo.svg';
-
 import ModeToggle from '~/components/ModeToggle/ModeToggle';
 import DropdownUser from '~/components/DropdownUser/DropdownUser';
 import LanguageSelected from '~/components/LanguageSelected/LanguageSelected';
@@ -14,15 +11,14 @@ import Button from '@mui/material/Button';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailNotification from '~/components/MailNotification/MailNotification';
 import DialogAuth from '~/components/DialogAuth/DialogAuth';
-import Test from '~/pages/test/Test';
 import { t } from 'i18next';
 import './NavBar.scss';
-import BellRing from '~/components/BellRing/BellRing';
 
 export default function NavBar() {
     const [open, setOpen] = useState(false);
     const user = useSelector((state) => state.user.current);
     const location = useLocation().pathname;
+
     return (
         <AppBar className="appbar">
             <Toolbar className="toolbar">

@@ -1,10 +1,10 @@
 import './DrawerHome.scss';
-import { t } from 'i18next';
 import Drawer from '@mui/material/Drawer';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import IconButton from '@mui/material/IconButton';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import globalSlice from '~/redux/globalSlice';
+
 export default function DrawerHome(props) {
     const { anchor, setOpen, data, open, stars } = props;
     const handleOnClose = () => {
@@ -32,7 +32,7 @@ export default function DrawerHome(props) {
     const dispatch = useDispatch();
     const imageClick = (img) => {
         dispatch(globalSlice.actions.setViewImg([img]));
-    }
+    };
     return (
         <Drawer anchor="right" open={props.open} onClose={toggleDrawer(anchor, false)}>
             <div className="drawer__home">
@@ -72,7 +72,12 @@ export default function DrawerHome(props) {
                         <div className="image__container">
                             {images.map((image, index) => (
                                 <div className={`image__item ${image.size}`} key={index}>
-                                    <img src={image.url} alt="room_hot" className="image-home" onClick={()=>imageClick(image.url)} />
+                                    <img
+                                        src={image.url}
+                                        alt="room_hot"
+                                        className="image-home"
+                                        onClick={() => imageClick(image.url)}
+                                    />
                                 </div>
                             ))}
                         </div>

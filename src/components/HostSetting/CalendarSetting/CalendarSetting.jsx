@@ -1,29 +1,22 @@
 import { useEffect, useState } from 'react';
-import { AxiosError } from 'axios';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import moment from 'moment';
 import { useSnackbar } from 'notistack';
-
 import { useForm } from 'react-hook-form';
-
 import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-// import { CalendarPicker } from '@mui/x-date-pickers/CalendarPicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-
 import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 import pricesOfHomeApi from '~/services/apis/partnerAPI/pricesOfHomeApi';
-
 import formatPrice from '../../../utils/formatPrice';
-
 import './CalendarSetting.scss';
 import SelectedIdRoom from './SelectedIdRoom';
 
 export default function CalendarSetting() {
     const [date, setDate] = useState(dayjs(moment().format('YYYY-MM-DD')));
     const [dateFormat, setDateFormat] = useState(
-        `${moment().format('DD')} tháng ${moment().format('MM')} năm ${moment().format('YYYY')}`,
+        `${moment().format('DD')} tháng ${moment().format('MM')} năm ${moment().format('YYYY')}`
     );
     const [idRoom, setIdRoom] = useState('');
 
@@ -44,7 +37,7 @@ export default function CalendarSetting() {
             price: parseInt(data.price),
             homeId: idRoom,
             dateStart: `${year}-${month}-${day}`,
-            dateEnd: `${year}-${month}-${day}`,
+            dateEnd: `${year}-${month}-${day}`
         };
         pricesOfHomeApi
             .customePriceDay(newDataPrice)

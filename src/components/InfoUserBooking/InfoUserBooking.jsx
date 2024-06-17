@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import bookingSlice from '~/redux/bookingSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { t } from 'i18next';
+
 const InfoUserBooking = () => {
     const dispatch = useDispatch();
     const dataBooking = useSelector((state) => state.booking.info);

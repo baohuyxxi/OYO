@@ -1,9 +1,8 @@
 import './GoogleMap.scss';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 import HotelIcon from '@mui/icons-material/Hotel';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import { Button } from '@mui/material';
 
 export default function GoogleMap({ data }) {
     const [currentPosition, setCurrentPosition] = useState(null);
@@ -12,7 +11,6 @@ export default function GoogleMap({ data }) {
     const [locationAccom, setLocationAccom] = useState(null);
     const Hotel = () => <HotelIcon style={{ color: 'red', fontSize: 'xx-large' }} />;
     const LocationCurrent = () => <LocationOnIcon style={{ color: 'blue', fontSize: 'xx-large' }} />;
-   
 
     useEffect(() => {
         const fetchCurrentPosition = () => {
@@ -68,12 +66,8 @@ export default function GoogleMap({ data }) {
                 defaultZoom={defaultProps.zoom}
                 onClick={handleMapClick}
             >
-                <Hotel
-                    className="icon__location-current"
-                    lat={locationAccom.lat}
-                    lng={locationAccom.lng}
-                />
-                 <LocationCurrent
+                <Hotel className="icon__location-current" lat={locationAccom.lat} lng={locationAccom.lng} />
+                <LocationCurrent
                     className="icon__location-current"
                     lat={currentPosition.lat}
                     lng={currentPosition.lng}

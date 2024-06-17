@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
-
 import removeVietnameseTones from '../../utils/convertStringVietNamese';
 import './SearchHomeByOwner.scss';
 

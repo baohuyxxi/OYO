@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './CommentReview.scss';
 import { Avatar } from '@mui/material';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { format } from 'date-fns';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import { t } from 'i18next';
+
 export default function CommentReview(props) {
     const [dataComment, setDataaCommet] = useState([]);
     const [showMoreComments, setShowMoreComments] = useState(false);

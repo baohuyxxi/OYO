@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -8,10 +8,10 @@ import DialogTitle from '@mui/material/DialogTitle';
 import './DialogCountRoom.scss';
 import CountNumberRoom from '../CountNumber/CountNumberRoom';
 
-export default function DialogCountRoom(props ) {
-    const [open, setOpen] = React.useState(false);
-    
-    const [dataSetRoomCount, setDataSetRoomCount] = React.useState([]);
+export default function DialogCountRoom(props) {
+    const [open, setOpen] = useState(false);
+
+    const [dataSetRoomCount, setDataSetRoomCount] = useState([]);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -36,7 +36,7 @@ export default function DialogCountRoom(props ) {
 
     const handleSave = () => {
         if (props.handleSaveAddRoom) {
-            props.handleSaveAddRoom(dataSetRoomCount)
+            props.handleSaveAddRoom(dataSetRoomCount);
             setOpen(false);
         }
     };
@@ -66,8 +66,13 @@ export default function DialogCountRoom(props ) {
                         {props?.listCategoryRoom?.map((categoryRoom, index) => (
                             <div key={index}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                    <p style={{ fontSize: '15px' }}>{`${categoryRoom?.accomCateName}: ${categoryRoom.description}`}</p>
-                                    <CountNumberRoom categoryId={categoryRoom.id} handleSetDataRoomCount={handleSetDataRoomCount}/>
+                                    <p
+                                        style={{ fontSize: '15px' }}
+                                    >{`${categoryRoom?.accomCateName}: ${categoryRoom.description}`}</p>
+                                    <CountNumberRoom
+                                        categoryId={categoryRoom.id}
+                                        handleSetDataRoomCount={handleSetDataRoomCount}
+                                    />
                                 </div>
                                 <hr />
                             </div>

@@ -1,15 +1,10 @@
-import * as React from 'react';
-import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
-import Typography from '@mui/material/Typography';
 import bookingAPI from '~/services/apis/clientAPI/clientBookingAPI';
 import { cancellationPolicyToTime } from '~/utils/cancellationPolicy';
-
 import './ModalConfirmDelete.scss';
 import { useState, useEffect } from 'react';
-import { AxiosError } from 'axios';
 import { useSnackbar } from 'notistack';
 import { t } from 'i18next';
 

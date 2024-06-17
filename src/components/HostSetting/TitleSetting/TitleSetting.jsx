@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState, useEffect } from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -13,7 +13,7 @@ import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 
 export default function TittleSetting(props) {
     const dispatch = useDispatch();
-    const [expanded, setExpanded] = React.useState(false);
+    const [expanded, setExpanded] = useState(false);
 
     const {
         handleSubmit,
@@ -21,7 +21,7 @@ export default function TittleSetting(props) {
         setValue,
         formState: { isSubmitting }
     } = useForm();
-    const [refundTitle, setRefundTitle] = React.useState('');
+    const [refundTitle, setRefundTitle] = useState('');
 
     const params = useParams();
 
@@ -35,7 +35,7 @@ export default function TittleSetting(props) {
         setExpanded(false);
     };
 
-    React.useEffect(() => {
+    useEffect(() => {
         setValue('accomName', props?.infoRoom?.accomName);
         setValue('description', props.infoRoom.description);
         setValue('guide', props.infoRoom.guide);

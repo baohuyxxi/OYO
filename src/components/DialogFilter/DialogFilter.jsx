@@ -13,6 +13,7 @@ import CountRoomFilter from './CountRoomFilter/CountRoomFilter';
 import './DialogFilter.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import filterAcomSlice from '~/redux/filterAccom';
+
 const DialogFilter = (props) => {
     const dispatch = useDispatch();
     const filterAccom = useSelector((state) => state.filterAccom);
@@ -42,7 +43,7 @@ const DialogFilter = (props) => {
 
     const handleFilter = () => {
         dispatch(filterAcomSlice.actions.address(address));
-        if(valuePriceRange[0] !== 1 || valuePriceRange[1] !== 5000000){
+        if (valuePriceRange[0] !== 1 || valuePriceRange[1] !== 5000000) {
             dispatch(filterAcomSlice.actions.valuePriceRange(valuePriceRange));
         }
         dispatch(filterAcomSlice.actions.facility(facility));
@@ -58,7 +59,8 @@ const DialogFilter = (props) => {
     return (
         <div className="dialog-filter">
             <Button variant="outlined" onClick={handleClickOpen} className="btn-show">
-                <FilterAltOutlinedIcon/>{t('common.filter')}
+                <FilterAltOutlinedIcon />
+                {t('common.filter')}
             </Button>
             <Dialog
                 open={open}
@@ -67,7 +69,6 @@ const DialogFilter = (props) => {
                 aria-describedby="alert-dialog-description"
                 fullWidth={true}
                 maxWidth="md"
-                
             >
                 <div className="container__filter paper">
                     <DialogTitle
@@ -78,7 +79,6 @@ const DialogFilter = (props) => {
                             width: '600px',
                             marginBottom: '20px'
                         }}
-                        
                     >
                         {t('common.filter')}
                     </DialogTitle>

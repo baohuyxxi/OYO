@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { t } from 'i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import SkeletonProvince from '../Skeleton/SkeletonProvince';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import { transLateProvince } from '~/services/apis/translateAPI/translateAPI';
-import { useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import filterAcomSlice from '~/redux/filterAccom';
 import './Popular.scss';
 
@@ -19,15 +19,15 @@ const Popular = () => {
         publicAccomPlaceAPI
             .getTopHomeOfProvince()
             .then(async (res) => {
-                const data = await Promise.all(res.data.content.flatMap((item) => {
-                    return transLateProvince(item);
-                }));
+                const data = await Promise.all(
+                    res.data.content.flatMap((item) => {
+                        return transLateProvince(item);
+                    })
+                );
                 setListProvince(data);
                 setLoading(false);
             })
-            .catch((err) => {
-
-            });
+            .catch((err) => {});
     }, []);
 
     const handleLinkToProvince = (province) => {

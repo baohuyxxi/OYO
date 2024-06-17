@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
+import { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -15,14 +14,14 @@ import ModalConfirm from '../ModalConfirm/ModalConfirm';
 import userSlice from '~/redux/userSlice';
 import { Avatar } from '@mui/material';
 import { t } from 'i18next';
+import { disconnectSocketServer } from '~/services/socket/notificationSocket';
 
 import './DropdownUser.scss';
-import { set } from 'date-fns';
 
 export default function DropdownUser() {
     const user = useSelector((state) => state.user.current);
     const dispatch = useDispatch();
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -32,12 +31,12 @@ export default function DropdownUser() {
     };
     const handleLogout = () => {
         setOpenConfirm(true);
-        // dispatch(userSlice.actions.logout());
+        disconnectSocketServer();
     };
 
-    const [confirmLogout, setConfirmLogout] = React.useState(false);
-    const [openConfirm, setOpenConfirm] = React.useState(false);
-    React.useEffect(() => {
+    const [confirmLogout, setConfirmLogout] = useState(false);
+    const [openConfirm, setOpenConfirm] = useState(false);
+    useEffect(() => {
         if (confirmLogout === true) {
             dispatch(userSlice.actions.logout());
             setConfirmLogout(false);
@@ -108,7 +107,11 @@ export default function DropdownUser() {
                 </MenuItem>
             </Menu>
             {openConfirm && (
-                <ModalConfirm setOpen={setOpenConfirm} setConfirm={setConfirmLogout} title={t('common.youWantLogout')} />
+                <ModalConfirm
+                    setOpen={setOpenConfirm}
+                    setConfirm={setConfirmLogout}
+                    title={t('common.youWantLogout')}
+                />
             )}
         </div>
     );

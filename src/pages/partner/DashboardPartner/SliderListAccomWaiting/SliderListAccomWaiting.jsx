@@ -1,5 +1,5 @@
 import './SliderListAccomWaiting.scss';
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { t } from 'i18next';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -10,6 +10,8 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import defaultHotelImage from '~/assets/img/defaultHotelImage.png';
 
 export default function SliderListAccomWaiting({ accomWaiting }) {
+
+
     const [settings, setSettings] = useState({
         infinite: true,
         speed: 500,
@@ -18,13 +20,14 @@ export default function SliderListAccomWaiting({ accomWaiting }) {
     });
 
     useEffect(() => {
-        if(accomWaiting.length < 3) {
+        if (accomWaiting.length < 3 && accomWaiting.length > 0) {
             setSettings({
                 ...settings,
                 slidesToShow: accomWaiting.length
-            })
+            });
         }
     }, [accomWaiting]);
+    
 
     return (
         <div className="slider-list-accom-waiting">

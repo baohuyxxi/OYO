@@ -5,11 +5,12 @@ import 'react-calendar-timeline/lib/Timeline.css';
 import moment from 'moment';
 import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 
-
 export default function CalendarDateBooked({ accomApproved }) {
     const [loading, setLoading] = useState(true);
     const [groups, setGroups] = useState([]);
     const [items, setItems] = useState([]);
+
+    console.log(items);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -60,6 +61,7 @@ export default function CalendarDateBooked({ accomApproved }) {
                         items={items}
                         defaultTimeStart={moment().add(0, 'hour')}
                         defaultTimeEnd={moment().add(14, 'day')}
+                        canResize={false}
                     />
                 </div>
             )}

@@ -21,7 +21,7 @@
     margin-left: 5px;
     margin-right: 5px;
     cursor: pointer;
-    border-bottom: 2px ;
+   
 
     .icon-filter {
       display: grid;
@@ -43,7 +43,9 @@
       }
     }
   }
-
+  .slider__item-filter{
+    border-bottom: 2px solid transparent;
+  }
   .slider__item-filter:hover {
     border-bottom: 2px solid var(--text-color);
   }

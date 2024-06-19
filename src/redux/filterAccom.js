@@ -50,9 +50,6 @@ const filterAcomSlice = createSlice({
             state.numBathRoom = action.payload;
         },
  
-        setMaxed(state, action) {
-            state.maxed = action.payload;
-        }
     }
 });
 export default filterAcomSlice;

@@ -1,5 +1,40 @@
+@use '../../assets/css/responsive.scss';
 .form-dialog {
-    width: 450px;
+    @mixin responsive-styles {
+        header {
+            font-weight: bold;
+            font-size: medium!important;
+        }
+        .policy {
+            h6 {
+                font-size: xx-small;
+            }
+        }
+    }
+    @include responsive.laptop {
+     
+    }
+    @include responsive.tablet {
+       
+    }
+
+    @include responsive.mobile-large {
+     
+    }
+    @include responsive.mobile-medium {
+     
+        @include responsive-styles;
+    }
+
+    @include responsive.mobile-small {
+
+        @include responsive-styles;
+    }
+    @include responsive.mobile-xsmall {
+
+        @include responsive-styles;
+    }
+
     align-items: center;
     .form-button {
         font-weight: bold;

@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { typeRoom, typeBedRoom } from '~/share/models/roomHome';
+import { typeRoom, typeBedRoom } from '~/models/roomHome';
 import CountNumber from '~/components/CountNumber/CountNumber';
 import CustomInput from '~/assets/custom/CustomInput';
 import MenuItem from '@mui/material/MenuItem';

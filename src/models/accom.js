@@ -21,3 +21,17 @@ export const accomFormData = {
     facilityNameList: [],
     guide: null
 };
+
+export const generalDefault = {
+    accomCateName: '',
+    acreage: 0,
+    checkInFrom: '14:00',
+    checkOutTo: '12:00',
+    description: '',
+    discountPercent: 0,
+    guide: '',
+    nameAccom: '',
+    pricePerNight: 0,
+    surchargeList: []
+};
+

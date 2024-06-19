@@ -1,0 +1,95 @@
+@use '../../../assets/css/responsive.scss';
+
+.rooms-and-rate-manager {
+    padding: 20px;
+
+    &__header {
+        text-align: center;
+        margin-bottom: 20px;
+
+        .page-header {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+    }
+
+    .loading {
+        text-align: center;
+        font-size: 1.5em;
+        color: #666;
+    }
+}
+
+@include responsive.mobile-small {
+    .rooms-and-rate-manager {
+        padding: 10px;
+
+        &__header {
+            .page-header {
+                font-size: 1.5em;
+            }
+        }
+    }
+}
+
+@include responsive.mobile-medium {
+    .rooms-and-rate-manager {
+        padding: 15px;
+
+        &__header {
+            .page-header {
+                font-size: 1.75em;
+            }
+        }
+    }
+}
+
+@include responsive.mobile-large {
+    .rooms-and-rate-manager {
+        padding: 18px;
+
+        &__header {
+            .page-header {
+                font-size: 1.85em;
+            }
+        }
+    }
+}
+
+@include responsive.tablet {
+    .rooms-and-rate-manager {
+        padding: 20px;
+
+        &__header {
+            .page-header {
+                font-size: 2em;
+            }
+        }
+    }
+}
+
+@include responsive.laptop {
+    .rooms-and-rate-manager {
+        padding: 25px;
+
+        &__header {
+            .page-header {
+                font-size: 2.2em;
+            }
+        }
+    }
+}
+
+@include responsive.desktop {
+    .rooms-and-rate-manager {
+        padding: 30px;
+
+        &__header {
+            .page-header {
+                font-size: 2.5em;
+            }
+        }
+    }
+}

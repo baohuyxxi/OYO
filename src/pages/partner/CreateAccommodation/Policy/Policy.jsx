@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import createAccomSlice from '~/redux/createAccomSlice';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import partnerCreateAccomAPI from '~/services/apis/partnerAPI/partnerCreateAccomAPI';
-import { policiesFormData } from '~/share/models/roomHome';
-import { cancelBookingModel, policyPublicModel } from '~/share/models/cancelBooking';
+import { policiesFormData } from '~/models/roomHome';
+import { cancelBookingModel, policyPublicModel } from '~/models/cancelBooking';
 import CustomInput from '~/assets/custom/CustomInput';
 import MenuItem from '@mui/material/MenuItem';
 

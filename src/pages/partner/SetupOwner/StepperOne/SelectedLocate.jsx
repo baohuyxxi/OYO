@@ -6,7 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 import { getListProvices } from '~/services/apis/provinceApi';
-import { ProvinceModel } from '~/share/models/province';
+import { ProvinceModel } from '~/models/province';
 import { t } from 'i18next';
 import { useDispatch } from 'react-redux';
 import setupOwnerSlice from '../setupOwnerSlice';

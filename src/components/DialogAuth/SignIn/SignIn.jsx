@@ -11,7 +11,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import CustomInput from '~/assets/custom/CustomInput';
 import authAPI from '~/services/apis/authAPI/authAPI';
-import { SigninRequest } from '~/share/models/auth';
+import { SigninRequest } from '~/models/auth';
 import { validate } from '~/utils/validate';
 import { useSnackbar } from 'notistack';
 import { useDispatch } from 'react-redux';

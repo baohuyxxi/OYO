@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { accomFormData } from '~/share/models/accom';
+import { accomFormData } from '~/models/accom';
 const createAccomSlice = createSlice({
     name: 'createAccom',
     initialState: {

@@ -1,3 +1,4 @@
+@use '../../../assets/css/responsive.scss';
 .appbar {
     height: 75px;
     position: relative;
@@ -14,9 +15,41 @@
     background-color: var(--background-paper) !important;
     .toolbar {
         background-color: var(--background-paper);
-        width: 1500px;
+        max-width: 1500px;
         color: var(--background-contrastText);
         font-weight: bold;
+
+        @include responsive.desktop {
+            max-width: 1500px;
+        }
+        @include responsive.laptop {
+            max-width: 1500px;
+        }
+        @include responsive.tablet {
+            max-width: 1500px;
+        }
+        @mixin responsive-styles {
+            width: 100%;
+            padding: 0 5%;
+            .element {
+                display: none !important;
+                &__drawer {
+                    display: block !important;
+                }
+            }
+        }
+
+        @include responsive.mobile-small {
+            @include responsive-styles;
+        }
+
+        @include responsive.mobile-medium {
+            @include responsive-styles;
+        }
+
+        @include responsive.mobile-large {
+            @include responsive-styles;
+        }
         button {
             text-transform: none;
             font-weight: inherit;
@@ -32,17 +65,13 @@
         a:hover {
             color: var(--primary-main);
         }
-        // .active{
-        //   color: var(--primary-main);
-        //   border-bottom: 2px solid var(--primary-main);
-        // }
         .logo {
             padding-left: 30px;
             width: 150px;
             overflow: hidden;
             .logo-bg {
                 height: 75px;
-                transform: scale(2.0);
+                transform: scale(2);
             }
         }
         .appbar-right-menu {
@@ -54,18 +83,60 @@
             height: 100%;
             display: flex;
             align-items: center;
+            &__drawer {
+                display: none;
+            }
         }
         .element__actived {
-          padding-left: 15px;
+            padding-left: 15px;
             padding-right: 15px;
             height: 100%;
             display: flex;
             align-items: center;
-          color: var(--primary-main);
-      }
+            color: var(--primary-main);
+        }
     }
     .MuiButton-root {
         text-transform: none !important;
-        // font-family: serif !important;
+    }
+}
+.drawer-content {
+    width: 250px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+
+    .logo {
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+            width: 100px;
+            height: 100px;
+        }
+    }
+    .drawer-item {
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+        a {
+            color: var(--text-primary);
+            text-decoration: none;
+            &:hover {
+                color: var(--primary-main);
+            }
+        }
+        button {
+            justify-content: flex-start;
+            color: var(--text-primary);
+            &:hover {
+                color: var(--primary-main);
+            }
+            
+        }
+        &:hover {
+            background-color: var(--background-paper);
+        }
     }
 }

@@ -25,7 +25,12 @@ const cmsAccomPlaceAPI = {
         return response.data;
     },
     approveAccomPlace: async (id) => {
-        const response = await axiosClient.put(`/cms/accoms/${id}/approve-accom`);
+        const response = await axiosClient.post (`/cms/accoms/${id}/approve-accom`);
+        return response.data;
+    },
+
+    getDetailAccomPlace: async (id) => {
+        const response = await axiosClient.get(`/cms/accoms/${id}/detail`);
         return response.data;
     },
 };

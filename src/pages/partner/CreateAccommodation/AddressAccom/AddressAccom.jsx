@@ -7,7 +7,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import mapAPI from '~/services/apis/mapAPI/mapAPI';
 import { useDispatch, useSelector } from 'react-redux';
 import createAccomSlice from '~/redux/createAccomSlice';
-import { addressFormData, fullAddressFormData } from '~/share/models/address';
+import { addressFormData, fullAddressFormData } from '~/models/address';
 import partnerCreateAccomAPI from '~/services/apis/partnerAPI/partnerCreateAccomAPI';
 import { set } from 'date-fns';
 

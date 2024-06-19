@@ -2,7 +2,7 @@ import './PaymentInfo.scss';
 import { t } from 'i18next';
 import React, { useEffect, useState } from 'react';
 import CustomInput from '~/assets/custom/CustomInput';
-import { listBankModel } from '~/share/models/bank';
+import { listBankModel } from '~/models/bank';
 import MenuItem from '@mui/material/MenuItem';
 import partnerCreateAccomAPI from '~/services/apis/partnerAPI/partnerCreateAccomAPI';
 export default function PaymentInfo({ id, save, doneSave }) {

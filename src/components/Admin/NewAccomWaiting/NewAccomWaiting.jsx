@@ -1,21 +1,36 @@
 import './NewAccomWaiting.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import listNewAccom from '~/mockdata/listNewAccom.json';
+import cmsAccomPlaceAPI from '~/services/apis/adminAPI/cmsAccomPlaceAPI';
+import { useParams } from 'react-router-dom';
 
 export default function NewAccomWaiting() {
-    const [newAccom, setNewAccom] = useState(listNewAccom[0].data);
+    const [newAccom, setNewAccom] = useState();
     const navigate = useNavigate();
-
+    const params = useParams();
+    console.log(params.id);
+    useEffect(() => {
+        cmsAccomPlaceAPI.getDetailAccomPlace(params.id).then((res) => {
+            console.log(res.data);
+            setNewAccom(res.data);
+        });
+    }, [params.id]);
     const handleApprove = () => {
-        // Logic xử lý duyệt
-        console.log('Approved');
+        cmsAccomPlaceAPI.approveAccomPlace(params.id).then((res) => {
+            console.log(res.data);
+            navigate('/admin/new-accom');
+        })
+      
     };
 
     const handleReject = () => {
         // Logic xử lý từ chối
         console.log('Rejected');
     };
+    if (!newAccom) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div className="new-accom__page">

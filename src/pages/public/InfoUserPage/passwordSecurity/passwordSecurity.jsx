@@ -7,7 +7,7 @@ import CustomInput from '~/assets/custom/CustomInput';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Visibility from '@mui/icons-material/Visibility';
 import IconButton from '@mui/material/IconButton';
-import { ChangePassword } from '~/share/models/auth';
+import { ChangePassword } from '~/models/auth';
 import authAPI from '~/services/apis/authAPI/authAPI';
 import { useDispatch, useSelector } from 'react-redux';
 import { validateChangePassword } from '~/utils/validate';

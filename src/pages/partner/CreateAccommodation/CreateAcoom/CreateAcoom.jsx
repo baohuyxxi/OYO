@@ -39,6 +39,9 @@ export default function CreateAcoom() {
     const handleSave = (complete) => {
         if (complete) {
             enqueueSnackbar('Lưu thành công', { variant: 'success' });
+            partnerManageAPI.getPercentCreate(idAccom).then((res) => {
+                setProcess(res.data.percent);
+            });
         } else {
             enqueueSnackbar('Lưu thất bại', { variant: 'error' });
         }

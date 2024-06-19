@@ -336,7 +336,8 @@
         "accountManagement": "Quản lý tài khoản",
         "personalData": "Dữ liệu cá nhân",
         "changePassword": "Đổi mật khẩu",
-        "managerPage":"Trang quản lý"
+        "managerPage":"Trang quản lý",
+        "roomsAndRateManager": "Phòng & giá"
     },
     "footer": {
         "titleFooter": "Tiết kiệm thời gian và tiền bạc!",

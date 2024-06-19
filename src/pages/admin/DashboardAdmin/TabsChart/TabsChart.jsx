@@ -8,7 +8,7 @@
 // import { RootState } from '../../../redux/store';
 
 // import summaryHomeApi from '~/services/apis/partnerAPI/summaryHostApi';
-// import { revenueStatisticsResponse } from '../../../share/models/statisticAdmin';
+// import { revenueStatisticsResponse } from '../../../models/statisticAdmin';
 // import './TabsChart.scss';
 
 // function TabPanel(props) {

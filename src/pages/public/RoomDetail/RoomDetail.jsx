@@ -30,7 +30,7 @@ import SkeletonRoomDetail from '~/components/Skeleton/SkeletonRoomDetail';
 import formatPrice from '~/utils/formatPrice';
 import wishAPI from '~/services/apis/clientAPI/clientWishAPI';
 import bookingSlice from '~/redux/bookingSlice';
-import { guestsModel } from '~/share/models/booking';
+import { guestsModel } from '~/models/booking';
 import { transLateRoom } from '~/services/apis/translateAPI/translateAPI';
 import { dayGap } from '~/utils/calculates';
 import GoogleMap from '~/components/GoogleMap/GoogleMap';

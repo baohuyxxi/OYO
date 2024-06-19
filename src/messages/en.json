@@ -328,7 +328,8 @@
         "accountManagement": "Account management",
         "personalData": "Personal data",
         "changePassword": "Change Password",
-        "managerPage": "Manager page"
+        "managerPage": "Manager page",
+        "roomsAndRateManager": "Rooms & Rates Manager"
     },
     "footer": {
         "titleFooter": "Save time and money!",

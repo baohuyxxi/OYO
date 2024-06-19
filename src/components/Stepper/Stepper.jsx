@@ -19,8 +19,8 @@ import StepperOne from '~/pages/partner/SetupOwner/StepperOne/StepperOne';
 import StepperThree from '~/pages/partner/SetupOwner/StepperThree/StepperThree';
 import StepperTwo from '~/pages/partner/SetupOwner/StepperTwo/StepperTwo';
 
-import { addressFormData } from '~/share/models/address';
-import { typeRoom } from '~/share/models/roomHome';
+import { addressFormData } from '~/models/address';
+import { typeRoom } from '~/models/roomHome';
 import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 import LoadingMaster from '../LoadingMaster/LoadingMaster';
 import cloudinaryAPI from '~/services/thirdPartyAPI/cloudinaryAPI';

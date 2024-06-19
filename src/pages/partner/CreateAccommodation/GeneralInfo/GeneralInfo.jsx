@@ -3,6 +3,8 @@ import { t } from 'i18next';
 import React, { useEffect, useState } from 'react';
 import partnerCreateAccomAPI from '~/services/apis/partnerAPI/partnerCreateAccomAPI';
 import publicSurcharge from '~/services/apis/publicAPI/surcharge';
+import { generalDefault } from '~/models/accom';
+
 export default function GeneralInfo({ id, save, doneSave }) {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState({});
@@ -21,8 +23,16 @@ export default function GeneralInfo({ id, save, doneSave }) {
 
     useEffect(() => {
         if (save) {
+            const newData = { ...data };
+
+            Object.keys(newData).forEach((key) => {
+                if (newData[key] === null) {
+                    newData[key] = generalDefault[key];
+                }
+            });
+            console.log(newData);
             partnerCreateAccomAPI
-                .updateGeneralInfo({ id, data })
+                .updateGeneralInfo({ id, data: newData })
                 .then((res) => {
                     doneSave(true);
                 })

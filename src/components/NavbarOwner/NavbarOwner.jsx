@@ -79,9 +79,9 @@ const NavbarOwner = () => {
                 <NavLink to="/host/setting" end={true}>
                     {t('navbar.homeHost')}
                 </NavLink>
-                {/* <NavLink to="/list-room">{t('navbar.book')}</NavLink> */}
+                <NavLink to="/managerHotels/roomsAndRateManager">{t('navbar.roomsAndRateManager')}</NavLink>
                 <NavLink to="/managerHotels/calendar">{t('navbar.calender')}</NavLink>
-                <NavLink to="/intro-host">{t('navbar.setHost')}</NavLink>
+           
                 <NavLink to="/host/setting/transactionhistory">{t('navbar.historyHost')}</NavLink>
             </div>
             <DropdownUser />

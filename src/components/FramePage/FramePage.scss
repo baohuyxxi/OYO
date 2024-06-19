@@ -1,3 +1,4 @@
+@use '../../assets/css/responsive.scss';
 .background__frame-page {
     background-color: var(--background-default);
     color: var(--background-contrastText);
@@ -5,7 +6,7 @@
 .body-page {
     color: var(--background-contrastText);
     background-color: var(--background-default);
-    // background-color: #fafcff;
+    background-color: #fafcff;
     align-items: center;
     max-width: 1500px;
     min-height: 600px;
@@ -14,8 +15,21 @@
     // margin-top: 75px;
     display: block;
     height: max-content;
+    @include responsive.laptop {
+
+    }
+    @include responsive.tablet {
+    }
+    @include responsive.mobile-small {
+    }
+
+    @include responsive.mobile-medium {
+    }
+
+    @include responsive.mobile-large {
+    }
 }
-.button-open-chatbox{
+.button-open-chatbox {
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -29,7 +43,7 @@
     transition: all 0.3s;
     align-items: center;
     display: flex;
-    &:hover{
+    &:hover {
         background-color: var(--primary-dark);
     }
 }

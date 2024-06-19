@@ -1,12 +1,12 @@
 import './RoomSetting.scss';
 import { t } from 'i18next';
 import { useEffect, useState } from 'react';
-import { typeRoom } from '~/share/models/roomHome';
+import { typeRoom } from '~/models/roomHome';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import CustomInput from '~/assets/custom/CustomInput';
 import MenuItem from '@mui/material/MenuItem';
 import partnerCreateAccomAPI from '~/services/apis/partnerAPI/partnerCreateAccomAPI';
-import { roomHomeFormData } from '~/share/models/roomHome';
+import { roomHomeFormData } from '~/models/roomHome';
 export default function RoomSetting({ id, save, doneSave }) {
     const [data, setData] = useState(roomHomeFormData);
     const [dataStep2, setDataStep2] = useState(typeRoom);

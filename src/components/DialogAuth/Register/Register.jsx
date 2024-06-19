@@ -13,7 +13,7 @@ import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import authAPI from '~/services/apis/authAPI/authAPI';
 import globalSlice from '~/redux/globalSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { RegisterRequest } from '~/share/models/auth';
+import { RegisterRequest } from '~/models/auth';
 import { useSnackbar } from 'notistack';
 import { t } from 'i18next';
 

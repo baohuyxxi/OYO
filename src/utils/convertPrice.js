@@ -1,26 +1,27 @@
-import { el } from 'date-fns/locale';
-
-const convertPrice = (price) => {
+export const convertPrice = (price) => {
+    console.log(price);
     const typrice = localStorage.getItem('selectedLanguage');
     if (typrice === 'en') {
         if (price !== '' && price !== undefined) {
-            const result = (parseInt(price) / 23000).toLocaleString('en-US', {
-                style: 'currency',
-                currency: 'USD'
-            });
+            const result = (parseInt(price) / 23000).toLocaleString('en-US');
             return result;
         }
         return 0;
     } else {
         if (price !== '' && price !== undefined) {
-            const result = parseInt(price).toLocaleString('vi-VN', {
-                style: 'currency',
-                currency: 'VND'
-            });
+            const result = parseInt(price).toLocaleString('vi-VN');
+            console.log(result);
             return result;
         }
         return 0;
     }
 };
 
-export default convertPrice;
+
+export const convertPriceToNumber = (price) => {
+    if (price !== '' && price !== undefined) {
+        const result = parseInt(price.replace(/\D/g, ''));
+        return result;
+    }
+    return 0;
+}

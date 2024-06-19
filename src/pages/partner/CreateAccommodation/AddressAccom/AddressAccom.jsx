@@ -32,7 +32,8 @@ export default function AddressAccom({ id, save, doneSave }) {
                     districtCode: res.data.districtAddress.districtCode,
                     wardCode: res.data.wardAddress.wardCode,
                     longitude: res.data.longitude,
-                    latitude: res.data.latitude
+                    latitude: res.data.latitude, 
+                    guide: res.data.guide
                 });
                 setLoading(false);
             });
@@ -99,6 +100,7 @@ export default function AddressAccom({ id, save, doneSave }) {
                         type="text"
                         className="input-guide-step1"
                         defaultValue={data.guide}
+                        value={data.guide}
                         onChange={(e) => {
                             setData({ ...data, guide: e.currentTarget.value });
                         }}

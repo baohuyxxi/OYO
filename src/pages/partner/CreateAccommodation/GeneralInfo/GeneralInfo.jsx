@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import partnerCreateAccomAPI from '~/services/apis/partnerAPI/partnerCreateAccomAPI';
 import publicSurcharge from '~/services/apis/publicAPI/surcharge';
 import { generalDefault } from '~/models/accom';
+import { convertPrice, convertPriceToNumber } from '~/utils/convertPrice';
 
 export default function GeneralInfo({ id, save, doneSave }) {
     const [loading, setLoading] = useState(true);
@@ -44,6 +45,13 @@ export default function GeneralInfo({ id, save, doneSave }) {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+        if (name === 'pricePerNight') {
+            setData({
+                ...data,
+                [name]: convertPriceToNumber(value)
+            });
+            return;
+        }
         setData({
             ...data,
             [name]: value
@@ -78,11 +86,12 @@ export default function GeneralInfo({ id, save, doneSave }) {
                     <label className="info__title">{t('label.priceHome')}</label>
                     <input
                         name="pricePerNight"
-                        type="number"
+                        type="text"
                         placeholder={t('placeholder.priceVND')}
                         className="info__input"
                         defaultValue={data?.pricePerNight}
-                        onChange={handleChange}
+                        value={convertPrice(data?.pricePerNight)}
+                        onChange={handleChange()}
                     />
                     <label className="info__title">{t('label.acreageHome')}</label>
                     <input
@@ -91,6 +100,7 @@ export default function GeneralInfo({ id, save, doneSave }) {
                         placeholder={t('placeholder.acreageM2')}
                         className="info__input"
                         defaultValue={data?.acreage}
+                        value={data?.acreage}
                         onChange={handleChange}
                     />
                     <label className="info__title">{t('label.checkInFrom')}</label>
@@ -99,6 +109,7 @@ export default function GeneralInfo({ id, save, doneSave }) {
                         type="time"
                         className="info__input"
                         defaultValue={data?.checkInFrom || '14:00'}
+                        value={data?.checkInFrom || '14:00'}
                         onChange={handleChange}
                     />
                     <label className="info__title">{t('label.checkOutTo')}</label>
@@ -107,18 +118,11 @@ export default function GeneralInfo({ id, save, doneSave }) {
                         type="time"
                         className="info__input"
                         defaultValue={data?.checkOutTo || '12:00'}
+                        value={data?.checkOutTo || '12:00'}
                         onChange={handleChange}
                     />
-                    <label className="info__title">{t('label.pricePerNight')}</label>
-                    <input
-                        name="pricePerNight"
-                        type="number"
-                        placeholder={t('placeholder.pricePerNight')}
-                        className="info__input"
-                        defaultValue={data?.pricePerNight}
-                        onChange={handleChange}
-                    />
-                    <label className="info__title">{t('label.discountPercent')}</label>
+                  
+                    <label className="info__title">{t('label.discountPercent')}  (%)</label>
                     <input
                         name="discountPercent"
                         type="number"
@@ -126,6 +130,7 @@ export default function GeneralInfo({ id, save, doneSave }) {
                         className="info__input"
                         defaultValue={data?.discountPercent}
                         onChange={handleChange}
+                        value={data?.discountPercent}
                         label={t('label.discountPercent')}
                     />
                     <label className="info__title">{t('label.surchargeList')}</label>

@@ -84,7 +84,6 @@ export default function RoomsAndRate({ accomApproved }) {
                     <td key={`${accommodation.accomId}-${date}`}>
                         <input
                             type="text"
-                            // defaultValue={getPriceAccommodation(accommodation, date).toLocaleString('vi-VN')}
                             value={
                                 changePrice[accommodation.accomId]
                                     ? changePrice[accommodation.accomId][date]?.toLocaleString('vi-VN')

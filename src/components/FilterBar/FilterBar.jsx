@@ -27,7 +27,7 @@ const FilterBar = (props) => {
     useEffect(() => {
         async function fetchData() {
             const res = await publicAccomPlaceAPI.getAllAccomCategoryInfo();
-            setListAccomCateData(res.data);
+            setListAccomCateData(res.data.filter((_, index) => index !== 0));
         }
         fetchData();
     }, []);

@@ -2,49 +2,13 @@ import './TypeAccomPopular.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
+import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
+import { useEffect, useState } from 'react';
+import filterAcomSlice from '~/redux/filterAccom';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-const data = [
-    {
-        title: 'Biệt thự bể bơi',
-        content: 'Biệt thự sang trọng, hiện đại, diện tích lớn có bể bơi mini ngoài trời',
-        image: 'https://gcs.tripi.vn/tripi-assets/mytour/icons/image_homestay_biet_thu.png'
-    },
-    {
-        title: 'Chung cu cao cấp',
-        content: 'Biệt thự sang trọng, hiện đại, diện tích lớn có bể bơi mini ngoài trời',
-        image: 'https://gcs.tripi.vn/tripi-assets/mytour/icons/image_homestay_chung_cu.png'
-    },
-    {
-        title: 'Homestay',
-        content: 'Biệt thự sang trọng, hiện đại, diện tích lớn có bể bơi mini ngoài trời',
-        image: 'https://gcs.tripi.vn/tripi-assets/mytour/icons/image_homestay_homestay.png'
-    },
-    {
-        title: 'Bungalow',
-        content: 'Biệt thự sang trọng, hiện đại, diện tích lớn có bể bơi mini ngoài trời',
-        image: 'https://gcs.tripi.vn/tripi-assets/mytour/icons/image_homestay_bungalow.png'
-    },
-    {
-        title: 'Biệt thự bể bơi',
-        content: 'Biệt thự sang trọng, hiện đại, diện tích lớn có bể bơi mini ngoài trời',
-        image: 'https://gcs.tripi.vn/tripi-assets/mytour/icons/image_homestay_biet_thu.png'
-    },
-    {
-        title: 'Chung cu cao cấp',
-        content: 'Biệt thự sang trọng, hiện đại, diện tích lớn có bể bơi mini ngoài trời',
-        image: 'https://gcs.tripi.vn/tripi-assets/mytour/icons/image_homestay_chung_cu.png'
-    },
-    {
-        title: 'Homestay',
-        content: 'Biệt thự sang trọng, hiện đại, diện tích lớn có bể bơi mini ngoài trời',
-        image: 'https://gcs.tripi.vn/tripi-assets/mytour/icons/image_homestay_homestay.png'
-    },
-    {
-        title: 'Bungalow',
-        content: 'Biệt thự sang trọng, hiện đại, diện tích lớn có bể bơi mini ngoài trời',
-        image: 'https://gcs.tripi.vn/tripi-assets/mytour/icons/image_homestay_bungalow.png'
-    }
-];
+const data = [];
 
 const settings = {
     dots: true,
@@ -82,17 +46,35 @@ const settings = {
 };
 
 const TypeAccomPopupar = () => {
+    const nagavite = useNavigate();
+    const dispatch = useDispatch();
+    const [listAccomCateData, setListAccomCateData] = useState(null);
+    useEffect(() => {
+        async function fetchData() {
+            const res = await publicAccomPlaceAPI.getAllAccomCategoryInfo();
+
+            setListAccomCateData(res.data.filter((item, index) => index !== 0));
+        }
+        fetchData();
+    }, []);
+
+    if (!listAccomCateData) return null;
+
+    const handleFilterCate = (cate) => {
+        dispatch(filterAcomSlice.actions.cateAcoom(cate));
+        nagavite('/list-accom');
+    };
     return (
         <div className="type-accom-popular">
             <div className="type-accom-popular__head">
                 <h1>Home stay bạn có thể thích</h1>
             </div>
             <Slider {...settings}>
-                {data.map((item, index) => (
-                    <div key={index} style={{ width: '100%' }}>
-                        <div className="slide" style={{ backgroundImage: `url(${item.image})`, height: '279px' }}>
-                            <h1>{item.title}</h1>
-                            <span>{item.content}</span>
+                {listAccomCateData.map((item, index) => (
+                    <div key={index} style={{ width: '100%' }} onClick={(e) => handleFilterCate(item.accomCateName)}>
+                        <div className="slide" style={{ backgroundImage: `url(${item.imageUrl})`, height: '279px' }}>
+                            <h1>{item.accomCateName}</h1>
+                            <span>{item.description}</span>
                         </div>
                     </div>
                 ))}

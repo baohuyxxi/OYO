@@ -25,6 +25,7 @@
         margin: 10px;
         position: relative;
         display: flex;
+        place-content: center;
         align-items: center;
         justify-content: center;
         transition: all 0.7s ease-in-out;
@@ -42,7 +43,7 @@
         span {
             position: absolute;
             bottom: 0;
-            left: 12px;
+           
             bottom: 24px;
             color: rgba(255, 255, 255, 0.8);
             text-align: center;

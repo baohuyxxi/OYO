@@ -13,7 +13,13 @@ import './ListAccomPage.scss';
 const ListAccomPage = () => {
     const [listDataRoom, setListDataRoom] = useState([]);
     const [queryParams, setQueryParams] = useState(false);
+    const [loading, setLoading] = useState(false);
     const filterAccom = useSelector((state) => state.filterAccom);
+
+    const [state, setState] = useState({
+        pagi: 0,
+        hasMore: true
+    });
     const dispatch = useDispatch();
     useEffect(() => {
         const fildeFiler = [
@@ -35,60 +41,58 @@ const ListAccomPage = () => {
         if (filterAccom?.facilityCode.length > 0) {
             query += `${filterAccom.facilityCode.map((item) => `facilityCode=${item}`).join('&')}`;
         }
+        setState({
+            pagi: 0,
+            hasMore: true
+        });
         setQueryParams(query);
     }, [filterAccom]);
-    const [state, setState] = useState({
-        items: Array.from({ length: 0 }),
-        hasMore: true
-    });
 
     useEffect(() => {
         if (queryParams !== false) {
             publicAccomPlaceAPI
-                .getAllRoomsWithFilter({ queryParams: queryParams, pageNum: state.items.length, pageSize: 8 })
+                .getAllRoomsWithFilter({ queryParams: queryParams, pageNum: state.pagi, pageSize: 8 })
                 .then(async (res) => {
                     const data = await Promise.all(
                         res.data.content.flatMap((item) => {
                             return transLateListTitle(item);
                         })
                     );
-                    if (state.items.length === 0) {
+                    if (state.pagi === 0) {
                         setListDataRoom(data);
                     } else {
                         setListDataRoom((prevState) => prevState.concat(data));
                     }
-                    if (data.length === 0) {
-                        dispatch(filterAcomSlice.actions.setMaxed(true));
+                    if ((res.data.pageNumber +1)* res.data.pageSize >= res.data.totalElements) {
                         setState((prevState) => ({
                             ...prevState,
                             hasMore: false
                         }));
-                    } else {
-                        dispatch(filterAcomSlice.actions.setMaxed(false));
                     }
-                    dispatch(filterAcomSlice.actions.setLoading(false));
+                    else{
+                        setState((prevState) => ({
+                            ...prevState,
+                            hasMore: true
+                        }));
+                    
+                    }
+
+                    setLoading(false);
                 })
                 .catch((error) => {
-                    dispatch(filterAcomSlice.actions.setLoading(false));
+                    setLoading(false);
                 });
         }
-    }, [queryParams, state.items.length, filterAccom.loading]);
+    }, [queryParams, state.pagi, filterAccom.loading]);
 
     const filterData = (listDataNew) => {
         setListDataRoom(listDataNew);
     };
     const fetchMoreData = () => {
-        if (filterAccom.maxed === false) {
-            setState((prevState) => ({
-                items: prevState.items.concat(Array.from({ length: 1 })),
-                hasMore: true
-            }));
-        } else {
-            setState((prevState) => ({
-                ...prevState,
-                hasMore: false
-            }));
-        }
+        setState((prevState) => ({
+            ...prevState,
+            pagi: prevState.pagi + 1
+        }));
     };
     return (
         <FramePage>
@@ -96,7 +100,7 @@ const ListAccomPage = () => {
                 filterData={filterData}
                 queryParams={queryParams}
                 setQueryParams={setQueryParams}
-                pagi={state.items.length}
+                pagi={state.pagi}
                 dataQueryDefauld={queryParams}
                 setState={setState}
             />
@@ -114,7 +118,7 @@ const ListAccomPage = () => {
                 style={{ paddingTop: '10px', zIndex: '-1', margin: '0 100px' }}
             >
                 <div className="row" style={{ margin: 0 }}>
-                    {filterAccom.loading ? (
+                    {loading ? (
                         <SkeletonRoomItem />
                     ) : (
                         listDataRoom.map((room, index) => <RoomItem key={index} infoRoom={room} />)

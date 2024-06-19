@@ -45,7 +45,6 @@ const FilterBar = (props) => {
             items: Array.from({ length: 0 }),
             hasMore: true
         }));
-        dispatch(filterAcomSlice.actions.setLoading(true));
         // nagavite('/list-accom');
         setIndexActive(-1);
         dispatch(filterAcomSlice.actions.reset());

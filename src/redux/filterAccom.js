@@ -12,8 +12,6 @@ const filterAcomSlice = createSlice({
         facilityCode: [],
         numBedRoom: null,
         numBathRoom: null,
-        loading: true,
-        maxed: false
     },
     reducers: {
         reset(state, action) {
@@ -51,9 +49,7 @@ const filterAcomSlice = createSlice({
         numBathRoom(state, action) {
             state.numBathRoom = action.payload;
         },
-        setLoading(state, action) {
-            state.loading = action.payload;
-        },
+ 
         setMaxed(state, action) {
             state.maxed = action.payload;
         }

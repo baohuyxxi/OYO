@@ -4,21 +4,19 @@ import wishAPI from '~/services/apis/clientAPI/clientWishAPI';
 import { useSnackbar } from 'notistack';
 import { t } from 'i18next';
 
-const IconLoveLike = (props) => {
-    const [like, setLike] = useState(true);
+const IconLoveLike = ({idHome, handleDelete, index }) => {
     const { enqueueSnackbar } = useSnackbar();
     const handleFavorite = () => {
-        wishAPI.likeFavoriteRoom(props.idHome).then((res) => {
-            setLike(!like);
+        wishAPI.likeFavoriteRoom(idHome).then((res) => {
             enqueueSnackbar(res.data.message, { variant: 'success' });
-            setLove(!love);
+            handleDelete(index);
         });
     };
 
     return (
         <div className="card-like" onClick={handleFavorite}>
-            <FavoriteOutlinedIcon className={like ? 'icon_love__true' : 'icon_love'} />
-            <p>{like ? t('common.unlove') : t('common.love')}</p>
+            <FavoriteOutlinedIcon className={'icon_love__true' } />
+            <p>{t('common.unlove')} </p>
         </div>
     );
 };

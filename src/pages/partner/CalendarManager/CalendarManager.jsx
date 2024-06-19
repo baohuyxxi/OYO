@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export default function CalendarManager() {
     const accomApproved = useSelector((state) => state.managerAccom);
-   
+    
     return (
         <FramePageOwner>
             <div className="calendar-manager">

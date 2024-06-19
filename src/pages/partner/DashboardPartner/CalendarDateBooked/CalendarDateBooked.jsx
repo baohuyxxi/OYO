@@ -5,7 +5,6 @@ import 'react-calendar-timeline/lib/Timeline.css';
 import moment from 'moment';
 import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 
-
 export default function CalendarDateBooked({ accomApproved }) {
     const [loading, setLoading] = useState(true);
     const [groups, setGroups] = useState([]);
@@ -18,7 +17,7 @@ export default function CalendarDateBooked({ accomApproved }) {
                 title: item.accomName
             }));
             setGroups(groupData);
-            const res = await partnerManageAPI.getListRangeDateBooking();
+            const res = await partnerManageAPI.getListAccomWithPriceCustom();
             const itemData = [];
             const currentDate = moment();
             res.data.content.forEach((accom) => {

@@ -19,7 +19,7 @@ export default function CalendarDateBooked({ accomApproved }) {
                 title: item.accomName
             }));
             setGroups(groupData);
-            const res = await partnerManageAPI.getListRangeDateBooking();
+            const res = await partnerManageAPI.getListAccomWithPriceCustom();
             const itemData = [];
             const currentDate = moment();
             res.data.content.forEach((accom) => {

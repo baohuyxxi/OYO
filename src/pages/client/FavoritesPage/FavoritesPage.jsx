@@ -11,6 +11,7 @@ import { transLateListTitle } from '~/services/apis/translateAPI/translateAPI';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { t } from 'i18next';
+import emtyIcon from '~/assets/img/emptyicon.jpg';
 AOS.init();
 
 const FavoritesPage = () => {
@@ -21,14 +22,14 @@ const FavoritesPage = () => {
 
     useEffect(() => {
         wishAPI.getAllFavoritesRoom().then(async (dataResponse) => {
-         
-            const data = await Promise.all (dataResponse.data.content.flatMap((item) => {
-                return transLateListTitle(item);
-            }))
+            const data = await Promise.all(
+                dataResponse.data.content.flatMap((item) => {
+                    return transLateListTitle(item);
+                })
+            );
             setListDataFavorites(data);
-            if (dataResponse.data.content.length !== 0) {
-                setLoading(false);
-            }
+
+            setLoading(false);
         });
     }, []);
 
@@ -36,6 +37,11 @@ const FavoritesPage = () => {
         navigate(`/room-detail/${idRoom}`);
     };
 
+    const handleDelete = (index) => {
+        console.log(index);
+        const newList = listDataFavorites.filter((_, i) => i !== index);
+        setListDataFavorites(newList);
+    };
     return (
         <FramePage>
             <div className="favorites__page">
@@ -46,6 +52,10 @@ const FavoritesPage = () => {
                         <p>{t('contentMain.love')}</p>
                         <LinearProgress />
                     </div>
+                ) : listDataFavorites.length === 0 ? (
+                    <>
+                        <img src={emtyIcon} />
+                    </>
                 ) : (
                     <div className="yes__favorites">
                         <h1>{t('title.love')}</h1>
@@ -72,7 +82,7 @@ const FavoritesPage = () => {
                                                 )}`}</p>
                                                 <p className="book-now">{t('common.bookRightNow')}</p>
                                             </div>
-                                            <IconLoveLike idHome={room?.id} />
+                                            <IconLoveLike idHome={room?.id} handleDelete={handleDelete} index={index} />
                                         </div>
                                     </div>
                                 ))}

@@ -72,26 +72,7 @@ export default function DashboardPartner() {
                 )}
             </div>
 
-            <div className="dashboard-partner__page">
-                {loading === true ? (
-                    <></>
-                ) : (
-                    <>
-                        <header className="dashboard-partner__header">
-                            <div className="dashboard-partner__header__title">Phòng và giá</div>
-                        </header>
-                        <div className="dashboard-partner__table">
-                            <RoomsAndRate accomApproved={accomApproved} />
-                        </div>
-                        <header className="dashboard-partner__header">
-                            <div className="dashboard-partner__header__title">Lịch của bạn</div>
-                        </header>
-                        <div className="dashboard-partner__table">
-                            <CalendarDateBooked accomApproved={accomApproved} />
-                        </div>
-                    </>
-                )}
-            </div>
+ 
         </FramePageOwner>
     );
 }

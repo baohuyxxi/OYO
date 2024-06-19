@@ -74,8 +74,8 @@ export default function SelectAddress(props) {
         setSelectedWard(null);
         props?.setData((prevData) => ({
             ...prevData,
-            districtCode: newValue.districtCode || null,
-            districtName: newValue.districtName || null,
+            districtCode: newValue?.districtCode || null,
+            districtName: newValue?.districtName || null,
             wardCode: null
         }));
 
@@ -85,8 +85,8 @@ export default function SelectAddress(props) {
         setSelectedWard(newValue);
         props?.setData((prevData) => ({
             ...prevData,
-            wardCode: newValue.wardCode || null,
-            wardName: newValue.wardName || null
+            wardCode: newValue?.wardCode || null,
+            wardName: newValue?.wardName || null
         }));
     };
 

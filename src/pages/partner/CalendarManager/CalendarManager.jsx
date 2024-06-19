@@ -7,7 +7,7 @@ import RoomsAndRate from '../DashboardPartner/RoomsAndRate/RoomsAndRate';
 
 export default function CalendarManager() {
     const accomApproved = useSelector((state) => state.managerAccom);
-
+    
     return (
         <FramePageOwner>
             <div className="calendar-manager">

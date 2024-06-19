@@ -27,7 +27,7 @@ const FilterBar = (props) => {
     useEffect(() => {
         async function fetchData() {
             const res = await publicAccomPlaceAPI.getAllAccomCategoryInfo();
-            setListAccomCateData(res.data.filter((_, index) => index !== 0));
+            setListAccomCateData(res.data); 
         }
         fetchData();
     }, []);
@@ -36,7 +36,11 @@ const FilterBar = (props) => {
         if (current === null) {
             dispatch(filterAcomSlice.actions.cateAcoom());
         } else {
-            dispatch(filterAcomSlice.actions.cateAcoom(current?.accomCateName));
+            if (index === 0) {
+                dispatch(filterAcomSlice.actions.cateAcoom());
+            } else {
+                dispatch(filterAcomSlice.actions.cateAcoom(current.accomCateName));
+            }
         }
     };
     const handleReset = async (e) => {
@@ -69,7 +73,12 @@ const FilterBar = (props) => {
                     </div>
                 ))}
             </Slider>
-            <DialogFilter setState={props.setState} filterData={props.filterData} pagi={props.pagi} dataQueryDefauld={props.dataQueryDefauld} />
+            <DialogFilter
+                setState={props.setState}
+                filterData={props.filterData}
+                pagi={props.pagi}
+                dataQueryDefauld={props.dataQueryDefauld}
+            />
             <Button className="btn-all" variant="outlined" onClick={handleReset}>
                 {t('common.reload')}{' '}
             </Button>

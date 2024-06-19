@@ -68,7 +68,7 @@ export default function ModalConfirmDelete(props) {
                     {t('common.cancelBooking')}
                 </button>
             ) : (
-                <></>
+                <><p>Không được phép hủy</p></>
             )}
 
             <Modal

@@ -56,6 +56,7 @@ const HistoryBookingPage = () => {
     const handleReload = () => {
         setReload(!reload);
     };
+    console.log(dataHistory);
     return (
         <FramePage>
             <div className="history-booking__page content">

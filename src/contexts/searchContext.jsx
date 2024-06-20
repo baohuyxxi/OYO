@@ -16,4 +16,5 @@ const SearchProvider = ({ children }) => {
     return <SearchContext.Provider value={value}>{children}</SearchContext.Provider>;
 };
 
+
 export { SearchContext, SearchProvider };

@@ -38,7 +38,6 @@ const FavoritesPage = () => {
     };
 
     const handleDelete = (index) => {
-        console.log(index);
         const newList = listDataFavorites.filter((_, i) => i !== index);
         setListDataFavorites(newList);
     };

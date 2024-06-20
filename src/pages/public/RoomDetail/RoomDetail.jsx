@@ -128,15 +128,7 @@ export default function RoomDetail() {
             setLove(!love);
         });
     };
-    const handleChat = () => {
-        const dataChat = {
-            open: true,
-            id: dataDetailHome.accomId,
-            name: dataDetailHome.nameHost,
-            avatar: 'https://images.squarespace-cdn.com/content/v1/5b9d4d4a5cfd7967a7b39d4f/1561271571971-U5Z9ASBHPVWBMASIHUCT/chatbot+avatar+Cute_V9.png?format=1500w'
-        };
-        dispatch(globalSlice.actions.setChatbox(dataChat));
-    };
+   
     return (
         <FramePage>
             {loading ? (
@@ -336,9 +328,9 @@ export default function RoomDetail() {
                                     </div>
                                 </div>
                             </div>
-                            <Button variant="contained" onClick={handleChat}>
+                            {/* <Button variant="contained" onClick={handleChat}>
                                 Liên hệ chủ nhà
-                            </Button>
+                            </Button> */}
                             <GoogleMap data={dataDetailHome} />
 
                             <CommentReview id={roomId.id} />

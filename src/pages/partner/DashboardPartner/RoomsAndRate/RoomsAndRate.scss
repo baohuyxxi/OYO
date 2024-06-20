@@ -7,26 +7,11 @@
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    &__button {
-        margin-right: 10px;
-        padding: 5px 10px;
-        font-size: 14px;
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        align-items: center;
-        display: flex;
-
-        &:hover {
-            background-color: #0056b3;
-        }
-    }
+  
     &__icon{
       
-        height: 30px;
-        width: 30px;
+        height: 20px;
+        width: 20px;
         color: #fff;
     }
 
@@ -49,7 +34,7 @@
 .week-navigation button {
     margin-right: 10px;
     padding: 5px 10px;
-    font-size: 14px;
+    font-size: 18px;
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -101,7 +86,7 @@
 .rate-room {
     &__name {
         display: flex;
-        width: 300px;
+        width: 250px;
         white-space: nowrap; // Đảm bảo chỉ hiển thị trên một dòng
         overflow: hidden; // Ẩn phần dư thừa nếu tên phòng dài hơn chiều rộng
         text-overflow: ellipsis; // Hiển thị dấu chấm (...) nếu tên phòng quá dài

@@ -14,7 +14,7 @@ export default function TableAccomApproved({ accomApproved }) {
     };
 
     const columns = [
-        { field: 'id', headerName: 'ID', flex: 1 },
+        { field: 'stt', headerName: 'STT', flex: 1 },
         { field: 'name', headerName: 'Tên chỗ nghỉ', flex: 4 },
         { field: 'address', headerName: 'Địa chỉ', flex: 5 },
         { field: 'status', headerName: 'Trạng thái', flex: 1 },
@@ -32,6 +32,7 @@ export default function TableAccomApproved({ accomApproved }) {
 
     const rows = accomApproved.map((item, index) => ({
         id: item.id,
+        stt: index + 1,
         name: item.accomName,
         address: item.addressDetail,
         status: item.status === 'APPROVED' ? t('Đã duyệt') : t('Chờ duyệt')

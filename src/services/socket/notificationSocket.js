@@ -19,7 +19,6 @@ const connectSocketServer = ({ userMail }) => {
 const disconnectSocketServer = () => {
     if (stompClient !== null) {
         stompClient.disconnect();
-        console.log('Disconnected');
     }
 };
 

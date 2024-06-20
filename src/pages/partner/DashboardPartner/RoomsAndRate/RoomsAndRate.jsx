@@ -4,9 +4,8 @@ import moment from 'moment';
 import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
 import arrowRight from '~/assets/svg/arrow-right.svg';
 import arrowLeft from '~/assets/svg/arrow-left.svg';
-
 import { useSnackbar } from 'notistack';
-// arrow-right.svg
+import Skeleton from '@mui/material/Skeleton'; // Import Skeleton
 
 export default function RoomsAndRate({ accomApproved }) {
     const [loading, setLoading] = useState(true);
@@ -32,8 +31,8 @@ export default function RoomsAndRate({ accomApproved }) {
             });
 
             setAccommodations(data);
+            setLoading(false); // Set loading to false once data is fetched
         });
-        setLoading(false);
     }, [accomApproved]);
 
     const getCurrentWeekDates = () => {
@@ -133,7 +132,7 @@ export default function RoomsAndRate({ accomApproved }) {
     return (
         <div className="rooms-and-rate-container">
             {loading ? (
-                <div>Loading...</div>
+                <Skeleton variant="rectangular" width="100%" height={400} /> // Use Skeleton component for loading state
             ) : (
                 <>
                     <div className="week-navigation">

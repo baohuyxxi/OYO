@@ -9,16 +9,13 @@ export default function NewAccomWaiting() {
     const [newAccom, setNewAccom] = useState();
     const navigate = useNavigate();
     const params = useParams();
-    console.log(params.id);
     useEffect(() => {
         cmsAccomPlaceAPI.getDetailAccomPlace(params.id).then((res) => {
-            console.log(res.data);
             setNewAccom(res.data);
         });
     }, [params.id]);
     const handleApprove = () => {
         cmsAccomPlaceAPI.approveAccomPlace(params.id).then((res) => {
-            console.log(res.data);
             navigate('/admin/new-accom');
         })
       
@@ -26,7 +23,7 @@ export default function NewAccomWaiting() {
 
     const handleReject = () => {
         // Logic xử lý từ chối
-        console.log('Rejected');
+
     };
     if (!newAccom) {
         return <div>Loading...</div>;

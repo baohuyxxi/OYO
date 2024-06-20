@@ -30,7 +30,6 @@ export default function Policy({ id, save, doneSave }) {
         }
     }, []);
     const handleOnchange = (event) => {
-        console.log(event.target.value);
         setPolicyPublic({ ...policyPublic, [event.target.name]: event.target.value });
     };
     useEffect(() => {

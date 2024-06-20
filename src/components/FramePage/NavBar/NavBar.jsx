@@ -35,7 +35,7 @@ export default function NavBar() {
                 <NavLink to="/" className="logo">
                     <img src={logoOYO} alt="company logo" className="logo-bg" />
                 </NavLink>
-                <div className={`element${location === '/' ? '__actived' : ''}`}>
+                <div className={`element ${location === '/' ? '__actived' : ''}`}>
                     <NavLink to="/">{t('navbar.home')}</NavLink>
                 </div>
                 <div className="appbar-right-menu" />

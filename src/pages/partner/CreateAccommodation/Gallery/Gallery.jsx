@@ -40,7 +40,6 @@ export default function Gallery({ id, save, doneSave }) {
                         }
                     })
                 );
-                console.log(uploadImages);
                 const dataUpdate = {
                     imageAccomUrls: uploadImages,
                     cldVideoId: ''

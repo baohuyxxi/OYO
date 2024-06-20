@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 import HotelIcon from '@mui/icons-material/Hotel';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import Skeleton from '@mui/material/Skeleton'; // Import the Skeleton component from MUI
 
 export default function GoogleMap({ data }) {
     const [currentPosition, setCurrentPosition] = useState(null);
@@ -29,8 +30,9 @@ export default function GoogleMap({ data }) {
 
         fetchCurrentPosition();
     }, []);
+
     if (loading) {
-        return <div>Loading...</div>;
+        return <Skeleton variant="rectangular" width="100%" height={400} />; // Use the Skeleton component from MUI
     }
 
     if (!currentPosition) {
@@ -42,22 +44,13 @@ export default function GoogleMap({ data }) {
         zoom: 14
     };
 
-    const handleGetAddress = () => {
-        if (clickedLocation) {
-            // getAddressFromCoordinates(clickedLocation.lat, clickedLocation.lng).then((address) => {
-            //     console.log('Address:', address);
-            //     // Sử dụng địa chỉ ở đây
-            // });
-        }
-    };
-
     const handleMapClick = (event) => {
         setClickedLocation({
             lat: event.lat,
             lng: event.lng
         });
     };
-    console.log(data);
+
     return (
         <div className="container__google-map">
             <GoogleMapReact
@@ -67,17 +60,8 @@ export default function GoogleMap({ data }) {
                 onClick={handleMapClick}
             >
                 <Hotel className="icon__location-current" lat={locationAccom.lat} lng={locationAccom.lng} />
-                <LocationCurrent
-                    className="icon__location-current"
-                    lat={currentPosition.lat}
-                    lng={currentPosition.lng}
-                />
-                {/* {listLocation.map((location, index) => {
-                    return <Hotel key={index} lat={location.lat} lng={location.lng} />;
-                })} */}
-                {/* <Hotel lat={locationAccom.lat} lng={locationAccom.lng} /> */}
+                <LocationCurrent className="icon__location-current" lat={currentPosition.lat} lng={currentPosition.lng} />
             </GoogleMapReact>
-            {/* <Button onClick={handleGetAddress}>Get Address</Button> */}
         </div>
     );
 }

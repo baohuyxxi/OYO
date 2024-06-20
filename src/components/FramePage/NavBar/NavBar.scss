@@ -15,22 +15,24 @@
     background-color: var(--background-paper) !important;
     .toolbar {
         background-color: var(--background-paper);
-        max-width: 1500px;
         color: var(--background-contrastText);
         font-weight: bold;
+        
 
         @include responsive.desktop {
-            max-width: 1500px;
+            max-width: 1440px;
+            width: 100%;
         }
         @include responsive.laptop {
-            max-width: 1500px;
+            max-width: 1280px;
+            width: 100%;
         }
         @include responsive.tablet {
-            max-width: 1500px;
+            max-width: 1024px;
+            width: 100%;
         }
         @mixin responsive-styles {
-            width: 100%;
-            padding: 0 5%;
+        
             .element {
                 display: none !important;
                 &__drawer {
@@ -41,15 +43,27 @@
 
         @include responsive.mobile-small {
             @include responsive-styles;
+            max-width: 381px;
+            width: 100%;
         }
 
         @include responsive.mobile-medium {
             @include responsive-styles;
+            max-width: 480px;
+            width: 100%;
         }
 
         @include responsive.mobile-large {
             @include responsive-styles;
+            max-width: 768px;
+            width: 100%;
         }
+        @include responsive.mobile-xsmall {
+            @include responsive-styles;
+            max-width: 380px;
+            width: 100%;
+        }
+        
         button {
             text-transform: none;
             font-weight: inherit;

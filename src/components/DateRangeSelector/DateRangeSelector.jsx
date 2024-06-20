@@ -37,6 +37,7 @@ export default function DateRangeSelector(props) {
                 minimumDate={new Date()}
                 format="dd/MM/yyyy"
                 locale={enGB}
+                
             >
                 {({ startDateInputProps, endDateInputProps, focus }) => (
                     <div className="info_date">

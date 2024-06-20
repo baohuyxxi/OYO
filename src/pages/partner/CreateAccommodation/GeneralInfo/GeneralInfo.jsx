@@ -31,7 +31,6 @@ export default function GeneralInfo({ id, save, doneSave }) {
                     newData[key] = generalDefault[key];
                 }
             });
-            console.log(newData);
             partnerCreateAccomAPI
                 .updateGeneralInfo({ id, data: newData })
                 .then((res) => {
@@ -45,6 +44,7 @@ export default function GeneralInfo({ id, save, doneSave }) {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+        console.log(name, value);
         if (name === 'pricePerNight') {
             setData({
                 ...data,
@@ -91,7 +91,7 @@ export default function GeneralInfo({ id, save, doneSave }) {
                         className="info__input"
                         defaultValue={data?.pricePerNight}
                         value={convertPrice(data?.pricePerNight)}
-                        onChange={handleChange()}
+                        onChange={handleChange}
                     />
                     <label className="info__title">{t('label.acreageHome')}</label>
                     <input

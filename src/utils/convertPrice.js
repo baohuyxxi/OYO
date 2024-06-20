@@ -1,5 +1,4 @@
 export const convertPrice = (price) => {
-    console.log(price);
     const typrice = localStorage.getItem('selectedLanguage');
     if (typrice === 'en') {
         if (price !== '' && price !== undefined) {
@@ -10,7 +9,6 @@ export const convertPrice = (price) => {
     } else {
         if (price !== '' && price !== undefined) {
             const result = parseInt(price).toLocaleString('vi-VN');
-            console.log(result);
             return result;
         }
         return 0;

@@ -12,7 +12,6 @@ export default function LayoutNewAccom() {
 
     useEffect(() => {
         cmsAccomPlaceAPI.getAllAcommPlaceWithPaging().then((res) => {
-            console.log(res.data);
             setListNewAccom(res.data.content);
             setLoading(false);
         });

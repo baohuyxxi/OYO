@@ -44,7 +44,6 @@ export default function RoomSetting({ id, save, doneSave }) {
     const onChangeData = (event) => {
         setData({ ...data, [event.target.name]: event.target.value });
     };
-    console.log(data);
     return (
         <div className="room-setting">
             <div className="info-count__room">

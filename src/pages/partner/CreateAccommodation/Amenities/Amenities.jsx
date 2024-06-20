@@ -27,7 +27,6 @@ export default function Amenities({ id, save, doneSave }) {
             partnerCreateAccomAPI
                 .updateFacilitiesAccom({ id, data })
                 .then((res) => {
-                    console.log(res);
                     doneSave(true);
                 })
                 .catch(() => {

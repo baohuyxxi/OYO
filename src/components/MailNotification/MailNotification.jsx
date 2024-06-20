@@ -18,7 +18,6 @@ export default function MailNotification() {
     const open = Boolean(anchorEl);
     const dispatch = useDispatch();
 
-    console.log('numNotification', numNotification);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);

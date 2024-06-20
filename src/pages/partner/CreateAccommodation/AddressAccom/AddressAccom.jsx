@@ -48,7 +48,6 @@ export default function AddressAccom({ id, save, doneSave }) {
             const addressFull = `${data.numHouseAndStreetName} ,${address.wardName}, ${address.districtName}, ${address.provinceName}`;
 
             mapAPI.geoCodeAddress(addressFull).then((res) => {
-                console.log(res);
                 setData({
                     ...data,
                     provinceCode: address.provinceCode,

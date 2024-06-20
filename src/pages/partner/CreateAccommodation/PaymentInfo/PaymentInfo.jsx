@@ -22,7 +22,6 @@ export default function PaymentInfo({ id, save, doneSave }) {
     };
 
     useEffect(() => {
-        console.log(data);
         if (save) {
             partnerCreateAccomAPI.updatePayment({ id, data }).then((res) => {
                 doneSave(true);

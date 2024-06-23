@@ -1,4 +1,6 @@
 .favorites__page {
+    position: relative;
+    min-height: 150px;
     .no__favorites {
         width: 100%;
         margin-top: 80px;
@@ -22,6 +24,30 @@
         }
     }
 
+    .empty__favorites {
+        position: absolute;
+        top: 65%;
+        left: 38%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        &__image {
+            max-width: 100%;
+            height: auto;
+        }
+        &__title-empty {
+            font-size: large;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        &__content-empty {
+            font-size: medium;
+            font-weight: lighter;
+        }
+    }
+
     .yes__favorites {
         width: 100%;
         margin-top: 80px;
@@ -39,15 +65,13 @@
         }
 
         .card-item__favorite {
-            // background: white;
-            height: 350px;
-            // border: 1px solid #bdbdbd;
+            height: max-content;
             cursor: pointer;
             border-radius: 5px;
-            position: relative;
             margin-bottom: 30px;
-            
+
             .content__favorite {
+                padding-bottom: 2px;
                 border-bottom: 1px solid #bdbdbd;
                 img {
                     width: 100%;
@@ -56,14 +80,20 @@
 
                 .name__favorite {
                     margin: 0;
+                    width: 100%;
+                    white-space: nowrap;
+                    display: inline-block;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                     font-size: 15px;
                     padding-left: 15px;
-                    padding-bottom: 10px;
+                    padding-bottom: 2px;
                 }
 
                 .price__favorite {
                     margin: 0;
                     font-size: 13px;
+                    font-weight: 300;
                     padding-left: 16px;
                     display: flex;
                     padding-right: 5px;
@@ -78,20 +108,12 @@
             }
 
             .card-like {
-                position: absolute;
-                bottom: 0;
-                height: 40px;
+                padding: 3px 0;
+                height: max-content;
                 width: 100%;
-                // border-top: 1px solid #bdbdbd;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-
-                .icon_love {
-                    color: white;
-                    font-size: 25px;
-                }
-
                 .icon_love__true {
                     color: red;
                     font-size: 25px;

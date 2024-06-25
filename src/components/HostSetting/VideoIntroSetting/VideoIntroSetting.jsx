@@ -1,15 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import FileUpload from './FileUpload/FileUpload';
 import VideoIntroDetail from './VideoIntroDetail/VideoIntroDetail';
 import './VideoIntroSetting.scss';
 import settingAccomSlice from '~/redux/settingAccomSlice';
-import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
+import { useDispatch } from 'react-redux';
+import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
 
 const VideoIntroSetting = ({ cldVideoId }) => {
-    const [file, setFile] = useState({ cldVideoId, isUploading: false, name: cldVideoId });
+    const [file, setFile] = useState(null);
+    const dispatch = useDispatch();
 
+    useEffect(() => {
+        setFile({ cldVideoId: cldVideoId, isUploading: false, name: cldVideoId });
+    }, [cldVideoId]);
     const removeFile = () => {
-        setFile(null);
+        dispatch(settingAccomSlice.actions.resetCldVideoId());
     };
 
     const onSubmit = () => {
@@ -19,11 +24,10 @@ const VideoIntroSetting = ({ cldVideoId }) => {
             },
             id: params.idHome
         };
-        partnerManageAPI
-            .updateVideoIntro(newData)
+        partnerManageAccomAPI
+            .updateGallery(newData)
             .then((res) => {
                 enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
-
                 dispatch(settingAccomSlice.actions.setAccom(res.data));
             })
             .catch((error) => {
@@ -35,7 +39,7 @@ const VideoIntroSetting = ({ cldVideoId }) => {
         <div style={{ fontSize: '15px', paddingRight: '50px', paddingBottom: '50px' }} className="video-intro-setting">
             <h3>Video intro</h3>
             <div className="video-intro-setting__container">
-                <FileUpload file={file} setFile={setFile} removeFile={removeFile} />
+                <FileUpload file={file} setFile={setFile} />
                 <VideoIntroDetail file={file} removeFile={removeFile} />
                 <button className="video-intro-setting__btn-save" onClick={onSubmit}>
                     Lưu

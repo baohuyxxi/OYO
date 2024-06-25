@@ -7,7 +7,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
-import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
+import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
 import pricesOfHomeApi from '~/services/apis/partnerAPI/pricesOfHomeApi';
 import formatPrice from '../../../utils/formatPrice';
 import './ValuationDiscount.scss';
@@ -62,7 +62,7 @@ export default function ValuationDiscountSetting(props) {
             pricePerNight: parseFloat(dataPrice.pricePerNight),
             id: params.idHome
         };
-        partnerManageAPI
+        partnerManageAccomAPI
             .updatePriceHome(newData)
             .then((dataResponse) => {
                 enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
@@ -103,7 +103,7 @@ export default function ValuationDiscountSetting(props) {
 
     const onSubmitSurcharge = (dataSurcharge) => {
         const data = transformSurchargeData(dataSurcharge);
-        partnerManageAPI.setSurcharge({ data: data, id: params.idHome });
+        partnerManageAccomAPI.setSurcharge({ data: data, id: params.idHome });
         // .then((dataResponse) => {
         //     enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
         // })

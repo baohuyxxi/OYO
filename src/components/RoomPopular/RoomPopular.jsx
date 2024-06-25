@@ -12,7 +12,7 @@ import wishAPI from '~/services/apis/clientAPI/clientWishAPI';
 import formatPrice from '~/utils/formatPrice';
 import iconStar from '~/assets/svg/star.svg';
 import { t } from 'i18next';
-import { transLateListTitle } from '~/services/apis/translateAPI/translateAPI';
+import { transLateListTitle } from '~/services/thirdPartyAPI/translateAPI';
 
 export default function RoomPopular() {
     const settings = {

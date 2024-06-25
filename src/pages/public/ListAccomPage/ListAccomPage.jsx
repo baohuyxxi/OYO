@@ -1,15 +1,15 @@
 import FilterBar from '~/components/FilterBar/FilterBar';
 import FramePage from '~/components/FramePage/FramePage';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import SkeletonRoomItem from '~/components/Skeleton/SkeletonRoomItem';
 import RoomItem from '~/components/RoomItem/RoomItem';
 import loader from '~/assets/video/loader.gif';
-import { transLateListTitle } from '~/services/apis/translateAPI/translateAPI';
+import { transLateListTitle } from '~/services/thirdPartyAPI/translateAPI';
 import { useSelector, useDispatch } from 'react-redux';
-import filterAcomSlice from '~/redux/filterAccom';
 import './ListAccomPage.scss';
+
 const ListAccomPage = () => {
     const [listDataRoom, setListDataRoom] = useState([]);
     const [queryParams, setQueryParams] = useState(false);
@@ -63,18 +63,16 @@ const ListAccomPage = () => {
                     } else {
                         setListDataRoom((prevState) => prevState.concat(data));
                     }
-                    if ((res.data.pageNumber +1)* res.data.pageSize >= res.data.totalElements) {
+                    if ((res.data.pageNumber + 1) * res.data.pageSize >= res.data.totalElements) {
                         setState((prevState) => ({
                             ...prevState,
                             hasMore: false
                         }));
-                    }
-                    else{
+                    } else {
                         setState((prevState) => ({
                             ...prevState,
                             hasMore: true
                         }));
-                    
                     }
 
                     setLoading(false);

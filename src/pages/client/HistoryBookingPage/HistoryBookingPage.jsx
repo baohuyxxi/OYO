@@ -13,7 +13,7 @@ import ModalConfirmDelete from '~/components/ModalConfirmDelete/ModalConfirmDele
 
 import FramePage from '~/components/FramePage/FramePage';
 import bookingAPI from '~/services/apis/clientAPI/clientBookingAPI';
-import { transLateHistoryBooking } from '~/services/apis/translateAPI/translateAPI';
+import { transLateHistoryBooking } from '~/services/thirdPartyAPI/translateAPI';
 import formatPrice from '~/utils/formatPrice';
 import { useNavigate } from 'react-router-dom';
 import { showRefundPolicy } from '~/utils/showRefundPolicy';

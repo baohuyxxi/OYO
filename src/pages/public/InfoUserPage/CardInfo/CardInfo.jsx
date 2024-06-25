@@ -93,7 +93,7 @@ export default function CardInfo() {
                         </div>
                         {t('navbar.historyBookingClient')}
                     </Link>
-                    <Link to="account/profile" className="option edit-profile">
+                    <Link to="/account/profile" className="option edit-profile">
                         <div className="option-icon">
                             <SettingsOutlinedIcon />
                         </div>

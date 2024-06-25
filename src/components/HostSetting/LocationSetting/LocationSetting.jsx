@@ -8,7 +8,7 @@ import { decodeAddress } from '~/utils/decodeAddress';
 import './LocationSetting.scss';
 import { useSnackbar } from 'notistack';
 import { useParams } from 'react-router-dom';
-import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
+import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
 import { useDispatch } from 'react-redux';
 import settingAccomSlice from '~/redux/settingAccomSlice';
 
@@ -45,8 +45,8 @@ export default function LocationSetting(props) {
             },
             id: params.idHome
         };
-        partnerManageAPI
-            .updateAddressHome(newData)
+        partnerManageAccomAPI
+            .updateAddress(newData)
             .then((res) => {
                 enqueueSnackbar('Cập nhật thành công', {
                     variant: 'success'

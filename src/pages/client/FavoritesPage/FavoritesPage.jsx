@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import FramePage from '~/components/FramePage/FramePage';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import LinearProgress from '@mui/material/LinearProgress';
-import { transLateListTitle } from '~/services/apis/translateAPI/translateAPI';
+import { transLateListTitle } from '~/services/thirdPartyAPI/translateAPI';
 import { useSnackbar } from 'notistack';
 import AOS from 'aos';
 import 'aos/dist/aos.css';

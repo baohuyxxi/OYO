@@ -5,13 +5,20 @@ import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgr
 import { Button } from '@mui/material';
 import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
 import { useSnackbar } from 'notistack';
+import { useState } from 'react';
+import tickIcon from '~/assets/img/tick-icon.jpg';
+import { center } from '@cloudinary/url-gen/qualifiers/textAlignment';
+import { WidthFull } from '@mui/icons-material';
+import { bold } from '@cloudinary/url-gen/qualifiers/fontWeight';
 
 export default function MenuCreateAccom({ process, selectedTab, idAccom }) {
     const { enqueueSnackbar } = useSnackbar();
+    const [isRequestApproval, setIsRequestApproval] = useState(false);
     const handlePost = () => {
         partnerManageAccomAPI
             .requestApprovalAccomPlace(idAccom)
             .then((res) => {
+                setIsRequestApproval(true);
                 enqueueSnackbar('Lưu thành công', { variant: 'success' });
             })
             .catch(() => {
@@ -67,18 +74,43 @@ export default function MenuCreateAccom({ process, selectedTab, idAccom }) {
                             Thông tin thanh toán
                         </Link>
                         <div className="progress__underway paper">
-                            <div>Tiến trình đã thực hiện được</div>
+                            {isRequestApproval === false && (
+                                <>
+                                    <div>Tiến trình đã thực hiện được</div>
 
-                            <div className="progress">
-                                <BorderLinearProgress variant="determinate" value={process}></BorderLinearProgress>
-                                <div className="percent">{process}%</div>
-                            </div>
-
-                            {process === 100 && (
+                                    <div className="progress">
+                                        <BorderLinearProgress
+                                            variant="determinate"
+                                            value={process}
+                                        ></BorderLinearProgress>
+                                        <div className="percent">{process}%</div>
+                                    </div>
+                                </>
+                            )}
+                            {process < 100 ? null : isRequestApproval === false ? (
                                 <Button variant="contained" className=" option" fullWidth onClick={handlePost}>
                                     Đăng chỗ nghỉ
                                 </Button>
+                            ) : (
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        fontWeight: 500,
+                                        fontSize: 14
+                                    }}
+                                >
+                                    <img src={tickIcon} style={{ width: 40, height: 40 }} alt="tick icon"></img>
+                                    <span>Đã gửi yêu cầu kiểm duyệt</span>
+                                </div>
                             )}
+
+                            {/* {process === 100 && isRequestApproval === false ? (
+                                
+                            ) : (
+                                
+                            )} */}
                         </div>
                     </div>
                 </div>

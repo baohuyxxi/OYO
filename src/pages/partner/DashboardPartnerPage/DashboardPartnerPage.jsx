@@ -31,44 +31,34 @@ export default function DashboardPartner() {
     return (
         <FramePage ownerPage={true}>
             <div className="dashboard-partner">
-                {loading === 'loading' ? (
-                    <></>
-                ) : (
-                    <>
-                        <header className="dashboard-partner__header">
-                            <div className="dashboard-partner__header__title">
-                                {accomWaiting.length > 0 && 'Chỗ nghỉ cần hoàn thiện/chờ duyệt'}
-                            </div>
-                            <Link to="createHotel">
-                                <Button variant="contained">
-                                    <AddCircleOutlineIcon />
-                                    Tạo chỗ nghỉ mới
-                                </Button>
-                            </Link>
-                        </header>
-                        <div className="dashboard-partner__slider">
-                            <SliderListAccomWaiting accomWaiting={accomWaiting} />
-                        </div>
-                    </>
-                )}
+                <header className="dashboard-partner__header">
+                    <div className="dashboard-partner__header__title">
+                        {accomWaiting.length > 0 && 'Chỗ nghỉ cần hoàn thiện/chờ duyệt'}
+                    </div>
+                    <Link to="createHotel">
+                        <Button variant="contained">
+                            <AddCircleOutlineIcon />
+                            Tạo chỗ nghỉ mới
+                        </Button>
+                    </Link>
+                </header>
+                <div className="dashboard-partner__slider">
+                    <SliderListAccomWaiting accomWaiting={accomWaiting} />
+                </div>
             </div>
 
             <div className="dashboard-partner__page">
-                {loading === 'loading' && accomApproved.length > 0 ? (
-                    <></>
-                ) : (
-                    <>
-                        <header className="dashboard-partner__header">
-                            <div className="dashboard-partner__header__title">
-                                {accomApproved.length > 0 && 'Chỗ nghỉ đã được duyệt/đang hoạt động'}
-                            </div>
-                        </header>
-                        <div className="dashboard-partner__table">
-                            <TableAccomApproved accomApproved={accomApproved} />
+                <>
+                    <header className="dashboard-partner__header">
+                        <div className="dashboard-partner__header__title">
+                            {accomApproved.length > 0 && 'Chỗ nghỉ đã được duyệt/đang hoạt động'}
                         </div>
-                    </>
-                )}
+                    </header>
+                    <div className="dashboard-partner__table">
+                        <TableAccomApproved accomApproved={accomApproved} loading={loading} />
+                    </div>
+                </>
             </div>
-      </FramePage>
+        </FramePage>
     );
 }

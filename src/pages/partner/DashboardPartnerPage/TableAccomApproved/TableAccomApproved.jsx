@@ -6,7 +6,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import IconButton from '@mui/material/IconButton';
 import { useNavigate } from 'react-router-dom';
 
-export default function TableAccomApproved({ accomApproved }) {
+export default function TableAccomApproved({ accomApproved, loading }) {
     const navigate = useNavigate();
 
     const handleSetting = (id) => () => {
@@ -42,7 +42,7 @@ export default function TableAccomApproved({ accomApproved }) {
         <div className="table-accom-approved paper">
             <DataGrid
                 autoHeight
-                loading={accomApproved.length === 0}
+                loading={loading === 'loading'}
                 disableRowSelectionOnClick
                 rows={rows}
                 columns={columns}

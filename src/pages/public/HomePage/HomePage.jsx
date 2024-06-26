@@ -8,8 +8,6 @@ export default function HomePage() {
     return (
         <FramePage>
             <HomeSlider />
-            {/* <SearchForm /> */}
-           
             <TypeAccomPopupar />
             <RoomPopular />
             <Popular />

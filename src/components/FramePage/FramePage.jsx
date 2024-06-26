@@ -19,7 +19,7 @@ export default function FramePage({ ownerPage = false, children }) {
     }, []);
 
     return (
-        <div className={`background${ownerPage ? '__frame-page' : ''}`}>
+        <div className='background__frame-page '>
             {ownerPage ? <NavbarOwner /> : <NavBar />}
             <div className="body-page">{children}</div>
             {viewImages && <ViewImage viewImages={viewImages} />}

@@ -22,22 +22,20 @@ export default function CreateAccommodationPage() {
     const [selectedTab, setSelectedTab] = useState(0);
     const [process, setProcess] = useState(0);
     const { enqueueSnackbar } = useSnackbar();
-    useEffect(
-        () => {
-            let id = params['*'].split('/')[1];
-            if (id !== idAccom) {
-                setIdAccom(params['*'].split('/')[1]);
-            }
-            if (params['*'].split('/')[0] !== selectedTab) {
-                setSelectedTab(params['*'].split('/')[0]);
-            }
-            partnerManageAccomAPI.getPercentCreate(id).then((res) => {
-                setProcess(res.data.percent);
-            });
-        },
-        [params['*']],
-        []
-    );
+    useEffect(() => {
+        let id = params['*'].split('/')[1];
+        if (id !== idAccom) {
+            setIdAccom(params['*'].split('/')[1]);
+        }
+        if (params['*'].split('/')[0] !== selectedTab) {
+            setSelectedTab(params['*'].split('/')[0]);
+        }
+        id !== undefined
+            ? partnerManageAccomAPI.getPercentCreate(id).then((res) => {
+                  setProcess(res.data.percent);
+              })
+            : null;
+    }, [params['*']]);
 
     const handleSave = (complete) => {
         if (complete) {

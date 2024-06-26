@@ -10,6 +10,7 @@ export default function GeneralInfo({ id, save, doneSave }) {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState({});
     const [allSurcharge, setAllSurchagre] = useState([]);
+
     useEffect(() => {
         publicSurchargeAPI.getAllSurcharge().then((res) => {
             setAllSurchagre(res.data);
@@ -20,7 +21,7 @@ export default function GeneralInfo({ id, save, doneSave }) {
                 setLoading(false);
             });
         }
-    }, []);
+    }, [id]);
 
     useEffect(() => {
         if (save) {
@@ -88,8 +89,7 @@ export default function GeneralInfo({ id, save, doneSave }) {
                         type="text"
                         placeholder={t('placeholder.priceVND')}
                         className="info__input"
-                        defaultValue={data?.pricePerNight}
-                        value={convertPrice(data?.pricePerNight)}
+                        defaultValue={convertPrice(data?.pricePerNight)}
                         onChange={handleChange}
                     />
                     <label className="info__title">{t('label.acreageHome')}</label>
@@ -99,7 +99,6 @@ export default function GeneralInfo({ id, save, doneSave }) {
                         placeholder={t('placeholder.acreageM2')}
                         className="info__input"
                         defaultValue={data?.acreage}
-                        value={data?.acreage}
                         onChange={handleChange}
                     />
                     <label className="info__title">{t('label.checkInFrom')}</label>
@@ -108,7 +107,6 @@ export default function GeneralInfo({ id, save, doneSave }) {
                         type="time"
                         className="info__input"
                         defaultValue={data?.checkInFrom || '14:00'}
-                        value={data?.checkInFrom || '14:00'}
                         onChange={handleChange}
                     />
                     <label className="info__title">{t('label.checkOutTo')}</label>
@@ -117,7 +115,6 @@ export default function GeneralInfo({ id, save, doneSave }) {
                         type="time"
                         className="info__input"
                         defaultValue={data?.checkOutTo || '12:00'}
-                        value={data?.checkOutTo || '12:00'}
                         onChange={handleChange}
                     />
 
@@ -127,9 +124,8 @@ export default function GeneralInfo({ id, save, doneSave }) {
                         type="number"
                         placeholder={t('placeholder.discountPercent')}
                         className="info__input"
-                        defaultValue={data?.discountPercent}
                         onChange={handleChange}
-                        value={data?.discountPercent}
+                        defaultValue={data?.discountPercent}
                         label={t('label.discountPercent')}
                     />
                     <label className="info__title">{t('label.surchargeList')}</label>

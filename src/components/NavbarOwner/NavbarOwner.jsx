@@ -5,8 +5,7 @@ import BookOnlineIcon from '@mui/icons-material/BookOnline';
 import HomeIcon from '@mui/icons-material/Home';
 import ManageHistoryIcon from '@mui/icons-material/ManageHistory';
 import Logo from '~/assets/svg/logo.svg';
-import notificationApi from '~/services/apis/publicAPI/notificationApi';
-import DropdownHost from '../DropdownHost/DropdownHost';
+// import notificationApi from '~/services/apis/publicAPI/notificationApi';
 import DropdownUser from '../DropdownUser/DropdownUser';
 import './NavbarOwner.scss';
 
@@ -28,59 +27,59 @@ const NavbarOwner = () => {
         }
     };
 
-    const renderNotificationItem = (item, index) => (
-        <div
-            className="notification-item"
-            key={index}
-            onClick={() => handleSetView(item.id, item.view, item.homeId, item.type)}
-        >
-            <div className="icon-notification">{renderIcon(item.type, item.view)}</div>
-            <span className={`${!item.view ? 'no-view ' : ''} notification-content`}>{item.description}</span>
-        </div>
-    );
+    // const renderNotificationItem = (item, index) => (
+    //     <div
+    //         className="notification-item"
+    //         key={index}
+    //         onClick={() => handleSetView(item.id, item.view, item.homeId, item.type)}
+    //     >
+    //         <div className="icon-notification">{renderIcon(item.type, item.view)}</div>
+    //         <span className={`${!item.view ? 'no-view ' : ''} notification-content`}>{item.description}</span>
+    //     </div>
+    // );
 
-    const handleSetView = (id, view, homeId, type) => {
-        if (!view) {
-            notificationApi.showOffViewNotification({ notificationId: id }).then(() => {
-                if (type === 'BOOKING_NOTIFICATION') {
-                    navigate(`/historybooking`);
-                }
-                if (type === 'HOME_NOTIFICATION') {
-                    navigate(`/detail/${homeId}`);
-                }
-                if (type === 'OWNER_HOME_NOTIFICATION') {
-                    navigate(`/host`);
-                }
-            });
-        } else {
-            if (type === 'BOOKING_NOTIFICATION') {
-                navigate(`/historybooking`);
-            }
-            if (type === 'HOME_NOTIFICATION') {
-                navigate(`/detail/${homeId}`);
-            }
-            if (type === 'OWNER_HOME_NOTIFICATION') {
-                navigate(`/host`);
-            }
-        }
-    };
+    // const handleSetView = (id, view, homeId, type) => {
+    //     if (!view) {
+    //         notificationApi.showOffViewNotification({ notificationId: id }).then(() => {
+    //             if (type === 'BOOKING_NOTIFICATION') {
+    //                 navigate(`/historybooking`);
+    //             }
+    //             if (type === 'HOME_NOTIFICATION') {
+    //                 navigate(`/detail/${homeId}`);
+    //             }
+    //             if (type === 'OWNER_HOME_NOTIFICATION') {
+    //                 navigate(`/host`);
+    //             }
+    //         });
+    //     } else {
+    //         if (type === 'BOOKING_NOTIFICATION') {
+    //             navigate(`/historybooking`);
+    //         }
+    //         if (type === 'HOME_NOTIFICATION') {
+    //             navigate(`/detail/${homeId}`);
+    //         }
+    //         if (type === 'OWNER_HOME_NOTIFICATION') {
+    //             navigate(`/host`);
+    //         }
+    //     }
+    // };
     return (
         <div className="navbar-owner">
             <NavLink to="/" className="logo">
                 <img src={Logo} alt="company logo" className="logo-bg" />
             </NavLink>
             <div className="navbar-right menu">
-                <NavLink to="/managerHotels" end={true}>
+                <NavLink to="/host" end={true}>
                     {t('navbar.managerPage')}
                 </NavLink>
-                <NavLink to="/host" end={true}>
+                <NavLink to="/host/today" end={true}>
                     {t('navbar.today')}
                 </NavLink>
-        
-                <NavLink to="/managerHotels/roomsAndRateManager">{t('navbar.roomsAndRateManager')}</NavLink>
-                <NavLink to="/managerHotels/calendar">{t('navbar.calender')}</NavLink>
-           
-                <NavLink to="/host/setting/transactionhistory">{t('navbar.historyHost')}</NavLink>
+
+                <NavLink to="/host/roomsAndRateManager">{t('navbar.roomsAndRateManager')}</NavLink>
+                <NavLink to="/host/calendar">{t('navbar.calender')}</NavLink>
+
+                <NavLink to="/host/transactionhistory">{t('navbar.historyHost')}</NavLink>
             </div>
             <DropdownUser />
         </div>

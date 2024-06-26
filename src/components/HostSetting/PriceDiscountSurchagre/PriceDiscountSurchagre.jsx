@@ -4,8 +4,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
-import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
-import publicSurcharge from '~/services/apis/publicAPI/surcharge';
+import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
+import publicSurchargeAPI from '~/services/apis/publicAPI/publicSurchargeAPI';
 import './PriceDiscountSurchagre.scss';
 import { useEffect, useState } from 'react';
 
@@ -28,7 +28,7 @@ export default function PriceDiscountSurchagre(props) {
     useEffect(() => {
         setDiscount(props.detailPriceRoom.discount);
         setPricePerNight(props.detailPriceRoom.pricePerNight);
-        publicSurcharge.getAllSurcharge().then((res) => {
+        publicSurchargeAPI.getAllSurcharge().then((res) => {
             setAllSurchagre(
                 res.data.map((surcharge) => {
                     const temp = props.detailPriceRoom.surchargeList.find(
@@ -49,12 +49,12 @@ export default function PriceDiscountSurchagre(props) {
     };
     const handleSave = (e) => {
         e.preventDefault();
-        partnerManageAPI
+        partnerManageAccomAPI
             .setSurcharge({ id: params.idHome, data: { surchargeList: allSurcharge } })
             .then(
-                partnerManageAPI
+                partnerManageAccomAPI
                     .updatePriceHome({ id: params.idHome, data: pricePerNight })
-                    .then(partnerManageAPI.updateDiscount({ id: params.idHome, data: discount })),
+                    .then(partnerManageAccomAPI.updateDiscount({ id: params.idHome, data: discount })),
 
                 enqueueSnackbar('Cập nhật thành công', { variant: 'success' }),
                 setExpanded(false)

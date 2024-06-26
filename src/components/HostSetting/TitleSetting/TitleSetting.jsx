@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import settingAccomSlice from '~/redux/settingAccomSlice';
 import './TitleSetting.scss';
 import { useParams } from 'react-router-dom';
-import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
+import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
 
 export default function TittleSetting(props) {
     const dispatch = useDispatch();
@@ -81,7 +81,7 @@ export default function TittleSetting(props) {
                 },
                 id: params.idHome
             };
-            partnerManageAPI
+            partnerManageAccomAPI
                 .updateTitleHome(newData)
                 .then((res) => {
                     enqueueSnackbar('Cập nhật thành công', { variant: 'success' });

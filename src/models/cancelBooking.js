@@ -18,11 +18,3 @@ export const policyPublicModel = {
     allowPet: [true, false],
     allowSmoking: [true, false]
 };
-
-// {
-//     "cancellationPolicy":"sdvdfbfb",
-//     "cancellationFeeRate":"svdbdb",
-//     "allowEvent":true,
-//     "allowPet":false,
-//     "allowSmoking":false
-// }

@@ -9,6 +9,7 @@ const resourceType = 'auto';
 
 const FileUpload = ({ file, setFile }) => {
     const [crop, setCrop] = useState(null);
+
     const cld = new Cloudinary({
         cloud: {
             cloudName: 'dyv5zrsgj'
@@ -24,6 +25,8 @@ const FileUpload = ({ file, setFile }) => {
                     .quality('auto')
                     .format('auto')
             );
+        } else {
+            setCrop(null);
         }
     }, [file?.cldVideoId]);
 

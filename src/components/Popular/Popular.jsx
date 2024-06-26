@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { t } from 'i18next';
 import { useNavigate } from 'react-router-dom';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
-import { transLateProvince } from '~/services/apis/translateAPI/translateAPI';
+import { transLateProvince } from '~/services/thirdPartyAPI/translateAPI';
 import { useDispatch } from 'react-redux';
 import filterAcomSlice from '~/redux/filterAccom';
 import './Popular.scss';

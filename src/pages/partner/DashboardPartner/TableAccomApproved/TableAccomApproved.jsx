@@ -39,7 +39,7 @@ export default function TableAccomApproved({ accomApproved }) {
     }));
 
     return (
-        <div className="table-accom-approved">
+        <div className="table-accom-approved paper">
             <DataGrid
                 autoHeight
                 loading={accomApproved.length === 0}

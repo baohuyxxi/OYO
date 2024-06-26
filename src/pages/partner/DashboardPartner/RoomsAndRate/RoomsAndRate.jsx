@@ -55,6 +55,9 @@ export default function RoomsAndRate({ accomApproved }) {
     };
 
     const getPriceAccommodation = (accommodation, date) => {
+        if(changePrice[accommodation.accomId] ) {
+            return changePrice[accommodation.accomId][date]
+        }
         if (accommodation.priceCustomForAccomList[date] !== undefined) {
             return accommodation.priceCustomForAccomList[date].priceApply;
         } else {
@@ -77,6 +80,7 @@ export default function RoomsAndRate({ accomApproved }) {
 
     const renderAccommodationRows = () => {
         return accommodations.map((accommodation, index) => (
+
             <tr key={accommodation.accomId} className="rate-room">
                 <td className="rate-room__name">{accommodation.accomName}</td>
                 {currentWeek.map((date) => (
@@ -84,9 +88,7 @@ export default function RoomsAndRate({ accomApproved }) {
                         <input
                             type="text"
                             value={
-                                changePrice[accommodation.accomId]
-                                    ? changePrice[accommodation.accomId][date]?.toLocaleString('vi-VN')
-                                    : getPriceAccommodation(accommodation, date).toLocaleString('vi-VN')
+                              getPriceAccommodation(accommodation, date)?.toLocaleString('vi-VN')
                             }
                             className={`rate-room__input ${getPriceClass(accommodation, date)}`}
                             onChange={(event) => handlePriceChange(accommodation.accomId, date, event)}

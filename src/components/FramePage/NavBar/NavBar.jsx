@@ -9,6 +9,7 @@ import DropdownUser from '~/components/DropdownUser/DropdownUser';
 import LanguageSelected from '~/components/LanguageSelected/LanguageSelected';
 import Button from '@mui/material/Button';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import DomainIcon from '@mui/icons-material/Domain';
 import MailNotification from '~/components/MailNotification/MailNotification';
 import DialogAuth from '~/components/DialogAuth/DialogAuth';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -80,7 +81,7 @@ export default function NavBar() {
                     </IconButton>
                 </div>
                 <Drawer anchor="left" open={openDrawer} onClose={toggleDrawer(false)}>
-                    <div className="drawer-content">
+                    <div className="drawer-content paper">
                         <NavLink to="/" className="logo">
                             <img src={logoOYO} alt="company logo" className="logo-bg" />
                         </NavLink>
@@ -95,16 +96,15 @@ export default function NavBar() {
                             <LanguageSelected />
                         </div>
                         <div className="drawer-item">
+                            <DomainIcon/>
                             <NavLink to="/list-accom">{t('navbar.listroom')}</NavLink>
                         </div>
                         {user === null ? (
-                            <Button
-                                className="drawer-item"
-                                onClick={(e) => setOpen(true)}
-                                startIcon={<AccountCircle />}
-                            >
-                                {t('title.signin')}/{t('title.signup')}
-                            </Button>
+                            <div className="drawer-item">
+                                <Button onClick={(e) => setOpen(true)} startIcon={<AccountCircle />}>
+                                    {t('title.signin')}/{t('title.signup')}
+                                </Button>
+                            </div>
                         ) : (
                             <>
                                 <div className="drawer-item">

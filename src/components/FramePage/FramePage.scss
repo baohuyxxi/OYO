@@ -6,7 +6,6 @@
 .body-page {
     color: var(--background-contrastText);
     background-color: var(--background-default);
-    background-color: #fafcff;
     align-items: center;
     max-width: 1500px;
     min-height: 600px;
@@ -27,23 +26,5 @@
     }
 
     @include responsive.mobile-large {
-    }
-}
-.button-open-chatbox {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-    background-color: var(--primary-main);
-    color: var(--background-default);
-    border-radius: 50%;
-    padding: 10px;
-    cursor: pointer;
-
-    transition: all 0.3s;
-    align-items: center;
-    display: flex;
-    &:hover {
-        background-color: var(--primary-dark);
     }
 }

@@ -44,7 +44,6 @@ export default function GeneralInfo({ id, save, doneSave }) {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.log(name, value);
         if (name === 'pricePerNight') {
             setData({
                 ...data,

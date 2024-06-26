@@ -10,7 +10,6 @@ export default function CalendarDateBooked({ accomApproved }) {
     const [groups, setGroups] = useState([]);
     const [items, setItems] = useState([]);
 
-    console.log(items);
 
     useEffect(() => {
         const fetchData = async () => {

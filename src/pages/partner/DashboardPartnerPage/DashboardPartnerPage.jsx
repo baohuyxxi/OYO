@@ -21,6 +21,7 @@ export default function DashboardPartner() {
         });
     }, []);
 
+    
     return (
         <FramePageOwner>
             <div className="dashboard-partner">

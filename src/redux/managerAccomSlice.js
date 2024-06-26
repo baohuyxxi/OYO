@@ -34,6 +34,17 @@ const managerAccomSlice = createSlice({
             .addCase(fetchAccomApproved.rejected, (state, action) => {
                 state.loading = 'failed';
                 state.error = action.error.message;
+            })
+            .addCase(fetchAccomWaiting.pending, (state) => {
+                state.loading = 'loading';
+            })
+            .addCase(fetchAccomWaiting.fulfilled, (state, action) => {
+                state.loading = 'succeeded';
+                state.accomWaiting = action.payload;
+            })
+            .addCase(fetchAccomWaiting.rejected, (state, action) => {
+                state.loading = 'failed';
+                state.error = action.error.message;
             });
     }
 });

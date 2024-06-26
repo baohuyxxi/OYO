@@ -3,9 +3,10 @@ import FramePageOwner from '~/components/FramePage/FramePageOwner';
 import { useDispatch, useSelector } from 'react-redux';
 import RoomsAndRate from './RoomsAndRate/RoomsAndRate';
 import Skeleton from '@mui/material/Skeleton'; // Import Skeleton
+import { useEffect } from 'react';
 
 export default function RoomsAndRateManagePage() {
-    const accomApproved = useSelector((state) => state.managerAccom);
+    const accomApproved = useSelector((state) => state.managerAccom)
 
     return (
         <FramePageOwner>

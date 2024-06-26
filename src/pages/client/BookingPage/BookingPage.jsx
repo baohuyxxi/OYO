@@ -20,7 +20,7 @@ import './BookingPage.scss';
 import { t } from 'i18next';
 import bookingSlice from '~/redux/bookingSlice';
 import globalSlice from '~/redux/globalSlice';
-import { transLateRoom } from '~/services/apis/translateAPI/translateAPI';
+import { transLateRoom } from '~/services/thirdPartyAPI/translateAPI';
 import { showRefundPolicy } from '~/utils/showRefundPolicy';
 const BookingPage = () => {
     const dispatch = useDispatch();

@@ -23,7 +23,7 @@ export default function CreateAccomCate() {
         partnerManageAccomAPI
             .registrationAccom({ accomCateName: cate.accomCateName })
             .then((response) => {
-                navigate(`/managerHotels/createHotel/generalInfo/${response.data}`);
+                navigate(`/host/createHotel/generalInfo/${response.data}`);
             })
             .catch((error) => {});
     };

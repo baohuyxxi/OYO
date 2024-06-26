@@ -51,9 +51,9 @@ function DropdownMenu() {
 
     const navigate = useNavigate();
 
-    const handleLogout = async () => {
-        await dispatch(userSlice.actions.logout());
-        navigate('/');
+    const handleLogout = () => {
+        dispatch(userSlice.actions.logout());
+    
     };
 
     return (

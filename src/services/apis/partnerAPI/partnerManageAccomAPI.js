@@ -12,7 +12,7 @@ const partnerManageAccomAPI = {
     getListAccomApproved: async (data) => {
         const res = await axios.get(
             `/partner/accoms/approved?pageNumber=${data?.number ? data?.number : 0}&pageSize=${
-                data?.size ? data?.size : 10
+                data?.size ? data?.size : 100
             }`
         );
         return res.data;

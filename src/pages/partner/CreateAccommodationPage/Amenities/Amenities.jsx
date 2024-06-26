@@ -3,7 +3,6 @@ import ListFacilityByCategory from '~/components/DialogFilter/ListFacilityFilter
 import publicFacilityAPI from '~/services/apis/publicAPI/publicFacilityAPI';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import createAccomSlice from '~/redux/createAccomSlice';
 import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
 export default function Amenities({ id, save, doneSave }) {
     const [loading, setLoading] = useState(false);

@@ -1,7 +1,6 @@
 import './CreateAccomCate.scss';
 import React, { useState, useEffect } from 'react';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
-import createAccomSlice from '~/redux/createAccomSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
@@ -19,7 +18,6 @@ export default function CreateAccomCate() {
 
     if (!accomCate) return null;
     const handleAccomCate = (cate) => {
-        // dispatch(createAccomSlice.actions.setAccomCateName(cate.accomCateName));
         partnerManageAccomAPI
             .registrationAccom({ accomCateName: cate.accomCateName })
             .then((response) => {

@@ -26,43 +26,6 @@ const NavbarOwner = () => {
             return <ManageHistoryIcon sx={{ color: `${!view ? '#2962ff' : 'black'}`, fontSize: '18px' }} />;
         }
     };
-
-    // const renderNotificationItem = (item, index) => (
-    //     <div
-    //         className="notification-item"
-    //         key={index}
-    //         onClick={() => handleSetView(item.id, item.view, item.homeId, item.type)}
-    //     >
-    //         <div className="icon-notification">{renderIcon(item.type, item.view)}</div>
-    //         <span className={`${!item.view ? 'no-view ' : ''} notification-content`}>{item.description}</span>
-    //     </div>
-    // );
-
-    // const handleSetView = (id, view, homeId, type) => {
-    //     if (!view) {
-    //         notificationApi.showOffViewNotification({ notificationId: id }).then(() => {
-    //             if (type === 'BOOKING_NOTIFICATION') {
-    //                 navigate(`/historybooking`);
-    //             }
-    //             if (type === 'HOME_NOTIFICATION') {
-    //                 navigate(`/detail/${homeId}`);
-    //             }
-    //             if (type === 'OWNER_HOME_NOTIFICATION') {
-    //                 navigate(`/host`);
-    //             }
-    //         });
-    //     } else {
-    //         if (type === 'BOOKING_NOTIFICATION') {
-    //             navigate(`/historybooking`);
-    //         }
-    //         if (type === 'HOME_NOTIFICATION') {
-    //             navigate(`/detail/${homeId}`);
-    //         }
-    //         if (type === 'OWNER_HOME_NOTIFICATION') {
-    //             navigate(`/host`);
-    //         }
-    //     }
-    // };
     return (
         <div className="navbar-owner">
             <NavLink to="/" className="logo">

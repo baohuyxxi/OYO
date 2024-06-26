@@ -45,7 +45,7 @@ export default function CardInfo() {
 
     const handleLogout = (e) => {
         dispatch(userSlice.actions.logout());
-        navigate('/');
+       
     };
     const [imageFile, setImageFile] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);

@@ -2,30 +2,36 @@ import './DashboardPartnerPage.scss';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import FramePageOwner from '~/components/FramePage/FramePageOwner';
 import Button from '@mui/material/Button';
 import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
 import SliderListAccomWaiting from './SliderListAccomWaiting/SliderListAccomWaiting';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import TableAccomApproved from './TableAccomApproved/TableAccomApproved';
+import { useFetchAccomData } from '~/redux/managerAccomSlice';
+import FramePage from '~/components/FramePage/FramePage';
 
 export default function DashboardPartner() {
-    const [loading, setLoading] = useState(false);
+    useFetchAccomData();
+    const { accomApproved, loading } = useSelector((state) => state.managerAccom);
     const [accomWaiting, setAccomWaiting] = useState([]);
-    const accomApproved = useSelector((state) => state.managerAccom.accomApproved);
 
     useEffect(() => {
-        partnerManageAccomAPI.getListAccomWaiting().then((res) => {
-            setAccomWaiting(res.data.content);
-            setLoading(false);
-        });
+        const fetchAccomWaiting = async () => {
+            try {
+                const response = await partnerManageAccomAPI.getListAccomWaiting();
+
+                setAccomWaiting(response.data.content);
+            } catch (error) {
+                console.log('Failed to fetch accomWaiting: ', error);
+            }
+        };
+        fetchAccomWaiting();
     }, []);
 
-    
     return (
-        <FramePageOwner>
+        <FramePage ownerPage={true}>
             <div className="dashboard-partner">
-                {loading === true ? (
+                {loading === 'loading' ? (
                     <></>
                 ) : (
                     <>
@@ -48,7 +54,7 @@ export default function DashboardPartner() {
             </div>
 
             <div className="dashboard-partner__page">
-                {loading === true && accomApproved.length > 0 ? (
+                {loading === 'loading' && accomApproved.length > 0 ? (
                     <></>
                 ) : (
                     <>
@@ -63,6 +69,6 @@ export default function DashboardPartner() {
                     </>
                 )}
             </div>
-        </FramePageOwner>
+      </FramePage>
     );
 }

@@ -8,8 +8,7 @@ import notificationSlice from './notificationSlice';
 import globalSlice from './globalSlice';
 import settingAccomSlice from './settingAccomSlice';
 import filterAcomSlice from './filterAccom';
-import createAccomSlice from './createAccomSlice';
-import managerAccomReducer, { autoFetchManagerAccom } from './managerAccomSlice'; // Import middleware
+import managerAccomSlice from './managerAccomSlice';
 
 const persistConfig = {
     key: 'root',
@@ -25,11 +24,18 @@ const rootReducer = combineReducers({
     global: globalSlice.reducer,
     settingaccom: settingAccomSlice.reducer,
     filterAccom: filterAcomSlice.reducer,
-    createAccom: createAccomSlice.reducer,
-    managerAccom: managerAccomReducer
+    managerAccom: managerAccomSlice.reducer
+  
 });
+const resettableReducer = (state, action) => {
+    if (action.type === 'user/logout') {
+        state = undefined;
+    }
+    return rootReducer(state, action);
+};
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const persistedReducer = persistReducer(persistConfig, rootReducer, resettableReducer);
 
 export const store = configureStore({
     reducer: persistedReducer,
@@ -39,7 +45,6 @@ export const store = configureStore({
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
             }
         })
-        // .concat(autoFetchManagerAccom) 
 });
 
 export let persistor = persistStore(store);

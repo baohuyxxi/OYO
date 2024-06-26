@@ -3,9 +3,8 @@ import React, { useState, useEffect } from 'react';
 import Timeline from 'react-calendar-timeline';
 import 'react-calendar-timeline/lib/Timeline.css';
 import moment from 'moment';
-import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
 
-export default function CalendarDateBooked({ accomApproved }) {
+export default function CalendarDateBooked({ accomPriceCustom }) {
     const [loading, setLoading] = useState(true);
     const [groups, setGroups] = useState([]);
     const [items, setItems] = useState([]);
@@ -13,15 +12,15 @@ export default function CalendarDateBooked({ accomApproved }) {
 
     useEffect(() => {
         const fetchData = async () => {
-            const groupData = accomApproved.map((item) => ({
-                id: item.id,
+            const groupData = accomPriceCustom.map((item) => ({
+                id: item.accomId,
                 title: item.accomName
             }));
             setGroups(groupData);
-            const res = await partnerManageAccomAPI.getListAccomWithPriceCustom();
+          
             const itemData = [];
             const currentDate = moment();
-            res.data.content.forEach((accom) => {
+            accomPriceCustom.forEach((accom) => {
                 if (accom.rangeDateBookingList.length > 0) {
                     accom.rangeDateBookingList.forEach((dateBooking, index) => {
                         const startDate = moment(dateBooking.dateStart, 'DD/MM/YYYY');
@@ -45,10 +44,10 @@ export default function CalendarDateBooked({ accomApproved }) {
             setLoading(false);
         };
 
-        if (accomApproved.length > 0) {
+        if (accomPriceCustom.length > 0) {
             fetchData();
         }
-    }, [accomApproved]);
+    }, [accomPriceCustom]);
     return (
         <div className="calendar-manage">
             {loading ? (

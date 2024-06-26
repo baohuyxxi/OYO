@@ -2,7 +2,6 @@ import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import PrivateRoute from '~/components/PrivateRoute/PrivateRoute';
-import LoadingPage from '~/pages/public/LoadingPage/LoadingPage';
 import LayoutAdmin from '~/pages/admin/LayoutAdmin/LayoutAdmin';
 
 const Auth = () => {
@@ -76,7 +75,7 @@ const Auth = () => {
                 element={
                     <PrivateRoute
                         element={
-                            <Suspense fallback={<LoadingPage />}>
+                            <Suspense >
                                 <InfoUserPage />
                             </Suspense>
                         }
@@ -121,7 +120,7 @@ const Auth = () => {
                 element={
                     <PrivateRoute
                         element={
-                            <Suspense fallback={<LoadingPage />}>
+                            <Suspense >
                                 <BookingPage />
                             </Suspense>
                         }
@@ -187,56 +186,31 @@ const Auth = () => {
                 element={
                     <PrivateRoute
                         element={
-                            <Suspense fallback={<LoadingPage />}>
+                            <Suspense >
                                 <TransactionHistoryPage />
                             </Suspense>
                         }
                     />
                 }
             />
-            {/* <Route
-                path="/host/setting/calendar"
-                element={
-                    <PrivateRoute
-                        element={
-                            <Suspense fallback={<LoadingPage />}>
-                                <CalendarRoomSetting />
-                            </Suspense>
-                        }
-                    />
-                }
-            /> */}
-            {/* <Route
-                path="/host/setting/countroomdetail/:idHome"
-                element={
-                    <PrivateRoute
-                        element={
-                            <Suspense fallback={<LoadingPage />}>
-                                <CountRoomDetailSetting />
-                            </Suspense>
-                        }
-                    />
-                }
-            /> */}
             <Route
                 path="/host/createHotel/*"
                 element={
                     <PrivateRoute
                         element={
-                            <Suspense fallback={<LoadingPage />}>
+                            <Suspense >
                                 <CreateAccommodationPage />
                             </Suspense>
                         }
                     />
                 }
             />
-            {/* CalendarManager */}
             <Route
                 path="/host/calendar/*"
                 element={
                     <PrivateRoute
                         element={
-                            <Suspense fallback={<LoadingPage />}>
+                            <Suspense >
                                 <CalendarManagePage />
                             </Suspense>
                         }
@@ -248,7 +222,7 @@ const Auth = () => {
                 element={
                     <PrivateRoute
                         element={
-                            <Suspense fallback={<LoadingPage />}>
+                            <Suspense >
                                 <RoomsAndRateManagePage />
                             </Suspense>
                         }
@@ -260,7 +234,7 @@ const Auth = () => {
                 element={
                     <PrivateRoute
                         element={
-                            <Suspense fallback={<LoadingPage />}>
+                            <Suspense >
                                 <DashboardPartnerPage />
                             </Suspense>
                         }
@@ -268,14 +242,7 @@ const Auth = () => {
                 }
             />
 
-            {/* <Route
-               path="/managerHotels/createHotel/*"
-                element={
-                    <Suspense>
-                         <CreateAcoom />
-                    </Suspense>
-                }
-            /> */}
+    
             <Route
                 path="*"
                 element={

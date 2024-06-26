@@ -1,5 +1,6 @@
 .navbar-owner {
     font-family: serif;
+    position: fixed;
     width: 100%;
     height: 75px;
     top: 0;
@@ -8,7 +9,6 @@
     background: white;
     z-index: 99;
     display: flex;
-     position: relative;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif!important;
     a {
         float: left;

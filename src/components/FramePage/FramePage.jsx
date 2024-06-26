@@ -1,32 +1,30 @@
-import NavBar from './NavBar/NavBar';
-import Footer from '~/components/Footer/Footer';
-import ViewIamge from '~/components/ViewImage/ViewImage';
-import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
+// FramePage.jsx
 import './FramePage.scss';
-import ChatAI from '../ChatAI/ChatAI';
-import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import NavBar from './NavBar/NavBar';
+import NavbarOwner from '../NavbarOwner/NavbarOwner';
+import Footer from '~/components/Footer/Footer';
+import ViewImage from '~/components/ViewImage/ViewImage';
 import ChatBox from '../ChatBox/ChatBox';
+import LoadingDialog from '~/components/LoadingDialog/LoadingDialog';
+import { useEffect } from 'react';
 
-export default function FramePage({ children }) {
+export default function FramePage({ ownerPage = false, children }) {
     const viewImages = useSelector((state) => state.global.viewImages);
     const chatbox = useSelector((state) => state.global.chatbox);
+    const loading = useSelector((state) => state.global.loading);
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
-    const [open, setOpen] = useState(false);
-    const handleClose = () => {
-        setOpen(false);
-    };
     return (
-        <div className="background__frame-page">
-            <NavBar />
+        <div className={`background${ownerPage ? '__frame-page' : ''}`}>
+            {ownerPage ? <NavbarOwner /> : <NavBar />}
             <div className="body-page">{children}</div>
-            {viewImages && <ViewIamge viewImages={viewImages} />}
-
-            {/* <ChatAI onClose={handleClose} /> */}
+            {viewImages && <ViewImage viewImages={viewImages} />}
             {chatbox.open === true && <ChatBox />}
+            {loading && <LoadingDialog open={loading} />}
             <Footer />
         </div>
     );

@@ -5,35 +5,35 @@ import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccom
 import arrowRight from '~/assets/svg/arrow-right.svg';
 import arrowLeft from '~/assets/svg/arrow-left.svg';
 import { useSnackbar } from 'notistack';
-import Skeleton from '@mui/material/Skeleton'; // Import Skeleton
-
-export default function RoomsAndRate({ accomApproved }) {
+import Skeleton from '@mui/material/Skeleton'; 
+import { useDispatch } from 'react-redux';
+import managerAccomSlice from '~/redux/managerAccomSlice';
+export default function RoomsAndRate({ accomPriceCustom }) {
+    const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
     const [currentWeek, setCurrentWeek] = useState([]);
     const [accommodations, setAccommodations] = useState([]);
     const [changePrice, setChangePrice] = useState([]);
     const { enqueueSnackbar } = useSnackbar();
-    const [listHomeOfPartner, setListHomeOfPartner] = useState([]);
 
     useEffect(() => {
         setCurrentWeek(getCurrentWeekDates());
-        partnerManageAccomAPI.getListAccomWithPriceCustom().then((res) => {
-            const data = res.data.content.map((item) => {
-                const transformedPriceList = item.priceCustomForAccomList.reduce((acc, current) => {
-                    acc[current.dateApply] = { priceApply: current.priceApply };
-                    return acc;
-                }, {});
 
-                return {
-                    ...item,
-                    priceCustomForAccomList: transformedPriceList
-                };
-            });
+        const data = accomPriceCustom.map((item) => {
+            const transformedPriceList = item.priceCustomForAccomList.reduce((acc, current) => {
+                acc[current.dateApply] = { priceApply: current.priceApply };
+                return acc;
+            }, {});
 
-            setAccommodations(data);
-            setLoading(false); // Set loading to false once data is fetched
+            return {
+                ...item,
+                priceCustomForAccomList: transformedPriceList
+            };
         });
-    }, [accomApproved]);
+
+        setAccommodations(data);
+        setLoading(false);
+    }, [accomPriceCustom]);
 
     const getCurrentWeekDates = () => {
         let weekStart = moment().startOf('week');
@@ -55,8 +55,8 @@ export default function RoomsAndRate({ accomApproved }) {
     };
 
     const getPriceAccommodation = (accommodation, date) => {
-        if(changePrice[accommodation.accomId] ) {
-            return changePrice[accommodation.accomId][date]
+        if (changePrice[accommodation.accomId]) {
+            return changePrice[accommodation.accomId][date];
         }
         if (accommodation.priceCustomForAccomList[date] !== undefined) {
             return accommodation.priceCustomForAccomList[date].priceApply;
@@ -80,16 +80,13 @@ export default function RoomsAndRate({ accomApproved }) {
 
     const renderAccommodationRows = () => {
         return accommodations.map((accommodation, index) => (
-
             <tr key={accommodation.accomId} className="rate-room">
                 <td className="rate-room__name">{accommodation.accomName}</td>
                 {currentWeek.map((date) => (
                     <td key={`${accommodation.accomId}-${date}`}>
                         <input
                             type="text"
-                            value={
-                              getPriceAccommodation(accommodation, date)?.toLocaleString('vi-VN')
-                            }
+                            value={getPriceAccommodation(accommodation, date)?.toLocaleString('vi-VN')}
                             className={`rate-room__input ${getPriceClass(accommodation, date)}`}
                             onChange={(event) => handlePriceChange(accommodation.accomId, date, event)}
                         />
@@ -129,6 +126,7 @@ export default function RoomsAndRate({ accomApproved }) {
         partnerManageAccomAPI.updatePriceCustom(data).then((res) => {
             enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
         });
+        dispatch(managerAccomSlice.actions.reloadResources());
     };
 
     return (

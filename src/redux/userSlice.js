@@ -33,6 +33,7 @@ const userSlice = createSlice({
             localStorage.removeItem('refreshToken')
             state.current = null
             state.roles = null
+            window.location.href = '/'
         },
         editInfo(state, action) {
             state.current= action.payload

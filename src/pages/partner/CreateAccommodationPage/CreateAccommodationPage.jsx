@@ -1,6 +1,5 @@
 import './CreateAccommodationPage.scss';
 import { useState, useEffect } from 'react';
-import FramePageOwner from '~/components/FramePage/FramePageOwner';
 import { Route, Routes, useParams } from 'react-router-dom';
 import CreateAccomCate from './CreateAccomCate/CreateAccomCate';
 import MenuCreateAccom from './MenuCreateAccom/MenuCreateAccom';
@@ -14,6 +13,7 @@ import PaymentInfo from './PaymentInfo/PaymentInfo';
 import { Button } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
+import FramePage from '~/components/FramePage/FramePage';
 
 export default function CreateAccommodationPage() {
     const params = useParams();
@@ -50,7 +50,7 @@ export default function CreateAccommodationPage() {
     };
 
     return (
-        <FramePageOwner>
+        <FramePage ownerPage={true}>
             <div className="create-acoom__page">
                 <Routes>
                     <Route path="/" element={<CreateAccomCate />} />
@@ -157,6 +157,6 @@ export default function CreateAccommodationPage() {
                     />
                 </Routes>
             </div>
-        </FramePageOwner>
+            </FramePage>
     );
 }

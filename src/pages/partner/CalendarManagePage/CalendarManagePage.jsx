@@ -1,28 +1,32 @@
 import './CalendarManagePage.scss';
 import React, { useEffect, useState } from 'react';
 import CalendarDateBooked from './CalendarDateBooked/CalendarDateBooked';
-import FramePageOwner from '~/components/FramePage/FramePageOwner';
 import { useSelector } from 'react-redux';
 import RoomsAndRate from '../RoomsAndRateManagePage/RoomsAndRate/RoomsAndRate';
-
+import { useFetchAccomData } from '~/redux/managerAccomSlice';
+import FramePage from '~/components/FramePage/FramePage';
 export default function CalendarManagePage() {
-    const accomApproved = useSelector((state) => state.managerAccom);
+    useFetchAccomData()
+    const { accomPriceCustom, loading } = useSelector(
+        (state) => state.managerAccom
+    );
+
 
     return (
-        <FramePageOwner>
+        <FramePage ownerPage={true}>
             <div className="calendar-manager">
                 <div className="calendar-manager__header">
                     <h1 className="page-header">Quản lý lịch</h1>
-                    {accomApproved.loading === 'loading' ? (
+                    {loading === 'loading' ? (
                         <div>Loading...</div>
                     ) : (
                         <>
-                            <CalendarDateBooked accomApproved={accomApproved.accomApproved} />
-                            <RoomsAndRate accomApproved={accomApproved.accomApproved} />
+                            <CalendarDateBooked  accomPriceCustom={accomPriceCustom} />
+                            <RoomsAndRate   accomPriceCustom={accomPriceCustom} />
                         </>
                     )}
                 </div>
             </div>
-        </FramePageOwner>
+       </FramePage>
     );
 }

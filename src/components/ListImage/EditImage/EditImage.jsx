@@ -2,7 +2,7 @@ import './EditImage.scss';
 import CloseIcon from '@mui/icons-material/Close';
 import { Dialog, DialogContent, DialogContentText, DialogTitle, Rating, Button } from '@mui/material';
 import uploadMedia from '~/services/apis/media/uploadMedia';
-import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
+import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useSnackbar } from 'notistack';
@@ -78,7 +78,7 @@ const EditImage = (props) => {
             }
         };
 
-        partnerManageAPI
+        partnerManageAccomAPI
             .updateImagesHome(newData)
             .then(() => {
                 enqueueSnackbar(t('message.updateSuccess'), {

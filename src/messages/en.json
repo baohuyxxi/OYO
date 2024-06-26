@@ -184,7 +184,7 @@
         "selectAvatar": "Select avatar",
         "category": "Category",
         "bank": "Bank account",
-        "account_number": "Account number",
+        "accountNumber": "Account number",
         "accountNameHost": "Account name",
         "swiftCode": "Swift code"
     },
@@ -249,7 +249,7 @@
         "discountPercent": "Discount percent",
         "surchargeList": "Surcharge list",
         "guide": "Guide",
-        "pricePerNight":"Price per night"
+        "pricePerNight": "Price per night"
     },
     "contentMain": {
         "homeinsearch": "From 'impromptu' rides to adventures, discover your own recipe for joy",

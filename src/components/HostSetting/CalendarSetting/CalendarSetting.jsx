@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
+import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
 import pricesOfHomeApi from '~/services/apis/partnerAPI/pricesOfHomeApi';
 import formatPrice from '../../../utils/formatPrice';
 import './CalendarSetting.scss';
@@ -55,7 +55,7 @@ export default function CalendarSetting() {
     };
 
     useEffect(() => {
-        partnerManageAPI.getListHomeOfPartner().then((dataResponse) => {
+        partnerManageAccomAPI.getListHomeOfPartner().then((dataResponse) => {
             setDataListHome(dataResponse.data.content);
         });
         if (idRoom !== '') {

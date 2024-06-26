@@ -4,7 +4,6 @@ import storage from 'redux-persist/lib/storage';
 
 import userSlice from './userSlice';
 import bookingSlice from './bookingSlice';
-import setupOwnerSlice from '../pages/partner/SetupOwner/setupOwnerSlice';
 import notificationSlice from './notificationSlice';
 import globalSlice from './globalSlice';
 import settingAccomSlice from './settingAccomSlice';
@@ -22,7 +21,6 @@ const persistConfig = {
 const rootReducer = combineReducers({
     user: userSlice.reducer,
     booking: bookingSlice.reducer,
-    settingowner: setupOwnerSlice.reducer,
     notification: notificationSlice.reducer,
     global: globalSlice.reducer,
     settingaccom: settingAccomSlice.reducer,

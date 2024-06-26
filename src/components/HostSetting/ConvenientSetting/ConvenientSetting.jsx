@@ -4,7 +4,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ConvenientItem from '~/components/ConvenientItem/ConvenientItem';
-import partnerManageAPI from '~/services/apis/partnerAPI/partnerManageAPI';
+import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
 import publicFacilityAPI from '~/services/apis/publicAPI/publicFacilityAPI';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import { useSnackbar } from 'notistack';
@@ -44,7 +44,7 @@ export default function ConvenientSetting(props) {
                 facilityCodes: data
             }
         };
-        partnerManageAPI
+        partnerManageAccomAPI
             .updateFacility(newData)
             .then((dataResponse) => {
                 enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
@@ -75,7 +75,7 @@ export default function ConvenientSetting(props) {
             <form onSubmit={handleSave}>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
-                        expandIcon={<ExpandMoreIcon/>}
+                        expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >
@@ -88,7 +88,6 @@ export default function ConvenientSetting(props) {
                             <></>
                         ) : (
                             <AccordionDetails
-                            
                                 aria-controls="panel1bh-content"
                                 id="panel1bh-header"
                                 className="container__facilityCate"

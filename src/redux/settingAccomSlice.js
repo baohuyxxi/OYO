@@ -32,6 +32,9 @@ const settingAccomSlice = createSlice({
         setAccom(state, action) {
             state.accom = action.payload;
             state.reload = false;
+        },
+        resetCldVideoId(state, action) {
+            state.accom.cldVideoId = '';
         }
     }
 });

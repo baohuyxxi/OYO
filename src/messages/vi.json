@@ -166,7 +166,7 @@
             "name": "Họ tên",
             "phone": "Số điện thoại"
         },
-        "history": "Danh sách đặt phòng của bạn",
+        "history": "Lịch sử đặt phòng của bạn",
         "refundPolicy": "Chính sách hủy phòng",
         "cancelPopup": "Bạn có chắc rằng muốn hủy hay không?",
         "review": "Đánh Giá Khách Hàng",
@@ -190,7 +190,7 @@
         "selectAvatar": "Chọn ảnh đại diện",
         "category": "Loại",
         "bank": "Ngân hàng",
-        "account_number": "Số tài khoản",
+        "accountNumber": "Số tài khoản",
         "accountNameHost": "Tên tài khoản",
         "swiftCode": "Mã SWIFT"
     },
@@ -257,7 +257,6 @@
         "surchargeList": "Danh sách phụ phí",
         "guide": "Hướng dẫn",
         "pricePerNight": "Giá theo đêm"
-
     },
     "contentMain": {
         "homeinsearch": "Từ chuyến phượt 'ngẫu hứng' đến những cuộc phiêu lưu, khám phá công thức niềm vui của riêng bạn",
@@ -329,14 +328,14 @@
         "signout": "Đăng xuất",
         "profile": "Thông tin cá nhân",
         "activeAccout": "Kích hoạt tài khoản",
-        "myBooking": "Quản lý chỗ đặt",
+        "myBooking": "Lịch sử đặt phòng",
         "myAccount": "Tài khoản của tôi",
         "passwordAndSecurity": "Mật khẩu & Bảo mật",
         "billingInformation": "Thông tin thanh toán",
-        "accountManagement": "Quản lý tài khoản",
+        "accountManagement": "Tài khoản",
         "personalData": "Dữ liệu cá nhân",
         "changePassword": "Đổi mật khẩu",
-        "managerPage":"Trang quản lý",
+        "managerPage": "Trang quản lý",
         "roomsAndRateManager": "Phòng & giá"
     },
     "footer": {

@@ -4,7 +4,7 @@ import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import { useEffect, useState } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import CustomInput from '~/assets/custom/CustomInput';
-import CountRoomDetailSetting from '~/pages/partner/OwnerSetting/CountRoomDetailSetting/CountRoomDetailSetting';
+import CountRoomDetailSetting from '~/components/HostSetting/CountRoomSetting/CountRoomDetailSetting/CountRoomDetailSetting';
 
 const CountRoomSetting = (props) => {
     const navigate = useNavigate();

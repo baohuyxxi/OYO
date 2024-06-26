@@ -31,10 +31,9 @@ import formatPrice from '~/utils/formatPrice';
 import wishAPI from '~/services/apis/clientAPI/clientWishAPI';
 import bookingSlice from '~/redux/bookingSlice';
 import { guestsModel } from '~/models/booking';
-import { transLateRoom } from '~/services/apis/translateAPI/translateAPI';
+import { transLateRoom } from '~/services/thirdPartyAPI/translateAPI';
 import { dayGap } from '~/utils/calculates';
 import GoogleMap from '~/components/GoogleMap/GoogleMap';
-import globalSlice from '~/redux/globalSlice';
 
 export default function RoomDetail() {
     const { enqueueSnackbar } = useSnackbar();
@@ -128,7 +127,7 @@ export default function RoomDetail() {
             setLove(!love);
         });
     };
-   
+
     return (
         <FramePage>
             {loading ? (

@@ -16,10 +16,3 @@ export const fullAddressFormData = {
     latitude: null,
     guide: null
 }
-
-// "numHouseAndStreetName": "42/4 duong nam cao",
-// "districtCode": "018",
-// "provinceCode": "22",
-// "wardCode": "00022",
-// "longitude": 124.0,
-// "latitude": 2464.0243

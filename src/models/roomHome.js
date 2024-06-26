@@ -28,7 +28,7 @@ export const roomHomeFormData = {
     },
     numBathRoom: 0,
     numKitchen: 0,
-    numPeople: 0,
+    numPeople: 0
 };
 export const policiesFormData = {
     cancellationPolicy: {
@@ -41,22 +41,6 @@ export const policiesFormData = {
         allowSmoking: null
     }
 };
-
-// "cancellationPolicy": {
-//     "code": null,
-//     "cancellationFeeRate": null
-// },
-// "generalPolicy": {
-//     "allowEvent": null,
-//     "allowPet": null,
-//     "allowSmoking": null
-// }
-
-
-// "bankId": null,
-// "accountNumber": null,
-// "accountNameHost": null,
-// "swiftCode": null
 
 export const bankInfo = {
     bankId: null,

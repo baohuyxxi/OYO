@@ -20,6 +20,11 @@
     align-items: center;
     justify-content: center;
     z-index: 1;
+
+    // .bx-user {
+    //     width: 30px;
+    //     height: 30px;
+    // }
 }
 
 .status-card__info {
@@ -28,13 +33,13 @@
     z-index: 1;
     text-transform: capitalize;
     padding-left: 5px;
-}
-
-.status-card__info {
     h4 {
         font-size: 26px;
         margin-bottom: 10px;
         margin-top: 10px;
+    }
+    span {
+        font-size: 10px;
     }
 }
 

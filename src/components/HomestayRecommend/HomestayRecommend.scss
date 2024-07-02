@@ -1,11 +1,11 @@
-.room__popular {
+.homestay__recommend {
     margin: 0 100px;
     margin-top: 100px;
 
     .row {
         margin-left: -9px;
         margin-right: -9px;
-        .container__room__popular {
+        .container__homestay__recommend {
             padding: 10px;
             height: fit-content;
             margin-bottom: 10px;
@@ -83,7 +83,6 @@
                     word-wrap: break-word;
                     white-space: nowrap;
                     overflow: hidden;
-                    text-overflow: ellipsis;
                     margin: 0;
                 }
 
@@ -97,9 +96,9 @@
 
                     p {
                         font-size: small;
-                        font-weight: 500;
                         padding: 3px 18px;
                         color: rgba(2, 100, 200, 1);
+                        font-weight: 500;
                         background-color: #bbdefb;
                         border-radius: 10px;
                         margin: 0;
@@ -128,16 +127,16 @@
                 }
 
                 .price__room {
-                    display: flex;
-                    justify-content: space-between;
                     margin-left: 10px;
                     margin-right: 10px;
                     margin-top: 5px;
+                    padding: 0;
 
                     span {
                         font-size: 0.9rem;
                         color: var(--success-mode);
                     }
+
                     .price__room__value {
                         font-weight: 800;
                     }

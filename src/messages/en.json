@@ -137,7 +137,9 @@
         "endow": "Hot deals",
         "exploreVN": "Explore Vietnam",
         "whySelected": "Why should you choose OYO",
+        "homestayCategory": "Diverse types of homestays",
         "popularRoom": "Most Viewed Featured House",
+        "homestayRecommend": "Homestay recommend for you",
         "convenient": "This place has what for you",
         "priceDetail": "Base price details",
         "discountCompain": "Discount campaign",
@@ -297,7 +299,7 @@
         "price": "Price",
         "priceDay": "/ Night",
         "view": "View:",
-        "viewInDetal": "view",
+        "viewInDetail": "View",
         "countClient": "Number of guest"
     },
     "navbar": {

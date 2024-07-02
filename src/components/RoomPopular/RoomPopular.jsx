@@ -12,6 +12,7 @@ import wishAPI from '~/services/apis/clientAPI/clientWishAPI';
 import formatPrice from '~/utils/formatPrice';
 import iconStar from '~/assets/svg/star.svg';
 import { t } from 'i18next';
+import numViewIcon from '~/assets/img/icons8-eye-64.png';
 import { transLateListTitle } from '~/services/thirdPartyAPI/translateAPI';
 
 export default function RoomPopular() {
@@ -79,11 +80,23 @@ export default function RoomPopular() {
                                     </div>
                                     <div className="locate__room">
                                         <FmdGoodIcon className="icon_locate" />
-                                        <p>{home?.addressGeneral ? home?.addressGeneral : null}</p>
+                                        <span>{home?.addressGeneral ? home?.addressGeneral : null}</span>
                                     </div>
                                     <div className="price__room">
-                                        <p>{`${formatPrice(home?.pricePerNight)}${t('numberCount.priceDay')}`}</p>
-                                        <p>{`${home?.numView} ${t('numberCount.viewInDetal')}`}</p>
+                                        <span style={{ display: 'inline-block' }}>
+                                            <span className="price__room__value">{`${formatPrice(
+                                                home?.pricePerNight
+                                            )}`}</span>
+                                            <span>{`${t('numberCount.priceDay')}`}</span>
+                                        </span>
+                                        <span style={{ display: 'flex', alignContent: 'space-between' }}>
+                                            <img
+                                                style={{ width: 17, height: 17 }}
+                                                src={numViewIcon}
+                                                alt={`${t('numberCount.viewInDetail')}`}
+                                            />
+                                            <span style={{ marginLeft: 3 }}> {home?.numView}</span>
+                                        </span>
                                     </div>
                                 </div>
                             </div>

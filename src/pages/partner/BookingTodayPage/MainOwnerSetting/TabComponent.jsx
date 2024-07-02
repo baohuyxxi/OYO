@@ -37,7 +37,7 @@ export default function TabComponent() {
                     <TabList onChange={handleChange} aria-label="lab API tabs example">
                         <Tab label="Sắp nhận phòng" value="1" />
                         <Tab label="Hiện đang đón tiếp" value="2" />
-                        <Tab label="Thống kê" value="3" />
+                        {/* <Tab label="Thống kê" value="3" /> */}
                     </TabList>
                 </Box>
                 <TabPanel value="1">
@@ -62,9 +62,9 @@ export default function TabComponent() {
                         <ListDataNull />
                     )}
                 </TabPanel>
-                <TabPanel value="3">
+                {/* <TabPanel value="3">
                     <StatisShow />
-                </TabPanel>
+                </TabPanel> */}
             </TabContext>
         </Box>
     );

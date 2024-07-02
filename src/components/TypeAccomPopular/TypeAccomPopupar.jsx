@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import filterAcomSlice from '~/redux/filterAccom';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { t } from 'i18next';
 
 const data = [];
 
@@ -75,7 +76,7 @@ const TypeAccomPopupar = () => {
     return (
         <div className="type-accom-popular">
             <div className="type-accom-popular__head">
-                <h1>Home stay bạn có thể thích</h1>
+                <h1>{t('title.homestayCategory')}</h1>
             </div>
             <Slider {...settings}>
                 {listAccomCateData.map((item, index) => (

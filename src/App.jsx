@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import i18n from './i18n';
 import Auth from './routes/Auth';
-import globalSlice from '~/redux/globalSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import LoadingDialog from '~/components/LoadingDialog/LoadingDialog';
 import { connectSocketServer } from '~/services/socket/notificationSocket';
@@ -14,7 +13,7 @@ function App() {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user.current);
     const loading = useSelector((state) => state.global.loading);
-    const { t } = useTranslation();
+
     useEffect(() => {
         const selectedLanguage = localStorage.getItem('selectedLanguage');
         if (selectedLanguage) {

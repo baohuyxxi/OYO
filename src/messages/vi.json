@@ -140,7 +140,9 @@
         "endow": "Ưu đãi hấp dẫn",
         "exploreVN": "Khám phá Việt Nam",
         "whySelected": "Vì sao bạn nên chọn OYO",
+        "homestayCategory": "Đa dạng thể loại homestay",
         "popularRoom": "Nhà nổi bật được xem nhiều nhất",
+        "homestayRecommend": "Đề xuất cho bạn",
         "convenient": "Nơi này có những gì cho bạn",
         "priceDetail": "Chi tiết giá cơ sở",
         "discountCompain": "Chương trình giảm giá",
@@ -304,7 +306,7 @@
         "price": "Giá",
         "priceDay": "/đêm",
         "view": "Lượt xem:",
-        "viewInDetal": "lượt xem",
+        "viewInDetail": "Lượt xem",
         "countClient": "Số khách"
     },
     "navbar": {

@@ -15,7 +15,8 @@ export default function LayoutNewAccom() {
             setListNewAccom(res.data.content);
             setLoading(false);
         });
-    });
+    }, []);
+
     return (
         <div className="new-accom__page">
             <div className="header__customer">

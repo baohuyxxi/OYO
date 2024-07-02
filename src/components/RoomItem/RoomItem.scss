@@ -9,7 +9,7 @@
     }
     .container__room {
         padding: 10px;
-        height: 425px;
+        height: fit-content;
         .slick-slider {
             height: 215px;
         }
@@ -75,13 +75,13 @@
             cursor: pointer;
 
             h2 {
-                font-size: large;
+                font-size: medium;
                 padding-left: 10px;
-                margin: 0;
                 word-wrap: break-word;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                margin: 0;
             }
 
             .obility__room {
@@ -93,7 +93,8 @@
                 }
 
                 p {
-                    font-size: medium;
+                    font-size: small;
+                    font-weight: 500;
                     padding: 3px 18px;
                     color: rgba(2, 100, 200, 1);
                     background-color: #bbdefb;
@@ -108,11 +109,12 @@
             .locate__room {
                 margin-top: 10px;
                 display: flex;
-                margin-left: 5px;
+                margin-left: 10px;
 
-                p {
+                span {
                     margin: 0;
-                    font-size: medium;
+                    font-size: 0.9rem;
+                    font-weight: 300;
                     color: rgba(2, 100, 200, 1);
                     word-wrap: break-word;
                     white-space: nowrap;
@@ -121,20 +123,24 @@
                 }
                 .icon_locate {
                     color: rgba(2, 100, 200, 1);
-                    font-size: 1.6rem;
+                    font-size: 1.2rem;
                     margin-right: 5px;
                 }
             }
 
             .price__room {
-                display: block;
+                display: flex;
                 justify-content: space-between;
                 margin-left: 10px;
                 margin-right: 10px;
-                margin-top: -5px;
-                p {
-                    font-size: medium;
+                margin-top: 5px;
+
+                span {
+                    font-size: 0.9rem;
                     color: var(--success-mode);
+                }
+                .price__room__value {
+                    font-weight: 800;
                 }
             }
         }

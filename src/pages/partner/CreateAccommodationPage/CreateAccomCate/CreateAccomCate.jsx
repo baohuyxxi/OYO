@@ -1,7 +1,7 @@
 import './CreateAccomCate.scss';
 import React, { useState, useEffect } from 'react';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
 
@@ -9,7 +9,7 @@ export default function CreateAccomCate() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [accomCate, setAccomCate] = useState([]);
-    const listAccom = useSelector((state) => state.createAccom.listAccom);
+
     useEffect(() => {
         publicAccomPlaceAPI.getRoomCategory().then((dataResponse) => {
             setAccomCate(dataResponse?.data);

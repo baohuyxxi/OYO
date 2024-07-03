@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import './RoomItem.scss';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
-// Import css files
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import formatPrice from '~/utils/formatPrice';
@@ -10,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import IconLove from '../RoomPopular/IconLove';
 import wishAPI from '~/services/apis/clientAPI/clientWishAPI';
 import { t } from 'i18next';
+import numViewIcon from '~/assets/img/icons8-eye-64.png';
 import iconStar from '~/assets/svg/star.svg';
 
 const RoomItem = (props) => {
@@ -56,13 +56,23 @@ const RoomItem = (props) => {
                     </div>
                     <div className="locate__room">
                         <FmdGoodIcon className="icon_locate" />
-                        <p>{props?.infoRoom?.addressGeneral ? props?.infoRoom?.addressGeneral : ''}</p>
+                        <span>{props?.infoRoom?.addressGeneral ? props?.infoRoom?.addressGeneral : ''}</span>
                     </div>
                     <div className="price__room">
-                        <p>{`${t('numberCount.price')} ${formatPrice(props?.infoRoom?.pricePerNight)} ${t(
-                            'numberCount.priceDay'
-                        )}`}</p>
-                        <p>{`${t('numberCount.view')} ${props?.infoRoom?.numView}`}</p>
+                        <span style={{ display: 'inline-block' }}>
+                            <span className="price__room__value">{`${formatPrice(
+                                props?.infoRoom?.pricePerNight
+                            )}`}</span>
+                            <span>{`${t('numberCount.priceDay')}`}</span>
+                        </span>
+                        <span style={{ display: 'flex', alignContent: 'space-between' }}>
+                            <img
+                                style={{ width: 17, height: 17 }}
+                                src={numViewIcon}
+                                alt={`${t('numberCount.viewInDetail')}`}
+                            />
+                            <span style={{ marginLeft: 3 }}> {props?.infoRoom?.numView}</span>
+                        </span>
                     </div>
                 </div>
             </div>

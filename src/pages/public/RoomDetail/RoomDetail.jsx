@@ -172,7 +172,7 @@ export default function RoomDetail() {
                                         </div>
 
                                         <p className="link__rate">
-                                            {`(${dataDetailHome?.numView} ${t('numberCount.viewInDetal')})`}
+                                            {`(${dataDetailHome?.numView} ${t('numberCount.viewInDetail')})`}
                                         </p>
                                     </div>
                                 </div>

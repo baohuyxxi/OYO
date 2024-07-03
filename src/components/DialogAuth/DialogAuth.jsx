@@ -45,17 +45,12 @@ export default function DialogAuth(props) {
     const TransitionComponent = (props) => {
         if (amination) return <Slide direction="up" {...props} />;
         else {
-             return <>{props.children}</>;    
+            return <>{props.children}</>;
         }
     };
     return (
         <>
-            <Dialog
-                onClose={handleClose}
-                open={props.open}
-                TransitionComponent={TransitionComponent}
-                keepMounted
-            >
+            <Dialog onClose={handleClose} open={props.open} TransitionComponent={TransitionComponent} keepMounted>
                 <DialogTitle className="paper form-dialog">
                     <header>{title}</header>
 

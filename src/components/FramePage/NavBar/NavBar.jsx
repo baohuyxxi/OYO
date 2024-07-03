@@ -17,11 +17,14 @@ import IconButton from '@mui/material/IconButton';
 import Drawer from '@mui/material/Drawer';
 import { t } from 'i18next';
 import './NavBar.scss';
+import { useDispatch } from 'react-redux';
+import filterAcomSlice from '~/redux/filterAccom';
 
 export default function NavBar() {
     const [open, setOpen] = useState(false);
     const user = useSelector((state) => state.user.current);
     const location = useLocation().pathname;
+    const dispatch = useDispatch();
 
     const [openDrawer, setOpenDrawer] = useState(false);
     const toggleDrawer = (anchor, open) => (event) => {
@@ -29,6 +32,9 @@ export default function NavBar() {
             return;
         }
         setOpenDrawer(open);
+    };
+    const handleToListAccom = () => {
+        dispatch(filterAcomSlice.actions.reset());
     };
     return (
         <AppBar className="appbar">
@@ -48,7 +54,7 @@ export default function NavBar() {
                     <LanguageSelected />
                 </div>
 
-                <div className={`element${location === '/list-accom' ? '__actived' : ''}`}>
+                <div className={`element${location === '/list-accom' ? '__actived' : ''}`} onClick={handleToListAccom}>
                     <NavLink to="/list-accom">{t('navbar.listroom')}</NavLink>
                 </div>
 
@@ -97,7 +103,7 @@ export default function NavBar() {
                         </div>
                         <div className="drawer-item">
                             <DomainIcon/>
-                            <NavLink to="/list-accom">{t('navbar.listroom')}</NavLink>
+                            <NavLink to="/list-accom" onClick={handleToListAccom}>{t('navbar.listroom')} </NavLink>
                         </div>
                         {user === null ? (
                             <div className="drawer-item">

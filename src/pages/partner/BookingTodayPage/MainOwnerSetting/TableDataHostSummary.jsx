@@ -1,9 +1,9 @@
 import { DataGrid } from '@mui/x-data-grid';
 import { useState, useEffect } from 'react';
-import partnerManageBookingAPI from '~/services/apis/partnerAPI/partnerManageBookingAPI';
 import formatPrice from '~/utils/formatPrice';
 import { useSnackbar } from 'notistack';
 import ModalConfirm from '~/components/ModalConfirm/ModalConfirm';
+import partnerManageBookingAPI from '~/services/apis/partnerAPI/partnerManageBookingAPI';
 
 const TableDataHostSummary = (props) => {
     const { enqueueSnackbar } = useSnackbar();
@@ -43,7 +43,7 @@ const TableDataHostSummary = (props) => {
                     }
                 });
             } else if (props.idTab === 'Check Out') {
-                summaryHomeApi.setCheckOut(selectedId).then((res) => {
+                partnerManageBookingAPI.setCheckOut(selectedId).then((res) => {
                     enqueueSnackbar('Check out thành công', { variant: 'success' });
                     if (res.statusCode === 200) {
                         props.setLoad((prevLoad) => !prevLoad);

@@ -64,6 +64,7 @@
         }
 
         .card-item__favorite {
+            border: 2px solid transparent;
             height: max-content;
             cursor: pointer;
             border-radius: 5px;

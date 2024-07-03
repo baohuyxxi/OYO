@@ -34,7 +34,7 @@ import { guestsModel } from '~/models/booking';
 import { transLateRoom } from '~/services/thirdPartyAPI/translateAPI';
 import { dayGap } from '~/utils/calculates';
 import GoogleMap from '~/components/GoogleMap/GoogleMap';
-
+import BreadcrumbsHome from './BreadcrumbsHome';
 export default function RoomDetail() {
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
@@ -127,7 +127,7 @@ export default function RoomDetail() {
             setLove(!love);
         });
     };
-
+    console.log(dataDetailHome.addressDetail);
     return (
         <FramePage>
             {loading ? (

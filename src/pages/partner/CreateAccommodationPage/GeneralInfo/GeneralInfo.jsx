@@ -52,6 +52,22 @@ export default function GeneralInfo({ id, save, doneSave }) {
             });
             return;
         }
+        if (name === 'discountPercent') {
+            if (parseInt(value) > 100) {
+                setData({
+                    ...data,
+                    [name]: 100
+                });
+                return;
+            }
+            if (parseInt(value) < 0) {
+                setData({
+                    ...data,
+                    [name]: 0
+                });
+                return;
+            }
+        }
         setData({
             ...data,
             [name]: value
@@ -89,7 +105,7 @@ export default function GeneralInfo({ id, save, doneSave }) {
                         type="text"
                         placeholder={t('placeholder.priceVND')}
                         className="info__input"
-                        defaultValue={convertPrice(data?.pricePerNight)}
+                        value={convertPrice(data?.pricePerNight || 0)}
                         onChange={handleChange}
                     />
                     <label className="info__title">{t('label.acreageHome')}</label>
@@ -125,7 +141,7 @@ export default function GeneralInfo({ id, save, doneSave }) {
                         placeholder={t('placeholder.discountPercent')}
                         className="info__input"
                         onChange={handleChange}
-                        defaultValue={data?.discountPercent}
+                        value={data?.discountPercent}
                         label={t('label.discountPercent')}
                     />
                     <label className="info__title">{t('label.surchargeList')}</label>

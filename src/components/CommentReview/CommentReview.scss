@@ -3,7 +3,6 @@
     padding-top: 20px;
     padding-bottom: 10px;
     text-align: center;
-    
 
     .container-comment {
         display: flex;
@@ -65,9 +64,9 @@
             .comment-content {
                 display: flex;
                 font-size: small;
-                font-weight: 500;
                 margin-bottom: 5px;
                 margin-top: -5px;
+                text-align: start;
             }
             .image-list {
                 display: flex;

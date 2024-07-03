@@ -9,7 +9,6 @@ export default function CreateAccomCate() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [accomCate, setAccomCate] = useState([]);
-    const listAccom = useSelector((state) => state.createAccom.listAccom);
     useEffect(() => {
         publicAccomPlaceAPI.getRoomCategory().then((dataResponse) => {
             setAccomCate(dataResponse?.data);

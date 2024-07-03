@@ -15,6 +15,18 @@ export default function TableAccomApproved({ accomApproved, loading }) {
 
     const columns = [
         { field: 'stt', headerName: 'STT', flex: 1 },
+        {
+            field: 'image',
+            headerName: 'Hình ảnh',
+            flex: 1,
+            renderCell: (params) => (
+                <img
+                    src={params.row.image}
+                    alt="accommodation"
+                    style={{ width: '50px', height: '50px', objectFit: 'cover' }}
+                />
+            )
+        },
         { field: 'name', headerName: 'Tên chỗ nghỉ', flex: 4 },
         { field: 'address', headerName: 'Địa chỉ', flex: 5 },
         { field: 'status', headerName: 'Trạng thái', flex: 1 },
@@ -33,11 +45,11 @@ export default function TableAccomApproved({ accomApproved, loading }) {
     const rows = accomApproved.map((item, index) => ({
         id: item.id,
         stt: index + 1,
+        image: item.imageAccomsUrls[0], 
         name: item.accomName,
         address: item.addressDetail,
         status: item.status === 'APPROVED' ? t('Đã duyệt') : t('Chờ duyệt')
     }));
-
     return (
         <div className="table-accom-approved paper">
             <DataGrid

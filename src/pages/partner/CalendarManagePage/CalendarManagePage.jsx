@@ -6,11 +6,8 @@ import RoomsAndRate from '../RoomsAndRateManagePage/RoomsAndRate/RoomsAndRate';
 import { useFetchAccomData } from '~/redux/managerAccomSlice';
 import FramePage from '~/components/FramePage/FramePage';
 export default function CalendarManagePage() {
-    useFetchAccomData()
-    const { accomPriceCustom, loading } = useSelector(
-        (state) => state.managerAccom
-    );
-
+    useFetchAccomData();
+    const { accomPriceCustom, loading } = useSelector((state) => state.managerAccom);
 
     return (
         <FramePage ownerPage={true}>
@@ -21,12 +18,12 @@ export default function CalendarManagePage() {
                         <div>Loading...</div>
                     ) : (
                         <>
-                            <CalendarDateBooked  accomPriceCustom={accomPriceCustom} />
-                            <RoomsAndRate   accomPriceCustom={accomPriceCustom} />
+                            <CalendarDateBooked accomPriceCustom={accomPriceCustom} />
+                            <RoomsAndRate accomPriceCustom={accomPriceCustom} />
                         </>
                     )}
                 </div>
             </div>
-       </FramePage>
+        </FramePage>
     );
 }

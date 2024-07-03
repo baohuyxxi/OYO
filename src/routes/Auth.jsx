@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import PrivateRoute from '~/components/PrivateRoute/PrivateRoute';
 import LayoutAdmin from '~/pages/admin/LayoutAdmin/LayoutAdmin';
+import StatisticPage from '~/pages/partner/StatisticPage/StatisticPage';
 
 const Auth = () => {
     const roles = useSelector((state) => state.user.roles);
@@ -75,7 +76,7 @@ const Auth = () => {
                 element={
                     <PrivateRoute
                         element={
-                            <Suspense >
+                            <Suspense>
                                 <InfoUserPage />
                             </Suspense>
                         }
@@ -120,7 +121,7 @@ const Auth = () => {
                 element={
                     <PrivateRoute
                         element={
-                            <Suspense >
+                            <Suspense>
                                 <BookingPage />
                             </Suspense>
                         }
@@ -186,8 +187,21 @@ const Auth = () => {
                 element={
                     <PrivateRoute
                         element={
-                            <Suspense >
+                            <Suspense>
                                 <TransactionHistoryPage />
+                            </Suspense>
+                        }
+                    />
+                }
+            />
+
+            <Route
+                path="/host/statistic"
+                element={
+                    <PrivateRoute
+                        element={
+                            <Suspense>
+                                <StatisticPage />
                             </Suspense>
                         }
                     />
@@ -198,7 +212,7 @@ const Auth = () => {
                 element={
                     <PrivateRoute
                         element={
-                            <Suspense >
+                            <Suspense>
                                 <CreateAccommodationPage />
                             </Suspense>
                         }
@@ -210,7 +224,7 @@ const Auth = () => {
                 element={
                     <PrivateRoute
                         element={
-                            <Suspense >
+                            <Suspense>
                                 <CalendarManagePage />
                             </Suspense>
                         }
@@ -222,7 +236,7 @@ const Auth = () => {
                 element={
                     <PrivateRoute
                         element={
-                            <Suspense >
+                            <Suspense>
                                 <RoomsAndRateManagePage />
                             </Suspense>
                         }
@@ -234,7 +248,7 @@ const Auth = () => {
                 element={
                     <PrivateRoute
                         element={
-                            <Suspense >
+                            <Suspense>
                                 <DashboardPartnerPage />
                             </Suspense>
                         }
@@ -242,7 +256,6 @@ const Auth = () => {
                 }
             />
 
-    
             <Route
                 path="*"
                 element={

@@ -1,12 +1,9 @@
-import {useState} from 'react';
-import {useSelector } from 'react-redux';
-
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import { NavLink } from 'react-router-dom';
-
 import logoOYO from '~/assets/logo.svg';
-
 import ModeToggle from '~/components/ModeToggle/ModeToggle';
 import DropdownUser from '~/components/DropdownUser/DropdownUser';
 import LanguageSelected from '~/components/LanguageSelected/LanguageSelected';
@@ -20,6 +17,8 @@ import './NavBarOwner.scss';
 export default function NavBarOwner() {
     const [open, setOpen] = useState(false);
     const user = useSelector((state) => state.user.current);
+
+    console.log(user);
 
     return (
         <AppBar className="appbar">
@@ -39,7 +38,7 @@ export default function NavBarOwner() {
                 <div className="element">
                     <LanguageSelected />
                 </div>
-              
+
                 {/* <div className="element">
                     <NavLink to="/host">{t('navbar.host')}</NavLink>
                 </div> */}
@@ -51,7 +50,7 @@ export default function NavBarOwner() {
                 </div>
 
                 {user === null ? (
-                    <Button className="element" onClick={e=>setOpen(true)} startIcon={<AccountCircle />}>
+                    <Button className="element" onClick={(e) => setOpen(true)} startIcon={<AccountCircle />}>
                         {t('title.signin')}/{t('title.signup')}
                     </Button>
                 ) : (
@@ -62,12 +61,7 @@ export default function NavBarOwner() {
                         </div>
                     </>
                 )}
-                {open && (
-                    <DialogAuth
-                        open={open}
-                        setOpen= {setOpen}
-                    />
-                )}
+                {open && <DialogAuth open={open} setOpen={setOpen} />}
             </Toolbar>
         </AppBar>
     );

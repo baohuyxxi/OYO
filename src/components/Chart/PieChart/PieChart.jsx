@@ -3,17 +3,17 @@ import { Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export function PieChart(props) {
+export default function PieChart({ data }) {
     const labels = [];
     const value = [];
-    if (props?.data) {
-        for (var i = 0; i < props?.data.length; i++) {
-            labels.push(props.data[i].homeName);
-            value.push(props.data[i].numberOfBooking);
+    if (data) {
+        for (var i = 0; i < data.length; i++) {
+            labels.push(data[i].accomName);
+            value.push(data[i].numberOfBooking);
         }
     }
 
-    const data = {
+    const dataShow = {
         labels: labels,
         datasets: [
             {
@@ -40,5 +40,5 @@ export function PieChart(props) {
         ]
     };
 
-    return <Doughnut data={data} />;
+    return <Doughnut data={dataShow} />;
 }

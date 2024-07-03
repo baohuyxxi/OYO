@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 
 import LineChart from '~/components/Chart/LineChart/LineChart';
-import { PieChart } from '~/components/Chart/PieChart/PieChart';
+import PieChart from '~/components/Chart/PieChart/PieChart';
 import statisticApi from '~/services/apis/partnerAPI/statisticApi';
 
 import './StatisShow.scss';
@@ -12,7 +12,6 @@ const StatisShow = () => {
     const currentYear = new Date().getFullYear();
     const [year, setYear] = useState(currentYear);
     const [reCall, setReCall] = useState(false);
-    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         statisticApi.getStatisticOfHost('').then((dataResponse) => {

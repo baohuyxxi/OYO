@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
 import './CommentReview.scss';
+import { useEffect, useState } from 'react';
+
 import { Avatar } from '@mui/material';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { format } from 'date-fns';
@@ -7,24 +8,16 @@ import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import { t } from 'i18next';
 
 export default function CommentReview(props) {
-    const [dataComment, setDataaCommet] = useState([]);
-    const [showMoreComments, setShowMoreComments] = useState(false);
-    const [loading, setLoading] = useState(true);
-    useEffect(() => {
-        publicAccomPlaceAPI.getReviewHome(props.id).then((res) => {
-            setDataaCommet(res.data);
-            if (res.data.length > 0) {
-                setLoading(false);
-            }
-        });
-    }, []);
+    const { dataComment } = props;
+
+    const showMoreComments = false; // Nếu bạn muốn mặc định không hiển thị nhiều hơn 5 bình luận
+
     const commentsToShow = showMoreComments ? dataComment : dataComment.slice(0, 5);
     return (
         <>
-            {loading ? (
+            {dataComment.length === 0 ? (
                 <div className="container__emtyComment">
                     <p>{t('common.noReview')}</p>
-                    {/* <img src="/src/assets/video/crabtyping.gif" className='emtyComment'></img> */}
                 </div>
             ) : (
                 <div className="paper container-comments">

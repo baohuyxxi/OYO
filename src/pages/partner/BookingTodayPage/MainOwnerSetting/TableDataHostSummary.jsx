@@ -14,7 +14,7 @@ const TableDataHostSummary = (props) => {
     const [refreshSelection, setRefreshSelection] = useState(false);
     useEffect(() => {
         const newRows = props.data.map((item, index) => ({
-            id: index,
+            id: index +1,
             bookingCode: item.bookingCode,
             nameAccom: item.nameAccom || '',
             nameCustomer: item.nameCustomer || '',

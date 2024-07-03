@@ -43,7 +43,7 @@ export default function DashboardPartner() {
                     </Link>
                 </header>
                 <div className="dashboard-partner__slider">
-                    <SliderListAccomWaiting accomWaiting={accomWaiting} />
+                    <SliderListAccomWaiting accomWaiting={accomWaiting} setAccomWaiting={setAccomWaiting}/>
                 </div>
             </div>
 

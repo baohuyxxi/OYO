@@ -55,17 +55,21 @@ export default function RoomDetail() {
     const [disBooking, setDisBooking] = useState(true);
     const [love, setLove] = useState(null);
     const [openDrawer, setOpenDrawer] = useState(false);
+    const [dataComment, setDataComment] = useState([]);
     const stars = [];
     for (let i = 0; i < dataDetailHome.gradeRate; i++) {
         stars.push(<img key={i} src={iconStar} alt="icon__star" className="star" />);
     }
     useEffect(() => {
+        wishAPI.checkWish(roomId.id).then((res) => setLove(res));
+        publicAccomPlaceAPI.getReviewHome(roomId.id).then((res) => {
+            setDataComment(res.data);
+        });
         publicAccomPlaceAPI.getRoomDetail(roomId.id).then(async (dataResponse) => {
             const data = await transLateRoom(dataResponse.data);
             setDataDetalHome(data);
             setLoading(false);
         });
-        wishAPI.checkWish(roomId.id).then((res) => setLove(res));
     }, [roomId?.id]);
     useEffect(() => {
         if (dateBook[0] !== dateBook[1]) {
@@ -332,9 +336,15 @@ export default function RoomDetail() {
                             </Button> */}
                             <GoogleMap data={dataDetailHome} />
 
-                            <CommentReview id={roomId.id} />
+                            <CommentReview dataComment={dataComment} />
                         </div>
-                        <DrawerHome open={openDrawer} setOpen={setOpenDrawer} data={dataDetailHome} stars={stars} />
+                        <DrawerHome
+                            open={openDrawer}
+                            setOpen={setOpenDrawer}
+                            data={dataDetailHome}
+                            stars={stars}
+                            dataComment={dataComment}
+                        />
                     </div>
                 </>
             )}

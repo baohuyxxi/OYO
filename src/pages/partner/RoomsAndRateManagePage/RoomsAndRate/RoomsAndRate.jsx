@@ -8,12 +8,13 @@ import { useSnackbar } from 'notistack';
 import Skeleton from '@mui/material/Skeleton'; 
 import { useDispatch } from 'react-redux';
 import managerAccomSlice from '~/redux/managerAccomSlice';
+
 export default function RoomsAndRate({ accomPriceCustom }) {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
     const [currentWeek, setCurrentWeek] = useState([]);
     const [accommodations, setAccommodations] = useState([]);
-    const [changePrice, setChangePrice] = useState([]);
+    const [changePrice, setChangePrice] = useState({});
     const { enqueueSnackbar } = useSnackbar();
 
     useEffect(() => {
@@ -67,7 +68,7 @@ export default function RoomsAndRate({ accomPriceCustom }) {
 
     const getPriceClass = (accommodation, date) => {
         const defaultPrice = accommodation.pricePerNight;
-        const customPrice = accommodation.priceCustomForAccomList[date]?.priceApply;
+        const customPrice = changePrice[accommodation.accomId]?.[date] ?? accommodation.priceCustomForAccomList[date]?.priceApply;
 
         if (customPrice === undefined || customPrice === defaultPrice) {
             return 'default-price';
@@ -101,7 +102,13 @@ export default function RoomsAndRate({ accomPriceCustom }) {
         if (newChangePrice < 0 || isNaN(newChangePrice)) {
             newChangePrice = 0;
         }
-        setChangePrice({ ...changePrice, [id]: { ...changePrice[id], [date]: newChangePrice } });
+        setChangePrice((prevChangePrice) => ({
+            ...prevChangePrice,
+            [id]: {
+                ...prevChangePrice[id],
+                [date]: newChangePrice
+            }
+        }));
     };
 
     const getPreviousWeekDates = () => {
@@ -132,7 +139,7 @@ export default function RoomsAndRate({ accomPriceCustom }) {
     return (
         <div className="rooms-and-rate-container">
             {loading ? (
-                <Skeleton variant="rectangular" width="100%" height={400} /> // Use Skeleton component for loading state
+                <Skeleton variant="rectangular" width="100%" height={800} /> 
             ) : (
                 <>
                     <div className="week-navigation">

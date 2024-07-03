@@ -12,31 +12,17 @@ function SearchHome({ placeholder, data }) {
     const [wordEntered, setWordEntered] = useState('');
     const refOne = useRef(null);
 
-    useEffect(() => {
-        document.addEventListener('click', hideOnClickOutside, true);
-    }, []);
-
-    const hideOnClickOutside = (e) => {
-        if (refOne.current && !refOne.current.contains(e.target)) {
-            setFilteredData([]);
-        }
-        setWordEntered('');
-    };
-
-    const handleFilter = (event) => {
+    const handleFilter = async (event) => {
         const searchWord = event.target.value;
         setWordEntered(searchWord);
 
         const convertStringToEnglish = removeVietnameseTones(searchWord);
         const text = convertStringToEnglish.replace(' ', '%20');
         if (text.length > 1) {
-            publicAccomPlaceAPI.getSearchHome(text).then((dataResponse) => {
-                if (dataResponse.data?.content) {
-                    setFilteredData(dataResponse.data?.content);
-                }
+            await publicAccomPlaceAPI.getSearchHome(text).then((dataResponse) => {
+                setFilteredData(dataResponse.data?.content);
             });
-        }
-        if (searchWord === '') {
+        } else {
             setFilteredData([]);
         }
     };
@@ -45,7 +31,7 @@ function SearchHome({ placeholder, data }) {
         setFilteredData([]);
         setWordEntered('');
     };
-
+    console.log(filteredData)
     return (
         <div className="search-home">
             <div className="searchInputs-home">

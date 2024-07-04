@@ -4,20 +4,35 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ConvenientItem from '~/components/ConvenientItem/ConvenientItem';
-import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
 import publicFacilityAPI from '~/services/apis/publicAPI/publicFacilityAPI';
-import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import { useSnackbar } from 'notistack';
+import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
 import { useState, useEffect } from 'react';
-import './ConvenientSetting.scss';
+import './FacilitySetting.scss';
 
-export default function ConvenientSetting(props) {
+export default function FacilitySetting() {
     const [expanded, setExpanded] = useState(false);
     const params = useParams();
     const [loading, setLoading] = useState(true);
     const [dataListCatagoryConvenient, setDataListCategoryConvenient] = useState([]);
-    const [data, setData] = useState([]);
+    const [facilitiesApply, setFacilitiesApply] = useState([]);
+    const facilitiesList = dataListCatagoryConvenient.flatMap((category) => category.infoFacilityList);
+
     const { enqueueSnackbar } = useSnackbar();
+
+    useEffect(() => {
+        publicFacilityAPI.getAllDataFacility().then((dataResponse) => {
+            setDataListCategoryConvenient(dataResponse.data);
+        });
+        partnerManageAccomAPI.getFacilitiesAccom(params.idHome).then((dataResponse) => {
+            const temp = dataResponse.data.facilities.flatMap((result) => {
+                return result.facilityCode;
+            });
+            setFacilitiesApply(temp);
+            setLoading(false);
+        });
+    }, [params?.idHome]);
+
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
@@ -26,15 +41,15 @@ export default function ConvenientSetting(props) {
         setExpanded(false);
     };
 
-    const nameConvenient = `${
-        props?.convent && props?.convent.length !== 0 && props?.convent[0]?.faciCateName
-            ? props?.convent[0]?.faciCateName
-            : ''
-    } ${
-        props?.convent !== undefined && props?.convent.length !== 0 && props?.convent[1]?.faciCateName
-            ? `, ${props?.convent[1]?.faciCateName}`
-            : ''
-    }`;
+    const nameFacilities = `${
+        facilitiesApply.length &&
+        facilitiesList.find((item) => item.facilityCode === facilitiesApply[0]) &&
+        facilitiesList.find((item) => item.facilityCode === facilitiesApply[0]).facilityName
+    }, ${
+        facilitiesApply.length &&
+        facilitiesList.find((item) => item.facilityCode === facilitiesApply[1]) &&
+        facilitiesList.find((item) => item.facilityCode === facilitiesApply[1]).facilityName
+    } ....`;
 
     const handleSave = (e) => {
         e.preventDefault();
@@ -54,21 +69,6 @@ export default function ConvenientSetting(props) {
             });
     };
 
-    useEffect(() => {
-        publicFacilityAPI.getAllDataFacility().then((dataResponse) => {
-            setDataListCategoryConvenient(dataResponse.data);
-        });
-        publicAccomPlaceAPI.getRoomDetail(params.idHome).then((res) => {
-            const temp = res.data.facilityCategoryList.flatMap((result) => {
-                return result.infoFacilityList.flatMap((code) => {
-                    return code.facilityCode;
-                });
-            });
-            setData(temp);
-            setLoading(false);
-        });
-    }, [params?.idHome]);
-
     return (
         <div style={{ fontSize: '15px', paddingRight: '50px', paddingBottom: '50px', fontWeight: '600' }}>
             <h3>Tiện ích</h3>
@@ -80,7 +80,7 @@ export default function ConvenientSetting(props) {
                         id="panel1bh-header"
                     >
                         <p style={{ width: '33%', flexShrink: 0 }}>Tiện ích</p>
-                        <p style={{ color: 'text.secondary' }}>{nameConvenient}</p>
+                        <p style={{ color: 'text.secondary' }}>{nameFacilities}</p>
                     </AccordionSummary>
 
                     <>
@@ -95,8 +95,8 @@ export default function ConvenientSetting(props) {
                                 {dataListCatagoryConvenient?.map((child, index) => (
                                     <div key={index}>
                                         <ConvenientItem
-                                            data={data}
-                                            setData={setData}
+                                            data={facilitiesApply}
+                                            setData={setFacilitiesApply}
                                             dataConveni={child.infoFacilityList}
                                             name={child.faciCateName}
                                         />

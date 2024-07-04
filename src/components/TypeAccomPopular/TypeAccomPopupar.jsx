@@ -61,8 +61,7 @@ const TypeAccomPopupar = () => {
     useEffect(() => {
         async function fetchData() {
             const res = await publicAccomPlaceAPI.getAllAccomCategoryInfo();
-
-            setListAccomCateData(res.data.filter((item, index) => index !== 0));
+            setListAccomCateData(res.data);
         }
         fetchData();
     }, []);

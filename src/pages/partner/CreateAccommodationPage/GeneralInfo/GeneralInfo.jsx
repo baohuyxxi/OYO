@@ -96,8 +96,6 @@ export default function GeneralInfo({ id, save, doneSave }) {
                         defaultValue={data?.description}
                         onChange={handleChange}
                     />
-                    <label className="info__title">{t('label.guide')}</label>
-                    <textarea name="guide" className="info__input" defaultValue={data?.guide} onChange={handleChange} />
 
                     <label className="info__title">{t('label.priceHome')}</label>
                     <input

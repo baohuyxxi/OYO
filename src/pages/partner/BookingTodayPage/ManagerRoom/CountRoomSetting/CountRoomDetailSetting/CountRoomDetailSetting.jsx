@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { typeRoom, typeBedRoom } from '~/models/roomHome';
+import { typeRoom } from '~/models/roomHome';
 import CountNumber from '~/components/CountNumber/CountNumber';
 import CustomInput from '~/assets/custom/CustomInput';
 import MenuItem from '@mui/material/MenuItem';
@@ -8,23 +8,22 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import './CountRoomDetailSetting.scss';
-
 import { useEffect, useState } from 'react';
 import publicTypeBedAPI from '~/services/apis/publicAPI/publicTypeBedAPI';
 import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
-import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import { useSnackbar } from 'notistack';
 
-const CountRoomDetailSetting = (props) => {
+const CountRoomDetailSetting = ({ allAccomCategory }) => {
     const [numRoom, setNumRoom] = useState(typeRoom);
+    const [roomSetting, setRoomSetting] = useState(null);
     const [bedRooms, setBedRooms] = useState([]);
-    const [allBedRoom, setAllBedRoom] = useState(typeBedRoom);
+    const [allTypeBed, setAllTypeBed] = useState(null);
     const [expanded, setExpanded] = useState(false);
     const params = useParams();
     const { enqueueSnackbar } = useSnackbar();
 
     useEffect(() => {
-        publicTypeBedAPI.getAllTypeBed().then((res) => setAllBedRoom(res.data.content));
+        publicTypeBedAPI.getAllTypeBed().then((res) => setAllTypeBed(res.data.content));
     }, []);
 
     useEffect(() => {
@@ -36,7 +35,7 @@ const CountRoomDetailSetting = (props) => {
     }, [numRoom[0].number]);
 
     useEffect(() => {
-        publicAccomPlaceAPI.getRoomDetail(`${params.idHome}`).then((dataRoom) => {
+        partnerManageAccomAPI.getRoomSetting(`${params.idHome}`).then((dataRoom) => {
             setNumRoom(
                 numRoom.map((room) => {
                     return {
@@ -45,7 +44,8 @@ const CountRoomDetailSetting = (props) => {
                     };
                 })
             );
-            setBedRooms(dataRoom?.data.bedRooms.flatMap((bed) => bed.typeBedCode));
+            setBedRooms(dataRoom?.data?.bedRooms.typeBeds.flatMap((bed) => bed.typeBedCode));
+            setRoomSetting(dataRoom?.data);
         });
     }, [params.idHome]);
 
@@ -62,15 +62,17 @@ const CountRoomDetailSetting = (props) => {
         const newData = {
             id: params?.idHome,
             data: {
-                typeBedCodes: bedRooms,
-                numKitchen: numRoom[1].number,
-                numBedRoom: numRoom[0].number,
-                numBathRoom: numRoom[2].number,
-                accomCateName: props.accomCate
+                accomCateName: roomSetting?.accomCateName,
+                numPeople: roomSetting?.numPeople,
+                numKitchen: numRoom[2].number,
+                numBathRoom: numRoom[1].number,
+                typeBedCodes: bedRooms
             }
         };
+
+        console.log(newData);
         partnerManageAccomAPI
-            .updateRoomHome(newData)
+            .updateRoomSetting(newData)
             .then((res) => {
                 enqueueSnackbar('Cập nhật thành công', {
                     variant: 'success'
@@ -94,6 +96,28 @@ const CountRoomDetailSetting = (props) => {
             style={{ fontSize: '15px', paddingRight: '50px', paddingBottom: '50px', fontWeight: '600' }}
         >
             <form onSubmit={handleSaveRoom}>
+                <p>Loại chỗ ở</p>
+                <CustomInput
+                    select={true}
+                    value={roomSetting?.accomCateName || ''}
+                    width={500}
+                    onChange={(e) => setRoomSetting({ ...roomSetting, accomCateName: e.target.value })}
+                    content={allAccomCategory.map((option, index) => (
+                        <MenuItem key={index} value={option.accomCateName}>
+                            {option.accomCateName}
+                        </MenuItem>
+                    ))}
+                />
+                <p>Số lượng khách</p>
+                <input
+                    value={roomSetting?.numPeople}
+                    onChange={(e) => {
+                        setRoomSetting({
+                            ...roomSetting,
+                            numPeople: parseInt(e.target.value) ? parseInt(e.target.value) : ''
+                        });
+                    }}
+                ></input>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
@@ -134,7 +158,7 @@ const CountRoomDetailSetting = (props) => {
                                         value={bed || ''}
                                         onChange={(e) => onChange(e.target.value, index)}
                                         select={true}
-                                        content={allBedRoom.map((option, i) => (
+                                        content={allTypeBed.map((option, i) => (
                                             <MenuItem key={i} value={option.typeBedCode}>
                                                 {option.typeBedName}
                                             </MenuItem>

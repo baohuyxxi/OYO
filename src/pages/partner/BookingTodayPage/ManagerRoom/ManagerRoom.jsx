@@ -1,19 +1,20 @@
-import ImageSetting from '~/components/HostSetting/ImageSetting/ImageSetting';
+import ImageSetting from '~/pages/partner/BookingTodayPage/ManagerRoom/GallerySetting/ImageSetting/ImageSetting';
 import LocationSetting from '~/components/HostSetting/LocationSetting/LocationSetting';
 import NavbarOwner from '~/components/NavbarOwner/NavbarOwner';
 import ScrollspyComponent from '~/components/Scrollspy/Scrollspy';
-import TittleSetting from '~/components/HostSetting/TitleSetting/TitleSetting';
-
+import GeneralInfoSetting from '~/pages/partner/BookingTodayPage/ManagerRoom/GeneralInfoSetting/GeneralInfoSetting';
 import './ManagerRoom.scss';
-import ConvenientSetting from '~/components/HostSetting/ConvenientSetting/ConvenientSetting';
-import CountRoomSetting from '~/components/HostSetting/CountRoomSetting/CountRoomSetting';
-import { useEffect } from 'react';
+import CountRoomSetting from '~/pages/partner/BookingTodayPage/ManagerRoom/CountRoomSetting/CountRoomSetting';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
-import PriceDiscountSurchagre from '~/components/HostSetting/PriceDiscountSurchagre/PriceDiscountSurchagre';
-import settingAccomSlice from '~/redux/settingAccomSlice';
+import PriceDiscountSurchagre from '~/pages/test/PriceDiscountSurchagre/PriceDiscountSurchagre';
 import { useSelector, useDispatch } from 'react-redux';
-import VideoIntroSetting from '~/components/HostSetting/VideoIntroSetting/VideoIntroSetting';
+import VideoIntroSetting from '~/pages/partner/BookingTodayPage/ManagerRoom/GallerySetting/VideoIntroSetting/VideoIntroSetting';
+import PolicySetting from './PolicySetting/PolicySetting';
+import PaymentInfoSetting from './PaymentInfoSetting/PaymentInfoSetting';
+import FacilitySetting from '~/components/HostSetting/FacilitySetting/FacilitySetting';
+import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
 
 const infoLink = {
     name: 'Chi tiết nhà cho thuê',
@@ -22,85 +23,104 @@ const infoLink = {
 
 const backUrl = '/host/setting';
 
-const item = ['', 'section1', 'section2', 'section3', 'section4', 'section5', 'section6'];
+// , 'section2', 'section3', 'section4', 'section5', 'section6', 'section7'
+
+const item = ['', 'section1', 'section2', 'section3', 'section4', 'section5'];
 
 const ManagerRoom = () => {
     const params = useParams();
     const dispatch = useDispatch();
-    const dataHomeDetail = useSelector((state) => state.settingaccom.accom);
+    const [galleryAccom, setGalleryAccom] = useState(null);
+
+    // const dataHomeDetail = useSelector((state) => state.settingaccom.accom);
 
     useEffect(() => {
-        publicAccomPlaceAPI.getRoomDetail(params.idHome).then((dataResponse) => {
-            dispatch(settingAccomSlice.actions.setAccom(dataResponse.data));
+        partnerManageAccomAPI.getGallery(params.idHome).then((dataResponse) => {
+            setGalleryAccom(dataResponse.data);
         });
     }, [params.idHome]);
 
-    const infoRoom = {
-        accomName: dataHomeDetail?.accomName ? dataHomeDetail?.accomName : '',
-        description: dataHomeDetail?.description,
-        guide: dataHomeDetail?.guide,
-        refundPolicy: dataHomeDetail?.refundPolicy
-    };
+    // const infoRoom = {
+    //     accomName: dataHomeDetail?.accomName ? dataHomeDetail?.accomName : '',
+    //     description: dataHomeDetail?.description,
+    //     guide: dataHomeDetail?.guide,
+    //     refundPolicy: dataHomeDetail?.refundPolicy
+    // };
 
-    const detailPriceRoom = {
-        pricePerNight: dataHomeDetail?.pricePerNight,
-        discount: dataHomeDetail?.discount ? dataHomeDetail?.discount : 0,
-        surchargeList: dataHomeDetail?.surchargeList ? dataHomeDetail?.surchargeList : []
-    };
+    // const detailPriceRoom = {
+    //     pricePerNight: dataHomeDetail?.pricePerNight,
+    //     discount: dataHomeDetail?.discount ? dataHomeDetail?.discount : 0,
+    //     surchargeList: dataHomeDetail?.surchargeList ? dataHomeDetail?.surchargeList : []
+    // };
 
-    const locationRoom = {
-        addressGeneral: dataHomeDetail?.addressGeneral,
-        addressDetail: dataHomeDetail?.addressDetail
-    };
+    // const locationRoom = {
+    //     addressGeneral: dataHomeDetail?.addressGeneral,
+    //     addressDetail: dataHomeDetail?.addressDetail
+    // };
+
+    // const policyHomestay = {
+    //     cancellationPolicy: {
+    //         code: 'CANCEL_24H',
+    //         cancellationFeeRate: 10
+    //     },
+    //     generalPolicy: {
+    //         allowEvent: true,
+    //         allowPet: true,
+    //         allowSmoking: true
+    //     }
+    // };
 
     const children = [
         {
             id: '#section1',
             to: 'section1',
-            info: 'Hình ảnh',
+            info: 'Hình ảnh & Video',
             comp: (
-                <ImageSetting
-                    listImage={dataHomeDetail?.imageAccomsUrls}
-                    thumbnail={dataHomeDetail?.imageAccomsUrls[0]}
-                />
+                <>
+                    <ImageSetting
+                        listImage={galleryAccom?.imageAccomUrls}
+                        thumbnail={galleryAccom?.imageAccomUrls ? galleryAccom?.imageAccomUrls[0] : null}
+                    />
+                    <VideoIntroSetting cldVideoId={galleryAccom?.cldVideoId} />
+                </>
             )
         },
         {
             id: '#section2',
             to: 'section2',
-            info: 'Video intro',
-            comp: <VideoIntroSetting cldVideoId={dataHomeDetail?.cldVideoId} />
-        },
-        {
-            id: '#section2',
-            to: 'section2',
-            info: 'Thông tin cơ bản',
-            comp: <TittleSetting infoRoom={infoRoom} />
+            info: 'Thông tin chung',
+            comp: <GeneralInfoSetting accomId={params.idHome} />
         },
         {
             id: '#section3',
             to: 'section3',
-            info: 'Chổ ở và phòng',
-            comp: <CountRoomSetting accomCateName={dataHomeDetail?.accomCateName} />
+            info: 'Thiết lập phòng',
+            comp: <CountRoomSetting accomId={params.idHome} />
         },
         {
             id: '#section4',
             to: 'section4',
             info: 'Vị trí',
-            comp: <LocationSetting locationRoom={locationRoom} />
+            comp: <LocationSetting />
         },
         {
             id: '#section5',
             to: 'section5',
-            info: 'Tiện nghi',
-            comp: <ConvenientSetting convent={dataHomeDetail?.facilityCategoryList} locationRoom={locationRoom} />
-        },
-        {
-            id: '#section6',
-            to: 'section6',
-            info: 'Định giá và phụ phí',
-            comp: <PriceDiscountSurchagre detailPriceRoom={detailPriceRoom} />
+            info: 'Tiện ích',
+            comp: <FacilitySetting />
         }
+        // {
+        //     id: '#section6',
+        //     to: 'section6',
+        //     info: 'Chính sách',
+        //     comp: <PolicySetting accomId={params.idHome} />
+        // },
+        // {
+        //     id: '#section7',
+        //     to: 'section7',
+        //     info: 'Thông tin thanh toán',
+        //     comp: <PaymentInfoSetting accomId={params.idHome} />
+        // }
     ];
 
     return (

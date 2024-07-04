@@ -105,12 +105,6 @@ export default function MenuCreateAccom({ process, selectedTab, idAccom }) {
                                     <span>Đã gửi yêu cầu kiểm duyệt</span>
                                 </div>
                             )}
-
-                            {/* {process === 100 && isRequestApproval === false ? (
-                                
-                            ) : (
-                                
-                            )} */}
                         </div>
                     </div>
                 </div>

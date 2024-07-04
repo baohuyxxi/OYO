@@ -10,13 +10,13 @@ export const typeRoom = [
     { name: 'Phòng Bếp', key: 'numKitchen', number: 0 }
 ];
 
-export const typeBedRoom = [
-    { name: 'Giường đơn', typeBedCode: 'G1', number: 0 },
-    { name: 'Giường đôi', typeBedCode: 'G2', number: 0 },
-    { name: 'Giường Queen', typeBedCode: 'G3', number: 0 },
-    { name: 'Giường King', typeBedCode: 'G4', number: 0 },
-    { name: 'Nệm', typeBedCode: 'G5', number: 0 }
-];
+// export const typeBedRoom = [
+//     { name: 'Giường đơn', typeBedCode: 'G1', number: 0 },
+//     { name: 'Giường đôi', typeBedCode: 'G2', number: 0 },
+//     { name: 'Giường Queen', typeBedCode: 'G3', number: 0 },
+//     { name: 'Giường King', typeBedCode: 'G4', number: 0 },
+//     { name: 'Nệm', typeBedCode: 'G5', number: 0 }
+// ];
 
 export const roomHomeFormData = {
     accomCateId: null,

@@ -6,7 +6,7 @@ import userSlice from './userSlice';
 import bookingSlice from './bookingSlice';
 import notificationSlice from './notificationSlice';
 import globalSlice from './globalSlice';
-import settingAccomSlice from './settingAccomSlice';
+// import settingAccomSlice from './settingAccomSlice';
 import filterAcomSlice from './filterAccom';
 import managerAccomSlice from './managerAccomSlice';
 
@@ -22,10 +22,9 @@ const rootReducer = combineReducers({
     booking: bookingSlice.reducer,
     notification: notificationSlice.reducer,
     global: globalSlice.reducer,
-    settingaccom: settingAccomSlice.reducer,
+    // settingaccom: settingAccomSlice.reducer,
     filterAccom: filterAcomSlice.reducer,
     managerAccom: managerAccomSlice.reducer
-  
 });
 const resettableReducer = (state, action) => {
     if (action.type === 'user/logout') {
@@ -33,7 +32,6 @@ const resettableReducer = (state, action) => {
     }
     return rootReducer(state, action);
 };
-
 
 const persistedReducer = persistReducer(persistConfig, rootReducer, resettableReducer);
 

@@ -3,8 +3,8 @@ import { t } from 'i18next';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { useState, useEffect } from 'react';
 import Checkbox from '~/components/Checkbox/Checkbox';
-import FileUpload from '~/components/HostSetting/VideoIntroSetting/FileUpload/FileUpload';
-import VideoIntroDetail from '~/components/HostSetting/VideoIntroSetting/VideoIntroDetail/VideoIntroDetail';
+import FileUpload from '~/pages/partner/BookingTodayPage/ManagerRoom/GallerySetting/VideoIntroSetting/FileUpload/FileUpload';
+import VideoIntroDetail from '~/pages/partner/BookingTodayPage/ManagerRoom/GallerySetting/VideoIntroSetting/VideoIntroDetail/VideoIntroDetail';
 import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
 import uploadMedia from '~/services/apis/media/uploadMedia';
 
@@ -88,8 +88,7 @@ export default function Gallery({ id, save, doneSave }) {
             .updateGallery(newData)
             .then((res) => {
                 enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
-
-                dispatch(settingAccomSlice.actions.setAccom(res.data));
+                // dispatch(settingAccomSlice.actions.setAccom(res.data));
             })
             .catch((error) => {
                 enqueueSnackbar(error.response?.data.message, { variant: 'error' });

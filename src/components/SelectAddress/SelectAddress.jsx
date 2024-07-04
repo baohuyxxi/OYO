@@ -32,15 +32,23 @@ export default function SelectAddress(props) {
     }, [provinces]);
 
     useEffect(() => {
-        const temp = provinces.find((option) => option.provinceCode === props?.data.provinceCode || option.provinceName === props?.data.provinceName) || null;
+        const temp =
+            provinces.find(
+                (option) =>
+                    option.provinceCode === props?.data.provinceCode || option.provinceName === props?.data.provinceName
+            ) || null;
         if (temp !== null) {
             setSelectedProvince(temp);
             setDistricts(temp.districtSet);
         }
-    }, [ provinces.length, props?.data.provinceCode, props?.data.provinceName]);
+    }, [provinces.length, props?.data.provinceCode, props?.data.provinceName]);
 
     useEffect(() => {
-        const temp = districts.find((option) => option.districtCode === props?.data.districtCode || option.districtName === props?.data.districtName) || null;
+        const temp =
+            districts.find(
+                (option) =>
+                    option.districtCode === props?.data.districtCode || option.districtName === props?.data.districtName
+            ) || null;
         if (temp !== null) {
             setSelectedDistrict(temp);
             setWards(temp.wardSet);
@@ -48,7 +56,10 @@ export default function SelectAddress(props) {
     }, [districts.length]);
 
     useEffect(() => {
-        const temp = wards.find((option) => option.wardCode === props?.data.wardCode || option.wardName === props?.data.wardName) || null;
+        const temp =
+            wards.find(
+                (option) => option.wardCode === props?.data.wardCode || option.wardName === props?.data.wardName
+            ) || null;
         if (temp !== null) {
             setSelectedWard(temp);
         }

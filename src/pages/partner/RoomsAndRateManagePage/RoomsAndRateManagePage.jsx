@@ -16,14 +16,18 @@ export default function RoomsAndRateManagePage() {
         return (
             <div className="skeleton-table">
                 <div className="skeleton-table__body">
-                    {Array(5).fill().map((_, rowIndex) => (
-                        <div className="skeleton-table__row" key={rowIndex}>
-                            <Skeleton variant="rectangular" width="100%" height={50} />
-                            {Array(8).fill().map((_, colIndex) => (
-                                <Skeleton key={colIndex} variant="rectangular" width="100%" height={50} />
-                            ))}
-                        </div>
-                    ))}
+                    {Array(5)
+                        .fill()
+                        .map((_, rowIndex) => (
+                            <div className="skeleton-table__row" key={rowIndex}>
+                                <Skeleton variant="rectangular" width="100%" height={50} />
+                                {Array(8)
+                                    .fill()
+                                    .map((_, colIndex) => (
+                                        <Skeleton key={colIndex} variant="rectangular" width="100%" height={50} />
+                                    ))}
+                            </div>
+                        ))}
                 </div>
             </div>
         );
@@ -33,7 +37,9 @@ export default function RoomsAndRateManagePage() {
         <FramePage ownerPage={true}>
             <div className="rooms-and-rate-manager">
                 <div className="rooms-and-rate-manager__header">
-                    <h1 className="page-header">Quản lý phòng và giá</h1>
+                    <h1 className="page-header" style={{ fontSize: 24, fontWeight: 500 }}>
+                        Quản lý phòng và giá
+                    </h1>
                     {loading === 'loading' ? (
                         renderSkeletonTable()
                     ) : (

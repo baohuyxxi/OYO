@@ -10,6 +10,8 @@ import { addressFormData, fullAddressFormData } from '~/models/address';
 import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
 import { set } from 'date-fns';
 
+const LocationCurrent = () => <LocationOnIcon style={{ color: 'red', fontSize: 'xx-large' }} />;
+
 export default function AddressAccom({ id, save, doneSave }) {
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState(fullAddressFormData);
@@ -38,8 +40,6 @@ export default function AddressAccom({ id, save, doneSave }) {
             });
         }
     }, []);
-
-    const LocationCurrent = () => <LocationOnIcon style={{ color: 'red', fontSize: 'xx-large' }} />;
 
     useEffect(() => {
         if (address.provinceCode && address.districtCode && address.wardCode && data.numHouseAndStreetName) {

@@ -32,9 +32,9 @@ export default function DashboardPartner() {
         <FramePage ownerPage={true}>
             <div className="dashboard-partner">
                 <header className="dashboard-partner__header">
-                    <div className="dashboard-partner__header__title">
+                    <span className="dashboard-partner__header__title" style={{ fontSize: 24, fontWeight: 500 }}>
                         {accomWaiting.length > 0 && 'Chỗ nghỉ cần hoàn thiện/chờ duyệt'}
-                    </div>
+                    </span>
                     <Link to="createHotel">
                         <Button variant="contained">
                             <AddCircleOutlineIcon />

@@ -13,7 +13,18 @@ export default function CalendarManagePage() {
         <FramePage ownerPage={true}>
             <div className="calendar-manager">
                 <div className="calendar-manager__header">
-                    <h1 className="page-header">Quản lý lịch</h1>
+                    <h1
+                        className="page-header"
+                        style={{
+                            fontSize: 24,
+                            fontWeight: 500,
+                            textAlign: 'center',
+                            display: 'inline-block',
+                            marginTop: 46
+                        }}
+                    >
+                        Quản lý lịch
+                    </h1>
                     {loading === 'loading' ? (
                         <div>Loading...</div>
                     ) : (

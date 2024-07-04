@@ -11,6 +11,15 @@ import { useDispatch } from 'react-redux';
 import filterAcomSlice from '~/redux/filterAccom';
 import { useNavigate } from 'react-router-dom';
 
+const itemHomeStayCateAll = {
+    accomCateName: 'Tất cả',
+    description: 'Tất cả loại hình cho thuê',
+    icon: 'https://img.icons8.com/dotty/25/1A1A1A/home.png',
+    imageUrl:
+        'https://res.cloudinary.com/dyv5zrsgj/image/upload/v1703612695/oyo_booking/accom_category/q3hohmoclks5q2ypfu6s',
+    status: 'ENABLE'
+};
+
 const FilterBar = (props) => {
     const settings = {
         dots: true,
@@ -27,8 +36,8 @@ const FilterBar = (props) => {
     useEffect(() => {
         async function fetchData() {
             const res = await publicAccomPlaceAPI.getAllAccomCategoryInfo();
-            setListAccomCateData(res.data); 
-            console.log(res.data)
+            setListAccomCateData([itemHomeStayCateAll, ...res.data]);
+            console.log(res.data);
         }
         fetchData();
     }, []);

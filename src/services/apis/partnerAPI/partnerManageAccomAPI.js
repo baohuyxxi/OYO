@@ -67,6 +67,7 @@ const partnerManageAccomAPI = {
     },
 
     updateGeneralInfo: async ({ id, data }) => {
+        console.log(id, data);
         const res = await axios.put(`/partner/accoms/general-info?accomId=${id}`, data);
         return res.data;
     },
@@ -94,6 +95,14 @@ const partnerManageAccomAPI = {
     },
     updateGallery: async (data) => {
         const res = await axios.put(`/partner/accoms/gallery?accomId=${data.id}`, data.data);
+        return res.data;
+    },
+    updateImages: async (data) => {
+        const res = await axios.put(`/partner/accoms/images?accomId=${data.id}`, data.data);
+        return res.data;
+    },
+    updateVideo: async (data) => {
+        const res = await axios.put(`/partner/accoms/video?accomId=${data.id}`, data.data);
         return res.data;
     }
 };

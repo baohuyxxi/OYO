@@ -4,10 +4,8 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
-
 import ListDataNull from '~/components/ListDataNull/ListDataNull';
 import partnerManageBookingAPI from '~/services/apis/partnerAPI/partnerManageBookingAPI';
-import StatisShow from './StatisShow/StatisShow';
 import TableDataHostSummary from './TableDataHostSummary';
 
 export default function TabComponent() {
@@ -37,7 +35,6 @@ export default function TabComponent() {
                     <TabList onChange={handleChange} aria-label="lab API tabs example">
                         <Tab label="Sắp nhận phòng" value="1" />
                         <Tab label="Hiện đang đón tiếp" value="2" />
-                        {/* <Tab label="Thống kê" value="3" /> */}
                     </TabList>
                 </Box>
                 <TabPanel value="1">
@@ -62,9 +59,6 @@ export default function TabComponent() {
                         <ListDataNull />
                     )}
                 </TabPanel>
-                {/* <TabPanel value="3">
-                    <StatisShow />
-                </TabPanel> */}
             </TabContext>
         </Box>
     );

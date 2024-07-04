@@ -79,7 +79,7 @@ const EditImage = (props) => {
         };
 
         partnerManageAccomAPI
-            .updateImagesHome(newData)
+            .updateImages(newData)
             .then(() => {
                 enqueueSnackbar(t('message.updateSuccess'), {
                     variant: 'success'

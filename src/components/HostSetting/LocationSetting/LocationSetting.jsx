@@ -4,31 +4,64 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import SelectAddress from '~/components/SelectAddress/SelectAddress';
-import { decodeAddress } from '~/utils/decodeAddress';
 import './LocationSetting.scss';
 import { useSnackbar } from 'notistack';
+import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
+import GoogleMapReact from 'google-map-react';
 import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
 import { useDispatch } from 'react-redux';
-import settingAccomSlice from '~/redux/settingAccomSlice';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+
+const LocationCurrent = () => <LocationOnIcon style={{ color: 'red', fontSize: 'xx-large' }} />;
 
 export default function LocationSetting(props) {
-    const dispatch = useDispatch();
     const [expanded, setExpanded] = useState(false);
+    const {
+        handleSubmit,
+        register,
+        setValue,
+        getValues,
+        formState: { isSubmitting }
+    } = useForm();
 
     const [address, setAddress] = useState({});
     const { enqueueSnackbar } = useSnackbar();
     const params = useParams();
+    const addressDetail = address?.wardCode
+        ? address?.numHouseAndStreetName + ', ' + address?.wardName + ', ' + address?.provinceName
+        : 'Nhập địa chỉ chi tiết homestay của bạn';
+    // useEffect(() => {
+    //     if (props?.locationRoom?.addressDetail !== undefined) {
+    //         setAddress(decodeAddress(props?.locationRoom?.addressDetail));
+    //     } else {
+    //         console.error('Invalid address format:');
+    //     }
+    // }, [expanded]);
+
     useEffect(() => {
-        if (props.locationRoom.addressDetail !== undefined) {
-            setAddress(decodeAddress(props.locationRoom.addressDetail));
-        } else {
-            console.error('Invalid address format:', addressParts);
-        }
-    }, [expanded]);
+        partnerManageAccomAPI.getAddress(params.idHome).then((dataResponse) => {
+            setAddress({
+                provinceCode: dataResponse?.data?.provinceAddress.provinceCode,
+                provinceName: dataResponse?.data?.provinceAddress.provinceName,
+                wardCode: dataResponse?.data?.wardAddress.wardCode,
+                wardName: dataResponse?.data?.wardAddress.wardName,
+                districtCode: dataResponse?.data?.districtAddress.districtCode,
+                districtName: dataResponse?.data?.districtAddress.districtName,
+                numHouseAndStreetName: dataResponse?.data?.numHouseAndStreetName,
+                longitude: dataResponse?.data?.longitude,
+                latitude: dataResponse?.data?.latitude
+            });
+            setValue('guide', dataResponse?.data?.guide);
+        });
+    }, [params.idHome]);
 
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
+    };
+
+    const handleMapClick = (event) => {
+        setData({ ...address, latitude: event.lat, longitude: event.lng });
     };
 
     const handleClose = () => {
@@ -51,7 +84,6 @@ export default function LocationSetting(props) {
                 enqueueSnackbar('Cập nhật thành công', {
                     variant: 'success'
                 });
-                dispatch(settingAccomSlice.actions.setAccom(res.data));
             })
             .catch((err) => {
                 enqueueSnackbar(err, {
@@ -71,7 +103,7 @@ export default function LocationSetting(props) {
                         id="panel1bh-header"
                     >
                         <p style={{ width: '33%', flexShrink: 0 }}>Địa chỉ chi tiết</p>
-                        <p style={{ color: 'text.secondary' }}>{props.locationRoom.addressDetail}</p>
+                        <p style={{ color: 'text.secondary' }}>{addressDetail}</p>
                     </AccordionSummary>
                     <AccordionDetails>
                         <SelectAddress setData={setAddress} data={address}></SelectAddress>
@@ -80,6 +112,34 @@ export default function LocationSetting(props) {
                             value={address?.addressDetail}
                             onChange={(e) => setAddress({ ...address, addressDetail: e.target.value })}
                         />
+                        <div className="" style={{ width: 800, height: 500 }}>
+                            <GoogleMapReact
+                                bootstrapURLKeys={{ key: import.meta.env.VITE_API_KEY_GOOGLE }}
+                                defaultCenter={{ lat: 10.762622, lng: 106.660172 }}
+                                defaultZoom={14}
+                                center={
+                                    address?.latitude && address?.longitude
+                                        ? { lat: address?.latitude, lng: address?.longitude }
+                                        : { lat: 10.762622, lng: 106.660172 }
+                                }
+                                onClick={handleMapClick}
+                                className="google-map"
+                            >
+                                {address?.latitude && address?.longitude && (
+                                    <LocationCurrent
+                                        className="icon__location-current"
+                                        lat={address?.latitude}
+                                        lng={address?.longitude}
+                                    />
+                                )}
+                            </GoogleMapReact>
+                        </div>
+                        <div className="content-input">
+                            <h4>Hướng dẫn nhà/phòng cho thuê</h4>
+                            <p>Thêm hướng dẫn cho nơi ở của bạn để khách có thể dể dàng tiếp cận hơn.</p>
+                            <textarea className="text-input" {...register('guide')} />
+                        </div>
+
                         <div className="btn">
                             <p onClick={handleClose} className="btn-close">
                                 Hủy

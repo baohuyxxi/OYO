@@ -6,14 +6,18 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import defaultHotelImage from '~/assets/img/defaultHotelImage.png';
+import { IconButton } from '@mui/material';
+import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
+import { useSnackbar } from 'notistack';
 
-export default function SliderListAccomWaiting({ accomWaiting }) {
+export default function SliderListAccomWaiting({ accomWaiting, setAccomWaiting }) {
     const [settings, setSettings] = useState({
         infinite: true,
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 1
     });
+    const { enqueueSnackbar } = useSnackbar();
 
     useEffect(() => {
         if (accomWaiting.length < 3 && accomWaiting.length > 0) {
@@ -23,6 +27,18 @@ export default function SliderListAccomWaiting({ accomWaiting }) {
             });
         }
     }, [accomWaiting]);
+    const handleDelete = (accomId) => {
+        console.log(accomId);
+        partnerManageAccomAPI.deleteAccomWaiting(accomId).then((res) => {
+            if (res.statusCode === 200) {
+                enqueueSnackbar('Xóa chỗ nghỉ thành công', { variant: 'success' });
+                setAccomWaiting(accomWaiting.filter((item) => item.accomId !== accomId));
+            } else {
+                enqueueSnackbar('Xóa chỗ nghỉ thất bại', { variant: 'error' });
+            }
+
+        })
+    };
 
     return (
         <div className="slider-list-accom-waiting">
@@ -37,7 +53,12 @@ export default function SliderListAccomWaiting({ accomWaiting }) {
                                 <div className="slider-list-accom-waiting__item__overlay__progress">
                                     {item.progress}%
                                 </div>
-                                <DeleteOutlinedIcon className="slider-list-accom-waiting__item__overlay__delete" />
+                                <IconButton
+                                    onClick={() => handleDelete(item.accomId)}
+                                    className="slider-list-accom-waiting__item__overlay__delete"
+                                >
+                                    <DeleteOutlinedIcon />
+                                </IconButton>
                                 <Link
                                     to={`createHotel/generalInfo/${item.accomId}`}
                                     className="slider-list-accom-waiting__item__overlay__button"

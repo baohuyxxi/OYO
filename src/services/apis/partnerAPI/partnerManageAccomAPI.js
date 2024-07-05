@@ -30,7 +30,10 @@ const partnerManageAccomAPI = {
         const res = await axios.post(`/partner/accoms/request-approval?accomId=${data}`);
         return res.data;
     },
-
+    deleteAccomWaiting: async (data) => {
+        const res = await axios.delete(`/partner/accoms/${data}`);
+        return res.data;
+    },
     // -----------------Properties Accom----------------------
 
     getGeneralInfo: async (data) => {

@@ -96,124 +96,97 @@ export default function GeneralInfoSetting({ accomId }) {
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
+                        className="accordion-summary"
                     >
-                        <p style={{ width: '33%', flexShrink: 0, fontWeight: '600' }}>Tiêu đề nhà/phòng cho thuê</p>
-                        <p style={{ color: 'text.secondary', fontWeight: '600' }}>{getValues('accomName')}</p>
+                        <p className="accordion-summary__title">Tiêu đề nhà/phòng cho thuê</p>
+                        <p className="accordion-summary__subtitle">{getValues('accomName')}</p>
                     </AccordionSummary>
-                    <AccordionDetails>
-                        <div className="content-input">
-                            <h4>Tiêu đề nhà/phòng cho thuê</h4>
-                            <p>Tiêu đề nhà/phòng cho thuê của bạn cần nổi bật được những điểm đặc biệt của chỗ ở.</p>
-                            <input className="input-info" {...register('accomName')} />
+                    <AccordionDetails className="accordion-details">
+                        <div className="accordion-details__section">
+                            <h4 className="accordion-details__title">Tiêu đề nhà/phòng cho thuê</h4>
+                            <p className="accordion-details__description">
+                                Tiêu đề nhà/phòng cho thuê của bạn cần nổi bật được những điểm đặc biệt của chỗ ở.
+                            </p>
+                            <input className="accordion-details__input" {...register('accomName')} />
                         </div>
 
-                        <div className="content-input">
-                            <h4>Mô tả nhà/phòng cho thuê</h4>
-                            <p>
+                        <div className="accordion-details__section">
+                            <h4 className="accordion-details__title">Mô tả nhà/phòng cho thuê</h4>
+                            <p className="accordion-details__description">
                                 Hãy giúp khách hình dung về cảm giác khi ở chỗ của bạn, bao gồm cả lý do tại sao họ sẽ
                                 thích ở đó.
                             </p>
-                            <textarea className="text-input" {...register('description')} />
+                            <textarea className="accordion-details__textarea" {...register('description')} />
                         </div>
 
-                        {/* <div className="content-input">
-                            <h4>Hướng dẫn nhà/phòng cho thuê</h4>
-                            <p>Thêm hướng dẫn cho nơi ở của bạn để khách có thể dể dàng tiếp cận hơn.</p>
-                            <textarea className="text-input" {...register('guide')} />
-                        </div> */}
-
-                        <div className="content-input">
-                            <h4>Mức giá cố định</h4>
-                            <p>Mức giá này sẽ được áp dụng mặc định cho những ngày bình thường.</p>
+                        <div className="accordion-details__section">
+                            <h4 className="accordion-details__title">Mức giá cố định</h4>
+                            <p className="accordion-details__description">
+                                Mức giá này sẽ được áp dụng mặc định cho những ngày bình thường.
+                            </p>
                             <input
-                                className="input-info"
-                                {...register('pricePerNight', {
-                                    required: 'pricePerNight'
-                                })}
+                                className="accordion-details__input"
+                                {...register('pricePerNight', { required: 'pricePerNight' })}
                             />
                         </div>
 
-                        <div className="content-input">
-                            <h4>Diện tích nhà</h4>
-                            <p>Diện tích nhà hiện tại của bạn.</p>
+                        <div className="accordion-details__section">
+                            <h4 className="accordion-details__title">Diện tích nhà</h4>
+                            <p className="accordion-details__description">Diện tích nhà hiện tại của bạn.</p>
                             <input
-                                className="input-info"
-                                {...register('acreage', {
-                                    required: 'acreage'
-                                })}
+                                className="accordion-details__input"
+                                {...register('acreage', { required: 'acreage' })}
                             />
                         </div>
 
-                        <div className="content-input">
-                            <h4>Thời gian nhận/trả nhà</h4>
-                            <p>Thời gian khách có thể nhận nhà.</p>
+                        <div className="accordion-details__section">
+                            <h4 className="accordion-details__title">Thời gian nhận/trả nhà</h4>
+                            <p className="accordion-details__description">Thời gian khách có thể nhận nhà.</p>
                             <input
                                 type="time"
-                                className="info__input"
-                                {...register('checkInFrom', {
-                                    required: 'checkInFrom'
-                                })}
+                                className="accordion-details__time-input"
+                                {...register('checkInFrom', { required: 'checkInFrom' })}
                             />
-
-                            <p>Thời gian khách có thể trả nhà.</p>
+                            <p className="accordion-details__description">Thời gian khách có thể trả nhà.</p>
                             <input
                                 type="time"
-                                className="info__input"
-                                {...register('checkOutTo', {
-                                    required: 'checkOutTo'
-                                })}
+                                className="accordion-details__time-input"
+                                {...register('checkOutTo', { required: 'checkOutTo' })}
                             />
                         </div>
 
-                        <div className="content-input">
-                            <h4>Giảm giá</h4>
-                            <p>Giá giảm sẽ được áp dụng cho nhà của bạn.</p>
+                        <div className="accordion-details__section">
+                            <h4 className="accordion-details__title">Giảm giá</h4>
+                            <p className="accordion-details__description">Giá giảm sẽ được áp dụng cho nhà của bạn.</p>
                             <input
-                                className="input-info"
-                                {...register('discountPercent', {
-                                    required: 'discountPercent'
-                                })}
+                                className="accordion-details__input"
+                                {...register('discountPercent', { required: 'discountPercent' })}
                             />
                         </div>
 
-                        <div className="content-input-discount">
-                            <h4>Các loại phụ phí</h4>
-                            <p>Các loại phụ phí này sẽ được áp dụng cho nhà của bạn</p>
+                        <div className="accordion-details__section">
+                            <h4 className="accordion-details__title">Các loại phụ phí</h4>
+                            <p className="accordion-details__description">
+                                Các loại phụ phí này sẽ được áp dụng cho nhà của bạn.
+                            </p>
 
                             {surchargeList.map((charge, index) => (
-                                <div key={index} className="content-input">
+                                <div key={index} className="accordion-details__charge">
                                     <h4>{charge?.surchargeName}</h4>
-                                    <input className="input-info" name={index} {...register(`SUR_00${index + 1}`)} />
+                                    <input
+                                        className="accordion-details__input"
+                                        name={index}
+                                        {...register(`SUR_00${index + 1}`)}
+                                    />
                                 </div>
                             ))}
                         </div>
 
-                        {/* <div className="content-input">
-                            <h4>Chính sách hoàn tiền cho căn nhà của bạn</h4>
-                            <p>Thời gian được phép hủy</p>
-                            <select className="input-info">
-                                <option value="value1">Trước 1 ngày</option>
-                                <option value="value2">Trước 2 ngày</option>
-                                <option value="value3">Trước 3 ngày</option>
-                                <option value="value2">Trước 5 ngày</option>
-                                <option value="value2">Trước 1 tuần</option>
-                            </select>
-                            <p>Phí hủy</p>
-                            <select className="input-info">
-                                <option value="value1">5%</option>
-                                <option value="value2">10%</option>
-                                <option value="value3">15%</option>
-                                <option value="value2">20%</option>
-                                <option value="value2">25%</option>
-                                <option value="value2">50%</option>
-                                <option value="value2">Không hoàn trả</option>
-                            </select>
-                        </div> */}
-                        <div className="btn">
-                            <p onClick={handleClose} className="btn-close">
+                        <div className="accordion-details__section accordion-details__btn">
+                            <p onClick={handleClose} className="accordion-details__btn-close">
                                 Hủy
                             </p>
-                            <button className="btn-save" disabled={isSubmitting}>
+                            <button className="accordion-details__btn-save" disabled={isSubmitting}>
                                 Lưu
                             </button>
                         </div>

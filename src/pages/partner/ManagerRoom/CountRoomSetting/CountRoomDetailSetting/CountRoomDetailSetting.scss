@@ -1,9 +1,10 @@
 .content-count__roomdetail__setting {
-    // padding-left: 150px;
-    // padding-right: 150px;
+    padding-right: 50px;
+    padding-bottom: 50px;
 
     p {
         font-size: 14px;
+        font-weight: 600;
     }
 
     .card-roomdetail__count {
@@ -61,6 +62,29 @@
             .MuiSelect-select {
                 padding-left: 50px;
                 width: 200px !important;
+            }
+        }
+    }
+    .accordion__section {
+        padding-top: 20px; // Adjust as needed
+
+        .guest__input {
+            margin-bottom: 20px; // Adjust spacing
+            display: flex;
+            align-items: center;
+
+            p {
+                margin-right: 20px;
+                font-size: 14px;
+                font-weight: 600;
+            }
+
+            input {
+                width: 150px;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 14px;
             }
         }
     }

@@ -3,8 +3,8 @@ import { t } from 'i18next';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { useState, useEffect } from 'react';
 import Checkbox from '~/components/Checkbox/Checkbox';
-import FileUpload from '~/pages/partner/BookingTodayPage/ManagerRoom/GallerySetting/VideoIntroSetting/FileUpload/FileUpload';
-import VideoIntroDetail from '~/pages/partner/BookingTodayPage/ManagerRoom/GallerySetting/VideoIntroSetting/VideoIntroDetail/VideoIntroDetail';
+import FileUpload from '../../ManagerRoom/GallerySetting/VideoIntroSetting/FileUpload/FileUpload';
+import VideoIntroDetail from '../../ManagerRoom/GallerySetting/VideoIntroSetting/VideoIntroDetail/VideoIntroDetail';
 import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
 import uploadMedia from '~/services/apis/media/uploadMedia';
 

@@ -11,12 +11,12 @@ const ScrollspyComponent = (props) => {
         <div className="scroll-spy">
             {props.backUrl && (
                 <p
-                    onClick={() => navigate(-1)}
+                    onClick={() => navigate()}
                     style={{
                         top: '90px',
                         margin: '0px',
                         fontSize: '16px',
-                        paddingTop: '-30px',
+                        // paddingTop: '-30px',
                         paddingLeft: '150px',
                         position: 'fixed',
                         color: 'black',
@@ -40,7 +40,7 @@ const ScrollspyComponent = (props) => {
                         currentClassName="is-current"
                         style={{
                             position: 'fixed',
-                            height: '100vh',
+                            height: '100%',
                             marginTop: '130px',
                             top: '0',
                             listStyle: 'none',

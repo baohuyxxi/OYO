@@ -90,40 +90,43 @@ const CountRoomDetailSetting = ({ allAccomCategory }) => {
         updatedBedRooms[index] = value;
         setBedRooms(updatedBedRooms);
     };
+
     return (
-        <div
-            className="content-count__roomdetail__setting"
-            style={{ fontSize: '15px', paddingRight: '50px', paddingBottom: '50px', fontWeight: '600' }}
-        >
+        <div className="content-count__roomdetail__setting">
             <form onSubmit={handleSaveRoom}>
-                <p>Loại chỗ ở</p>
-                <CustomInput
-                    select={true}
-                    value={roomSetting?.accomCateName || ''}
-                    width={500}
-                    onChange={(e) => setRoomSetting({ ...roomSetting, accomCateName: e.target.value })}
-                    content={allAccomCategory.map((option, index) => (
-                        <MenuItem key={index} value={option.accomCateName}>
-                            {option.accomCateName}
-                        </MenuItem>
-                    ))}
-                />
-                <p>Số lượng khách</p>
-                <input
-                    value={roomSetting?.numPeople}
-                    onChange={(e) => {
-                        setRoomSetting({
-                            ...roomSetting,
-                            numPeople: parseInt(e.target.value) ? parseInt(e.target.value) : ''
-                        });
-                    }}
-                ></input>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >
+                        <p style={{ width: '33%', flexShrink: 0 }}>Loại chỗ ở</p>
+                        {/* <p style={{ color: 'text.secondary' }}>{nameFacilities}</p> */}
+                        <CustomInput
+                            select={true}
+                            value={roomSetting?.accomCateName || ''}
+                            width={500}
+                            onChange={(e) => setRoomSetting({ ...roomSetting, accomCateName: e.target.value })}
+                            content={allAccomCategory.map((option, index) => (
+                                <MenuItem key={index} value={option.accomCateName}>
+                                    {option.accomCateName}
+                                </MenuItem>
+                            ))}
+                        />
+                    </AccordionSummary>
+                    <AccordionDetails className="accordion__section">
+                        <div className="guest__input">
+                            <p>Số lượng khách</p>
+                            <input
+                                value={roomSetting?.numPeople}
+                                onChange={(e) => {
+                                    setRoomSetting({
+                                        ...roomSetting,
+                                        numPeople: parseInt(e.target.value) ? parseInt(e.target.value) : ''
+                                    });
+                                }}
+                            />
+                        </div>
                         <div className="header__typeRoom">
                             {numRoom?.map((room, index) => (
                                 <div key={index} className="typeRoom">
@@ -133,8 +136,6 @@ const CountRoomDetailSetting = ({ allAccomCategory }) => {
                                 </div>
                             ))}
                         </div>
-                    </AccordionSummary>
-                    <AccordionDetails aria-controls="panel1bh-content" id="panel1bh-header" style={{ display: 'flex' }}>
                         <div className="countRoom">
                             {numRoom?.map((room, index) => (
                                 <div key={index}>
@@ -148,7 +149,7 @@ const CountRoomDetailSetting = ({ allAccomCategory }) => {
                             ))}
                         </div>
                     </AccordionDetails>
-                    <AccordionDetails aria-controls="panel1bh-content" id="panel1bh-header" style={{ display: 'flex' }}>
+                    <AccordionDetails>
                         <div className="container__bedroom">
                             {bedRooms?.map((bed, index) => (
                                 <div key={index} className="option__bed">

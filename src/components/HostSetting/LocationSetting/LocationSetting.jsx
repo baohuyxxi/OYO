@@ -31,16 +31,10 @@ export default function LocationSetting(props) {
     const addressDetail = address?.wardCode
         ? address?.numHouseAndStreetName + ', ' + address?.wardName + ', ' + address?.provinceName
         : 'Nhập địa chỉ chi tiết homestay của bạn';
-    // useEffect(() => {
-    //     if (props?.locationRoom?.addressDetail !== undefined) {
-    //         setAddress(decodeAddress(props?.locationRoom?.addressDetail));
-    //     } else {
-    //         console.error('Invalid address format:');
-    //     }
-    // }, [expanded]);
 
     useEffect(() => {
         partnerManageAccomAPI.getAddress(params.idHome).then((dataResponse) => {
+            console.log(dataResponse);
             setAddress({
                 provinceCode: dataResponse?.data?.provinceAddress.provinceCode,
                 provinceName: dataResponse?.data?.provinceAddress.provinceName,
@@ -50,7 +44,8 @@ export default function LocationSetting(props) {
                 districtName: dataResponse?.data?.districtAddress.districtName,
                 numHouseAndStreetName: dataResponse?.data?.numHouseAndStreetName,
                 longitude: dataResponse?.data?.longitude,
-                latitude: dataResponse?.data?.latitude
+                latitude: dataResponse?.data?.latitude,
+                guide: dataResponse?.data?.guide
             });
             setValue('guide', dataResponse?.data?.guide);
         });
@@ -74,7 +69,10 @@ export default function LocationSetting(props) {
                 provinceCode: address.provinceCode,
                 districtCode: address.districtCode,
                 wardCode: address.wardCode,
-                addressDetail: address.addressDetail
+                numHouseAndStreetName: address.numHouseAndStreetName,
+                longitude: address.longitude,
+                latitude: address.latitude,
+                guide: address.guide
             },
             id: params.idHome
         };
@@ -98,7 +96,7 @@ export default function LocationSetting(props) {
             <form onSubmit={onSubmit}>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
-                        expandicon={<ExpandMoreIcon />}
+                        expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >
@@ -109,8 +107,8 @@ export default function LocationSetting(props) {
                         <SelectAddress setData={setAddress} data={address}></SelectAddress>
                         <input
                             className="input-address"
-                            value={address?.addressDetail}
-                            onChange={(e) => setAddress({ ...address, addressDetail: e.target.value })}
+                            value={address?.numHouseAndStreetName}
+                            onChange={(e) => setAddress({ ...address, numHouseAndStreetName: e.target.value })}
                         />
                         <div className="" style={{ width: 800, height: 500 }}>
                             <GoogleMapReact

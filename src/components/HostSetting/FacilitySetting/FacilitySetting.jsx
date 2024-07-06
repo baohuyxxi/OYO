@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -7,7 +7,7 @@ import ConvenientItem from '~/components/ConvenientItem/ConvenientItem';
 import publicFacilityAPI from '~/services/apis/publicAPI/publicFacilityAPI';
 import { useSnackbar } from 'notistack';
 import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
-import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import './FacilitySetting.scss';
 
 export default function FacilitySetting() {
@@ -41,26 +41,19 @@ export default function FacilitySetting() {
         setExpanded(false);
     };
 
-    const nameFacilities = `${
-        facilitiesApply.length &&
-        facilitiesList.find((item) => item.facilityCode === facilitiesApply[0]) &&
-        facilitiesList.find((item) => item.facilityCode === facilitiesApply[0]).facilityName
-    }, ${
-        facilitiesApply.length &&
-        facilitiesList.find((item) => item.facilityCode === facilitiesApply[1]) &&
-        facilitiesList.find((item) => item.facilityCode === facilitiesApply[1]).facilityName
-    } ....`;
+    const nameFacilities = `${facilitiesApply
+        .map((code) => facilitiesList.find((item) => item.facilityCode === code)?.facilityName)
+        .filter(Boolean)
+        .join(', ')}`;
 
     const handleSave = (e) => {
         e.preventDefault();
         const newData = {
             id: params?.idHome,
-            data: {
-                facilityCodes: data
-            }
+            data: facilitiesApply
         };
         partnerManageAccomAPI
-            .updateFacility(newData)
+            .updateFacilitiesAccom(newData)
             .then((dataResponse) => {
                 enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
             })
@@ -70,49 +63,44 @@ export default function FacilitySetting() {
     };
 
     return (
-        <div style={{ fontSize: '15px', paddingRight: '50px', paddingBottom: '50px', fontWeight: '600' }}>
-            <h3>Tiện ích</h3>
+        <div className="facility-setting">
+            <h3 className="facility-setting__title">Tiện ích</h3>
             <form onSubmit={handleSave}>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
+                        className="accordion-summary"
                     >
-                        <p style={{ width: '33%', flexShrink: 0 }}>Tiện ích</p>
-                        <p style={{ color: 'text.secondary' }}>{nameFacilities}</p>
+                        <p className="accordion-summary__title">Tiện ích</p>
+                        <p className="accordion-summary__subtitle">{nameFacilities}</p>
                     </AccordionSummary>
 
-                    <>
-                        {loading ? (
-                            <></>
-                        ) : (
-                            <AccordionDetails
-                                aria-controls="panel1bh-content"
-                                id="panel1bh-header"
-                                className="container__facilityCate"
-                            >
-                                {dataListCatagoryConvenient?.map((child, index) => (
-                                    <div key={index}>
-                                        <ConvenientItem
-                                            data={facilitiesApply}
-                                            setData={setFacilitiesApply}
-                                            dataConveni={child.infoFacilityList}
-                                            name={child.faciCateName}
-                                        />
-                                    </div>
-                                ))}
-                            </AccordionDetails>
-                        )}
-                    </>
-                    <AccordionDetails>
-                        <div className="btn">
-                            <p onClick={handleClose} className="btn-close">
-                                Hủy
-                            </p>
-                            <button className="btn-save">Lưu</button>
-                        </div>
-                    </AccordionDetails>
+                    {loading ? (
+                        <></>
+                    ) : (
+                        <AccordionDetails className="accordion-details">
+                            {dataListCatagoryConvenient?.map((child, index) => (
+                                <div key={index} className="accordion-details__category">
+                                    <ConvenientItem
+                                        data={facilitiesApply}
+                                        setData={setFacilitiesApply}
+                                        dataConveni={child.infoFacilityList}
+                                        name={child.faciCateName}
+                                    />
+                                </div>
+                            ))}
+                            <div className="accordion-details__btn">
+                                <p onClick={handleClose} className="accordion-details__btn-close">
+                                    Hủy
+                                </p>
+                                <button type="submit" className="accordion-details__btn-save">
+                                    Lưu
+                                </button>
+                            </div>
+                        </AccordionDetails>
+                    )}
                 </Accordion>
             </form>
         </div>

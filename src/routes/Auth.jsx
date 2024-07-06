@@ -26,11 +26,11 @@ const Auth = () => {
 
     // Partner Page
     const BookingTodayPage = React.lazy(() => import('~/pages/partner/BookingTodayPage/BookingTodayPage'));
-    const ListRoomOfHost = React.lazy(() => import('../pages/partner/BookingTodayPage/ManagerRoom/ListRoomOfHost'));
+    const ListRoomOfHost = React.lazy(() => import('../pages/partner/ManagerRoom/ListRoomOfHost'));
     const TransactionHistoryPage = React.lazy(() =>
         import('../pages/partner/TransactionHistoryPage/TransactionHistoryPage')
     );
-    const ManagerRoom = React.lazy(() => import('../pages/partner/BookingTodayPage/ManagerRoom/ManagerRoom'));
+    const ManagerRoom = React.lazy(() => import('~/pages/partner/ManagerRoom/ManagerRoom'));
     // const CountRoomDetailSetting = React.lazy(() =>
     //     import('../components/HostSetting/CountRoomSetting/CountRoomDetailSetting/CountRoomDetailSetting')
     // );

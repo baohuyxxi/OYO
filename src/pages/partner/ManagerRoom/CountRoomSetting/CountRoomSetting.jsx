@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import MenuItem from '@mui/material/MenuItem';
 
-import CountRoomDetailSetting from '~/pages/partner/BookingTodayPage/ManagerRoom/CountRoomSetting/CountRoomDetailSetting/CountRoomDetailSetting';
+import CountRoomDetailSetting from '~/pages/partner/ManagerRoom/CountRoomSetting/CountRoomDetailSetting/CountRoomDetailSetting';
 import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
 
 const CountRoomSetting = ({ accomId }) => {
@@ -41,8 +41,6 @@ const CountRoomSetting = ({ accomId }) => {
                 <h3>Thiết lập phòng</h3>
             </div>
             <div className="content-count__room">
-                {/* <p>Loại chỗ ở: {accomCate}</p> */}
-
                 <CountRoomDetailSetting allAccomCategory={allAccomCategory} />
             </div>
         </div>

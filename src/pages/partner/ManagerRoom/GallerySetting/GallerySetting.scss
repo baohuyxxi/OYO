@@ -1,0 +1,70 @@
+.gallery-setting {
+    font-size: 15px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    font-weight: 600;
+    &__title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    &__loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+    }
+
+    &__accordion-summary {
+        display: flex;
+        align-items: center;
+
+        &-title {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+    }
+
+    &__accordion-details {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+
+        .image-setting,
+        .video-intro-setting {
+            margin-bottom: 20px;
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 15px;
+        border-top: 1px solid #ddd;
+
+        &-close {
+            cursor: pointer;
+            text-decoration: underline;
+            margin-right: 15px;
+
+            &:hover {
+                color: #f44336;
+            }
+        }
+
+        &-save {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #45a049;
+            }
+        }
+    }
+}

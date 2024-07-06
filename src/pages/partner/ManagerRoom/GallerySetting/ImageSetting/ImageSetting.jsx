@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import ListImageInSetting from '../../../../../../components/ListImage/ListImageInSetting';
+import ListImageInSetting from '~/components/ListImage/ListImageInSetting';
 import './ImageSetting.scss';
 import EditImage from '~/components/ListImage/EditImage/EditImage';
 

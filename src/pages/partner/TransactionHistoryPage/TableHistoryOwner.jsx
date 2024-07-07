@@ -1,10 +1,9 @@
 import { DataGrid } from '@mui/x-data-grid';
-
-// import './TableHistoryOwner.scss';
 import { useEffect, useState } from 'react';
-
 import partnerManageBookingAPI from '~/services/apis/partnerAPI/partnerManageBookingAPI';
 import formatPrice from '~/utils/formatPrice';
+import nodata from '~/assets/img/no-data.jpg';
+import './TableHistoryOwner.scss';
 
 const TableHistoryOwner = () => {
     const [dataListHistory, setDataListHistory] = useState([]);
@@ -15,24 +14,30 @@ const TableHistoryOwner = () => {
         });
     }, []);
 
-    const rows = [];
-    for (var i = 0; i < dataListHistory.length; i++) {
-        rows.push({
-            id: i + 1,
-            bookingCode: dataListHistory[i].bookingCode,
-            nameCustomer: dataListHistory[i]?.nameCustomer ? dataListHistory[i].nameCustomer : '',
-            totalBill: dataListHistory[i]?.totalBill ? formatPrice(dataListHistory[i].totalBill) : '',
-            checkIn: dataListHistory[i]?.checkIn ? dataListHistory[i].checkIn : '',
-            checkOut: dataListHistory[i]?.checkIn ? dataListHistory[i].checkIn : '',
-            guests: dataListHistory[i]?.numAdult ? dataListHistory[i].numAdult : '0',
-            nameAccom: dataListHistory[i].nameAccom ? dataListHistory[i].nameAccom : '',
-            status: dataListHistory[i].status ? dataListHistory[i].status : ''
-        });
-    }
+    console.log(dataListHistory);
+
+    const rows = dataListHistory.map((item, index) => ({
+        id: index + 1,
+        bookingCode: item.bookingCode,
+        nameCustomer: item.nameCustomer || '',
+        totalBill: item.totalBill ? formatPrice(item.totalBill) : '',
+        checkIn: item.checkIn || '',
+        checkOut: item.checkOut || '',
+        guests: item.numAdult || '0',
+        nameAccom: item.nameAccom || '',
+        status: item.status || ''
+    }));
 
     return (
         <div className="listdata_history">
-            <DataTable rows={rows} />
+            {rows.length > 0 ? (
+                <DataTable rows={rows} />
+            ) : (
+                <div className="no-data">
+                    <img src={nodata} alt="No Data" />
+                    <p>Không có dữ liệu</p>
+                </div>
+            )}
         </div>
     );
 };
@@ -42,30 +47,18 @@ const columns = [
     { field: 'bookingCode', headerName: 'Mã giao dịch', width: 400, hide: true },
     { field: 'nameCustomer', headerName: 'Tên khách hàng', width: 200 },
     { field: 'totalBill', headerName: 'Tổng thanh toán', width: 160 },
-    {
-        field: 'checkIn',
-        headerName: 'Ngày đặt phòng',
-        width: 160
-    },
-    {
-        field: 'checkOut',
-        headerName: 'Ngày trả phòng',
-        width: 160
-    },
-    {
-        field: 'guests',
-        headerName: 'Khách',
-        width: 80
-    },
+    { field: 'checkIn', headerName: 'Ngày đặt phòng', width: 160 },
+    { field: 'checkOut', headerName: 'Ngày trả phòng', width: 160 },
+    { field: 'guests', headerName: 'Khách', width: 80 },
     { field: 'nameAccom', headerName: 'Tên nhà thuê', width: 300 },
     { field: 'status', headerName: 'Tình trạng', width: 120 }
 ];
 
-function DataTable(props) {
+function DataTable({ rows }) {
     return (
         <div style={{ height: 500, width: '100%', marginBottom: '50px' }}>
             <DataGrid
-                rows={props.rows}
+                rows={rows}
                 columns={columns}
                 pageSize={6}
                 rowsPerPageOptions={[6]}

@@ -5,6 +5,7 @@ import Skeleton from '@mui/material/Skeleton'; // Import Skeleton
 import { useEffect } from 'react';
 import { useFetchAccomData } from '~/redux/managerAccomSlice';
 import FramePage from '~/components/FramePage/FramePage';
+import nodata from '~/assets/img/no-data.jpg';
 
 export default function RoomsAndRateManagePage() {
     useFetchAccomData();
@@ -33,6 +34,15 @@ export default function RoomsAndRateManagePage() {
         );
     };
 
+    const renderNoData = () => {
+        return (
+            <div className="no-data">
+                <img src={nodata} alt="No data" />
+                <p>Không có dữ liệu</p>
+            </div>
+        );
+    };
+
     return (
         <FramePage ownerPage={true}>
             <div className="rooms-and-rate-manager">
@@ -42,8 +52,10 @@ export default function RoomsAndRateManagePage() {
                     </h1>
                     {loading === 'loading' ? (
                         renderSkeletonTable()
-                    ) : (
+                    ) : accomPriceCustom && accomPriceCustom.length > 0 ? (
                         <RoomsAndRate accomPriceCustom={accomPriceCustom} />
+                    ) : (
+                        renderNoData()
                     )}
                 </div>
             </div>

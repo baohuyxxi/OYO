@@ -11,6 +11,9 @@
           
             display: flex;
             height: 60px;
+            .focused{
+                border: 2px solid var(--primary-main)!important;
+            }
             .checkin {
                 width: 50%;
                 border-right: 2px solid var(--divider);

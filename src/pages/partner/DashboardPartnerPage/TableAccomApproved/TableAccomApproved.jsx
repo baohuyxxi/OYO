@@ -5,6 +5,14 @@ import { DataGrid } from '@mui/x-data-grid';
 import SettingsIcon from '@mui/icons-material/Settings';
 import IconButton from '@mui/material/IconButton';
 import { useNavigate } from 'react-router-dom';
+import nodata from '~/assets/img/no-data.jpg';
+
+const NoRowsOverlay = () => (
+    <div className="nodata-overlay">
+        <img src={nodata} alt="No data" />
+        <p>Chưa có dữ liệu để hiển thị  </p>
+    </div>
+);
 
 export default function TableAccomApproved({ accomApproved, loading }) {
     const navigate = useNavigate();
@@ -45,11 +53,12 @@ export default function TableAccomApproved({ accomApproved, loading }) {
     const rows = accomApproved.map((item, index) => ({
         id: item.id,
         stt: index + 1,
-        image: item.imageAccomsUrls[0], 
+        image: item.imageAccomsUrls[0],
         name: item.accomName,
         address: item.addressDetail,
         status: item.status === 'APPROVED' ? t('Đã duyệt') : t('Chờ duyệt')
     }));
+
     return (
         <div className="table-accom-approved paper">
             <DataGrid
@@ -66,6 +75,9 @@ export default function TableAccomApproved({ accomApproved, loading }) {
                             pageSize: 10
                         }
                     }
+                }}
+                slots={{
+                    noRowsOverlay: NoRowsOverlay
                 }}
             />
         </div>

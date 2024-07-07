@@ -5,7 +5,7 @@ import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccom
 import arrowRight from '~/assets/svg/arrow-right.svg';
 import arrowLeft from '~/assets/svg/arrow-left.svg';
 import { useSnackbar } from 'notistack';
-import Skeleton from '@mui/material/Skeleton'; 
+import Skeleton from '@mui/material/Skeleton';
 import { useDispatch } from 'react-redux';
 import managerAccomSlice from '~/redux/managerAccomSlice';
 
@@ -56,7 +56,7 @@ export default function RoomsAndRate({ accomPriceCustom }) {
     };
 
     const getPriceAccommodation = (accommodation, date) => {
-        if (changePrice[accommodation.accomId]) {
+        if (changePrice[accommodation.accomId] && changePrice[accommodation.accomId][date] !== undefined) {
             return changePrice[accommodation.accomId][date];
         }
         if (accommodation.priceCustomForAccomList[date] !== undefined) {
@@ -68,7 +68,8 @@ export default function RoomsAndRate({ accomPriceCustom }) {
 
     const getPriceClass = (accommodation, date) => {
         const defaultPrice = accommodation.pricePerNight;
-        const customPrice = changePrice[accommodation.accomId]?.[date] ?? accommodation.priceCustomForAccomList[date]?.priceApply;
+        const customPrice =
+            changePrice[accommodation.accomId]?.[date] ?? accommodation.priceCustomForAccomList[date]?.priceApply;
 
         if (customPrice === undefined || customPrice === defaultPrice) {
             return 'default-price';
@@ -139,7 +140,7 @@ export default function RoomsAndRate({ accomPriceCustom }) {
     return (
         <div className="rooms-and-rate-container">
             {loading ? (
-                <Skeleton variant="rectangular" width="100%" height={800} /> 
+                <Skeleton variant="rectangular" width="100%" height={800} />
             ) : (
                 <>
                     <div className="week-navigation">

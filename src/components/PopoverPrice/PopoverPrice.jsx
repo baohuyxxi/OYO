@@ -1,10 +1,17 @@
 import { useState } from 'react';
 import Popover from '@mui/material/Popover';
-import Button from '@mui/material/Button';
 import formatPrice from '~/utils/formatPrice';
+import InfoIcon from '@mui/icons-material/Info';
 import { t } from 'i18next';
+import './PopoverPrice.scss';
 
-export default function PopoverPrice(props) {
+export default function PopoverPrice({
+    priceCustomForAccomList,
+    discount,
+    pricePerNightOrigin,
+    pricePerNightCurrent,
+    dayGapBooking
+}) {
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = (event) => {
@@ -20,9 +27,7 @@ export default function PopoverPrice(props) {
 
     return (
         <div className="popover-price">
-            <Button aria-describedby={id} variant="contained" onClick={handleClick}>
-                {t('common.detail')}
-            </Button>
+            <InfoIcon color="primary" sx={{ fontSize: 'medium' }} onClick={handleClick} />
             <Popover
                 id={id}
                 open={open}
@@ -37,25 +42,52 @@ export default function PopoverPrice(props) {
                     horizontal: 'right'
                 }}
             >
-                <h2 style={{ width: '300px', textAlign: 'center', paddingBottom: '6px' }}>{t('title.priceDetail')}</h2>
-                {props?.detailPrice.map((detail, index) => (
-                    <div
-                        className="item-price-detail"
-                        style={{
-                            display: 'flex',
-                            margin: '0 8px',
-                            justifyContent: 'space-between',
-                            padding: '5px 15px',
-                            alignItems: 'center',
-                            background: `${detail.especially && '#64b5f6'}`
-                        }}
-                        key={index}
-                    >
-                        <p style={{ fontSize: '14px', margin: 0 }}>{detail?.day}</p>
-                        <p style={{ fontSize: '14px', margin: 0 }}>{formatPrice(detail?.cost)}</p>
+                <h2 className="popover-price__title" style={{}}>
+                    {t('title.priceDetail')}
+                </h2>
+                {priceCustomForAccomList.length > 0 && (
+                    <div className="item-price">
+                        <p className="item-price__title">Giá linh hoạt</p>
+                        {priceCustomForAccomList.map((item, index) => (
+                            <div
+                                className="item-price__content"
+                                style={{ display: 'flex', justifyContent: 'space-between' }}
+                                index={index}
+                            >
+                                <span>{`Ngày ${item.dateApply}`}</span>
+                                <span>{formatPrice(item.priceApply)}</span>
+                            </div>
+                        ))}
                     </div>
-                ))}
-                <br />
+                )}
+
+                {dayGapBooking > 0 && (
+                    <div className="item-price">
+                        <p className="item-price__title">
+                            {priceCustomForAccomList.length > 0 ? `Những ngày còn lại` : `Chi tiết giá`}
+                        </p>
+
+                        <div className="item-price__content">
+                            {discount > 0 && (
+                                <div className="price-before-discount">
+                                    <span className="discount-percent">-{discount * 100}%</span>
+                                    <span className="price-origin">
+                                        {formatPrice(pricePerNightOrigin * dayGapBooking)}
+                                    </span>
+                                </div>
+                            )}
+
+                            <div className="price-after-discount">
+                                <span className="title-price">{`Giá homestay x ${dayGapBooking} đêm`}</span>
+                                <span className="price-current">
+                                    {formatPrice(pricePerNightCurrent * dayGapBooking)}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* <br /> */}
             </Popover>
         </div>
     );

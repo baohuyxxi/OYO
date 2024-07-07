@@ -1,5 +1,5 @@
 html[mode='light'] {
-    --background-default: #FCFCFC;
+    --background-default: #fcfcfc;
     --background-paper: #ffffff;
     --background-contrastText: #000000;
     --input-background: #f0f2f5;
@@ -12,12 +12,11 @@ html[mode='light'] {
     --text-color: #9a9a9a;
     --filter-icon: brightness(0);
     --filter-notbooking: invert(0%);
-    --btn-br-mode: #E3E5EA;
-    --btn-br-hover-mode: #D8DADF;
-    --btn-cl-mode: #2C2C2D;
+    --btn-br-mode: #e3e5ea;
+    --btn-br-hover-mode: #d8dadf;
+    --btn-cl-mode: #2c2c2d;
     --filter-icon-black: invert(0%);
 
-    
     --green-mainChannel: 0 255 0;
     --common-black: #000;
     --common-white: #fff;
@@ -108,7 +107,7 @@ html[mode='dark'] {
     --filter-notbooking: invert(85%);
     --btn-br-mode: #303031;
     --btn-br-hover-mode: #444546;
-    --btn-cl-mode: #E4E6EB;
+    --btn-cl-mode: #e4e6eb;
     --filter-icon-black: invert(100%);
 
     --background-contrastTextChannel: 255 255 255;
@@ -209,7 +208,7 @@ html[mode='dark'] {
     --orange-color: #f3a46b;
     --black-color: #333333;
     --success-main: #2e7d32;
-    --baby-blue: #DCEBFB;
+    --baby-blue: #dcebfb;
 
     --yellow-grad: linear-gradient(to right, #ffd205, #ff9e05);
     --blue-grad: linear-gradient(to right, #14bad4, #14d4b2);
@@ -304,7 +303,7 @@ html[mode='dark'] {
         color: inherit;
         background: var(--input-background);
     }
-    .MuiInputBase-root{
+    .MuiInputBase-root {
         input:disabled {
             color: var(--disabled-cl);
             background: var(--disabled-br);

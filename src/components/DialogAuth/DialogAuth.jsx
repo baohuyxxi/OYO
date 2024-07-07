@@ -8,7 +8,7 @@ import SignIn from './SignIn/SignIn';
 import Register from './Register/Register';
 import ForgotPassword from './ForgotPassword/ForgotPassword';
 
-import { useState } from 'react';
+import { useState, forwardRef } from 'react';
 import { t } from 'i18next';
 import './DialogAuth.scss';
 
@@ -42,12 +42,18 @@ export default function DialogAuth(props) {
             amination = true;
             dialogContent = <SignIn setEmail={setEmail} setPosition={setPosition} handleClose={handleClose} />;
     }
-    const TransitionComponent = (props) => {
+    // const TransitionComponent = (props) => {
+    //     if (amination) return <Slide direction="up" {...props} />;
+    //     else {
+    //         return <>{props.children}</>;
+    //     }
+    // };
+    const TransitionComponent = forwardRef(function (props, ref) {
         if (amination) return <Slide direction="up" {...props} />;
         else {
             return <>{props.children}</>;
         }
-    };
+    });
     return (
         <>
             <Dialog onClose={handleClose} open={props.open} TransitionComponent={TransitionComponent} keepMounted>

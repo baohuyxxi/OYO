@@ -56,7 +56,7 @@ export default function GeneralInfo({ id, save, doneSave }) {
             if (parseInt(value) > 100) {
                 setData({
                     ...data,
-                    [name]: 100
+                    [name]: 1.0
                 });
                 return;
             }
@@ -67,6 +67,7 @@ export default function GeneralInfo({ id, save, doneSave }) {
                 });
                 return;
             }
+            value = value / 100;
         }
         setData({
             ...data,

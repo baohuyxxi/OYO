@@ -7,18 +7,21 @@ import './DateBooking.scss';
 import { useDispatch } from 'react-redux';
 import bookingSlice from '~/redux/bookingSlice';
 import { t } from 'i18next';
+import { useSelector } from 'react-redux';
+import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 
 const DateBooking = (props) => {
+    const [messageWarningBooking, setMessageWarningBooking] = useState(false);
+    const dataBooking = useSelector((state) => state.booking.info);
     const [range, setRange] = useState([
         {
             startDate: new Date(),
             endDate: new Date(),
-            key: 'selection',
-        },
+            key: 'selection'
+        }
     ]);
     const [open, setOpen] = useState(false);
     const refOne = useRef(null);
-
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -41,7 +44,7 @@ const DateBooking = (props) => {
     const handleChangeDayBooking = async (value) => {
         const checkIn = format(value[0].startDate, 'dd/MM/yyyy');
         const checkOut = format(value[0].endDate, 'dd/MM/yyyy');
-        dispatch(bookingSlice.actions.addDay({checkIn, checkOut }));
+        dispatch(bookingSlice.actions.addDay({ checkIn, checkOut }));
     };
 
     return (
@@ -49,7 +52,16 @@ const DateBooking = (props) => {
             <div className="info-day">
                 <div className="day">
                     <p style={{ fontWeight: 'bold', marginTop: '10px' }}>{t('title.bookingOfYou.day')}</p>
-                    <p className="info_date">{props.checkIn} -- {props.checkOut}</p>
+                    <p className="info_date" style={{ display: 'flex', justifyContent: 'space-between', width: 330 }}>
+                        <span>
+                            {props.checkIn} -- {props.checkOut}
+                        </span>
+                        {dataBooking?.canBooking === false && (
+                            <span className="error" style={{ fontSize: 14, fontWeight: 500, color: 'red' }}>
+                                {t('common.candontBooking')}
+                            </span>
+                        )}
+                    </p>
                 </div>
 
                 <p onClick={() => setOpen((open) => !open)} className="edit-date">
@@ -67,7 +79,7 @@ const DateBooking = (props) => {
                         moveRangeOnFirstSelection={false}
                         ranges={range}
                         months={2}
-                        minDate={new Date()}    
+                        minDate={new Date()}
                         direction={props.size}
                         className="calendarElement"
                         showDateDisplay={false}

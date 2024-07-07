@@ -14,20 +14,20 @@ const bookingSlice = createSlice({
             numChild: 0,
             numBornChild: 0,
             totalCostAccom: 0,
-            originPay: 0,
+            // originPay: 0,
             surcharge: 0,
-            totalTransfer: 0,
+            // totalTransfer: 0,
             paymentPolicy: 'PAYMENT_FULL',
             paymentMethod: 'PAYPAL',
             accomId: 0,
             canBooking: true,
-            discount: 0
+            discount: 0,
+            priceCustomForAccomList: []
         },
-        VNPay:{
+        VNPay: {
             vnp_TxnRef: 0,
-            vnp_TransactionStatus:null,
+            vnp_TransactionStatus: null
         }
-        
     },
     reducers: {
         addInfoBooking(state, action) {
@@ -38,10 +38,12 @@ const bookingSlice = createSlice({
             state.info.numChild = action.payload.guests.numChild;
             state.info.numBornChild = action.payload.guests.numBornChild;
             state.info.surcharge = action.payload.surcharge;
-            state.info.originPay = action.payload.originPay;
+            state.info.totalCostAccom = action.payload.totalCostAccom;
+            // state.info.originPay = action.payload.originPay;
             state.info.nameCustomer = action.payload.nameCustomer;
             state.info.phoneNumberCustomer = action.payload.phoneNumberCustomer;
             state.info.discount = action.payload.discount;
+            state.info.priceCustomForAccomList = action.payload.priceCustomForAccomList;
         },
         addDay(state, action) {
             state.info.checkIn = action.payload.checkIn;
@@ -58,9 +60,10 @@ const bookingSlice = createSlice({
             state.info.totalTransfer = action.payload;
         },
         updateInfoBooking(state, action) {
-            state.info.surcharge = action.payload.costSurcharge;
-            state.info.originPay = action.payload.totalCostAccom;
-            state.info.totalCostAccom = action.payload.totalCostAccom;
+            // state.info.surcharge = action.payload.costSurcharge;
+            // state.info.originPay = action.payload.totalCostAccom;
+            // state.info.totalCostAccom = action.payload.totalCostAccom;
+            state.info.priceCustomForAccomList = action.payload.priceCustomForAccomList;
             state.info.canBooking = action.payload.canBooking;
         },
         updateInfoUserBooking(state, action) {
@@ -68,8 +71,7 @@ const bookingSlice = createSlice({
             state.info.phoneNumberCustomer = action.payload.phoneNumber;
         },
         createVNPay(state, action) {
-            state.VNPay.vnp_TxnRef= action.payload;
-
+            state.VNPay.vnp_TxnRef = action.payload;
         },
 
         clearInfoBooking(state, action) {
@@ -87,8 +89,9 @@ const bookingSlice = createSlice({
             state.info.paymentPolicy = 'PAYMENT_FULL';
             state.info.paymentMethod = 'PAYPAL';
             state.info.accomId = 0;
-            state.VNPay.vnp_TxnRef=null;
-            state.VNPay.vnp_TransactionStatus=null;
+            state.info.priceCustomForAccomList = [];
+            state.VNPay.vnp_TxnRef = null;
+            state.VNPay.vnp_TransactionStatus = null;
         }
     }
 });

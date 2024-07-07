@@ -7,6 +7,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import CircularProgress from '@mui/material/CircularProgress';
 import './CountRoomDetailSetting.scss';
 import { useEffect, useState } from 'react';
 import publicTypeBedAPI from '~/services/apis/publicAPI/publicTypeBedAPI';
@@ -19,11 +20,14 @@ const CountRoomDetailSetting = ({ allAccomCategory }) => {
     const [bedRooms, setBedRooms] = useState([]);
     const [allTypeBed, setAllTypeBed] = useState(null);
     const [expanded, setExpanded] = useState(false);
+    const [loading, setLoading] = useState(true);
     const params = useParams();
     const { enqueueSnackbar } = useSnackbar();
 
     useEffect(() => {
-        publicTypeBedAPI.getAllTypeBed().then((res) => setAllTypeBed(res.data.content));
+        publicTypeBedAPI.getAllTypeBed().then((res) => {
+            setAllTypeBed(res.data.content);
+        });
     }, []);
 
     useEffect(() => {
@@ -37,15 +41,14 @@ const CountRoomDetailSetting = ({ allAccomCategory }) => {
     useEffect(() => {
         partnerManageAccomAPI.getRoomSetting(`${params.idHome}`).then((dataRoom) => {
             setNumRoom(
-                numRoom.map((room) => {
-                    return {
-                        ...room,
-                        number: dataRoom?.data[room.key] || 0
-                    };
-                })
+                numRoom.map((room) => ({
+                    ...room,
+                    number: dataRoom?.data[room.key] || 0
+                }))
             );
             setBedRooms(dataRoom?.data?.bedRooms.typeBeds.flatMap((bed) => bed.typeBedCode));
             setRoomSetting(dataRoom?.data);
+            setLoading(false);
         });
     }, [params.idHome]);
 
@@ -90,17 +93,25 @@ const CountRoomDetailSetting = ({ allAccomCategory }) => {
         setBedRooms(updatedBedRooms);
     };
 
+    if (loading) {
+        return (
+            <div className="count-room-detail-setting__loading">
+                <CircularProgress />
+            </div>
+        );
+    }
+
     return (
-        <div className="content-count__roomdetail__setting">
+        <div className="count-room-detail-setting">
             <form onSubmit={handleSaveRoom}>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
+                        className="accordion-summary"
                     >
-                        <p style={{ width: '33%', flexShrink: 0 }}>Loại chỗ ở</p>
-                        {/* <p style={{ color: 'text.secondary' }}>{nameFacilities}</p> */}
+                        <p className="accordion-summary__title">Loại chỗ ở</p>
                         <CustomInput
                             select={true}
                             value={roomSetting?.accomCateName || ''}
@@ -113,11 +124,13 @@ const CountRoomDetailSetting = ({ allAccomCategory }) => {
                             ))}
                         />
                     </AccordionSummary>
-                    <AccordionDetails className="accordion__section">
-                        <div className="guest__input">
-                            <p>Số lượng khách</p>
-                            <input
+                    <AccordionDetails className="accordion-details">
+                        <div className="accordion-details__section row ">
+                            <p className="accordion-details__label col l-4 m-6 c-12">Số lượng khách</p>
+                            <CustomInput
+                                className="col l-4 m-6 c-12"
                                 value={roomSetting?.numPeople}
+                                width={500}
                                 onChange={(e) => {
                                     setRoomSetting({
                                         ...roomSetting,
@@ -126,18 +139,13 @@ const CountRoomDetailSetting = ({ allAccomCategory }) => {
                                 }}
                             />
                         </div>
-                        <div className="header__typeRoom">
+
+                        <div className="accordion-details__count-room">
                             {numRoom?.map((room, index) => (
-                                <div key={index} className="typeRoom">
-                                    <p>
+                                <div key={index} className='accordion-details__count-room__item'>
+                                    <p className='accordion-details__count-room__item__header'>
                                         {room.name} ({room.number})
                                     </p>
-                                </div>
-                            ))}
-                        </div>
-                        <div className="countRoom">
-                            {numRoom?.map((room, index) => (
-                                <div key={index}>
                                     <CountNumber
                                         keyType={room.key}
                                         data={numRoom}
@@ -148,10 +156,10 @@ const CountRoomDetailSetting = ({ allAccomCategory }) => {
                             ))}
                         </div>
                     </AccordionDetails>
-                    <AccordionDetails>
-                        <div className="container__bedroom">
+                    <AccordionDetails className="accordion-details">
+                        <div className="accordion-details__bedroom row">
                             {bedRooms?.map((bed, index) => (
-                                <div key={index} className="option__bed">
+                                <div key={index} className="accordion-details__option-bed col l-6 m-6 c-12">
                                     <p>Phòng ngủ số {index + 1}</p>
                                     <CustomInput
                                         size="small"
@@ -168,12 +176,12 @@ const CountRoomDetailSetting = ({ allAccomCategory }) => {
                             ))}
                         </div>
                     </AccordionDetails>
-                    <AccordionDetails>
-                        <div className="btn">
-                            <p onClick={handleClose} className="btn-close">
+                    <AccordionDetails className="accordion-details">
+                        <div className="accordion-details__btn">
+                            <p onClick={handleClose} className="accordion-details__btn-close">
                                 Hủy
                             </p>
-                            <button type="submit" className="btn-save">
+                            <button type="submit" className="accordion-details__btn-save">
                                 Lưu
                             </button>
                         </div>

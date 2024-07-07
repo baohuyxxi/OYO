@@ -3,7 +3,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import CircularProgress from '@mui/material/CircularProgress'; 
+import CircularProgress from '@mui/material/CircularProgress';
 import './GallerySetting.scss';
 import ImageSetting from './ImageSetting/ImageSetting';
 import VideoIntroSetting from './VideoIntroSetting/VideoIntroSetting';
@@ -39,14 +39,14 @@ const GallerySetting = ({ accomId }) => {
     };
 
     return (
-        <div className="gallery-setting">
-            <h3 className="gallery-setting__title">Hình ảnh & Video</h3>
+        <div className="gallery-setting-container">
+            <h3 className="gallery-setting-container__title">Hình ảnh & Video</h3>
             {isLoading ? (
-                <div className="gallery-setting__loading">
+                <div className="gallery-setting-container__loading">
                     <CircularProgress />
                 </div>
             ) : (
-                <form onSubmit={handleSaveGallery}>
+                <form onSubmit={handleSaveGallery} className="gallery-setting-container__content">
                     <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}

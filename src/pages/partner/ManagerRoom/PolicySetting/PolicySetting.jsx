@@ -11,12 +11,13 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useTranslation } from 'react-i18next'; // Changed from 'i18next'
+import { useSnackbar } from 'notistack';
 
 const PolicySetting = ({ accomId }) => {
     const { t } = useTranslation(); // Changed from 'i18next'
     const [policyPublic, setPolicyPublic] = useState(policyPublicModel);
     const [expanded, setExpanded] = useState(false);
-
+    const { enqueueSnackbar } = useSnackbar();
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
@@ -44,10 +45,20 @@ const PolicySetting = ({ accomId }) => {
         setPolicyPublic({ ...policyPublic, [event.target.name]: event.target.value });
     };
 
+    const handleSave = (e) => {
+        e.preventDefault();
+
+        partnerManageAccomAPI.updatePolicy({ id: accomId, data: policyPublic }).then((res) => {
+            enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
+        }).catch(() => {
+            enqueueSnackbar('Cập nhật thất bại', { variant: 'error' });
+        });
+    };
+
     return (
         <div className="policy-setting-container">
             <h3 className="policy-setting-container__title">Chính sách</h3>
-            <div className="policy-setting-container__content">
+            <form onSubmit={handleSave} className="policy-setting-container__content">
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
@@ -124,11 +135,13 @@ const PolicySetting = ({ accomId }) => {
                             <p onClick={handleClose} className="accordion-details__btn-close">
                                 Hủy
                             </p>
-                            <button className="accordion-details__btn-save">Lưu</button>
+                            <button type="submit" className="accordion-details__btn-save">
+                                Lưu
+                            </button>
                         </div>
                     </AccordionDetails>
                 </Accordion>
-            </div>
+            </form>
         </div>
     );
 };

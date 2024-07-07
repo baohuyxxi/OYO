@@ -1,90 +1,104 @@
-.content-count__roomdetail__setting {
+.count-room-detail-setting {
+    font-size: 15px;
     padding-right: 50px;
     padding-bottom: 50px;
+    font-weight: 600;
 
-    p {
-        font-size: 14px;
-        font-weight: 600;
-    }
-
-    .card-roomdetail__count {
-        border: 1px solid var(--text-color);
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px 1px rgba(96, 92, 92, 0.22);
+    .accordion-summary {
+        border-bottom: 1px solid #ddd;
+        padding: 10px 20px;
+        cursor: pointer;
         display: flex;
         justify-content: space-between;
+        align-items: center;
 
-        p {
-            padding-left: 30px;
-        }
-
-        .edit-count {
-            padding-right: 30px;
-            cursor: pointer;
-        }
-
-        .edit-count:hover {
-            text-decoration: underline;
+        &__title {
+            width: 33%;
+            flex-shrink: 0;
         }
     }
-    .countRoom {
-        margin-top: -20px;
-        p {
-            font-size: large;
-            font-weight: 600;
-        }
+
+    .accordion-details {
         display: flex;
-        .count-number {
-            width: 300px;
-            display: flex;
-            place-content: center;
-        }
-    }
-    .header__typeRoom {
-        p {
-            font-size: medium;
-            font-weight: 600;
-        }
-        display: flex;
-        .typeRoom {
-            width: 300px;
-            text-align: center;
-        }
-    }
-    .container__bedroom {
-        padding-left: 100px;
-        .option__bed {
-            p {
-                padding-right: 100px;
-                font-size: large;
-                font-weight: 600;
-            }
-            display: flex;
-            .MuiSelect-select {
-                padding-left: 50px;
-                width: 200px !important;
-            }
-        }
-    }
-    .accordion__section {
-        padding-top: 20px; // Adjust as needed
+        flex-direction: column;
+        padding: 20px;
 
-        .guest__input {
-            margin-bottom: 20px; // Adjust spacing
-            display: flex;
-            align-items: center;
+        &__section {
+            margin-bottom: 15px;
 
-            p {
-                margin-right: 20px;
-                font-size: 14px;
-                font-weight: 600;
+            &__label {
+                margin-bottom: 5px;
+                font-weight: bold;
             }
 
-            input {
-                width: 150px;
-                padding: 8px;
+            &__input {
+                padding: 10px;
                 border: 1px solid #ccc;
-                border-radius: 4px;
-                font-size: 14px;
+                border-radius: 5px;
+                width: 100%;
+            }
+        }
+
+        &__header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+
+            &__type-room {
+                flex: 1;
+                text-align: center;
+                font-weight: bold;
+            }
+        }
+
+        &__count-room {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            margin-bottom: 15px;
+            &__item {
+                text-align: center;
+                &__header {
+                }
+            }
+        }
+
+        &__bedroom {
+            margin-bottom: 15px;
+
+            &__option-bed {
+                margin-bottom: 10px;
+            }
+        }
+
+        &__btn {
+            display: flex;
+            justify-content: space-between;
+
+            &-close {
+                cursor: pointer;
+                text-decoration: underline;
+                margin: 0;
+                padding: 6px 8px;
+                width: auto;
+
+                &:hover {
+                    background: #e0e0e0;
+                }
+            }
+
+            &-save {
+                margin: 0;
+                padding: 6px 15px;
+                background: #4caf50;
+                border-radius: 5px;
+                cursor: pointer;
+                border: none;
+                color: white;
+
+                &:hover {
+                    background: #66bb6a;
+                }
             }
         }
     }

@@ -4,7 +4,6 @@ import moment from 'moment';
 import format from 'date-fns/format';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
 import { Button } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -16,7 +15,6 @@ import iconStar from '~/assets/svg/star.svg';
 import ListImage from '~/components/ListImage/ListImage';
 import Facility from './Facility/Facility';
 import DialogConvenient from '~/components/DialogConvenient/DialogConvenient';
-import SurchargeList from './Surcharge';
 import DrawerHome from '~/components/DrawerHome/DrawerHome';
 import DateRangeSelector from '~/components/DateRangeSelector/DateRangeSelector';
 import Dropdown from '~/components/Dropdown/Dropdown';
@@ -34,7 +32,8 @@ import { guestsModel } from '~/models/booking';
 import { transLateRoom } from '~/services/thirdPartyAPI/translateAPI';
 import { dayGap } from '~/utils/calculates';
 import GoogleMap from '~/components/GoogleMap/GoogleMap';
-import BreadcrumbsHome from './BreadcrumbsHome';
+import PopoverPrice from '~/components/PopoverPrice/PopoverPrice';
+
 export default function RoomDetail() {
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
@@ -43,15 +42,31 @@ export default function RoomDetail() {
     const user = useSelector((state) => state.user.current);
     const [loading, setLoading] = useState(true);
     const [dataDetailHome, setDataDetalHome] = useState('');
+
+    const pricePerNightOrigin = dataDetailHome?.pricePerNight;
+    const pricePerNightCurrent = dataDetailHome?.pricePerNight * (1 - dataDetailHome?.discount);
+    const discount = dataDetailHome?.discount * 100;
     const [dateBook, setDateBook] = useState([
         moment().format('DD/MM/yyyy'),
         moment(addDays(new Date(), 1)).format('DD/MM/yyyy')
     ]);
 
+    const [priceCustomForAccomList, setPriceCustomForAccomList] = useState([]);
+
+    const dayGapBooking =
+        dayGap({
+            start: dateBook[0],
+            end: dateBook[1]
+        }) - priceCustomForAccomList.length;
+    const costRentHomestay =
+        priceCustomForAccomList.reduce((total, item) => total + item.priceApply, 0) +
+        pricePerNightCurrent * dayGapBooking;
+
     const [guests, setGuests] = useState(guestsModel);
-    const [detailPrice, setDetailPrice] = useState([]);
-    const [surcharge, setSurcharge] = useState('');
-    const [totalBill, setTotalBill] = useState(0);
+
+    const surcharge = dataDetailHome?.surchargeList
+        ? dataDetailHome?.surchargeList.reduce((total, item) => total + item.cost, 0)
+        : 0;
     const [disBooking, setDisBooking] = useState(true);
     const [love, setLove] = useState(null);
     const [openDrawer, setOpenDrawer] = useState(false);
@@ -72,23 +87,20 @@ export default function RoomDetail() {
         });
     }, [roomId?.id]);
     useEffect(() => {
-        if (dateBook[0] !== dateBook[1]) {
-            const dataCheck = {
-                checkIn: dateBook[0],
-                checkOut: dateBook[1],
-                accomId: roomId.id,
-                numAdult: guests.numAdult
-            };
-            publicAccomPlaceAPI.checkBooking(dataCheck).then((response) => {
-                setSurcharge(response.data.costSurcharge);
-                setTotalBill(response?.data?.totalCostAccom);
-                if (response?.statusCode === 200) {
-                    setDisBooking(false);
-                } else {
-                    setDisBooking(true);
-                }
-            });
-        }
+        const dataCheck = {
+            checkIn: dateBook[0],
+            checkOut: dateBook[1],
+            accomId: roomId.id,
+            numAdult: guests.numAdult
+        };
+        publicAccomPlaceAPI.checkBooking(dataCheck).then((response) => {
+            setPriceCustomForAccomList(response?.data?.priceCustomForAccomList);
+            if (response?.statusCode === 200) {
+                setDisBooking(false);
+            } else {
+                setDisBooking(true);
+            }
+        });
     }, [guests.numAdult, dateBook]);
 
     const handleBooking = () => {
@@ -102,7 +114,7 @@ export default function RoomDetail() {
                 guests: guests,
                 priceDay: dataDetailHome?.pricePerNight,
                 surcharge: surcharge,
-                originPay: totalBill,
+                // originPay: totalBill,
                 nameCustomer: user.firstName + ' ' + user.lastName,
                 phoneNumberCustomer: user.phone,
                 discount: dataDetailHome?.discount
@@ -127,10 +139,13 @@ export default function RoomDetail() {
             } else {
                 enqueueSnackbar(t('message.unlove'), { variant: 'success' });
             }
-
             setLove(!love);
         });
     };
+<<<<<<< HEAD
+=======
+
+>>>>>>> 54ec7f41f9c5edeede61f9c6db42ec2ca24be0ab
     return (
         <FramePage>
             {loading ? (
@@ -138,18 +153,12 @@ export default function RoomDetail() {
             ) : (
                 <>
                     <div className="content detail-room">
-                        {/* <BreadcrumbsHome data={dataDetailHome.addressDetail} /> */}
-
                         <div className="info-room">
                             <div className="header-room">
                                 <h1>{dataDetailHome.accomName}</h1>
-
                                 <div className="heading">
                                     <div className="heading__left">
-                                        <div className="star-rating__home">
-                                            {/* {dataDetailHome.accomCateId} */}
-                                            {stars}
-                                        </div>
+                                        <div className="star-rating__home">{stars}</div>
                                         <div className="locate__room">
                                             <FmdGoodOutlinedIcon className="icon_locate" />
                                             <p>{dataDetailHome.addressDetail}</p>
@@ -224,34 +233,24 @@ export default function RoomDetail() {
 
                                     <div className="col l-4 m-5 c-12">
                                         <div className="card-book__detail paper">
-                                            {/* {dataDetailHome.discount !== 0 && (
-                                                <div className="discount-campain">
-                                                    <div className="discount-campain__title">
-                                                        <h2 className="title">
-                                                            {t('title.discountCompain')}
-                                                            {` ${dataDetailHome.discount}%`}
-                                                        </h2>
-                                                        <img
-                                                            src="https://img.icons8.com/emoji/30/null/fire.png"
-                                                            alt=""
-                                                        />
-                                                    </div>
-                                                </div>
-                                            )} */}
                                             <div className="price-room">
-                                                {formatPrice(
-                                                    dataDetailHome?.pricePerNight * (1 - dataDetailHome?.discount / 100)
-                                                )}
-                                                {t('numberCount.priceDay')}
+                                                <span className="price-room__value">
+                                                    {formatPrice(pricePerNightCurrent)}
+                                                </span>
+                                                <span className="price-room__unit">{t('numberCount.priceDay')}</span>
                                             </div>
                                             {dataDetailHome.discount > 0 && (
                                                 <div style={{ display: 'flex' }}>
-                                                    <div className="price-room root">
-                                                        {formatPrice(dataDetailHome?.pricePerNight)}
-                                                        {t('numberCount.priceDay')}
+                                                    <div className="price-room root" style={{ paddingRight: 9 }}>
+                                                        <span className="price-room__value">
+                                                            {formatPrice(pricePerNightOrigin)}
+                                                        </span>
+                                                        <span className="price-room__unit">
+                                                            {t('numberCount.priceDay')}
+                                                        </span>
                                                     </div>
                                                     <div className="discount-percent">
-                                                        <p>{`-${dataDetailHome.discount}%`}</p>
+                                                        <span>{`-${discount}%`}</span>
                                                     </div>
                                                 </div>
                                             )}
@@ -259,62 +258,47 @@ export default function RoomDetail() {
                                                 dateBook={dateBook}
                                                 setDataDay={handleChangeDayBooking}
                                             />
-
                                             <Dropdown
                                                 guests={guests}
                                                 setGuests={setGuests}
                                                 handleChangeGuests={handleChangeGuests}
                                             />
-
-                                            <div className="line">
-                                                <hr />
-                                            </div>
-
-                                            {/* <div className="price-total">
+                                            <div className="price-total">
                                                 <div className="title-price">
-                                                    <PopoverPrice detailPrice={detailPrice} />
+                                                    <p className="name-surcharge" style={{ marginRight: 2 }}>
+                                                        Giá phòng
+                                                    </p>
+                                                    <PopoverPrice
+                                                        priceCustomForAccomList={priceCustomForAccomList}
+                                                        discount={dataDetailHome?.discount}
+                                                        pricePerNightOrigin={pricePerNightOrigin}
+                                                        pricePerNightCurrent={pricePerNightCurrent}
+                                                        dayGapBooking={dayGapBooking}
+                                                    />
                                                 </div>
                                                 <div className="real-price ">
-                                                    {dataDetailHome.discount > 0 && (
-                                                        <p className="root" style={{ fontWeight: '550' }}>
-                                                            {formatPrice(totalBill)}
-                                                        </p>
-                                                    )}
-                                                    <p style={{ fontWeight: '550' }}>
-                                                        {formatPrice(totalBill * (1 - dataDetailHome?.discount / 100))}
-                                                    </p>
-                                                </div>
-                                            </div> */}
-                                            <div className="price__home">
-                                                {dataDetailHome.discount > 0 && (
-                                                    <div className="price__before-discount ">
-                                                        <div className="title-price"></div>
-                                                        <p className="price__home__root">{formatPrice(totalBill)}</p>
-                                                    </div>
-                                                )}
-                                                <div className="real-price ">
-                                                    <p className="title-price">{`${t('common.priceFor')} ${
-                                                        dataDetailHome.accomCateName
-                                                    } x ${dayGap({ start: dateBook[0], end: dateBook[1] })}`}</p>
-                                                    <p>
-                                                        {formatPrice(totalBill * (1 - dataDetailHome?.discount / 100))}
-                                                    </p>
+                                                    <p className="cost-surcharge">{formatPrice(costRentHomestay)}</p>
                                                 </div>
                                             </div>
-                                            <SurchargeList data={dataDetailHome?.surchargeList} />
+
+                                            {dataDetailHome?.surchargeList.map((sur, index) => (
+                                                <div className="price-total" key={index}>
+                                                    <div className="title-price">
+                                                        <p className="name-surcharge">{`${sur?.surchargeName}`}</p>
+                                                    </div>
+                                                    <div className="real-price">
+                                                        <p className="cost-surcharge">{formatPrice(sur?.cost)}</p>
+                                                    </div>
+                                                </div>
+                                            ))}
+
+                                            <hr style={{ width: '80%' }} />
+
                                             <div className="total-price">
                                                 <div className="title-price">Tổng giá phòng</div>
-                                                <div className="real-price ">
-                                                    <p style={{ fontWeight: '550' }}>
-                                                        {formatPrice(
-                                                            totalBill * (1 - dataDetailHome?.discount / 100) +
-                                                                dataDetailHome?.surchargeList.reduce(
-                                                                    (sum, surcharge) => sum + surcharge.cost,
-                                                                    0
-                                                                )
-                                                        )}
-                                                    </p>
-                                                </div>
+                                                <p className="real-price ">
+                                                    {formatPrice(costRentHomestay + surcharge)}
+                                                </p>
                                             </div>
                                             <div className="btn-booking">
                                                 <Button
@@ -322,6 +306,7 @@ export default function RoomDetail() {
                                                     disabled={disBooking}
                                                     className="btn-booking-room"
                                                     onClick={handleBooking}
+                                                    color="info"
                                                 >
                                                     {t('common.booking')}
                                                 </Button>
@@ -330,9 +315,6 @@ export default function RoomDetail() {
                                     </div>
                                 </div>
                             </div>
-                            {/* <Button variant="contained" onClick={handleChat}>
-                                Liên hệ chủ nhà
-                            </Button> */}
                             <GoogleMap data={dataDetailHome} />
 
                             <CommentReview dataComment={dataComment} />

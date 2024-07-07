@@ -5,7 +5,7 @@ const formatPrice = (value) => {
         return `${new Intl.NumberFormat('en-US').format(formattedValue)} USD`;
     } else {
         formattedValue = parseInt(value);
-        return `${new Intl.NumberFormat('vi-VN').format(formattedValue)}đ`;
+        return `${new Intl.NumberFormat('vi-VN').format(formattedValue)}₫`;
     }
 };
 

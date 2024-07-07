@@ -203,48 +203,58 @@
             width: 100%;
             height: auto;
             margin: auto;
-
             border-radius: 10px;
             position: relative;
             z-index: 90;
             .price-room {
                 padding: 5px 17px;
                 font-size: 1.8rem;
-                font-weight: 600;
                 font-size: 24px;
                 line-height: 29px;
+                color: rgb(34, 34, 34);
                 font-family: Montserrat, sans-serif;
+                &__value {
+                    font-weight: 600;
+                }
+                &__unit {
+                    font-weight: 400;
+                }
+                &.root {
+                    font-weight: 500;
+                    font-size: 15px;
+                    text-decoration: line-through;
+                    color: #4a5568; /* Màu của đường gạch ngang */
+                }
             }
-            .root {
-                font-weight: 400 !important;
-                font-size: 15px;
-                text-decoration: line-through;
-                color: red; /* Màu của đường gạch ngang */
-            }
-            .discount-percent {
-                padding-left: 10px;
 
+            .discount-percent {
                 padding-top: 5px;
                 line-height: 29px;
-                height: 34px;
-                p {
+
+                span {
+                    padding: 1px 4px;
                     font-size: 15px;
                     font-weight: 600;
                     font-family: Montserrat, sans-serif;
                     color: white;
-                    background-color: red;
-                    border-radius: 5px;
-                    padding-left: 5px;
+                    background-color: #ff3366;
+                    border-radius: 3px;
+                    margin: 0;
                 }
             }
             .total-price {
                 display: flex;
                 justify-content: space-between;
-                padding: 0 20px;
-                height: 10px;
+                margin-left: 25px;
+                margin-right: 25px;
+                font-size: 15px;
+                font-weight: 500;
                 .title-price {
+                    height: max-content;
                 }
                 .real-price {
+                    margin: 0;
+                    height: max-content;
                 }
             }
             .list__surcharge {
@@ -299,7 +309,7 @@
             }
 
             p {
-                font-size: small;
+                font-size: 14px;
             }
         }
 
@@ -326,9 +336,11 @@
             width: 100%;
             display: flex;
             justify-content: center;
-            margin-top: 10px;
-            padding-bottom: 5px;
+            margin-top: -6px;
+            margin-bottom: 3px;
+            padding-bottom: 11px;
             padding-top: 10px;
+            // background-color: rgb(74, 188, 122);
 
             .btn-booking-room {
                 width: 200px;

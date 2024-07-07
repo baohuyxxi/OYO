@@ -3,18 +3,17 @@ import { t } from 'i18next';
 import { useSelector } from 'react-redux';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { addDays } from 'date-fns';
-
 import { useEffect, useState } from 'react';
 import { enGB } from 'date-fns/locale';
 import { DateRangePicker } from 'react-nice-dates';
 import moment from 'moment';
 import 'react-nice-dates/build/style.css';
 
-export default function DateRangeSelector(props) {
-    const { dateBook, setDataDay } = props;
+export default function DateRangeSelector({ dateBook, setDataDay }) {
     const dataBooking = useSelector((state) => state.booking.info);
-    const [startDate, setStartDate] = useState();
-    const [endDate, setEndDate] = useState();
+    const [startDate, setStartDate] = useState(moment(dateBook[0], 'DD/MM/yyyy').toDate());
+    const [endDate, setEndDate] = useState(moment(dateBook[1], 'DD/MM/yyyy').toDate());
+
     useEffect(() => {
         setStartDate(moment(dateBook[0], 'DD/MM/yyyy').toDate());
         setEndDate(moment(dateBook[1], 'DD/MM/yyyy').toDate());
@@ -37,7 +36,6 @@ export default function DateRangeSelector(props) {
                 minimumDate={new Date()}
                 format="dd/MM/yyyy"
                 locale={enGB}
-                
             >
                 {({ startDateInputProps, endDateInputProps, focus }) => (
                     <div className="info_date">

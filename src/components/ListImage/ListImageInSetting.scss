@@ -55,3 +55,21 @@
         margin: 0 50px;
     }
 }
+
+.list-image-in-setting {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px 10px 0 10px;
+
+    &__item {
+        width: 20%;
+        padding: 5px;
+
+        .list-image-in-setting__image {
+            border-radius: 5px;
+            width: 90%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+        }
+    }
+}

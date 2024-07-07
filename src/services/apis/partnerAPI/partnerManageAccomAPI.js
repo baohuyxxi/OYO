@@ -78,8 +78,9 @@ const partnerManageAccomAPI = {
             facilityCodes: data
         });
         return res.data;
-    },
+    },  
     updatePolicy: async (data) => {
+
         const res = await axios.put(`/partner/accoms/policies?accomId=${data.id}`, data.data);
         return res.data;
     },

@@ -23,8 +23,7 @@
         }
 
         .accordion-details {
-            display: flex;
-            flex-direction: column;
+
             padding: 20px;
 
             &__section {
@@ -32,6 +31,8 @@
                 justify-content: space-between;
                 border-top: 1px solid #bdbdbd;
                 padding-top: 15px;
+
+
 
                 .accordion-details__btn-close {
                     cursor: pointer;
@@ -58,6 +59,12 @@
                         background: #66bb6a;
                     }
                 }
+            }
+            &__btn{
+                display: flex;
+                justify-content: space-between;
+                border-top: 1px solid #bdbdbd;
+                padding-top: 15px;
             }
 
             .custom-input {

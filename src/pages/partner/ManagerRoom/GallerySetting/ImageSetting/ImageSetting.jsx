@@ -12,8 +12,8 @@ const ImageSetting = ({ listImage, thumbnail }) => {
     }, [listImage]);
 
     return (
-        <div className="setting-image">
-            <div className="header-setting__image">
+        <div className="image-setting">
+            <div className="image-setting__header">
                 <p>Hình ảnh</p>
                 <p onClick={(e) => setOpen(true)}>Chỉnh sửa</p>
             </div>

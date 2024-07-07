@@ -88,9 +88,9 @@ export default function GeneralInfoSetting({ accomId }) {
     };
 
     return (
-        <div style={{ fontSize: '15px', paddingRight: '50px', paddingBottom: '50px' }}>
-            <h3>Thông tin chung</h3>
-            <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="general-info-setting-container">
+            <h3 className="general-info-setting-container__title">Thông tin chung</h3>
+            <form onSubmit={handleSubmit(onSubmit)} className="general-info-setting-container__content">
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}

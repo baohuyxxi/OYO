@@ -72,7 +72,6 @@ export default function CardInfo() {
             <input
                 hidden
                 type="file"
-                // accept="image/*"
                 accept="image/jpeg, image/png, image/bmp, image/webp, image/jpg"
                 ref={inputRef}
                 onChange={handleImgChange}

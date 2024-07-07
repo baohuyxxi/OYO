@@ -42,36 +42,33 @@ export default function RoomDetail() {
     const user = useSelector((state) => state.user.current);
     const [loading, setLoading] = useState(true);
     const [dataDetailHome, setDataDetalHome] = useState('');
-    const pricePerNightOrigin = dataDetailHome?.pricePerNight;
-    const pricePerNightCurrent = dataDetailHome?.pricePerNight * (1 - dataDetailHome?.discount);
-    const discount = dataDetailHome?.discount * 100;
+    const [guests, setGuests] = useState(guestsModel);
     const [dateBook, setDateBook] = useState([
         moment().format('DD/MM/yyyy'),
         moment(addDays(new Date(), 1)).format('DD/MM/yyyy')
     ]);
 
-    // console.log(moment(dateBook[0]).toDate());
-
     const [priceCustomForAccomList, setPriceCustomForAccomList] = useState([]);
-
-    const dayGapBooking =
-        dayGap({
-            start: dateBook[0],
-            end: dateBook[1]
-        }) - priceCustomForAccomList.length;
-    const costRentHomestay =
-        priceCustomForAccomList.reduce((total, item) => total + item.priceApply, 0) +
-        pricePerNightCurrent * dayGapBooking;
-
-    const [guests, setGuests] = useState(guestsModel);
-
-    const surcharge = dataDetailHome?.surchargeList
-        ? dataDetailHome?.surchargeList.reduce((total, item) => total + item.cost, 0)
-        : 0;
     const [disBooking, setDisBooking] = useState(true);
     const [love, setLove] = useState(null);
     const [openDrawer, setOpenDrawer] = useState(false);
     const [dataComment, setDataComment] = useState([]);
+
+    const pricePerNightOrigin = dataDetailHome?.pricePerNight;
+    const pricePerNightCurrent = dataDetailHome?.pricePerNight * (1 - dataDetailHome?.discount);
+    const discount = dataDetailHome?.discount * 100;
+    const dayGapBooking =
+        dayGap({
+            start: dateBook[0],
+            end: dateBook[1]
+        }) - priceCustomForAccomList?.length;
+    const costRentHomestay =
+        priceCustomForAccomList?.reduce((total, item) => total + item.priceApply, 0) +
+        pricePerNightCurrent * dayGapBooking;
+
+    const surcharge = dataDetailHome?.surchargeList
+        ? dataDetailHome?.surchargeList.reduce((total, item) => total + item.cost, 0)
+        : 0;
 
     const stars = [];
 

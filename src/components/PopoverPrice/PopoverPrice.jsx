@@ -25,6 +25,7 @@ export default function PopoverPrice({
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
 
+
     return (
         <div className="popover-price">
             <InfoIcon color="primary" sx={{ fontSize: 'medium' }} onClick={handleClick} />
@@ -45,7 +46,7 @@ export default function PopoverPrice({
                 <h2 className="popover-price__title" style={{}}>
                     {t('title.priceDetail')}
                 </h2>
-                {priceCustomForAccomList.length > 0 && (
+                {priceCustomForAccomList?.length > 0 && (
                     <div className="item-price">
                         <p className="item-price__title">Giá linh hoạt</p>
                         {priceCustomForAccomList.map((item, index) => (

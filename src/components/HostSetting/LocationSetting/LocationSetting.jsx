@@ -34,7 +34,6 @@ export default function LocationSetting(props) {
 
     useEffect(() => {
         partnerManageAccomAPI.getAddress(params.idHome).then((dataResponse) => {
-            console.log(dataResponse);
             setAddress({
                 provinceCode: dataResponse?.data?.provinceAddress.provinceCode,
                 provinceName: dataResponse?.data?.provinceAddress.provinceName,

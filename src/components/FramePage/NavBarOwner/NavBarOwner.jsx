@@ -17,9 +17,6 @@ import './NavBarOwner.scss';
 export default function NavBarOwner() {
     const [open, setOpen] = useState(false);
     const user = useSelector((state) => state.user.current);
-
-    console.log(user);
-
     return (
         <AppBar className="appbar">
             <Toolbar className="toolbar">

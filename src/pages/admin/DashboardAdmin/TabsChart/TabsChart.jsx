@@ -111,7 +111,6 @@ const TabsChart = ({ year }) => {
     };
 
     const handleChange = (event, newValue) => {
-        console.log(newValue);
         setValue(newValue);
     };
 

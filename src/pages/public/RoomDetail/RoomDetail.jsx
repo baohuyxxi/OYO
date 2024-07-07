@@ -131,7 +131,6 @@ export default function RoomDetail() {
             setLove(!love);
         });
     };
-    console.log(dataDetailHome.addressDetail);
     return (
         <FramePage>
             {loading ? (

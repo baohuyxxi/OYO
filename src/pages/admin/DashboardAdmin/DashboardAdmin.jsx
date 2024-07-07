@@ -93,7 +93,6 @@ const DashboardAdmin = () => {
     const [dataHomestay, setDataHomestay] = useState([]);
     const [dataTransaction, setDataTransaction] = useState([]);
 
-    console.log(dateStatistic, year);
     const [numberStatis, setNumberStatis] = useState([
         {
             icon: 'bx bx-user',

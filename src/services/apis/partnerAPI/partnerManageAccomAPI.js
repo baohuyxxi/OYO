@@ -70,7 +70,6 @@ const partnerManageAccomAPI = {
     },
 
     updateGeneralInfo: async ({ id, data }) => {
-        console.log(id, data);
         const res = await axios.put(`/partner/accoms/general-info?accomId=${id}`, data);
         return res.data;
     },

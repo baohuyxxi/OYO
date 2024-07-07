@@ -31,7 +31,6 @@ function SearchHome({ placeholder, data }) {
         setFilteredData([]);
         setWordEntered('');
     };
-    console.log(filteredData)
     return (
         <div className="search-home">
             <div className="searchInputs-home">

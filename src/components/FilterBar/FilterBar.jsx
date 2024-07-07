@@ -37,7 +37,6 @@ const FilterBar = (props) => {
         async function fetchData() {
             const res = await publicAccomPlaceAPI.getAllAccomCategoryInfo();
             setListAccomCateData([itemHomeStayCateAll, ...res.data]);
-            console.log(res.data);
         }
         fetchData();
     }, []);

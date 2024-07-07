@@ -22,7 +22,6 @@ export default function DashboardPartner() {
 
                 setAccomWaiting(response.data.content);
             } catch (error) {
-                console.log('Failed to fetch accomWaiting: ', error);
             }
         };
         fetchAccomWaiting();

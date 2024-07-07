@@ -42,12 +42,11 @@ export default function Gallery({ id, save, doneSave }) {
                     })
                 );
 
-                console.log(uploadImages);
                 const dataUpdate = {
                     imageAccomUrls: uploadImages,
                     cldVideoId: fileVideo?.cldVideoId
                 };
-                console.log(dataUpdate);
+
                 partnerManageAccomAPI
                     .updateGallery({ id, data: dataUpdate })
                     .then((res) => {

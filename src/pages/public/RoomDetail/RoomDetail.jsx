@@ -42,7 +42,6 @@ export default function RoomDetail() {
     const user = useSelector((state) => state.user.current);
     const [loading, setLoading] = useState(true);
     const [dataDetailHome, setDataDetalHome] = useState('');
-
     const pricePerNightOrigin = dataDetailHome?.pricePerNight;
     const pricePerNightCurrent = dataDetailHome?.pricePerNight * (1 - dataDetailHome?.discount);
     const discount = dataDetailHome?.discount * 100;
@@ -50,6 +49,8 @@ export default function RoomDetail() {
         moment().format('DD/MM/yyyy'),
         moment(addDays(new Date(), 1)).format('DD/MM/yyyy')
     ]);
+
+    // console.log(moment(dateBook[0]).toDate());
 
     const [priceCustomForAccomList, setPriceCustomForAccomList] = useState([]);
 
@@ -114,10 +115,7 @@ export default function RoomDetail() {
                 checkOut: dateBook[1],
                 accomId: roomId.id,
                 guests: guests,
-                totalCostAccom: costRentHomestay,
-                // priceDay: dataDetailHome?.pricePerNight,
                 surcharge: surcharge,
-                // originPay: totalBill,
                 nameCustomer: user.firstName + ' ' + user.lastName,
                 phoneNumberCustomer: user.phone,
                 discount: dataDetailHome?.discount,
@@ -131,7 +129,11 @@ export default function RoomDetail() {
     const handleChangeDayBooking = (startDate, endDate) => {
         const checkIn = format(startDate, 'dd/MM/yyyy');
         const checkOut = format(endDate, 'dd/MM/yyyy');
-        setDateBook([checkIn, checkOut]);
+        if (startDate > endDate) {
+            setDateBook([checkOut, checkIn]);
+        } else {
+            setDateBook([checkIn, checkOut]);
+        }
     };
     const handleChangeGuests = (value) => {
         setGuests(value);

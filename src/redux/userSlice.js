@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 const userSlice = createSlice({
     name: 'user',
@@ -8,44 +8,39 @@ const userSlice = createSlice({
         settings: false
     },
     reducers: {
-        signup(state, action) {
-        },
+        signup(state, action) {},
         signin(state, action) {
-            state.roles = action.payload.roles
-            localStorage.setItem('accessToken', action.payload.accessToken)
-            localStorage.setItem('refreshToken', action.payload.refreshToken)
-            // localStorage.setItem('user', JSON.stringify(action.payload.infoUserResponse))
-            // state.accessToken = action.payload.accessToken
-            // state.refreshToken = action.payload.refreshToken
-            state.current= action.payload.infoUserResponse
+            state.roles = action.payload.roles;
+            localStorage.setItem('accessToken', action.payload.accessToken);
+            localStorage.setItem('refreshToken', action.payload.refreshToken);
+            state.current = action.payload.infoUserResponse;
         },
         signinAdmin(state, action) {
-            state.roles = action.payload.roles
-            localStorage.setItem('accessTokenAdmin', action.payload.accessToken)
-            localStorage.setItem('refreshTokenAdmin', action.payload.refreshToken)
+            state.roles = action.payload.roles;
+            localStorage.setItem('accessTokenAdmin', action.payload.accessToken);
+            localStorage.setItem('refreshTokenAdmin', action.payload.refreshToken);
         },
         setProfile(state, action) {
-            localStorage.setItem('user', JSON.stringify(action.payload.data))
+            localStorage.setItem('user', JSON.stringify(action.payload.data));
         },
         logout(state) {
-            localStorage.removeItem('user')
-            localStorage.removeItem('accessToken')
-            localStorage.removeItem('refreshToken')
-            state.current = null
-            state.roles = null
-            window.location.href = '/'
+            localStorage.removeItem('user');
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
+            state.current = null;
+            state.roles = null;
+            window.location.href = '/';
         },
         editInfo(state, action) {
-            state.current= action.payload
+            state.current = action.payload;
         },
         updateHost(state) {
-            state.settings = true
+            state.settings = true;
         },
-        refreshToken(state, action){
-            localStorage.setItem('accessToken', action.payload.accessToken)
+        refreshToken(state, action) {
+            localStorage.setItem('accessToken', action.payload.accessToken);
         }
-    },
-   
-})
+    }
+});
 
-export default userSlice
+export default userSlice;

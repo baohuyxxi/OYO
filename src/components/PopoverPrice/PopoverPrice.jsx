@@ -52,7 +52,7 @@ export default function PopoverPrice({
                             <div
                                 className="item-price__content"
                                 style={{ display: 'flex', justifyContent: 'space-between' }}
-                                index={index}
+                                key={index}
                             >
                                 <span>{`Ngày ${item.dateApply}`}</span>
                                 <span>{formatPrice(item.priceApply)}</span>

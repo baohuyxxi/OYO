@@ -60,6 +60,7 @@
         "unlove": "Đã xóa khỏi mục đã thích",
         "warningSignin": "Để đặt thuê nhà, bạn cần đăng nhập!",
         "bookingSuccess": "Đặt phòng thành công",
+        "bookingFail": "Giao dịch bị hủy bỏ, vui lòng kiểm tra lại",
         "addressEmpty": "Bạn không thể để trống địa chỉ",
         "maxImage": "Vui lòng chọn đủ 5 hình",
         "minImage": "Số hình tối thiếu là 5",

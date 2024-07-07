@@ -54,11 +54,28 @@ const BookingPage = () => {
         const checkValidate = validateBooking(dataBooking);
         if (Object.keys(checkValidate).length === 0) {
             dispatch(globalSlice.actions.setLoading(true));
-            bookingAPI.createBooking(dataBooking).then((dataResponse) => {
-                enqueueSnackbar(t('message.bookingSuccess'), { variant: 'success' });
-                dispatch(bookingSlice.actions.clearInfoBooking());
-                dispatch(globalSlice.actions.setLoading(false));
-                navigate(`/room-detail/${dataDetailHomeBooking.id}`);
+
+            const bookingRequest = {
+                nameCustomer: dataBooking.nameCustomer,
+                phoneNumberCustomer: dataBooking.phoneNumberCustomer,
+                checkIn: dataBooking.checkIn,
+                checkOut: dataBooking.checkOut,
+                numAdult: dataBooking.numAdult,
+                numChild: dataBooking.numChild,
+                numBornChild: dataBooking.numBornChild,
+                paymentPolicy: dataBooking.paymentPolicy,
+                paymentMethod: dataBooking.paymentMethod,
+                accomId: dataBooking.accomId
+            };
+            bookingAPI.createBooking(bookingRequest).then((dataResponse) => {
+                if (dataResponse?.statusCode === 200) {
+                    enqueueSnackbar(t('message.bookingSuccess'), { variant: 'success' });
+                    dispatch(bookingSlice.actions.clearInfoBooking());
+                    dispatch(globalSlice.actions.setLoading(false));
+                    navigate(`/room-detail/${dataDetailHomeBooking.id}`);
+                } else {
+                    enqueueSnackbar(t('message.bookingFail'), { variant: 'error' });
+                }
             });
         } else {
             setErrors(checkValidate);
@@ -86,7 +103,6 @@ const BookingPage = () => {
         };
         publicAccomPlaceAPI.checkBooking(dataCheck).then((response) => {
             dispatch(bookingSlice.actions.updateInfoBooking(response.data));
-            setPriceCustomForAccomList(response?.data?.priceCustomForAccomList);
         });
     }, [dataBooking.checkIn, dataBooking.checkOut]);
 
@@ -104,7 +120,6 @@ const BookingPage = () => {
                                 checkOut={dataBooking.checkOut}
                                 idHome={dataBooking.accomId}
                             />
-                            {/* {dataBooking.canBooking === true && <p className="error">{t('common.candontBooking')}</p>} */}
                             <hr className="line" />
 
                             <div className="count-customer">
@@ -129,12 +144,10 @@ const BookingPage = () => {
 
                             <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
                                 <div style={{ width: 'fit-content', marginRight: 125 }}>
-                                    {/* <div> */}
                                     <p style={{ fontSize: 14, fontWeight: 'bold' }}>
                                         {t('title.bookingOfYou.paymentMethod')}
                                     </p>
                                     <CheckBoxPaymentMethod />
-                                    {/* </div> */}
                                 </div>
 
                                 <div style={{ width: 'fit-content' }}>
@@ -147,21 +160,21 @@ const BookingPage = () => {
 
                             {dataBooking.paymentMethod === 'PAYPAL' ? (
                                 <div className="payment__paypal">
-                                    {/* <Paypal
-                                        pricePayment={priceAfterChoosePayment}
+                                    <Paypal
+                                        pricePayment={totalTransfer}
                                         booking={handleBookingRoom}
                                         canBooking={dataBooking.canBooking}
                                         errors={errors}
-                                    /> */}
+                                    />
                                 </div>
                             ) : dataBooking.paymentMethod === 'VNPAY' ? (
                                 <div className="btn__booking">
-                                    {/* <VNPay
-                                        pricePayment={priceAfterChoosePayment}
+                                    <VNPay
+                                        pricePayment={totalTransfer}
                                         booking={handleBookingRoom}
                                         canBooking={dataBooking.canBooking}
                                         errors={errors}
-                                    /> */}
+                                    />
                                 </div>
                             ) : (
                                 <div className="btn__booking">
@@ -213,7 +226,7 @@ const BookingPage = () => {
                                             <div className="price-room-booking">
                                                 <p style={{ color: '#757575' }}>{t('title.bookingOfYou.price')}</p>
                                                 <p style={{ fontWeight: '550' }}>
-                                                    {formatPrice(dataBooking?.totalCostAccom)}/
+                                                    {formatPrice(costRentHomestay)}/
                                                     {dayGap({ start: dataBooking.checkIn, end: dataBooking.checkOut })}{' '}
                                                     {t('title.bookingOfYou.day')}
                                                 </p>

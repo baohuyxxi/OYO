@@ -59,6 +59,7 @@
         "unlove": "Removed from favorites",
         "warningSignin": "To book a rental, you need to log in!",
         "bookingSuccess": "Booking successfully",
+        "bookingFail": "Transaction booking is cancel, please check again",
         "addressEmpty": "Address must be not blank",
         "maxImage": "Please choose all 5 pictures",
         "minImage": "Minimum number of images is 5",

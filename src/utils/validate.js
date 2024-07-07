@@ -121,7 +121,6 @@ export const validateInfo = (data) => {
 
 export const validateBooking = (data) => {
     const errors = {};
-
     if (data.phoneNumberCustomer && data.phoneNumberCustomer.trim()) {
         if (data.phoneNumberCustomer.length !== 10 || !data.phoneNumberCustomer.match(/^[0-9]+$/)) {
             errors.phoneNumberCustomer = t('validate.phoneError');

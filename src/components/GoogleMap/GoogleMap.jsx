@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 import HotelIcon from '@mui/icons-material/Hotel';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import Skeleton from '@mui/material/Skeleton'; // Import the Skeleton component from MUI
+import Skeleton from '@mui/material/Skeleton'; 
 
 export default function GoogleMap({ data }) {
     const [currentPosition, setCurrentPosition] = useState(null);
@@ -29,7 +29,7 @@ export default function GoogleMap({ data }) {
         setLocationAccom({ lat: data.latitude, lng: data.longitude });
 
         fetchCurrentPosition();
-    }, []);
+    }, [data]);
 
     if (loading) {
         return <Skeleton variant="rectangular" width="100%" height={400} />; // Use the Skeleton component from MUI
@@ -57,6 +57,7 @@ export default function GoogleMap({ data }) {
                 bootstrapURLKeys={{ key: import.meta.env.VITE_API_KEY_GOOGLE }}
                 defaultCenter={locationAccom}
                 defaultZoom={defaultProps.zoom}
+                yesIWantToUseGoogleMapApiInternals
                 onClick={handleMapClick}
             >
                 <Hotel className="icon__location-current" lat={locationAccom.lat} lng={locationAccom.lng} />

@@ -9,7 +9,6 @@ export default function CalendarDateBooked({ accomPriceCustom }) {
     const [groups, setGroups] = useState([]);
     const [items, setItems] = useState([]);
 
-
     useEffect(() => {
         const fetchData = async () => {
             const groupData = accomPriceCustom.map((item) => ({
@@ -17,7 +16,7 @@ export default function CalendarDateBooked({ accomPriceCustom }) {
                 title: item.accomName
             }));
             setGroups(groupData);
-          
+
             const itemData = [];
             const currentDate = moment();
             accomPriceCustom.forEach((accom) => {
@@ -55,6 +54,11 @@ export default function CalendarDateBooked({ accomPriceCustom }) {
             ) : (
                 <div>
                     <Timeline
+                        lineHeight={50}
+                        fullUpdate
+                        showCursorLine
+                        sidebarWidth={250}
+                        canMove={true}
                         groups={groups}
                         items={items}
                         defaultTimeStart={moment().add(0, 'hour')}

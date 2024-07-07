@@ -14,7 +14,6 @@ const StatisticPage = () => {
 
     useEffect(() => {
         partnerStatisticAPI.getStatisticOfHost(year).then((dataResponse) => {
-            console.log(dataResponse.data);
             setDataStatis(dataResponse.data);
         });
     }, []);

@@ -70,7 +70,6 @@ const CountRoomDetailSetting = ({ allAccomCategory }) => {
             }
         };
 
-        console.log(newData);
         partnerManageAccomAPI
             .updateRoomSetting(newData)
             .then((res) => {

@@ -28,7 +28,6 @@ export default function SliderListAccomWaiting({ accomWaiting, setAccomWaiting }
         }
     }, [accomWaiting]);
     const handleDelete = (accomId) => {
-        console.log(accomId);
         partnerManageAccomAPI.deleteAccomWaiting(accomId).then((res) => {
             if (res.statusCode === 200) {
                 enqueueSnackbar('Xóa chỗ nghỉ thành công', { variant: 'success' });

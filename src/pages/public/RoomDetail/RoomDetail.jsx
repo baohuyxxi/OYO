@@ -142,7 +142,10 @@ export default function RoomDetail() {
             setLove(!love);
         });
     };
+<<<<<<< HEAD
+=======
 
+>>>>>>> 54ec7f41f9c5edeede61f9c6db42ec2ca24be0ab
     return (
         <FramePage>
             {loading ? (

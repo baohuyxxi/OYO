@@ -27,7 +27,7 @@ function MyFormControlLabel(props) {
     return <StyledFormControlLabel checked={checked} {...props} />;
 }
 
-export default function CheckBoxPaymentMethod(props) {
+export default function CheckBoxPaymentMethod() {
     const dispatch = useDispatch();
 
     const handleChangeRadio = (event) => {

@@ -71,7 +71,9 @@ export default function RoomDetail() {
     const [love, setLove] = useState(null);
     const [openDrawer, setOpenDrawer] = useState(false);
     const [dataComment, setDataComment] = useState([]);
+
     const stars = [];
+
     for (let i = 0; i < dataDetailHome.gradeRate; i++) {
         stars.push(<img key={i} src={iconStar} alt="icon__star" className="star" />);
     }
@@ -112,12 +114,14 @@ export default function RoomDetail() {
                 checkOut: dateBook[1],
                 accomId: roomId.id,
                 guests: guests,
-                priceDay: dataDetailHome?.pricePerNight,
+                totalCostAccom: costRentHomestay,
+                // priceDay: dataDetailHome?.pricePerNight,
                 surcharge: surcharge,
                 // originPay: totalBill,
                 nameCustomer: user.firstName + ' ' + user.lastName,
                 phoneNumberCustomer: user.phone,
-                discount: dataDetailHome?.discount
+                discount: dataDetailHome?.discount,
+                priceCustomForAccomList: priceCustomForAccomList
             };
             dispatch(bookingSlice.actions.addInfoBooking(dataBooking));
             navigate('/booking');

@@ -31,6 +31,25 @@ function SearchHome({ placeholder, data }) {
         setFilteredData([]);
         setWordEntered('');
     };
+
+    useEffect(() => {
+        let timer;
+        timer = setTimeout(async () => {
+            if (wordEntered && wordEntered.length > 1) {
+                await publicAccomPlaceAPI.getSearchHome(wordEntered).then((dataResponse) => {
+                    setFilteredData(dataResponse.data?.content);
+                });
+            } else {
+                setFilteredData([]);
+            }
+        }, 1000);
+        return () => {
+            clearTimeout(timer);
+        };
+    }, [wordEntered]);
+    const handleChange = (e) => {
+        setWordEntered(e.target.value);
+    };
     return (
         <div className="search-home">
             <div className="searchInputs-home">
@@ -38,7 +57,7 @@ function SearchHome({ placeholder, data }) {
                     <SearchIcon />
                 </div>
 
-                <input type="text" placeholder={placeholder} value={wordEntered} onChange={handleFilter} />
+                <input type="text" placeholder={placeholder} value={wordEntered} onChange={handleChange} />
 
                 <div className="searchIcon-clear">
                     {filteredData.length === 0 ? '' : <CloseIcon id="clearBtn" onClick={clearInput} />}

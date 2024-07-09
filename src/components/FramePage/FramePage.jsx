@@ -1,4 +1,3 @@
-// FramePage.jsx
 import './FramePage.scss';
 import { useSelector } from 'react-redux';
 import NavBar from './NavBar/NavBar';
@@ -8,8 +7,9 @@ import ViewImage from '~/components/ViewImage/ViewImage';
 import ChatBox from '../ChatBox/ChatBox';
 import LoadingDialog from '~/components/LoadingDialog/LoadingDialog';
 import { useEffect } from 'react';
+import BannerOwner from '../BannerOwner/BannerOwner';
 
-export default function FramePage({ ownerPage = false, children }) {
+export default function FramePage({ ownerPage = false, children, bannerData }) {
     const viewImages = useSelector((state) => state.global.viewImages);
     const chatbox = useSelector((state) => state.global.chatbox);
     const loading = useSelector((state) => state.global.loading);
@@ -19,8 +19,15 @@ export default function FramePage({ ownerPage = false, children }) {
     }, []);
 
     return (
-        <div className='background__frame-page '>
-            {ownerPage ? <NavbarOwner /> : <NavBar />}
+        <div className='background__frame-page'>
+            {ownerPage ? (
+                <>
+                    <NavbarOwner />
+                    <BannerOwner {...bannerData} />
+                </>
+            ) : (
+                <NavBar />
+            )}
             <div className="body-page">{children}</div>
             {viewImages && <ViewImage viewImages={viewImages} />}
             {chatbox.open === true && <ChatBox />}

@@ -9,7 +9,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import TableAccomApproved from './TableAccomApproved/TableAccomApproved';
 import { useFetchAccomData } from '~/redux/managerAccomSlice';
 import FramePage from '~/components/FramePage/FramePage';
-
+import gif from '~/assets/imageMaster/homeStep3.gif';
 export default function DashboardPartner() {
     useFetchAccomData();
     const { accomApproved, loading } = useSelector((state) => state.managerAccom);
@@ -26,9 +26,13 @@ export default function DashboardPartner() {
         };
         fetchAccomWaiting();
     }, []);
-
+    const bannerData = {
+        title: 'Trang tổng quan',
+        subtitle: 'Chào mừng bạn đến với trang tổng quan của Tohome.',
+        imgSrc: gif
+    };
     return (
-        <FramePage ownerPage={true}>
+        <FramePage ownerPage={true} bannerData={bannerData}>
             <div className="dashboard-partner">
                 <header className="dashboard-partner__header">
                     <span className="dashboard-partner__header__title" style={{ fontSize: 24, fontWeight: 500 }}>

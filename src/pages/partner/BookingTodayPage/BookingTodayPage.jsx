@@ -1,24 +1,23 @@
-import NavbarOwner from '~/components/NavbarOwner/NavbarOwner';
-
 import './BookingTodayPage.scss';
 import TabComponent from './MainOwnerSetting/TabComponent';
-import Footer from '~/components/Footer/Footer';
+import FramePage from '~/components/FramePage/FramePage';
+import gif1 from '~/assets/imageMaster/tohomesetup.gif'; // or any other image you want to use
 
 const BookingTodayPage = () => {
+    const bannerData = {
+        title: 'Quản lý khách đặt phòng',
+        subtitle: 'Theo dõi tình trạng check-in và check-out của khách hàng một cách nhanh chóng và dễ dàng.',
+        imgSrc: gif1 
+    };
+
     return (
-        <div className="owner__setting">
-            <NavbarOwner />
-            <div className="welcome-card">
-                <div className="welcome-content">
-                    <h1>Hôm nay bạn thế nào</h1>
-                    <p>Chào mừng bạn! Bạn sắp trở thành một Chủ nhà tuyệt vời. Bắt đầu ngay nào.</p>
+        <FramePage ownerPage={true} bannerData={bannerData}>
+            <div className="owner__setting">
+                <div className="tab-content">
+                    <TabComponent />
                 </div>
             </div>
-            <div className="tab-content">
-                <TabComponent />
-            </div>
-            <Footer />
-        </div>
+        </FramePage>
     );
 };
 

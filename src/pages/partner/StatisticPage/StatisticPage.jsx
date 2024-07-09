@@ -30,8 +30,13 @@ const StatisticPage = () => {
                 setDataStatis(dataResponse.data);
             });
     };
+    const bannerData = {
+        title: 'Thống kê',
+        subtitle: 'Xem và phân tích các số liệu thống kê về hoạt động của bạn.',
+        imgSrc: 'https://images.prismic.io/impactio-blog/21d9a519-4bfa-4345-8810-50301c8bb84f_Methods+for+Presenting+Statistical+Data+in+an+Easy+to+Read+Way.png?auto=compress,format' // Replace with the actual path to your image
+    };
     return (
-        <FramePage ownerPage={true}>
+        <FramePage ownerPage={true} bannerData={bannerData}>
             <div className="statis-page">
                 <h2 style={{ textTransform: 'uppercase' }}>Thống kê</h2>
                 <div className="choose-year">

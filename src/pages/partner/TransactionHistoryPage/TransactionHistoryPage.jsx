@@ -5,8 +5,13 @@ import './TransactionHistoryPage.scss';
 import FramePage from '~/components/FramePage/FramePage';
 
 const TransactionHistoryPage = () => {
+    const bannerData = {
+        title: 'Quản lý phòng và giá',
+        subtitle: 'Kiểm tra và quản lý thông tin phòng và giá cả một cách dễ dàng.',
+        imgSrc: 'https://quickbooks.intuit.com/oidam/intuit/sbseg/en_us/Blog/Graphic/how-to-write-a-business-plan-header-image-us-en.png'  
+    };
     return (
-        <FramePage ownerPage={true}>
+        <FramePage ownerPage={true} bannerData={bannerData}>
             <div className="transaction-history-page">
                 <h2 className="title-transaction-history">Lịch sử giao dịch</h2>
                 <div className="tab-content">

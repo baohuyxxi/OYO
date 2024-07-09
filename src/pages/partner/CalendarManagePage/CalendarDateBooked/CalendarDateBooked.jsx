@@ -54,10 +54,10 @@ export default function CalendarDateBooked({ accomPriceCustom }) {
             ) : (
                 <div>
                     <Timeline
-                        lineHeight={50}
+                        lineHeight={35}
                         fullUpdate
                         showCursorLine
-                        sidebarWidth={250}
+                        sidebarWidth={300}
                         canMove={true}
                         groups={groups}
                         items={items}

@@ -63,6 +63,14 @@
 
                 position: relative;
                 overflow: hidden;
+                transform: translateX(-100%);
+                animation: slideIn 0.8s forwards;
+            
+                @keyframes slideIn {
+                    to {
+                        transform: translateX(0);
+                    }
+                }
 
                 h1 {
                     color: var(--white-color);
@@ -77,6 +85,14 @@
                 display: flex;
                 align-items: center;
                 place-content: center;
+                transform: translateY(-100%);
+                animation: slideIn 0.8s forwards;
+            
+                @keyframes slideIn {
+                    to {
+                        transform: translateX(0);
+                    }
+                }
                 img {
                 
                     height: 200px;

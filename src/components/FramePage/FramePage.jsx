@@ -19,16 +19,21 @@ export default function FramePage({ ownerPage = false, children, bannerData }) {
     }, []);
 
     return (
-        <div className='background__frame-page'>
+        <div className="background__frame-page">
             {ownerPage ? (
                 <>
                     <NavbarOwner />
-                    <BannerOwner {...bannerData} />
+                    { bannerData!== undefined &&  <BannerOwner {...bannerData} />}
+                  
+                    <div className="body-page__owner">{children}</div>
                 </>
             ) : (
-                <NavBar />
+                <>
+                    <NavBar />
+                    <div className="body-page">{children}</div>
+                </>
             )}
-            <div className="body-page">{children}</div>
+
             {viewImages && <ViewImage viewImages={viewImages} />}
             {chatbox.open === true && <ChatBox />}
             {loading && <LoadingDialog open={loading} />}

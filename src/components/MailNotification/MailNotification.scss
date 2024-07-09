@@ -1,9 +1,7 @@
-.mailbox{
-    max-height:none!important;
-    .MuiPaper-root{
+.mailbox {
+    .MuiPaper-root {
         max-width: 400px;
-        // --left-value: 0px; // Tạo biến --left-value và đặt giá trị là -100px
-        // left: var(--left-value) !important;
+        margin: 0 auto;
     }
     .header-myAccount {
         width: 400px;
@@ -11,9 +9,9 @@
         margin-bottom: 5px;
         font-weight: bold;
         text-align: center;
-        font-size:x-large;
+        font-size: x-large;
     }
-    .divider{
+    .divider {
         flex-shrink: 0;
         border-width: 0;
         border-style: solid;
@@ -22,23 +20,21 @@
         margin-top: 4px;
         margin-bottom: 4px;
     }
-   
-    .your-mail{
+
+    .your-mail {
         height: 500px;
-        background-color:var(--background-paper);
+        background-color: var(--background-paper);
         align-items: center;
         text-align: center;
-        .notificationNone{
+        .notificationNone {
             object-fit: cover;
-            object-position: center; 
+            object-position: center;
             width: 50%;
         }
-        ul{
+        ul {
             font-weight: bold;
             text-align: center;
-            font-size:large;
-        }   
-        
+            font-size: large;
+        }
     }
-   
 }

@@ -55,7 +55,7 @@ export default function LocationSetting(props) {
     };
 
     const handleMapClick = (event) => {
-        setData({ ...address, latitude: event.lat, longitude: event.lng });
+        setAddress({ ...address, latitude: event.lat, longitude: event.lng });
     };
 
     const handleClose = () => {

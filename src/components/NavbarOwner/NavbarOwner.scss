@@ -1,14 +1,17 @@
+@use '../../assets/css/responsive.scss';
 .navbar-owner {
     font-family: serif;
-    position: fixed;
-    width: 100%;
+    position: relative;
     height: 75px;
     top: 0;
+    left: 0;
+    right: 0;
     border-bottom: 1px solid var(--text-color);
     padding: 10px 90px;
     background: white;
     z-index: 99;
     display: flex;
+    justify-content: space-between;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif!important;
     a {
         float: left;
@@ -30,6 +33,7 @@
     }
 
     .navbar-right {
+        margin-right: auto;
     }
 
     .navbar-right a:hover {
@@ -43,7 +47,7 @@
     }
 
     .navbar-right a {
-        transition: 0.5s;
+        // transition: 0.5s;
     }
     .Dropdown{
         .MuiButtonBase-root{
@@ -53,4 +57,49 @@
             font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif!important;  
         }
     }
+    @include responsive.desktop {
+        max-width: 1440px;
+        width: 100%;
+    }
+    @include responsive.laptop {
+        max-width: 1280px;
+        width: 100%;
+    }
+    @include responsive.tablet {
+        max-width: 1024px;
+        width: 100%;
+    }
+    @mixin responsive-styles {
+    
+        .element {
+            display: none !important;
+            &__drawer {
+                display: block !important;
+            }
+        }
+    }
+
+    @include responsive.mobile-small {
+        @include responsive-styles;
+        max-width: 381px;
+        width: 100%;
+    }
+
+    @include responsive.mobile-medium {
+        @include responsive-styles;
+        max-width: 480px;
+        width: 100%;
+    }
+
+    @include responsive.mobile-large {
+        @include responsive-styles;
+        max-width: 768px;
+        width: 100%;
+    }
+    @include responsive.mobile-xsmall {
+        @include responsive-styles;
+        max-width: 380px;
+        width: 100%;
+    }
+    
 }

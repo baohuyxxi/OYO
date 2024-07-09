@@ -18,7 +18,6 @@ export default function MailNotification() {
     const open = Boolean(anchorEl);
     const dispatch = useDispatch();
 
-
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
         clientNotificationAPI.getDataNotificationOfUser().then((res) => {
@@ -33,6 +32,7 @@ export default function MailNotification() {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    console.log(anchorEl);
     return (
         <>
             <IconButton onClick={handleClick}>
@@ -41,7 +41,21 @@ export default function MailNotification() {
                 </Badge>
             </IconButton>
 
-            <Menu className="mailbox" id="mailbox" anchorEl={anchorEl} open={open} onClose={handleClose}>
+            <Menu
+                className="mailbox"
+                id="mailbox"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center',
+                  }}
+            >
                 <header className="header-myAccount"> {t('title.yourMail')}</header>
                 <hr className="divider" />
                 <div className="your-mail">

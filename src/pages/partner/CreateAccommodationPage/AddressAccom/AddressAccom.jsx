@@ -8,9 +8,8 @@ import mapAPI from '~/services/apis/mapAPI/mapAPI';
 import { useDispatch, useSelector } from 'react-redux';
 import { addressFormData, fullAddressFormData } from '~/models/address';
 import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
-import { set } from 'date-fns';
 
-const LocationCurrent = () => <LocationOnIcon style={{ color: 'red', fontSize: 'xx-large' }} />;
+
 
 export default function AddressAccom({ id, save, doneSave }) {
     const [loading, setLoading] = useState(false);
@@ -39,7 +38,7 @@ export default function AddressAccom({ id, save, doneSave }) {
                 setLoading(false);
             });
         }
-    }, []);
+    }, [id]);
 
     useEffect(() => {
         if (address.provinceCode && address.districtCode && address.wardCode && data.numHouseAndStreetName) {
@@ -72,6 +71,8 @@ export default function AddressAccom({ id, save, doneSave }) {
                 });
         }
     }, [save]);
+    const LocationCurrent = () => <LocationOnIcon style={{ color: 'red', fontSize: 'xx-large' }} />;
+    if (loading) return <div>loading</div>;
     return (
         <div className="address-info__content">
             <div className="row">
@@ -116,13 +117,13 @@ export default function AddressAccom({ id, save, doneSave }) {
                         onClick={handleMapClick}
                         className="google-map"
                     >
-                        {data.latitude && data.longitude && (
-                            <LocationCurrent
+                        <LocationCurrent
                                 className="icon__location-current"
-                                lat={data.latitude}
-                                lng={data.longitude}
+                                lat={data?.latitude|| 10.762622}
+                                lng={data?.longitude|| 106.660172}
+                                
                             />
-                        )}
+                    
                     </GoogleMapReact>
                 </div>
             </div>

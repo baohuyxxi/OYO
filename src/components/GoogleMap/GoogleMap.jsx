@@ -3,17 +3,23 @@ import { useEffect, useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 import HotelIcon from '@mui/icons-material/Hotel';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import Skeleton from '@mui/material/Skeleton'; 
+import Skeleton from '@mui/material/Skeleton';
 
 export default function GoogleMap({ data }) {
-    const [currentPosition, setCurrentPosition] = useState(null);
+    const [currentPosition, setCurrentPosition] = useState({
+        lat: 0,
+        lng: 0
+    });
     const [loading, setLoading] = useState(true);
-    const [clickedLocation, setClickedLocation] = useState(null);
-    const [locationAccom, setLocationAccom] = useState(null);
+    const [locationAccom, setLocationAccom] = useState({
+        lat: 0,
+        lng: 0
+    });
     const Hotel = () => <HotelIcon style={{ color: 'red', fontSize: 'xx-large' }} />;
     const LocationCurrent = () => <LocationOnIcon style={{ color: 'blue', fontSize: 'xx-large' }} />;
 
     useEffect(() => {
+        setLoading(true);
         const fetchCurrentPosition = () => {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition((position) => {
@@ -21,12 +27,12 @@ export default function GoogleMap({ data }) {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
                     });
-                    setLoading(false);
                 });
             }
         };
 
         setLocationAccom({ lat: data.latitude, lng: data.longitude });
+        setLoading(false);
 
         fetchCurrentPosition();
     }, [data]);
@@ -44,13 +50,6 @@ export default function GoogleMap({ data }) {
         zoom: 14
     };
 
-    const handleMapClick = (event) => {
-        setClickedLocation({
-            lat: event.lat,
-            lng: event.lng
-        });
-    };
-
     return (
         <div className="container__google-map">
             <GoogleMapReact
@@ -58,10 +57,13 @@ export default function GoogleMap({ data }) {
                 defaultCenter={locationAccom}
                 defaultZoom={defaultProps.zoom}
                 yesIWantToUseGoogleMapApiInternals
-                onClick={handleMapClick}
             >
-                <Hotel className="icon__location-current" lat={locationAccom.lat} lng={locationAccom.lng} />
-                <LocationCurrent className="icon__location-current" lat={currentPosition.lat} lng={currentPosition.lng} />
+                <Hotel className="icon__location-current" lat={locationAccom.lat || 0} lng={locationAccom.lng || 0} />
+                <LocationCurrent
+                    className="icon__location-current"
+                    lat={currentPosition.lat || 0}
+                    lng={currentPosition.lng || 0}
+                />
             </GoogleMapReact>
         </div>
     );

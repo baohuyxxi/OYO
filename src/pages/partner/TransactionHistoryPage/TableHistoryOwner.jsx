@@ -14,8 +14,6 @@ const TableHistoryOwner = () => {
         });
     }, []);
 
-    console.log(dataListHistory);
-
     const rows = dataListHistory.map((item, index) => ({
         id: index + 1,
         bookingCode: item.bookingCode,

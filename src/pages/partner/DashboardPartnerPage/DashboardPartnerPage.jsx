@@ -28,7 +28,7 @@ export default function DashboardPartner() {
     }, []);
     const bannerData = {
         title: 'Trang tổng quan',
-        subtitle: 'Chào mừng bạn đến với trang tổng quan của Tohome.',
+        subtitle: 'Chào mừng bạn đến với trang tổng quan của OYO.',
         imgSrc: gif
     };
     return (

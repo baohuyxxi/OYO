@@ -13,8 +13,18 @@
     margin-right: auto;
     display: block;
     height: max-content;
-    @include responsive.laptop {
 
+    &__owner {
+        transform: translateY(100%);
+        animation: slideIn 0.8s forwards;
+    }
+
+    @keyframes slideIn {
+        to {
+            transform: translateX(0);
+        }
+    }
+    @include responsive.laptop {
     }
     @include responsive.tablet {
     }

@@ -166,7 +166,7 @@ const CountRoomDetailSetting = ({ allAccomCategory }) => {
                                         value={bed || ''}
                                         onChange={(e) => onChange(e.target.value, index)}
                                         select={true}
-                                        content={allTypeBed.map((option, i) => (
+                                        content={allTypeBed?.map((option, i) => (
                                             <MenuItem key={i} value={option.typeBedCode}>
                                                 {option.typeBedName}
                                             </MenuItem>

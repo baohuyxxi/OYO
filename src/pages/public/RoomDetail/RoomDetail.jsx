@@ -76,6 +76,7 @@ export default function RoomDetail() {
         stars.push(<img key={i} src={iconStar} alt="icon__star" className="star" />);
     }
     useEffect(() => {
+        setLoading(true);
         wishAPI.checkWish(roomId.id).then((res) => setLove(res));
         publicAccomPlaceAPI.getReviewHome(roomId.id).then((res) => {
             setDataComment(res.data);

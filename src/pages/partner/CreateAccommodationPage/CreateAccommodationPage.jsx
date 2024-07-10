@@ -13,6 +13,8 @@ import PaymentInfo from './PaymentInfo/PaymentInfo';
 import { Button } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import partnerManageAccomAPI from '~/services/apis/partnerAPI/partnerManageAccomAPI';
+import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
+import { IconButton } from '@mui/material';
 import FramePage from '~/components/FramePage/FramePage';
 
 export default function CreateAccommodationPage() {
@@ -49,6 +51,9 @@ export default function CreateAccommodationPage() {
         setOnClickSave(false);
     };
 
+    const handleBack = () => {
+        window.history.back();
+    }
     return (
         <FramePage ownerPage={true}>
             <div className="create-acoom__page">
@@ -59,6 +64,9 @@ export default function CreateAccommodationPage() {
                         element={
                             <>
                                 <header className="create-acoom__title">
+                                    <button className='create-acoom__title__btn-back' onClick={handleBack}>
+                                        <ArrowBackOutlinedIcon />
+                                    </button>
                                     <h2>Tạo chỗ nghỉ mới</h2>
                                 </header>
                                 <div className=" row">

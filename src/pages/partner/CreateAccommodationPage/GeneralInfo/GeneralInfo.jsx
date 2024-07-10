@@ -67,19 +67,17 @@ export default function GeneralInfo({ id, save, doneSave }) {
                 });
                 return;
             }
-            value = value / 100;
         }
         setData({
             ...data,
             [name]: value
         });
     };
+    if (loading) return <></>;
     return (
         <div className="general-info">
-            {loading ? (
-                <></>
-            ) : (
-                <div className="info__content">
+            <div className="info__content row">
+                <div className="col l-6 m-6 c-12">
                     <label className="info__title">{t('label.nameHome')}</label>
                     <input
                         type="text"
@@ -89,12 +87,34 @@ export default function GeneralInfo({ id, save, doneSave }) {
                         defaultValue={data?.nameAccom}
                         onChange={handleChange}
                     />
+                    <label className="info__title">{t('label.acreageHome')}</label>
+                    <input
+                        name="acreage"
+                        type="number"
+                        placeholder={t('placeholder.acreageM2')}
+                        className="info__input"
+                        defaultValue={data?.acreage}
+                        onChange={handleChange}
+                    />
+                </div>
 
+                <div className="col l-6 m-6 c-12">
                     <label className="info__title">{t('label.descHome')}</label>
                     <textarea
                         name="description"
                         className="info__textarea"
                         defaultValue={data?.description}
+                        onChange={handleChange}
+                    />
+                </div>
+
+                <div className="col l-6 m-6 c-12">
+                    <label className="info__title">{t('label.checkInFrom')}</label>
+                    <input
+                        name="checkInFrom"
+                        type="time"
+                        className="info__input"
+                        defaultValue={data?.checkInFrom || '14:00'}
                         onChange={handleChange}
                     />
 
@@ -107,23 +127,8 @@ export default function GeneralInfo({ id, save, doneSave }) {
                         value={convertPrice(data?.pricePerNight || 0)}
                         onChange={handleChange}
                     />
-                    <label className="info__title">{t('label.acreageHome')}</label>
-                    <input
-                        name="acreage"
-                        type="number"
-                        placeholder={t('placeholder.acreageM2')}
-                        className="info__input"
-                        defaultValue={data?.acreage}
-                        onChange={handleChange}
-                    />
-                    <label className="info__title">{t('label.checkInFrom')}</label>
-                    <input
-                        name="checkInFrom"
-                        type="time"
-                        className="info__input"
-                        defaultValue={data?.checkInFrom || '14:00'}
-                        onChange={handleChange}
-                    />
+                </div>
+                <div className="col l-6 m-6 c-12">
                     <label className="info__title">{t('label.checkOutTo')}</label>
                     <input
                         name="checkOutTo"
@@ -132,7 +137,6 @@ export default function GeneralInfo({ id, save, doneSave }) {
                         defaultValue={data?.checkOutTo || '12:00'}
                         onChange={handleChange}
                     />
-
                     <label className="info__title">{t('label.discountPercent')} (%)</label>
                     <input
                         name="discountPercent"
@@ -143,6 +147,8 @@ export default function GeneralInfo({ id, save, doneSave }) {
                         value={data?.discountPercent}
                         label={t('label.discountPercent')}
                     />
+                </div>
+                <div className="col l-12 m-12 c-12">
                     <label className="info__title">{t('label.surchargeList')}</label>
                     <ul className="surcharge-list">
                         {allSurcharge.map((surcharge, index) => (
@@ -178,7 +184,7 @@ export default function GeneralInfo({ id, save, doneSave }) {
                         ))}
                     </ul>
                 </div>
-            )}
+            </div>
         </div>
     );
 }

@@ -32,12 +32,14 @@
 
                     .package-heading {
                         font-size: large;
-                        color: var(--background-paper);
+                        //color: var(--background-paper);
+                        color: #FFF;
                     }
                     .package-desc {
                         font-size: medium;
                         position: relative;
-                        color: var(--background-paper);
+                       // color: var(--background-paper);
+                       color: #FFF;
                         width: fit-content;
                         margin: auto;
                         letter-spacing: 2px;
@@ -64,14 +66,16 @@
                
                 .package-heading{
                     font-size: medium;
-                    color: var(--background-paper);
+                    // color: var(--background-paper);
+                    color: #FFF;
                     font-weight: 600;
  
                 }
                 .package-desc{
                     font-size: small;
                     position: relative;
-                    color: var(--background-paper);
+                    // color: var(--background-paper);
+                    color: #FFF;
                     width: fit-content;
                     margin: auto;
                     letter-spacing: 2px;

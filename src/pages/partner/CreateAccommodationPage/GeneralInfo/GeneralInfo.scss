@@ -1,8 +1,10 @@
 .general-info {
     width: 100%;
-    max-width: 600px; // Điều chỉnh kích thước tối đa nếu cần
+    // max-width: 600px; // Điều chỉnh kích thước tối đa nếu cần
 
     .info__content {
+        width: 100%;
+        // max-width: 600px; 
         margin-top: 20px; // Khoảng cách từ phần tử cha
         padding: 20px; // Khoảng cách nội dung bên trong
 

@@ -1,6 +1,20 @@
 .create-acoom__page {
     padding: 0 50px;
     .create-acoom__title {
+        display: flex;
+        &__btn-back{
+            margin-right: 10px;
+            background-color: transparent;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            aspect-ratio: 1 / 1;
+
+            &:hover{
+               scale: 1.2;
+            }
+          
+        }
     }
     .create-acoom__content {
         .create-acoom__content__cate {

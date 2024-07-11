@@ -22,7 +22,7 @@ const TableHistoryOwner = () => {
         checkIn: item.checkIn || '',
         checkOut: item.checkOut || '',
         guests: item.numAdult || '0',
-        nameAccom: item.nameAccom || '',
+        accomName: item.accomName || '',
         status: item.status || ''
     }));
 
@@ -48,7 +48,7 @@ const columns = [
     { field: 'checkIn', headerName: 'Ngày đặt phòng', width: 160 },
     { field: 'checkOut', headerName: 'Ngày trả phòng', width: 160 },
     { field: 'guests', headerName: 'Khách', width: 80 },
-    { field: 'nameAccom', headerName: 'Tên nhà thuê', width: 300 },
+    { field: 'accomName', headerName: 'Tên nhà thuê', width: 300 },
     { field: 'status', headerName: 'Tình trạng', width: 120 }
 ];
 

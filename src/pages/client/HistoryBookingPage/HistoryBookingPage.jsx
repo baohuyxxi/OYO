@@ -95,7 +95,7 @@ const HistoryBookingPage = () => {
                                                 <img src={history.imageUrl} alt="img-booking" className="img-booking" />
                                             </div>
                                             <div className="info-history__booking">
-                                                <p className="name-history__booking">{history?.nameAccom}</p>
+                                                <p className="name-history__booking">{history?.accomName}</p>
                                                 <p className="name-host-history__booking">{`(${t(
                                                     'title.bookingOfYou.owner'
                                                 )} ${history?.fullNameHost})`}</p>

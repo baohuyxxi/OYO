@@ -102,8 +102,10 @@ export default function NavBar() {
                             <LanguageSelected />
                         </div>
                         <div className="drawer-item">
-                            <DomainIcon/>
-                            <NavLink to="/list-accom" onClick={handleToListAccom}>{t('navbar.listroom')} </NavLink>
+                            <DomainIcon />
+                            <NavLink to="/list-accom" onClick={handleToListAccom}>
+                                {t('navbar.listroom')}{' '}
+                            </NavLink>
                         </div>
                         {user === null ? (
                             <div className="drawer-item">

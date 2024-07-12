@@ -14,6 +14,8 @@ const PrivateRoute = ({ element }) => {
         }
     }, [user, enqueueSnackbar]);
 
+    console.log(user);
+
     if (!user) {
         return <Navigate to="/" />;
     }

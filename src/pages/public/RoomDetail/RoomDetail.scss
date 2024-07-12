@@ -63,10 +63,11 @@
 
                 .heading__right {
                     text-align: right;
-                    display: grid;
+                    display: flex;
                     justify-items: center;
                     font-size: 14px;
-                    width: 100px;
+                    width: max-content;
+                    flex-direction: column;
                     .icon_rate {
                         font-size: 2rem;
                         color: blue;
@@ -79,8 +80,15 @@
                         margin-left: 3px;
                     }
 
-                    .link__rate {
-                       margin-left: auto;
+                    .view {
+                        margin-left: auto;
+                        display: flex;
+                        align-items: center;
+                        width: 100%;
+                        white-space: nowrap;
+                        &__icon {
+                            margin-right: 5px;
+                        }
                     }
                     .card-like__container {
                         position: relative;
@@ -145,6 +153,7 @@
     }
 
     .about-room {
+        position: relative;
         span {
         }
         h2 {
@@ -198,26 +207,32 @@
                 padding-bottom: 20px;
             }
         }
-
+        .col{
+            position: relative;
+        }
         .card-book__detail {
             width: 100%;
-            height: auto;
-            margin: auto;
+            top: 0;
+            height: max-content;
             border-radius: 10px;
+            // position: fixed;
             position: relative;
             z-index: 90;
             .price-room {
                 padding: 5px 17px;
-                font-size: 1.8rem;
                 font-size: 24px;
                 line-height: 29px;
                 color: rgb(34, 34, 34);
                 font-family: Montserrat, sans-serif;
+                display: flex;
+                text-align: center;
+                align-items: center;
                 &__value {
                     font-weight: 600;
                 }
                 &__unit {
                     font-weight: 400;
+                    font-size: 15px;
                 }
                 &.root {
                     font-weight: 500;
@@ -260,78 +275,79 @@
             .list__surcharge {
                 position: static;
             }
-        }
-        .price__home {
-            display: grid;
-            .price__before-discount {
+            .price__home {
+                display: grid;
+                .price__before-discount {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 0 20px;
+                    height: 10px;
+                    .price__home__root {
+                        text-decoration: line-through;
+                        color: red; /* Màu của đường gạch ngang */
+                        font-size: smaller;
+                        font-weight: 600;
+                    }
+                    .title-price {
+                        min-width: 1px;
+                    }
+                }
+                .real-price {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 0 20px;
+                    .title-price {
+                        min-width: 1px;
+                    }
+                }
+            }
+            .price-total {
                 display: flex;
                 justify-content: space-between;
-                padding: 0 20px;
-                height: 10px;
-                .price__home__root {
-                    text-decoration: line-through;
-                    color: red; /* Màu của đường gạch ngang */
-                    font-size: smaller;
-                    font-weight: 600;
-                }
+                margin-left: 25px;
+                margin-right: 25px;
                 .title-price {
-                    min-width: 1px;
+                    display: flex;
+                    align-items: center;
+    
+                    .name-surcharge {
+                        margin: 5px 0;
+                    }
+                }
+    
+                .real-price {
+                    display: flex;
+                    .cost-surcharge {
+                        margin: 5px 0;
+                    }
+                }
+    
+                p {
+                    font-size: 14px;
                 }
             }
-            .real-price {
-                display: flex;
-                justify-content: space-between;
-                padding: 0 20px;
-                .title-price {
-                    min-width: 1px;
+    
+            .discount-campain {
+                margin-left: 25px;
+                margin-right: 25px;
+    
+                .discount-campain__title {
+                    display: flex;
+                    align-items: center;
+    
+                    .title {
+                        margin: 0;
+                        color: red;
+                    }
+                }
+    
+                p {
+                    font-size: 15px;
                 }
             }
+    
         }
-        .price-total {
-            display: flex;
-            justify-content: space-between;
-            margin-left: 25px;
-            margin-right: 25px;
-            .title-price {
-                display: flex;
-                align-items: center;
-
-                .name-surcharge {
-                    margin: 5px 0;
-                }
-            }
-
-            .real-price {
-                display: flex;
-                .cost-surcharge {
-                    margin: 5px 0;
-                }
-            }
-
-            p {
-                font-size: 14px;
-            }
-        }
-
-        .discount-campain {
-            margin-left: 25px;
-            margin-right: 25px;
-
-            .discount-campain__title {
-                display: flex;
-                align-items: center;
-
-                .title {
-                    margin: 0;
-                    color: red;
-                }
-            }
-
-            p {
-                font-size: 15px;
-            }
-        }
-
+        
         .btn-booking {
             width: 100%;
             display: flex;

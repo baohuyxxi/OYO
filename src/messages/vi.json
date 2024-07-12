@@ -42,7 +42,7 @@
         "youNoHaveMail": "Bạn chưa có thư",
         "selectAddressYouWant": "Chọn địa chỉ bạn muốn đến",
         "discountFrom": "Giảm giá từ",
-        "youWantLogout": "Bạn có muốn đăng xuất không?",
+        "youWantLogout": "Bạn sẽ bỏ lỡ rất nhiều điều khi không đăng nhập, Bạn có chắc vẫn muốn đăng xuất?",
         "like": "Thích",
         "liked": "Đã thích",
         "priceFor": "Giá cho",
@@ -197,7 +197,9 @@
         "bank": "Ngân hàng",
         "accountNumber": "Số tài khoản",
         "accountNameHost": "Tên tài khoản",
-        "swiftCode": "Mã SWIFT"
+        "swiftCode": "Mã SWIFT",
+        "logoutting": "Đang đăng xuất"
+
     },
     "label": {
         "email": "Địa chỉ Email",

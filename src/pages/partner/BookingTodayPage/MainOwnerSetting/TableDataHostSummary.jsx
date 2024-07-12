@@ -14,9 +14,9 @@ const TableDataHostSummary = (props) => {
     const [refreshSelection, setRefreshSelection] = useState(false);
     useEffect(() => {
         const newRows = props.data.map((item, index) => ({
-            id: index +1,
+            id: index + 1,
             bookingCode: item.bookingCode,
-            nameAccom: item.nameAccom || '',
+            accomName: item.accomName || '',
             nameCustomer: item.nameCustomer || '',
             checkIn: item.checkIn || '',
             checkOut: item.checkOut || '',
@@ -60,7 +60,14 @@ const TableDataHostSummary = (props) => {
         <div className="listdata_summary">
             <DataTable rows={rows} handleCheck={handleCheck} idTab={props.idTab} refreshSelection={refreshSelection} />
             {openConfirm && (
-                <ModalConfirm setOpen={setOpenConfirm} setConfirm={setConfirm} title={`Xác nhận ${props.idTab}`} />
+                <ModalConfirm
+                    setOpen={setOpenConfirm}
+                    setConfirm={setConfirm}
+                    title={`Xác nhận ${props.idTab}`}
+                    content={`Bạn có chắc chắn muốn ${
+                        props.idTab === 'Check In' ? 'check-in' : 'check-out'
+                    } mã đặt chỗ ${selectedId} không?`}
+                />
             )}
         </div>
     );
@@ -70,7 +77,7 @@ function DataTable(props) {
     const columns = [
         { field: 'id', headerName: 'STT', width: 50 },
 
-        { field: 'nameAccom', headerName: 'Nhà / phòng cho thuê', width: 300 },
+        { field: 'accomName', headerName: 'Nhà / phòng cho thuê', width: 300 },
         { field: 'nameCustomer', headerName: 'Tên khách hàng', width: 200 },
         {
             field: 'checkIn',

@@ -1,7 +1,7 @@
 import axiosClient from '~/services/axios';
 const cmsAccomPlaceAPI = {
     getAllAcommPlaceWithPaging: async () => {
-        const response = await axiosClient.get(`/cms/accoms/pages?pageNumber=0&pageSize=20`);
+        const response = await axiosClient.get(`/cms/accoms/pages?pageNumber=0&pageSize=10&status=APPROVED`);
         return response.data;
     },
     changeStatusAccomPlace: async (status, id) => {
@@ -12,7 +12,7 @@ const cmsAccomPlaceAPI = {
         const response = await axiosClient.delete(`/cms/accoms/${id}/delete`);
         return response.data;
     },
-    getAllAcommPlaceWithPaging: async () => {
+    getAllAcommPlaceWatting: async () => {
         const response = await axiosClient.get(`/cms/accoms/pages?pageNumber=0&pageSize=10&status=WAITING_FOR_APPROVAL`);
         return response.data;
     },

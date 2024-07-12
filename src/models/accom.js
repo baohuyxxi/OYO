@@ -30,7 +30,7 @@ export const generalDefault = {
     description: '',
     discountPercent: 0,
     guide: '',
-    nameAccom: '',
+    accomName: '',
     pricePerNight: 0,
     surchargeList: []
 };

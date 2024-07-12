@@ -34,7 +34,7 @@ export default function GeneralInfoSetting({ accomId }) {
 
     useEffect(() => {
         partnerManageAccomAPI.getGeneralInfo(accomId).then((dataResponse) => {
-            setValue('accomName', dataResponse?.data?.nameAccom);
+            setValue('accomName', dataResponse?.data?.accomName);
             setValue('description', dataResponse?.data?.description);
             setValue('acreage', dataResponse?.data?.acreage);
             setValue('pricePerNight', dataResponse?.data?.pricePerNight);
@@ -101,69 +101,78 @@ export default function GeneralInfoSetting({ accomId }) {
                         <p className="accordion-summary__title">Tiêu đề nhà/phòng cho thuê</p>
                         <p className="accordion-summary__subtitle">{getValues('accomName')}</p>
                     </AccordionSummary>
-                    <AccordionDetails className="accordion-details">
-                        <div className="accordion-details__section">
-                            <h4 className="accordion-details__title">Tiêu đề nhà/phòng cho thuê</h4>
-                            <p className="accordion-details__description">
-                                Tiêu đề nhà/phòng cho thuê của bạn cần nổi bật được những điểm đặc biệt của chỗ ở.
-                            </p>
-                            <input className="accordion-details__input" {...register('accomName')} />
+                    <AccordionDetails className="accordion-details row">
+                        <div className="col l-6 m-6 c-12">
+                            <div className="accordion-details__section ">
+                                <h4 className="accordion-details__title">Tiêu đề nhà/phòng cho thuê</h4>
+                                <p className="accordion-details__description">
+                                    Tiêu đề nhà/phòng cho thuê của bạn cần nổi bật được những điểm đặc biệt của chỗ ở.
+                                </p>
+                                <input className="accordion-details__input" {...register('accomName')} />
+                            </div>
+                            <div className="accordion-details__section">
+                                <h4 className="accordion-details__title">Diện tích nhà</h4>
+                                <p className="accordion-details__description">Diện tích nhà hiện tại của bạn.</p>
+                                <input
+                                    className="accordion-details__input"
+                                    {...register('acreage', { required: 'acreage' })}
+                                />
+                            </div>
                         </div>
-
-                        <div className="accordion-details__section">
-                            <h4 className="accordion-details__title">Mô tả nhà/phòng cho thuê</h4>
-                            <p className="accordion-details__description">
-                                Hãy giúp khách hình dung về cảm giác khi ở chỗ của bạn, bao gồm cả lý do tại sao họ sẽ
-                                thích ở đó.
-                            </p>
-                            <textarea className="accordion-details__textarea" {...register('description')} />
+                        <div className="col l-6 m-6 c-12">
+                            <div className="accordion-details__section">
+                                <h4 className="accordion-details__title">Mô tả nhà/phòng cho thuê</h4>
+                                <p className="accordion-details__description">
+                                    Hãy giúp khách hình dung về cảm giác khi ở chỗ của bạn, bao gồm cả lý do tại sao họ
+                                    sẽ thích ở đó.
+                                </p>
+                                <textarea className="accordion-details__textarea" {...register('description')} />
+                            </div>
                         </div>
-
-                        <div className="accordion-details__section">
-                            <h4 className="accordion-details__title">Mức giá cố định</h4>
-                            <p className="accordion-details__description">
-                                Mức giá này sẽ được áp dụng mặc định cho những ngày bình thường.
-                            </p>
-                            <input
-                                className="accordion-details__input"
-                                {...register('pricePerNight', { required: 'pricePerNight' })}
-                            />
-                        </div>
-
-                        <div className="accordion-details__section">
-                            <h4 className="accordion-details__title">Diện tích nhà</h4>
-                            <p className="accordion-details__description">Diện tích nhà hiện tại của bạn.</p>
-                            <input
-                                className="accordion-details__input"
-                                {...register('acreage', { required: 'acreage' })}
-                            />
-                        </div>
-
                         <div className="accordion-details__section">
                             <h4 className="accordion-details__title">Thời gian nhận/trả nhà</h4>
-                            <p className="accordion-details__description">Thời gian khách có thể nhận nhà.</p>
-                            <input
-                                type="time"
-                                className="accordion-details__time-input"
-                                {...register('checkInFrom', { required: 'checkInFrom' })}
-                            />
-                            <p className="accordion-details__description">Thời gian khách có thể trả nhà.</p>
-                            <input
-                                type="time"
-                                className="accordion-details__time-input"
-                                {...register('checkOutTo', { required: 'checkOutTo' })}
-                            />
                         </div>
-
-                        <div className="accordion-details__section">
-                            <h4 className="accordion-details__title">Giảm giá</h4>
-                            <p className="accordion-details__description">Giá giảm sẽ được áp dụng cho nhà của bạn.</p>
-                            <input
-                                className="accordion-details__input"
-                                {...register('discountPercent', { required: 'discountPercent' })}
-                            />
+                        <div className="col l-6 m-6 c-12">
+                            <div className="accordion-details__section">
+                                <p className="accordion-details__description">Thời gian khách có thể nhận nhà.</p>
+                                <input
+                                    type="time"
+                                    className="accordion-details__time-input"
+                                    {...register('checkInFrom', { required: 'checkInFrom' })}
+                                />
+                            </div>
+                            <div className="accordion-details__section">
+                                <h4 className="accordion-details__title">Mức giá cố định</h4>
+                                <p className="accordion-details__description">
+                                    Mức giá này sẽ được áp dụng mặc định cho những ngày bình thường.
+                                </p>
+                                <input
+                                    className="accordion-details__input"
+                                    {...register('pricePerNight', { required: 'pricePerNight' })}
+                                />
+                            </div>
                         </div>
+                        <div className="col l-6 m-6 c-12">
+                            <div className="accordion-details__section">
+                                <p className="accordion-details__description">Thời gian khách có thể trả nhà.</p>
+                                <input
+                                    type="time"
+                                    className="accordion-details__time-input"
+                                    {...register('checkOutTo', { required: 'checkOutTo' })}
+                                />
+                            </div>
 
+                            <div className="accordion-details__section">
+                                <h4 className="accordion-details__title">Giảm giá</h4>
+                                <p className="accordion-details__description">
+                                    Giá giảm này sẽ được áp dụng cho nhà của bạn khi để tăng khả năng thu hút khách hàng.
+                                </p>
+                                <input
+                                    className="accordion-details__input"
+                                    {...register('discountPercent', { required: 'discountPercent' })}
+                                />
+                            </div>
+                        </div>
                         <div className="accordion-details__section">
                             <h4 className="accordion-details__title">Các loại phụ phí</h4>
                             <p className="accordion-details__description">

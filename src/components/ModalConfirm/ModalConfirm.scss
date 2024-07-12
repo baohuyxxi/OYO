@@ -1,31 +1,58 @@
-.no-btn {
-    border: none;
-    margin-right: 5px;
-    padding: 5px 15px;
-    border-radius: 5px;
+.modal-confirm {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    outline: none;
+    box-shadow: 24px;
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-bottom: 25px;
 
-    font-weight: 600;
-}
+    &__title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
 
-.no-btn:hover {
-    background: #e0e0e0;
+    &__content {
+        font-size: 16px;
+        margin-bottom: 20px;
+        color: #666;
+    }
 
-}
+    &__buttons {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 10px;
 
-.yes-btn {
-    border: none;
-    margin-right: 5px;
-    padding: 5px 25px;
-    background: var(--main-color);
-    border-radius: 5px;
-    color: #fff;
-    font-weight: 600;
-}
+        &__button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-weight: 600;
+        }
+        .button-no {
+            background-color:  var(--btn-br-mode);
+            color: var(--primary-dark);
 
-.yes-btn:hover {
-    background-color: var(--second-color);
-}
-.MuiBox-root{
-    border: 0px;
-    border-radius: 5px;
+            &:hover {
+              background-color: var(--btn-br-hover-mode);
+            }
+        }
+        .button-yes {
+            background-color: var(--primary-main);
+            color: #fff;
+
+            &:hover {
+                background-color: var(--primary-dark);
+               
+            }
+        }
+    }
 }

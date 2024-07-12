@@ -36,6 +36,14 @@
                     outline: none; /* Ẩn đường viền khi input được focus */
                     width: 100%;
                     text-align: center;
+                    &__input{
+                        position: absolute;
+                        left: -9999px;
+                        width: 1px;
+                        height: 1px;
+                        overflow: hidden;
+                        opacity: 0;
+                    }
                 }
             }
             .checkout {
@@ -59,6 +67,14 @@
                     outline: none; /* Ẩn đường viền khi input được focus */
                     width: 100%;
                     text-align: center;
+                    &__input{
+                        position: absolute;
+                        left: -9999px;
+                        width: 1px;
+                        height: 1px;
+                        overflow: hidden;
+                        opacity: 0;
+                    }
                 }
             }
         }

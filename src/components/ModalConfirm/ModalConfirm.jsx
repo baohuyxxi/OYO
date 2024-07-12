@@ -6,22 +6,11 @@ import './ModalConfirm.scss';
 import { t } from 'i18next';
 import { useState } from 'react';
 
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    boxShadow: 24,
-    p: 4,
-    paddingBottom: '25px'
-};
-
-export default function ModalConfirm(props) {
-    const [open, setOpen] = useState(true);
-    const handleClose = () => props.setOpen(false);
+export default function ModalConfirm({ title, content, setOpen, setConfirm }) {
+    const [open1, setOpen1] = useState(true);
+    const handleClose = () => setOpen(false);
     const handleYes = () => {
-        props.setConfirm(true);
+        setConfirm(true);
         handleClose();
     };
 
@@ -30,20 +19,23 @@ export default function ModalConfirm(props) {
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
-                open={open}
+                open={open1}
                 onClose={handleClose}
                 closeAfterTransition
             >
-                <Fade in={open}>
-                    <Box className="paper" sx={style}>
-                        <Typography id="transition-modal-title" variant="h4" component="h2">
-                            {props.title}
-                        </Typography>
-                        <div style={{ display: 'flex', justifyContent: 'right', marginTop: '10px' }}>
-                            <button onClick={handleClose} className="no-btn">
+                <Fade in={open1}>
+                    <Box className="modal-confirm">
+                        <div className="modal-confirm__title">
+                            {title}
+                        </div>
+                        <div className="modal-confirm__content">
+                            {content}
+                        </div>
+                        <div className="modal-confirm__buttons">
+                            <button onClick={handleClose} className="modal-confirm__buttons__button button-no">
                                 {t('common.no')}
                             </button>
-                            <button onClick={handleYes} className="yes-btn">
+                            <button onClick={handleYes} className="modal-confirm__buttons__button button-yes">
                                 {t('common.yes')}
                             </button>
                         </div>

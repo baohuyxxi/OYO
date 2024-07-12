@@ -81,10 +81,10 @@ export default function GeneralInfo({ id, save, doneSave }) {
                     <label className="info__title">{t('label.nameHome')}</label>
                     <input
                         type="text"
-                        name="nameAccom"
+                        name="accomName"
                         placeholder={t('placeholder.nameHome')}
                         className="info__input"
-                        defaultValue={data?.nameAccom}
+                        defaultValue={data?.accomName}
                         onChange={handleChange}
                     />
                     <label className="info__title">{t('label.acreageHome')}</label>

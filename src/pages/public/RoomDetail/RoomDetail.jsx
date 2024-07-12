@@ -33,6 +33,7 @@ import { transLateRoom } from '~/services/thirdPartyAPI/translateAPI';
 import { dayGap } from '~/utils/calculates';
 import GoogleMap from '~/components/GoogleMap/GoogleMap';
 import PopoverPrice from '~/components/PopoverPrice/PopoverPrice';
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 
 export default function RoomDetail() {
     const { enqueueSnackbar } = useSnackbar();
@@ -127,11 +128,12 @@ export default function RoomDetail() {
     const handleChangeDayBooking = (startDate, endDate) => {
         const checkIn = format(startDate, 'dd/MM/yyyy');
         const checkOut = format(endDate, 'dd/MM/yyyy');
-        if (startDate > endDate) {
-            setDateBook([checkOut, checkIn]);
-        } else {
-            setDateBook([checkIn, checkOut]);
-        }
+        // if (startDate > endDate) {
+        //     setDateBook([checkOut, checkIn]);
+        // } else {
+        //     setDateBook([checkIn, checkOut]);
+        // }
+        setDateBook([checkIn, checkOut]);
     };
     const handleChangeGuests = (value) => {
         setGuests(value);
@@ -183,9 +185,11 @@ export default function RoomDetail() {
                                             )}
                                         </div>
 
-                                        <p className="link__rate">
-                                            {`(${dataDetailHome?.numView} ${t('numberCount.viewInDetail')})`}
-                                        </p>
+                                        <div className="view">
+                                            {'('}
+                                            <RemoveRedEyeOutlinedIcon className="view__icon" />
+                                            {`${dataDetailHome?.numView} ${t('numberCount.viewInDetail')})`}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -238,22 +242,23 @@ export default function RoomDetail() {
                                                     {formatPrice(pricePerNightCurrent)}
                                                 </span>
                                                 <span className="price-room__unit">{t('numberCount.priceDay')}</span>
+                                                {dataDetailHome.discount > 0 && (
+                                                    <div style={{ display: 'flex' }}>
+                                                        <div className="price-room root" style={{ paddingRight: 9 }}>
+                                                            <span className="price-room__value">
+                                                                {formatPrice(pricePerNightOrigin)}
+                                                            </span>
+                                                            <span className="price-room__unit">
+                                                                {t('numberCount.priceDay')}
+                                                            </span>
+                                                        </div>
+                                                        <div className="discount-percent">
+                                                            <span>{`-${discount}%`}</span>
+                                                        </div>
+                                                    </div>
+                                                )}
                                             </div>
-                                            {dataDetailHome.discount > 0 && (
-                                                <div style={{ display: 'flex' }}>
-                                                    <div className="price-room root" style={{ paddingRight: 9 }}>
-                                                        <span className="price-room__value">
-                                                            {formatPrice(pricePerNightOrigin)}
-                                                        </span>
-                                                        <span className="price-room__unit">
-                                                            {t('numberCount.priceDay')}
-                                                        </span>
-                                                    </div>
-                                                    <div className="discount-percent">
-                                                        <span>{`-${discount}%`}</span>
-                                                    </div>
-                                                </div>
-                                            )}
+
                                             <DateRangeSelector
                                                 dateBook={dateBook}
                                                 setDataDay={handleChangeDayBooking}

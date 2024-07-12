@@ -99,7 +99,8 @@ export default function DropdownUser() {
                 <ModalConfirm
                     setOpen={setOpenConfirm}
                     setConfirm={setConfirmLogout}
-                    title={t('common.youWantLogout')}
+                    title={t('title.logoutting')}
+                    content={t('common.youWantLogout')}
                 />
             )}
         </div>

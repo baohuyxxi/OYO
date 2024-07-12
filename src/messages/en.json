@@ -42,7 +42,7 @@
         "youNoHaveMail": "You don't have mail",
         "selectAddressYouWant": "Select the address you want",
         "discountFrom": "Discount from",
-        "youWantLogout": "Do you want to log out?",
+        "youWantLogout": "You'll miss out on a lot by not logging in. Are you sure you still want to log in?",
         "like": "Like",
         "likeed": "Liked",
         "priceFor": "Price for",
@@ -191,7 +191,8 @@
         "bank": "Bank account",
         "accountNumber": "Account number",
         "accountNameHost": "Account name",
-        "swiftCode": "Swift code"
+        "swiftCode": "Swift code",
+        "logoutting": "Log out"
     },
     "label": {
         "email": "Email",

@@ -35,13 +35,13 @@ export default function PaymentInfo({ id, save, doneSave }) {
     }, [save]);
     return (
         <div className="payment-info">
-            <div className="info__content">
+            <div className="info__content row">
                 <CustomInput
+                    className="col 12 m-12 c-12"
                     name="bankId"
                     select={true}
                     size="small"
                     title={t(`title.bank`)}
-                    width={520}
                     value={data.bankId || ''}
                     onChange={onChangeData}
                     content={listBank.map((bank, index) => (
@@ -53,7 +53,7 @@ export default function PaymentInfo({ id, save, doneSave }) {
                 <CustomInput
                     size="small"
                     title={t(`title.accountNumber`)}
-                    width={520}
+                    className="col 12 m-12 c-12"
                     name="accountNumber"
                     value={data.accountNumber || ''}
                     onChange={onChangeData}
@@ -61,7 +61,7 @@ export default function PaymentInfo({ id, save, doneSave }) {
                 <CustomInput
                     size="small"
                     title={t(`title.accountNameHost`)}
-                    width={520}
+                    className="col 12 m-12 c-12"
                     name="accountNameHost"
                     value={data.accountNameHost || ''}
                     onChange={onChangeData}
@@ -69,7 +69,7 @@ export default function PaymentInfo({ id, save, doneSave }) {
                 <CustomInput
                     size="small"
                     title={t(`title.swiftCode`)}
-                    width={520}
+                    className="col 12 m-12 c-12"
                     name="swiftCode"
                     value={data.swiftCode || ''}
                     onChange={onChangeData}

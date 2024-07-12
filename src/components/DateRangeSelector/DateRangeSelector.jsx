@@ -39,7 +39,11 @@ export default function DateRangeSelector({ dateBook, setDataDay }) {
                 }}
                 onEndDateChange={(e) => {
                     if (e) {
-                        setDataDay(moment(dateBook[0], 'DD/MM/yyyy').toDate(), moment(e, 'DD/MM/yyyy').toDate());
+                        if (moment(e, 'DD/MM/yyyy').toDate() < moment(dateBook[0], 'DD/MM/yyyy').toDate()) {
+                            setDataDay(moment(e, 'DD/MM/yyyy').toDate(), moment(dateBook[0], 'DD/MM/yyyy').toDate());
+                        } else {
+                            setDataDay(moment(dateBook[0], 'DD/MM/yyyy').toDate(), moment(e, 'DD/MM/yyyy').toDate());
+                        }
                     }
                 }}
                 minimumDate={new Date()}
@@ -54,11 +58,12 @@ export default function DateRangeSelector({ dateBook, setDataDay }) {
                         >
                             <div className="title__checkin">{t('contentMain.fromDay')}</div>
                             <input
-                                className="date__checkin"
+                                className="date__checkin__input"
                                 {...startDateInputProps}
                                 placeholder={dateBook[0]}
                                 ref={startDateRef}
                             />
+                            <div className="date__checkin">{dateBook[0]}</div>
                             <ExpandMoreIcon className="icon__expand" />
                         </div>
                         <div
@@ -67,11 +72,12 @@ export default function DateRangeSelector({ dateBook, setDataDay }) {
                         >
                             <div className="title__checkout">{t('contentMain.toDay')}</div>
                             <input
-                                className="date__checkout"
+                                className="date__checkout__input"
                                 {...endDateInputProps}
                                 placeholder={dateBook[1]}
                                 ref={endDateRef}
                             />
+                            <div className="date__checkout">{dateBook[1]}</div>
                             <ExpandMoreIcon className="icon__expand" />
                         </div>
                     </div>

@@ -1,7 +1,8 @@
 @use '../../assets/css/responsive.scss';
 .navbar-owner {
     font-family: serif;
-    position: relative;
+    position: fixed;
+    
     height: 75px;
     top: 0;
     left: 0;
@@ -34,6 +35,8 @@
 
     .navbar-right {
         margin-right: auto;
+        display: flex;
+        place-items: center;
     }
 
     .navbar-right a:hover {

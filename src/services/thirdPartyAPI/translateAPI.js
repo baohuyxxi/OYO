@@ -64,7 +64,7 @@ export const transLateRoom = async (data) => {
 
 export const transLateHistoryBooking = async (data) => {
     let result = data;
-    const fieldsToTranslate = ['generalAddress', 'nameAccom', 'refundPolicy'];
+    const fieldsToTranslate = ['generalAddress', 'accomName', 'refundPolicy'];
     for (const field of fieldsToTranslate) {
         result[field] = await translateText(result[field]);
     }

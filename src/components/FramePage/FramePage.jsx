@@ -23,8 +23,8 @@ export default function FramePage({ ownerPage = false, children, bannerData }) {
             {ownerPage ? (
                 <>
                     <NavbarOwner />
-                    { bannerData!== undefined &&  <BannerOwner {...bannerData} />}
-                  
+                    {bannerData !== undefined && <BannerOwner {...bannerData} />}
+
                     <div className="body-page owner">{children}</div>
                 </>
             ) : (

@@ -1,4 +1,4 @@
-import axiosClient from '~/services/axios';
+import axiosClient from '~/services/axiosAdmin';
 const cmsAccomCategoryAPI = {
     getAllAcommCategoryWithPaging: async () => {
         const response = await axiosClient.get(`/cms/accom-categories/pages?pageNumber=0&pageSize=20`);

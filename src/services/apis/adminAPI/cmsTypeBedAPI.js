@@ -1,4 +1,4 @@
-import axiosClient from '~/services/axios';
+import axiosClient from '~/services/axiosAdmin';
 const cmsTypeBedAPI = {
     getAllTypeBedWithPaging: async () => {
         const response = await axiosClient.get(`/cms/type-beds/pages?pageNumber=0&pageSize=20`);

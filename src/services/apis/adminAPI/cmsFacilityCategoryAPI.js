@@ -1,4 +1,4 @@
-import axiosClient from '~/services/axios';
+import axiosClient from '~/services/axiosAdmin';
 const cmsFacilityCategoryAPI = {
     getAllFacilityCategoryWithPaging: async () => {
         const response = await axiosClient.get(`/cms/facility-categories/pages?pageNumber=0&pageSize=50`);

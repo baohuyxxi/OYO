@@ -1,4 +1,4 @@
-import axiosClient from '~/services/axios';
+import axiosClient from '~/services/axiosAdmin';
 const cmsUserAPI = {
     getAllUserWithPaging: async () => {
         const response = await axiosClient.get(`/cms/users/pages?pageNumber=0&pageSize=20`);

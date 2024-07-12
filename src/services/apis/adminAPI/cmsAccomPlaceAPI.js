@@ -1,4 +1,4 @@
-import axiosClient from '~/services/axios';
+import axiosClient from '~/services/axiosAdmin';
 const cmsAccomPlaceAPI = {
     getAllAcommPlaceWithPaging: async () => {
         const response = await axiosClient.get(`/cms/accoms/pages?pageNumber=0&pageSize=10&status=APPROVED`);

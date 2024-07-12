@@ -1,4 +1,4 @@
-import axiosClient from '~/services/axios';
+import axiosClient from '~/services/axiosAdmin';
 const cmsProvinceAPI = {
     addProvince: async (data) => {
         const response = await axiosClient.post('/cms/provinces/create', data);

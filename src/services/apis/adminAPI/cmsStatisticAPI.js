@@ -1,4 +1,4 @@
-import axiosClient from '~/services/axios';
+import axiosClient from '~/services/axiosAdmin';
 const cmsStatisticAPI = {
     getStatisticOfAdmin: async (year) => {
         const response = await axiosClient.get(`/cms/statistic?year=${year}`);

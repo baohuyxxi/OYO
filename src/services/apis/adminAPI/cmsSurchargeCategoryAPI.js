@@ -1,4 +1,4 @@
-import axiosClient from '~/services/axios';
+import axiosClient from '~/services/axiosAdmin';
 const cmsSurchargeCategoryAPI = {
     getAllSurchargeCategoryWithPaging: async () => {
         const response = await axiosClient.get(`/cms/surcharge-categories/pages?pageNumber=0&pageSize=200`);

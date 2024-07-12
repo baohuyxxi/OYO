@@ -10,7 +10,7 @@ const Sidebar = () => {
     const navigate = useNavigate();
 
     const handleHome = () => {
-        navigate('/');
+        navigate('/admin');
     };
     const handleResetSearchText = () => {};
     return (

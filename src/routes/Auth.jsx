@@ -31,9 +31,6 @@ const Auth = () => {
         import('../pages/partner/TransactionHistoryPage/TransactionHistoryPage')
     );
     const ManagerRoom = React.lazy(() => import('~/pages/partner/ManagerRoom/ManagerRoom'));
-    // const CountRoomDetailSetting = React.lazy(() =>
-    //     import('../components/HostSetting/CountRoomSetting/CountRoomDetailSetting/CountRoomDetailSetting')
-    // );
     const CreateAccommodationPage = React.lazy(() =>
         import('~/pages/partner/CreateAccommodationPage/CreateAccommodationPage')
     );

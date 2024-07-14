@@ -20,13 +20,11 @@
 
             .footer__contact-text {
                 font-size: 14px;
-                //color: black;
             }
 
             .footer__contact-heading {
                 margin: 24px 0 16px 0;
                 font-size: 3rem;
-                //color: black;
                 padding: 0;
                 width: auto;
                 line-height: 1;
@@ -42,11 +40,9 @@
             height: 40px;
             padding: 0 18px;
             font-size: 1.8rem;
-            //color: black;
             border-radius: 100px;
             outline: none;
             border: 1px solid;
-            // margin-bottom: 10px;
         }
 
         .footer__contact-submit-btn {
@@ -66,29 +62,43 @@
     }
 
     .footer__inner {
-        // padding: 15px 30px 30px;
-        // background-color: white;
         border-top: 1px solid var(--text-color);
         position: relative;
 
+        &-contact {
+            margin-left: 50px;
+        }
+
         .footer__logo {
-            height: 100px;
+            height: 75px;
             width: 200px;
             object-fit: cover;
         }
 
-        .footer__desc {
-            // //color: black;
+        .footer__intro {
+            margin-top: 16px;
+            margin-left: 20px;
+            color: #4a5568;
+            line-height: 2;
             font-size: medium;
-            letter-spacing: 1.5px;
-            margin: 30px 0;
+            span {
+                display: block;
+            }
+
+            &-company {
+                font-weight: 600;
+                line-height: 17px;
+                margin-bottom: 8px;
+            }
+            &-contact {
+                margin: 10px 0px 10px 25px;
+            }
         }
 
         .footer__contact-logo {
             text-decoration: none;
             display: inline-block;
             font-size: medium;
-            //color: black;
             margin-right: 12px;
         }
 
@@ -97,15 +107,14 @@
             float: right;
 
             .footer__list-heading {
-                font-size: x-large;
-                //color: black;
+                font-size: large;
+                color: rgba(0, 0, 0, 0.87);
                 font-weight: 600;
-                margin: 25px 0 35px;
+                margin: 10px 0 10px;
             }
 
             .footer__item {
                 font-size: medium;
-                //color: black;
                 list-style-type: none;
                 display: flex;
                 align-items: center;
@@ -121,7 +130,7 @@
                 .footer__item-link {
                     display: inline-block;
                     margin-left: 4px;
-                    //color: black;
+                    color: #4a5568;
                     text-decoration: none;
                 }
             }

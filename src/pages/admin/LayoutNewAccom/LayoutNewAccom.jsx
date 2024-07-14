@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import cmsAccomPlaceAPI from '~/services/apis/adminAPI/cmsAccomPlaceAPI';
 import TableEmpty from '~/assets/img/empty.png';
+
 export default function LayoutNewAccom() {
     const navigate = useNavigate();
     const [listNewAccom, setListNewAccom] = useState([]);

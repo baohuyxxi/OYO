@@ -48,8 +48,9 @@ const BookingPage = () => {
     const totalBill = costRentHomestay + dataBooking.surcharge - costDiscountForPayment;
     const totalTransfer = dataBooking?.paymentPolicy === 'PAYMENT_FULL' ? totalBill : totalBill * 0.5;
     const [errors, setErrors] = useState({});
-
+    console.log(dataBooking);
     const handleBookingRoom = () => {
+        let idAccom = dataBooking.accomId;
         setErrors({});
         const checkValidate = validateBooking(dataBooking);
         if (Object.keys(checkValidate).length === 0) {
@@ -72,7 +73,7 @@ const BookingPage = () => {
                     enqueueSnackbar(t('message.bookingSuccess'), { variant: 'success' });
                     dispatch(bookingSlice.actions.clearInfoBooking());
                     dispatch(globalSlice.actions.setLoading(false));
-                    navigate(`/room-detail/${dataDetailHomeBooking.id}`);
+                    navigate(`/room-detail/${idAccom}`);
                 } else {
                     enqueueSnackbar(t('message.bookingFail'), { variant: 'error' });
                 }

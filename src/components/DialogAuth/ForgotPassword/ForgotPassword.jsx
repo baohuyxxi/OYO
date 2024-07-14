@@ -100,7 +100,6 @@ function ForgotPassword(props) {
                         name="email"
                         id="email"
                         size="small"
-                        // onChange={handleChange}
                         InputProps={{
                             startAdornment: <CheckCircleRoundedIcon style={{ color: 'var(--primary-main)' }} />
                         }}

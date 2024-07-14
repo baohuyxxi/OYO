@@ -9,7 +9,8 @@ import LayoutFacilityCategoryAdmin from '~/pages/admin/LayoutFacilityCategoryAdm
 import LayoutSurchargeCategoryAdmin from '~/pages/admin/LayoutSurchargeCategoryAdmin/LayoutSurchargeCategoryAdmin';
 import LayoutNewAccom from '~/pages/admin/LayoutNewAccom/LayoutNewAccom';
 import NewAccomWaiting from '~/components/Admin/NewAccomWaiting/NewAccomWaiting';
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
+
 const RouterAdmin = () => {
     return (
         <Routes>

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import moment from 'moment';
 import { addDays } from 'date-fns';
-// import VNPay from '~/components/VNPay/VNPay';
+
 const bookingSlice = createSlice({
     name: 'booking',
     initialState: {

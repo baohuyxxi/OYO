@@ -1,5 +1,3 @@
-
-
 export const listBankModel = [
     { id: 1, name_bank: 'NHA NUOC-101' },
     { id: 2, name_bank: 'CONG THUONG VN (VIETINBANK)-201' },

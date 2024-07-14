@@ -1,13 +1,11 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 import userSlice from './userSlice';
 import bookingSlice from './bookingSlice';
 import notificationSlice from './notificationSlice';
 import globalSlice from './globalSlice';
 import filterAcomSlice from './filterAccom';
 import managerAccomSlice from './managerAccomSlice';
-import sessionStorage from 'redux-persist/es/storage/session';
 import localStorage from 'redux-persist/es/storage';
 
 const persistConfig = {
@@ -22,7 +20,6 @@ const rootReducer = combineReducers({
     booking: bookingSlice.reducer,
     notification: notificationSlice.reducer,
     global: globalSlice.reducer,
-    // settingaccom: settingAccomSlice.reducer,
     filterAccom: filterAcomSlice.reducer,
     managerAccom: managerAccomSlice.reducer
 });

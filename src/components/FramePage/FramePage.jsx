@@ -2,13 +2,12 @@ import './FramePage.scss';
 import { useSelector } from 'react-redux';
 import NavBar from './NavBar/NavBar';
 import NavbarOwner from '../NavbarOwner/NavbarOwner';
-
 import ViewImage from '~/components/ViewImage/ViewImage';
 import ChatBox from '../ChatBox/ChatBox';
 import LoadingDialog from '~/components/LoadingDialog/LoadingDialog';
 import { useEffect } from 'react';
 import BannerOwner from '../BannerOwner/BannerOwner';
-// import Footer from '../Footer/Footer1';
+
 import Footer from '~/components/Footer/Footer';
 export default function FramePage({ ownerPage = false, children, bannerData }) {
     const viewImages = useSelector((state) => state.global.viewImages);

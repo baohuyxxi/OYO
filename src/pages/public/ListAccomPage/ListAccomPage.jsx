@@ -9,6 +9,7 @@ import loader from '~/assets/video/loader.gif';
 import { transLateListTitle } from '~/services/thirdPartyAPI/translateAPI';
 import { useSelector } from 'react-redux';
 import './ListAccomPage.scss';
+import { useLocation } from 'react-router-dom';
 
 const ListAccomPage = () => {
     const [listDataRoom, setListDataRoom] = useState([]);
@@ -87,6 +88,7 @@ const ListAccomPage = () => {
     };
 
     const fetchMoreData = () => {
+        if (listDataRoom.length === 0) return;
         setState((prevState) => ({
             ...prevState,
             pagi: prevState.pagi + 1

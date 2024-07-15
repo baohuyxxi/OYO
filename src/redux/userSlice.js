@@ -5,7 +5,8 @@ const userSlice = createSlice({
     initialState: {
         current: null,
         roles: null,
-        settings: false
+        settings: false,
+        isAdmin: false
     },
     reducers: {
         signup(state, action) {},
@@ -19,6 +20,7 @@ const userSlice = createSlice({
             state.roles = action.payload.roles;
             localStorage.setItem('accessTokenAdmin', action.payload.accessToken);
             localStorage.setItem('refreshTokenAdmin', action.payload.refreshToken);
+            state.isAdmin = true;
         },
         setProfile(state, action) {
             localStorage.setItem('user', JSON.stringify(action.payload.data));
@@ -29,6 +31,12 @@ const userSlice = createSlice({
             localStorage.removeItem('refreshToken');
             state.current = null;
             state.roles = null;
+            window.location.reload();
+        },
+        logoutAdmin(state) {
+            localStorage.removeItem('accessTokenAdmin');
+            localStorage.removeItem('refreshTokenAdmin');
+            state.isAdmin = false;
             window.location.reload();
         },
         editInfo(state, action) {

@@ -67,10 +67,9 @@ export default function NavBar() {
                         <div className={`element${location === '/wishlists' ? '__actived' : ''}`}>
                             <NavLink to="/wishlists">{t('navbar.listLove')}</NavLink>
                         </div>
-                        <div className="element">
+                        {/* <div className="element">
                             <MailNotification />
-                        </div>
-
+                        </div> */}
                         <div className="element">
                             <DropdownUser />
                         </div>

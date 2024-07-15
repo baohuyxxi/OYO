@@ -48,7 +48,6 @@ const BookingPage = () => {
     const totalBill = costRentHomestay + dataBooking.surcharge - costDiscountForPayment;
     const totalTransfer = dataBooking?.paymentPolicy === 'PAYMENT_FULL' ? totalBill : totalBill * 0.5;
     const [errors, setErrors] = useState({});
-    console.log(dataBooking);
     const handleBookingRoom = () => {
         let idAccom = dataBooking.accomId;
         setErrors({});

@@ -32,7 +32,6 @@ export default function MailNotification() {
     const handleClose = () => {
         setAnchorEl(null);
     };
-    console.log(anchorEl);
     return (
         <>
             <IconButton onClick={handleClick}>

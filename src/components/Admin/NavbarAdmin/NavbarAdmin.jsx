@@ -25,7 +25,6 @@ const NavbarAdmin = () => {
     };
     const dispatch = useDispatch();
     const handleClick = (item) => {
-        console.log(item);
         if (item.content === 'Logout') {
             dispatch(userSlice.actions.logoutAdmin());
         }

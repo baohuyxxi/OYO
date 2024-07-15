@@ -20,6 +20,8 @@ export default function TableAccomApproved({ accomApproved, loading }) {
     const handleSetting = (id) => () => {
         navigate(`/host/setting/${id}`);
     };
+    
+    console.log(loading, accomApproved)
 
     const columns = [
         { field: 'stt', headerName: 'STT', flex: 1 },

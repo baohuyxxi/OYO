@@ -22,19 +22,19 @@ const managerAccomSlice = createSlice({
                 state.loading = 'loading';
             })
             .addCase(fetchAccomApproved.fulfilled, (state, action) => {
-                state.loading = 'succeeded';
                 state.accomApproved = action.payload;
+                state.loading = 'succeeded';
             })
             .addCase(fetchAccomApproved.rejected, (state, action) => {
-                state.loading = 'failed';
                 state.error = action.error.message;
+                state.loading = 'failed';
             })
 
             .addCase(fetchAccomPriceCustom.pending, (state) => {
                 state.loading = 'loading';
             })
             .addCase(fetchAccomPriceCustom.fulfilled, (state, action) => {
-                state.loading = 'succeeded';
+                // state.loading = 'succeeded';
                 state.accomPriceCustom = action.payload;
             })
             .addCase(fetchAccomPriceCustom.rejected, (state, action) => {

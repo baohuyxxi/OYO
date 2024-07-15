@@ -31,6 +31,8 @@ export default function DashboardPartner() {
         subtitle: 'Chào mừng bạn đến với trang tổng quan của OYO.',
         imgSrc: gif
     };
+
+    
     return (
         <FramePage ownerPage={true} bannerData={bannerData}>
             <div className="dashboard-partner">

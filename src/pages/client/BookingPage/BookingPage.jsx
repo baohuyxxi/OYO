@@ -113,7 +113,7 @@ const BookingPage = () => {
                 <div className="content-booking">
                     <h1>{t('title.bookingOfYou.tilte')}</h1>
                     <div className="row">
-                        <div className="col l-8" style={{ height: '100vh', paddingRight: '50px' }}>
+                        <div className="col l-8" style={{paddingRight: '50px' }}>
                             <h2>{t('title.bookingOfYou.drive')}</h2>
                             <DateBooking
                                 size="horizontal"

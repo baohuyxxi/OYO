@@ -43,11 +43,14 @@ const FilterBar = (props) => {
     const handleFilterCate = (index, current) => {
         setIndexActive(index);
         if (current === null) {
+            dispatch(filterAcomSlice.actions.reset());
             dispatch(filterAcomSlice.actions.cateAcoom());
         } else {
             if (index === 0) {
+                dispatch(filterAcomSlice.actions.reset());
                 dispatch(filterAcomSlice.actions.cateAcoom());
             } else {
+                dispatch(filterAcomSlice.actions.reset());
                 dispatch(filterAcomSlice.actions.cateAcoom(current.accomCateName));
             }
         }

@@ -6,10 +6,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Skeleton from '@mui/material/Skeleton';
 
 export default function GoogleMap({ data }) {
-    const [currentPosition, setCurrentPosition] = useState({
-        lat: 0,
-        lng: 0
-    });
+    const [currentPosition, setCurrentPosition] = useState(null);
     const [loading, setLoading] = useState(true);
     const [locationAccom, setLocationAccom] = useState({
         lat: 0,
@@ -38,11 +35,11 @@ export default function GoogleMap({ data }) {
     }, [data]);
 
     if (loading) {
-        return <Skeleton variant="rectangular" width="100%" height={400} />; // Use the Skeleton component from MUI
+        return <Skeleton variant="rectangular" width="100%" height={400} />;
     }
 
     if (!currentPosition) {
-        return <div>Unable to fetch current position. Please enable location access.</div>;
+        return <div></div>;
     }
 
     const defaultProps = {

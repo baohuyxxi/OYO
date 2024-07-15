@@ -309,7 +309,7 @@
     "numberCount": {
         "countBooking": "lượt đặt",
         "price": "Giá",
-        "priceDay": "/đêm",
+        "priceDay": "đêm",
         "view": "Lượt xem:",
         "viewInDetail": "Lượt xem",
         "countClient": "Số khách"

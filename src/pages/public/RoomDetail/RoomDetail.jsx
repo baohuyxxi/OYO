@@ -239,14 +239,14 @@ export default function RoomDetail() {
                                         <div className="card-book__detail paper">
                                             <div className="price-room">
                                                 <span className="price-room__value">
-                                                    {formatPrice(pricePerNightCurrent)}
+                                                    {formatPrice(pricePerNightCurrent)}/
                                                 </span>
                                                 <span className="price-room__unit">{t('numberCount.priceDay')}</span>
                                                 {dataDetailHome.discount > 0 && (
                                                     <div style={{ display: 'flex' }}>
                                                         <div className="price-room root" style={{ paddingRight: 9 }}>
                                                             <span className="price-room__value">
-                                                                {formatPrice(pricePerNightOrigin)}
+                                                                {formatPrice(pricePerNightOrigin)}/
                                                             </span>
                                                             <span className="price-room__unit">
                                                                 {t('numberCount.priceDay')}

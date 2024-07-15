@@ -48,7 +48,7 @@ export default function LoginAdmin() {
                 if (res.statusCode === 200 && res.data.roles.find((role) => role === 'ROLE_ADMIN')) {
                     dispatch(userSlice.actions.signinAdmin(res.data));
                     enqueueSnackbar(t('message.signin'), { variant: 'success' });
-                    navigate('/admin/users');
+                    navigate('/admin');
                 }
             })
             .catch(() => {

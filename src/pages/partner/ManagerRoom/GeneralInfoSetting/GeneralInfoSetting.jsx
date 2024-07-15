@@ -44,7 +44,7 @@ export default function GeneralInfoSetting({ accomId }) {
             setValue('SUR_001', dataResponse?.data?.surchargeList[0].cost);
             setValue('SUR_002', dataResponse?.data?.surchargeList[1].cost);
             setValue('SUR_003', dataResponse?.data?.surchargeList[2].cost);
-            setValue('discountPercent', dataResponse?.data?.discountPercent);
+            setValue('discountPercent', dataResponse?.data?.discountPercent * 100);
         });
     }, [accomId]);
 
@@ -165,7 +165,8 @@ export default function GeneralInfoSetting({ accomId }) {
                             <div className="accordion-details__section">
                                 <h4 className="accordion-details__title">Giảm giá</h4>
                                 <p className="accordion-details__description">
-                                    Giá giảm này sẽ được áp dụng cho nhà của bạn khi để tăng khả năng thu hút khách hàng.
+                                    Giá giảm này sẽ được áp dụng cho nhà của bạn khi để tăng khả năng thu hút khách
+                                    hàng.
                                 </p>
                                 <input
                                     className="accordion-details__input"

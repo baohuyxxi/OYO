@@ -7,6 +7,7 @@ import StatisticPage from '~/pages/partner/StatisticPage/StatisticPage';
 
 const Auth = () => {
     const roles = useSelector((state) => state.user.roles);
+    const isAdmin = useSelector((state) => state.user.isAdmin);
     // Admin Page
     const LoginAdmin = React.lazy(() => import('~/pages/admin/LoginAdmin/LoginAdmin'));
     // Public Page
@@ -269,7 +270,7 @@ const Auth = () => {
                     </Suspense>
                 }
             />
-            {roles?.find((role) => role === 'ROLE_ADMIN') && <Route path="/admin/*" element={<LayoutAdmin />} />}
+            {isAdmin == true && <Route path="/admin/*" element={<LayoutAdmin />} />}
 
             <Route
                 path="/admin/login"

@@ -16,6 +16,8 @@ import authAPI from '~/services/apis/authAPI/authAPI';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useSnackbar } from 'notistack';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import { t } from 'i18next';
 import './LoginAdmin.scss';
 
@@ -41,6 +43,13 @@ export default function LoginAdmin() {
     const dispatch = useDispatch();
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
+    const isAdmin = useSelector((state) => state.user.isAdmin);
+    useEffect(() => {
+        if (isAdmin) {
+            navigate('/admin');
+        }
+    }, [isAdmin]);
+
     const onSubmit = async (data) => {
         await authAPI
             .loginRequest(data)
@@ -48,7 +57,7 @@ export default function LoginAdmin() {
                 if (res.statusCode === 200 && res.data.roles.find((role) => role === 'ROLE_ADMIN')) {
                     dispatch(userSlice.actions.signinAdmin(res.data));
                     enqueueSnackbar(t('message.signin'), { variant: 'success' });
-                    navigate('/admin/users');
+                    navigate('/admin');
                 }
             })
             .catch(() => {

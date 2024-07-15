@@ -2,6 +2,7 @@ import { useRef } from 'react';
 
 import './DropdownAdmin.scss';
 
+
 const clickOutsideRef = (content_ref, toggle_ref) => {
     document.addEventListener('mousedown', (e) => {
         // user click toggle
@@ -17,6 +18,7 @@ const clickOutsideRef = (content_ref, toggle_ref) => {
 };
 
 const DropdownAdmin = (props) => {
+
     const dropdown_toggle_el = useRef(null);
     const dropdown_content_el = useRef(null);
 
@@ -24,7 +26,7 @@ const DropdownAdmin = (props) => {
 
     return (
         <div className="dropdown-admin">
-            <button ref={dropdown_toggle_el} className="dropdown__toggle">
+            <button ref={dropdown_toggle_el} className="dropdown__toggle" >
                 {props.icon ? <i className={props.icon}></i> : ''}
                 {props.badge ? <span className="dropdown__toggle-badge">{props.badge}</span> : ''}
                 {props.customToggle ? props.customToggle() : ''}

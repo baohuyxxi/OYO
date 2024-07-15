@@ -6,6 +6,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import ManageHistoryIcon from '@mui/icons-material/ManageHistory';
 import Logo from '~/assets/svg/logo.svg';
 // import notificationApi from '~/services/apis/publicAPI/notificationApi';
+import MailNotification from '~/components/MailNotification/MailNotification';
 import DropdownUser from '../DropdownUser/DropdownUser';
 import './NavbarOwner.scss';
 
@@ -44,9 +45,13 @@ const NavbarOwner = () => {
 
                 <NavLink to="/host/transactionhistory">{t('navbar.historyHost')}</NavLink>
                 <NavLink to="/host/statistic">{t('navbar.statisticHost')}</NavLink>
+                {/* <div className="element"> */}
+                <div style={{ padding: '0 5px' }}>
+                    <MailNotification />
+                </div>
+                {/* </div> */}
                 <DropdownUser />
             </div>
-           
         </div>
     );
 };

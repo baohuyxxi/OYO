@@ -7,7 +7,7 @@ import SkeletonRoomItem from '~/components/Skeleton/SkeletonRoomItem';
 import RoomItem from '~/components/RoomItem/RoomItem';
 import loader from '~/assets/video/loader.gif';
 import { transLateListTitle } from '~/services/thirdPartyAPI/translateAPI';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import './ListAccomPage.scss';
 import { useLocation } from 'react-router-dom';
 
@@ -16,8 +16,6 @@ const ListAccomPage = () => {
     const [queryParams, setQueryParams] = useState(false);
     const [loading, setLoading] = useState(false);
     const filterAccom = useSelector((state) => state.filterAccom);
-    const location = useLocation();
-
     const [state, setState] = useState({
         pagi: 0,
         hasMore: true
@@ -55,6 +53,7 @@ const ListAccomPage = () => {
             publicAccomPlaceAPI
                 .getAllRoomsWithFilter({ queryParams: queryParams, pageNum: state.pagi, pageSize: 8 })
                 .then(async (res) => {
+                    console.log(res.data);
                     const data = await Promise.all(
                         res.data.content.flatMap((item) => {
                             return transLateListTitle(item);
@@ -76,7 +75,6 @@ const ListAccomPage = () => {
                             hasMore: true
                         }));
                     }
-
                     setLoading(false);
                 })
                 .catch((error) => {
@@ -88,6 +86,7 @@ const ListAccomPage = () => {
     const filterData = (listDataNew) => {
         setListDataRoom(listDataNew);
     };
+
     const fetchMoreData = () => {
         if (listDataRoom.length === 0) return;
         setState((prevState) => ({
@@ -95,6 +94,7 @@ const ListAccomPage = () => {
             pagi: prevState.pagi + 1
         }));
     };
+
     return (
         <FramePage>
             <FilterBar

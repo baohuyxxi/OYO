@@ -9,18 +9,20 @@ import loader from '~/assets/video/loader.gif';
 import { transLateListTitle } from '~/services/thirdPartyAPI/translateAPI';
 import { useSelector, useDispatch } from 'react-redux';
 import './ListAccomPage.scss';
+import { useLocation } from 'react-router-dom';
 
 const ListAccomPage = () => {
     const [listDataRoom, setListDataRoom] = useState([]);
     const [queryParams, setQueryParams] = useState(false);
     const [loading, setLoading] = useState(false);
     const filterAccom = useSelector((state) => state.filterAccom);
+    const location = useLocation();
 
     const [state, setState] = useState({
         pagi: 0,
         hasMore: true
     });
-    const dispatch = useDispatch();
+
     useEffect(() => {
         const fildeFiler = [
             'provinceCode',
@@ -87,6 +89,7 @@ const ListAccomPage = () => {
         setListDataRoom(listDataNew);
     };
     const fetchMoreData = () => {
+        if (listDataRoom.length === 0) return;
         setState((prevState) => ({
             ...prevState,
             pagi: prevState.pagi + 1

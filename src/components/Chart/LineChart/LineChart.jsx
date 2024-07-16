@@ -12,27 +12,27 @@ import {
 } from 'chart.js';
 ChartJS.register(Title, Tooltip, LineElement, Legend, CategoryScale, LinearScale, PointElement, Filler);
 
-function LineChart(props) {
-    const data = {
+function LineChart({data}) {
+    const dataLine = {
         labels: ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Oct', 'Nov', 'Dec'],
         datasets: [
             {
                 label: 'Doanh thu theo tháng',
                 data:
-                    props?.data !== undefined
+                    data !== undefined
                         ? [
-                              props.data[0].amount,
-                              props.data[1].amount,
-                              props.data[2].amount,
-                              props.data[3].amount,
-                              props.data[4].amount,
-                              props.data[5].amount,
-                              props.data[6].amount,
-                              props.data[7].amount,
-                              props.data[8].amount,
-                              props.data[9].amount,
-                              props.data[10].amount,
-                              props.data[11].amount
+                              data[0].amount,
+                              data[1].amount,
+                              data[2].amount,
+                              data[3].amount,
+                              data[4].amount,
+                              data[5].amount,
+                              data[6].amount,
+                              data[7].amount,
+                              data[8].amount,
+                              data[9].amount,
+                              data[10].amount,
+                              data[11].amount
                           ]
                         : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 backgroundColor: '#64b5f6',
@@ -48,7 +48,7 @@ function LineChart(props) {
     };
     return (
         <div>
-            <Line data={data}>Hello</Line>
+            <Line data={dataLine}>Hello</Line>
         </div>
     );
 }

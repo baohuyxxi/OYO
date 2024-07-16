@@ -14,7 +14,7 @@ const TableDataStatistic = ({ data, year, reCall }) => {
         year: year ? year : new Date().getFullYear(),
         month: new Date().getMonth() + 1
     });
-
+    console.log(data);
     useEffect(() => {
         partnerStatisticAPI
             .getStatisticHomeByMonthAndYearOfHost(dateStatistic.year, dateStatistic.month)
@@ -101,7 +101,7 @@ const TableDataStatistic = ({ data, year, reCall }) => {
                                 } else {
                                     setStopMonthFirst(false);
                                     setDateStatistic({
-                                        year: props.year,
+                                        year: year,
                                         month: dateStatistic.month - 1
                                     });
                                 }
@@ -127,7 +127,7 @@ const TableDataStatistic = ({ data, year, reCall }) => {
                                 } else {
                                     setStopMonthLast(false);
                                     setDateStatistic({
-                                        year: props.year,
+                                        year: year,
                                         month: dateStatistic.month + 1
                                     });
                                 }

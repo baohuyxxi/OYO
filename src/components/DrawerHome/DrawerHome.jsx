@@ -4,6 +4,9 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import IconButton from '@mui/material/IconButton';
 import { useDispatch } from 'react-redux';
 import globalSlice from '~/redux/globalSlice';
+import { Cloudinary } from '@cloudinary/url-gen';
+import { AdvancedVideo } from '@cloudinary/react';
+import { scale } from '@cloudinary/url-gen/actions/resize';
 import { useState } from 'react';
 
 export default function DrawerHome({ anchor, setOpen, data, open, stars, dataComment }) {
@@ -56,6 +59,16 @@ export default function DrawerHome({ anchor, setOpen, data, open, stars, dataCom
     const handleImageTypeChange = (type) => {
         setSelectedImageType(type);
     };
+    console.log(data);
+    const crop = new Cloudinary({
+        cloud: {
+            cloudName: 'dyv5zrsgj'
+        }
+    })
+        .video(data.cldVideoId)
+        .resize(scale().width(810).height(500).aspectRatio('16:9'))
+        .quality('auto')
+        .format('auto');
     return (
         <Drawer anchor="right" open={open} onClose={toggleDrawer(anchor, false)}>
             <div className="drawer__home">
@@ -95,17 +108,25 @@ export default function DrawerHome({ anchor, setOpen, data, open, stars, dataCom
                     <hr className="divider-full" />
                     <div className="drawer__home-images">
                         <div className="image__container">
-                            {selectedImageType === 'accommodation' &&
-                                images.map((image, index) => (
-                                    <div className={`image__item ${image.size}`} key={index}>
-                                        <img
-                                            src={image.url}
-                                            alt="room_hot"
-                                            className="image-home"
-                                            onClick={() => imageClick(image.url)}
-                                        />
-                                    </div>
-                                ))}
+                            {selectedImageType === 'accommodation' && (
+                                <>
+                                    {data.cldVideoId && (
+                                        <div className={`image__container__video`} key={0}>
+                                            <AdvancedVideo autoPlay controls loop cldVid={crop} />
+                                        </div>
+                                    )}
+                                    {images.map((image, index) => (
+                                        <div className={`image__item ${image.size}`} key={index}>
+                                            <img
+                                                src={image.url}
+                                                alt="room_hot"
+                                                className="image-home"
+                                                onClick={() => imageClick(image.url)}
+                                            />
+                                        </div>
+                                    ))}
+                                </>
+                            )}
                             {selectedImageType === 'userReview' &&
                                 imagesComment.map((image, index) => (
                                     <div className={`image__item ${image.size}`} key={index}>

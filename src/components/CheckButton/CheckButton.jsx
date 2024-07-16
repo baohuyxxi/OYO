@@ -4,19 +4,19 @@ import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
 import { useState } from 'react';
 
-const CheckButton = (props) => {
-    const [checkStatus, setCheckStatus] = useState(props.active);
+const CheckButton = ( {active, code, setData}) => {
+    const [checkStatus, setCheckStatus] = useState(active);
     const handleCheckNo = () => {
         if (checkStatus === true) {
             setCheckStatus(false);
-            props.setData((prevData) => prevData.filter((code) => code !== props.code));
+            setData((prevData) => prevData.filter((code) => code !== code));
         }
     };
 
     const handleCheckYes = () => {
         if (checkStatus === false) {
             setCheckStatus(true);
-            props.setData((prevData) => [...prevData, props.code]);
+            setData((prevData) => [...prevData, code]);
         }
     };
 

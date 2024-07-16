@@ -3,7 +3,6 @@ import { useSnackbar } from 'notistack';
 import Popup from 'reactjs-popup';
 import LockIcon from '@mui/icons-material/Lock';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
-
 import Table from '~/components/Table/Table';
 import cmsAccomPlaceAPI from '~/services/apis/adminAPI/cmsAccomPlaceAPI';
 import './AccomAdmin.scss';
@@ -16,7 +15,7 @@ const renderHead = (item, index) => <th key={index}>{item}</th>;
 const AccomAdmin = (props) => {
     const { enqueueSnackbar } = useSnackbar();
     const handleChangeStatusAccom = (accomId, accomStatus) => {
-        const status = accomStatus === 'DISABLE' ? 'ENABLE' : 'DISABLE';
+        const status = accomStatus === 'BANNED' ? 'APPROVED' : 'BANNED';
         cmsAccomPlaceAPI
             .changeStatusAccomPlace(status, accomId)
             .then((response) => {
@@ -47,7 +46,7 @@ const AccomAdmin = (props) => {
             <td>
                 <Popup
                     trigger={
-                        item.status === 'DISABLE' ? (
+                        item.status === 'BANNED' ? (
                             <LockOpenIcon
                                 className="icon__btn"
                                 sx={{ color: 'red', cursor: 'pointer', fontSize: '18px' }}
@@ -63,7 +62,7 @@ const AccomAdmin = (props) => {
                 >
                     <div>
                         <p style={{ margin: '0', padding: '5px', fontSize: '14px' }}>
-                            {`Bạn chắc chắn muốn ${item.status === 'DISABLE' ? 'mở khóa' : 'khóa'} chỗ ở này không?`}
+                            {`Bạn chắc chắn muốn ${item.status === 'BANNED' ? 'mở khóa' : 'khóa'} chỗ ở này không?`}
                         </p>
                         <p
                             style={{

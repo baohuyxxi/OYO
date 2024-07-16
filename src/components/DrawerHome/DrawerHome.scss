@@ -73,6 +73,20 @@
                     color: var(--main-color);
                 }
             }
+            &__video{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .video-home {
+                    object-fit: cover;
+                    width: 200px;
+                    height: 150px;
+                    border-radius: 10px;
+                }
+       
+            
+            }
         }
         .drawer__home-images {
             .image__container {

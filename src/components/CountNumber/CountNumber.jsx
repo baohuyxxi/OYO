@@ -1,34 +1,34 @@
 import { useState, useEffect } from 'react';
 import './CountNumber.scss';
 
-const CountNumber = (props) => {
+const CountNumber = ({number, data, keyType, setData}) => {
     const [counter, setCounter] = useState(0);
 
     useEffect(() => {
-        setCounter(props.number);
-    }, [props.number]);
+        setCounter(number);
+    }, [number]);
 
     const handleIncrease = () => {
         setCounter((prevState) => prevState + 1);
-        const existingItem = props.data.find((item) => item.key === props.keyType);
+        const existingItem = data.find((item) => item.key === keyType);
         if (!existingItem) {
-            props.setData([...props.data, { key: props.keyType, number: counter + 1 }]);
+            setData([...data, { key: keyType, number: counter + 1 }]);
         } else {
-            const updatedData = props.data.map((item) =>
-                item.key === props.keyType ? { ...item, number: counter + 1 } : item
+            const updatedData = data.map((item) =>
+                item.key === keyType ? { ...item, number: counter + 1 } : item
             );
-            props.setData(updatedData);
+            setData(updatedData);
         }
     };
 
     const handleReduce = () => {
         setCounter((prevState) => prevState - 1);
-        const existingItem = props.data.find((item) => item.key === props.keyType);
+        const existingItem = data.find((item) => item.key === keyType);
         if (existingItem) {
-            const updatedData = props.data.map((item) =>
-                item.key === props.keyType ? { ...item, number: counter - 1 } : item
+            const updatedData = data.map((item) =>
+                item.key === keyType ? { ...item, number: counter - 1 } : item
             );
-            props.setData(updatedData);
+            setData(updatedData);
         }
     };
 

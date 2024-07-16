@@ -2,21 +2,21 @@ import { useState } from 'react';
 
 import './CountNumber.scss';
 
-const CountNumberGuest = (props) => {
+const CountNumberGuest = ({setCountGuest}) => {
     const [counter, setCounter] = useState(1);
 
     const handleIncrease = () => {
         setCounter((preState) => preState + 1); // Set state Callback
-        if (props.setCountGuest) {
-            props.setCountGuest(counter + 1);
+        if (setCountGuest) {
+            setCountGuest(counter + 1);
         }
     };
 
     const handleReducer = () => {
         setCounter((preState) => preState - 1); // Set state Callback
 
-        if (props.setCountGuest) {
-            props.setCountGuest(counter - 1);
+        if (setCountGuest) {
+            setCountGuest(counter - 1);
         }
     };
     return (

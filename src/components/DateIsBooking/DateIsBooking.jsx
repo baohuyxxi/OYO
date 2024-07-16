@@ -6,7 +6,7 @@ import 'react-calendar/dist/Calendar.css';
 import './DateIsBooking.scss';
 import { t } from 'i18next';
 
-export default function DateIsBooking(props) {
+export default function DateIsBooking({bookedDates}) {
     const [value, onChange] = useState(new Date());
 
     return (
@@ -15,7 +15,7 @@ export default function DateIsBooking(props) {
             <Calendar
                 className="paper"
                 tileClassName={({ date, view }) => {
-                    if (props.bookedDates?.find((x) => x === moment(date).format('DD/MM/YYYY'))) {
+                    if (bookedDates?.find((x) => x === moment(date).format('DD/MM/YYYY'))) {
                         return 'highlight';
                     }
                     return '';

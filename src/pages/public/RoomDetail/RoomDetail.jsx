@@ -186,9 +186,9 @@ export default function RoomDetail() {
                                         </div>
 
                                         <div className="view">
-                                            {'('}
+                                            
                                             <RemoveRedEyeOutlinedIcon className="view__icon" />
-                                            {`${dataDetailHome?.numView} ${t('numberCount.viewInDetail')})`}
+                                            {`${dataDetailHome?.numView} ${t('numberCount.viewInDetail')}`}
                                         </div>
                                     </div>
                                 </div>
@@ -200,12 +200,12 @@ export default function RoomDetail() {
                             />
                             <div className="about-room">
                                 <span style={{ fontWeight: '600', fontSize: 'large' }}>
-                                    {t('contentMain.all')} {dataDetailHome?.accomCateName}:{' '}
+                                    {dataDetailHome?.accomCateName}:{' '}
                                 </span>
                                 <span>
                                     {dataDetailHome.numPeople} {t('title.bookingOfYou.client')},{' '}
                                     {dataDetailHome.numBedRoom} {t('label.bedroom')}, {dataDetailHome.numKitchen}{' '}
-                                    {t('label.bathroom')}, {t('label.bathroom')} {dataDetailHome.numBathRoom},{' '}
+                                    {t('label.bathroom')}, {dataDetailHome.numBathRoom}  {t('label.bathroom')} ,{' '}
                                     {t('home.acreage')}: {dataDetailHome.acreage} m²
                                 </span>
 

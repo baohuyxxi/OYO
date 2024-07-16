@@ -2,7 +2,7 @@ import './AddForm.scss';
 
 import { useForm } from 'react-hook-form';
 
-const AddForm = (props) => {
+const AddForm = ({ addDataNew, fieldData }) => {
     const {
         register,
         reset,
@@ -11,8 +11,8 @@ const AddForm = (props) => {
     } = useForm();
 
     const onSubmit = (data) => {
-        if (props.addDataNew) {
-            props.addDataNew(data);
+        if (addDataNew) {
+            addDataNew(data);
             reset();
         }
     };
@@ -21,7 +21,7 @@ const AddForm = (props) => {
         <div className="add-form">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="row">
-                    {props?.fieldData?.map((item, index) => (
+                    {fieldData?.map((item, index) => (
                         <div className="col l-6 key-col" key={index}>
                             <h2 className="title-field">{item.title}</h2>
                             {item.nameRegister === 'status' ? (

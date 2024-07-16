@@ -12,11 +12,11 @@ import { useState, forwardRef } from 'react';
 import { t } from 'i18next';
 import './DialogAuth.scss';
 
-export default function DialogAuth(props) {
+export default function DialogAuth({setOpen, open}) {
     const [position, setPosition] = useState('');
     const [email, setEmail] = useState('');
     const handleClose = () => {
-        props.setOpen(false);
+        setOpen(false);
     };
 
     let dialogContent;
@@ -50,7 +50,7 @@ export default function DialogAuth(props) {
     });
     return (
         <>
-            <Dialog onClose={handleClose} open={props.open} TransitionComponent={TransitionComponent} keepMounted>
+            <Dialog onClose={handleClose} open={open} TransitionComponent={TransitionComponent} keepMounted>
                 <DialogTitle className="paper form-dialog">
                     <header>{title}</header>
 

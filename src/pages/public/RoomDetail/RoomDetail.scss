@@ -57,17 +57,18 @@
 
                         .icon_locate {
                             height: 20px;
+                            color: var(--primary-main);
                         }
                     }
                 }
 
                 .heading__right {
-                    text-align: right;
-                    display: flex;
+                 
+                  
                     justify-items: center;
                     font-size: 14px;
                     width: max-content;
-                    flex-direction: column;
+     
                     .icon_rate {
                         font-size: 2rem;
                         color: blue;
@@ -88,6 +89,8 @@
                         white-space: nowrap;
                         &__icon {
                             margin-right: 5px;
+                            margin-left: 5px;
+                            color: var(--primary-main)
                         }
                     }
                     .card-like__container {
@@ -207,7 +210,7 @@
                 padding-bottom: 20px;
             }
         }
-        .col{
+        .col {
             position: relative;
         }
         .card-book__detail {
@@ -227,6 +230,8 @@
                 display: flex;
                 text-align: center;
                 align-items: center;
+                width: 100%;
+                flex-flow: wrap;
                 &__value {
                     font-weight: 600;
                 }
@@ -309,45 +314,44 @@
                 .title-price {
                     display: flex;
                     align-items: center;
-    
+
                     .name-surcharge {
                         margin: 5px 0;
                     }
                 }
-    
+
                 .real-price {
                     display: flex;
                     .cost-surcharge {
                         margin: 5px 0;
                     }
                 }
-    
+
                 p {
                     font-size: 14px;
                 }
             }
-    
+
             .discount-campain {
                 margin-left: 25px;
                 margin-right: 25px;
-    
+
                 .discount-campain__title {
                     display: flex;
                     align-items: center;
-    
+
                     .title {
                         margin: 0;
                         color: red;
                     }
                 }
-    
+
                 p {
                     font-size: 15px;
                 }
             }
-    
         }
-        
+
         .btn-booking {
             width: 100%;
             display: flex;

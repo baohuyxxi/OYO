@@ -60,7 +60,7 @@ const renderItem = ({ item, dataFacilityCategory, setValue, register }) => {
     }
 };
 
-const AddFormFacility = (props) => {
+const AddFormFacility = ({addDataNew, dataFacilityCategory, fieldData}) => {
     const {
         register,
         reset,
@@ -70,8 +70,8 @@ const AddFormFacility = (props) => {
     } = useForm();
 
     const onSubmit = (data) => {
-        if (props.addDataNew) {
-            props.addDataNew(data);
+        if (addDataNew) {
+            addDataNew(data);
             reset();
         }
     };
@@ -80,12 +80,12 @@ const AddFormFacility = (props) => {
         <div className="add-form-facility">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="row">
-                    {props?.fieldData?.map((item, index) => (
+                    {fieldData?.map((item, index) => (
                         <div className="col l-6 key-col" key={index}>
                             <h2 className="title-field">{item.title}</h2>
                             {renderItem({
                                 item,
-                                dataFacilityCategory: props.dataFacilityCategory,
+                                dataFacilityCategory: dataFacilityCategory,
                                 register,
                                 setValue
                             })}

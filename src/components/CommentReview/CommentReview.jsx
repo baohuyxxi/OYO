@@ -7,10 +7,8 @@ import { format } from 'date-fns';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import { t } from 'i18next';
 
-export default function CommentReview(props) {
-    const { dataComment } = props;
-
-    const showMoreComments = false; // Nếu bạn muốn mặc định không hiển thị nhiều hơn 5 bình luận
+export default function CommentReview({ dataComment }) {
+    const showMoreComments = false; 
 
     const commentsToShow = showMoreComments ? dataComment : dataComment.slice(0, 5);
     return (

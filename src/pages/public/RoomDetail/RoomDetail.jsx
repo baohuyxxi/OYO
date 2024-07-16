@@ -205,7 +205,7 @@ export default function RoomDetail() {
                                 <span>
                                     {dataDetailHome.numPeople} {t('title.bookingOfYou.client')},{' '}
                                     {dataDetailHome.numBedRoom} {t('label.bedroom')}, {dataDetailHome.numKitchen}{' '}
-                                    {t('label.bathroom')}, {dataDetailHome.numBathRoom}  {t('label.bathroom')} ,{' '}
+                                    {t('label.kitchen')}, {dataDetailHome.numBathRoom}  {t('label.bathroom')} ,{' '}
                                     {t('home.acreage')}: {dataDetailHome.acreage} m²
                                 </span>
 

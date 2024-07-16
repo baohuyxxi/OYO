@@ -65,6 +65,7 @@ const FileUpload = ({ file, setFile }) => {
                         autoPlay
                         controls
                         loop
+                        muted
                         cldVid={crop}
                         style={{ height: '100%', width: '100%', borderRadius: 20 }}
                     />

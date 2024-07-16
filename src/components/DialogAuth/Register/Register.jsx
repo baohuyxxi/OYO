@@ -52,7 +52,6 @@ export default function Register(props) {
                     }
                 })
                 .catch((error) => {
-                    console.error('Lỗi trong quá trình đăng ký: ', error);
                     dispatch(globalSlice.actions.setLoading(false))
                 });
         } else {

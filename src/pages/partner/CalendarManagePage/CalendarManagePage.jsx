@@ -9,7 +9,7 @@ import nodata from '~/assets/img/no-data.jpg';
 
 export default function CalendarManagePage() {
     useFetchAccomData();
-    const { accomPriceCustom, loading } = useSelector((state) => state.managerAccom);
+    const { accomPriceCustom, loadingPriceCustom } = useSelector((state) => state.managerAccom);
 
     const renderSkeletonLoader = () => (
         <div className="skeleton-loader">
@@ -37,7 +37,7 @@ export default function CalendarManagePage() {
             <div className="calendar-manager">
                 <div className="calendar-manager__header">
                     <h1 className="page-header">Quản lý lịch</h1>
-                    {loading === 'loading' ? (
+                    {loadingPriceCustom === 'loading' ? (
                         renderSkeletonLoader()
                     ) : accomPriceCustom && accomPriceCustom.length > 0 ? (
                         <CalendarDateBooked accomPriceCustom={accomPriceCustom} />

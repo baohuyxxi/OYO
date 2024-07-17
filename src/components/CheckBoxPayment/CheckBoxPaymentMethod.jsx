@@ -42,7 +42,7 @@ export default function CheckBoxPaymentMethod() {
                     label={t('title.bookingOfYou.paypal')}
                     control={<Radio sx={{ fontSize: '14px' }} onChange={handleChangeRadio} />}
                 />
-                <MyFormControlLabel value="VNPAY" label={`VNPay`} control={<Radio onChange={handleChangeRadio} />} />
+                <MyFormControlLabel value="VNPAY"   label={t('title.bookingOfYou.vnPay')} control={<Radio onChange={handleChangeRadio} />} />
                 <MyFormControlLabel
                     value="DIRECT"
                     label={t('title.bookingOfYou.direct')}

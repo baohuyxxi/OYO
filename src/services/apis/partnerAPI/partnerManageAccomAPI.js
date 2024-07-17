@@ -17,9 +17,14 @@ const partnerManageAccomAPI = {
         );
         return res.data;
     },
-    getListAccomWithPriceCustom: async () => {
-        const res = await axios.get(`/partner/accoms/price-custom?pageNumber=0&pageSize=200`);
-        return res.data;
+    getListAccomWithPriceCustom: async (data) => {
+        // const res = await axios.get(`/partner/accoms/price-custom?pageNumber=0&pageSize=200`);
+        // return res.data;
+        const res = await axios.get(
+            `/partner/accoms/price-custom?pageNumber=${data?.number ? data?.number : 0}&pageSize=${
+                data?.size ? data?.size : 100
+            }`);
+            return res.data;
     },
 
     updatePriceCustom: async (data) => {
@@ -78,9 +83,8 @@ const partnerManageAccomAPI = {
             facilityCodes: data
         });
         return res.data;
-    },  
+    },
     updatePolicy: async (data) => {
-
         const res = await axios.put(`/partner/accoms/policies?accomId=${data.id}`, data.data);
         return res.data;
     },

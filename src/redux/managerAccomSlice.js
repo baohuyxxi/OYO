@@ -8,7 +8,8 @@ const managerAccomSlice = createSlice({
     initialState: {
         accomApproved: [],
         accomPriceCustom: [],
-        loading: 'idle',
+        loadingApproved: 'idle',
+        loadingPriceCustom: 'idle',
         error: null
     },
     reducers: {
@@ -19,26 +20,26 @@ const managerAccomSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchAccomApproved.pending, (state) => {
-                state.loading = 'loading';
+                state.loadingApproved = 'loading';
             })
             .addCase(fetchAccomApproved.fulfilled, (state, action) => {
                 state.accomApproved = action.payload;
-                state.loading = 'succeeded';
+                state.loadingApproved = 'succeeded';
             })
             .addCase(fetchAccomApproved.rejected, (state, action) => {
                 state.error = action.error.message;
-                state.loading = 'failed';
+                state.loadingApproved = 'failed';
             })
 
             .addCase(fetchAccomPriceCustom.pending, (state) => {
-                state.loading = 'loading';
+                state.loadingPriceCustom = 'loading';
             })
             .addCase(fetchAccomPriceCustom.fulfilled, (state, action) => {
-                // state.loading = 'succeeded';
+                state.loadingPriceCustom = 'succeeded';
                 state.accomPriceCustom = action.payload;
             })
             .addCase(fetchAccomPriceCustom.rejected, (state, action) => {
-                state.loading = 'failed';
+                state.loadingPriceCustom = 'failed';
                 state.error = action.error.message;
             });
     }
@@ -57,11 +58,14 @@ export const fetchAccomPriceCustom = createAsyncThunk('managerAccom/fetchAccomPr
 
 export const useFetchAccomData = () => {
     const dispatch = useDispatch();
-    const loading = useSelector((state) => state.managerAccom.loading);
+    const loadingPriceCustom = useSelector((state) => state.managerAccom.loadingPriceCustom);
+    const loadingApproved = useSelector((state) => state.managerAccom.loadingApproved);
     useEffect(() => {
-        if (loading === 'idle') {
-            dispatch(fetchAccomApproved());
+        if (loadingPriceCustom === 'idle') {
             dispatch(fetchAccomPriceCustom());
+        }
+        if (loadingApproved === 'idle') {
+            dispatch(fetchAccomApproved());
         }
     }, [dispatch]);
 };

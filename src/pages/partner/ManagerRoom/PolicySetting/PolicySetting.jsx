@@ -10,11 +10,11 @@ import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { useTranslation } from 'react-i18next'; // Changed from 'i18next'
+import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
 
 const PolicySetting = ({ accomId }) => {
-    const { t } = useTranslation(); // Changed from 'i18next'
+    const { t } = useTranslation();
     const [policyPublic, setPolicyPublic] = useState(policyPublicModel);
     const [expanded, setExpanded] = useState(false);
     const { enqueueSnackbar } = useSnackbar();
@@ -48,11 +48,14 @@ const PolicySetting = ({ accomId }) => {
     const handleSave = (e) => {
         e.preventDefault();
 
-        partnerManageAccomAPI.updatePolicy({ id: accomId, data: policyPublic }).then((res) => {
-            enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
-        }).catch(() => {
-            enqueueSnackbar('Cập nhật thất bại', { variant: 'error' });
-        });
+        partnerManageAccomAPI
+            .updatePolicy({ id: accomId, data: policyPublic })
+            .then((res) => {
+                enqueueSnackbar('Cập nhật thành công', { variant: 'success' });
+            })
+            .catch(() => {
+                enqueueSnackbar('Cập nhật thất bại', { variant: 'error' });
+            });
     };
 
     return (

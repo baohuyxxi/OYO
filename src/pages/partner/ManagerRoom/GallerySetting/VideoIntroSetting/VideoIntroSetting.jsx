@@ -22,10 +22,12 @@ const VideoIntroSetting = ({ cldVideoId }) => {
     const onSubmit = () => {
         const newData = {
             data: {
-                cldVideoId: file?.cldVideoId
+                cldVideoId: file?.cldVideoId ? file?.cldVideoId : ''
             },
             id: params.idHome
         };
+
+        console.log(newData);
         partnerManageAccomAPI
             .updateVideo(newData)
             .then((res) => {

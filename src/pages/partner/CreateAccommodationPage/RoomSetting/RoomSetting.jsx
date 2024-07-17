@@ -82,19 +82,7 @@ export default function RoomSetting({ id, save, doneSave }) {
                         }}
                     />
                 </div>
-                {/* {dataStep2?.map((room, index) => (
-                            <div key={index}>
-                                <div className="count ">
-                                    <p>{room.name}</p>
-                                    <CountNumber
-                                        keyType={room.key}
-                                        data={dataStep2}
-                                        setData={setDataStep2}
-                                        number={room.number}
-                                    />
-                                </div>
-                            </div>
-                        ))} */}
+
                 {dataStep2?.map((room, index) => (
                     <div key={index}>
                         <div className="count">

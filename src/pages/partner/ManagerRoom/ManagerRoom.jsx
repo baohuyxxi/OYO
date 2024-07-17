@@ -23,14 +23,10 @@ const infoLink = {
 };
 
 const backUrl = '/host/setting';
-
-// , 'section2', 'section3', 'section4', 'section5', 'section6', 'section7'
-
 const item = ['', 'section1', 'section2', 'section3', 'section4', 'section5', 'section6', 'section7'];
 
 const ManagerRoom = () => {
     const params = useParams();
-
 
     const children = [
         {
@@ -46,7 +42,7 @@ const ManagerRoom = () => {
             comp: <LocationSetting />
         },
         {
-            id: '#section3',
+            id: '#  ',
             to: 'section3',
             info: 'Tiện ích',
             comp: <FacilitySetting />
@@ -55,18 +51,16 @@ const ManagerRoom = () => {
             id: '#section4',
             to: 'section4',
             info: 'Hình ảnh & Video',
-            comp: (
-                <GallerySetting accomId={params.idHome} />
-            )
+            comp: <GallerySetting accomId={params.idHome} />
         },
-      
+
         {
             id: '#section5',
             to: 'section5',
             info: 'Thiết lập phòng',
             comp: <CountRoomSetting accomId={params.idHome} />
         },
-       
+
         {
             id: '#section6',
             to: 'section6',

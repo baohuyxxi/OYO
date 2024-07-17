@@ -51,7 +51,7 @@ const EditImage = (props) => {
 
     const handleSave = async (e) => {
         e.preventDefault();
-        dispatch(globalSlice.actions.setLoading(true));
+        // dispatch(globalSlice.actions.setLoading(true));
 
         const imagesUrls = props.images.filter((img) => typeof img === 'string');
         const newImages = props.images.filter((img) => typeof img !== 'string');
@@ -85,14 +85,14 @@ const EditImage = (props) => {
                     variant: 'success'
                 });
                 onClose();
-                dispatch(globalSlice.actions.setLoading(false));
+                // dispatch(globalSlice.actions.setLoading(false));
             })
             .catch((err) => {
                 enqueueSnackbar(err, {
                     variant: 'error'
                 });
                 onClose();
-                dispatch(globalSlice.actions.setLoading(false));
+                // dispatch(globalSlice.actions.setLoading(false));
             });
     };
 

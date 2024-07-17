@@ -32,7 +32,7 @@ const ListImage = ({ listImage, setOpen, cldVideoId }) => {
                     <div className="col l-6 c-12">
                         <div className="image-item-thumbnail">
                             {cldVideoId ? (
-                                <AdvancedVideo autoPlay controls loop cldVid={crop} />
+                                <AdvancedVideo autoPlay controls loop muted cldVid={crop} />
                             ) : (
                                 <img src={imgMain} alt="room_hot" onClick={() => props.setOpen(true)} />
                             )}

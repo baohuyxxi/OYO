@@ -43,7 +43,7 @@ export default function AddressAccom({ id, save, doneSave }) {
     useEffect(() => {
         if (address.provinceCode && address.districtCode && address.wardCode && data.numHouseAndStreetName) {
             const addressFull = `${data.numHouseAndStreetName} ,${address.wardName}, ${address.districtName}, ${address.provinceName}`;
-
+            console.log(addressFull);
             mapAPI.geoCodeAddress(addressFull).then((res) => {
                 setData({
                     ...data,

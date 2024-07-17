@@ -59,7 +59,6 @@ export default function DrawerHome({ anchor, setOpen, data, open, stars, dataCom
     const handleImageTypeChange = (type) => {
         setSelectedImageType(type);
     };
-    console.log(data);
     const crop = new Cloudinary({
         cloud: {
             cloudName: 'dyv5zrsgj'
@@ -112,7 +111,7 @@ export default function DrawerHome({ anchor, setOpen, data, open, stars, dataCom
                                 <>
                                     {data.cldVideoId && (
                                         <div className={`image__container__video`} key={0}>
-                                            <AdvancedVideo autoPlay controls loop cldVid={crop} />
+                                            <AdvancedVideo autoPlay muted controls loop cldVid={crop} />
                                         </div>
                                     )}
                                     {images.map((image, index) => (

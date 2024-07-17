@@ -8,6 +8,7 @@ import { useSnackbar } from 'notistack';
 import Skeleton from '@mui/material/Skeleton';
 import { useDispatch } from 'react-redux';
 import managerAccomSlice from '~/redux/managerAccomSlice';
+import SearchIcon from '@mui/icons-material/Search';
 
 export default function RoomsAndRate({ accomPriceCustom }) {
     const dispatch = useDispatch();
@@ -15,6 +16,7 @@ export default function RoomsAndRate({ accomPriceCustom }) {
     const [currentWeek, setCurrentWeek] = useState([]);
     const [accommodations, setAccommodations] = useState([]);
     const [changePrice, setChangePrice] = useState({});
+    const [searchTerm, setSearchTerm] = useState('');
     const { enqueueSnackbar } = useSnackbar();
 
     useEffect(() => {
@@ -37,22 +39,24 @@ export default function RoomsAndRate({ accomPriceCustom }) {
     }, [accomPriceCustom]);
 
     const getCurrentWeekDates = () => {
-        let weekStart = moment().startOf('week');
+        let today = moment();
         let days = [];
         for (let i = 0; i < 7; i++) {
-            days.push(moment(weekStart).add(i, 'days').format('YYYY-MM-DD'));
+            days.push(moment(today).add(i, 'days').format('YYYY-MM-DD'));
         }
         return days;
     };
 
     const renderTableHeader = () => {
-        return currentWeek.map((date) => (
-            <th key={date}>
-                {`${moment(date).format('d') === '0' ? 'CN' : `T${parseInt(moment(date).format('d')) + 1}`}, ${moment(
-                    date
-                ).format('DD')}`}
-            </th>
-        ));
+        return currentWeek.map((date) => {
+            const dayOfWeek = moment(date).day(); 
+            const isWeekend = dayOfWeek === 0 || dayOfWeek === 6; 
+            return (
+                <th key={date} className={isWeekend ? 'weekend' : ''}>
+                    {`${dayOfWeek === 0 ? 'CN' : `T${dayOfWeek + 1}`}, ${moment(date).format('DD')}`}
+                </th>
+            );
+        });
     };
 
     const getPriceAccommodation = (accommodation, date) => {
@@ -81,11 +85,14 @@ export default function RoomsAndRate({ accomPriceCustom }) {
     };
 
     const renderAccommodationRows = () => {
-        return accommodations.map((accommodation, index) => (
+        const filteredAccommodations = accommodations.filter((accommodation) =>
+            accommodation.accomName.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        return filteredAccommodations.map((accommodation, index) => (
             <tr key={accommodation.accomId} className="rate-room">
                 <td className="rate-room__name">{accommodation.accomName}</td>
                 {currentWeek.map((date) => (
-                    <td key={`${accommodation.accomId}-${date}`}>
+                    <td key={`${accommodation.accomId}-${date}`} className="rate-room__td">
                         <input
                             type="text"
                             value={getPriceAccommodation(accommodation, date)?.toLocaleString('vi-VN')}
@@ -147,12 +154,28 @@ export default function RoomsAndRate({ accomPriceCustom }) {
                         <button
                             className="week-navigation__button"
                             onClick={() => setCurrentWeek(getPreviousWeekDates())}
+                            disabled={moment(currentWeek[0]).isBefore(moment())}
                         >
                             <img src={arrowLeft} alt="arrow-right" className="week-navigation__icon" />
                         </button>
                         <button className="week-navigation__button" onClick={() => setCurrentWeek(getNextWeekDates())}>
                             <img src={arrowRight} alt="arrow-right" className="week-navigation__icon" />
                         </button>
+
+                        <div className="search-input-home">
+                            <input
+                                type="text"
+                                placeholder="Tìm kiếm theo tên"
+                                className="search-bar"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+
+                            <div className="searchIcon-clear"></div>
+                            <div className="searchIcon">
+                                <SearchIcon />
+                            </div>
+                        </div>
                         <div style={{ marginLeft: 'auto' }}></div>
                         <button className="week-navigation__save" onClick={handleSave}>
                             Lưu
@@ -162,7 +185,7 @@ export default function RoomsAndRate({ accomPriceCustom }) {
                         <table>
                             <thead>
                                 <tr>
-                                    <th>
+                                    <th className="currentWeek">
                                         {currentWeek[0]} &rarr; {currentWeek[6]}
                                     </th>
                                     {renderTableHeader()}

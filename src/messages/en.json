@@ -256,7 +256,8 @@
         "discountPercent": "Discount percent",
         "surchargeList": "Surcharge list",
         "guide": "Guide",
-        "pricePerNight": "Price per night"
+        "pricePerNight": "Price per night",
+        "kitchen": "Kitchen"
     },
     "contentMain": {
         "homeinsearch": "From 'impromptu' rides to adventures, discover your own recipe for joy",

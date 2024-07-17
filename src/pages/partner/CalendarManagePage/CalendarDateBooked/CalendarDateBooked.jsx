@@ -18,7 +18,8 @@ export default function CalendarDateBooked({ accomPriceCustom }) {
             setGroups(groupData);
 
             const itemData = [];
-            const currentDate = moment();
+            const currentDate = moment().subtract(1, 'day');
+
             accomPriceCustom.forEach((accom) => {
                 if (accom.rangeDateBookingList.length > 0) {
                     accom.rangeDateBookingList.forEach((dateBooking, index) => {
@@ -47,6 +48,20 @@ export default function CalendarDateBooked({ accomPriceCustom }) {
             fetchData();
         }
     }, [accomPriceCustom]);
+
+
+    const sortGroupsByItemCount = () => {
+        const sortedGroups = [...groups];
+        sortedGroups.sort((groupA, groupB) => {
+            const countA = items.filter(item => item.group === groupA.id).length;
+            const countB = items.filter(item => item.group === groupB.id).length;
+            return countB - countA; 
+        });
+        
+      
+        return sortedGroups;
+    };
+
     return (
         <div className="calendar-manage">
             {loading ? (
@@ -59,7 +74,7 @@ export default function CalendarDateBooked({ accomPriceCustom }) {
                         showCursorLine
                         sidebarWidth={300}
                         canMove={true}
-                        groups={groups}
+                        groups={sortGroupsByItemCount()} // Use sorted groups here
                         items={items}
                         defaultTimeStart={moment().add(0, 'hour')}
                         defaultTimeEnd={moment().add(14, 'day')}

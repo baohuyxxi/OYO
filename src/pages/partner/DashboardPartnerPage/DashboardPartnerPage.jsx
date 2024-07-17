@@ -12,7 +12,7 @@ import FramePage from '~/components/FramePage/FramePage';
 import gif from '~/assets/imageMaster/homeStep3.gif';
 export default function DashboardPartner() {
     useFetchAccomData();
-    const { accomApproved, loading } = useSelector((state) => state.managerAccom);
+    const { accomApproved, loadingApproved } = useSelector((state) => state.managerAccom);
     const [accomWaiting, setAccomWaiting] = useState([]);
 
     useEffect(() => {
@@ -31,7 +31,7 @@ export default function DashboardPartner() {
         subtitle: 'Chào mừng bạn đến với trang tổng quan của OYO.',
         imgSrc: gif
     };
-
+    
     
     return (
         <FramePage ownerPage={true} bannerData={bannerData}>
@@ -60,7 +60,7 @@ export default function DashboardPartner() {
                         </div>
                     </header>
                     <div className="dashboard-partner__table">
-                        <TableAccomApproved accomApproved={accomApproved} loading={loading} />
+                        <TableAccomApproved accomApproved={accomApproved} loading={loadingApproved} />
                     </div>
                 </>
             </div>

@@ -9,9 +9,7 @@ import nodata from '~/assets/img/no-data.jpg';
 
 export default function RoomsAndRateManagePage() {
     useFetchAccomData();
-    const { accomPriceCustom, accomApproved, accomWaiting, loading, error } = useSelector(
-        (state) => state.managerAccom
-    );
+    const { accomPriceCustom, loadingPriceCustom, error } = useSelector((state) => state.managerAccom);
 
     const renderSkeletonTable = () => {
         return (
@@ -45,7 +43,7 @@ export default function RoomsAndRateManagePage() {
     const bannerData = {
         title: 'Quản lý phòng và giá',
         subtitle: 'Điều chỉnh và quản lý thông tin về phòng và giá của bạn.',
-        imgSrc: 'https://ucarecdn.com/55424b49-277a-4452-9d7e-cdc7ae4ae7d1/-/crop/354:181/-/quality/lightest/-/format/webp/', // Replace with actual image path
+        imgSrc: 'https://ucarecdn.com/55424b49-277a-4452-9d7e-cdc7ae4ae7d1/-/crop/354:181/-/quality/lightest/-/format/webp/' // Replace with actual image path
     };
     return (
         <FramePage ownerPage={true} bannerData={bannerData}>
@@ -54,7 +52,7 @@ export default function RoomsAndRateManagePage() {
                     <h1 className="page-header" style={{ fontSize: 24, fontWeight: 500 }}>
                         Quản lý phòng và giá
                     </h1>
-                    {loading === 'loading' ? (
+                    {loadingPriceCustom === 'loading' ? (
                         renderSkeletonTable()
                     ) : accomPriceCustom && accomPriceCustom.length > 0 ? (
                         <RoomsAndRate accomPriceCustom={accomPriceCustom} />

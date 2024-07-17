@@ -128,11 +128,6 @@ export default function RoomDetail() {
     const handleChangeDayBooking = (startDate, endDate) => {
         const checkIn = format(startDate, 'dd/MM/yyyy');
         const checkOut = format(endDate, 'dd/MM/yyyy');
-        // if (startDate > endDate) {
-        //     setDateBook([checkOut, checkIn]);
-        // } else {
-        //     setDateBook([checkIn, checkOut]);
-        // }
         setDateBook([checkIn, checkOut]);
     };
     const handleChangeGuests = (value) => {
@@ -186,7 +181,6 @@ export default function RoomDetail() {
                                         </div>
 
                                         <div className="view">
-                                            
                                             <RemoveRedEyeOutlinedIcon className="view__icon" />
                                             {`${dataDetailHome?.numView} ${t('numberCount.viewInDetail')}`}
                                         </div>
@@ -205,8 +199,11 @@ export default function RoomDetail() {
                                 <span>
                                     {dataDetailHome.numPeople} {t('title.bookingOfYou.client')},{' '}
                                     {dataDetailHome.numBedRoom} {t('label.bedroom')}, {dataDetailHome.numKitchen}{' '}
-                                    {t('label.kitchen')}, {dataDetailHome.numBathRoom}  {t('label.bathroom')} ,{' '}
-                                    {t('home.acreage')}: {dataDetailHome.acreage} m²
+
+                                    {t('label.kitchen')}, {''}
+                                    {dataDetailHome.numBathRoom} {t('label.bathroom')} , {t('home.acreage')}:{' '}
+                                    {dataDetailHome.acreage} m²
+
                                 </span>
 
                                 <div className="row">

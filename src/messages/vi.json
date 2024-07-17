@@ -199,7 +199,6 @@
         "accountNameHost": "Tên tài khoản",
         "swiftCode": "Mã SWIFT",
         "logoutting": "Đang đăng xuất"
-
     },
     "label": {
         "email": "Địa chỉ Email",
@@ -214,6 +213,7 @@
         "convenient": "Tiện ích",
         "room": "Phòng và phòng ngủ",
         "bedroom": "Phòng ngủ",
+        "kitchen": "Phòng bếp",
         "bed": "Gường",
         "bathroom": "Phòng tắm",
         "any": "Bất kì",

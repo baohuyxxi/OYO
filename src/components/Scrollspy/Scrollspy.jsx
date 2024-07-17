@@ -11,12 +11,11 @@ const ScrollspyComponent = (props) => {
         <div className="scroll-spy">
             {props.backUrl && (
                 <p
-                    onClick={() => navigate()}
+                    onClick={() => navigate('/host')}
                     style={{
                         top: '90px',
                         margin: '0px',
                         fontSize: '16px',
-                        // paddingTop: '-30px',
                         paddingLeft: '150px',
                         position: 'fixed',
                         color: 'black',
@@ -50,9 +49,7 @@ const ScrollspyComponent = (props) => {
                             paddingLeft: '150px'
                         }}
                     >
-                        <Link  className="link-sidebar">
-                            {props.infoLink.name}
-                        </Link>
+                        <Link className="link-sidebar">{props.infoLink.name}</Link>
                         {props.children?.map((child, index) => (
                             <li key={index}>
                                 <a href={child.id}>{child.info}</a>

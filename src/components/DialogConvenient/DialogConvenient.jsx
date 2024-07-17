@@ -31,10 +31,7 @@ export default function DialogConvenient(props) {
                 fullWidth={true}
                 maxWidth="md"
             >
-                <DialogTitle
-                    id="alert-dialog-title"
-                    style={{ fontSize: '18px', fontWeight: 'bold', width: '600px', marginBottom: '20px' }}
-                >
+                <DialogTitle id="alert-dialog-title" style={{ fontSize: '18px', fontWeight: 'bold', width: '600px' }}>
                     {t('title.convenient')}
                     <Button
                         className="closeDialog"
@@ -72,15 +69,6 @@ export default function DialogConvenient(props) {
                         </DialogContent>
                     ))}
                 </div>
-
-                {/* <DialogActions>
-                    <Button onClick={handleClose} color="error" style={{ fontSize: '14px' }}>
-                        {t('common.close')}
-                    </Button>
-                    <Button onClick={handleClose} autoFocus style={{ fontSize: '14px', textTransform: 'none' }}>
-                        {t('common.ok')}
-                    </Button>
-                </DialogActions> */}
             </Dialog>
         </div>
     );

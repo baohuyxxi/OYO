@@ -15,11 +15,18 @@ export const convertPrice = (price) => {
     }
 };
 
-
 export const convertPriceToNumber = (price) => {
     if (price !== '' && price !== undefined) {
         const result = parseInt(price.replace(/\D/g, ''));
         return result;
     }
     return 0;
-}
+};
+
+export const convertVndToUSD = (price) => {
+    if (price !== null && price !== undefined) {
+        const result = (parseFloat(price) / 23000).toFixed(2);
+        return parseFloat(result);
+    }
+    return 0;
+};

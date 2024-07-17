@@ -48,13 +48,13 @@ const BookingPage = () => {
     const totalBill = costRentHomestay + dataBooking.surcharge - costDiscountForPayment;
     const totalTransfer = dataBooking?.paymentPolicy === 'PAYMENT_FULL' ? totalBill : totalBill * 0.5;
     const [errors, setErrors] = useState({});
+
     const handleBookingRoom = () => {
         let idAccom = dataBooking.accomId;
         setErrors({});
         const checkValidate = validateBooking(dataBooking);
         if (Object.keys(checkValidate).length === 0) {
             dispatch(globalSlice.actions.setLoading(true));
-
             const bookingRequest = {
                 nameCustomer: dataBooking.nameCustomer,
                 phoneNumberCustomer: dataBooking.phoneNumberCustomer,
@@ -67,6 +67,7 @@ const BookingPage = () => {
                 paymentMethod: dataBooking.paymentMethod,
                 accomId: dataBooking.accomId
             };
+
             bookingAPI.createBooking(bookingRequest).then((dataResponse) => {
                 if (dataResponse?.statusCode === 200) {
                     enqueueSnackbar(t('message.bookingSuccess'), { variant: 'success' });
@@ -112,7 +113,7 @@ const BookingPage = () => {
                 <div className="content-booking">
                     <h1>{t('title.bookingOfYou.tilte')}</h1>
                     <div className="row">
-                        <div className="col l-8" style={{paddingRight: '50px' }}>
+                        <div className="col l-8" style={{ paddingRight: '50px' }}>
                             <h2>{t('title.bookingOfYou.drive')}</h2>
                             <DateBooking
                                 size="horizontal"
@@ -147,14 +148,14 @@ const BookingPage = () => {
                                     <p style={{ fontSize: 14, fontWeight: 'bold' }}>
                                         {t('title.bookingOfYou.paymentMethod')}
                                     </p>
-                                    <CheckBoxPaymentMethod />
+                                    <CheckBoxPaymentMethod paymentMethod={dataBooking.paymentMethod} />
                                 </div>
 
                                 <div style={{ width: 'fit-content' }}>
                                     <p style={{ fontSize: 14, fontWeight: 'bold' }}>
                                         {t('title.bookingOfYou.paymentPolicy')}
                                     </p>
-                                    <CheckBoxPaymentPolicy />
+                                    <CheckBoxPaymentPolicy paymentPolicy={dataBooking.paymentPolicy} />
                                 </div>
                             </div>
 
@@ -178,7 +179,10 @@ const BookingPage = () => {
                                 </div>
                             ) : (
                                 <div className="btn__booking">
-                                    <button disabled={!dataBooking.canBooking} onClick={handleBookingRoom}>
+                                    <button
+                                        disabled={Object.keys(errors).length !== 0 || !dataBooking.canBooking}
+                                        onClick={handleBookingRoom}
+                                    >
                                         {t('common.booking')}
                                     </button>
                                 </div>

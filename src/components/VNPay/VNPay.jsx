@@ -1,18 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import axios from 'axios';
 import sha512 from 'js-sha512';
 import moment from 'moment-timezone';
 import bookingSlice from '~/redux/bookingSlice';
 import { useDispatch, useSelector } from 'react-redux';
+
 const VNPay = (props) => {
     const { pricePayment, booking, canBooking, errors } = props;
-    const dispatch = useDispatch();
     const VNPay = useSelector((state) => state.booking.VNPay);
-
     const urlParams = new URLSearchParams(window.location.search);
     const vnp_TransactionStatus = urlParams.get('vnp_TransactionStatus');
     const vnp_TxnRef = urlParams.get('vnp_TxnRef');
     const vnp_SecureHash = urlParams.get('vnp_SecureHash');
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (vnp_TransactionStatus === '00' && vnp_TxnRef == VNPay.vnp_TxnRef) {
@@ -70,7 +70,7 @@ const VNPay = (props) => {
                 '&vnp_SecureHash=' +
                 vnp_SecureHash;
             dispatch(bookingSlice.actions.createVNPay(vnp_Params['vnp_TxnRef']));
-            window.open(vnpUrl, '_blank');
+            window.location.href = vnpUrl;
         } catch (error) {
             console.error('Error creating payment URL:', error);
         }
@@ -78,7 +78,11 @@ const VNPay = (props) => {
 
     return (
         <div>
-            <button className="btn__booking" onClick={createPaymentUrl}>
+            <button
+                className="btn__booking"
+                onClick={createPaymentUrl}
+                disabled={Object.keys(errors).length !== 0 || !canBooking}
+            >
                 Chuyển đến trang thanh toán
             </button>
         </div>

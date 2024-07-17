@@ -27,7 +27,7 @@ function MyFormControlLabel(props) {
     return <StyledFormControlLabel checked={checked} {...props} />;
 }
 
-export default function CheckBoxPaymentMethod() {
+export default function CheckBoxPaymentMethod({ paymentMethod }) {
     const dispatch = useDispatch();
 
     const handleChangeRadio = (event) => {
@@ -41,12 +41,19 @@ export default function CheckBoxPaymentMethod() {
                     value="PAYPAL"
                     label={t('title.bookingOfYou.paypal')}
                     control={<Radio sx={{ fontSize: '14px' }} onChange={handleChangeRadio} />}
+                    checked={paymentMethod === 'PAYPAL'}
                 />
-                <MyFormControlLabel value="VNPAY"   label={t('title.bookingOfYou.vnPay')} control={<Radio onChange={handleChangeRadio} />} />
+                <MyFormControlLabel
+                    value="VNPAY"
+                    label={t('title.bookingOfYou.vnPay')}
+                    control={<Radio onChange={handleChangeRadio} />}
+                    checked={paymentMethod === 'VNPAY'}
+                />
                 <MyFormControlLabel
                     value="DIRECT"
                     label={t('title.bookingOfYou.direct')}
                     control={<Radio onChange={handleChangeRadio} />}
+                    checked={paymentMethod === 'DIRECT'}
                 />
             </RadioGroup>
         </div>

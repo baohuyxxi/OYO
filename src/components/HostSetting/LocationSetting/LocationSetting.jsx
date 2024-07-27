@@ -62,7 +62,8 @@ export default function LocationSetting(props) {
         setExpanded(false);
     };
 
-    const onSubmit = () => {
+    const onSubmit = (event) => {
+        event.preventDefault();
         const newData = {
             data: {
                 provinceCode: address.provinceCode,
@@ -75,6 +76,8 @@ export default function LocationSetting(props) {
             },
             id: params.idHome
         };
+
+        console.log(newData);
         partnerManageAccomAPI
             .updateAddress(newData)
             .then((res) => {

@@ -1,8 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import Scrollspy from 'react-scrollspy';
-
 import './Scrollspy.scss';
-
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const ScrollspyComponent = (props) => {

@@ -16,7 +16,8 @@ const GallerySetting = ({ accomId }) => {
 
     useEffect(() => {
         setIsLoading(true);
-        partnerManageAccomAPI.getGallery(accomId)
+        partnerManageAccomAPI
+            .getGallery(accomId)
             .then((dataResponse) => {
                 setGalleryAccom(dataResponse.data);
             })
@@ -57,16 +58,19 @@ const GallerySetting = ({ accomId }) => {
                             <p className="accordion-summary__title">Hình ảnh & Video</p>
                         </AccordionSummary>
                         <AccordionDetails className="accordion-details">
-                            <ImageSetting listImage={galleryAccom.imageAccomUrls} thumbnail={galleryAccom.imageAccomUrls[0]} />
+                            <ImageSetting
+                                listImage={galleryAccom.imageAccomUrls}
+                                thumbnail={galleryAccom.imageAccomUrls[0]}
+                            />
                             <VideoIntroSetting cldVideoId={galleryAccom.cldVideoId} />
-                            <div className="accordion-details__section accordion-details__btn">
+                            {/* <div className="accordion-details__section accordion-details__btn">
                                 <p onClick={handleClose} className="accordion-details__btn-close">
                                     Hủy
                                 </p>
                                 <button type="submit" className="accordion-details__btn-save">
                                     Lưu
                                 </button>
-                            </div>
+                            </div> */}
                         </AccordionDetails>
                     </Accordion>
                 </form>

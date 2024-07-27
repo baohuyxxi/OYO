@@ -199,11 +199,9 @@ export default function RoomDetail() {
                                 <span>
                                     {dataDetailHome.numPeople} {t('title.bookingOfYou.client')},{' '}
                                     {dataDetailHome.numBedRoom} {t('label.bedroom')}, {dataDetailHome.numKitchen}{' '}
-
                                     {t('label.kitchen')}, {''}
                                     {dataDetailHome.numBathRoom} {t('label.bathroom')} , {t('home.acreage')}:{' '}
                                     {dataDetailHome.acreage} m²
-
                                 </span>
 
                                 <div className="row">
@@ -220,6 +218,10 @@ export default function RoomDetail() {
                                                 <p>
                                                     {t('home.addressDetail')}: {dataDetailHome.addressDetail}
                                                 </p>
+                                                <div style={{ padding: 0 }}>
+                                                    <span style={{ fontWeight: 500 }}>Chủ nhà:</span>{' '}
+                                                    <span>{dataDetailHome?.nameHost}</span>
+                                                </div>
                                             </div>
 
                                             <hr className="divider" />

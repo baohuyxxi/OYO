@@ -22,11 +22,15 @@ import bookingSlice from '~/redux/bookingSlice';
 import globalSlice from '~/redux/globalSlice';
 import { transLateRoom } from '~/services/thirdPartyAPI/translateAPI';
 import { showRefundPolicy } from '~/utils/showRefundPolicy';
+import { yellow } from '@mui/material/colors';
+import CountDownTimer from '~/components/CountDownTimer/CountDownTimer';
+import ModalTimeUp from '~/components/ModalTimeUp/ModalTimeUp';
 
 const BookingPage = () => {
     const dispatch = useDispatch();
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
+
     const dataBooking = useSelector((state) => state.booking.info);
     const [loading, setLoading] = useState(true);
     const [dataDetailHomeBooking, setDataDetailHomeBooking] = useState();
@@ -48,6 +52,24 @@ const BookingPage = () => {
     const totalBill = costRentHomestay + dataBooking.surcharge - costDiscountForPayment;
     const totalTransfer = dataBooking?.paymentPolicy === 'PAYMENT_FULL' ? totalBill : totalBill * 0.5;
     const [errors, setErrors] = useState({});
+
+    // 15 phút
+    const TIME_COUNT_DOWN = 15 * 60 * 1000;
+    const [targetTimeCountDown, setTargetTimeCountDown] = useState(new Date().getTime() + TIME_COUNT_DOWN);
+    const [open, setOpen] = useState(false);
+
+    console.log(open);
+    console.log(targetTimeCountDown);
+
+    const handleContinueBooking = async () => {
+        setTargetTimeCountDown(new Date().getTime() + TIME_COUNT_DOWN);
+        setOpen(false);
+        // navigate('/booking');
+    };
+
+    const handleShowModalTimeUp = () => {
+        setOpen(true);
+    };
 
     const handleBookingRoom = () => {
         let idAccom = dataBooking.accomId;
@@ -109,6 +131,8 @@ const BookingPage = () => {
 
     return (
         <FramePage>
+            <ModalTimeUp open={open} handleContinueBooking={handleContinueBooking} />
+            <CountDownTimer targetDate={targetTimeCountDown} handleShowModalTimeUp={handleShowModalTimeUp} />
             <div className="booking__page content">
                 <div className="content-booking">
                     <h1>{t('title.bookingOfYou.tilte')}</h1>
@@ -161,12 +185,12 @@ const BookingPage = () => {
 
                             {dataBooking.paymentMethod === 'PAYPAL' ? (
                                 <div className="payment__paypal">
-                                    <Paypal
+                                    {/* <Paypal
                                         pricePayment={totalTransfer}
                                         booking={handleBookingRoom}
                                         canBooking={dataBooking.canBooking}
                                         errors={errors}
-                                    />
+                                    /> */}
                                 </div>
                             ) : dataBooking.paymentMethod === 'VNPAY' ? (
                                 <div className="btn__booking">
@@ -231,7 +255,10 @@ const BookingPage = () => {
                                                 <p style={{ color: '#757575' }}>{t('title.bookingOfYou.price')}</p>
                                                 <p style={{ fontWeight: '550' }}>
                                                     {formatPrice(costRentHomestay)}/
-                                                    {dayGap({ start: dataBooking.checkIn, end: dataBooking.checkOut })}{' '}
+                                                    {dayGap({
+                                                        start: dataBooking.checkIn,
+                                                        end: dataBooking.checkOut
+                                                    })}{' '}
                                                     {t('title.bookingOfYou.day')}
                                                 </p>
                                             </div>

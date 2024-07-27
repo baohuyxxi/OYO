@@ -7,7 +7,7 @@ const PAYPAL_CLIENT_ID = import.meta.env.VITE_PAYPAL_CLIENT_ID;
 function Paypal({ pricePayment, booking, canBooking, errors }) {
     const priceToUSD = convertVndToUSD(pricePayment);
 
-    console.log(priceToUSD);
+    // console.log(priceToUSD);
     return (
         <div className="paypal">
             <PayPalScriptProvider

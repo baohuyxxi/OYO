@@ -46,31 +46,31 @@ export default function Footer() {
                                     <ul className="footer__list">
                                         <h3 className="footer__list-heading">{t('footer.contact_1')}</h3>
                                         <li className="footer__item">
-                                            <i className="footer__item-icon fas fa-chevron-right"></i>
+                                            <i className="footer__item-icon "></i>
                                             <Link to="/" className="footer__item-link">
                                                 {t('footer.contact_link_1')}
                                             </Link>
                                         </li>
                                         <li className="footer__item">
-                                            <i className="footer__item-icon fas fa-chevron-right"></i>
+                                            <i className="footer__item-icon "></i>
                                             <Link to="/contact" className="footer__item-link">
                                                 {t('footer.contact_link_2')}
                                             </Link>
                                         </li>
                                         <li className="footer__item">
-                                            <i className="footer__item-icon fas fa-chevron-right"></i>
+                                            <i className="footer__item-icon "></i>
                                             <Link to="#" className="footer__item-link">
                                                 {t('footer.contact_link_3')}
                                             </Link>
                                         </li>
                                         <li className="footer__item">
-                                            <i className="footer__item-icon fas fa-chevron-right"></i>
+                                            <i className="footer__item-icon "></i>
                                             <Link to="#" className="footer__item-link">
                                                 {t('footer.contact_link_4')}
                                             </Link>
                                         </li>
                                         <li className="footer__item">
-                                            <i className="footer__item-icon fas fa-chevron-right"></i>
+                                            <i className="footer__item-icon "></i>
                                             <Link to="#" className="footer__item-link">
                                                 {t('footer.contact_link_5')}
                                             </Link>
@@ -81,31 +81,31 @@ export default function Footer() {
                                     <ul className="footer__list">
                                         <h3 className="footer__list-heading">{t('footer.contact_2')}</h3>
                                         <li className="footer__item">
-                                            <i className="footer__item-icon fas fa-chevron-right"></i>
+                                            <i className="footer__item-icon "></i>
                                             <Link to="https://www.booking.com/" className="footer__item-link">
                                                 {t('footer.contact_link_6')}
                                             </Link>
                                         </li>
                                         <li className="footer__item">
-                                            <i className="footer__item-icon fas fa-chevron-right"></i>
+                                            <i className="footer__item-icon "></i>
                                             <Link to="https://www.agoda.com/vi-vn/" className="footer__item-link">
                                                 {t('footer.contact_link_7')}
                                             </Link>
                                         </li>
                                         <li className="footer__item">
-                                            <i className="footer__item-icon fas fa-chevron-right"></i>
+                                            <i className="footer__item-icon "></i>
                                             <Link to="https://www.traveloka.com/vi-vn/" className="footer__item-link">
                                                 {t('footer.contact_link_8')}
                                             </Link>
                                         </li>
                                         <li className="footer__item">
-                                            <i className="footer__item-icon fas fa-chevron-right"></i>
+                                            <i className="footer__item-icon "></i>
                                             <Link to="https://www.trivago.vn/vi" className="footer__item-link">
                                                 {t('footer.contact_link_9')}
                                             </Link>
                                         </li>
                                         <li className="footer__item">
-                                            <i className="footer__item-icon fas fa-chevron-right"></i>
+                                            <i className="footer__item-icon "></i>
                                             <Link to="https://www.airbnb.com.vn/" className="footer__item-link">
                                                 {t('footer.contact_link_10')}
                                             </Link>
@@ -116,31 +116,31 @@ export default function Footer() {
                                     <ul className="footer__list">
                                         <h3 className="footer__list-heading">{t('footer.contact_3')}</h3>
                                         <li className="footer__item">
-                                            <i className="footer__item-icon fas fa-chevron-right"></i>
+                                            <i className="footer__item-icon "></i>
                                             <Link to="#" className="footer__item-link">
                                                 {t('footer.contact_link_11')}
                                             </Link>
                                         </li>
                                         <li className="footer__item">
-                                            <i className="footer__item-icon fas fa-chevron-right"></i>
+                                            <i className="footer__item-icon "></i>
                                             <Link to="#" className="footer__item-link">
                                                 {t('footer.contact_link_12')}
                                             </Link>
                                         </li>
                                         <li className="footer__item">
-                                            <i className="footer__item-icon fas fa-chevron-right"></i>
+                                            <i className="footer__item-icon "></i>
                                             <Link to="#" className="footer__item-link">
                                                 {t('footer.contact_link_13')}
                                             </Link>
                                         </li>
                                         <li className="footer__item">
-                                            <i className="footer__item-icon fas fa-chevron-right"></i>
+                                            <i className="footer__item-icon "></i>
                                             <Link to="#" className="footer__item-link">
                                                 {t('footer.contact_link_14')}
                                             </Link>
                                         </li>
                                         <li className="footer__item">
-                                            <i className="footer__item-icon fas fa-chevron-right"></i>
+                                            <i className="footer__item-icon "></i>
                                             <Link to="#" className="footer__item-link">
                                                 {t('footer.contact_link_15')}
                                             </Link>
@@ -149,22 +149,22 @@ export default function Footer() {
                                 </div>
                             </div>
                             <div className="footer__inner-contact">
-                                <Link to="#" className="footer__contact-logo fab fa-twitter">
+                                <Link to="#" className="footer__contact-logo ">
                                     <img src={twitterIcon} alt="alt-t" />
                                 </Link>
                                 <Link
                                     to="https://www.youtube.com/channel/UCUf6O2OojuB4nMBmoL3jy-Q"
-                                    className="footer__contact-logo fab fa-youtube"
+                                    className="footer__contact-logo "
                                 >
                                     <img src={youtubeicon} alt="alt-y" />
                                 </Link>
                                 <Link
                                     to="https://www.facebook.com/maibaohuy.070620021303mbBank/"
-                                    className="footer__contact-logo fab fa-facebook-square"
+                                    className="footer__contact-logo "
                                 >
                                     <img src={facebookIcon} alt="alt-f" />
                                 </Link>
-                                <Link to="#" className="footer__contact-logo fab fa-instagram-square">
+                                <Link to="#" className="footer__contact-logo ">
                                     <img src={instagramIcon} alt="alt-i" />
                                 </Link>
                             </div>

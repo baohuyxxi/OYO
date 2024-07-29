@@ -10,8 +10,6 @@ import CheckBoxPaymentPolicy from '~/components/CheckBoxPayment/CheckBoxPaymentP
 import CheckBoxPaymentMethod from '~/components/CheckBoxPayment/CheckBoxPaymentMethod';
 import InfoUserBooking from '~/components/InfoUserBooking/InfoUserBooking';
 import DateBooking from '~/components/DateBooking/DateBooking';
-import Paypal from '~/components/Paypal/Paypal';
-import VNPay from '~/components/VNPay/VNPay';
 import publicAccomPlaceAPI from '~/services/apis/publicAPI/publicAccomPlaceAPI';
 import bookingAPI from '~/services/apis/clientAPI/clientBookingAPI';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,7 +20,6 @@ import bookingSlice from '~/redux/bookingSlice';
 import globalSlice from '~/redux/globalSlice';
 import { transLateRoom } from '~/services/thirdPartyAPI/translateAPI';
 import { showRefundPolicy } from '~/utils/showRefundPolicy';
-import { yellow } from '@mui/material/colors';
 import CountDownTimer from '~/components/CountDownTimer/CountDownTimer';
 import ModalTimeUp from '~/components/ModalTimeUp/ModalTimeUp';
 
@@ -58,9 +55,6 @@ const BookingPage = () => {
     const [targetTimeCountDown, setTargetTimeCountDown] = useState(new Date().getTime() + TIME_COUNT_DOWN);
     const [open, setOpen] = useState(false);
 
-    console.log(open);
-    console.log(targetTimeCountDown);
-
     const handleContinueBooking = async () => {
         setTargetTimeCountDown(new Date().getTime() + TIME_COUNT_DOWN);
         setOpen(false);
@@ -91,14 +85,16 @@ const BookingPage = () => {
             };
 
             bookingAPI.createBooking(bookingRequest).then((dataResponse) => {
-                if (dataResponse?.statusCode === 200) {
-                    enqueueSnackbar(t('message.bookingSuccess'), { variant: 'success' });
-                    dispatch(bookingSlice.actions.clearInfoBooking());
-                    dispatch(globalSlice.actions.setLoading(false));
-                    navigate(`/room-detail/${idAccom}`);
-                } else {
-                    enqueueSnackbar(t('message.bookingFail'), { variant: 'error' });
-                }
+                // console.log(dataResponse);
+                window.open(dataResponse.data.bookingPaypalCheckoutLink, 'haha', 'width=500,height=800');
+                // if (dataResponse?.statusCode === 200) {
+                //     enqueueSnackbar(t('message.bookingSuccess'), { variant: 'success' });
+                //     dispatch(bookingSlice.actions.clearInfoBooking());
+                //     dispatch(globalSlice.actions.setLoading(false));
+                //     navigate(`/room-detail/${idAccom}`);
+                // } else {
+                //     enqueueSnackbar(t('message.bookingFail'), { variant: 'error' });
+                // }
             });
         } else {
             setErrors(checkValidate);
@@ -182,16 +178,15 @@ const BookingPage = () => {
                                     <CheckBoxPaymentPolicy paymentPolicy={dataBooking.paymentPolicy} />
                                 </div>
                             </div>
+                            <button
+                                disabled={Object.keys(errors).length !== 0 || !dataBooking.canBooking}
+                                onClick={handleBookingRoom}
+                            >
+                                {t('common.booking')}
+                            </button>
 
-                            {dataBooking.paymentMethod === 'PAYPAL' ? (
-                                <div className="payment__paypal">
-                                    {/* <Paypal
-                                        pricePayment={totalTransfer}
-                                        booking={handleBookingRoom}
-                                        canBooking={dataBooking.canBooking}
-                                        errors={errors}
-                                    /> */}
-                                </div>
+                            {/* {dataBooking.paymentMethod === 'PAYPAL' ? (
+                                <div className="payment__paypal"></div>
                             ) : dataBooking.paymentMethod === 'VNPAY' ? (
                                 <div className="btn__booking">
                                     <VNPay
@@ -210,7 +205,7 @@ const BookingPage = () => {
                                         {t('common.booking')}
                                     </button>
                                 </div>
-                            )}
+                            )} */}
                         </div>
                         <div className="col l-4">
                             <div className="card-booking__room paper">

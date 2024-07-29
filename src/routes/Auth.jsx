@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import PrivateRoute from '~/components/PrivateRoute/PrivateRoute';
 import LayoutAdmin from '~/pages/admin/LayoutAdmin/LayoutAdmin';
 import StatisticPage from '~/pages/partner/StatisticPage/StatisticPage';
+import ClientPaymentSuccess from '~/pages/client/ClientPaymentSuccess/ClientPaymentSuccess';
 
 const Auth = () => {
     const roles = useSelector((state) => state.user.roles);
@@ -133,6 +134,19 @@ const Auth = () => {
                         element={
                             <Suspense>
                                 <HistoryBookingPage />
+                            </Suspense>
+                        }
+                    />
+                }
+            />
+
+            <Route
+                path="/payment/success"
+                element={
+                    <PrivateRoute
+                        element={
+                            <Suspense>
+                                <ClientPaymentSuccess />
                             </Suspense>
                         }
                     />

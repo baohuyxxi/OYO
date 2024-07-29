@@ -24,7 +24,7 @@ function MyFormControlLabel(props) {
         checked = radioGroup.value === props.value;
     }
 
-    console.log(props);
+    // console.log(props);
     return <StyledFormControlLabel checked={checked} {...props} />;
 }
 
